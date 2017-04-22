@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "funcx", "src\funcx\funcx.csproj", "{216ED154-BAC0-4359-8EA5-C1EB2AA9BF0C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B6565E01-4F06-442B-9840-9C0A0A7CED10}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1430FCA2-C28A-49B9-B513-4137ACBB3925}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "funcx.tests", "tests\funcx.tests\funcx.tests.csproj", "{78D65298-811F-40F9-A7F6-FD5B641E8A09}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{216ED154-BAC0-4359-8EA5-C1EB2AA9BF0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{216ED154-BAC0-4359-8EA5-C1EB2AA9BF0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{216ED154-BAC0-4359-8EA5-C1EB2AA9BF0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{216ED154-BAC0-4359-8EA5-C1EB2AA9BF0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78D65298-811F-40F9-A7F6-FD5B641E8A09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78D65298-811F-40F9-A7F6-FD5B641E8A09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78D65298-811F-40F9-A7F6-FD5B641E8A09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78D65298-811F-40F9-A7F6-FD5B641E8A09}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{216ED154-BAC0-4359-8EA5-C1EB2AA9BF0C} = {B6565E01-4F06-442B-9840-9C0A0A7CED10}
+		{78D65298-811F-40F9-A7F6-FD5B641E8A09} = {1430FCA2-C28A-49B9-B513-4137ACBB3925}
+	EndGlobalSection
+EndGlobal
