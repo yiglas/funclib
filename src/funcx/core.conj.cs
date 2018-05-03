@@ -25,12 +25,11 @@
                 return new List<T>(xs);
             else
             {
-                var list = (IList<T>)System.Activator.CreateInstance(source.GetType(), source);
-                //var activator = Activator.CreateInstance(source.GetType(), typeof(IEnumerable<T>));
-                //var list = (IList<T>)activator(source);
+                var items = new T[source.Count + xs.Count()];
+                Array.Copy(source.ToArray(), 0, items, 0, source.Count);
+                Array.Copy(xs, 0, items, source.Count, xs.Length);
 
-                for (int i = 0; i < xs.Length; i++)
-                    list.Add(xs[i]);
+                var list = (IList<T>)Activator.CreateInstance(source.GetType(), items);
 
                 return list;
             }
