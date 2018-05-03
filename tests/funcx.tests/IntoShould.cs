@@ -21,7 +21,7 @@ namespace funcx.tests
         {
             var actual = into(null, new Dictionary<int, string>() { [1] = "a" });
 
-            Assert.AreEqual(actual.GetType(), typeof(List<KeyValuePair<int, string>>));
+            Assert.AreEqual(actual.GetType(), typeof(Dictionary<int, string>));
         }
 
         [Test]
