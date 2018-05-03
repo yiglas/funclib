@@ -18,7 +18,6 @@
         public static ICollection<T> empty<T>(ICollection<T> coll) =>
             coll == null
                 ? null
-                : (ICollection<T>)Activator.CreateInstance(coll.GetType());
-        //: (ICollection<T>)(Activator.CreateInstance(coll.GetType())());
+                : Activator.CreateInstance(coll.GetType()) as ICollection<T>;
     }
 }

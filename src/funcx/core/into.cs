@@ -33,7 +33,7 @@
 
                 Array.Copy(to.ToArray(), 0, items, from?.Count ?? 0, to.Count);
 
-                var list = (IList<T>)Activator.CreateInstance(to.GetType(), items);
+                var list = Activator.CreateInstance(to.GetType(), items) as IList<T>;
 
                 return list;
             }

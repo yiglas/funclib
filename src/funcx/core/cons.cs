@@ -21,9 +21,7 @@
             if (seq == null) return new List<T>() { x };
             else
             {
-                var coll = (List<T>)Activator.CreateInstance(typeof(List<T>), seq);
-                //var activator = Activator.CreateInstance(typeof(List<T>), typeof(IEnumerable<T>));
-                //var coll = (IList<T>)activator(seq);
+                var coll = Activator.CreateInstance(typeof(List<T>), seq) as List<T>;
 
                 coll.Insert(0, x);
 

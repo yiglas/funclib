@@ -85,6 +85,6 @@
                 yield return func(e1.Current, e2.Current, e3.Current);
         }
 
-        //TODO add method for map: map(func, c1, c2, c3, params [] c4)
+        //TODO: add method for map: map(func, c1, c2, c3, params [] c4)
     }
 }

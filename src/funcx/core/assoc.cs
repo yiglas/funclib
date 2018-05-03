@@ -25,9 +25,7 @@
                 return keyvals.ToDictionary(x => x.key, x => x.value);
             else
             {
-                var dict = (IDictionary<TKey, TValue>)Activator.CreateInstance(map.GetType(), map);
-                //var activator = Activator.CreateInstance(map.GetType(), typeof(IDictionary<TKey, TValue>));
-                //var dict = (IDictionary<TKey, TValue>)activator(map);
+                var dict = Activator.CreateInstance(map.GetType(), map) as IDictionary<TKey, TValue>;
 
                 for (int i = 0; i < keyvals.Length; i++)
                 {
