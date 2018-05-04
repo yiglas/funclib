@@ -9,6 +9,7 @@
     public static partial class core
     {
         // TODO: see if is-expression with patterns will be faster
+        // TODO: create multiple functions
 
         /// <summary>
         /// Returns the number of items in the collection. Count on a null will

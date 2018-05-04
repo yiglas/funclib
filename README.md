@@ -20,23 +20,21 @@ is every
 find
 flatten
 fnil
-format
-frequencies
+
 get in
-group by
 is identical
 if let
 if not 
 if some
 is int
 keep
-keys
-key
+
 let
 max
 memoize
 merge
 min
+mapcat 
 is neg
 is null
 is odd
@@ -63,7 +61,7 @@ slurp
 spit
 some
 is some
-sort
+
 sort by
 split at
 split with
@@ -74,8 +72,7 @@ take while
 time
 update in
 is uuid
-val
-vals
+
 when
 when first
 when let
