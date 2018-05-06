@@ -21,7 +21,7 @@ namespace funcx.tests
         [Test]
         public void Sort_should_order_by_comparator_when_passed()
         {
-            var actual = sort((x, y) => x > y, vals(new Dictionary<string, int>() { ["foo"] = 5, ["bar"] = 2, ["baz"] = 10 }));
+            var actual = sort((x, y) => x > y ? 0 : -1, vals(new Dictionary<string, int>() { ["foo"] = 5, ["bar"] = 2, ["baz"] = 10 }));
 
             Assert.AreEqual(10, actual[0]);
             Assert.AreEqual(2, actual[2]);

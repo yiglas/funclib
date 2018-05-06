@@ -10,13 +10,13 @@ namespace funcx
     /// <typeparam name="T">The type of objects to compare.</typeparam>
     class FunctionComparer<T> : IComparer<T>
     {
-        Func<T, T, bool> _comparator;
+        Func<T, T, int> _comparator;
 
-        public FunctionComparer(Func<T, T, bool> comparator)
+        public FunctionComparer(Func<T, T, int> comparator)
         {
             this._comparator = comparator;
         }
 
-        public int Compare(T x, T y) => this._comparator(x, y) ? 0 : 1;
+        public int Compare(T x, T y) => this._comparator(x, y);
     }
 }

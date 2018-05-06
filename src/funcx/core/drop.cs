@@ -12,17 +12,17 @@
          /// Returns a lazy sequence of all but the first n items in coll.
          /// </summary>
          /// <typeparam name="T">Generic type of the collection.</typeparam>
-         /// <param name="source">The <see cref="IEnumerable{T}"/>.</param>
+         /// <param name="coll">The <see cref="IEnumerable{T}"/>.</param>
          /// <param name="n">The number of items to drop from the beginning</param>
          /// <returns>
          /// An <see cref="IEnumerable"/> loaded as requested of items excluding the first n items.
          /// </returns>
-        public static IEnumerable<T> drop<T>(this IEnumerable<T> source, int n)
+        public static IEnumerable<T> drop<T>(int n, IEnumerable<T> coll)
         {
-            if (truthy(and(source, n > 0)))
+            if (truthy(and(coll, n > 0)))
             {
                 int i = 1;
-                foreach (var item in source)
+                foreach (var item in coll)
                     if (i++ <= n) continue; else yield return item;
             }
 
@@ -33,17 +33,17 @@
         /// <summary>
         /// Returns a lazy sequence of all but the first n items in coll.
         /// </summary>
-        /// <param name="source">The <see cref="IEnumerable"/>.</param>
+        /// <param name="coll">The <see cref="IEnumerable"/>.</param>
         /// <param name="n">The number of items to drop from the beginning</param>
         /// <returns>
         /// An <see cref="IEnumerable"/> loaded as requested of items excluding the first n items.
         /// </returns>
-        public static IEnumerable drop(this IEnumerable source, int n)
+        public static IEnumerable drop(int n, IEnumerable coll)
         {
-            if (truthy(and(source, n > 0)))
+            if (truthy(and(coll, n > 0)))
             {
                 int i = 1;
-                foreach (var item in source)
+                foreach (var item in coll)
                     if (i++ <= n) continue; else yield return item;
             }
 

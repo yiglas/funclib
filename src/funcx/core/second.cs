@@ -16,7 +16,7 @@
         /// <returns>
         /// Returns the second item in the list.
         /// </returns>
-        public static T second<T>(this IEnumerable<T> x) => first(next(x));
+        public static T second<T>(IEnumerable<T> x) => first(next(x));
 
         /// <summary>
         /// Same as first(next(x))
@@ -25,6 +25,6 @@
         /// <returns>
         /// Returns the second item in the list.
         /// </returns>
-        public static object second(this IEnumerable x) => first(next(x));
+        public static object second(IEnumerable x) => first(next(x));
     }
 }

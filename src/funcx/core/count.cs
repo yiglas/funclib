@@ -11,6 +11,16 @@
         // TODO: see if is-expression with patterns will be faster
         // TODO: create multiple functions
 
+        ///// <summary>
+        ///// Returns the number of items in the collection. Count on a null will
+        ///// return 0. Also works on strings, arrays, collections and dictionaries.
+        ///// </summary>
+        ///// <param name="coll">The object counting.</param>
+        ///// <returns>
+        ///// 0 if null or empty otherwise the number of entries in the object.
+        ///// </returns>
+        //public static int count(int coll) => count(coll as object);
+
         /// <summary>
         /// Returns the number of items in the collection. Count on a null will
         /// return 0. Also works on strings, arrays, collections and dictionaries.
@@ -19,7 +29,7 @@
         /// <returns>
         /// 0 if null or empty otherwise the number of entries in the object.
         /// </returns>
-        public static int count(object coll)
+        public static int count<T>(T coll)
         {
             if (!(coll is ValueType) && coll == null) return 0;
             else if (coll is string) return (coll as string).Length;

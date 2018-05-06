@@ -19,7 +19,7 @@
         /// <returns>The final accumulator value.</returns>
         public static TSource reduce<TSource>(Func<TSource, TSource, TSource> f, IEnumerable<TSource> coll) =>
             coll == null || !coll.Any()
-                ? f(default(TSource), default(TSource))
+                ? f(default, default)
                 : coll.Aggregate(f);
 
         /// <summary>

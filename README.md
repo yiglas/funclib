@@ -30,10 +30,9 @@ is int
 keep
 
 let
-max
 memoize
 merge
-min
+
 mapcat 
 is neg
 is null
@@ -62,7 +61,6 @@ spit
 some
 is some
 
-sort by
 split at
 split with
 subs

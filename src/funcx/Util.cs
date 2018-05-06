@@ -15,7 +15,7 @@
                 return Reduce1(f, (R)Convert.ChangeType(_.first(coll), typeof(R)), _.next(coll));
             }
 
-            return default(R);
+            return default;
         }
 
         internal static R Reduce1<T, R>(Func<R, T, R> f, R val, IEnumerable<T> coll)

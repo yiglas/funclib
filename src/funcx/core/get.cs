@@ -19,7 +19,7 @@
         /// <returns>
         /// Returns found key's value, or the notFound value.
         /// </returns>
-        public static TValue get<TKey, TValue>(IDictionary<TKey, TValue> map, TKey key, TValue notFound = default(TValue))
+        public static TValue get<TKey, TValue>(IDictionary<TKey, TValue> map, TKey key, TValue notFound = default)
         {
             if (map == null) return notFound;
             else if (map.ContainsKey(key)) return map[key];
@@ -36,7 +36,7 @@
         /// <returns>
         /// Returns found key's value, or the notFound value.
         /// </returns>
-        public static T get<T>(IList<T> map, int index, T notFound = default(T))
+        public static T get<T>(IList<T> map, int index, T notFound = default)
         {
             if (map == null) return notFound;
             else if (map.Count > index) return map[index];

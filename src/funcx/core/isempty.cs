@@ -15,6 +15,6 @@
         /// <returns>
         /// true if the object is empty, otherwise false.
         /// </returns>
-        public static bool isempty(this object coll) => not(seq(coll));
+        public static bool isempty(object coll) => not(seq(coll));
     }
 }

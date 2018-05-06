@@ -20,12 +20,12 @@
         public static T first<T>(IEnumerable<T> coll)
         {
             if (coll == null)
-                return default(T);
+                return default;
 
             foreach (var item in coll)
                 return item;
 
-            return default(T);
+            return default;
         }
 
         /// <summary>
@@ -46,5 +46,16 @@
 
             return null;
         }
+
+        /// <summary>
+        /// Returns the key from the <see cref="KeyValuePair{TKey, TValue}"/>.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the key.</typeparam>
+        /// <typeparam name="TValue">The type of the value.</typeparam>
+        /// <param name="coll">The <see cref="KeyValuePair{TKey, TValue}"/> to pull the key from.</param>
+        /// <returns>
+        /// Returns the key.
+        /// </returns>
+        public static TKey first<TKey, TValue>(KeyValuePair<TKey, TValue> coll) => coll.Key;
     }
 }

@@ -18,7 +18,7 @@
         /// </returns>
         public static T last<T>(IEnumerable<T> coll) =>
             coll == null
-                ? default(T)
+                ? default
                 : coll.Last();
 
         /// <summary>
@@ -38,5 +38,16 @@
 
             return v;
         }
+
+        /// <summary>
+        /// Returns the value from the <see cref="KeyValuePair{TKey, TValue}"/>.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the key.</typeparam>
+        /// <typeparam name="TValue">The type of the value.</typeparam>
+        /// <param name="coll">The <see cref="KeyValuePair{TKey, TValue}"/> to pull the value from.</param>
+        /// <returns>
+        /// Returns the value.
+        /// </returns>
+        public static TKey last<TKey, TValue>(KeyValuePair<TKey, TValue> coll) => coll.Value;
     }
 }

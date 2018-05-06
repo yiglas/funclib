@@ -14,9 +14,21 @@
         {
             if (x.Equals(y)) return 0;
             if (y == null) return 1;
-            if (double.TryParse(Convert.ToString(x, CultureInfo.InvariantCulture), NumberStyles.Any, NumberFormatInfo.InvariantInfo, out double nx))
+            if (x is string sx)
             {
-                return nx.CompareTo(y);
+                return sx.CompareTo(y);
+            }
+            if (x is int ix)
+            {
+                return ix.CompareTo(y);
+            }
+            if (x is double dx)
+            {
+                return dx.CompareTo(y);
+            }
+            if (x is float fx)
+            {
+                return fx.CompareTo(y);
             }
             if (x is IDictionary)
             {
@@ -26,9 +38,21 @@
             {
                 var ey = y as IList;
                 
-                if (ex.Count != ey.Count)
-                    return -1
-                
+                for (int i = 0; i < ex.Count; i++)                
+                {
+                    int r = 0;
+
+                    if (ex[i] is IComparable exc)
+                    {
+                        r = exc.CompareTo(ey[i]);
+                    }
+                    else
+                        throw new NotSupportedException($"Cannot compare {ex[i]} to {ey[i]}");
+
+                    if (r != 0) return r;
+                }
+
+                return 0;
             }
 
             return -1;

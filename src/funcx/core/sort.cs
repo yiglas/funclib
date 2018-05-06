@@ -27,6 +27,6 @@
         /// <returns>
         /// Returns a <see cref="IList{T}"/> of sorted values.
         /// </returns>
-        public static IList<T> sort<T>(Func<T, T, bool> comp, IEnumerable<T> coll) => coll.OrderBy(x => x, new FunctionComparer<T>(comp)).ToList();
+        public static IList<T> sort<T>(Func<T, T, int> comp, IEnumerable<T> coll) => coll.OrderBy(x => x, new FunctionComparer<T>(comp)).ToList();
     }
 }
