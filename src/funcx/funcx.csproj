@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Collections\" />
     <Folder Include="string\" />
   </ItemGroup>
 

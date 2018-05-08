@@ -48,6 +48,6 @@
         /// <returns>
         /// Returns the value.
         /// </returns>
-        public static TKey last<TKey, TValue>(KeyValuePair<TKey, TValue> coll) => coll.Value;
+        public static TValue last<TKey, TValue>(KeyValuePair<TKey, TValue> coll) => coll.Value;
     }
 }

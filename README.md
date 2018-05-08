@@ -14,7 +14,6 @@ distinct
 is distinct
 drop last
 drop while
-is even
 is double
 is every
 find
@@ -23,29 +22,21 @@ fnil
 
 get in
 is identical
-if let
+
 if not 
 if some
 is int
 keep
 
-let
 memoize
 merge
 
-mapcat 
-is neg
-is null
-is odd
-partial
+mapcat
 partition
 partition all
 partition by
 peek
 pop
-is pos
-rand
-rand int
 reduce kv
 replace
 re find
@@ -58,8 +49,7 @@ is seq
 read
 slurp
 spit
-some
-is some
+if some
 
 split at
 split with
@@ -71,13 +61,7 @@ time
 update in
 is uuid
 
-when
-when first
-when let
-when not
-when some
 while
-is zero
 
 todo:
 1. create persistent list & list<t>
