@@ -7,6 +7,13 @@
 
     public static partial class core
     {
-        public static bool isnull(object x) => x is null;
+        /// <summary>
+        /// Returns true if x is null
+        /// </summary>
+        /// <param name="x">Object to test.</param>
+        /// <returns>
+        /// true if x is null, otherwise false.
+        /// </returns>
+        public static bool isnull<T>(T x) => x == null;
     }
 }

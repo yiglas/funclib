@@ -7,14 +7,12 @@ using static funcx.core;
 
 namespace funcx.tests
 {
-    public class PartitionShould
+    public class TimeShould
     {
         [Test]
-        public void Partition_should_break_a_sequence_into_parts()
+        public void Time_should_print_milliseconds_to_console()
         {
-            //var actual = toarray(partition(4, range(20)));
-
-            //Assert.AreEqual(5, actual.Length);
+            time(() => System.Threading.Thread.Sleep(100));
         }
     }
 }

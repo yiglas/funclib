@@ -8,6 +8,8 @@
 
     public static partial class core
     {
+        // TODO: remove object and to got passing in generics
+
         /// <summary>
         /// Evaluates expressions one at a time, from left to right. If a form
         /// returns a logical false (null or false) it returns that value and

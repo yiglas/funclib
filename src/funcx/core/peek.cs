@@ -21,6 +21,5 @@
             coll == null 
                 ? default
                 : coll.FirstOrDefault();
-
     }
 }

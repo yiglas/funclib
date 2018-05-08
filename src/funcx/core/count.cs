@@ -11,16 +11,6 @@
         // TODO: see if is-expression with patterns will be faster
         // TODO: create multiple functions
 
-        ///// <summary>
-        ///// Returns the number of items in the collection. Count on a null will
-        ///// return 0. Also works on strings, arrays, collections and dictionaries.
-        ///// </summary>
-        ///// <param name="coll">The object counting.</param>
-        ///// <returns>
-        ///// 0 if null or empty otherwise the number of entries in the object.
-        ///// </returns>
-        //public static int count(int coll) => count(coll as object);
-
         /// <summary>
         /// Returns the number of items in the collection. Count on a null will
         /// return 0. Also works on strings, arrays, collections and dictionaries.
@@ -29,26 +19,27 @@
         /// <returns>
         /// 0 if null or empty otherwise the number of entries in the object.
         /// </returns>
-        public static int count<T>(T coll)
+        public static int count<T>(T coll) =>
+            !(coll is ValueType) && coll == null
+                ? 0
+                : coll is string s ? s.Length
+                : coll is Array a ? a.GetLength(0)
+                : coll is IDictionary d ? d.Count
+                : coll is ICollection c ? c.Count
+                : coll is DictionaryEntry ? 2
+                : coll.GetType().Name == "KeyValuePair`2" ? 2
+                : coll is IEnumerable e ? countEnumerable(e)
+                : throw new InvalidOperationException($"Count not supported on this type: {coll.GetType().FullName}");
+
+
+        static int countEnumerable(IEnumerable e)
         {
-            if (!(coll is ValueType) && coll == null) return 0;
-            else if (coll is string) return (coll as string).Length;
-            else if (coll is Array) return (coll as Array).GetLength(0);
-            else if (coll is IDictionary) return (coll as IDictionary).Count;
-            else if (coll is ICollection) return (coll as ICollection).Count;
-            else if (coll is DictionaryEntry) return 2;
-            else if (coll.GetType().Name == "KeyValuePair`2") return 2;
-            else if (coll is IEnumerable)
-            {
-                int i = 0;
-                
-                foreach (var item in (coll as IEnumerable))
-                    i++;
+            int i = 0;
 
-                return i;
-            }
+            foreach (var item in e)
+                i++;
 
-            throw new InvalidOperationException($"Count not supported on this type: {coll.GetType().FullName}");
+            return i;
         }
     }
 }

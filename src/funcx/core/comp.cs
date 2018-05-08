@@ -10,7 +10,8 @@
     {
         // TODO: add more function to compose
         // TODO: remove the Delegate function
-
+        // TODO: try to constraint T as a Delegate
+        
         /// <summary>
         /// Takes a set of functions and returns a fn that is the composition of those fns.
         /// </summary>
@@ -290,6 +291,7 @@
         public static DelP3PA<T2, T3, T4, T5, TResult> comp<TG, TH, TI, T2, T3, T4, T5, TResult>(Func<TG, TResult> f, Func<TH, TG> g, Func<TI, TH> h, DelP3PA<T2, T3, T4, T5, TI> i) =>
             (T2 x, T3 y, T4 z, T5[] args) =>
             f(g(h(i(x, y, z, args))));
+        
     }
 }
 

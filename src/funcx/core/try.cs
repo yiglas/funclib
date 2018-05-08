@@ -8,6 +8,12 @@
 
     public static partial class core
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="expr"></param>
+        /// <returns></returns>
         public static TResult @try<TResult>(Func<TResult> expr)
         {
             try

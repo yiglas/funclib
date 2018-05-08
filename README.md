@@ -9,7 +9,6 @@ case
 cond
 cond thread
 constantly
-contains
 distinct
 is distinct
 drop last
@@ -18,7 +17,7 @@ is double
 is every
 find
 flatten
-fnil
+
 
 get in
 is identical
@@ -39,12 +38,6 @@ peek
 pop
 reduce kv
 replace
-re find
-re groups
-re matcher
-re matches
-re pattern
-re seq
 is seq
 read
 slurp
@@ -57,7 +50,7 @@ subs
 take last
 take nth
 take while
-time
+
 update in
 is uuid
 

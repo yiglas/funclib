@@ -32,7 +32,7 @@
             }
             if (x is IDictionary)
             {
-
+                throw new NotImplementedException();
             }
             if (x is IList ex)
             {

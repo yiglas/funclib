@@ -9,6 +9,8 @@
 
     public static partial class core
     {
+        // TODO: actual pass the type instead of object.
+
         /// <summary>
         /// Returns the value at the index. 
         /// </summary>
@@ -50,7 +52,7 @@
             }
             else if (coll is IEnumerable)
             {
-                var s = seq(coll);
+                var s = seqInternal(coll as IEnumerable);
                 for (int i = 0; i <= index && s != null; ++i, s = next(s))
                 {
                     if (i == index)
@@ -91,7 +93,7 @@
             }
             else if (coll is IEnumerable)
             {
-                var s = seq(coll);
+                var s = seqInternal(coll as IEnumerable);
                 for (int i = 0; i <= index && s != null; ++i, s = next(s))
                 {
                     if (i == index)

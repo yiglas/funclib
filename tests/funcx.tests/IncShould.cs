@@ -2,16 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using _ = funcx.core;
+using static funcx.core;
 
 namespace funcx.tests
 {
-    public class CoreShould
+    public class IncShould
     {
         [Test]
-        public void Core_should_all_underscore()
+        public void Inc_should_inc_passed_in_number()
         {
-            var actual = _.inc(0);
+            var actual = inc(0);
 
             Assert.AreEqual(1, actual);
         }

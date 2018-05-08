@@ -11,20 +11,23 @@
         /// <summary>
         /// If the source is empty return null else return source.
         /// </summary>
-        /// <param name="coll">The <see cref="object"/>.</param>
+        /// <typeparam name="T">The type of objects to enumerate.</typeparam>
+        /// <param name="coll">The <see cref="IEnumerable{T}"/> to check if empty or not.</param>
         /// <returns>
-        /// Either null if object is empty else the object.
+        /// Returns the coll if not empty, otherwise null
         /// </returns>
-        public static object notempty(object coll)
+        public static IEnumerable<T> notempty<T>(IEnumerable<T> coll) =>
+            falsy(coll)
+                ? null
+                : coll is ICollection c ? c.Count > 0 ? coll : null
+                : coll is string s ? s.Length > 0 ? coll : null
+                : coll is IEnumerable ? notEmptyEnumerable(coll)
+                : null;
+
+        static IEnumerable<T> notEmptyEnumerable<T>(IEnumerable<T> e)
         {
-            if (falsy(coll)) return null;
-            else if (coll is ICollection) return (coll as ICollection).Count > 0 ? coll : null;
-            else if (coll is string) return (coll as string).Length > 0 ? coll : null;
-            else if (coll is IEnumerable)
-            {
-                foreach (var item in (coll as IEnumerable))
-                    return coll;
-            }
+            foreach (var item in e)
+                return e;
 
             return null;
         }

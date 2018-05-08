@@ -1,7 +1,6 @@
 ﻿namespace funcx
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
@@ -10,12 +9,12 @@
     public static partial class core
     {
         /// <summary>
-        /// Returns a random integer between 0 (inclusive) and n (exclusive).
+        /// Returns a new instance of the <see cref="Regex"/> class.
         /// </summary>
-        /// <param name="n">Upper bounds of the random number</param>
+        /// <param name="s">The pattern.</param>
         /// <returns>
-        /// Returns a random number.
+        /// A new <see cref="Regex"/> class.
         /// </returns>
-        public static int randint(int n) => (int)rand(n);
+        public static Regex repattern(string s) => new Regex(s);
     }
 }
