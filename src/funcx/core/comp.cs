@@ -1,298 +1,93 @@
-﻿namespace funcx
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace funcx.Core
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Dynamic;
-    using System.Linq;
-    using System.Text;
-
-    public static partial class core
+    public class Comp<TResult> :
+        IFunction<IFunction<TResult>, IFunction<TResult>>
     {
-        // TODO: add more function to compose
-        // TODO: remove the Delegate function
-        // TODO: try to constraint T as a Delegate
-        
-        /// <summary>
-        /// Takes a set of functions and returns a fn that is the composition of those fns.
-        /// </summary>
-        /// <typeparam name="TResult">Type of the result.</typeparam>
-        /// <param name="f">Function 1</param>
-        /// <returns>
-        /// Returns a fn that is the composition of passed in fns.
-        /// </returns>
-        public static Func<TResult> comp<TResult>(Func<TResult> f) => f;
+        public IFunction<TResult> Invoke(IFunction<TResult> f) => f;
+    }
 
-        /// <summary>
-        /// Takes a set of functions and returns a fn that is the composition of those fns.
-        /// </summary>
-        /// <typeparam name="TG">Type of function g's result.</typeparam>
-        /// <typeparam name="TResult">Type of the result.</typeparam>
-        /// <param name="f">Function 1</param>
-        /// <param name="g">Function 2</param>
-        /// <returns>
-        /// Returns a fn that is the composition of passed in fns.
-        /// </returns>
-        public static Func<TResult> comp<TG, TResult>(Func<TG, TResult> f, Func<TG> g) => 
-            () => 
-            f(g());
+    public class Comp<T1, TResult> :
+        IFunction<IFunction<T1, TResult>, IFunction<T1>, IFunction<TResult>>
+    {
+        public IFunction<TResult> Invoke(IFunction<T1, TResult> f, IFunction<T1> g) =>
+            new Function<TResult>(() => f.Invoke(g.Invoke()));
+    }
 
-        /// <summary>
-        /// Takes a set of functions and returns a fn that is the composition of those fns.
-        /// </summary>
-        /// <typeparam name="TG">Type of function g's result.</typeparam>
-        /// <typeparam name="T2">Type of input for function g.</typeparam>
-        /// <typeparam name="TResult">Type of the result.</typeparam>
-        /// <param name="f">Function 1</param>
-        /// <param name="g">Function 2</param>
-        /// <returns>
-        /// Returns a fn that is the composition of passed in fns.
-        /// </returns>
-        public static Func<T2, TResult> comp<TG, T2, TResult>(Func<TG, TResult> f, Func<T2, TG> g) =>
-            (T2 x) =>
-            f(g(x));
+    public class Comp<T1, T2, TResult> :
+        IFunction<IFunction<T2, TResult>, IFunction<T1, T2>, IFunction<T1, TResult>>,
+        IFunction<IFunction<T2, TResult>, IFunction<T1, T2>, IFunction<T1>, IFunction<TResult>>
+    {
+        public IFunction<T1, TResult> Invoke(IFunction<T2, TResult> f, IFunction<T1, T2> g) =>
+            new Function<T1, TResult>(x => f.Invoke(g.Invoke(x)));
 
-        /// <summary>
-        /// Takes a set of functions and returns a fn that is the composition of those fns.
-        /// </summary>
-        /// <typeparam name="TG">Type of function g's result.</typeparam>
-        /// <typeparam name="T2">Type of input for function g.</typeparam>
-        /// <typeparam name="T3">Type of 2nd input for function g.</typeparam>
-        /// <typeparam name="TResult">Type of the result.</typeparam>
-        /// <param name="f">Function 1</param>
-        /// <param name="g">Function 2</param>
-        /// <returns>
-        /// Returns a fn that is the composition of passed in fns.
-        /// </returns>
-        public static Func<T2, T3, TResult> comp<TG, T2, T3, TResult>(Func<TG, TResult> f, Func<T2, T3, TG> g) =>
-            (T2 x, T3 y) =>
-            f(g(x, y));
+        public IFunction<TResult> Invoke(IFunction<T2, TResult> f, IFunction<T1, T2> g, IFunction<T1> h) =>
+            new Function<TResult>(() => f.Invoke(g.Invoke(h.Invoke())));
+    }
 
-        /// <summary>
-        /// Takes a set of functions and returns a fn that is the composition of those fns.
-        /// </summary>
-        /// <typeparam name="TG">Type of function g's result.</typeparam>
-        /// <typeparam name="T2">Type of input for function g.</typeparam>
-        /// <typeparam name="T3">Type of 2nd input for function g.</typeparam>
-        /// <typeparam name="T4">Type of 3nd input for function g.</typeparam>
-        /// <typeparam name="TResult">Type of the result.</typeparam>
-        /// <param name="f">Function 1</param>
-        /// <param name="g">Function 2</param>
-        /// <returns>
-        /// Returns a fn that is the composition of passed in fns.
-        /// </returns>
-        public static Func<T2, T3, T4, TResult> comp<TG, T2, T3, T4, TResult>(Func<TG, TResult> f, Func<T2, T3, T4, TG> g) =>
-            (T2 x, T3 y, T4 z) =>
-            f(g(x, y, z));
+    public class Comp<T1, T2, T3, TResult> :
+        IFunction<IFunction<T3, TResult>, IFunction<T1, T2, T3>, IFunction<T1, T2, TResult>>,
+        IFunction<IFunction<T3, TResult>, IFunction<T2, T3>, IFunction<T1, T2>, IFunction<T1, TResult>>,
+        IFunction<IFunction<T3, TResult>, IFunction<T2, T3>, IFunction<T1, T2>, IFunction<T1>, IFunction<TResult>>
+    {
+        public IFunction<T1, T2, TResult> Invoke(IFunction<T3, TResult> f, IFunction<T1, T2, T3> g) =>
+            new Function<T1, T2, TResult>((x, y) => f.Invoke(g.Invoke(x, y)));
 
-        /// <summary>
-        /// Takes a set of functions and returns a fn that is the composition of those fns.
-        /// </summary>
-        /// <typeparam name="TG">Type of function g's result.</typeparam>
-        /// <typeparam name="T2">Type of input for function g.</typeparam>
-        /// <typeparam name="T3">Type of 2nd input for function g.</typeparam>
-        /// <typeparam name="T4">Type of 3nd input for function g.</typeparam>
-        /// <typeparam name="T5">Type of 3nd input for function g.</typeparam>
-        /// <typeparam name="TResult">Type of the result.</typeparam>
-        /// <param name="f">Function 1</param>
-        /// <param name="g">Function 2</param>
-        /// <returns>
-        /// Returns a fn that is the composition of passed in fns.
-        /// </returns>
-        public static DelP3PA<T2, T3, T4, T5, TResult> comp<TG, T2, T3, T4, T5, TResult>(Func<TG, TResult> f, DelP3PA<T2, T3, T4, T5, TG> g) =>
-            (T2 x, T3 y, T4 z, T5[] args) =>
-            f(g(x, y, z, args));
+        public IFunction<T1, TResult> Invoke(IFunction<T3, TResult> f, IFunction<T2, T3> g, IFunction<T1, T2> h) =>
+            new Function<T1, TResult>((x) => f.Invoke(g.Invoke(h.Invoke(x))));
 
-        /// <summary>
-        /// Takes a set of functions and returns a fn that is the composition of those fns.
-        /// </summary>
-        /// <typeparam name="TG">Type of function g's result.</typeparam>
-        /// <typeparam name="TH">Type of function h's result.</typeparam>
-        /// <typeparam name="TResult">Type of the result.</typeparam>
-        /// <param name="f">Function 1</param>
-        /// <param name="g">Function 2</param>
-        /// <param name="h">Function 3</param>
-        /// <returns>
-        /// Returns a fn that is the composition of passed in fns.
-        /// </returns>
-        public static Func<TResult> comp<TG, TH, TResult>(Func<TG, TResult> f, Func<TH, TG> g, Func<TH> h) =>
-            () =>
-            f(g(h()));
-        
-        /// <summary>
-        /// Takes a set of functions and returns a fn that is the composition of those fns.
-        /// </summary>
-        /// <typeparam name="TG">Type of function g's result.</typeparam>
-        /// <typeparam name="TH">Type of function h's result.</typeparam>
-        /// <typeparam name="T2">Type of input for function h.</typeparam>
-        /// <typeparam name="TResult">Type of the result.</typeparam>
-        /// <param name="f">Function 1</param>
-        /// <param name="g">Function 2</param>
-        /// <param name="h">Function 3</param>
-        /// <returns>
-        /// Returns a fn that is the composition of passed in fns.
-        /// </returns>
-        public static Func<T2, TResult> comp<TG, TH, T2, TResult>(Func<TG, TResult> f, Func<TH, TG> g, Func<T2, TH> h) =>
-            (T2 x) =>
-            f(g(h(x)));
+        public IFunction<TResult> Invoke(IFunction<T3, TResult> f, IFunction<T2, T3> g, IFunction<T1, T2> h, IFunction<T1> i) =>
+            new Function<TResult>(() => f.Invoke(g.Invoke(h.Invoke(i.Invoke()))));
+    }
 
-        /// <summary>
-        /// Takes a set of functions and returns a fn that is the composition of those fns.
-        /// </summary>
-        /// <typeparam name="TG">Type of function g's result.</typeparam>
-        /// <typeparam name="TH">Type of function h's result.</typeparam>
-        /// <typeparam name="T2">Type of input for function h.</typeparam>
-        /// <typeparam name="T3">Type of 2nd input for function h.</typeparam>
-        /// <typeparam name="TResult">Type of the result.</typeparam>
-        /// <param name="f">Function 1</param>
-        /// <param name="g">Function 2</param>
-        /// <param name="h">Function 3</param>
-        /// <returns>
-        /// Returns a fn that is the composition of passed in fns.
-        /// </returns>
-        public static Func<T2, T3, TResult> comp<TG, TH, T2, T3, TResult>(Func<TG, TResult> f, Func<TH, TG> g, Func<T2, T3, TH> h) =>
-            (T2 x, T3 y) =>
-            f(g(h(x, y)));
+    public class Comp<T1, T2, T3, T4, TResult> :
+        IFunction<IFunction<T4, TResult>, IFunction<T1, T2, T3, T4>, IFunction<T1, T2, T3, TResult>>,
+        IFunction<IFunction<T4, TResult>, IFunction<T3, T4>, IFunction<T1, T2, T3>, IFunction<T1, T2, TResult>>,
+        IFunction<IFunction<T4, TResult>, IFunction<T3, T4>, IFunction<T2, T3>, IFunction<T1, T2>, IFunction<T1, TResult>>
+    {
+        public IFunction<T1, T2, T3, TResult> Invoke(IFunction<T4, TResult> f, IFunction<T1, T2, T3, T4> g) =>
+            new Function<T1, T2, T3, TResult>((x, y, z) => f.Invoke(g.Invoke(x, y, z)));
 
-        /// <summary>
-        /// Takes a set of functions and returns a fn that is the composition of those fns.
-        /// </summary>
-        /// <typeparam name="TG">Type of function g's result.</typeparam>
-        /// <typeparam name="TH">Type of function h's result.</typeparam>
-        /// <typeparam name="T2">Type of input for function h.</typeparam>
-        /// <typeparam name="T3">Type of 2nd input for function h.</typeparam>
-        /// <typeparam name="T4">Type of 3nd input for function h.</typeparam>
-        /// <typeparam name="TResult">Type of the result.</typeparam>
-        /// <param name="f">Function 1</param>
-        /// <param name="g">Function 2</param>
-        /// <param name="h">Function 3</param>
-        /// <returns>
-        /// Returns a fn that is the composition of passed in fns.
-        /// </returns>
-        public static Func<T2, T3, T4, TResult> comp<TG, TH, T2, T3, T4, TResult>(Func<TG, TResult> f, Func<TH, TG> g, Func<T2, T3, T4, TH> h) =>
-            (T2 x, T3 y, T4 z) =>
-            f(g(h(x, y, z)));
+        public IFunction<T1, T2, TResult> Invoke(IFunction<T4, TResult> f, IFunction<T3, T4> g, IFunction<T1, T2, T3> h) =>
+            new Function<T1, T2, TResult>((x, y) => f.Invoke(g.Invoke(h.Invoke(x, y))));
 
-        /// <summary>
-        /// Takes a set of functions and returns a fn that is the composition of those fns.
-        /// </summary>
-        /// <typeparam name="TG">Type of function g's result.</typeparam>
-        /// <typeparam name="TH">Type of function h's result.</typeparam>
-        /// <typeparam name="T2">Type of input for function h.</typeparam>
-        /// <typeparam name="T3">Type of 2nd input for function h.</typeparam>
-        /// <typeparam name="T4">Type of 3nd input for function h.</typeparam>
-        /// <typeparam name="T5">Type of 4nd input for function h.</typeparam>
-        /// <typeparam name="TResult">Type of the result.</typeparam>
-        /// <param name="f">Function 1</param>
-        /// <param name="g">Function 2</param>
-        /// <param name="h">Function 3</param>
-        /// <returns>
-        /// Returns a fn that is the composition of passed in fns.
-        /// </returns>
-        public static DelP3PA<T2, T3, T4, T5, TResult> comp<TG, TH, T2, T3, T4, T5, TResult>(Func<TG, TResult> f, Func<TH, TG> g, DelP3PA<T2, T3, T4, T5, TH> h) =>
-            (T2 x, T3 y, T4 z, T5[] args) =>
-            f(g(h(x, y, z, args)));
+        public IFunction<T1, TResult> Invoke(IFunction<T4, TResult> f, IFunction<T3, T4> g, IFunction<T2, T3> h, IFunction<T1, T2> i) =>
+            new Function<T1, TResult>(x => f.Invoke(g.Invoke(h.Invoke(i.Invoke(x)))));
+    }
 
-        /// <summary>
-        /// Takes a set of functions and returns a fn that is the composition of those fns.
-        /// </summary>
-        /// <typeparam name="TG">Type of function g's result.</typeparam>
-        /// <typeparam name="TH">Type of function h's result.</typeparam>
-        /// <typeparam name="TI">Type of function i's result.</typeparam>
-        /// <typeparam name="TResult">Type of the result.</typeparam>
-        /// <param name="f">Function 1</param>
-        /// <param name="g">Function 2</param>
-        /// <param name="h">Function 3</param>
-        /// <param name="i">Function 4</param>
-        /// <returns>
-        /// Returns a fn that is the composition of passed in fns.
-        /// </returns>
-        public static Func<TResult> comp<TG, TH, TI, TResult>(Func<TG, TResult> f, Func<TH, TG> g, Func<TI, TH> h, Func<TI> i) =>
-            () =>
-            f(g(h(i())));
+    public class Comp<T1, T2, T3, T4, T5, TResult> :
+        IFunction<IFunction<T5, TResult>, IFunctionParams<T1, T2, T3, T4, T5>, IFunctionParams<T1, T2, T3, T4, TResult>>,
+        IFunction<IFunction<T5, TResult>, IFunction<T4, T5>, IFunction<T1, T2, T3, T4>, IFunction<T1, T2, T3, TResult>>,
+        IFunction<IFunction<T5, TResult>, IFunction<T4, T5>, IFunction<T3, T4>, IFunction<T1, T2, T3>, IFunction<T1, T2, TResult>>
+    {
+        public IFunctionParams<T1, T2, T3, T4, TResult> Invoke(IFunction<T5, TResult> f, IFunctionParams<T1, T2, T3, T4, T5> g) =>
+            new FunctionParams<T1, T2, T3, T4, TResult>((x, y, z, args) => f.Invoke(g.Invoke(x, y, z, args)));
 
-        /// <summary>
-        /// Takes a set of functions and returns a fn that is the composition of those fns.
-        /// </summary>
-        /// <typeparam name="TG">Type of function g's result.</typeparam>
-        /// <typeparam name="TH">Type of function h's result.</typeparam>
-        /// <typeparam name="TI">Type of function i's result.</typeparam>
-        /// <typeparam name="T2">Type of input for function i.</typeparam>
-        /// <typeparam name="TResult">Type of the result.</typeparam>
-        /// <param name="f">Function 1</param>
-        /// <param name="g">Function 2</param>
-        /// <param name="h">Function 3</param>
-        /// <param name="i">Function 4</param>
-        /// <returns>
-        /// Returns a fn that is the composition of passed in fns.
-        /// </returns>
-        public static Func<T2, TResult> comp<TG, TH, TI, T2, TResult>(Func<TG, TResult> f, Func<TH, TG> g, Func<TI, TH> h, Func<T2, TI> i) =>
-            (T2 x) =>
-            f(g(h(i(x))));
+        public IFunction<T1, T2, T3, TResult> Invoke(IFunction<T5, TResult> f, IFunction<T4, T5> g, IFunction<T1, T2, T3, T4> h) =>
+            new Function<T1, T2, T3, TResult>((x, y, z) => f.Invoke(g.Invoke(h.Invoke(x, y, z))));
 
-        /// <summary>
-        /// Takes a set of functions and returns a fn that is the composition of those fns.
-        /// </summary>
-        /// <typeparam name="TG">Type of function g's result.</typeparam>
-        /// <typeparam name="TH">Type of function h's result.</typeparam>
-        /// <typeparam name="TI">Type of function i's result.</typeparam>
-        /// <typeparam name="T2">Type of input for function i.</typeparam>
-        /// <typeparam name="T3">Type of 2nd input for function i.</typeparam>
-        /// <typeparam name="TResult">Type of the result.</typeparam>
-        /// <param name="f">Function 1</param>
-        /// <param name="g">Function 2</param>
-        /// <param name="h">Function 3</param>
-        /// <param name="i">Function 4</param>
-        /// <returns>
-        /// Returns a fn that is the composition of passed in fns.
-        /// </returns>
-        public static Func<T2, T3, TResult> comp<TG, TH, TI, T2, T3, TResult>(Func<TG, TResult> f, Func<TH, TG> g, Func<TI, TH> h, Func<T2, T3, TI> i) =>
-            (T2 x, T3 y) =>
-            f(g(h(i(x, y))));
+        public IFunction<T1, T2, TResult> Invoke(IFunction<T5, TResult> f, IFunction<T4, T5> g, IFunction<T3, T4> h, IFunction<T1, T2, T3> i) =>
+            new Function<T1, T2, TResult>((x, y) => f.Invoke(g.Invoke(h.Invoke(i.Invoke(x, y)))));
+    }
 
-        /// <summary>
-        /// Takes a set of functions and returns a fn that is the composition of those fns.
-        /// </summary>
-        /// <typeparam name="TG">Type of function g's result.</typeparam>
-        /// <typeparam name="TH">Type of function h's result.</typeparam>
-        /// <typeparam name="TI">Type of function i's result.</typeparam>
-        /// <typeparam name="T2">Type of input for function i.</typeparam>
-        /// <typeparam name="T3">Type of 2nd input for function i.</typeparam>
-        /// <typeparam name="T4">Type of 3nd input for function i.</typeparam>
-        /// <typeparam name="TResult">Type of the result.</typeparam>
-        /// <param name="f">Function 1</param>
-        /// <param name="g">Function 2</param>
-        /// <param name="h">Function 3</param>
-        /// <param name="i">Function 4</param>
-        /// <returns>
-        /// Returns a fn that is the composition of passed in fns.
-        /// </returns>
-        public static Func<T2, T3, T4, TResult> comp<TG, TH, TI, T2, T3, T4, TResult>(Func<TG, TResult> f, Func<TH, TG> g, Func<TI, TH> h, Func<T2, T3, T4, TI> i) =>
-            (T2 x, T3 y, T4 z) =>
-            f(g(h(i(x, y, z))));
+    public class Comp<T1, T2, T3, T4, T5, T6, TResult> :
+        IFunction<IFunction<T6, TResult>, IFunction<T5, T6>, IFunctionParams<T1, T2, T3, T4, T5>, IFunctionParams<T1, T2, T3, T4, TResult>>,
+        IFunction<IFunction<T6, TResult>, IFunction<T5, T6>, IFunction<T4, T5>, IFunction<T1, T2, T3, T4>, IFunction<T1, T2, T3, TResult>>
+    {
+        public IFunctionParams<T1, T2, T3, T4, TResult> Invoke(IFunction<T6, TResult> f, IFunction<T5, T6> g, IFunctionParams<T1, T2, T3, T4, T5> h) =>
+            new FunctionParams<T1, T2, T3, T4, TResult>((x, y, z, args) => f.Invoke(g.Invoke(h.Invoke(x, y, z, args))));
 
-        /// <summary>
-        /// Takes a set of functions and returns a fn that is the composition of those fns.
-        /// </summary>
-        /// <typeparam name="TG">Type of function g's result.</typeparam>
-        /// <typeparam name="TH">Type of function h's result.</typeparam>
-        /// <typeparam name="TI">Type of function i's result.</typeparam>
-        /// <typeparam name="T2">Type of input for function i.</typeparam>
-        /// <typeparam name="T3">Type of 2nd input for function i.</typeparam>
-        /// <typeparam name="T4">Type of 3nd input for function i.</typeparam>
-        /// <typeparam name="T5">Type of 4nd input for function i.</typeparam>
-        /// <typeparam name="TResult">Type of the result.</typeparam>
-        /// <param name="f">Function 1</param>
-        /// <param name="g">Function 2</param>
-        /// <param name="h">Function 3</param>
-        /// <param name="i">Function 4</param>
-        /// <returns>
-        /// Returns a fn that is the composition of passed in fns.
-        /// </returns>
-        public static DelP3PA<T2, T3, T4, T5, TResult> comp<TG, TH, TI, T2, T3, T4, T5, TResult>(Func<TG, TResult> f, Func<TH, TG> g, Func<TI, TH> h, DelP3PA<T2, T3, T4, T5, TI> i) =>
-            (T2 x, T3 y, T4 z, T5[] args) =>
-            f(g(h(i(x, y, z, args))));
-        
+        public IFunction<T1, T2, T3, TResult> Invoke(IFunction<T6, TResult> f, IFunction<T5, T6> g, IFunction<T4, T5> h, IFunction<T1, T2, T3, T4> i) =>
+            new Function<T1, T2, T3, TResult>((x, y, z) => f.Invoke(g.Invoke(h.Invoke(i.Invoke(x, y, z)))));
+    }
+
+    public class Comp<T1, T2, T3, T4, T5, T6, T7, TResult> :
+        IFunction<IFunction<T7, TResult>, IFunction<T6, T7>, IFunction<T5, T6>, IFunctionParams<T1, T2, T3, T4, T5>, IFunctionParams<T1, T2, T3, T4, TResult>>
+    {
+        public IFunctionParams<T1, T2, T3, T4, TResult> Invoke(IFunction<T7, TResult> f, IFunction<T6, T7> g, IFunction<T5, T6> h, IFunctionParams<T1, T2, T3, T4, T5> i) =>
+            new FunctionParams<T1, T2, T3, T4, TResult>((x, y, z, args) => f.Invoke(g.Invoke(h.Invoke(i.Invoke(x, y, z, args)))));
     }
 }
-
-

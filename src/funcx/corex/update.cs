@@ -105,7 +105,7 @@
         /// <returns>
         /// Returns a new <see cref="IDictionary{TKey, TValue}"/> with the value updated.
         /// </returns>
-        public static IDictionary<TKey, TValue> update<TKey, TValue, T1, T2, T3, T4>(IDictionary<TKey, TValue> m, TKey key, DelP4PA<TValue, T1, T2, T3, T4, TValue> func, T1 x, T2 y, T3 z, params T4[] more) =>
+        public static IDictionary<TKey, TValue> update<TKey, TValue, T1, T2, T3, T4>(IDictionary<TKey, TValue> m, TKey key, Del<TValue, T1, T2, T3, T4, TValue> func, T1 x, T2 y, T3 z, params T4[] more) =>
             assoc(m, (key, func(get(m, key), x, y, z, more)));
         
         //TODO: implement the update with a IList

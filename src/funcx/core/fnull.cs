@@ -1,119 +1,73 @@
-﻿namespace funcx
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace funcx.Core
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
-    public static partial class core
+    public class FNull<T1, TResult> :
+        IFunction<IFunction<T1, TResult>, T1, IFunction<T1, TResult>>
     {
-        /// <summary>
-        /// Takes a function f, and returns a function that calls f, replacing a null first arguments with the supplied arguments.
-        /// </summary>
-        /// <typeparam name="T1">The type of the parameter of the method that this delegate encapsulates.</typeparam>
-        /// <typeparam name="TResult">The type of the return value of the method that this delegate encapsulates.</typeparam>
-        /// <param name="f">The function to null-patch.</param>
-        /// <param name="x">The default value for the first argument.</param>
-        /// <returns>
-        /// A function with the same argument.
-        /// </returns>
-        public static Func<T1, TResult> fnull<T1, TResult>(Func<T1, TResult> f, T1 x) =>
-            (T1 a) =>
-            f != null
-                ? f(a == null ? x : a)
-                : default;
+        public IFunction<T1, TResult> Invoke(IFunction<T1, TResult> f, T1 x) =>
+            f == null
+                ? null
+                : new Function<T1, TResult>(a => f.Invoke(a == null ? x : a));
+    }
 
-        /// <summary>
-        /// Takes a function f, and returns a function that calls f, replacing a null first arguments with the supplied arguments.
-        /// </summary>
-        /// <typeparam name="T1">The type of the first parameter of the method that this delegate encapsulates.</typeparam>
-        /// <typeparam name="T2">The type of the second parameter of the method that this delegate encapsulates.</typeparam>
-        /// <typeparam name="TResult">The type of the return value of the method that this delegate encapsulates.</typeparam>
-        /// <param name="f">The function to null-patch.</param>
-        /// <param name="x">The default value for the first argument.</param>
-        /// <returns>
-        /// A function with the same argument.
-        /// </returns>
-        public static Func<T1, T2, TResult> fnull<T1, T2, TResult>(Func<T1, T2, TResult> f, T1 x) =>
-            (T1 a, T2 b) =>
-            f != null
-                ? f(a == null ? x : a, b)
-                : default;
+    public class FNull<T1, T2, TResult> :
+        IFunction<IFunction<T1, T2, TResult>, T1, IFunction<T1, T2, TResult>>,
+        IFunction<IFunction<T1, T2, TResult>, T1, T2, IFunction<T1, T2, TResult>>
+    {
+        public IFunction<T1, T2, TResult> Invoke(IFunction<T1, T2, TResult> f, T1 x) =>
+            f == null
+                ? null
+                : new Function<T1, T2, TResult>((a, b) => f.Invoke(a == null ? x : a, b));
 
-        /// <summary>
-        /// Takes a function f, and returns a function that calls f, replacing a null first arguments with the supplied arguments.
-        /// </summary>
-        /// <typeparam name="T1">The type of the first parameter of the method that this delegate encapsulates.</typeparam>
-        /// <typeparam name="T2">The type of the second parameter of the method that this delegate encapsulates.</typeparam>
-        /// <typeparam name="TResult">The type of the return value of the method that this delegate encapsulates.</typeparam>
-        /// <param name="f">The function to null-patch.</param>
-        /// <param name="x">The default value for the first argument.</param>
-        /// <returns>
-        /// A function with the same argument.
-        /// </returns>
-        public static Func<T1, T2, T3, TResult> fnull<T1, T2, T3, TResult>(Func<T1, T2, T3, TResult> f, T1 x) =>
-            (T1 a, T2 b, T3 c) =>
-            f != null
-                ? f(a == null ? x : a, b, c)
-                : default;
+        public IFunction<T1, T2, TResult> Invoke(IFunction<T1, T2, TResult> f, T1 x, T2 y) =>
+            f == null
+                ? null
+                : new Function<T1, T2, TResult>((a, b) => f.Invoke(a == null ? x : a, b == null ? y : b));
 
-        /// <summary>
-        /// Takes a function f, and returns a function that calls f, replacing a null first arguments with the supplied arguments.
-        /// </summary>
-        /// <typeparam name="T1">The type of the first parameter of the method that this delegate encapsulates.</typeparam>
-        /// <typeparam name="T2">The type of the second parameter of the method that this delegate encapsulates.</typeparam>
-        /// <typeparam name="TResult">The type of the return value of the method that this delegate encapsulates.</typeparam>
-        /// <param name="f">The function to null-patch.</param>
-        /// <param name="x">The default value for the first argument.</param>
-        /// <param name="y">The default value for the second argument.</param>
-        /// <returns>
-        /// A function with the same argument.
-        /// </returns>
-        public static Func<T1, T2, TResult> fnull<T1, T2, TResult>(Func<T1, T2, TResult> f, T1 x, T2 y) =>
-            (T1 a, T2 b) =>
-            f != null
-                ? f(a == null ? x : a, b == null ? y : b)
-                : default;
+    }
 
-        /// <summary>
-        /// Takes a function f, and returns a function that calls f, replacing a null first arguments with the supplied arguments.
-        /// </summary>
-        /// <typeparam name="T1">The type of the first parameter of the method that this delegate encapsulates.</typeparam>
-        /// <typeparam name="T2">The type of the second parameter of the method that this delegate encapsulates.</typeparam>
-        /// <typeparam name="T3">The type of the third parameter of the method that this delegate encapsulates.</typeparam>
-        /// <typeparam name="TResult">The type of the return value of the method that this delegate encapsulates.</typeparam>
-        /// <param name="f">The function to null-patch.</param>
-        /// <param name="x">The default value for the first argument.</param>
-        /// <param name="y">The default value for the second argument.</param>
-        /// <returns>
-        /// A function with the same argument.
-        /// </returns>
-        public static Func<T1, T2, T3, TResult> fnull<T1, T2, T3, TResult>(Func<T1, T2, T3, TResult> f, T1 x, T2 y) =>
-            (T1 a, T2 b, T3 c) =>
-            f != null
-                ? f(a == null ? x : a, b == null ? y : b, c)
-                : default;
+    public class FNull<T1, T2, T3, TResult> :
+        IFunction<IFunction<T1, T2, T3, TResult>, T1, IFunction<T1, T2, T3, TResult>>,
+        IFunction<IFunction<T1, T2, T3, TResult>, T1, T2, IFunction<T1, T2, T3, TResult>>,
+        IFunction<IFunction<T1, T2, T3, TResult>, T1, T2, T3, IFunction<T1, T2, T3, TResult>>
+    {
+        public IFunction<T1, T2, T3, TResult> Invoke(IFunction<T1, T2, T3, TResult> f, T1 x) =>
+            f == null
+                ? null
+                : new Function<T1, T2, T3, TResult>((a, b, c) => f.Invoke(a == null ? x : a, b, c));
 
-        /// <summary>
-        /// Takes a function f, and returns a function that calls f, replacing a null first arguments with the supplied arguments.
-        /// </summary>
-        /// <typeparam name="T1">The type of the first parameter of the method that this delegate encapsulates.</typeparam>
-        /// <typeparam name="T2">The type of the second parameter of the method that this delegate encapsulates.</typeparam>
-        /// <typeparam name="T3">The type of the third parameter of the method that this delegate encapsulates.</typeparam>
-        /// <typeparam name="TResult">The type of the return value of the method that this delegate encapsulates.</typeparam>
-        /// <param name="f">The function to null-patch.</param>
-        /// <param name="x">The default value for the first argument.</param>
-        /// <param name="y">The default value for the second argument.</param>
-        /// <param name="z">The default value for the third argument.</param>
-        /// <returns>
-        /// A function with the same argument.
-        /// </returns>
-        public static Func<T1, T2, T3, TResult> fnull<T1, T2, T3, TResult>(Func<T1, T2, T3, TResult> f, T1 x, T2 y, T3 z) =>
-            (T1 a, T2 b, T3 c) =>
-            f != null
-                ? f(a == null ? x : a, b == null ? y : b, c == null ? z : c)
-                : default;
+        public IFunction<T1, T2, T3, TResult> Invoke(IFunction<T1, T2, T3, TResult> f, T1 x, T2 y) =>
+            f == null
+                ? null
+                : new Function<T1, T2, T3, TResult>((a, b, c) => f.Invoke(a == null ? x : a, b == null ? y : b, c));
+        
+        public IFunction<T1, T2, T3, TResult> Invoke(IFunction<T1, T2, T3, TResult> f, T1 x, T2 y, T3 z) =>
+            f == null
+                ? null
+                : new Function<T1, T2, T3, TResult>((a, b, c) => f.Invoke(a == null ? x : a, b == null ? y : b, c == null ? z : c));
+    }
 
+    public class FNull<T1, T2, T3, T4, TResult> :
+        IFunction<IFunctionParams<T1, T2, T3, T4, TResult>, T1, IFunctionParams<T1, T2, T3, T4, TResult>>,
+        IFunction<IFunctionParams<T1, T2, T3, T4, TResult>, T1, T2, IFunctionParams<T1, T2, T3, T4, TResult>>,
+        IFunction<IFunctionParams<T1, T2, T3, T4, TResult>, T1, T2, T3, IFunctionParams<T1, T2, T3, T4, TResult>>
+    {
+        public IFunctionParams<T1, T2, T3, T4, TResult> Invoke(IFunctionParams<T1, T2, T3, T4, TResult> f, T1 x) =>
+            f == null
+                ? null
+                : new FunctionParams<T1, T2, T3, T4, TResult>((a, b, c, ds) => f.Invoke(a == null ? x : a, b, c, ds));
+
+        public IFunctionParams<T1, T2, T3, T4, TResult> Invoke(IFunctionParams<T1, T2, T3, T4, TResult> f, T1 x, T2 y) =>
+            f == null
+                ? null
+                : new FunctionParams<T1, T2, T3, T4, TResult>((a, b, c, ds) => f.Invoke(a == null ? x : a, b == null ? y : b, c, ds));
+
+        public IFunctionParams<T1, T2, T3, T4, TResult> Invoke(IFunctionParams<T1, T2, T3, T4, TResult> f, T1 x, T2 y, T3 z) =>
+            f == null
+                ? null
+                : new FunctionParams<T1, T2, T3, T4, TResult>((a, b, c, ds) => f.Invoke(a == null ? x : a, b == null ? y : b, c == null ? z : c, ds));
     }
 }

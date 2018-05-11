@@ -8,6 +8,9 @@
 
     public static partial class core
     {
+        public static Delegate func<T1>(T1 f) where T1 : Delegate => f;
+
+
         /// <summary>
         /// Inference type helper for the <see cref="Func{TResult}"/> delegate.
         /// </summary>

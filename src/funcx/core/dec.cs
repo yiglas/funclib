@@ -1,47 +1,18 @@
-﻿namespace funcx
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace funcx.Core
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
-    public static partial class core
+    public class Dec :
+        IFunction<long, long>,
+        IFunction<int, int>,
+        IFunction<double, double>,
+        IFunction<float, float>
     {
-        /// <summary>
-        /// Decreases the number by one smaller.
-        /// </summary>
-        /// <param name="x">The <see cref="long"/> to decreases by 1.</param>
-        /// <returns>
-        /// Returns a number one smaller.
-        /// </returns>
-        public static long dec(long x) => --x;
-
-        /// <summary>
-        /// Decreases the number by one smaller.
-        /// </summary>
-        /// <param name="x">The <see cref="int"/> to decreases by 1.</param>
-        /// <returns>
-        /// Returns a number one smaller.
-        /// </returns>
-        public static int dec(int x) => --x;
-
-        /// <summary>
-        /// Decreases the number by one smaller.
-        /// </summary>
-        /// <param name="x">The <see cref="double"/> to decreases by 1.</param>
-        /// <returns>
-        /// Returns a number one smaller.
-        /// </returns>
-        public static double dec(double x) => --x;
-
-        /// <summary>
-        /// Decreases the number by one smaller.
-        /// </summary>
-        /// <param name="x">The <see cref="float"/> to decreases by 1.</param>
-        /// <returns>
-        /// Returns a number one smaller.
-        /// </returns>
-        public static float dec(float x) => --x;
+        public long Invoke(long x) => --x;
+        public int Invoke(int x) => --x;
+        public double Invoke(double x) => --x;
+        public float Invoke(float x) => --x;
     }
 }

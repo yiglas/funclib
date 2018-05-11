@@ -1,60 +1,33 @@
-﻿namespace funcx
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace funcx.Core
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
-    public static partial class core
+    public class And :
+        IFunction<object>,
+        IFunction<object, object>,
+        IFunctionParams<object, object, object>
     {
-        // TODO: remove object and to got passing in generics
+        public object Invoke() => true;
+        public object Invoke(object x) => Invoke(x, new object[] { });
 
-        /// <summary>
-        /// Evaluates expressions one at a time, from left to right. If a form
-        /// returns a logical false (null or false) it returns that value and
-        /// doesn't evaluate any of the other expressions, otherwise it returns 
-        /// the value of the last expr. null.And() returns true.
-        /// </summary>
-        /// <param name="x">The <see cref="object"/>.</param>
-        /// <param name="next">Next evaluated expressions.</param>
-        /// <returns>
-        /// returns the results of evaluated from left to right.
-        /// </returns>
-        public static object and(object x, params object[] next)
+        public object Invoke(object x, params object[] next)
         {
-            if (x == null && next.Count() == 0) return true;
-            else if (next.Count() == 0)
+            if (x != null)
             {
-                if (x == null)
-                    return true;
-
-                return x is Delegate ? (x as Delegate).DynamicInvoke() : x;
+                if (x.GetType().GetInterfaces().Any(y => y.IsGenericType && y.GetGenericTypeDefinition() == typeof(IFunction<>)))
+                {
+                    dynamic f = x;
+                    x = f.Invoke();
+                }
             }
 
-            Func<IEnumerable, object, object> inter = null;
-            inter = (more, val) =>
-            {
-                if (count(more) > 0)
-                {
-                    var t = or(first(more));
-                    if (falsy(t))
-                        return t;
-
-                    var n = core.next(more);
-                    if (n == null)
-                        return t;
-
-                    return inter(n, t);
-                }
-                else return val;
-            };
-
-            var f = or(x);
-            if (falsy(f))
-                return f;
-
-            return inter(seq(next), null);
+            if (new Truthy().Invoke(x) && next?.Length > 0)
+                return Invoke(next[0], next.Skip(1).ToArray());
+            
+            return x;
         }
     }
 }

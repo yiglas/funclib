@@ -103,7 +103,7 @@
         /// <returns>
         /// The partial function
         /// </returns>
-        public static DelP3PA<T2, T3, T4, T5, TResult> partial<TArg1, T2, T3, T4, T5, TResult>(DelP4PA<TArg1, T2, T3, T4, T5, TResult> f, TArg1 arg1) =>
+        public static Del<T2, T3, T4, T5, TResult> partial<TArg1, T2, T3, T4, T5, TResult>(Del<TArg1, T2, T3, T4, T5, TResult> f, TArg1 arg1) =>
             (T2 x, T3 y, T4 z, T5[] args) =>
             f(arg1, x, y, z, args);
 
@@ -198,7 +198,7 @@
         /// <returns>
         /// The partial function
         /// </returns>
-        public static DelP3PA<T2, T3, T4, T5, TResult> partial<TArg1, TArg2, T2, T3, T4, T5, TResult>(DelP5PA<TArg1, TArg2, T2, T3, T4, T5, TResult> f, TArg1 arg1, TArg2 arg2) =>
+        public static Del<T2, T3, T4, T5, TResult> partial<TArg1, TArg2, T2, T3, T4, T5, TResult>(Del<TArg1, TArg2, T2, T3, T4, T5, TResult> f, TArg1 arg1, TArg2 arg2) =>
             (T2 x, T3 y, T4 z, T5[] args) =>
             f(arg1, arg2, x, y, z, args);
 
@@ -303,7 +303,7 @@
         /// <returns>
         /// The partial function
         /// </returns>
-        public static DelP3PA<T2, T3, T4, T5, TResult> partial<TArg1, TArg2, TArg3, T2, T3, T4, T5, TResult>(DelP6PA<TArg1, TArg2, TArg3, T2, T3, T4, T5, TResult> f, TArg1 arg1, TArg2 arg2, TArg3 arg3) =>
+        public static Del<T2, T3, T4, T5, TResult> partial<TArg1, TArg2, TArg3, T2, T3, T4, T5, TResult>(Del<TArg1, TArg2, TArg3, T2, T3, T4, T5, TResult> f, TArg1 arg1, TArg2 arg2, TArg3 arg3) =>
             (T2 x, T3 y, T4 z, T5[] args) =>
             f(arg1, arg2, arg3, x, y, z, args);
     }

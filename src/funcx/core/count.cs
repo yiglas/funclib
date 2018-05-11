@@ -1,25 +1,14 @@
-﻿namespace funcx
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text;
+
+namespace funcx.Core
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
-    public static partial class core
+    public class Count<T> :
+        IFunction<T, int>
     {
-        // TODO: see if is-expression with patterns will be faster
-        // TODO: create multiple functions
-
-        /// <summary>
-        /// Returns the number of items in the collection. Count on a null will
-        /// return 0. Also works on strings, arrays, collections and dictionaries.
-        /// </summary>
-        /// <param name="coll">The <see cref="object"/> counting.</param>
-        /// <returns>
-        /// 0 if null or empty otherwise the number of entries in the object.
-        /// </returns>
-        public static int count<T>(T coll) =>
+        public int Invoke(T coll) =>
             !(coll is ValueType) && coll == null
                 ? 0
                 : coll is string s ? s.Length
@@ -28,11 +17,10 @@
                 : coll is ICollection c ? c.Count
                 : coll is DictionaryEntry ? 2
                 : coll.GetType().Name == "KeyValuePair`2" ? 2
-                : coll is IEnumerable e ? countEnumerable(e)
+                : coll is IEnumerable e ? enumerableCount(e)
                 : throw new InvalidOperationException($"Count not supported on this type: {coll.GetType().FullName}");
 
-
-        static int countEnumerable(IEnumerable e)
+        int enumerableCount(IEnumerable e)
         {
             int i = 0;
 

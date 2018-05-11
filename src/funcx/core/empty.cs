@@ -1,21 +1,13 @@
-﻿namespace funcx
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-    public static partial class core
+namespace funcx.Core
+{
+    public class Empty<T> :
+        IFunction<ICollection<T>, ICollection<T>>
     {
-        /// <summary>
-        /// Returns an empty collection of the same category as source, or null.
-        /// </summary>
-        /// <typeparam name="T">The generic type.</typeparam>
-        /// <param name="coll">The <see cref="ICollection{T}"/>.</param>
-        /// <returns>
-        /// Returns a new collection.
-        /// </returns>
-        public static ICollection<T> empty<T>(ICollection<T> coll) =>
+        public ICollection<T> Invoke(ICollection<T> coll) =>
             coll == null
                 ? null
                 : Activator.CreateInstance(coll.GetType()) as ICollection<T>;

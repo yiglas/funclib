@@ -11,7 +11,7 @@ namespace funcx.tests
         [Test]
         public void Inc_should_inc_passed_in_number()
         {
-            var actual = inc(0);
+            var actual = inc(0); // ++2
 
             Assert.AreEqual(1, actual);
         }

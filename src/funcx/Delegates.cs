@@ -15,7 +15,7 @@
     /// <returns>
     /// Returns generic type R.
     /// </returns>
-    public delegate R DelPA<T1, R>(params T1[] more);
+    public delegate R Del<T1, R>(params T1[] more);
 
     /// <summary>
     /// Delegate function method signature with last parameter as a "params" function.
@@ -28,7 +28,7 @@
     /// <returns>
     /// Returns generic type R.
     /// </returns>
-    public delegate R DelP1PA<T1, T2, R>(T1 x, params T2[] more);
+    public delegate R Del<T1, T2, R>(T1 x, params T2[] more);
 
     /// <summary>
     /// Delegate function method signature with last parameter as a "params" function.
@@ -43,7 +43,7 @@
     /// <returns>
     /// Returns generic type R.
     /// </returns>
-    public delegate R DelP2PA<T1, T2, T3, R>(T1 x, T2 y, params T3[] more);
+    public delegate R Del<T1, T2, T3, R>(T1 x, T2 y, params T3[] more);
 
     /// <summary>
     /// Delegate function method signature with last parameter as a "params" function.
@@ -60,7 +60,7 @@
     /// <returns>
     /// Returns generic type R.
     /// </returns>
-    public delegate R DelP3PA<T1, T2, T3, T4, R>(T1 x, T2 y, T3 z, params T4[] more);
+    public delegate R Del<T1, T2, T3, T4, R>(T1 x, T2 y, T3 z, params T4[] more);
 
     /// <summary>
     /// Delegate function method signature with last parameter as a "params" function.
@@ -79,7 +79,7 @@
     /// <returns>
     /// Returns generic type R.
     /// </returns>
-    public delegate R DelP4PA<T1, T2, T3, T4, T5, R>(T1 a, T2 b, T3 c, T4 d, params T5[] more);
+    public delegate R Del<T1, T2, T3, T4, T5, R>(T1 a, T2 b, T3 c, T4 d, params T5[] more);
 
     /// <summary>
     /// Delegate function method signature with last parameter as a "params" function.
@@ -100,7 +100,7 @@
     /// <returns>
     /// Returns generic type R.
     /// </returns>
-    public delegate R DelP5PA<T1, T2, T3, T4, T5, T6, R>(T1 a, T2 b, T3 c, T4 d, T5 e, params T6[] more);
+    public delegate R Del<T1, T2, T3, T4, T5, T6, R>(T1 a, T2 b, T3 c, T4 d, T5 e, params T6[] more);
 
     /// <summary>
     /// Delegate function method signature with last parameter as a "params" function.
@@ -123,5 +123,5 @@
     /// <returns>
     /// Returns generic type R.
     /// </returns>
-    public delegate R DelP6PA<T1, T2, T3, T4, T5, T6, T7, R>(T1 a, T2 b, T3 c, T4 d, T5 e, T6 f, params T7[] more);
+    public delegate R Del<T1, T2, T3, T4, T5, T6, T7, R>(T1 a, T2 b, T3 c, T4 d, T5 e, T6 f, params T7[] more);
 }
