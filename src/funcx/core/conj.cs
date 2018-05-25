@@ -1,31 +1,69 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace funcx.Core
 {
-    public class Conj<T> :
-        IFunction<IList<T>, T, IList<T>>,
-        IFunctionParams<IList<T>, T, IList<T>>
-    {
-        public IList<T> Invoke(IList<T> coll, T x) => Invoke(coll, new T[] { x });
-        public IList<T> Invoke(IList<T> coll, params T[] xs)
-        {
-            if (coll == null && !xs.Any()) return new List<T>();
+    //public class Conj :
+    //    IFunction<IEnumerable>,
+    //    IFunction<IEnumerable, IEnumerable>,
+    //    IFunction<IEnumerable, object, IEnumerable>,
+    //    IFunctionParams<IEnumerable, object, object, IEnumerable>
+    //{
+    //    public IEnumerable Invoke() => new object[] { };
+    //    public IEnumerable Invoke(IEnumerable coll) => coll;
+    //    public IEnumerable Invoke(IEnumerable coll, object x)
+    //    {
+    //        if (coll == null) return new object[] { x };
 
-            if (coll == null && xs.Any())
-                return new List<T>(xs);
-            else
-            {
-                var items = new T[coll.Count + xs.Count()];
-                Array.Copy(coll.ToArray(), 0, items, 0, coll.Count);
-                Array.Copy(xs, 0, items, coll.Count, xs.Length);
+    //        var list = Activator.CreateInstance(coll.GetType(), coll) as IEnumerable;
 
-                var list = Activator.CreateInstance(coll.GetType(), items) as IList<T>;
+    //        list.OfType<object>().Concat(new object[] { x });
 
-                return list;
-            }
-        }
-    }
+    //        return list;
+    //    }
+    //    public IEnumerable Invoke(IEnumerable coll, object x, params object[] xs)
+    //    {
+    //        //if (coll == null)
+
+    //            var list = Activator.CreateInstance(coll.GetType(), coll) as IEnumerable;
+
+    //        list.Add(x);
+    //        for (int i = 0; i < xs.Length; i++)
+    //            list.Add(xs[i]);
+
+    //        return list;
+    //    }
+    //}
+
+    //public class ConjT :
+    //    IFunction<IEnumerable>,
+    //    IFunction<IEnumerable, IEnumerable>,
+    //    IFunction<IEnumerable, object, IEnumerable>,
+    //    IFunctionParams<IEnumerable, object, object, IEnumerable>
+    //{
+    //    public IEnumerable Invoke() => new object[] { };
+    //    public IEnumerable Invoke(IEnumerable coll) => coll;
+    //    public IEnumerable Invoke(IEnumerable coll, object x)
+    //    {
+    //        if (coll == null) return new object[] { x };
+
+    //        coll.Add(x);
+
+    //        return coll;
+    //    }
+    //    public IEnumerable Invoke(IEnumerable coll, object x, params object[] xs)
+    //    {
+    //        if (coll == null) return new List<T>() { x };
+
+    //        list.Add(x);
+    //        for (int i = 0; i < xs.Length; i++)
+    //            list.Add(xs[i]);
+
+    //        return list;
+    //    }
+
+    //}
 }

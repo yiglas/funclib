@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace funcx.Core
 {
-    public class Cons<T> :
-        IFunction<T, IEnumerable<T>, IEnumerable<T>>
+    public class Cons :
+        IFunction<object, IEnumerable, IEnumerable>
     {
-        public IEnumerable<T> Invoke(T x, IEnumerable<T> seq)
+        public IEnumerable Invoke(object x, IEnumerable seq)
         {
             yield return x;
 

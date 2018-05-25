@@ -1,26 +1,27 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace funcx.Core
 {
-    public class Disj<T> :
-        IFunction<IList<T>, T, IList<T>>,
-        IFunctionParams<IList<T>, T, IList<T>>
-    {
-        public IList<T> Invoke(IList<T> coll, T x) => Invoke(coll, new T[] { x });
-        public IList<T> Invoke(IList<T> coll, params T[] xs)
-        {
-            if (coll == null) return null;
+    //public class Disj :
+    //    IFunction<IList, IList>,
+    //    IFunction<IList, object, IList>,
+    //    IFunctionParams<IList, object, object, IList>
+    //{
+    //    public IList Invoke(IList set) => set;
+    //    public IList Invoke(IList set, object key) => Invoke(set, new object[] { key });
+    //    public IList Invoke(IList set, object key, params object[] ks)
+    //    {
+    //        if (set == null) return null;
+            
+    //        var items = set.Where(x => key != x || !ks.Contains(x));
 
-            var remove = xs.ToList();
+    //        var list = Activator.CreateInstance(set.GetType(), items) as IList;
 
-            var items = coll.Where(x => !remove.Contains(x));
-
-            var list = Activator.CreateInstance(coll.GetType(), items) as IList<T>;
-
-            return list;
-        }
-    }
+    //        return list;
+    //    }
+    //}
 }

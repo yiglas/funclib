@@ -1,9 +1,14 @@
 ﻿namespace funcx
 {
+    using funcx.Collections;
+    using funcx.Collections.Internal;
+    using funcx.Core;
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Text;
+    using System.Threading;
     using _ = funcx.core;
 
     static class Util
@@ -28,13 +33,107 @@
             return val;
         }
 
-        internal static bool IsNumeric(object x)
-        {
-            if (x == null)
-                return false;
 
-            double number;
-            return Double.TryParse(Convert.ToString(x, CultureInfo.InvariantCulture), NumberStyles.Any, NumberFormatInfo.InvariantInfo, out number);
+        // TODO: implement this
+        internal static IEnumerative Enumerate(object coll) =>
+            coll is Enumerative en
+                ? en
+                : null;
+
+        internal static IEnumerable<T> Seq<T>(object coll)
+            where T : new() =>
+            coll == null
+                ? null
+                : coll is LazySeq<T> ls ? ls.Invoke()
+                : coll is IEnumerable<T> e ? e
+                : coll is string s ? s as IEnumerable<T>
+                : coll is Array a ? a as IEnumerable<T>
+                : null;
+
+        internal static int GetHashCode(object o) => o == null ? 0 : o.GetHashCode();
+        internal static int GetHash(object o) => GetHashCode(o);
+
+        internal static int BitCount(int x)
+        {
+            x -= ((x >> 1) & 0x55555555);
+            x = (((x >> 2) & 0x33333333) + (x & 0x33333333));
+            x = (((x >> 4) + x) & 0x0f0f0f0f);
+            unchecked
+            {
+                return ((x * 0x01010101) >> 24);
+            }
         }
+
+        internal static int Mask(int hash, int shift) => (hash >> shift) & 0x01f;
+
+        internal static int Bitpos(int hash, int shift) => 1 << Util.Mask(hash, shift);
+
+        internal static INode[] CloneAndSet(INode[] array, int i, INode a)
+        {
+            var clone = array.Clone() as INode[];
+            clone[i] = a;
+            return clone;
+        }
+
+        internal static object[] CloneAndSet(object[] array, int i, object a)
+        {
+            var clone = array.Clone() as object[];
+            clone[i] = a;
+            return clone;
+        }
+
+        internal static object[] CloneAndSet(object[] array, int i, object a, int j, object b)
+        {
+            var clone = array.Clone() as object[];
+            clone[i] = a;
+            clone[j] = b;
+            return clone;
+        }
+
+        internal static object[] RemovePair(object[] array, int i)
+        {
+            var newArray = new object[array.Length - 2];
+            Array.Copy(array, 0, newArray, 0, 2 * i);
+            Array.Copy(array, 2 * (i + 1), newArray, 2 * i, newArray.Length - 2 * i);
+            return newArray;
+        }
+
+        internal static INode CreateNode(int shift, object key1, object val1, int key2hash, object key2, object val2)
+        {
+            int key1hash = GetHash(key1);
+            if (key1hash == key2hash)
+                return new HashCollisionNode(null, key1hash, 2, new object[] { key1, val1, key2, val2 });
+            var _ = new Box(null);
+            var edit = new AtomicReference<Thread>();
+            return BitmapIndexedNode.EMPTY
+                .Assoc(edit, shift, key1hash, key1, val1, _)
+                .Assoc(edit, shift, key2hash, key2, val2, _);
+        }
+
+        internal static INode CreateNode(AtomicReference<Thread> edit, int shift, Object key1, Object val1, int key2hash, Object key2, Object val2)
+        {
+            int key1hash = GetHash(key1);
+            if (key1hash == key2hash)
+                return new HashCollisionNode(null, key1hash, 2, new object[] { key1, val1, key2, val2 });
+            var _ = new Box(null);
+            return BitmapIndexedNode.EMPTY
+                .Assoc(edit, shift, key1hash, key1, val1, _)
+                .Assoc(edit, shift, key2hash, key2, val2, _);
+        }
+
+        internal static bool IsEqual(object a, object b)
+        {
+            if (a == b) return true;
+            if (a != null)
+            {
+                if (Number.IsNumber(a) && Number.IsNumber(b))
+                    return Number.IsEquals(a, b);
+                
+                return a.Equals(b);
+            }
+
+            return false;
+        }
+
     }
 }

@@ -1,4 +1,4 @@
-﻿//namespace funcx.tests
+﻿//namespace funcx.tests.Core
 //{
 //    using funcx;
 //    using NUnit.Framework;

@@ -1,23 +1,24 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace funcx.Core
 {
-    public class Concat<T> :
-        IFunction<IEnumerable<T>>,
-        IFunction<IEnumerable<T>, IEnumerable<T>>,
-        IFunction<IEnumerable<T>, IEnumerable<T>, IEnumerable<T>>,
-        IFunctionParams<IEnumerable<T>, IEnumerable<T>, IEnumerable<T>, IEnumerable<T>>
+    public class Concat :
+        IFunction<IEnumerable>,
+        IFunction<IEnumerable, IEnumerable>,
+        IFunction<IEnumerable, IEnumerable, IEnumerable>,
+        IFunctionParams<IEnumerable, IEnumerable, IEnumerable, IEnumerable>
     {
-        public IEnumerable<T> Invoke()
+        public IEnumerable Invoke()
         {
             yield break;
         }
 
-        public IEnumerable<T> Invoke(IEnumerable<T> x) => Invoke(x, null, new T[] { });
-        public IEnumerable<T> Invoke(IEnumerable<T> x, IEnumerable<T> y) => Invoke(x, y, new T[] { });
-        public IEnumerable<T> Invoke(IEnumerable<T> x, IEnumerable<T> y, params IEnumerable<T>[] zs)
+        public IEnumerable Invoke(IEnumerable x) => Invoke(x, null, new object[] { });
+        public IEnumerable Invoke(IEnumerable x, IEnumerable y) => Invoke(x, y, new object[] { });
+        public IEnumerable Invoke(IEnumerable x, IEnumerable y, params IEnumerable[] zs)
         {
             if (x != null)
                 foreach (var item in x)

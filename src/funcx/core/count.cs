@@ -5,10 +5,10 @@ using System.Text;
 
 namespace funcx.Core
 {
-    public class Count<T> :
-        IFunction<T, int>
+    public class Count :
+        IFunction<object, int>
     {
-        public int Invoke(T coll) =>
+        public int Invoke(object coll) =>
             !(coll is ValueType) && coll == null
                 ? 0
                 : coll is string s ? s.Length

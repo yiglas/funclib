@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard2.0\funcx.xml</DocumentationFile>
+    <DocumentationFile></DocumentationFile>
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
@@ -20,7 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Collections\" />
     <Folder Include="string\" />
   </ItemGroup>
 

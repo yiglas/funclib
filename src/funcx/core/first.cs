@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using f = funcx.Collections;
 
 namespace funcx.Core
 {
@@ -11,6 +12,9 @@ namespace funcx.Core
         {
             if (coll == null)
                 return default;
+
+            //if (coll is f.ICollection c)
+            //    return (T)c.First();
 
             foreach (var item in coll)
                 return item;

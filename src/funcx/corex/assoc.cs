@@ -21,8 +21,8 @@
         /// Returns a new <see cref="IDictionary{TKey, TValue}"/> with the key/value added.
         /// </returns>
         public static IDictionary<TKey, TValue> assoc<TKey, TValue>(IDictionary<TKey, TValue> map, (TKey key, TValue value) keyval) =>
-            new Assoc<TKey, TValue>().Invoke(map, keyval);
-        //assoc(map, new (TKey key, TValue value)[] { keyval });
+        //new Assoc<TKey, TValue>().Invoke(map, keyval);
+        assoc(map, new(TKey key, TValue value)[] { keyval });
 
         /// <summary>
         /// Assoc[iate]. When applied to a Dictionary, returns a new dictionary of the same type
@@ -36,32 +36,32 @@
         /// <returns>
         /// Returns a new <see cref="IDictionary{TKey, TValue}"/> with the key/value added.
         /// </returns>
-        public static IDictionary<TKey, TValue> assoc<TKey, TValue>(IDictionary<TKey, TValue> map, params (TKey key, TValue value)[] keyvals) =>
-            new Assoc<TKey, TValue>().Invoke(map, keyvals);
-        //{
-        //    if (map == null)
-        //        return keyvals.ToDictionary(x => x.key, x => x.value);
-        //    else
-        //    {
-        //        var dict = Activator.CreateInstance(map.GetType(), map) as IDictionary<TKey, TValue>;
+        public static IDictionary<TKey, TValue> assoc<TKey, TValue>(IDictionary<TKey, TValue> map, params (TKey key, TValue value)[] keyvals)
+            //new Assoc<TKey, TValue>().Invoke(map, keyvals);
+        {
+            if (map == null)
+                return keyvals.ToDictionary(x => x.key, x => x.value);
+            else
+            {
+                var dict = Activator.CreateInstance(map.GetType(), map) as IDictionary<TKey, TValue>;
 
-        //        for (int i = 0; i < keyvals.Length; i++)
-        //        {
-        //            var (key, value) = keyvals[i];
+                for (int i = 0; i<keyvals.Length; i++)
+                {
+                    var(key, value) = keyvals[i];
 
-        //            if (dict.ContainsKey(key))
-        //            {
-        //                dict[key] = value;
-        //            }
-        //            else
-        //            {
-        //                dict.Add(key, value);
-        //            }
-        //        }
+                    if (dict.ContainsKey(key))
+                    {
+                        dict[key] = value;
+                    }
+                    else
+                    {
+                        dict.Add(key, value);
+                    }
+                }
                 
-        //        return dict;
-        //    }
-        //}
+                return dict;
+            }
+        }
 
         /// <summary>
         /// Adds mapping of key(s) to val(s)
