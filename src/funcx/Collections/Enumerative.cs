@@ -24,11 +24,11 @@ namespace funcx.Collections
             if (this == obj) return true;
             if (!(obj is System.Collections.IList)) return false;
 
-            var me = Util.Enumerate(obj);
+            var me = new Core.Enumerate().Invoke(obj);
 
             for (var e = Enumerate(); e != null; e = e.Next(), me = me.Next())
             {
-                if (me == null || !Util.IsEqual(e.First(), me.First()))
+                if (me == null || !new Core.Equals().Invoke(e.First(), me.First()))
                     return false;
             }
 
@@ -92,11 +92,11 @@ namespace funcx.Collections
         {
             int i = 0;
             for (var e = Enumerate(); e != null; e = e.Next(), i++)
-                if (Util.IsEqual(e.First(), value))
+                if (new Core.Equals().Invoke(e.First(), value))
                     return i;
             return -1;
         }
-        public virtual System.Collections.Generic.IEnumerator<object> GetEnumerator() => new Enumerator<object>(this);
+        public virtual System.Collections.Generic.IEnumerator<object> GetEnumerator() => new Enumerator(this);
         #endregion
 
         public object this[int index]
@@ -117,7 +117,7 @@ namespace funcx.Collections
         public bool Contains(object value)
         {
             for (var e = Enumerate(); e != null; e = e.Next())
-                if (Util.IsEqual(e.First(), value))
+                if (new Core.Equals().Invoke(e.First(), value))
                     return true;
 
             return false;
@@ -149,6 +149,6 @@ namespace funcx.Collections
 
         public object Peek() => First();
         ICollection ICollection.Cons(object o) => Cons(o);
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => new Enumerator<object>(this);
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => new Enumerator(this);
     }
 }

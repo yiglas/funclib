@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace funcx.Collections.Internal
+namespace funcx.Collections
 {
-    abstract class Node
+    public interface IPending
     {
+        bool IsRealized();
     }
 }

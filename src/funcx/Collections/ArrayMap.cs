@@ -114,7 +114,7 @@ namespace funcx.Collections
             Func<object, object, bool> predicate(object k) =>
                 k == null
                     ? (k1, k2) => k2 == null
-                    : Number.IsNumber(k) ? new Func<object, object, bool>((k1, k2) => Number.IsEquals(k1, k2))
+                    : Number.IsNumber(k) ? new Func<object, object, bool>((k1, k2) => Number.IsEqual(k1, k2))
                     : (object k1, object k2) => k1.Equals(k2);
         }
         IMap CreateHashMap(object[] init, object key, object val) => HashMap.Create(init).Assoc(key, val);

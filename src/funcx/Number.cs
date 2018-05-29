@@ -31,12 +31,21 @@ namespace funcx
 
 
         public static bool IsNumber(object x) => new Number(x).IsValid;
-        public static bool IsEquals(object x, object y)
+        public static bool IsEqual(object x, object y)
         {
             var n1 = new Number(x);
             var n2 = new Number(y);
 
             return n1 == n2;
+        }
+        public static int Compare(object x, object y)
+        {
+            var n1 = new Number(x);
+            var n2 = new Number(y);
+
+            if (n1.Value > n2.Value) return 1;
+            if (n1.Value < n2.Value) return -1;
+            return 0;
         }
 
 

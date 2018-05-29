@@ -1,31 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using funcx.Collections;
+using System;
 using System.Text;
-using f = funcx.Collections;
 
 namespace funcx.Core
 {
-    public class First<T> :
-        IFunction<IEnumerable<T>, T>
+    public class First :
+        IFunction<object, object>
     {
-        public T Invoke(IEnumerable<T> coll)
+        public object Invoke(object coll)
         {
-            if (coll == null)
-                return default;
-
-            //if (coll is f.ICollection c)
-            //    return (T)c.First();
-
-            foreach (var item in coll)
-                return item;
-
-            return default;
+            var enumerate = coll as IEnumerative ?? new Core.Enumerate().Invoke(coll);
+            if (enumerate == null)
+                return null;
+            return enumerate.First();
         }
-    }
-
-    public class First<TKey, TValue> :
-        IFunction<KeyValuePair<TKey, TValue>, TKey>
-    {
-        public TKey Invoke(KeyValuePair<TKey, TValue> coll) => coll.Key;
     }
 }

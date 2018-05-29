@@ -13,7 +13,7 @@ namespace funcx.Collections
         int _hash;
         static readonly object _missingValue = new object();
 
-        public object this[object key] { get => GetValue(key); set => throw new InvalidOperationException("Cannot modify an immutable map"); }
+        public object this[object key] { get => GetValue(key); set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(Map)}."); }
         public bool IsSynchronized => true;
         public object SyncRoot => this;
         public bool IsFixedSize => true;
@@ -34,7 +34,7 @@ namespace funcx.Collections
                 {
                     var de = (System.Collections.Generic.KeyValuePair<object, object>)e.First();
                     bool found = d.Contains(de.Key);
-                    if (!found || !Util.IsEqual(de.Value, d[de.Key]))
+                    if (!found || !new Core.Equals().Invoke(de.Value, d[de.Key]))
                         return false;
                 }
             }

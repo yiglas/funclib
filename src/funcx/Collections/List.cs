@@ -12,7 +12,8 @@ namespace funcx.Collections
         readonly object _first;
         readonly IList _rest;
         
-        List() : this(null, null, 0) { }        
+        List() : this(null, null, 0) { }
+        internal List(object first) : this(first, null, 0) { }
         List(object first, IList rest, int count)
         {
             this._first = first;

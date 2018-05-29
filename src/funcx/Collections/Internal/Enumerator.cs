@@ -6,19 +6,26 @@ using System.Text;
 
 namespace funcx.Collections.Internal
 {
-    class Enumerator<T> : 
-        IEnumerator, 
-        IEnumerator<T>
-        where T : new()
+    class Enumerator : 
+        IEnumerator,
+        IEnumerator<object>
     {
         bool _realized;
-        IEnumerable<T> _orig;
-        T _curr;
-        IEnumerable<T> _next;
+        object _orig;
+        object _curr;
+        object _next;
 
-        readonly T _start = new T();
+        readonly object _start = new object();
 
-        public Enumerator(IEnumerable<T> o)
+        public Enumerator(IEnumerative o)
+        {
+            this._realized = false;
+            this._curr = this._start;
+            this._orig = o;
+            this._next = o;
+        }
+
+        public Enumerator(object o)
         {
             this._realized = false;
             this._curr = this._start;
@@ -33,15 +40,13 @@ namespace funcx.Collections.Internal
                 if (this._next == null)
                     throw new InvalidOperationException("No current value.");
 
-                if (this._curr.Equals(this._start))
-                    this._curr = new First<T>().Invoke(this._next);
+                if (this._curr == this._start)
+                    this._curr = new First().Invoke(this._next);
 
                 return this._curr;
             }
         }
-
-        T IEnumerator<T>.Current => (T)Current;
-
+        
         public bool MoveNext()
         {
             if (this._next == null) return false;
@@ -50,10 +55,10 @@ namespace funcx.Collections.Internal
             if (!this._realized)
             {
                 this._realized = true;
-                this._next = funcx.Util.Seq<T>(this._next);
+                this._next = new Enumerate().Invoke(this._next);
             }
             else
-                this._next = new Next<T>().Invoke(this._next);
+                this._next = new Next().Invoke(this._next);
 
             return this._next != null;
         }

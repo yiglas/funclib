@@ -80,7 +80,7 @@ namespace funcx.Collections.Internal
                 : true;
         #endregion
 
-        bool IsEqual(object a, object b) => funcx.Util.IsEqual(a, b);
+        bool IsEqual(object a, object b) => new Core.Equals().Invoke(a, b);
 
         int IndexOf(object key)
         {

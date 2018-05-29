@@ -1,25 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using funcx.Collections;
+using System;
 using System.Text;
-using f = funcx.Collections;
 
 namespace funcx.Core
 {
-    public class Next<T> :
-        IFunction<IEnumerable<T>, IEnumerable<T>>
+    public class Next:
+        IFunction<object, IEnumerative>
     {
-        public IEnumerable<T> Invoke(IEnumerable<T> coll) =>
-            new First<T>().Invoke(coll) == null
-                ? null
-                //: coll is f.ICollection c ? c.Next() as IEnumerable<T>
-                : inter(coll);
-
-        IEnumerable<T> inter(IEnumerable<T> coll)
+        public IEnumerative Invoke(object coll)
         {
-            int i = 0;
-
-            foreach (var item in coll)
-                if (i++ == 0) continue; else yield return item;
+            var enumerate = coll as IEnumerative ?? new Core.Enumerate().Invoke(coll);
+            if (enumerate == null)
+                return null;
+            return enumerate.Next();
         }
     }
 }

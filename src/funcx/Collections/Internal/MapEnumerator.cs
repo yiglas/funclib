@@ -12,11 +12,11 @@ namespace funcx.Collections.Internal
         IEnumerator<KeyValuePair<object, object>>
     {
         bool _disposed = false;
-        readonly Enumerator<object> _enumerator;
+        readonly Enumerator _enumerator;
 
         public MapEnumerator(IMap map)
         {
-            this._enumerator = new Enumerator<object>(map.Enumerate());
+            this._enumerator = new Enumerator(map.Enumerate());
         }
 
         public DictionaryEntry Entry => throw new NotImplementedException();

@@ -12,7 +12,7 @@ namespace funcx.Collections
     {
         public static readonly SortedSet EMPTY = new SortedSet();
         
-        SortedSet() : this(null) { } // TODO: pass SortedMap.EMPTY instead of null
+        SortedSet() : this(SortedMap.EMPTY) { }
         internal SortedSet(IMap impl)
         {
             this._impl = impl;
@@ -31,7 +31,7 @@ namespace funcx.Collections
 
         public static SortedSet Create(System.Collections.IComparer comp, System.Collections.IEnumerable init)
         {
-            ICollection ret = new SortedSet(new SortedMap(null, comp));
+            ICollection ret = new SortedSet(new SortedMap(comp));
 
             foreach (var item in init)
                 ret = ret.Cons(item);
@@ -48,5 +48,7 @@ namespace funcx.Collections
         #endregion
 
         public System.Collections.IComparer GetComparator() => (this._impl as ISorted)?.GetComparator();
+        public IEnumerative Enumerate(bool ascending) => new Core.Keys().Invoke((this._impl as SortedMap).Enumerate(ascending));
+        public IEnumerative Enumerate(object key, bool ascending) => new Core.Keys().Invoke((this._impl as SortedMap).Enumerate(key, ascending));
     }
 }

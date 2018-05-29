@@ -86,7 +86,7 @@ namespace funcx.Collections.Internal
             int idx = FindIndex(key);
 
             if (idx < 0) return null;
-            if (IsEqual(key, this._array[idx])) return new KeyValuePair<object, object>(this._array[idx], this._array[idx + 1]);
+            if (new Core.Equals().Invoke(key, this._array[idx])) return new KeyValuePair<object, object>(this._array[idx], this._array[idx + 1]);
 
             return null;
         }
@@ -96,7 +96,7 @@ namespace funcx.Collections.Internal
             int idx = FindIndex(key);
 
             if (idx < 0) return notFound;
-            if (IsEqual(key, this._array[idx])) return this._array[idx + 1];
+            if (new Core.Equals().Invoke(key, this._array[idx])) return this._array[idx + 1];
 
             return notFound;
         }
@@ -150,7 +150,7 @@ namespace funcx.Collections.Internal
         {
             for (int i = 0; i < 2 * this._count; i += 2)
             {
-                if (IsEqual(key, this._array[i]))
+                if (new Core.Equals().Invoke(key, this._array[i]))
                     return i;
             }
             return -1;

@@ -4,7 +4,9 @@ using System.Text;
 namespace funcx.Collections
 {
     public interface IEnumerative :
-        ICollection
+        ICollection,
+        System.Collections.IEnumerable,
+        System.Collections.Generic.IEnumerable<object>
     {
         new IEnumerative Cons(object o);
 

@@ -34,21 +34,6 @@
         }
 
 
-        // TODO: implement this
-        internal static IEnumerative Enumerate(object coll) =>
-            coll is Enumerative en
-                ? en
-                : null;
-
-        internal static IEnumerable<T> Seq<T>(object coll)
-            where T : new() =>
-            coll == null
-                ? null
-                : coll is LazySeq<T> ls ? ls.Invoke()
-                : coll is IEnumerable<T> e ? e
-                : coll is string s ? s as IEnumerable<T>
-                : coll is Array a ? a as IEnumerable<T>
-                : null;
 
         internal static int GetHashCode(object o) => o == null ? 0 : o.GetHashCode();
         internal static int GetHash(object o) => GetHashCode(o);
@@ -120,20 +105,5 @@
                 .Assoc(edit, shift, key1hash, key1, val1, _)
                 .Assoc(edit, shift, key2hash, key2, val2, _);
         }
-
-        internal static bool IsEqual(object a, object b)
-        {
-            if (a == b) return true;
-            if (a != null)
-            {
-                if (Number.IsNumber(a) && Number.IsNumber(b))
-                    return Number.IsEquals(a, b);
-                
-                return a.Equals(b);
-            }
-
-            return false;
-        }
-
     }
 }

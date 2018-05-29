@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using funcx.Collections;
+using System;
 using System.Text;
 
 namespace funcx.Core
 {
     public class Cons :
-        IFunction<object, IEnumerable, IEnumerable>
+        IFunction<object, object, IEnumerative>
     {
-        public IEnumerable Invoke(object x, IEnumerable seq)
+        public IEnumerative Invoke(object x, object seq)
         {
-            yield return x;
-
-            if (seq != null)
-                foreach (var item in seq)
-                    yield return item;
+            if (seq == null) return new List(x);
+            if (seq is IEnumerative e) return new Collections.Cons(x, e);
+            return new Collections.Cons(x, new Enumerate().Invoke(seq));
         }
     }
 }
