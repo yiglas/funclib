@@ -1,6 +1,6 @@
-﻿//namespace funcx.tests.Core
+﻿//namespace FunctionalLibrary.Tests.Core
 //{
-//    using funcx;
+//    using FunctionalLibrary;
 //    using NUnit.Framework;
 //    using System;
 //    using System.Collections.Generic;
@@ -40,7 +40,7 @@
 //            var type = typeof(List<int>);
 //            for (int i = 0; i < this.Iterations; i++)
 //            {
-//                var obj = funcx.Activator.CreateInstance(type);
+//                var obj = FunctionalLibrary.Activator.CreateInstance(type);
 //                if (obj.GetType() != typeof(List<int>))
 //                    throw new InvalidOperationException("Constructed object is not List<int>");
 //            }

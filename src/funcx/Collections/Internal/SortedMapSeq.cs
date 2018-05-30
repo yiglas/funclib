@@ -2,41 +2,41 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace funcx.Collections.Internal
+namespace FunctionalLibrary.Collections.Internal
 {
-    class SortedMapEnumerative :
-        Enumerative
+    class SortedMapSeq :
+        ASeq
     {
-        readonly IEnumerative _stack;
+        readonly ISeq _stack;
         readonly bool _asc;
         readonly int _count;
 
-        public SortedMapEnumerative(IEnumerative stack, bool asc) : this(stack, asc, -1) { }
-        public SortedMapEnumerative(IEnumerative stack, bool asc, int count)
+        public SortedMapSeq(ISeq stack, bool asc) : this(stack, asc, -1) { }
+        public SortedMapSeq(ISeq stack, bool asc, int count)
         {
             this._stack = stack;
             this._asc = asc;
             this._count = count;
         }
-        public SortedMapEnumerative(RedBlackNode t, bool asc, int count) :
+        public SortedMapSeq(RedBlackNode t, bool asc, int count) :
             this(Push(t, null, asc), asc, count)
         { }
 
         #region Overrides
         public override int Count => this._count < 0 ? base.Count : this._count;
         public override object First() => this._stack.First();
-        public override IEnumerative Next()
+        public override ISeq Next()
         {
             var t = this._stack.First() as RedBlackNode;
             var nextStack = Push(this._asc ? t.Right : t.Left, this._stack.Next(), this._asc);
             return nextStack != null
-                ? new SortedMapEnumerative(nextStack, this._asc, this._count - 1)
+                ? new SortedMapSeq(nextStack, this._asc, this._count - 1)
                 : null;
         }
         public override IStack Pop() => throw new NotImplementedException();
         #endregion
 
-        static IEnumerative Push(RedBlackNode t, IEnumerative stack, bool asc)
+        static ISeq Push(RedBlackNode t, ISeq stack, bool asc)
         {
             while (t != null)
             {

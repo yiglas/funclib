@@ -1,28 +1,21 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using FunctionalLibrary.Collections;
+using FunctionalLibrary.Collections.Internal;
+using System;
 using System.Text;
 
-namespace funcx.Core
+namespace FunctionalLibrary.Core
 {
     public class Contains :
-        IFunction<IDictionary, object, bool>,
-        IFunction<string, int, bool>,
-        IFunction<ICollection, int, bool>
+        IFunction<object, object, bool>
     {
-        public bool Invoke(IDictionary coll, object key) =>
+        public bool Invoke(object coll, object key) =>
             coll == null
                 ? false
-                : coll.Contains(key);
-
-        public bool Invoke(string coll, int key) =>
-            coll == null || key < 0
-                ? false
-                : key < coll.Length;
-
-        public bool Invoke(ICollection coll, int key) =>
-            coll == null || key < 0
-                ? false
-                : key < coll.Count;
+                : coll is IAssociative a ? a.ContainsKey(key)
+                : coll is System.Collections.IDictionary d ? d.Contains(key)
+                : coll is String || coll.GetType().IsArray ? int.TryParse(key.ToString(), out int i) ? i >= 0 && i < new Count().Invoke(coll) : false
+                : coll is ITransientSet ts ? ts.Contains(key)
+                : coll is ITransientAssociative ta ? ta.ContainsKey(key)
+                : throw new ArgumentException($"{nameof(Contains)} is not supported on type {coll.GetType().Name}");
     }
 }

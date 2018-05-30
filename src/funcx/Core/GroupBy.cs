@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace funcx.Core
+namespace FunctionalLibrary.Core
 {
     //public class GroupBy<TKey, TValue> :
     //    IFunction<IFunction<TValue, TKey>, IEnumerable<TValue>, IDictionary<TKey, IList<TValue>>>

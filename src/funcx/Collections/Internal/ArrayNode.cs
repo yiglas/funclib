@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
-using funcx.Core;
-using static funcx.Util;
+using FunctionalLibrary.Core;
+using static FunctionalLibrary.Util;
 
-namespace funcx.Collections.Internal
+namespace FunctionalLibrary.Collections.Internal
 {
     sealed class ArrayNode :
         INode
@@ -107,7 +107,7 @@ namespace funcx.Collections.Internal
             return EditAndSet(edit, idx, n);
         }
 
-        public IEnumerative GetNodeEnumerative() => ArrayNodeEnumerative.Create(this._array);
+        public ISeq GetNodeEnumerative() => ArrayNodeSeq.Create(this._array);
 
         public IEnumerator GetEnumerator(Func<object, object, object> d)
         {

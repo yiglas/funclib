@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Text;
 
-namespace funcx.Collections
+namespace FunctionalLibrary.Collections
 {
-    public interface IEnumerative :
+    public interface ISeq :
         ICollection,
         System.Collections.IEnumerable,
         System.Collections.Generic.IEnumerable<object>
     {
-        new IEnumerative Cons(object o);
+        new ISeq Cons(object o);
 
         object First();
-        IEnumerative Next();
-        IEnumerative More();
+        ISeq Next();
+        ISeq More();
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace funcx.Collections.Internal
+namespace FunctionalLibrary.Collections.Internal
 {
     [Serializable]
     sealed class VectorNode

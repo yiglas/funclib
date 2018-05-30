@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace funcx.Collections.Internal
+namespace FunctionalLibrary.Collections.Internal
 {
-    sealed class VectorEnumerative :
-        Enumerative
+    sealed class VectorSeq :
+        ASeq
     {
         IVector _v;
         int _i;
 
-        public VectorEnumerative(IVector v, int i)
+        public VectorSeq(IVector v, int i)
         {
             this._v = v;
             this._i = i;
@@ -19,9 +19,9 @@ namespace funcx.Collections.Internal
         #region Overrides
         public override int Count => this._v.Count - this._i;
         public override object First() => this._v[this._i];
-        public override IEnumerative Next() => 
+        public override ISeq Next() => 
             this._i + 1 < this._v.Count 
-                ? new VectorEnumerative(this._v, this._i + 1) 
+                ? new VectorSeq(this._v, this._i + 1) 
                 : null;
         public override IStack Pop() => throw new NotImplementedException();
         #endregion

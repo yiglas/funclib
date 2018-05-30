@@ -1,13 +1,13 @@
-﻿using funcx.Core;
+﻿using FunctionalLibrary.Core;
 using System;
 using System.Text;
 
-namespace funcx.Collections
+namespace FunctionalLibrary.Collections
 {
     // TODO: test to see if Linq's Reverse will work
 
     public class SortedSet :
-        Set,
+        ASet,
         ISorted
     {
         public static readonly SortedSet EMPTY = new SortedSet();
@@ -42,13 +42,13 @@ namespace funcx.Collections
 
         #region Overrides
         public override ICollection Cons(object o) => Contains(o) ? this : new SortedSet(this._impl.Assoc(o, o));
-        public override ISet Disjoin(object key) => Contains(key) ? new SortedSet(this._impl.Without(key)) : this;
+        public override ISet Disj(object key) => Contains(key) ? new SortedSet(this._impl.Without(key)) : this;
         public override ICollection Empty() => EMPTY;
         public override ITransientCollection ToTransient() => this._impl.ToTransient(); // TODO: implement this properly.
         #endregion
 
         public System.Collections.IComparer GetComparator() => (this._impl as ISorted)?.GetComparator();
-        public IEnumerative Enumerate(bool ascending) => new Core.Keys().Invoke((this._impl as SortedMap).Enumerate(ascending));
-        public IEnumerative Enumerate(object key, bool ascending) => new Core.Keys().Invoke((this._impl as SortedMap).Enumerate(key, ascending));
+        public ISeq Seq(bool ascending) => new Core.Keys().Invoke((this._impl as SortedMap).Seq(ascending));
+        public ISeq Seq(object key, bool ascending) => new Core.Keys().Invoke((this._impl as SortedMap).Seq(key, ascending));
     }
 }

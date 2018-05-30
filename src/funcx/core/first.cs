@@ -1,15 +1,15 @@
-﻿using funcx.Collections;
+﻿using FunctionalLibrary.Collections;
 using System;
 using System.Text;
 
-namespace funcx.Core
+namespace FunctionalLibrary.Core
 {
     public class First :
         IFunction<object, object>
     {
         public object Invoke(object coll)
         {
-            var enumerate = coll as IEnumerative ?? new Core.Enumerate().Invoke(coll);
+            var enumerate = coll as ISeq ?? new Core.Seq().Invoke(coll);
             if (enumerate == null)
                 return null;
             return enumerate.First();

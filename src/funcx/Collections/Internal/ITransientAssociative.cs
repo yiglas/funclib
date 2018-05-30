@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace funcx.Collections.Internal
+namespace FunctionalLibrary.Collections.Internal
 {
     interface ITransientAssociative :
         ITransientCollection,

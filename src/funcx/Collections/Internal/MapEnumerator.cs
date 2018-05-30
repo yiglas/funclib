@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace funcx.Collections.Internal
+namespace FunctionalLibrary.Collections.Internal
 {
     class MapEnumerator : 
         IDictionaryEnumerator, 
@@ -16,7 +16,7 @@ namespace funcx.Collections.Internal
 
         public MapEnumerator(IMap map)
         {
-            this._enumerator = new Enumerator(map.Enumerate());
+            this._enumerator = new Enumerator(map.Seq());
         }
 
         public DictionaryEntry Entry => throw new NotImplementedException();

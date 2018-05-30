@@ -1,15 +1,15 @@
-﻿namespace funcx
+﻿namespace FunctionalLibrary
 {
-    using funcx.Collections;
-    using funcx.Collections.Internal;
-    using funcx.Core;
+    using FunctionalLibrary.Collections;
+    using FunctionalLibrary.Collections.Internal;
+    using FunctionalLibrary.Core;
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Text;
     using System.Threading;
-    using _ = funcx.core;
+    using _ = FunctionalLibrary.core;
 
     static class Util
     {

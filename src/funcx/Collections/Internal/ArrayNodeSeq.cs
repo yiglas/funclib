@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace funcx.Collections.Internal
+namespace FunctionalLibrary.Collections.Internal
 {
-    class ArrayNodeEnumerative :
-        Enumerative
+    class ArrayNodeSeq :
+        ASeq
     {
         readonly INode[] _nodes;
         readonly int _i;
-        readonly IEnumerative _e;
+        readonly ISeq _e;
 
-        ArrayNodeEnumerative(INode[] nodes, int i, IEnumerative e)
+        ArrayNodeSeq(INode[] nodes, int i, ISeq e)
         {
             this._nodes = nodes;
             this._i = i;
@@ -19,11 +19,11 @@ namespace funcx.Collections.Internal
         }
 
         #region Creates
-        public static IEnumerative Create(INode[] nodes) => Create(nodes, 0, null);
+        public static ISeq Create(INode[] nodes) => Create(nodes, 0, null);
 
-        public static IEnumerative Create(INode[] nodes, int i, IEnumerative e)
+        public static ISeq Create(INode[] nodes, int i, ISeq e)
         {
-            if (e != null) return new ArrayNodeEnumerative(nodes, i, e);
+            if (e != null) return new ArrayNodeSeq(nodes, i, e);
             
             for(int j = i; j < nodes.Length; j++)
             {
@@ -31,7 +31,7 @@ namespace funcx.Collections.Internal
                 {
                     var ns = nodes[j].GetNodeEnumerative();
                     if (ns != null)
-                        return new ArrayNodeEnumerative(nodes, j + 1, ns);
+                        return new ArrayNodeSeq(nodes, j + 1, ns);
                 }
             }
 
@@ -42,7 +42,7 @@ namespace funcx.Collections.Internal
 
         #region Overrides
         public override object First() => this._e.First();
-        public override IEnumerative Next() => Create(this._nodes, this._i, this._e.Next());
+        public override ISeq Next() => Create(this._nodes, this._i, this._e.Next());
         public override IStack Pop() => throw new NotImplementedException();
         #endregion
     }

@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace funcx.Collections.Internal
+namespace FunctionalLibrary.Collections.Internal
 {
-    sealed class NodeEnumerative :
-        Enumerative
+    sealed class NodeSeq :
+        ASeq
     {
         readonly object[] _array;
         readonly int _i;
-        readonly IEnumerative _e;
+        readonly ISeq _e;
 
-        public NodeEnumerative(object[] array, int i)
+        public NodeSeq(object[] array, int i)
             : this(array, i, null) { }
 
-        public NodeEnumerative(object[] array, int i, IEnumerative e)
+        public NodeSeq(object[] array, int i, ISeq e)
         {
             this._array = array;
             this._i = i;
@@ -22,21 +22,21 @@ namespace funcx.Collections.Internal
         }
 
         #region Creates
-        public static IEnumerative Create(object[] array) => Create(array, 0, null);
-        public static IEnumerative Create(object[] array, int i, IEnumerative e)
+        public static ISeq Create(object[] array) => Create(array, 0, null);
+        public static ISeq Create(object[] array, int i, ISeq e)
         {
-            if (e != null) return new NodeEnumerative(array, i, e);
+            if (e != null) return new NodeSeq(array, i, e);
 
             for (int j = i; j < array.Length; j += 2)
             {
-                if (array[j] != null) return new NodeEnumerative(array, j, null);
+                if (array[j] != null) return new NodeSeq(array, j, null);
 
                 var node = (INode)array[j + 1];
                 if (node != null)
                 {
                     var enumerative = node.GetNodeEnumerative();
                     if (enumerative != null)
-                        return new NodeEnumerative(array, j + 2, enumerative);
+                        return new NodeSeq(array, j + 2, enumerative);
                 }
             }
 
@@ -50,7 +50,7 @@ namespace funcx.Collections.Internal
                 ? this._e.First()
                 : new KeyValuePair<object, object>(this._array[this._i], this._array[this._i + 1]);
 
-        public override IEnumerative Next() =>
+        public override ISeq Next() =>
             this._e != null
                 ? Create(this._array, this._i, this._e.Next())
                 : Create(this._array, this._i + 2, null);

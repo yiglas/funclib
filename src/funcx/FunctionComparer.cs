@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace funcx
+namespace FunctionalLibrary
 {
     /// <summary>
     /// Compares two items using a <see cref="Func{T1, T2, TResult}"/> with the TResult a boolean.

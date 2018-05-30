@@ -1,13 +1,13 @@
-﻿using funcx.Collections.Internal;
+﻿using FunctionalLibrary.Collections.Internal;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace funcx.Collections
+namespace FunctionalLibrary.Collections
 {
     public class HashMap :
-        Map
+        AMap
     {
         public static readonly HashMap EMPTY = new HashMap(0, null, false, null);
         static readonly object NOT_FOUND = new object();
@@ -142,7 +142,7 @@ namespace funcx.Collections
 
             return new HashMap(this._count - 1, root, HasNull, NullValue);
         }
-        public override IEnumerative Enumerate()
+        public override ISeq Seq()
         {
             var e = Root?.GetNodeEnumerative();
             return HasNull

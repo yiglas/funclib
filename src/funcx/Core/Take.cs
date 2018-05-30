@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace funcx.Core
+namespace FunctionalLibrary.Core
 {
     public class Take<T> :
         IFunction<int, IEnumerable<T>, IEnumerable<T>>

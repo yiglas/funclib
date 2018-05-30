@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace funcx.Core
+namespace FunctionalLibrary.Core
 {
     public class Empty<T> :
         IFunction<ICollection<T>, ICollection<T>>

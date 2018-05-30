@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using static funcx.core;
+using static FunctionalLibrary.core;
 
-namespace funcx.tests.Core
+namespace FunctionalLibrary.Tests.Core
 {
     public class FrequenciesShould
     {

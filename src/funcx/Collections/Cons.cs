@@ -1,18 +1,18 @@
-﻿using funcx.Core;
+﻿using FunctionalLibrary.Core;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace funcx.Collections
+namespace FunctionalLibrary.Collections
 {
     [Serializable]
     public sealed class Cons :
-        Enumerative
+        ASeq
     {
         readonly object _first;
-        readonly IEnumerative _more;
+        readonly ISeq _more;
 
-        public Cons(object first, IEnumerative more)
+        public Cons(object first, ISeq more)
         {
             this._first = first;
             this._more = more;
@@ -20,8 +20,8 @@ namespace funcx.Collections
 
         public override int Count => 1 + new Count().Invoke(this._more);
         public override object First() => this._first;
-        public override IEnumerative Next() => More().Enumerate();
-        public override IEnumerative More() => this._more == null ? List.EMPTY : this._more;
+        public override ISeq Next() => More().Seq();
+        public override ISeq More() => this._more == null ? List.EMPTY : this._more;
         public override IStack Pop() => throw new NotImplementedException();
     }
 }

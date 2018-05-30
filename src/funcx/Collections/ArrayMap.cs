@@ -1,19 +1,19 @@
-﻿using funcx.Collections.Internal;
+﻿using FunctionalLibrary.Collections.Internal;
 using System;
 using System.Collections;
 using System.Text;
 
-namespace funcx.Collections
+namespace FunctionalLibrary.Collections
 {
     public class ArrayMap :
-        Map
+        AMap
     {
         public static readonly ArrayMap EMPTY = new ArrayMap();
 
         object[] _array;
 
         ArrayMap() : this(new object[] { }) { }
-        ArrayMap(object[] init)
+        internal ArrayMap(object[] init)
         {
             this._array = init;
         }
@@ -88,7 +88,7 @@ namespace funcx.Collections
             return this;
         }
         public override ITransientCollection ToTransient() => new TransientArrayMap(this._array);
-        public override IEnumerative Enumerate() => this._array.Length > 0 ? new ArrayEnumerative(this._array, 0) : null;
+        public override ISeq Seq() => this._array.Length > 0 ? new ArraySeq(this._array, 0) : null;
         public override IEnumerator GetKeyEnumerator()
         {
             for (int i = 0; i < this._array.Length; i += 2)

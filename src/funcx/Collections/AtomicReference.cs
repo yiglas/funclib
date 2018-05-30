@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace funcx.Collections
+namespace FunctionalLibrary.Collections
 {
     public class AtomicReference<T>
         where T : class

@@ -1,11 +1,11 @@
-﻿using funcx.Core;
+﻿using FunctionalLibrary.Core;
 using System;
 using System.Text;
 
-namespace funcx.Collections
+namespace FunctionalLibrary.Collections
 {
     public class HashSet : 
-        Set
+        ASet
     {
         public static HashSet EMPTY = new HashSet();
 
@@ -50,7 +50,7 @@ namespace funcx.Collections
 
         #region Overrides
         public override ICollection Cons(object o) => Contains(o) ? this : new HashSet(this._impl.Assoc(o, o));
-        public override ISet Disjoin(object key) => Contains(key) ? new HashSet(this._impl.Without(key)) : this;
+        public override ISet Disj(object key) => Contains(key) ? new HashSet(this._impl.Without(key)) : this;
         public override ICollection Empty() => EMPTY;
         public override ITransientCollection ToTransient() => this._impl.ToTransient(); // TODO: implement this properly.
         #endregion

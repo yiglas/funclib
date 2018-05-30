@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace funcx.Core
+namespace FunctionalLibrary.Core
 {
     public class Reduce<TAccumulate, TSource> :
         IFunction<IFunction<TAccumulate, TSource, TAccumulate>, TAccumulate, IEnumerable<TSource>, TAccumulate>

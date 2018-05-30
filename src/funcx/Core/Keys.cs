@@ -1,19 +1,19 @@
-﻿using funcx.Collections;
-using funcx.Collections.Internal;
+﻿using FunctionalLibrary.Collections;
+using FunctionalLibrary.Collections.Internal;
 using System;
 using System.Text;
 
-namespace funcx.Core
+namespace FunctionalLibrary.Core
 {
     public class Keys :
-        IFunction<object, IEnumerative>
+        IFunction<object, ISeq>
     {
-        public IEnumerative Invoke(object coll)
+        public ISeq Invoke(object coll)
         {
             if (coll is IMap map)
-                return KeyEnumerative.Create(map);
+                return KeySeq.Create(map);
 
-            return KeyEnumerative.Create(new Enumerate().Invoke(coll));
+            return KeySeq.Create(new Seq().Invoke(coll));
         }
     }
 }

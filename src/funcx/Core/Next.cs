@@ -1,15 +1,15 @@
-﻿using funcx.Collections;
+﻿using FunctionalLibrary.Collections;
 using System;
 using System.Text;
 
-namespace funcx.Core
+namespace FunctionalLibrary.Core
 {
     public class Next:
-        IFunction<object, IEnumerative>
+        IFunction<object, ISeq>
     {
-        public IEnumerative Invoke(object coll)
+        public ISeq Invoke(object coll)
         {
-            var enumerate = coll as IEnumerative ?? new Core.Enumerate().Invoke(coll);
+            var enumerate = coll as ISeq ?? new Core.Seq().Invoke(coll);
             if (enumerate == null)
                 return null;
             return enumerate.Next();

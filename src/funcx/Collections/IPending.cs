@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace funcx.Collections
+namespace FunctionalLibrary.Collections
 {
     public interface IPending
     {

@@ -1,10 +1,10 @@
-﻿using funcx.Core;
+﻿using FunctionalLibrary.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace funcx.Collections.Internal
+namespace FunctionalLibrary.Collections.Internal
 {
     class Enumerator : 
         IEnumerator,
@@ -17,7 +17,7 @@ namespace funcx.Collections.Internal
 
         readonly object _start = new object();
 
-        public Enumerator(IEnumerative o)
+        public Enumerator(ISeq o)
         {
             this._realized = false;
             this._curr = this._start;
@@ -55,7 +55,7 @@ namespace funcx.Collections.Internal
             if (!this._realized)
             {
                 this._realized = true;
-                this._next = new Enumerate().Invoke(this._next);
+                this._next = new Seq().Invoke(this._next);
             }
             else
                 this._next = new Next().Invoke(this._next);

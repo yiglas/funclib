@@ -1,73 +1,35 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using FunctionalLibrary.Collections;
+using System;
 using System.Linq;
 using System.Text;
 
-namespace funcx.Core
+namespace FunctionalLibrary.Core
 {
     public class Assoc :
-        IFunction<IDictionary, (object key, object value), IDictionary>,
-        IFunctionParams<IDictionary, (object key, object value), IDictionary>
+        IFunction<IAssociative, object, object, IAssociative>,
+        IFunctionParams<IAssociative, object, object, object, IAssociative>
     {
-        public IDictionary Invoke(IDictionary map, (object key, object value) keyval) =>
-            Invoke(map, new(object key, object value)[] { keyval });
-
-        public IDictionary Invoke(IDictionary map, params (object key, object value)[] keyvals)
+        public IAssociative Invoke(IAssociative map, object key, object val)
         {
             if (map == null)
-                return keyvals.ToDictionary(x => x.key, x => x.value);
-            else
-            {
-                var dict = Activator.CreateInstance(map.GetType(), map) as IDictionary;
+                return new ArrayMap(new object[] { key, val });
 
-                for (int i = 0; i < keyvals.Length; i++)
-                {
-                    var (key, value) = keyvals[i];
-
-                    if (dict.Contains(key))
-                    {
-                        dict[key] = value;
-                    }
-                    else
-                    {
-                        dict.Add(key, value);
-                    }
-                }
-
-                return dict;
-            }
+            return map.Assoc(key, val);
         }
-    }
-    public class AssocT :
-        IFunction<IDictionary, (object key, object value), IDictionary>,
-        IFunctionParams<IDictionary, (object key, object value), IDictionary>
-    {
-        public IDictionary Invoke(IDictionary map, (object key, object value) keyval) =>
-            Invoke(map, new(object key, object value)[] { keyval });
-
-        public IDictionary Invoke(IDictionary map, params (object key, object value)[] keyvals)
+        public IAssociative Invoke(IAssociative map, object key, object val, params object[] kvs)
         {
-            if (map == null)
-                return keyvals.ToDictionary(x => x.key, x => x.value);
-            else
+            var ret = Invoke(map, key, val);
+            if (kvs.Count() > 0)
             {
-                for (int i = 0; i < keyvals.Length; i++)
+                var next = new Core.Next().Invoke(kvs);
+                if (next != null)
                 {
-                    var (key, value) = keyvals[i];
-
-                    if (map.Contains(key))
-                    {
-                        map[key] = value;
-                    }
-                    else
-                    {
-                        map.Add(key, value);
-                    }
+                    return Invoke(ret, new First().Invoke(kvs), new Second().Invoke(kvs), new NNext().Invoke(kvs));
                 }
-
-                return map;
+                else
+                    throw new ArgumentException($"{nameof(Assoc)} expects an even number of arguments.");
             }
+            return ret;
         }
     }
 }

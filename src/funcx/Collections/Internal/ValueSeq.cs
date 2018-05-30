@@ -1,33 +1,33 @@
 ﻿using System;
 using System.Text;
 
-namespace funcx.Collections.Internal
+namespace FunctionalLibrary.Collections.Internal
 {
-    sealed class KeyEnumerative :
-        Enumerative,
+    sealed class ValueSeq :
+        ASeq,
         System.Collections.IEnumerable
     {
-        readonly IEnumerative _enumerative;
+        readonly ISeq _enumerative;
         readonly System.Collections.IEnumerable _enumerable;
 
-        KeyEnumerative(IEnumerative enumerative, System.Collections.IEnumerable enumerable)
+        ValueSeq(ISeq enumerative, System.Collections.IEnumerable enumerable)
         {
             this._enumerable = enumerable;
             this._enumerative = enumerative;
         }
 
         #region Creates
-        public static KeyEnumerative Create(IEnumerative enumerative) =>
+        public static ValueSeq Create(ISeq enumerative) =>
             enumerative == null
                 ? null
-                : new KeyEnumerative(enumerative, null);
+                : new ValueSeq(enumerative, null);
 
-        public static KeyEnumerative Create(IMap map)
+        public static ValueSeq Create(IMap map)
         {
-            var enumerative = map?.Enumerate();
+            var enumerative = map?.Seq();
             if (enumerative == null) return null;
 
-            return new KeyEnumerative(enumerative, map);
+            return new ValueSeq(enumerative, map);
         }
         #endregion
 
@@ -36,20 +36,20 @@ namespace funcx.Collections.Internal
         {
             var entry = this._enumerative.First();
 
-            if (entry is System.Collections.Generic.KeyValuePair<object, object> kvp) return kvp.Key;
+            if (entry is System.Collections.Generic.KeyValuePair<object, object> kvp) return kvp.Value;
             else if (entry is System.Collections.DictionaryEntry de)
-                return de.Key;
+                return de.Value;
 
             throw new InvalidCastException($"Cannot convert entry to {nameof(System.Collections.Generic.KeyValuePair<object, object>)} or {nameof(System.Collections.DictionaryEntry)}");
         }
-        public override IEnumerative Next() => Create(this._enumerative.Next());
+        public override ISeq Next() => Create(this._enumerative.Next());
         public override IStack Pop() => throw new NotImplementedException();
         public override System.Collections.Generic.IEnumerator<object> GetEnumerator()
         {
             if (this._enumerable == null) return base.GetEnumerator();
 
             if (this._enumerable is IMapEnumerable m)
-                return (System.Collections.Generic.IEnumerator<object>)m.GetKeyEnumerator();
+                return (System.Collections.Generic.IEnumerator<object>)m.GetValueEnumerator();
 
             return null;
         }
@@ -60,7 +60,7 @@ namespace funcx.Collections.Internal
         System.Collections.Generic.IEnumerable<object> Iterator(System.Collections.IEnumerable enumerable)
         {
             foreach (var item in enumerable)
-                yield return ((System.Collections.Generic.KeyValuePair<object, object>)item).Key;
+                yield return ((System.Collections.Generic.KeyValuePair<object, object>)item).Value;
         }
     }
 }

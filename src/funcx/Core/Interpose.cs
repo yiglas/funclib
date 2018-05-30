@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace funcx.Core
+namespace FunctionalLibrary.Core
 {
     public class Interpose<TSeparator> :
         IFunction<TSeparator, IEnumerable, IEnumerable<object>>

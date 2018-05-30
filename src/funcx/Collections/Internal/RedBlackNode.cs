@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Text;
 
-namespace funcx.Collections.Internal
+namespace FunctionalLibrary.Collections.Internal
 {
     abstract class RedBlackNode :
-        KeyValuePair
+        AKeyValuePair
     {
         protected readonly object _key;
 

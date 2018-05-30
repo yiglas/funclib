@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace funcx.Core
+namespace FunctionalLibrary.Core
 {
     //public class Frequencies<T> :
     //    IFunction<IEnumerable<T>, IDictionary<T, int>>

@@ -1,92 +1,208 @@
 ﻿using NUnit.Framework;
 using System;
-using funcx.Collections;
+using FunctionalLibrary.Collections;
 using System.Text;
+using list = FunctionalLibrary.Collections.List;
 
-namespace funcx.tests.Collections
+namespace FunctionalLibrary.Tests.Collections
 {
     public class ListShould
     {
         [Test]
-        public void List_should_return_new_list_when_cons_is_added()
+        public void List_should_create_new_list_by_passing_param()
         {
-            var expected = new funcx.Collections.List(1);
-            var actual = expected.Cons(2);
+            var actual = list.Create(1, 2, 3);
 
-            Assert.AreNotSame(expected, actual);
+            Assert.IsNotNull(actual);
+            Assert.AreEqual(3, actual.Count);
         }
 
         [Test]
-        public void List_should_return_a_list_when_created_with_and_Enumerable()
+        public void List_should_create_new_list_by_pass_an_IList()
         {
-            var actual = funcx.Collections.List.Create(new object[] { 1, 2, 3, "four" });
+            var actual = list.Create(new System.Collections.ArrayList() { 1, 2, 3 });
 
-            Assert.AreEqual(4, actual.Count);
+            Assert.IsNotNull(actual);
+            Assert.AreEqual(3, actual.Count);
         }
 
         [Test]
-        public void List_should_be_create_with_no_items()
+        public void List_should_return_a_new_list_with_item_cons_to_beginning()
         {
-            var actual = new funcx.Collections.List();
+            var expected = list.Create(4, 1, 2, 3);
+            var actual = list.Create(1, 2, 3).Cons(4);
 
-            Assert.AreEqual(0, actual.Count);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
-        public void List_should_return_empty_list_when_called_Empty()
+        public void List_should_return_the_first_item_when_first_is_called()
         {
-            var actual = funcx.Collections.List.Create(new object[] { 1, 2, 3, "four" });
-            actual = actual.Empty() as IList;
+            var expected = 1;
+            var actual = list.Create(1, 2, 3).First();
 
-            Assert.AreEqual(0, actual.Count);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
-        public void List_should_pass_back_first_item_when_called_First()
+        public void List_should_return_the_first_item_when_peek_is_called()
         {
-            var actual = funcx.Collections.List.Create(new object[] { 1, 2, 3, "four" });
+            var expected = 1;
+            var actual = list.Create(1, 2, 3).Peek();
 
-            Assert.AreEqual(1, actual.First());
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
-        public void List_should_return_first_item_after_cons()
+        public void List_should_return_the_next_list_when_next_is_called()
         {
-            var actual = new funcx.Collections.List().Cons(1).Cons(2);
+            var expected = list.Create(2, 3, 4);
+            var actual = list.Create(1, 2, 3, 4).Next();
 
-            Assert.AreEqual(2, actual.First());
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
-        public void List_should_return_rest_of_the_items_when_called_next()
+        public void List_should_return_null_if_theres_nothing_in_next()
         {
-            var actual = funcx.Collections.List.Create(new object[] { 1, 2, 3, "four" });
+            var actual = list.Create(1).Next();
 
-            Assert.AreEqual(3, actual.Next().Count);
+            Assert.IsNull(actual);
         }
 
         [Test]
-        public void List_should_all_foreach()
+        public void List_should_pop_off_beginning_of_list_when_pop_is_called()
         {
-            var list = funcx.Collections.List.Create(new object[] { 1, 2, 3, "four" });
-            var actual = false;
+            var expected = list.Create(2, 3, 4);
+            var actual = list.Create(1, 2, 3, 4).Pop();
 
-            foreach (var item in list)
-            {
-                actual = true;
-            }
-
-            Assert.True(actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
-        public void List_should_allow_indexing()
+        public void List_should_return_empty_list_if_theres_nothing_to_pop()
         {
-            var list = funcx.Collections.List.Create(new object[] { 1, 2, 3, "four" });
+            var expected = list.Create();
+            var actual = list.Create(1).Pop();
 
-            var actaul = list[1];
+            Assert.AreEqual(expected, actual);
+        }
 
-            Assert.AreEqual(2, actaul);
+        [Test]
+        public void List_should_return_the_next_list_when_more_is_called()
+        {
+            var expected = list.Create(2, 3, 4);
+            var actual = list.Create(1, 2, 3, 4).More();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void List_should_return_empty_list_if_theres_nothing_in_next_when_more_is_called()
+        {
+            var expected = list.Create();
+            var actual = list.Create(1).More();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void List_should_return_the_index_of_item_when_index_is_called()
+        {
+            var expected = 1;
+            var actual = list.Create("one", "two", "three").IndexOf("two");
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void List_should_return_the_value_at_index_when_indexer_is_called()
+        {
+            var expected = "two";
+            var actual = list.Create("one", "two", "three")[1];
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void List_should_throw_index_out_of_range_when_indexer_is_passed_a_value_out_of_range()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => { var x = list.Create(1, 2, 3)[10]; });
+        }
+
+        [Test]
+        public void List_should_return_same_hash_code_for_two_list_with_same_values()
+        {
+            var expected = list.Create(1, 2, 3).GetHashCode();
+            var actual = list.Create(1, 2, 3).GetHashCode();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void List_should_return_true_when_two_list_with_same_values_are_equal()
+        {
+            var expected = list.Create(1, 2, 3);
+            var actual = list.Create(1, 2, 3);
+
+            Assert.IsTrue(expected.Equals(actual));
+        }
+
+        [Test]
+        public void Invalid_operations_on_list()
+        {
+            Assert.Throws<InvalidOperationException>(() => list.Create(1, 2, 3).Add(4));
+            Assert.Throws<InvalidOperationException>(() => (list.Create(1, 2, 3) as System.Collections.Generic.ICollection<object>).Add(4));
+            Assert.Throws<InvalidOperationException>(() => (list.Create(1, 2, 3) as System.Collections.IList).Clear());
+            Assert.Throws<InvalidOperationException>(() => (list.Create(1, 2, 3) as System.Collections.Generic.ICollection<object>).Clear());
+            Assert.Throws<InvalidOperationException>(() => list.Create(1, 2, 3).Insert(1, 4));
+            Assert.Throws<InvalidOperationException>(() => list.Create(1, 2, 3).Remove(1));
+            Assert.Throws<InvalidOperationException>(() => (list.Create(1, 2, 3) as System.Collections.Generic.ICollection<object>).Remove(1));
+            Assert.Throws<InvalidOperationException>(() => (list.Create(1, 2, 3) as System.Collections.IList).RemoveAt(1));
+            Assert.Throws<InvalidOperationException>(() => (list.Create(1, 2, 3) as System.Collections.Generic.IList<object>).RemoveAt(1));
+            Assert.Throws<InvalidOperationException>(() => list.Create(1, 2, 3)[1] = 4);
+        }
+
+        [Test]
+        public void List_should_be_fixed_size()
+        {
+            var actual = list.Create(1, 2, 3).IsFixedSize;
+
+            Assert.IsTrue(actual);
+        }
+
+        [Test]
+        public void List_should_be_read_only()
+        {
+            var actual = (list.Create(1, 2, 3) as System.Collections.IList).IsReadOnly;
+
+            Assert.IsTrue(actual);
+        }
+
+        [Test]
+        public void List_should_be_synchronized()
+        {
+            var actual = list.Create(1, 2, 3).IsSynchronized;
+
+            Assert.IsTrue(actual);
+        }
+
+        [Test]
+        public void List_should_return_itself_for_sync_root()
+        {
+            var expected = list.Create(1, 2, 3);
+            var actual = expected.SyncRoot;
+
+            Assert.IsTrue(expected == actual);
+        }
+
+        [Test]
+        public void List_should_return_itself_when_seq_is_called()
+        {
+            var expected = list.Create(1, 2, 3);
+            var actual = expected.Seq();
+
+            Assert.IsTrue(expected == actual);
         }
     }
 }

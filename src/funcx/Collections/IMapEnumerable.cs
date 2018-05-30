@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace funcx.Collections
+namespace FunctionalLibrary.Collections
 {
     public interface IMapEnumerable
     {

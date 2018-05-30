@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace funcx.Collections
+namespace FunctionalLibrary.Collections
 {
     public interface ISet :
         ICollection,
@@ -12,7 +12,7 @@ namespace funcx.Collections
         new int Count { get; }
         new bool Contains(object key);
 
-        ISet Disjoin(object key);
+        ISet Disj(object key);
         object Get(object key);
     }
 }

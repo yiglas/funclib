@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace funcx.Core
+namespace FunctionalLibrary.Core
 {
     public class FNull<T1, TResult> :
         IFunction<IFunction<T1, TResult>, T1, IFunction<T1, TResult>>

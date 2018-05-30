@@ -1,4 +1,4 @@
-# funcx
+# FunctionalLibrary
 Functional Library for C# that follows the Clojure idiom
 
 To Add:
@@ -64,8 +64,8 @@ todo:
 5. create persistent structuremap & structuremap<k, v>
 7. create persistent queue<t>
 
-funcx.collection.generic
-funcx.collection
-funcx.core
-funcx.string
-funcx.core.async
+FunctionalLibrary.collection.generic
+FunctionalLibrary.collection
+FunctionalLibrary.core
+FunctionalLibrary.string
+FunctionalLibrary.core.async

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace funcx.Core
+namespace FunctionalLibrary.Core
 {
     public class Equals :
         IFunction<object, bool>,

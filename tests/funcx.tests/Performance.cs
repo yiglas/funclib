@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
-namespace funcx.tests.Core
+namespace FunctionalLibrary.Tests.Core
 {
     public class PerformanceResult
     {

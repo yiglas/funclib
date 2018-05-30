@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace funcx.Collections
+namespace FunctionalLibrary.Collections
 {
-    public abstract class KeyValuePair :
-        EnumerativeVector,
+    public abstract class AKeyValuePair :
+        AVector,
         IKeyValuePair
     {
         #region Abstract Methods
@@ -34,7 +34,7 @@ namespace funcx.Collections
         public override KeyValuePair<int, object>? Get(object key) => ToVector(Key, Value).Get(key);
         public override object GetValue(object key) => ToVector(Key, Value).GetValue(key);
         public override object GetValue(object key, object notFound) => ToVector(Key, Value).GetValue(key, notFound);
-        public override IEnumerative Enumerate() => ToVector(Key, Value).Enumerate();
+        public override ISeq Seq() => ToVector(Key, Value).Seq();
         public override ICollection Empty() => null;
         public override object Peek() => Value;
         public override IStack Pop() => ToVector(Key);

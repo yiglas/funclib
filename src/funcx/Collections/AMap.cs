@@ -1,11 +1,11 @@
-﻿using funcx.Collections.Internal;
-using funcx.Core;
+﻿using FunctionalLibrary.Collections.Internal;
+using FunctionalLibrary.Core;
 using System;
 using System.Text;
 
-namespace funcx.Collections
+namespace FunctionalLibrary.Collections
 {
-    public abstract class Map:
+    public abstract class AMap:
         IMap,
         IFunction<object, object>,
         IFunction<object, object, object>
@@ -13,7 +13,7 @@ namespace funcx.Collections
         int _hash;
         static readonly object _missingValue = new object();
 
-        public object this[object key] { get => GetValue(key); set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(Map)}."); }
+        public object this[object key] { get => GetValue(key); set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}."); }
         public bool IsSynchronized => true;
         public object SyncRoot => this;
         public bool IsFixedSize => true;
@@ -30,7 +30,7 @@ namespace funcx.Collections
             {
                 if (Count != d.Count) return false;
 
-                for (var e = Enumerate(); e != null; e = e.Next())
+                for (var e = Seq(); e != null; e = e.Next())
                 {
                     var de = (System.Collections.Generic.KeyValuePair<object, object>)e.First();
                     bool found = d.Contains(de.Key);
@@ -54,7 +54,7 @@ namespace funcx.Collections
             int getHashCode(IMap m)
             {
                 int hash = 0;
-                for (var e = Enumerate(); e != null; e = e.Next())
+                for (var e = Seq(); e != null; e = e.Next())
                 {
                     var de = (System.Collections.Generic.KeyValuePair<object, object>)e.First();
 
@@ -66,13 +66,13 @@ namespace funcx.Collections
         #endregion
 
         #region Invalid Operations
-        public void Add(object item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(Map)}.");
-        public void Add(object key, object value) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(Map)}.");
-        public void Add(System.Collections.Generic.KeyValuePair<object, object> item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(Map)}.");
-        public void Clear() => throw new InvalidOperationException($"Cannot modify an immutable {nameof(Map)}.");
-        void System.Collections.IDictionary.Remove(object key) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(Map)}.");
-        public bool Remove(object item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(Map)}.");
-        public bool Remove(System.Collections.Generic.KeyValuePair<object, object> item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(Map)}.");
+        public void Add(object item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}.");
+        public void Add(object key, object value) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}.");
+        public void Add(System.Collections.Generic.KeyValuePair<object, object> item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}.");
+        public void Clear() => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}.");
+        void System.Collections.IDictionary.Remove(object key) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}.");
+        public bool Remove(object item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}.");
+        public bool Remove(System.Collections.Generic.KeyValuePair<object, object> item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}.");
         #endregion
 
         #region Abstract Methods
@@ -85,7 +85,7 @@ namespace funcx.Collections
         public abstract IMap Assoc(object key, object val);
         public abstract IMap Without(object key);
         public abstract ITransientCollection ToTransient();
-        public abstract IEnumerative Enumerate();
+        public abstract ISeq Seq();
         public abstract System.Collections.IEnumerator GetKeyEnumerator();
         public abstract System.Collections.IEnumerator GetValueEnumerator();
         #endregion
@@ -93,7 +93,7 @@ namespace funcx.Collections
         #region Virtual Methods
         public virtual System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<object, object>> GetEnumerator()
         {
-            for (var e = Enumerate(); e != null; e = e.Next())
+            for (var e = Seq(); e != null; e = e.Next())
             {
                 var entry = (System.Collections.Generic.KeyValuePair<object, object>)e.First();
                 yield return new System.Collections.Generic.KeyValuePair<object, object>(entry.Key, entry.Value);
@@ -107,13 +107,13 @@ namespace funcx.Collections
         #endregion
 
 
-        public System.Collections.ICollection Keys => KeyEnumerative.Create(Enumerate());
+        public System.Collections.ICollection Keys => KeySeq.Create(Seq());
 
         public System.Collections.ICollection Values => throw new NotImplementedException();
 
-        System.Collections.Generic.ICollection<object> System.Collections.Generic.IDictionary<object, object>.Keys => ValueEnumerative.Create(Enumerate());
+        System.Collections.Generic.ICollection<object> System.Collections.Generic.IDictionary<object, object>.Keys => ValueSeq.Create(Seq());
 
-        System.Collections.Generic.ICollection<object> System.Collections.Generic.IDictionary<object, object>.Values => ValueEnumerative.Create(Enumerate());
+        System.Collections.Generic.ICollection<object> System.Collections.Generic.IDictionary<object, object>.Values => ValueSeq.Create(Seq());
 
         public IMap Cons(object o) =>
             o is System.Collections.Generic.KeyValuePair<object, object> kvp
@@ -144,19 +144,19 @@ namespace funcx.Collections
         
         public void CopyTo(object[] array, int arrayIndex)
         {
-            var e = Enumerate();
+            var e = Seq();
             if (e != null)
                 e.CopyTo(array, arrayIndex);
         }
         public void CopyTo(Array array, int index)
         {
-            var e = Enumerate();
+            var e = Seq();
             if (e != null)
                 e.CopyTo(array, index);
         }
         public void CopyTo(System.Collections.Generic.KeyValuePair<object, object>[] array, int arrayIndex)
         {
-            var e = Enumerate();
+            var e = Seq();
             if (e != null)
                 e.CopyTo(array, arrayIndex);
         }

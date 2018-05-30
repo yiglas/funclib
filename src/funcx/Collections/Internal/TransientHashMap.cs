@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace funcx.Collections.Internal
+namespace FunctionalLibrary.Collections.Internal
 {
     sealed class TransientHashMap :
         TransientMap
@@ -94,6 +94,6 @@ namespace funcx.Collections.Internal
                 : true;
         #endregion
 
-        int Hash(object key) => funcx.Util.GetHashCode(key);
+        int Hash(object key) => FunctionalLibrary.Util.GetHashCode(key);
     }
 }

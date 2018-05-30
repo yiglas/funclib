@@ -1,37 +1,29 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using FunctionalLibrary.Collections;
+using System;
 using System.Text;
 
-namespace funcx.Core
+namespace FunctionalLibrary.Core
 {
-    public class Concat :
-        IFunction<IEnumerable>,
-        IFunction<IEnumerable, IEnumerable>,
-        IFunction<IEnumerable, IEnumerable, IEnumerable>,
-        IFunctionParams<IEnumerable, IEnumerable, IEnumerable, IEnumerable>
-    {
-        public IEnumerable Invoke()
-        {
-            yield break;
-        }
-
-        public IEnumerable Invoke(IEnumerable x) => Invoke(x, null, new object[] { });
-        public IEnumerable Invoke(IEnumerable x, IEnumerable y) => Invoke(x, y, new object[] { });
-        public IEnumerable Invoke(IEnumerable x, IEnumerable y, params IEnumerable[] zs)
-        {
-            if (x != null)
-                foreach (var item in x)
-                    yield return item;
-
-            if (y != null)
-                foreach (var item in y)
-                    yield return item;
-
-            for (int i = 0; i < zs.Length; i++)
-                if (zs[i] != null)
-                    foreach (var item in zs[i])
-                        yield return item;
-        }
-    }
+    //public class Concat :
+    //    IFunction<System.Collections.IEnumerable>,
+    //    IFunction<ISeq, System.Collections.IEnumerable>
+    //    //IFunction<object, object, System.Collections.IEnumerable>
+    //{
+    //    //public System.Collections.IEnumerable Invoke() => new LazySeq((ISeq)null);
+    //    //public System.Collections.IEnumerable Invoke(ISeq x) => new LazySeq(x);
+    //    //public System.Collections.IEnumerable Invoke(object x, object y)
+    //    //{
+    //    //    return new LazyEnumerative(new Function<object>(() =>
+    //    //    {
+    //    //        var s = new Seq().Invoke(x);
+    //    //        if (s != null)
+    //    //        {
+    //    //            if (new IsChunkedEnumerative().Invoke(s))
+    //    //            {
+    //    //                return new ChunkCons().Invoke()
+    //    //            }
+    //    //        }
+    //    //    }));
+    //    //}
+    //}
 }

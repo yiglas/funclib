@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "funcx", "src\funcx\funcx.csproj", "{B2605D45-7E8D-49CB-9A22-F146FEFBC45D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionalLibrary", "src\funcx\FunctionalLibrary.csproj", "{B2605D45-7E8D-49CB-9A22-F146FEFBC45D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{51998228-324D-4CA5-8948-415C74DC9BD3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4A1C68A9-5D78-4646-87E5-A86D423DAA2A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "funcx.tests", "tests\funcx.tests\funcx.tests.csproj", "{795062A1-03F9-4324-A1CA-023C40A20204}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionalLibrary.Tests", "tests\funcx.tests\FunctionalLibrary.Tests.csproj", "{795062A1-03F9-4324-A1CA-023C40A20204}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{35D6CA44-0E5B-4B24-84F7-DCC9CC86F4EE}"
 	ProjectSection(SolutionItems) = preProject

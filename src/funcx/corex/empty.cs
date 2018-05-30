@@ -1,4 +1,4 @@
-﻿namespace funcx
+﻿namespace FunctionalLibrary
 {
     using System;
     using System.Collections.Generic;

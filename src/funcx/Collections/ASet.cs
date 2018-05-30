@@ -1,12 +1,12 @@
-﻿using funcx.Collections.Internal;
-using funcx.Core;
+﻿using FunctionalLibrary.Collections.Internal;
+using FunctionalLibrary.Core;
 using System;
 using System.Text;
 
-namespace funcx.Collections
+namespace FunctionalLibrary.Collections
 {
     [Serializable]
-    public abstract class Set:
+    public abstract class ASet:
         ISet,
         IFunction<object, object>
     {
@@ -63,7 +63,7 @@ namespace funcx.Collections
         #region Abstract Methods
         public abstract ICollection Cons(object o);
         public abstract ICollection Empty();
-        public abstract ISet Disjoin(object key);
+        public abstract ISet Disj(object key);
         public abstract ITransientCollection ToTransient();
         #endregion
 
@@ -76,13 +76,13 @@ namespace funcx.Collections
 
         public void CopyTo(Array array, int index)
         {
-            var e = Enumerate();
+            var e = Seq();
             if (e != null)
                 e.CopyTo(array, index);
         }
         public void CopyTo(object[] array, int arrayIndex)
         {
-            var e = Enumerate();
+            var e = Seq();
             if (e != null)
                 e.CopyTo(array, arrayIndex);
         }
@@ -95,6 +95,6 @@ namespace funcx.Collections
             yield break;
         }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
-        public IEnumerative Enumerate() => KeyEnumerative.Create(this._impl.Enumerate());
+        public ISeq Seq() => KeySeq.Create(this._impl.Seq());
     }
 }

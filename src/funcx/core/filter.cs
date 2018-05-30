@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace funcx.Core
+namespace FunctionalLibrary.Core
 {
     public class Filter<T> :
         IFunction<IFunction<T, bool>, IEnumerable<T>, IEnumerable<T>>

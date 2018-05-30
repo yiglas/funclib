@@ -1,8 +1,8 @@
-﻿using funcx.Core;
+﻿using FunctionalLibrary.Core;
 using System;
 using System.Text;
 
-namespace funcx.Collections.Internal
+namespace FunctionalLibrary.Collections.Internal
 {
     abstract class TransientMap :
         ITransientMap,

@@ -1,17 +1,17 @@
-﻿using funcx.Collections;
+﻿using FunctionalLibrary.Collections;
 using System;
 using System.Text;
 
-namespace funcx.Core
+namespace FunctionalLibrary.Core
 {
     public class Cons :
-        IFunction<object, object, IEnumerative>
+        IFunction<object, object, ISeq>
     {
-        public IEnumerative Invoke(object x, object seq)
+        public ISeq Invoke(object x, object seq)
         {
-            if (seq == null) return new List(x);
-            if (seq is IEnumerative e) return new Collections.Cons(x, e);
-            return new Collections.Cons(x, new Enumerate().Invoke(seq));
+            if (seq == null) return new Collections.List(x);
+            if (seq is ISeq e) return new Collections.Cons(x, e);
+            return new Collections.Cons(x, new Seq().Invoke(seq));
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿using funcx.Collections.Internal;
+﻿using FunctionalLibrary.Collections.Internal;
 using System;
 using System.Text;
 
-namespace funcx.Collections
+namespace FunctionalLibrary.Collections
 {
     public class List : 
-        Enumerative
+        ASeq
     {
         public static readonly IList EMPTY = new List();
 
@@ -31,13 +31,23 @@ namespace funcx.Collections
 
             return ret as IList;
         }
+
+        public static IList Create(params object[] init)
+        {
+            ICollection ret = EMPTY;
+
+            for (int i = init.Length - 1; i >= 0; --i)
+                ret = ret.Cons(init[i]);
+
+            return ret as IList;
+        }
         #endregion
 
         #region Overrides
         public override int Count { get; }
-        public override IEnumerative Cons(object o) => new List(o, this, Count + 1);
+        public override ISeq Cons(object o) => new List(o, this, Count + 1);
         public override object First() => this._first;
-        public override IEnumerative Next() => Count == 1 ? null : this._rest;
+        public override ISeq Next() => Count == 1 ? null : this._rest;
         public override IStack Pop() => this._rest == null ? EMPTY : this._rest;
         #endregion
     }

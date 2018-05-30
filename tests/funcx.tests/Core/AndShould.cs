@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using funcx.Core;
+using FunctionalLibrary.Core;
 using System.Collections;
 
-namespace funcx.tests.Core
+namespace FunctionalLibrary.Tests.Core
 {
     public class AndShould
     {

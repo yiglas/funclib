@@ -1,11 +1,11 @@
-﻿using funcx.Collections.Internal;
+﻿using FunctionalLibrary.Collections.Internal;
 using System;
 using System.Text;
 
-namespace funcx.Collections
+namespace FunctionalLibrary.Collections
 {
     public class SortedMap : 
-        Map,
+        AMap,
         ISorted
     {
         public static readonly SortedMap EMPTY = new SortedMap();
@@ -32,7 +32,7 @@ namespace funcx.Collections
             return ret as SortedMap;    
         }
 
-        public static SortedMap Create(IEnumerative init)
+        public static SortedMap Create(ISeq init)
         {
             IMap ret = EMPTY;
             for (; init != null; init = init.Next().Next())
@@ -44,7 +44,7 @@ namespace funcx.Collections
             return ret as SortedMap;
         }
 
-        public static SortedMap Create(System.Collections.IComparer comp, IEnumerative init)
+        public static SortedMap Create(System.Collections.IComparer comp, ISeq init)
         {
             IMap ret = new SortedMap(comp);
             for (; init != null; init = init.Next().Next())
@@ -74,7 +74,7 @@ namespace funcx.Collections
             return n != null ? n.Value : notFound;
         }
         public override ICollection Empty() => new SortedMap(this._comp);
-        public override IEnumerative Enumerate() => this._count > 0 ? new SortedMapEnumerative(this._tree, true, this._count) : null;
+        public override ISeq Seq() => this._count > 0 ? new SortedMapSeq(this._tree, true, this._count) : null;
         public override IMap Assoc(object key, object val)
         {
             var found = new Box(null);
@@ -107,12 +107,12 @@ namespace funcx.Collections
 
         public System.Collections.IComparer GetComparator() => this._comp;
 
-        public IEnumerative Enumerate(bool ascending) => this._count > 0 ? new SortedMapEnumerative(this._tree, ascending, this._count) : null;
-        public IEnumerative Enumerate(object key, bool ascending)
+        public ISeq Seq(bool ascending) => this._count > 0 ? new SortedMapSeq(this._tree, ascending, this._count) : null;
+        public ISeq Seq(object key, bool ascending)
         {
             if (this._count > 0)
             {
-                IEnumerative stack = null;
+                ISeq stack = null;
                 var t = this._tree;
                 while (t != null)
                 {
@@ -120,7 +120,7 @@ namespace funcx.Collections
                     if (c == 0)
                     {
                         stack = new Core.Cons().Invoke(t, stack);
-                        return new SortedMapEnumerative(stack, ascending);
+                        return new SortedMapSeq(stack, ascending);
                     }
                     else if (ascending)
                     {
@@ -144,7 +144,7 @@ namespace funcx.Collections
                     }
                 }
                 if (stack != null)
-                    return new SortedMapEnumerative(stack, ascending);
+                    return new SortedMapSeq(stack, ascending);
             }
 
             return null;

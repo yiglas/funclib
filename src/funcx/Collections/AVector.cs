@@ -1,13 +1,13 @@
-﻿using funcx.Collections.Internal;
-using funcx.Core;
+﻿using FunctionalLibrary.Collections.Internal;
+using FunctionalLibrary.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace funcx.Collections
+namespace FunctionalLibrary.Collections
 {
-    public abstract class EnumerativeVector :
+    public abstract class AVector :
         IVector,
         IFunction<object, object>
     {
@@ -51,7 +51,7 @@ namespace funcx.Collections
                 return true;
             }
 
-            if (obj is IEnumerative e)
+            if (obj is ISeq e)
             {
                 for (int i = 0; i < Count; i++, e = e.Next())
                 {
@@ -84,13 +84,13 @@ namespace funcx.Collections
         #endregion
 
         #region Invalid Operations
-        public int Add(object value) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(EnumerativeVector)}.");
-        void ICollection<object>.Add(object item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(EnumerativeVector)}.");
-        public void Clear() => throw new InvalidOperationException($"Cannot modify an immutable {nameof(EnumerativeVector)}.");
-        public void Insert(int index, object value) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(EnumerativeVector)}.");
-        public void Remove(object value) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(EnumerativeVector)}.");
-        public void RemoveAt(int index) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(EnumerativeVector)}.");
-        bool ICollection<object>.Remove(object item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(EnumerativeVector)}.");
+        public int Add(object value) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AVector)}.");
+        void ICollection<object>.Add(object item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AVector)}.");
+        public void Clear() => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AVector)}.");
+        public void Insert(int index, object value) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AVector)}.");
+        public void Remove(object value) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AVector)}.");
+        public void RemoveAt(int index) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AVector)}.");
+        bool ICollection<object>.Remove(object item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AVector)}.");
         #endregion
 
         #region Abstract Methods
@@ -112,7 +112,7 @@ namespace funcx.Collections
                     return this[index];
                 return notFound;
             }
-            set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(EnumerativeVector)}.");
+            set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AVector)}.");
         }
         public virtual bool ContainsKey(object key) => int.TryParse(key.ToString(), out int i) && i >= 0 && i < Count;
         public virtual KeyValuePair<int, object>? Get(object key) =>
@@ -121,7 +121,7 @@ namespace funcx.Collections
                 : null;
         public virtual IEnumerator<object> GetEnumerator()
         {
-            for (var e = Enumerate(); e != null; e = e.Next())
+            for (var e = Seq(); e != null; e = e.Next())
             {
                 yield return e.First();
             }
@@ -131,7 +131,7 @@ namespace funcx.Collections
             int.TryParse(key.ToString(), out int i) && i >= 0 && i < Count
                 ? this[i]
                 : notFound;
-        public virtual IEnumerative Enumerate() => Count > 0 ? new VectorEnumerative(this, 0) : null;
+        public virtual ISeq Seq() => Count > 0 ? new VectorSeq(this, 0) : null;
         public virtual object Peek() => Count > 0 ? this[Count - 1] : null;
         public virtual IEnumerator<object> RangedEnumerator(int start, int end)
         {
@@ -151,7 +151,7 @@ namespace funcx.Collections
                 : this;
         public bool Contains(object value)
         {
-            for (var e = Enumerate(); e != null; e = e.Next())
+            for (var e = Seq(); e != null; e = e.Next())
                 if (new Core.Equals().Invoke(e.First(), value))
                     return true;
 

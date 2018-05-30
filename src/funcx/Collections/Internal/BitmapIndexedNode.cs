@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
-using funcx.Core;
-using static funcx.Util;
+using FunctionalLibrary.Core;
+using static FunctionalLibrary.Util;
 
-namespace funcx.Collections.Internal
+namespace FunctionalLibrary.Collections.Internal
 {
     [Serializable]
     sealed class BitmapIndexedNode :
@@ -270,7 +270,7 @@ namespace funcx.Collections.Internal
             return notFound;
         }
 
-        public IEnumerative GetNodeEnumerative() => NodeEnumerative.Create(this._array);
+        public ISeq GetNodeEnumerative() => NodeSeq.Create(this._array);
         public IEnumerator GetEnumerator(Func<object, object, object> d)
         {
             for (int i = 0; i < this._array.Length; i += 2)
