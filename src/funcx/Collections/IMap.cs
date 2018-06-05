@@ -15,7 +15,6 @@ namespace FunctionalLibrary.Collections
     {
         new bool ContainsKey(object key);
         new int Count { get; }
-        new System.Collections.Generic.KeyValuePair<object, object>? First();
         new IMap Assoc(object key, object val);
         new IMap Cons(object o);
 

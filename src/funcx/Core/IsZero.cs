@@ -5,14 +5,8 @@ using System.Text;
 namespace FunctionalLibrary.Core
 {
     public class IsZero :
-        IFunction<long, bool>,
-        IFunction<int, bool>,
-        IFunction<double, bool>,
-        IFunction<float, bool>
+        IFunction<object, object>
     {
-        public bool Invoke(long n) => n == 0;
-        public bool Invoke(int n) => n == 0;
-        public bool Invoke(double n) => n == 0;
-        public bool Invoke(float n) => n == 0;
+        public object Invoke(object n) => Number.Create(n).Value == 0;
     }
 }

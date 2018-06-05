@@ -6,7 +6,7 @@ using System.Threading;
 namespace FunctionalLibrary.Collections.Internal
 {
     sealed class TransientHashMap :
-        TransientMap
+        ATransientMap
     {
         [NonSerialized]
         readonly AtomicReference<Thread> _edit;
@@ -64,7 +64,7 @@ namespace FunctionalLibrary.Collections.Internal
         protected override IMap DoToPersistent()
         {
             this._edit.Set(null);
-            return HashMap.Create(this._count, this._root, this._hasNull, this._nullValue);
+            return new HashMap(this._count, this._root, this._hasNull, this._nullValue);
         }
 
         protected override ITransientMap DoWithout(object key)

@@ -109,9 +109,9 @@ namespace FunctionalLibrary.Collections
 
         public System.Collections.ICollection Keys => KeySeq.Create(Seq());
 
-        public System.Collections.ICollection Values => throw new NotImplementedException();
+        public System.Collections.ICollection Values => ValueSeq.Create(Seq());
 
-        System.Collections.Generic.ICollection<object> System.Collections.Generic.IDictionary<object, object>.Keys => ValueSeq.Create(Seq());
+        System.Collections.Generic.ICollection<object> System.Collections.Generic.IDictionary<object, object>.Keys => KeySeq.Create(Seq());
 
         System.Collections.Generic.ICollection<object> System.Collections.Generic.IDictionary<object, object>.Values => ValueSeq.Create(Seq());
 
@@ -160,12 +160,7 @@ namespace FunctionalLibrary.Collections
             if (e != null)
                 e.CopyTo(array, arrayIndex);
         }
-
-
-        public object First() => throw new NotImplementedException();
-        public ICollection More() => throw new NotImplementedException();
-        public ICollection Next() => throw new NotImplementedException();
-        
+                
         public bool TryGetValue(object key, out object value)
         {
             object found = GetValue(key, _missingValue);
@@ -179,8 +174,7 @@ namespace FunctionalLibrary.Collections
             value = found;
             return true;
         }
-        ICollection ICollection.Cons(object o) => Cons(o);        
-        System.Collections.Generic.KeyValuePair<object, object>? IMap.First() => First() as System.Collections.Generic.KeyValuePair<object, object>?;
+        ICollection ICollection.Cons(object o) => Cons(o);
         IAssociative IAssociative.Assoc(object key, object val) => Assoc(key, val);
         System.Collections.IDictionaryEnumerator System.Collections.IDictionary.GetEnumerator() => new MapEnumerator(this);
         System.Collections.Generic.IEnumerator<object> System.Collections.Generic.IEnumerable<object>.GetEnumerator() => ((System.Collections.Generic.IEnumerable<object>)this).GetEnumerator();

@@ -5,11 +5,12 @@ using System.Text;
 namespace FunctionalLibrary.Core
 {
     public class ChunkCons :
-        IFunction<IChunked, ISeq, ISeq>
+        IFunction<object, object, object>
     {
-        public ISeq Invoke(IChunked chuck, ISeq rest) =>
-            new IsZero().Invoke(new Count().Invoke(chuck))
+        public object Invoke(object chuck, object rest) =>
+            (bool)new IsZero().Invoke(new Count().Invoke(chuck))
                 ? rest
-                : new ChunkedCons(chuck, rest);
+                : chuck is IChunked c && rest is ISeq r ? new ChunkedCons(c, r)
+                : throw new InvalidCastException();
     }
 }

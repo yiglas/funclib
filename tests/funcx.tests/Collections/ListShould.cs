@@ -107,12 +107,37 @@ namespace FunctionalLibrary.Tests.Collections
         }
 
         [Test]
-        public void List_should_return_the_index_of_item_when_index_is_called()
+        public void List_should_return_the_index_of_item_when_index_of_is_called()
         {
             var expected = 1;
             var actual = list.Create("one", "two", "three").IndexOf("two");
 
             Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void List_should_return_negative_one_when_index_of_is_called()
+        {
+            var expected = -1;
+            var actual = list.Create("1", "2", "3").IndexOf("4");
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void List_should_return_true_if_item_exists_in_list()
+        {
+            var actual = list.Create(1, 2, 3).Contains(1);
+
+            Assert.IsTrue(actual);
+        }
+
+        [Test]
+        public void List_should_return_false_if_item_does_not_exists_in_list()
+        {
+            var actual = list.Create(1, 2, 3).Contains(4);
+
+            Assert.IsFalse(actual);
         }
 
         [Test]
@@ -146,6 +171,15 @@ namespace FunctionalLibrary.Tests.Collections
             var actual = list.Create(1, 2, 3);
 
             Assert.IsTrue(expected.Equals(actual));
+        }
+
+        [Test]
+        public void List_should_return_false_when_two_list_that_are_not_the_same()
+        {
+            var expected = list.Create(1, 2, 4);
+            var actual = list.Create(1, 2, 3);
+
+            Assert.IsFalse(expected.Equals(actual));
         }
 
         [Test]

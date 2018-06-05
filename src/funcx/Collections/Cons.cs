@@ -18,7 +18,7 @@ namespace FunctionalLibrary.Collections
             this._more = more;
         }
 
-        public override int Count => 1 + new Count().Invoke(this._more);
+        public override int Count => 1 + (int)new Core.Count().Invoke(this._more);
         public override object First() => this._first;
         public override ISeq Next() => More().Seq();
         public override ISeq More() => this._more == null ? List.EMPTY : this._more;

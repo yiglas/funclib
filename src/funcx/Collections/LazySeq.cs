@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FunctionalLibrary.Collections
 {
-    class LazySeq :
+    public class LazySeq :
         ISeq,
         IPending,
         System.Collections.IList,
@@ -111,7 +111,7 @@ namespace FunctionalLibrary.Collections
             return this._e;
         }
 
-        public ISeq Cons(object o) => new Core.Cons().Invoke(o, Seq());
+        public ISeq Cons(object o) => (ISeq)new Core.Cons().Invoke(o, Seq());
         public object First()
         {
             Seq();

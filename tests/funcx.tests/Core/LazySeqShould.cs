@@ -10,40 +10,46 @@ namespace FunctionalLibrary.Tests.Core
 {
     public class LazySeqShould
     {
-        [Test]
-        public void LazySeq_should_lazy_seq_a_function()
-        {
-            Func<int, IEnumerable<int>> positiveNumbers = null;
-            positiveNumbers = n => lazyseq(() => cons(n, positiveNumbers(inc(n))));
+    //    [Test]
+    //    public void LazySeq_should_lazily_evaluate()
+    //    {
+    //        var 
+    //    }
 
-            var actual = toarray(take(5, positiveNumbers(1)));
+        //[Test]
+        //public void LazySeq_should_lazy_seq_a_function()
+        //{
+        //    Func<int, IEnumerable<int>> positiveNumbers = null;
+        //    positiveNumbers = n => lazyseq(() => cons(n, positiveNumbers(inc(n))));
 
-            Assert.AreEqual(5, actual.Length);
-        }
+        //    var actual = toarray(take(5, positiveNumbers(1)));
 
-        [Test]
-        public void LazySeq_should_play_fibonacci()
-        {
-            Func<int, int, IEnumerable<int>> fib = null;
-            fib = (a, b) => lazyseq(() => cons(a, fib(b, a + b)));
+        //    Assert.AreEqual(5, actual.Length);
+        //}
 
-            var actual = toarray(take(5, fib(1, 1)));
+        //[Test]
+        //public void LazySeq_should_play_fibonacci()
+        //{
+        //    Func<int, int, IEnumerable<int>> fib = null;
+        //    fib = (a, b) => lazyseq(() => cons(a, fib(b, a + b)));
 
-            Assert.AreEqual(1, actual[0]);
-            Assert.AreEqual(1, actual[1]);
-            Assert.AreEqual(2, actual[2]);
-            Assert.AreEqual(3, actual[3]);
-            Assert.AreEqual(5, actual[4]);
-        }
+        //    var actual = toarray(take(5, fib(1, 1)));
 
-        [Test]
-        public void Perfomance()
-        {
-            var perf = new LazySeqPerformance();
-            var results = perf.Measure();
+        //    Assert.AreEqual(1, actual[0]);
+        //    Assert.AreEqual(1, actual[1]);
+        //    Assert.AreEqual(2, actual[2]);
+        //    Assert.AreEqual(3, actual[3]);
+        //    Assert.AreEqual(5, actual[4]);
+        //}
 
-            Assert.Greater(results.baseline, results.b);
-        }
+        //[Test]
+        //public void Perfomance()
+        //{
+        //    var perf = new LazySeqPerformance();
+        //    var results = perf.Measure();
+
+        //    Assert.Greater(results.baseline, results.b);
+        //}
 
         //[Test]
         //public void LazySeq_should_do_fibonacci()

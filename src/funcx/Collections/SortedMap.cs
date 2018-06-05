@@ -119,14 +119,14 @@ namespace FunctionalLibrary.Collections
                     int c = this._comp.Compare(key, t.Key);
                     if (c == 0)
                     {
-                        stack = new Core.Cons().Invoke(t, stack);
+                        stack = (ISeq)new Core.Cons().Invoke(t, stack);
                         return new SortedMapSeq(stack, ascending);
                     }
                     else if (ascending)
                     {
                         if (c < 0)
                         {
-                            stack = new Core.Cons().Invoke(t, stack);
+                            stack = (ISeq)new Core.Cons().Invoke(t, stack);
                             t = t.Left;
                         }
                         else
@@ -136,7 +136,7 @@ namespace FunctionalLibrary.Collections
                     {
                         if (c > 0)
                         {
-                            stack = new Core.Cons().Invoke(t, stack);
+                            stack = (ISeq)new Core.Cons().Invoke(t, stack);
                             t = t.Right;
                         }
                         else

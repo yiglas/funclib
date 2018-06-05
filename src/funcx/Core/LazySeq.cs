@@ -1,17 +1,23 @@
-﻿using System;
+﻿using FunctionalLibrary.Collections;
+using System;
 using System.Text;
 
 namespace FunctionalLibrary.Core
 {
-    public class LazySeq
+    public class LazySeq :
+        Collections.LazySeq,
+        IFunction<ISeq>
     {
-        readonly Collections.LazySeq _lazy;
+        public LazySeq(IFunction<object> fn) : base(fn) { }
+        public LazySeq(ISeq seq) : base(seq) { }
 
-        public LazySeq(IFunction<object> fn)
-        {
-            this._lazy = new Collections.LazySeq(fn);
-        }
+        //readonly Collections.LazySeq _lazy;
 
-        public object Invoke() => new Seq().Invoke(_lazy);
+        //public LazySeq(IFunction<object> fn)
+        //{
+        //    this._lazy = new Collections.LazySeq(fn);
+        //}
+
+        public ISeq Invoke() => Seq();
     }
 }

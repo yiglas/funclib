@@ -6,17 +6,18 @@ using System.Text;
 namespace FunctionalLibrary.Core
 {
     public class Assoc :
-        IFunction<IAssociative, object, object, IAssociative>,
-        IFunctionParams<IAssociative, object, object, object, IAssociative>
+        IFunction<object, object, object, object>,
+        IFunctionParams<object, object, object, object, object>
     {
-        public IAssociative Invoke(IAssociative map, object key, object val)
+        public object Invoke(object map, object key, object val)
         {
             if (map == null)
                 return new ArrayMap(new object[] { key, val });
 
-            return map.Assoc(key, val);
+            return (map as IAssociative).Assoc(key, val);
         }
-        public IAssociative Invoke(IAssociative map, object key, object val, params object[] kvs)
+
+        public object Invoke(object map, object key, object val, params object[] kvs)
         {
             var ret = Invoke(map, key, val);
             if (kvs.Count() > 0)

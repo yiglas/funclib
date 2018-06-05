@@ -6,9 +6,9 @@ using System.Text;
 namespace FunctionalLibrary.Core
 {
     public class Count :
-        IFunction<object, int>
+        IFunction<object, object>
     {
-        public int Invoke(object coll) =>
+        public object Invoke(object coll) =>
             !(coll is ValueType) && coll == null
                 ? 0
                 : coll is string s ? s.Length

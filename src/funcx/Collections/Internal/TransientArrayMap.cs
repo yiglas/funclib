@@ -6,7 +6,7 @@ using System.Threading;
 namespace FunctionalLibrary.Collections.Internal
 {
     sealed class TransientArrayMap :
-        TransientMap
+        ATransientMap
     {
         volatile int _length;
         readonly object[] _array;

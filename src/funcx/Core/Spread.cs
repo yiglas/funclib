@@ -5,9 +5,9 @@ using System.Text;
 namespace FunctionalLibrary.Core
 {
     class Spread :
-        IFunction<object, ISeq>
+        IFunction<object, object>
     {
-        public ISeq Invoke(object argList)
+        public object Invoke(object argList)
         {
             if (argList == null) return null;
             var next = new Next().Invoke(argList);

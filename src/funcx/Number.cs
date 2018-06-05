@@ -48,6 +48,5 @@ namespace FunctionalLibrary
             return 0;
         }
 
-
     }
 }

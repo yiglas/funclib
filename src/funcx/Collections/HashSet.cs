@@ -1,4 +1,5 @@
-﻿using FunctionalLibrary.Core;
+﻿using FunctionalLibrary.Collections.Internal;
+using FunctionalLibrary.Core;
 using System;
 using System.Text;
 
@@ -52,7 +53,7 @@ namespace FunctionalLibrary.Collections
         public override ICollection Cons(object o) => Contains(o) ? this : new HashSet(this._impl.Assoc(o, o));
         public override ISet Disj(object key) => Contains(key) ? new HashSet(this._impl.Without(key)) : this;
         public override ICollection Empty() => EMPTY;
-        public override ITransientCollection ToTransient() => this._impl.ToTransient(); // TODO: implement this properly.
+        public override ITransientCollection ToTransient() => new TransientHashSet(this._impl.ToTransient() as ITransientMap);
         #endregion
     }
 }

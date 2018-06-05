@@ -5,9 +5,9 @@ using System.Text;
 namespace FunctionalLibrary.Core
 {
     public class Compare :
-        IFunction<object, object, int>
+        IFunction<object, object, object>
     {
-        public int Invoke(object x, object y)
+        public object Invoke(object x, object y)
         {
             if (x == y) return 0;
             if (x != null)

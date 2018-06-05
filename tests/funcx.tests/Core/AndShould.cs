@@ -36,5 +36,11 @@ namespace FunctionalLibrary.Tests.Core
             Assert.AreEqual(null, and.Invoke(testNull, true));
         }
 
+        [Test]
+        public void And_should_return_true_with_nothing_is_passed()
+        {
+            Assert.AreEqual(true, new And().Invoke());
+        }
+
     }
 }

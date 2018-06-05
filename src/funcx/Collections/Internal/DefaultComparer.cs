@@ -13,7 +13,7 @@ namespace FunctionalLibrary.Collections.Internal
     {
         public static readonly IComparer Instance = new DefaultComparer();
 
-        public int Compare(object x, object y) => new Core.Compare().Invoke(x, y);
+        public int Compare(object x, object y) => (int)new Core.Compare().Invoke(x, y);
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.SetType(typeof(DefaultComparerSerialization));

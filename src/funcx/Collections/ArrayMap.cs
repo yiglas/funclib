@@ -19,7 +19,66 @@ namespace FunctionalLibrary.Collections
         }
 
         #region Creates
-        public static ArrayMap Create(object[] init) => new ArrayMap(init);
+        public static ArrayMap Create(params object[] init)
+        {
+            if ((init.Length & 1) == 1)
+                throw new ArgumentException($"No value supplied for key: {init[init.Length - 1]}");
+
+            int n = 0;
+            for (int i = 0; i < init.Length; i+= 2)
+            {
+                bool duplicateKey = false;
+                for (int j = 0; j < i; j += 2)
+                {
+                    if (new Core.Equals().Invoke(init[i], init[j]))
+                    {
+                        duplicateKey = true;
+                        break;
+                    }
+                }
+                if (!duplicateKey) n += 2;
+            }
+
+            if (n < init.Length)
+            {
+                var nodups = new object[n];
+                int m = 0;
+                for (int i = 0; i < init.Length; i += 2)
+                {
+                    bool duplicateKey = false;
+                    for (int j = 0; j < m; j += 2)
+                    {
+                        if (new Core.Equals().Invoke(init[i], nodups[j]))
+                        {
+                            duplicateKey = true;
+                            break;
+                        }
+                    }
+
+                    if (!duplicateKey)
+                    {
+                        int j;
+                        for (j = init.Length -2; j >= i; j -= 2)
+                        {
+                            if (new Core.Equals().Invoke(init[i], init[j]))
+                            {
+                                break;
+                            }
+                        }
+                        nodups[m] = init[i];
+                        nodups[m + 1] = init[j + 1];
+                        m += 2;
+                    }
+                }
+
+                if (m != n)
+                    throw new ArgumentException($"Internal error: m = {m}");
+
+                init = nodups;
+            }
+
+            return new ArrayMap(init);
+        }
         #endregion
 
         #region Overrides

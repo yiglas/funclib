@@ -141,7 +141,7 @@ namespace FunctionalLibrary.Collections
         #endregion
 
         #region Functions
-        public object Invoke(object index) => int.TryParse(index.ToString(), out int i) ? this[i] : null;
+        public object Invoke(object index) => GetValue(index, null);
         #endregion
 
 

@@ -11,17 +11,20 @@ namespace FunctionalLibrary.Collections
     public class Vector :
         AVector
     {
-        public static readonly IVector EMPTY = new Vector(0, 5, EmptyNode, new object[0]);
         static readonly AtomicReference<Thread> NoEdit = new AtomicReference<Thread>();
         internal static readonly VectorNode EmptyNode = new VectorNode(NoEdit, new object[32]);
+        public static readonly IVector EMPTY = new Vector(0, 5, EmptyNode, new object[32]);
 
-        readonly int _hash;
         internal int Shift { get; }
         internal VectorNode Root { get; }
         internal object[] Tail { get; }
 
         public override int Count { get; }
-        public override object this[int index] { get => ToArray(index)[index & 0x01f]; set => throw new NotImplementedException(); }
+        public override object this[int index]
+        {
+            get => ToArray(index)[index & 0x01f];
+            set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(Vector)}.");
+        }
 
         internal Vector(int count, int shift, VectorNode root, object[] tail)
         {

@@ -40,7 +40,7 @@ namespace FunctionalLibrary.Collections.Internal
         {
             while (t != null)
             {
-                stack = new Core.Cons().Invoke(t, stack);
+                stack = (ISeq)new Core.Cons().Invoke(t, stack);
                 t = asc ? t.Left : t.Right;
             }
             return stack;

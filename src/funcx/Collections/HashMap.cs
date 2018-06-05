@@ -1,7 +1,5 @@
 ﻿using FunctionalLibrary.Collections.Internal;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 
 namespace FunctionalLibrary.Collections
@@ -14,7 +12,7 @@ namespace FunctionalLibrary.Collections
 
         readonly int _count;
 
-        HashMap(int count, INode root, bool hasNull, object nullValue)
+        internal HashMap(int count, INode root, bool hasNull, object nullValue)
         {
             this._count = count;
             Root = root;
@@ -105,13 +103,13 @@ namespace FunctionalLibrary.Collections
 
         public override ICollection Empty() => EMPTY;
 
-        public override KeyValuePair<object, object>? Get(object key)
+        public override System.Collections.Generic.KeyValuePair<object, object>? Get(object key)
         {
             if (key == null)
             {
                 if (HasNull)
                 {
-                    return new KeyValuePair<object, object>(null, NullValue);
+                    return new System.Collections.Generic.KeyValuePair<object, object>(null, NullValue);
                 }
 
                 return null;
@@ -146,16 +144,16 @@ namespace FunctionalLibrary.Collections
         {
             var e = Root?.GetNodeEnumerative();
             return HasNull
-                ? new Cons(new KeyValuePair<object, object>(null, NullValue), e)
+                ? new Cons(new System.Collections.Generic.KeyValuePair<object, object>(null, NullValue), e)
                 : e;
         }
-        public override IEnumerator GetKeyEnumerator() => MakeEnumerator((k, v) => k);
-        public override IEnumerator GetValueEnumerator() => MakeEnumerator((k, v) => v);
+        public override System.Collections.IEnumerator GetKeyEnumerator() => MakeEnumerator((k, v) => k);
+        public override System.Collections.IEnumerator GetValueEnumerator() => MakeEnumerator((k, v) => v);
         #endregion
 
         int Hash(object key) => Util.GetHashCode(key);
 
-        public IEnumerator MakeEnumerator(Func<object, object, object> d)
+        public System.Collections.IEnumerator MakeEnumerator(Func<object, object, object> d)
         {
             var iter = Root?.GetEnumerator(d) ?? EmptyEnumerator();
             if (!HasNull)
@@ -164,12 +162,12 @@ namespace FunctionalLibrary.Collections
             return NullEnumerator(d, NullValue, iter);
         }
 
-        IEnumerator EmptyEnumerator()
+        System.Collections.IEnumerator EmptyEnumerator()
         {
             yield break;
         }
 
-        IEnumerator NullEnumerator(Func<object, object, object> d, object nullValue, IEnumerator root)
+        System.Collections.IEnumerator NullEnumerator(Func<object, object, object> d, object nullValue, System.Collections.IEnumerator root)
         {
             yield return d(null, nullValue);
             while (root.MoveNext())
