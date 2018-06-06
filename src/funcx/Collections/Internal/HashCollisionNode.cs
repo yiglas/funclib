@@ -38,7 +38,7 @@ namespace FunctionalLibrary.Collections.Internal
                 }
 
                 var newArray = new object[2 * (this._count + 1)];
-                Array.Copy(this._array, 0, newArray, 0, 2 * this._count);
+                System.Array.Copy(this._array, 0, newArray, 0, 2 * this._count);
                 newArray[2 * this._count] = key;
                 newArray[2 * this._count + 1] = val;
                 addedLeaf.Value = addedLeaf;
@@ -70,7 +70,7 @@ namespace FunctionalLibrary.Collections.Internal
                 }
 
                 var newArray = new object[this._array.Length + 2];
-                Array.Copy(this._array, 0, newArray, 0, this._array.Length);
+                System.Array.Copy(this._array, 0, newArray, 0, this._array.Length);
                 newArray[this._array.Length] = key;
                 newArray[this._array.Length + 1] = val;
                 addedLeaf.Value = addedLeaf;
@@ -160,7 +160,7 @@ namespace FunctionalLibrary.Collections.Internal
         {
             if (this._edit == edit) return this;
             var newArray = new object[2 * (this._count + 1)];
-            Array.Copy(this._array, 0, newArray, 0, 2 * this._count);
+            System.Array.Copy(this._array, 0, newArray, 0, 2 * this._count);
             return new HashCollisionNode(edit, this._hash, this._count, newArray);
         }
 

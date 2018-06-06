@@ -11,7 +11,7 @@ namespace FunctionalLibrary.Core
         {
             if (seq == null) return new Collections.List(x);
             if (seq is ISeq e) return new Collections.Cons(x, e);
-            return new Collections.Cons(x, new Seq().Invoke(seq));
+            return new Collections.Cons(x, (ISeq)new Seq().Invoke(seq));
         }
     }
 }

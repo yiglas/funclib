@@ -103,7 +103,7 @@ namespace FunctionalLibrary.Collections
 
                 newArray = new object[this._array.Length + 2];
                 if (this._array.Length > 0)
-                    Array.Copy(this._array, 0, newArray, 0, this._array.Length);
+                    System.Array.Copy(this._array, 0, newArray, 0, this._array.Length);
 
                 newArray[newArray.Length - 2] = key;
                 newArray[newArray.Length - 1] = val;
@@ -138,8 +138,8 @@ namespace FunctionalLibrary.Collections
                 if (length == 0) return EMPTY;
 
                 object[] newArray = new object[length];
-                Array.Copy(this._array, 0, newArray, 0, i);
-                Array.Copy(this._array, i + 2, newArray, i, length - i);
+                System.Array.Copy(this._array, 0, newArray, 0, i);
+                System.Array.Copy(this._array, i + 2, newArray, i, length - i);
 
                 return Create(newArray);
             }
@@ -147,7 +147,7 @@ namespace FunctionalLibrary.Collections
             return this;
         }
         public override ITransientCollection ToTransient() => new TransientArrayMap(this._array);
-        public override ISeq Seq() => this._array.Length > 0 ? new ArraySeq(this._array, 0) : null;
+        public override ISeq Seq() => this._array.Length > 0 ? ArraySeq.Create(this._array) : null;
         public override IEnumerator GetKeyEnumerator()
         {
             for (int i = 0; i < this._array.Length; i += 2)

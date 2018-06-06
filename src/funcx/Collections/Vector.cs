@@ -56,7 +56,7 @@ namespace FunctionalLibrary.Collections
             else
             {
                 var arr2 = new object[i];
-                Array.Copy(arr, 0, arr2, 0, i);
+                System.Array.Copy(arr, 0, arr2, 0, i);
 
                 return new Vector(i, 5, EmptyNode, arr2);
             }
@@ -80,7 +80,7 @@ namespace FunctionalLibrary.Collections
                 if (i >= TailOff())
                 {
                     var newTail = new object[this.Tail.Length];
-                    Array.Copy(this.Tail, newTail, this.Tail.Length);
+                    System.Array.Copy(this.Tail, newTail, this.Tail.Length);
                     newTail[i & 0x01f] = val;
 
                     return new Vector(Count, this.Shift, this.Root, newTail);
@@ -112,7 +112,7 @@ namespace FunctionalLibrary.Collections
             if (Count - TailOff() < 32)
             {
                 var newTail = new object[this.Tail.Length + 1];
-                Array.Copy(this.Tail, newTail, this.Tail.Length);
+                System.Array.Copy(this.Tail, newTail, this.Tail.Length);
                 newTail[this.Tail.Length] = o;
                 return new Vector(Count + 1, this.Shift, this.Root, newTail);
             }
@@ -143,7 +143,7 @@ namespace FunctionalLibrary.Collections
             if (Count - TailOff() > 1)
             {
                 newTail = new object[this.Tail.Length - 1];
-                Array.Copy(this.Tail, newTail, newTail.Length);
+                System.Array.Copy(this.Tail, newTail, newTail.Length);
                 return new Vector(Count - 1, this.Shift, this.Root, newTail);
             }
 

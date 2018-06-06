@@ -9,7 +9,7 @@ namespace FunctionalLibrary.Core
     {
         public object Invoke(object coll)
         {
-            var enumerate = coll as ISeq ?? new Core.Seq().Invoke(coll);
+            var enumerate = coll as ISeq ?? (ISeq)new Core.Seq().Invoke(coll);
             if (enumerate == null)
                 return null;
             return enumerate.First();

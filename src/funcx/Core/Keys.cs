@@ -13,7 +13,7 @@ namespace FunctionalLibrary.Core
             if (coll is IMap map)
                 return KeySeq.Create(map);
 
-            return KeySeq.Create(new Seq().Invoke(coll));
+            return KeySeq.Create((ISeq)new Seq().Invoke(coll));
         }
     }
 }

@@ -267,23 +267,19 @@ namespace FunctionalLibrary.Tests.Collections
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(3, 4)]
-        [TestCase(5, null)]
-        public void ArrayMap_should_test_both_key_and_value_and_return_true_when_contains_is_called_with_KeyValuePair_and_both_match(object key, object value)
+        [Test]
+        public void ArrayMap_should_test_both_key_and_value_and_return_true_when_contains_is_called_with_KeyValuePair_and_both_match()
         {
-            var actual = map.Create(1, 2, 3, 4, 5, null).Contains(new System.Collections.Generic.KeyValuePair<object, object>(key, value));
-
-            Assert.IsTrue(actual);
+            Assert.IsTrue(map.Create(1, 2, 3, 4, 5, null).Contains(new System.Collections.Generic.KeyValuePair<object, object>(3, 4)));
+            Assert.IsTrue(map.Create(1, 2, 3, 4, 5, null).Contains(new System.Collections.Generic.KeyValuePair<object, object>(5, null)));
         }
 
-        [TestCase(3, 5)]
-        [TestCase(4, null)]
-        [TestCase(5, 1)]
+        [Test]
         public void ArrayMap_should_test_both_key_and_value_and_return_false_when_contains_is_called_with_KeyValuePair_and_one_is_wrong(object key, object value)
         {
-            var actual = map.Create(1, 2, 3, 4).Contains(new System.Collections.Generic.KeyValuePair<object, object>(key, value));
-
-            Assert.IsFalse(actual);
+            Assert.IsFalse(map.Create(1, 2, 3, 4).Contains(new System.Collections.Generic.KeyValuePair<object, object>(3, 5)));
+            Assert.IsFalse(map.Create(1, 2, 3, 4).Contains(new System.Collections.Generic.KeyValuePair<object, object>(4, null)));
+            Assert.IsFalse(map.Create(1, 2, 3, 4).Contains(new System.Collections.Generic.KeyValuePair<object, object>(5, 1)));
         }
     }
 }

@@ -74,7 +74,7 @@ namespace FunctionalLibrary.Collections
         public bool Contains(object key) => this._impl.ContainsKey(key);        
         public object Get(object key) => this._impl.GetValue(key);
 
-        public void CopyTo(Array array, int index)
+        public void CopyTo(System.Array array, int index)
         {
             var e = Seq();
             if (e != null)

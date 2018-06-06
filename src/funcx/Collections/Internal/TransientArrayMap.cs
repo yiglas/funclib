@@ -18,7 +18,7 @@ namespace FunctionalLibrary.Collections.Internal
         {
             this._owner = Thread.CurrentThread;
             this._array = new object[Math.Max(Constants.HASH_TABLE_THRESHOLD, init.Length)];
-            Array.Copy(init, this._array, init.Length);
+            System.Array.Copy(init, this._array, init.Length);
             this._length = init.Length;
         }
 
@@ -57,7 +57,7 @@ namespace FunctionalLibrary.Collections.Internal
         {
             this._owner = null;
             var a = new object[this._length];
-            Array.Copy(this._array, a, this._length);
+            System.Array.Copy(this._array, a, this._length);
             return ArrayMap.Create(a);
         }
         protected override ITransientMap DoWithout(object key)

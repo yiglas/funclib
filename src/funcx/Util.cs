@@ -78,8 +78,8 @@
         internal static object[] RemovePair(object[] array, int i)
         {
             var newArray = new object[array.Length - 2];
-            Array.Copy(array, 0, newArray, 0, 2 * i);
-            Array.Copy(array, 2 * (i + 1), newArray, 2 * i, newArray.Length - 2 * i);
+            System.Array.Copy(array, 0, newArray, 0, 2 * i);
+            System.Array.Copy(array, 2 * (i + 1), newArray, 2 * i, newArray.Length - 2 * i);
             return newArray;
         }
 

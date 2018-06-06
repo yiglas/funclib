@@ -24,7 +24,7 @@ namespace FunctionalLibrary.Collections
             if (this == obj) return true;
             if (!(obj is System.Collections.IList)) return false;
 
-            var me = new Core.Seq().Invoke(obj);
+            var me = (ISeq)new Core.Seq().Invoke(obj);
 
             for (var e = Seq(); e != null; e = e.Next(), me = me.Next())
             {
@@ -122,7 +122,7 @@ namespace FunctionalLibrary.Collections
 
             return false;
         }
-        public void CopyTo(Array array, int index)
+        public void CopyTo(System.Array array, int index)
         {
             if (array == null) throw new ArgumentNullException(nameof(array));
             if (array.Rank != 1) throw new ArgumentException("Array must be 1-dimensional.");

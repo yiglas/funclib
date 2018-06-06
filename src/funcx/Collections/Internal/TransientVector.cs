@@ -156,7 +156,7 @@ namespace FunctionalLibrary.Collections.Internal
             EnsureEditable();
             this._root.Edit.Set(null);
             var trimmedTail = new object[this._count - TailOff()];
-            Array.Copy(this._tail, trimmedTail, trimmedTail.Length);
+            System.Array.Copy(this._tail, trimmedTail, trimmedTail.Length);
             return new Vector(this._count, this._shift, this._root, trimmedTail);
         }
 
@@ -177,7 +177,7 @@ namespace FunctionalLibrary.Collections.Internal
         static object[] EditableTail(object[] tail)
         {
             var ret = new object[32];
-            Array.Copy(tail, ret, tail.Length);
+            System.Array.Copy(tail, ret, tail.Length);
             return ret;
         }
 

@@ -148,7 +148,7 @@ namespace FunctionalLibrary.Collections
             if (e != null)
                 e.CopyTo(array, arrayIndex);
         }
-        public void CopyTo(Array array, int index)
+        public void CopyTo(System.Array array, int index)
         {
             var e = Seq();
             if (e != null)

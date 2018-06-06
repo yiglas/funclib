@@ -94,7 +94,7 @@ namespace FunctionalLibrary.Collections
                 while (ls is LazySeq l)
                     ls = l.eval();
 
-                this._e = new Seq().Invoke(ls);
+                this._e = (ISeq)new Seq().Invoke(ls);
             }
             return this._e;
         }
@@ -132,7 +132,7 @@ namespace FunctionalLibrary.Collections
         }
         ICollection ICollection.Cons(object o) => Cons(o);
         public ICollection Empty() => List.EMPTY;
-        public void CopyTo(Array array, int index)
+        public void CopyTo(System.Array array, int index)
         {
             if (array == null) throw new ArgumentNullException(nameof(array));
             if (array.Rank != 1) throw new ArgumentException("Array must be 1-dimensional.");

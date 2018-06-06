@@ -157,7 +157,7 @@ namespace FunctionalLibrary.Collections
 
             return false;
         }
-        public void CopyTo(Array array, int index)
+        public void CopyTo(System.Array array, int index)
         {
             if (array == null) throw new ArgumentNullException(nameof(array));
             if (array.Rank != 1) throw new ArgumentException("Array must be 1-dimensional.");
