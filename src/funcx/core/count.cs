@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using FunctionalLibrary.Collections;
+using System;
 using System.Text;
 
 namespace FunctionalLibrary.Core
@@ -13,14 +12,15 @@ namespace FunctionalLibrary.Core
                 ? 0
                 : coll is string s ? s.Length
                 : coll is Array a ? a.GetLength(0)
-                : coll is IDictionary d ? d.Count
-                : coll is ICollection c ? c.Count
-                : coll is DictionaryEntry ? 2
+                : coll is System.Collections.IDictionary d ? d.Count
+                : coll is System.Collections.ICollection c ? c.Count
+                : coll is System.Collections.DictionaryEntry ? 2
                 : coll.GetType().Name == "KeyValuePair`2" ? 2
-                : coll is IEnumerable e ? enumerableCount(e)
+                : coll is System.Collections.IEnumerable e ? EnumerableCount(e)
+                : coll is IChunked chunked ? chunked.Count
                 : throw new InvalidOperationException($"Count not supported on this type: {coll.GetType().FullName}");
 
-        int enumerableCount(IEnumerable e)
+        int EnumerableCount(System.Collections.IEnumerable e)
         {
             int i = 0;
 

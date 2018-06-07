@@ -4,26 +4,6 @@ using System.Text;
 
 namespace FunctionalLibrary.Core
 {
-    //public class Function :
-    //    IFunction<object>,
-    //    IFunction<object, object>,
-    //    IFunction<object, object, object>,
-    //    IFunction<object, object, object, object>
-    //{
-    //    Func<object> _fn;
-
-    //    public Function(Func<object> fn)
-    //    {
-    //        this._fn = fn;
-    //    }
-
-    //    public object Invoke() => this._fn?.Invoke() ?? throw new Exception("arity");
-    //    public object Invoke(object ) => this._fn?.Invoke() ?? throw new Exception("arity");
-    //}
-
-
-
-
     public class Function<TResult> :
         IFunction<TResult>
     {

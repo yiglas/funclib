@@ -1,4 +1,5 @@
 ﻿using FunctionalLibrary.Collections.Internal;
+using FunctionalLibrary.Core;
 using System;
 using System.Text;
 
@@ -6,7 +7,8 @@ namespace FunctionalLibrary.Collections
 {
     public class SortedMap : 
         AMap,
-        ISorted
+        ISorted,
+        IReduceKV
     {
         public static readonly SortedMap EMPTY = new SortedMap();
 
@@ -324,6 +326,15 @@ namespace FunctionalLibrary.Collections
                             MakeBlack(key, val, insert.Right.Right, right));
             else
                 return MakeBlack(key, val, insert, right);
+        }
+
+        public object Reduce(IFunction<object, object, object, object> f, object init)
+        {
+            if (this._tree != null)
+                init = this._tree.Reduce(f, init);
+            if ((bool)new IsReduced().Invoke(init))
+                init = ((IDeref)init).Deref();
+            return init;
         }
     }
 }

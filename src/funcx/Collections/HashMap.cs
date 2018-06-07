@@ -1,11 +1,13 @@
 ﻿using FunctionalLibrary.Collections.Internal;
+using FunctionalLibrary.Core;
 using System;
 using System.Text;
 
 namespace FunctionalLibrary.Collections
 {
     public class HashMap :
-        AMap
+        AMap,
+        IReduceKV
     {
         public static readonly HashMap EMPTY = new HashMap(0, null, false, null);
         static readonly object NOT_FOUND = new object();
@@ -173,5 +175,24 @@ namespace FunctionalLibrary.Collections
             while (root.MoveNext())
                 yield return root.Current;
         }
+
+        public object Reduce(IFunction<object, object, object, object> f, object init)
+        {
+            init = HasNull ? f.Invoke(init, null, NullValue) : init;
+            if ((bool)new IsReduced().Invoke(init))
+                return ((IDeref)init).Deref();
+
+            if (Root != null)
+            {
+                init = Root.Reduce(f, init);
+                if ((bool)new IsReduced().Invoke(init))
+                    return ((IDeref)init).Deref();
+                else
+                    return init;
+            }
+
+            return init;
+        }
+
     }
 }

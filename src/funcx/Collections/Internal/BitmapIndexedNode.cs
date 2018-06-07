@@ -322,5 +322,7 @@ namespace FunctionalLibrary.Collections.Internal
             editable._array[editable._array.Length - 1] = null;
             return editable;
         }
+
+        public object Reduce(IFunction<object, object, object, object> f, object init) => NodeSeq.Reduce(this._array, f, init);
     }
 }

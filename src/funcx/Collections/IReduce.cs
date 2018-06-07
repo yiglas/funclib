@@ -1,15 +1,13 @@
 ﻿using FunctionalLibrary.Core;
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace FunctionalLibrary.Collections
 {
-    public interface IChunked
+    public interface IReduce
     {
-        int Count { get; }
-        object this[int index] { get; set; }
-        object this[int index, object notFound] { get; set; }
-        IChunked DropFirst();
+        object Reduce(IFunction<object, object, object> f);
         object Reduce(IFunction<object, object, object> f, object init);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FunctionalLibrary.Core;
+using System;
 using System.Text;
 
 namespace FunctionalLibrary.Collections.Internal
@@ -36,5 +37,22 @@ namespace FunctionalLibrary.Collections.Internal
         #endregion
 
         public override ITransientCollection ToTransient() => throw new InvalidOperationException();
+
+        public object Reduce(IFunction<object, object, object, object> f, object init)
+        {
+            if (Left != null)
+            {
+                init = Left.Reduce(f, init);
+                if ((bool)new IsReduced().Invoke(init))
+                    return init;
+            }
+            init = f.Invoke(init, Key, Value);
+            if ((bool)new IsReduced().Invoke(init))
+                return init;
+            if (Right != null)
+                init = Right.Reduce(f, init);
+
+            return init;
+        }
     }
 }

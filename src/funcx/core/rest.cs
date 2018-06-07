@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using FunctionalLibrary.Collections;
+using System;
 using System.Text;
 
 namespace FunctionalLibrary.Core
 {
-    public class Rest<T> :
-        IFunction<IEnumerable<T>, IEnumerable<T>>
+    public class Rest :
+        IFunction<object, object>
     {
-        public IEnumerable<T> Invoke(IEnumerable<T> coll)
+        public object Invoke(object coll)
         {
-            if (coll == null) yield break;
-
-            int i = 0;
-            foreach (var item in coll)
-                if (i++ == 0) continue; else yield return item;
+            var enumerate = coll as ISeq ?? (ISeq)new Core.Seq().Invoke(coll);
+            if (enumerate == null)
+                return null;
+            return enumerate.More();
         }
     }
 }

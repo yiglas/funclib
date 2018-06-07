@@ -1,11 +1,13 @@
 ﻿using FunctionalLibrary.Collections.Internal;
+using FunctionalLibrary.Core;
 using System;
 using System.Text;
 
 namespace FunctionalLibrary.Collections
 {
     public class List : 
-        ASeq
+        ASeq,
+        IReduce
     {
         public static readonly IList EMPTY = new List();
 
@@ -50,5 +52,33 @@ namespace FunctionalLibrary.Collections
         public override ISeq Next() => Count == 1 ? null : this._rest;
         public override IStack Pop() => this._rest == null ? EMPTY : this._rest;
         #endregion
+
+        public object Reduce(IFunction<object, object, object> f)
+        {
+            object ret = First();
+            for (var s = Next(); s != null; s = s.Next())
+            {
+                ret = f.Invoke(ret, s.First());
+                if ((bool)new IsReduced().Invoke(ret))
+                    return ((IDeref)ret).Deref();
+            }
+
+            return ret;
+        }
+        public object Reduce(IFunction<object, object, object> f, object init)
+        {
+            object ret = f.Invoke(init, First());
+            for (var s = Next(); s != null; s = s.Next())
+            {
+                if ((bool)new IsReduced().Invoke(ret))
+                    return ((IDeref)ret).Deref();
+                ret = f.Invoke(ret, s.First());
+            }
+
+            if ((bool)new IsReduced().Invoke(ret))
+                return ((IDeref)ret).Deref();
+
+            return ret;
+        }
     }
 }

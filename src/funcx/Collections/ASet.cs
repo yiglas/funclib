@@ -19,7 +19,7 @@ namespace FunctionalLibrary.Collections
         public bool IsReadOnly => true;
 
         #region Overrides
-        public override string ToString() => base.ToString(); // TODO: implement to string method.
+        public override string ToString() => Util.Print(this);
 
         public override int GetHashCode()
         {

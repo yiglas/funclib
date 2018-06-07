@@ -9,7 +9,9 @@ using System.Threading;
 namespace FunctionalLibrary.Collections
 {
     public class Vector :
-        AVector
+        AVector,
+        IReduce,
+        IReduceKV
     {
         static readonly AtomicReference<Thread> NoEdit = new AtomicReference<Thread>();
         internal static readonly VectorNode EmptyNode = new VectorNode(NoEdit, new object[32]);
@@ -253,5 +255,61 @@ namespace FunctionalLibrary.Collections
             }
         }
 
+        public object Reduce(IFunction<object, object, object> f)
+        {
+            object init;
+            if (Count > 0) init = ToArray(0)[0];
+            else
+                return f.Invoke(null, null);
+
+            int step = 0;
+            for (int i = 0; i < Count; i += step)
+            {
+                var array = ToArray(i);
+                for (int j = (i == 0 ? 1 : 0); i < array.Length; ++j)
+                {
+                    init = f.Invoke(init, array[j]);
+                    if ((bool)new IsReduced().Invoke(init))
+                        return ((IDeref)init).Deref();
+                }
+                step = array.Length;
+            }
+
+            return init;
+        }
+        public object Reduce(IFunction<object, object, object> f, object init)
+        {
+            int step = 0;
+            for (int i = 0; i < Count; i += step)
+            {
+                var array = ToArray(i);
+                for (int j = 0; j < array.Length; ++j)
+                {
+                    init = f.Invoke(init, array[j]);
+                    if ((bool)new IsReduced().Invoke(init))
+                        return ((IDeref)init).Deref();
+                }
+                step = array.Length;
+            }
+
+            return init;
+        }
+        public object Reduce(IFunction<object, object, object, object> f, object init)
+        {
+            int step = 0;
+            for (int i = 0; i < Count; i += step)
+            {
+                var array = ToArray(i);
+                for (int j = 0; j < array.Length; j++)
+                {
+                    init = f.Invoke(init, j + 1, array[j]);
+                    if ((bool)new IsReduced().Invoke(init))
+                        return ((IDeref)init).Deref();
+                }
+                step = array.Length;
+            }
+
+            return init;
+        }
     }
 }

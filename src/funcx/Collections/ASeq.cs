@@ -1,4 +1,5 @@
 ﻿using FunctionalLibrary.Collections.Internal;
+using FunctionalLibrary.Core;
 using System;
 using System.Text;
 
@@ -17,7 +18,7 @@ namespace FunctionalLibrary.Collections
         public object SyncRoot => this;
 
         #region Overrides
-        public override string ToString() => base.ToString();  // TODO: implement to string method.
+        public override string ToString() => Util.Print(this);
 
         public override bool Equals(object obj)
         {

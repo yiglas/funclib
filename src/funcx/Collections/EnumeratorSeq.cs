@@ -17,7 +17,7 @@ namespace FunctionalLibrary.Collections.Internal
         }
 
         #region Creates
-        public static ISeq Create(IEnumerator enumerator) => new LazySeq(new EnumeratorSeq(enumerator)); 
+        public static ISeq Create(IEnumerator enumerator) => !enumerator.MoveNext() ? null : new LazySeq(new EnumeratorSeq(enumerator)); 
         #endregion
 
         #region Functions

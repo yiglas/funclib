@@ -8,6 +8,11 @@ namespace FunctionalLibrary.Core
     {
         // empty
     }
+
+    public interface IFunctionParams : IFunction
+    {
+        // empty
+    }
     
     public interface IFunction<TResult> : IFunction
     {
@@ -41,28 +46,33 @@ namespace FunctionalLibrary.Core
 
 
 
-    public interface IFunctionParams<TRest, TResult>
+    public interface IFunctionParams<TRest, TResult> : IFunctionParams
     {
         TResult Invoke(params TRest[] rest);
     }
 
-    public interface IFunctionParams<T1, TRest, TResult>
+    public interface IFunctionParams<T1, TRest, TResult> : IFunctionParams
     {
         TResult Invoke(T1 arg1, params TRest[] rest);
     }
 
-    public interface IFunctionParams<T1, T2, TRest, TResult>
+    public interface IFunctionParams<T1, T2, TRest, TResult> : IFunctionParams
     {
         TResult Invoke(T1 arg1, T2 arg2, params TRest[] rest);
     }
 
-    public interface IFunctionParams<T1, T2, T3, TRest, TResult>
+    public interface IFunctionParams<T1, T2, T3, TRest, TResult> : IFunctionParams
     {
         TResult Invoke(T1 arg1, T2 arg2, T3 arg3, params TRest[] rest);
     }
 
-    public interface IFunctionParams<T1, T2, T3, T4, TRest, TResult>
+    public interface IFunctionParams<T1, T2, T3, T4, TRest, TResult> : IFunctionParams
     {
         TResult Invoke(T1 arg1, T2 arg2, T3 arg3, T4 arg4, params TRest[] rest);
+    }
+
+    public interface IFunctionParams<T1, T2, T3, T4, T5, TRest, TResult> : IFunctionParams
+    {
+        TResult Invoke(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, params TRest[] rest);
     }
 }

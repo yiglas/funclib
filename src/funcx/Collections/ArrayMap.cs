@@ -1,12 +1,13 @@
 ﻿using FunctionalLibrary.Collections.Internal;
+using FunctionalLibrary.Core;
 using System;
-using System.Collections;
 using System.Text;
 
 namespace FunctionalLibrary.Collections
 {
     public class ArrayMap :
-        AMap
+        AMap,
+        IReduceKV
     {
         public static readonly ArrayMap EMPTY = new ArrayMap();
 
@@ -147,18 +148,30 @@ namespace FunctionalLibrary.Collections
             return this;
         }
         public override ITransientCollection ToTransient() => new TransientArrayMap(this._array);
-        public override ISeq Seq() => this._array.Length > 0 ? ArraySeq.Create(this._array) : null;
-        public override IEnumerator GetKeyEnumerator()
+        public override ISeq Seq() => this._array.Length > 0 ?  new ArrayMapSeq(this._array, 0) : null;
+        public override System.Collections.IEnumerator GetKeyEnumerator()
         {
             for (int i = 0; i < this._array.Length; i += 2)
                 yield return this._array[i];
         }
-        public override IEnumerator GetValueEnumerator()
+        public override System.Collections.IEnumerator GetValueEnumerator()
         {
             for (int i = 0; i < this._array.Length; i += 2)
                 yield return this._array[i + 1];
         }
         #endregion
+
+
+        public object Reduce(IFunction<object, object, object, object> f, object init)
+        {
+            for (int i = 0; i < this._array.Length; i += 2)
+            {
+                init = f.Invoke(init, this._array[i], this._array[i + 1]);
+                if ((bool)new IsReduced().Invoke(init))
+                    return ((IDeref)init).Deref();
+            }
+            return init;
+        }
 
         int IndexOf(object key)
         {

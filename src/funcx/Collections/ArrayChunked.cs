@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FunctionalLibrary.Core;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -32,5 +33,21 @@ namespace FunctionalLibrary.Collections
             this._off == this._end
                 ? throw new InvalidOperationException($"{nameof(DropFirst)} of empty {nameof(ArrayChunked)}")
                 : new ArrayChunked(this._array, this._off + 1, this._end);
+
+        public object Reduce(IFunction<object, object, object> f, object init)
+        {
+            var ret = f.Invoke(init, this._array[this._off]);
+            if ((bool)new IsReduced().Invoke(ret))
+                return ((IDeref)ret).Deref();
+
+            for (int x = this._off + 1; x < this._end; x++)
+            {
+                ret = f.Invoke(ret, this._array[x]);
+                if ((bool)new IsReduced().Invoke(ret))
+                    return ((IDeref)ret).Deref();
+            }
+
+            return ret;
+        }
     }
 }

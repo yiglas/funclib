@@ -32,7 +32,7 @@ namespace FunctionalLibrary.Tests.Collections
         {
             var expected = map.Create("a", 1, "b", 2, "c", 3);
             var actual = map.Create("a", 1, "b", 2).Assoc("c", 3);
-
+            expected.Equals(actual);
             Assert.AreEqual(expected, actual);
         }
 
@@ -275,7 +275,7 @@ namespace FunctionalLibrary.Tests.Collections
         }
 
         [Test]
-        public void ArrayMap_should_test_both_key_and_value_and_return_false_when_contains_is_called_with_KeyValuePair_and_one_is_wrong(object key, object value)
+        public void ArrayMap_should_test_both_key_and_value_and_return_false_when_contains_is_called_with_KeyValuePair_and_one_is_wrong()
         {
             Assert.IsFalse(map.Create(1, 2, 3, 4).Contains(new System.Collections.Generic.KeyValuePair<object, object>(3, 5)));
             Assert.IsFalse(map.Create(1, 2, 3, 4).Contains(new System.Collections.Generic.KeyValuePair<object, object>(4, null)));
