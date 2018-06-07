@@ -8,8 +8,7 @@ namespace FunctionalLibrary.Collections
     public class LazySeq :
         ISeq,
         IPending,
-        System.Collections.IList,
-        System.Collections.Generic.IList<object>
+        System.Collections.IList
     {
         IFunction<object> _fn;
         object _ev;
@@ -75,12 +74,10 @@ namespace FunctionalLibrary.Collections
         #endregion
 
         #region Invalid Operations
-        public void Add(object item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(LazySeq)}.");
+        public int Add(object value) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(LazySeq)}.");
         public void Clear() => throw new InvalidOperationException($"Cannot modify an immutable {nameof(LazySeq)}.");
-        public bool Remove(object item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(LazySeq)}.");
-        int System.Collections.IList.Add(object value) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(LazySeq)}.");
         public void Insert(int index, object value) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(LazySeq)}.");
-        void System.Collections.IList.Remove(object value) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(LazySeq)}.");
+        public void Remove(object value) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(LazySeq)}.");
         public void RemoveAt(int index) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(LazySeq)}.");
         #endregion
 
@@ -161,8 +158,7 @@ namespace FunctionalLibrary.Collections
                     return true;
             return false;
         }
-        public System.Collections.Generic.IEnumerator<object> GetEnumerator() => new Enumerator(this);
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => new Enumerator(this);
+        public System.Collections.IEnumerator GetEnumerator() => new Enumerator(this);
         public bool IsRealized() => this._fn == null;
         public int IndexOf(object value)
         {

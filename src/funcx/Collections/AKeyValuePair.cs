@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace FunctionalLibrary.Collections
@@ -31,7 +30,7 @@ namespace FunctionalLibrary.Collections
         public override IVector Assoc(int i, object val) => ToVector(Key, Value).Assoc(i, val);
         public override IVector Cons(object o) => ToVector(Key, Value).Cons(o);
         public override bool ContainsKey(object key) => ToVector(Key, Value).ContainsKey(key);
-        public override KeyValuePair<int, object>? Get(object key) => ToVector(Key, Value).Get(key);
+        public override System.Collections.Generic.KeyValuePair<int, object>? Get(object key) => ToVector(Key, Value).Get(key);
         public override object GetValue(object key) => ToVector(Key, Value).GetValue(key);
         public override object GetValue(object key, object notFound) => ToVector(Key, Value).GetValue(key, notFound);
         public override ISeq Seq() => ToVector(Key, Value).Seq();

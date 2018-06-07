@@ -6,9 +6,7 @@ namespace FunctionalLibrary.Collections
     public interface ICollection :
         ISeqable,
         System.Collections.ICollection,
-        System.Collections.Generic.ICollection<object>,
-        System.Collections.IEnumerable,
-        System.Collections.Generic.IEnumerable<object>
+        System.Collections.IEnumerable
     {
         new int Count { get; }
         ICollection Cons(object o);

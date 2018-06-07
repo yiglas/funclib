@@ -1,8 +1,6 @@
 ﻿using FunctionalLibrary.Collections.Internal;
 using FunctionalLibrary.Core;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 
 namespace FunctionalLibrary.Collections
@@ -85,12 +83,10 @@ namespace FunctionalLibrary.Collections
 
         #region Invalid Operations
         public int Add(object value) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AVector)}.");
-        void ICollection<object>.Add(object item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AVector)}.");
         public void Clear() => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AVector)}.");
         public void Insert(int index, object value) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AVector)}.");
         public void Remove(object value) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AVector)}.");
         public void RemoveAt(int index) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AVector)}.");
-        bool ICollection<object>.Remove(object item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AVector)}.");
         #endregion
 
         #region Abstract Methods
@@ -115,11 +111,11 @@ namespace FunctionalLibrary.Collections
             set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AVector)}.");
         }
         public virtual bool ContainsKey(object key) => int.TryParse(key.ToString(), out int i) && i >= 0 && i < Count;
-        public virtual KeyValuePair<int, object>? Get(object key) =>
+        public virtual System.Collections.Generic.KeyValuePair<int, object>? Get(object key) =>
             int.TryParse(key.ToString(), out int i) && i >= 0 && i < Count
-                ? (KeyValuePair<int, object>?)new KeyValuePair<int, object>(i, this[i])
+                ? (System.Collections.Generic.KeyValuePair<int, object>?)new System.Collections.Generic.KeyValuePair<int, object>(i, this[i])
                 : null;
-        public virtual IEnumerator<object> GetEnumerator()
+        public virtual System.Collections.IEnumerator GetEnumerator()
         {
             for (var e = Seq(); e != null; e = e.Next())
             {
@@ -133,7 +129,7 @@ namespace FunctionalLibrary.Collections
                 : notFound;
         public virtual ISeq Seq() => Count > 0 ? new VectorSeq(this, 0) : null;
         public virtual object Peek() => Count > 0 ? this[Count - 1] : null;
-        public virtual IEnumerator<object> RangedEnumerator(int start, int end)
+        public virtual System.Collections.IEnumerator RangedEnumerator(int start, int end)
         {
             for (int i = start; i < end; i++)
                 yield return this[i];
@@ -190,14 +186,13 @@ namespace FunctionalLibrary.Collections
             return -1;
         }
         ICollection ICollection.Cons(object o) => Cons(o);
-        KeyValuePair<object, object>? IAssociative.Get(object key)
+        System.Collections.Generic.KeyValuePair<object, object>? IAssociative.Get(object key)
         {
             var kvp = Get(key);
             if (kvp.HasValue)
-                return new KeyValuePair<object, object>(kvp.Value.Key, kvp.Value.Value);
+                return new System.Collections.Generic.KeyValuePair<object, object>(kvp.Value.Key, kvp.Value.Value);
 
             return null;
         }
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

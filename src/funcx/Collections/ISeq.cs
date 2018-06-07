@@ -5,8 +5,7 @@ namespace FunctionalLibrary.Collections
 {
     public interface ISeq :
         ICollection,
-        System.Collections.IEnumerable,
-        System.Collections.Generic.IEnumerable<object>
+        System.Collections.IEnumerable
     {
         new ISeq Cons(object o);
 

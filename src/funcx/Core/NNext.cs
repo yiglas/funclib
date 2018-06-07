@@ -5,8 +5,8 @@ using System.Text;
 namespace FunctionalLibrary.Core
 {
     public class NNext :
-        IFunction<object, ISeq>
+        IFunction<object, object>
     {
-        public ISeq Invoke(object x) => new Next().Invoke(new Next().Invoke(x));
+        public object Invoke(object x) => new Next().Invoke(new Next().Invoke(x));
     }
 }

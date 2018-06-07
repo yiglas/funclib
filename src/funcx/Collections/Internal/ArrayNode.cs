@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using FunctionalLibrary.Core;
@@ -52,7 +50,7 @@ namespace FunctionalLibrary.Collections.Internal
 
             return EditAndSet(edit, idx, n);
         }
-        public KeyValuePair<object, object>? Get(int shift, int hash, object key)
+        public System.Collections.Generic.KeyValuePair<object, object>? Get(int shift, int hash, object key)
         {
             int idx = Mask(hash, shift);
             var node = this._array[idx];
@@ -109,7 +107,7 @@ namespace FunctionalLibrary.Collections.Internal
 
         public ISeq GetNodeEnumerative() => ArrayNodeSeq.Create(this._array);
 
-        public IEnumerator GetEnumerator(Func<object, object, object> d)
+        public System.Collections.IEnumerator GetEnumerator(Func<object, object, object> d)
         {
             foreach (var node in this._array)
             {

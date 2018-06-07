@@ -12,28 +12,6 @@
 
     static class Util
     {
-        internal static R Reduce1<T, R>(Func<R, T, R> f, System.Collections.Generic.IEnumerable<T> coll)
-        {
-            //if (_.truthy(coll))
-            //{
-            //    return Reduce1(f, (R)Convert.ChangeType(_.first(coll), typeof(R)), _.next(coll));
-            //}
-
-            return default;
-        }
-
-        internal static R Reduce1<T, R>(Func<R, T, R> f, R val, System.Collections.Generic.IEnumerable<T> coll)
-        {
-            //if (_.truthy(coll))
-            //{
-            //    return Reduce1(f, f(val, _.first(coll)), _.next(coll));
-            //}
-
-            return val;
-        }
-
-
-
         internal static int GetHashCode(object o) => o == null ? 0 : o.GetHashCode();
         internal static int GetHash(object o) => GetHashCode(o);
 

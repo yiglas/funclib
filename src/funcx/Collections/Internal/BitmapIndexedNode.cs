@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using FunctionalLibrary.Core;
@@ -236,7 +234,7 @@ namespace FunctionalLibrary.Collections.Internal
             return this;
         }
 
-        public KeyValuePair<object, object>? Get(int shift, int hash, object key)
+        public System.Collections.Generic.KeyValuePair<object, object>? Get(int shift, int hash, object key)
         {
             int bit = Bitpos(hash, shift);
             if ((this._bitmap & bit) == 0) return null;
@@ -248,7 +246,7 @@ namespace FunctionalLibrary.Collections.Internal
             if (keyOrNull == null)
                 return ((INode)valOrNode).Get(shift + 5, hash, key);
             if (new Core.Equals().Invoke(key, keyOrNull))
-                return new KeyValuePair<object, object>(keyOrNull, valOrNode);
+                return new System.Collections.Generic.KeyValuePair<object, object>(keyOrNull, valOrNode);
 
             return null;
         }
@@ -271,7 +269,7 @@ namespace FunctionalLibrary.Collections.Internal
         }
 
         public ISeq GetNodeEnumerative() => NodeSeq.Create(this._array);
-        public IEnumerator GetEnumerator(Func<object, object, object> d)
+        public System.Collections.IEnumerator GetEnumerator(Func<object, object, object> d)
         {
             for (int i = 0; i < this._array.Length; i += 2)
             {

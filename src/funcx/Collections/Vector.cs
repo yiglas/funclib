@@ -1,8 +1,6 @@
 ﻿using FunctionalLibrary.Collections.Internal;
 using FunctionalLibrary.Core;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
@@ -164,8 +162,8 @@ namespace FunctionalLibrary.Collections
         }
         public override ISeq Seq() => Count == 0 ? null : new ChunkedSeq(this, 0, 0);
         public override ITransientCollection ToTransient() => new TransientVector(this);
-        public override IEnumerator<object> GetEnumerator() => RangedEnumerator(0, Count);
-        public override IEnumerator<object> RangedEnumerator(int start, int end)
+        public override System.Collections.IEnumerator GetEnumerator() => RangedEnumerator(0, Count);
+        public override System.Collections.IEnumerator RangedEnumerator(int start, int end)
         {
             int i = start;
             int b = i - (i % 32);

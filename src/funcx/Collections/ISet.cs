@@ -6,12 +6,11 @@ namespace FunctionalLibrary.Collections
     public interface ISet :
         ICollection,
         IEditableCollection,
-        System.Collections.ICollection,
-        System.Collections.Generic.ICollection<object>
+        System.Collections.ICollection
     {
         new int Count { get; }
-        new bool Contains(object key);
 
+        bool Contains(object key);
         ISet Disj(object key);
         object Get(object key);
     }

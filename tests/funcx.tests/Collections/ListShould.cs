@@ -186,14 +186,10 @@ namespace FunctionalLibrary.Tests.Collections
         public void Invalid_operations_on_list()
         {
             Assert.Throws<InvalidOperationException>(() => list.Create(1, 2, 3).Add(4));
-            Assert.Throws<InvalidOperationException>(() => (list.Create(1, 2, 3) as System.Collections.Generic.ICollection<object>).Add(4));
             Assert.Throws<InvalidOperationException>(() => (list.Create(1, 2, 3) as System.Collections.IList).Clear());
-            Assert.Throws<InvalidOperationException>(() => (list.Create(1, 2, 3) as System.Collections.Generic.ICollection<object>).Clear());
             Assert.Throws<InvalidOperationException>(() => list.Create(1, 2, 3).Insert(1, 4));
             Assert.Throws<InvalidOperationException>(() => list.Create(1, 2, 3).Remove(1));
-            Assert.Throws<InvalidOperationException>(() => (list.Create(1, 2, 3) as System.Collections.Generic.ICollection<object>).Remove(1));
             Assert.Throws<InvalidOperationException>(() => (list.Create(1, 2, 3) as System.Collections.IList).RemoveAt(1));
-            Assert.Throws<InvalidOperationException>(() => (list.Create(1, 2, 3) as System.Collections.Generic.IList<object>).RemoveAt(1));
             Assert.Throws<InvalidOperationException>(() => list.Create(1, 2, 3)[1] = 4);
         }
 

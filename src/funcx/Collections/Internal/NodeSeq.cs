@@ -1,6 +1,5 @@
 ﻿using FunctionalLibrary.Core;
 using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace FunctionalLibrary.Collections.Internal
@@ -49,7 +48,7 @@ namespace FunctionalLibrary.Collections.Internal
         public override object First() =>
             this._e != null
                 ? this._e.First()
-                : new KeyValuePair<object, object>(this._array[this._i], this._array[this._i + 1]);
+                : new System.Collections.Generic.KeyValuePair<object, object>(this._array[this._i], this._array[this._i + 1]);
 
         public override ISeq Next() =>
             this._e != null

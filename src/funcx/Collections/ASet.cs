@@ -87,14 +87,13 @@ namespace FunctionalLibrary.Collections
                 e.CopyTo(array, arrayIndex);
         }
 
-        public System.Collections.Generic.IEnumerator<object> GetEnumerator()
+        public System.Collections.IEnumerator GetEnumerator()
         {
             if (this._impl != null)
                 this._impl.GetKeyEnumerator();
 
             yield break;
         }
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
         public ISeq Seq() => KeySeq.Create(this._impl.Seq());
     }
 }

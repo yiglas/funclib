@@ -56,8 +56,6 @@ namespace FunctionalLibrary.Collections
         public void Insert(int index, object value) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(ASeq)}.");
         public void Remove(object value) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(ASeq)}.");
         public void RemoveAt(int index) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(ASeq)}.");
-        void System.Collections.Generic.ICollection<object>.Add(object item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(ASeq)}.");
-        bool System.Collections.Generic.ICollection<object>.Remove(object item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(ASeq)}.");
         #endregion
 
         #region Abstract Methods
@@ -97,7 +95,7 @@ namespace FunctionalLibrary.Collections
                     return i;
             return -1;
         }
-        public virtual System.Collections.Generic.IEnumerator<object> GetEnumerator() => new Enumerator(this);
+        public virtual System.Collections.IEnumerator GetEnumerator() => new Enumerator(this);
         #endregion
 
         public object this[int index]
@@ -150,6 +148,5 @@ namespace FunctionalLibrary.Collections
 
         public object Peek() => First();
         ICollection ICollection.Cons(object o) => Cons(o);
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => new Enumerator(this);
     }
 }

@@ -68,11 +68,9 @@ namespace FunctionalLibrary.Collections
         #region Invalid Operations
         public void Add(object item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}.");
         public void Add(object key, object value) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}.");
-        public void Add(System.Collections.Generic.KeyValuePair<object, object> item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}.");
         public void Clear() => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}.");
         void System.Collections.IDictionary.Remove(object key) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}.");
         public bool Remove(object item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}.");
-        public bool Remove(System.Collections.Generic.KeyValuePair<object, object> item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}.");
         #endregion
 
         #region Abstract Methods
@@ -91,7 +89,7 @@ namespace FunctionalLibrary.Collections
         #endregion
 
         #region Virtual Methods
-        public virtual System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<object, object>> GetEnumerator()
+        public virtual System.Collections.IEnumerator GetEnumerator()
         {
             for (var e = Seq(); e != null; e = e.Next())
             {
@@ -110,10 +108,6 @@ namespace FunctionalLibrary.Collections
         public System.Collections.ICollection Keys => KeySeq.Create(Seq());
 
         public System.Collections.ICollection Values => ValueSeq.Create(Seq());
-
-        System.Collections.Generic.ICollection<object> System.Collections.Generic.IDictionary<object, object>.Keys => KeySeq.Create(Seq());
-
-        System.Collections.Generic.ICollection<object> System.Collections.Generic.IDictionary<object, object>.Values => ValueSeq.Create(Seq());
 
         public IMap Cons(object o) =>
             o is System.Collections.Generic.KeyValuePair<object, object> kvp
@@ -177,7 +171,5 @@ namespace FunctionalLibrary.Collections
         ICollection ICollection.Cons(object o) => Cons(o);
         IAssociative IAssociative.Assoc(object key, object val) => Assoc(key, val);
         System.Collections.IDictionaryEnumerator System.Collections.IDictionary.GetEnumerator() => new MapEnumerator(this);
-        System.Collections.Generic.IEnumerator<object> System.Collections.Generic.IEnumerable<object>.GetEnumerator() => ((System.Collections.Generic.IEnumerable<object>)this).GetEnumerator();
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => ((System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<object, object>>)this).GetEnumerator();
     }
 }

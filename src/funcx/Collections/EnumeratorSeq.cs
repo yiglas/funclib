@@ -1,7 +1,5 @@
 ﻿using FunctionalLibrary.Core;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 
 namespace FunctionalLibrary.Collections.Internal
@@ -9,15 +7,15 @@ namespace FunctionalLibrary.Collections.Internal
     public class EnumeratorSeq :
         IFunction<object>
     {
-        IEnumerator _enumerator;
+        System.Collections.IEnumerator _enumerator;
 
-        EnumeratorSeq(IEnumerator enumerator)
+        EnumeratorSeq(System.Collections.IEnumerator enumerator)
         {
             this._enumerator = enumerator;
         }
 
         #region Creates
-        public static ISeq Create(IEnumerator enumerator) => !enumerator.MoveNext() ? null : new LazySeq(new EnumeratorSeq(enumerator)); 
+        public static ISeq Create(System.Collections.IEnumerator enumerator) => !enumerator.MoveNext() ? null : new LazySeq(new EnumeratorSeq(enumerator)); 
         #endregion
 
         #region Functions

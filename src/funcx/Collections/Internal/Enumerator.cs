@@ -1,14 +1,11 @@
 ﻿using FunctionalLibrary.Core;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 
 namespace FunctionalLibrary.Collections.Internal
 {
     class Enumerator : 
-        IEnumerator,
-        IEnumerator<object>
+        System.Collections.IEnumerator
     {
         bool _realized;
         object _orig;

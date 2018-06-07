@@ -44,23 +44,21 @@ namespace FunctionalLibrary.Collections.Internal
         }
         public override ISeq Next() => Create(this._enumerative.Next());
         public override IStack Pop() => throw new NotImplementedException();
-        public override System.Collections.Generic.IEnumerator<object> GetEnumerator()
+        public override System.Collections.IEnumerator GetEnumerator()
         {
             if (this._enumerable == null) return base.GetEnumerator();
 
             if (this._enumerable is IMapEnumerable m)
-                return (System.Collections.Generic.IEnumerator<object>)m.GetKeyEnumerator();
+                return m.GetKeyEnumerator();
 
             return null;
         }
         #endregion
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
-
-        System.Collections.Generic.IEnumerable<object> Iterator(System.Collections.IEnumerable enumerable)
-        {
-            foreach (var item in enumerable)
-                yield return ((System.Collections.Generic.KeyValuePair<object, object>)item).Key;
-        }
+        //System.Collections.Generic.IEnumerable<object> Iterator(System.Collections.IEnumerable enumerable)
+        //{
+        //    foreach (var item in enumerable)
+        //        yield return ((System.Collections.Generic.KeyValuePair<object, object>)item).Key;
+        //}
     }
 }

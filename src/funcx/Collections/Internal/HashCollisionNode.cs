@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using FunctionalLibrary.Core;
@@ -81,12 +79,12 @@ namespace FunctionalLibrary.Collections.Internal
                 .Assoc(edit, shift, hash, key, val, addedLeaf);
         }
 
-        public KeyValuePair<object, object>? Get(int shift, int hash, object key)
+        public System.Collections.Generic.KeyValuePair<object, object>? Get(int shift, int hash, object key)
         {
             int idx = FindIndex(key);
 
             if (idx < 0) return null;
-            if (new Core.Equals().Invoke(key, this._array[idx])) return new KeyValuePair<object, object>(this._array[idx], this._array[idx + 1]);
+            if (new Core.Equals().Invoke(key, this._array[idx])) return new System.Collections.Generic.KeyValuePair<object, object>(this._array[idx], this._array[idx + 1]);
 
             return null;
         }
@@ -129,7 +127,7 @@ namespace FunctionalLibrary.Collections.Internal
 
         public ISeq GetNodeEnumerative() => NodeSeq.Create(this._array);
 
-        public IEnumerator GetEnumerator(Func<object, object, object> d)
+        public System.Collections.IEnumerator GetEnumerator(Func<object, object, object> d)
         {
             for (int i = 0; i < this._array.Length; i += 2)
             {

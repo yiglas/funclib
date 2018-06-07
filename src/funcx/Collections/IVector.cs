@@ -9,8 +9,6 @@ namespace FunctionalLibrary.Collections
         IEditableCollection,
         IStack,
         System.Collections.IList,
-        System.Collections.Generic.IList<object>,
-        System.Collections.Generic.IEnumerable<object>,
         System.Collections.IEnumerable
     {
         new int Count { get; }
