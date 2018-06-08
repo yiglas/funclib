@@ -12,7 +12,7 @@ namespace FunctionalLibrary.Core
     {
         public object Invoke() => 1;
         public object Invoke(object x) => 
-            Number.IsNumber(x) 
+            Numbers.IsNumber(x) 
                 ? x 
                 : throw new InvalidCastException("Expected a number");
         public object Invoke(object x, object y) => throw new NotImplementedException();

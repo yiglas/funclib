@@ -111,9 +111,9 @@ namespace FunctionalLibrary.Collections
             set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AVector)}.");
         }
         public virtual bool ContainsKey(object key) => int.TryParse(key.ToString(), out int i) && i >= 0 && i < Count;
-        public virtual System.Collections.Generic.KeyValuePair<int, object>? Get(object key) =>
+        public virtual IKeyValuePair Get(object key) =>
             int.TryParse(key.ToString(), out int i) && i >= 0 && i < Count
-                ? (System.Collections.Generic.KeyValuePair<int, object>?)new System.Collections.Generic.KeyValuePair<int, object>(i, this[i])
+                ? new KeyValuePair(i, this[i])
                 : null;
         public virtual System.Collections.IEnumerator GetEnumerator()
         {
@@ -186,13 +186,5 @@ namespace FunctionalLibrary.Collections
             return -1;
         }
         ICollection ICollection.Cons(object o) => Cons(o);
-        System.Collections.Generic.KeyValuePair<object, object>? IAssociative.Get(object key)
-        {
-            var kvp = Get(key);
-            if (kvp.HasValue)
-                return new System.Collections.Generic.KeyValuePair<object, object>(kvp.Value.Key, kvp.Value.Value);
-
-            return null;
-        }
     }
 }

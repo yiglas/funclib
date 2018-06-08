@@ -114,12 +114,12 @@ namespace FunctionalLibrary.Collections
         }
         public override bool ContainsKey(object key) => IndexOf(key) >= 0;
         public override ICollection Empty() => EMPTY;
-        public override System.Collections.Generic.KeyValuePair<object, object>? Get(object key)
+        public override IKeyValuePair Get(object key)
         {
             var i = IndexOf(key);
             if (i >= 0)
             {
-                return new System.Collections.Generic.KeyValuePair<object, object>(this._array[i], this._array[i + 1]);
+                return new KeyValuePair(this._array[i], this._array[i + 1]);
             }
 
             return null;
@@ -186,7 +186,7 @@ namespace FunctionalLibrary.Collections
             Func<object, object, bool> predicate(object k) =>
                 k == null
                     ? (k1, k2) => k2 == null
-                    : Number.IsNumber(k) ? new Func<object, object, bool>((k1, k2) => Number.IsEqual(k1, k2))
+                    : Numbers.IsNumber(k) ? new Func<object, object, bool>((k1, k2) => Numbers.IsEqual(k1, k2))
                     : (object k1, object k2) => k1.Equals(k2);
         }
         IMap CreateHashMap(object[] init, object key, object val) => HashMap.Create(init).Assoc(key, val);

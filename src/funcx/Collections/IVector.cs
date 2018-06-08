@@ -14,7 +14,7 @@ namespace FunctionalLibrary.Collections
         new int Count { get; }
         new IVector Cons(object o);
         new bool ContainsKey(object key);
-        new System.Collections.Generic.KeyValuePair<int, object>? Get(object key);
+        new IKeyValuePair Get(object key);
         
         new object this[int index] { get; set; }
         object this[int index, object notFound] { get; set; }

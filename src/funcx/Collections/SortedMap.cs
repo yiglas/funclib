@@ -62,11 +62,11 @@ namespace FunctionalLibrary.Collections
         #region Overrides
         public override int Count => this._count;
         public override bool ContainsKey(object key) => NodeAt(key) != null;
-        public override System.Collections.Generic.KeyValuePair<object, object>? Get(object key)
+        public override IKeyValuePair Get(object key)
         {
             var n = NodeAt(key);
             if (n != null)
-                return new System.Collections.Generic.KeyValuePair<object, object>(n.Key, n.Value);
+                return new KeyValuePair(n.Key, n.Value);
             return null;
         }
         public override object GetValue(object key) => GetValue(key, null);

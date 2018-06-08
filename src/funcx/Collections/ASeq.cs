@@ -108,7 +108,7 @@ namespace FunctionalLibrary.Collections
                     if (i == index)
                         return e.First();
                 }
-                throw new ArgumentOutOfRangeException(nameof(index));
+                throw new IndexOutOfRangeException(nameof(index));
             }
             set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(ASeq)}.");
         }

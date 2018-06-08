@@ -36,11 +36,11 @@ namespace FunctionalLibrary.Collections.Internal
         {
             var entry = this._enumerative.First();
 
-            if (entry is System.Collections.Generic.KeyValuePair<object, object> kvp) return kvp.Value;
+            if (entry is KeyValuePair kvp) return kvp.Value;
             else if (entry is System.Collections.DictionaryEntry de)
                 return de.Value;
 
-            throw new InvalidCastException($"Cannot convert entry to {nameof(System.Collections.Generic.KeyValuePair<object, object>)} or {nameof(System.Collections.DictionaryEntry)}");
+            throw new InvalidCastException($"Cannot convert entry to {nameof(KeyValuePair)} or {nameof(System.Collections.DictionaryEntry)}");
         }
         public override ISeq Next() => Create(this._enumerative.Next());
         public override IStack Pop() => throw new NotImplementedException();
@@ -54,11 +54,5 @@ namespace FunctionalLibrary.Collections.Internal
             return null;
         }
         #endregion
-        
-        //System.Collections.Generic.IEnumerable<object> Iterator(System.Collections.IEnumerable enumerable)
-        //{
-        //    foreach (var item in enumerable)
-        //        yield return ((System.Collections.Generic.KeyValuePair<object, object>)item).Value;
-        //}
     }
 }

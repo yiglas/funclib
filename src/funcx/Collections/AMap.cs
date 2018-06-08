@@ -32,7 +32,7 @@ namespace FunctionalLibrary.Collections
 
                 for (var e = Seq(); e != null; e = e.Next())
                 {
-                    var de = (System.Collections.Generic.KeyValuePair<object, object>)e.First();
+                    var de = (KeyValuePair)e.First();
                     bool found = d.Contains(de.Key);
                     if (!found || !new Core.Equals().Invoke(de.Value, d[de.Key]))
                         return false;
@@ -56,7 +56,7 @@ namespace FunctionalLibrary.Collections
                 int hash = 0;
                 for (var e = Seq(); e != null; e = e.Next())
                 {
-                    var de = (System.Collections.Generic.KeyValuePair<object, object>)e.First();
+                    var de = (KeyValuePair)e.First();
 
                     hash += de.Key?.GetHashCode() ?? 0 ^ de.Value?.GetHashCode() ?? 0;
                 }
@@ -77,7 +77,7 @@ namespace FunctionalLibrary.Collections
         public abstract int Count { get; }
         public abstract ICollection Empty();
         public abstract bool ContainsKey(object key);
-        public abstract System.Collections.Generic.KeyValuePair<object, object>? Get(object key);
+        public abstract IKeyValuePair Get(object key);
         public abstract object GetValue(object key);
         public abstract object GetValue(object key, object notFound);
         public abstract IMap Assoc(object key, object val);
@@ -93,8 +93,8 @@ namespace FunctionalLibrary.Collections
         {
             for (var e = Seq(); e != null; e = e.Next())
             {
-                var entry = (System.Collections.Generic.KeyValuePair<object, object>)e.First();
-                yield return new System.Collections.Generic.KeyValuePair<object, object>(entry.Key, entry.Value);
+                var entry = (KeyValuePair)e.First();
+                yield return new KeyValuePair(entry.Key, entry.Value);
             }
         }
         #endregion
@@ -110,7 +110,7 @@ namespace FunctionalLibrary.Collections
         public System.Collections.ICollection Values => ValueSeq.Create(Seq());
 
         public IMap Cons(object o) =>
-            o is System.Collections.Generic.KeyValuePair<object, object> kvp
+            o is KeyValuePair kvp
                 ? Assoc(kvp.Key, kvp.Value)
                 : o is System.Collections.DictionaryEntry de ? Assoc(de.Key, de.Value)
                 : o is IVector v ? v.Count != 2 ? throw new ArgumentException("Vector arg to map cons must be a pair.") : Assoc(v[0], v[1])
@@ -122,7 +122,7 @@ namespace FunctionalLibrary.Collections
             IMap ret = this;
             foreach (var item in e)
             {
-                var kvp = (System.Collections.Generic.KeyValuePair<object, object>)item;
+                var kvp = (KeyValuePair)item;
                 ret = ret.Assoc(kvp.Key, kvp.Value);
             }
             return ret;
@@ -130,11 +130,6 @@ namespace FunctionalLibrary.Collections
 
 
         public bool Contains(object item) => ContainsKey(item);
-        public bool Contains(System.Collections.Generic.KeyValuePair<object, object> item) =>
-            !TryGetValue(item.Key, out object value)
-                ? false
-                : value == null ? item.Value == null
-                : value.Equals(item.Value);
         
         public void CopyTo(object[] array, int arrayIndex)
         {
@@ -147,12 +142,6 @@ namespace FunctionalLibrary.Collections
             var e = Seq();
             if (e != null)
                 e.CopyTo(array, index);
-        }
-        public void CopyTo(System.Collections.Generic.KeyValuePair<object, object>[] array, int arrayIndex)
-        {
-            var e = Seq();
-            if (e != null)
-                e.CopyTo(array, arrayIndex);
         }
                 
         public bool TryGetValue(object key, out object value)

@@ -16,11 +16,11 @@ namespace FunctionalLibrary.Collections.Internal
             this._enumerator = new Enumerator(map.Seq());
         }
 
-        public System.Collections.DictionaryEntry Entry => throw new NotImplementedException();
+        public System.Collections.DictionaryEntry Entry => new System.Collections.DictionaryEntry(Key, Value);
 
-        public object Key => ((System.Collections.Generic.KeyValuePair<object, object>)this._enumerator.Current).Key;
+        public object Key => ((KeyValuePair)this._enumerator.Current).Key;
 
-        public object Value => ((System.Collections.Generic.KeyValuePair<object, object>)this._enumerator.Current).Value;
+        public object Value => ((KeyValuePair)this._enumerator.Current).Value;
 
         public object Current => this._enumerator.Current;
 

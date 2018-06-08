@@ -4,9 +4,9 @@ using System.Text;
 
 namespace FunctionalLibrary.Core
 {
-    public class IsZero :
+    public class IsPos :
         IFunction<object, object>
     {
-        public object Invoke(object n) => Numbers.IsZero(n);
+        public object Invoke(object num) => Numbers.IsPos(num);
     }
 }

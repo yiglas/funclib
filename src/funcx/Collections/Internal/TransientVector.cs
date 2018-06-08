@@ -111,11 +111,11 @@ namespace FunctionalLibrary.Collections.Internal
             int.TryParse(key.ToString(), out int i)
                 ? Assoc(i, val)
                 : throw new ArgumentException($"{nameof(key)} must be an integer.");
-        public System.Collections.Generic.KeyValuePair<object, object>? Get(object key)
+        public IKeyValuePair Get(object key)
         {
             var v = GetValue(key, NOT_FOUND);
             if (v != NOT_FOUND)
-                return new System.Collections.Generic.KeyValuePair<object, object>(key, v);
+                return new KeyValuePair(key, v);
             return null;
         }
         public ITransientCollection Conj(object val)

@@ -50,7 +50,7 @@ namespace FunctionalLibrary.Collections.Internal
 
             return EditAndSet(edit, idx, n);
         }
-        public System.Collections.Generic.KeyValuePair<object, object>? Get(int shift, int hash, object key)
+        public IKeyValuePair Get(int shift, int hash, object key)
         {
             int idx = Mask(hash, shift);
             var node = this._array[idx];

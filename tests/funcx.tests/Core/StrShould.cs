@@ -53,5 +53,14 @@ namespace FunctionalLibrary.Tests.Core
 
             Assert.AreEqual(expected, actual);
         }
+
+        [Test]
+        public void Str_should_apply_str_to_all_params_returning_one_large_str()
+        {
+            var expected = "123456789";
+            var actual = new Str().Invoke(1, 2, 3, 4, 5, 6, 7, 8, 9);
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

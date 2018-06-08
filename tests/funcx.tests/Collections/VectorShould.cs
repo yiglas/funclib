@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using vec = FunctionalLibrary.Collections.Vector;
 using list = FunctionalLibrary.Collections.List;
+using FunctionalLibrary.Collections;
 
 namespace FunctionalLibrary.Tests.Collections
 {
@@ -239,7 +240,7 @@ namespace FunctionalLibrary.Tests.Collections
         [Test]
         public void Vector_should_return_KeyValuePair_when_get_called_and_exists()
         {
-            var expected = new System.Collections.Generic.KeyValuePair<int, object>(1, 2);
+            var expected = new KeyValuePair(1, 2);
             var actual = vec.Create(1, 2, 3).Get(1);
 
             Assert.AreEqual(expected, actual);

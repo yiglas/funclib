@@ -5,8 +5,8 @@ using System.Text;
 namespace FunctionalLibrary.Core
 {
     public class Format :
-        IFunctionParams<string, object, string>
+        IFunctionParams<object, object, object>
     {
-        public string Invoke(string fmt, params object[] args) => string.Format(fmt, args);
+        public object Invoke(object fmt, params object[] args) => string.Format(fmt.ToString(), args);
     }
 }

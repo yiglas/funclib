@@ -1,73 +1,128 @@
-﻿using System;
+﻿using FunctionalLibrary.Exceptions;
+using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace FunctionalLibrary.Core
 {
-    public class FNull<T1, TResult> :
-        IFunction<IFunction<T1, TResult>, T1, IFunction<T1, TResult>>
+    public class FNull :
+        IFunction<object, object>,
+        IFunction<object, object, object>,
+        IFunction<object, object, object, object>,
+        IFunctionParams<object, object, object, object, object>
     {
-        public IFunction<T1, TResult> Invoke(IFunction<T1, TResult> f, T1 x) =>
-            f == null
-                ? null
-                : new Function<T1, TResult>(a => f.Invoke(a == null ? x : a));
-    }
+        IFunction<object, object> _f1;
+        IFunction<object, object, object> _f2;
+        IFunction<object, object, object, object> _f3;
+        IFunctionParams<object, object, object, object, object> _f4;
 
-    public class FNull<T1, T2, TResult> :
-        IFunction<IFunction<T1, T2, TResult>, T1, IFunction<T1, T2, TResult>>,
-        IFunction<IFunction<T1, T2, TResult>, T1, T2, IFunction<T1, T2, TResult>>
-    {
-        public IFunction<T1, T2, TResult> Invoke(IFunction<T1, T2, TResult> f, T1 x) =>
-            f == null
-                ? null
-                : new Function<T1, T2, TResult>((a, b) => f.Invoke(a == null ? x : a, b));
+        object _x;
+        object _y;
+        object _z;
 
-        public IFunction<T1, T2, TResult> Invoke(IFunction<T1, T2, TResult> f, T1 x, T2 y) =>
-            f == null
-                ? null
-                : new Function<T1, T2, TResult>((a, b) => f.Invoke(a == null ? x : a, b == null ? y : b));
+        bool _hasY;
+        bool _hasZ;
 
-    }
 
-    public class FNull<T1, T2, T3, TResult> :
-        IFunction<IFunction<T1, T2, T3, TResult>, T1, IFunction<T1, T2, T3, TResult>>,
-        IFunction<IFunction<T1, T2, T3, TResult>, T1, T2, IFunction<T1, T2, T3, TResult>>,
-        IFunction<IFunction<T1, T2, T3, TResult>, T1, T2, T3, IFunction<T1, T2, T3, TResult>>
-    {
-        public IFunction<T1, T2, T3, TResult> Invoke(IFunction<T1, T2, T3, TResult> f, T1 x) =>
-            f == null
-                ? null
-                : new Function<T1, T2, T3, TResult>((a, b, c) => f.Invoke(a == null ? x : a, b, c));
+        public FNull(IFunction<object, object> f, object x)
+        {
+            this._f1 = f;
+            this._x = x;
+        }
 
-        public IFunction<T1, T2, T3, TResult> Invoke(IFunction<T1, T2, T3, TResult> f, T1 x, T2 y) =>
-            f == null
-                ? null
-                : new Function<T1, T2, T3, TResult>((a, b, c) => f.Invoke(a == null ? x : a, b == null ? y : b, c));
-        
-        public IFunction<T1, T2, T3, TResult> Invoke(IFunction<T1, T2, T3, TResult> f, T1 x, T2 y, T3 z) =>
-            f == null
-                ? null
-                : new Function<T1, T2, T3, TResult>((a, b, c) => f.Invoke(a == null ? x : a, b == null ? y : b, c == null ? z : c));
-    }
+        public FNull(IFunction<object, object, object> f, object x)
+        {
+            this._f2 = f;
+            this._x = x;
+        }
 
-    public class FNull<T1, T2, T3, T4, TResult> :
-        IFunction<IFunctionParams<T1, T2, T3, T4, TResult>, T1, IFunctionParams<T1, T2, T3, T4, TResult>>,
-        IFunction<IFunctionParams<T1, T2, T3, T4, TResult>, T1, T2, IFunctionParams<T1, T2, T3, T4, TResult>>,
-        IFunction<IFunctionParams<T1, T2, T3, T4, TResult>, T1, T2, T3, IFunctionParams<T1, T2, T3, T4, TResult>>
-    {
-        public IFunctionParams<T1, T2, T3, T4, TResult> Invoke(IFunctionParams<T1, T2, T3, T4, TResult> f, T1 x) =>
-            f == null
-                ? null
-                : new FunctionParams<T1, T2, T3, T4, TResult>((a, b, c, ds) => f.Invoke(a == null ? x : a, b, c, ds));
+        public FNull(IFunction<object, object, object, object> f, object x)
+        {
+            this._f3 = f;
+            this._x = x;
+        }
 
-        public IFunctionParams<T1, T2, T3, T4, TResult> Invoke(IFunctionParams<T1, T2, T3, T4, TResult> f, T1 x, T2 y) =>
-            f == null
-                ? null
-                : new FunctionParams<T1, T2, T3, T4, TResult>((a, b, c, ds) => f.Invoke(a == null ? x : a, b == null ? y : b, c, ds));
+        public FNull(IFunctionParams<object, object, object, object, object> f, object x)
+        {
+            this._f4 = f;
+            this._x = x;
+        }
 
-        public IFunctionParams<T1, T2, T3, T4, TResult> Invoke(IFunctionParams<T1, T2, T3, T4, TResult> f, T1 x, T2 y, T3 z) =>
-            f == null
-                ? null
-                : new FunctionParams<T1, T2, T3, T4, TResult>((a, b, c, ds) => f.Invoke(a == null ? x : a, b == null ? y : b, c == null ? z : c, ds));
+        public FNull(IFunction<object, object, object> f, object x, object y)
+        {
+            this._f2 = f;
+            this._x = x;
+            this._y = y;
+            this._hasY = true;
+        }
+
+        public FNull(IFunction<object, object, object, object> f, object x, object y)
+        {
+            this._f3 = f;
+            this._x = x;
+            this._y = y;
+            this._hasY = true;
+        }
+
+        public FNull(IFunctionParams<object, object, object, object, object> f, object x, object y)
+        {
+            this._f4 = f;
+            this._x = x;
+            this._y = y;
+            this._hasY = true;
+        }
+
+        public FNull(IFunction<object, object, object, object> f, object x, object y, object z)
+        {
+            this._f3 = f;
+            this._x = x;
+            this._y = y;
+            this._z = z;
+            this._hasY = true;
+            this._hasZ = true;
+        }
+
+        public FNull(IFunctionParams<object, object, object, object, object> f, object x, object y, object z)
+        {
+            this._f4 = f;
+            this._x = x;
+            this._y = y;
+            this._z = z;
+            this._hasY = true;
+            this._hasZ = true;
+        }
+
+        public object Invoke(object a) =>
+            this._f1 != null
+                ? this._f1.Invoke(a ?? this._x)
+                : ThrowArityException(1);
+
+        public object Invoke(object a, object b) =>
+            this._f1 != null
+                ? ThrowArityException(2)
+                : this._f2 != null ? this._f2.Invoke(a ?? this._x, this._hasY ? b ?? this._y : b)
+                : ThrowArityException(2);
+
+        public object Invoke(object a, object b, object c) =>
+            this._f1 != null || this._f2 != null
+                ? ThrowArityException(3)
+                : this._f3 != null ? this._f3.Invoke(a ?? this._x, this._hasY ? b ?? this._y : b, this._hasZ ? c ?? this._z : c)
+                : ThrowArityException(3);
+
+        public object Invoke(object a, object b, object c, params object[] ds) =>
+            this._f1 != null || this._f2 != null || this._f3 != null
+                ? ThrowArityException(4)
+                : this._f4 != null ? new Apply().Invoke(this._f4, a ?? this._x, this._hasY ? b ?? this._y : b, this._hasZ ? c ?? this._z : c, ds)
+                : ThrowArityException(3);
+
+        object ThrowArityException(int actual, [CallerMemberName] string methodName = "")
+        {
+            if (this._f1 != null) throw new ArityException(actual, this._f1.GetType().FullName);
+            if (this._f2 != null) throw new ArityException(actual, this._f2.GetType().FullName);
+            if (this._f3 != null) throw new ArityException(actual, this._f3.GetType().FullName);
+            if (this._f4 != null) throw new ArityException(actual, this._f4.GetType().FullName);
+            throw new ArityException(actual, methodName);
+        }
     }
 }

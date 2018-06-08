@@ -14,8 +14,8 @@ namespace FunctionalLibrary.Core
             if (x != null)
             {
                 if (y == null) return 1;
-                if (Number.IsNumber(x) && Number.IsNumber(y))
-                    return Number.Compare(x, y);
+                if (Numbers.IsNumber(x) && Numbers.IsNumber(y))
+                    return Numbers.Compare(x, y);
 
                 return (x as IComparable).CompareTo(y);
             }

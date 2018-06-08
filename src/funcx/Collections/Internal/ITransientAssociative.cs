@@ -9,6 +9,6 @@ namespace FunctionalLibrary.Collections.Internal
     {
         bool ContainsKey(object key);
         ITransientAssociative Assoc(object key, object val);
-        System.Collections.Generic.KeyValuePair<object, object>? Get(object key);
+        IKeyValuePair Get(object key);
     }
 }

@@ -105,13 +105,13 @@ namespace FunctionalLibrary.Collections
 
         public override ICollection Empty() => EMPTY;
 
-        public override System.Collections.Generic.KeyValuePair<object, object>? Get(object key)
+        public override IKeyValuePair Get(object key)
         {
             if (key == null)
             {
                 if (HasNull)
                 {
-                    return new System.Collections.Generic.KeyValuePair<object, object>(null, NullValue);
+                    return new KeyValuePair(null, NullValue);
                 }
 
                 return null;
@@ -146,7 +146,7 @@ namespace FunctionalLibrary.Collections
         {
             var e = Root?.GetNodeEnumerative();
             return HasNull
-                ? new Cons(new System.Collections.Generic.KeyValuePair<object, object>(null, NullValue), e)
+                ? new Cons(new KeyValuePair(null, NullValue), e)
                 : e;
         }
         public override System.Collections.IEnumerator GetKeyEnumerator() => MakeEnumerator((k, v) => k);

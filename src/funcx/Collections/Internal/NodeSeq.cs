@@ -48,7 +48,7 @@ namespace FunctionalLibrary.Collections.Internal
         public override object First() =>
             this._e != null
                 ? this._e.First()
-                : new System.Collections.Generic.KeyValuePair<object, object>(this._array[this._i], this._array[this._i + 1]);
+                : new KeyValuePair(this._array[this._i], this._array[this._i + 1]);
 
         public override ISeq Next() =>
             this._e != null

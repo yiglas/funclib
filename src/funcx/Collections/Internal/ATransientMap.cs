@@ -37,12 +37,12 @@ namespace FunctionalLibrary.Collections.Internal
         public ITransientCollection Conj(object val) => ConjMap(val);
 
         public bool ContainsKey(object key) => GetValue(key, NOT_FOUND) != NOT_FOUND;
-        public System.Collections.Generic.KeyValuePair<object, object>? Get(object key)
+        public IKeyValuePair Get(object key)
         {
             var v = GetValue(key, NOT_FOUND);
 
             if (v != NOT_FOUND)
-                return new System.Collections.Generic.KeyValuePair<object, object>(key, v);
+                return new KeyValuePair(key, v);
 
             return null;
         }
@@ -55,7 +55,7 @@ namespace FunctionalLibrary.Collections.Internal
 
         ITransientMap ConjMap(object val) =>
             EnsureEditable()
-                ? val is System.Collections.Generic.KeyValuePair<object, object> kvp ? Assoc(kvp.Key, kvp.Value)
+                ? val is KeyValuePair kvp ? Assoc(kvp.Key, kvp.Value)
                 : val is System.Collections.DictionaryEntry de ? Assoc(de.Key, de.Value)
                 : val is IVector v ? v.Count != 2 ? throw new ArgumentException("Vector arg to map conj must be a pair.") : Assoc(v[0], v[1])
                 : val is System.Collections.IEnumerable e ? ConjMap(e)
@@ -67,7 +67,7 @@ namespace FunctionalLibrary.Collections.Internal
             ITransientMap ret = this;
             foreach (var item in e)
             {
-                var kvp = (System.Collections.Generic.KeyValuePair<object, object>)item;
+                var kvp = (KeyValuePair)item;
                 ret = ret.Assoc(kvp.Key, kvp.Value);
             }
             return ret;

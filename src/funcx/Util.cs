@@ -185,7 +185,7 @@
         {
             for (var s = x.Seq(); s != null; s = s.Next())
             {
-                var e = (System.Collections.Generic.KeyValuePair<object, object>)s.First();
+                var e = (KeyValuePair)s.First();
                 Print(e.Key, w);
                 w.Write(' ');
                 Print(e.Value, w);

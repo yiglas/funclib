@@ -79,12 +79,12 @@ namespace FunctionalLibrary.Collections.Internal
                 .Assoc(edit, shift, hash, key, val, addedLeaf);
         }
 
-        public System.Collections.Generic.KeyValuePair<object, object>? Get(int shift, int hash, object key)
+        public IKeyValuePair Get(int shift, int hash, object key)
         {
             int idx = FindIndex(key);
 
             if (idx < 0) return null;
-            if (new Core.Equals().Invoke(key, this._array[idx])) return new System.Collections.Generic.KeyValuePair<object, object>(this._array[idx], this._array[idx + 1]);
+            if (new Core.Equals().Invoke(key, this._array[idx])) return new KeyValuePair(this._array[idx], this._array[idx + 1]);
 
             return null;
         }
