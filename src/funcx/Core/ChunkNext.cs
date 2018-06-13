@@ -10,6 +10,6 @@ namespace FunctionalLibrary.Core
         public object Invoke(object s) =>
             s is IChunkedSeq c
                 ? c.ChunkedNext()
-                : throw new InvalidCastException();
+                : throw new InvalidCastException($"{s.GetType().FullName} cannot be casted to {typeof(IChunkedSeq).FullName}");
     }
 }

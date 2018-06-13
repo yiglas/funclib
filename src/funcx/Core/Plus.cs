@@ -14,8 +14,8 @@ namespace FunctionalLibrary.Core
         public object Invoke(object x) => 
             Numbers.IsNumber(x) 
                 ? x 
-                : throw new InvalidCastException("Expected a number");
-        public object Invoke(object x, object y) => throw new NotImplementedException();
-        public object Invoke(object x, object y, params object[] more) => throw new NotImplementedException();
+                : throw new InvalidCastException($"{x.GetType().FullName} cannot be casted to Number.");
+        public object Invoke(object x, object y) => Numbers.Add(x, y);
+        public object Invoke(object x, object y, params object[] more) => new Reduce1().Invoke(this, Invoke(x, y), more);
     }
 }

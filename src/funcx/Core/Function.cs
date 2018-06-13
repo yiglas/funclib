@@ -82,6 +82,19 @@ namespace FunctionalLibrary.Core
         public TResult Invoke(T1 a, T2 b, T3 c, T4 d, T5 e) => this._func(a, b, c, d, e);
     }
 
+    public class FunctionParams<T1, TResult> :
+        IFunctionParams<T1, TResult>
+    {
+        readonly Func<T1[], TResult> _func;
+
+        public FunctionParams(Func<T1[], TResult> x)
+        {
+            this._func = x;
+        }
+
+        public TResult Invoke(params T1[] args) => this._func(args);
+    }
+
     public class FunctionParams<T1, T2, T3, T4, TResult> :
         IFunctionParams<T1, T2, T3, T4, TResult>
     {

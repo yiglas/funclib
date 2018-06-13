@@ -4,15 +4,15 @@ using System.Text;
 
 namespace FunctionalLibrary.Core
 {
-    public class Next:
-        IFunction<object, ISeq>
+    public class Next :
+        IFunction<object, object>
     {
-        public ISeq Invoke(object coll)
+        public object Invoke(object coll)
         {
-            var enumerate = coll as ISeq ?? (ISeq)new Core.Seq().Invoke(coll);
-            if (enumerate == null)
+            var seq = coll as ISeq ?? (ISeq)new Core.Seq().Invoke(coll);
+            if (seq == null)
                 return null;
-            return enumerate.Next();
+            return seq.Next();
         }
     }
 }

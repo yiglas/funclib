@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FunctionalLibrary.Collections;
+using System;
 using System.Text;
 
 namespace FunctionalLibrary.Core
@@ -26,7 +27,7 @@ namespace FunctionalLibrary.Core
         {
             if (Invoke(x, y))
             {
-                var next = new Next().Invoke(more);
+                var next = (ISeq)new Next().Invoke(more);
                 if (next != null)
                     return Invoke(y, next.First(), next.More());
 

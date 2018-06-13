@@ -1,15 +1,27 @@
-﻿using FunctionalLibrary.Core;
+﻿using FunctionalLibrary.Collections;
+using FunctionalLibrary.Core;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using static FunctionalLibrary.core;
+using list = FunctionalLibrary.Collections.List;
 
 namespace FunctionalLibrary.Tests.Core
 {
     public class LazySeqShould
     {
+        [Test]
+        public void LazySeq_should_()
+        {
+            //var expected = list.Create(1, 2, 3, 4, 5);
+            //var actual = new ToArray().Invoke(new Take().Invoke(5, positive_numbers(1)));
+
+            //Assert.AreEqual(expected, actual);
+
+            //object positive_numbers(object n) => new FunctionalLibrary.Core.LazySeq(() => (ISeq)new FunctionalLibrary.Core.Cons().Invoke(n, positive_numbers(new Inc().Invoke(n))));
+        }
+
     //    [Test]
     //    public void LazySeq_should_lazily_evaluate()
     //    {
@@ -76,51 +88,4 @@ namespace FunctionalLibrary.Tests.Core
         //}
     }
 
-
-    public class LazySeqPerformance : Performance
-    {
-        const int DEFAULT_ITERATIONS = 10;
-
-        public LazySeqPerformance() : base("LazySeq", "", DEFAULT_ITERATIONS)
-        {
-        }
-
-        protected override bool BaselineTest()
-        {
-            for (int i = 0; i < this.Iterations; i++)
-            {
-                FibonacciSeries(i);
-            }
-            return true;
-
-            int FibonacciSeries(int n)
-            {
-                if (n == 0) return 0; //To return the first Fibonacci number   
-                if (n == 1) return 1; //To return the second Fibonacci number   
-                return FibonacciSeries(n - 1) + FibonacciSeries(n - 2);
-            }
-        }
-
-        protected override bool MeasureTestB()
-        {
-            Func<int, int, IEnumerable<int>> fib = null;
-            fib = (a, b) => lazyseq(() => cons(a, fib(b, a + b)));
-
-            toarray(take(this.Iterations, fib(1, 1)));
-
-            return true;
-        }
-
-        protected override bool MeasureTestC()
-        {
-            return false;
-            //Func<int, int, LazySeq<int>> fib = null;
-            //fib = (a, b) =>
-            //    new LazySeq<int>(new Function<IEnumerable<int>>(() => new Cons<int>().Invoke(a, fib(b, a + b))));
-
-            //take(this.Iterations, fib(1, 1)).ToArray();
-
-            //return true;
-        }
-    }
 }

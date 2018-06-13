@@ -7,6 +7,7 @@ namespace FunctionalLibrary.Collections
         IStack,
         ISeq,
         ICollection,
+        ICounted,
         System.Collections.IList,
         System.Collections.ICollection,
         System.Collections.IEnumerable

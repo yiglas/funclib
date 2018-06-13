@@ -11,7 +11,7 @@ namespace FunctionalLibrary.Core
         public object Invoke(object f, object coll)
         {
             var s = (ISeq)new Seq().Invoke(coll);
-            if (new Truthy().Invoke(s))
+            if ((bool)new Truthy().Invoke(s))
                 return Invoke(f, s.First(), s.Next());
             else
                 return ((IFunction<object>)f).Invoke();
@@ -20,9 +20,9 @@ namespace FunctionalLibrary.Core
         {
             var s = (ISeq)new Seq().Invoke(coll);
 
-            if (new Truthy().Invoke(s))
+            if ((bool)new Truthy().Invoke(s))
             {
-                if (new IsChunkedSeq().Invoke(s))
+                if ((bool)new IsChunkedSeq().Invoke(s))
                     return Invoke(f, ((IChunked)new ChunkFirst().Invoke(s)).Reduce((IFunction<object, object, object>)f, val), new ChunkNext().Invoke(s));
                 else
                     return Invoke(f, ((IFunction<object, object, object>)f).Invoke(val, new First().Invoke(s)), new Next().Invoke(s));

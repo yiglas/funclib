@@ -4,7 +4,8 @@ using System.Text;
 namespace FunctionalLibrary.Collections.Internal
 {
     interface ITransientSet : 
-        ITransientCollection
+        ITransientCollection,
+        ICounted
     {
         new int Count { get; }
         ITransientSet Disjoin(object key);

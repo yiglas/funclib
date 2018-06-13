@@ -6,9 +6,9 @@ using System.Text;
 namespace FunctionalLibrary.Core
 {
     public class Keys :
-        IFunction<object, ISeq>
+        IFunction<object, object>
     {
-        public ISeq Invoke(object coll)
+        public object Invoke(object coll)
         {
             if (coll is IMap map)
                 return KeySeq.Create(map);

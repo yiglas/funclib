@@ -11,6 +11,6 @@ namespace FunctionalLibrary.Core
             (bool)new IsZero().Invoke(new Count().Invoke(chuck))
                 ? rest
                 : chuck is IChunked c && rest is ISeq r ? new ChunkedCons(c, r)
-                : throw new InvalidCastException();
+                : throw new InvalidCastException($"{chuck.GetType().FullName} cannot be casted to {typeof(IChunked).FullName}");
     }
 }

@@ -10,8 +10,8 @@ namespace FunctionalLibrary.Core
         IFunctionParams<object, object, object>
     {
         public object Invoke() => null;
-        public object Invoke(object arg1) => throw new NotImplementedException();
-        public object Invoke(object arg1, params object[] rest) => throw new NotImplementedException();
+        public object Invoke(object x) => throw new NotImplementedException();
+        public object Invoke(object x, params object[] more) => throw new NotImplementedException();
 
 
     }

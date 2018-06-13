@@ -8,6 +8,7 @@ namespace FunctionalLibrary.Collections
         ICollection,
         IEditableCollection,
         IMapEnumerable,
+        ICounted,
         System.Collections.IDictionary,
         System.Collections.IEnumerable
     {

@@ -4,9 +4,9 @@ using System.Text;
 
 namespace FunctionalLibrary.Core
 {
-    public class Identity<T> :
-        IFunction<T, T>
+    public class Identity :
+        IFunction<object, object>
     {
-        public T Invoke(T x) => x;
+        public object Invoke(object x) => x;
     }
 }

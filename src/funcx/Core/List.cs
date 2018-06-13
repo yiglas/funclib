@@ -5,8 +5,8 @@ using System.Text;
 namespace FunctionalLibrary.Core
 {
     public class List :
-        IFunctionParams<object, IList>
+        IFunctionParams<object, object>
     {
-        public IList Invoke(params object[] items) => Collections.List.Create(items);
+        public object Invoke(params object[] items) => Collections.List.Create(items);
     }
 }

@@ -48,7 +48,7 @@ namespace FunctionalLibrary.Collections
         #endregion
 
         public System.Collections.IComparer GetComparator() => (this._impl as ISorted)?.GetComparator();
-        public ISeq Seq(bool ascending) => new Core.Keys().Invoke((this._impl as SortedMap).Seq(ascending));
-        public ISeq Seq(object key, bool ascending) => new Core.Keys().Invoke((this._impl as SortedMap).Seq(key, ascending));
+        public ISeq Seq(bool ascending) => (ISeq)new Core.Keys().Invoke((this._impl as SortedMap).Seq(ascending));
+        public ISeq Seq(object key, bool ascending) => (ISeq)new Core.Keys().Invoke((this._impl as SortedMap).Seq(key, ascending));
     }
 }

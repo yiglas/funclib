@@ -11,9 +11,9 @@ namespace FunctionalLibrary.Core
             coll == null
                 ? new object[] { }
                 : TryConvertArray(coll, out object[] a) ? a
+                : coll is System.Collections.IEnumerable e ? IEnumerableToArray(e)
                 : coll is string s ? StringToArray(s)
                 : coll.GetType().IsArray ? ObjectToArray(coll)
-                : coll is System.Collections.IEnumerable e ? IEnumerableToArray(e)
                 : throw new InvalidOperationException($"Unable to convert {coll.GetType()} to object[].");
 
 

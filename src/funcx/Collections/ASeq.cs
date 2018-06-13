@@ -79,7 +79,7 @@ namespace FunctionalLibrary.Collections
                 int i = 1;
                 for (var e = Next(); e != null; e = e.Next(), i++)
                 {
-                    if (e is System.Collections.ICollection c)
+                    if (e is ICounted c)
                         return i + c.Count;
                 }
 
@@ -144,7 +144,7 @@ namespace FunctionalLibrary.Collections
                 array[i] = e.First();
         }
 
-        public ISeq Seq() => this;
+        public ISeq Seq() => Count == 0 ? null : this;
 
         public object Peek() => First();
         ICollection ICollection.Cons(object o) => Cons(o);

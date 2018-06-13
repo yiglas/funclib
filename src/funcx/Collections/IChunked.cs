@@ -4,9 +4,10 @@ using System.Text;
 
 namespace FunctionalLibrary.Collections
 {
-    public interface IChunked
+    public interface IChunked :
+        ICounted
     {
-        int Count { get; }
+        new int Count { get; }
         object this[int index] { get; set; }
         object this[int index, object notFound] { get; set; }
         IChunked DropFirst();

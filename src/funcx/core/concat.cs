@@ -12,40 +12,40 @@ namespace FunctionalLibrary.Core
         public object Invoke() => new LazySeq(new Function<object>(() => null)).Invoke();
         public object Invoke(object x) => new LazySeq(new Function<object>(() => x)).Invoke();
         public object Invoke(object x, object y) =>
-            new LazySeq(new Function<object>(() =>
+            new LazySeq(() =>
             {
                 var s = new Seq().Invoke(x);
-                if (new Truthy().Invoke(s))
+                if ((bool)new Truthy().Invoke(s))
                 {
-                    if (new IsChunkedSeq().Invoke(s))
+                    if ((bool)new IsChunkedSeq().Invoke(s))
                         return new ChunkCons().Invoke(new ChunkFirst().Invoke(s), Invoke(new ChunkRest().Invoke(s), y));
                     else
                         return new Cons().Invoke(new First().Invoke(s), Invoke(new Rest().Invoke(s), y));
                 }
                 else
                     return y;
-            }));
+            });
         public object Invoke(object x, object y, params object[] zs)
         {
             Func<object, object, object> cat = null;
             cat = (xys, zss) =>
-                new LazySeq(new Function<object>(() =>
+                new LazySeq(() =>
                 {
                     xys = new Seq().Invoke(xys);
-                    if (new Truthy().Invoke(xys))
+                    if ((bool)new Truthy().Invoke(xys))
                     {
-                        if (new IsChunkedSeq().Invoke(xys))
+                        if ((bool)new IsChunkedSeq().Invoke(xys))
                             return new ChunkCons().Invoke(new ChunkFirst().Invoke(xys), cat(new ChunkRest().Invoke(xys), zs));
                         else
                             return new Cons().Invoke(new First().Invoke(xys), cat(new Rest().Invoke(xys), zs));
                     }
-                    else if (new Truthy().Invoke(zss))
+                    else if ((bool)new Truthy().Invoke(zss))
                     {
                         return cat(new First().Invoke(zss), new Next().Invoke(zss));
                     }
                     else
                         return null;
-                }));
+                });
 
             return cat(Invoke(x, y), zs);
         }

@@ -5,8 +5,8 @@ using System.Text;
 namespace FunctionalLibrary.Core
 {
     public class IsChunkedSeq :
-        IFunction<object, bool>
+        IFunction<object, object>
     {
-        public bool Invoke(object s) => s is IChunkedSeq;
+        public object Invoke(object s) => s is IChunkedSeq;
     }
 }

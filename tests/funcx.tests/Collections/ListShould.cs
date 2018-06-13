@@ -152,7 +152,7 @@ namespace FunctionalLibrary.Tests.Collections
         [Test]
         public void List_should_throw_index_out_of_range_when_indexer_is_passed_a_value_out_of_range()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => { var x = list.Create(1, 2, 3)[10]; });
+            Assert.Throws<IndexOutOfRangeException>(() => { var x = list.Create(1, 2, 3)[10]; });
         }
 
         [Test]

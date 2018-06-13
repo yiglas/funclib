@@ -8,11 +8,10 @@ namespace FunctionalLibrary.Core
     public class Seq :
         IFunction<object, object>
     {
-        public object Invoke(object coll) =>
-            (int)new Count().Invoke(coll) == 0
-                ? null
-                : coll is ASeq e ? e
-                : coll is Collections.LazySeq le ? le
+        public object Invoke(object coll) => 
+            coll is ASeq seq 
+                ? seq.Count == 0 ? null : seq
+                : coll is LazySeq ls ? ls.Seq()
                 : coll == null ? null
                 : coll is ISeqable seqable ? seqable.Seq()
                 : coll.GetType().IsArray ? ArraySeq.Create((object[])coll)

@@ -24,7 +24,7 @@ namespace FunctionalLibrary.Core
                 }
             }
 
-            if (new Truthy().Invoke(x) && next?.Length > 0)
+            if ((bool)new Truthy().Invoke(x) && next?.Length > 0)
                 return Invoke(next[0], next.Skip(1).ToArray());
             
             return x;

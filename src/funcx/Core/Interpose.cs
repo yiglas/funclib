@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 
 namespace FunctionalLibrary.Core
 {
-    //public class Interpose<TSeparator> :
-    //    IFunction<TSeparator, IEnumerable, IEnumerable<object>>
-    //{
-    //    public IEnumerable<object> Invoke(TSeparator sep, IEnumerable coll) =>
-    //        new Drop<object>().Invoke(1, new Interleave().Invoke(new Repeat<TSeparator>().Invoke(sep), coll));
-    //}
+    public class Interpose :
+        IFunction<object, object, object>
+    {
+        public object Invoke(object sep, object coll) =>
+            new Drop().Invoke(1, new Interleave().Invoke(new Repeat().Invoke(sep), coll));
+    }
 }

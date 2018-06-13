@@ -4,7 +4,8 @@ using System.Text;
 namespace FunctionalLibrary.Collections.Internal
 {
     interface ITransientVector :
-        ITransientAssociative
+        ITransientAssociative,
+        ICounted
     {
         new IVector ToPersistent();
 

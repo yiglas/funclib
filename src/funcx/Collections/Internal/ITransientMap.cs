@@ -5,7 +5,8 @@ namespace FunctionalLibrary.Collections.Internal
 {
     interface ITransientMap :
         ITransientAssociative,
-        ITransientCollection
+        ITransientCollection,
+        ICounted
     {
         new IMap ToPersistent();
         new int Count { get; }

@@ -6,6 +6,7 @@ namespace FunctionalLibrary.Collections
     public interface ISet :
         ICollection,
         IEditableCollection,
+        ICounted,
         System.Collections.ICollection
     {
         new int Count { get; }
