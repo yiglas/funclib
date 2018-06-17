@@ -6,8 +6,10 @@ using System.Text;
 namespace FunctionalLibrary.Core
 {
     public class Take :
+        IFunction<object, object>,
         IFunction<object, object, object>
     {
+        public object Invoke(object n) => new Function<object, object>(rf => new TransducerFunction(n, rf));
         public object Invoke(object n, object coll) =>
             new LazySeq(new Function<object>(() =>
             {
@@ -20,5 +22,31 @@ namespace FunctionalLibrary.Core
 
                 return null;
             }));
+
+        public class TransducerFunction :
+            ATransducerFunction
+        {
+            volatile Volatile _nv;
+
+            public TransducerFunction(object n, object rf) :
+                base(rf)
+            {
+                this._nv = (Volatile)new Volatile_().Invoke(n);
+            }
+
+            #region Overrides
+            public override object Invoke(object result, object input)
+            {
+                var n = this._nv.Deref();
+                var nn = new VSwap_(this._nv, new Dec());
+                result = (bool)new IsPos().Invoke(n) ? ((IFunction<object, object, object>)this._rf).Invoke(result, input) : result;
+
+                if ((bool)new Not().Invoke(new IsPos().Invoke(nn)))
+                    return new EnsureReduced().Invoke(result);
+
+                return result;
+            }
+            #endregion
+        }
     }
 }

@@ -30,7 +30,6 @@ namespace FunctionalLibrary.Collections.Internal
         public override int Count => this._array.Length - this._index;
         public override object First() => this._array[this._index];
         public override ISeq Next() => this._index + 1 < this._array.Length ? NextOne() : null;
-        public override IStack Pop() => throw new NotImplementedException();
         public override int IndexOf(object value)
         {
             for (int j = this._index; j < this._array.Length; j++)
@@ -38,6 +37,7 @@ namespace FunctionalLibrary.Collections.Internal
                     return j - this._index;
             return -1;
         }
+        public override IStack Pop() => throw new NotImplementedException();
         #endregion
 
         public int Index() => this._index;
@@ -48,33 +48,33 @@ namespace FunctionalLibrary.Collections.Internal
                 items[i] = this._array[i];
             return items;
         }
-        public object Reduce(IFunction<object, object, object> f)
+        public object Reduce(IFunction f)
         {
             if (this._array == null) return null;
 
             var ret = this._array[this._index];
             for (var x = this._index + 1; x < this._array.Length; x++)
             {
-                ret = f.Invoke(ret, this._array[x]);
-                if ((bool)new IsReduced().Invoke(ret))
-                    return ((IDeref)ret).Deref();
+                ret = ((IFunction<object, object, object>)f).Invoke(ret, this._array[x]);
+                if (ret is Reduced r)
+                    return r.Deref();
             }
 
             return ret;
         }
-        public object Reduce(IFunction<object, object, object> f, object init)
+        public object Reduce(IFunction f, object init)
         {
             if (this._array == null) return null;
 
-            var ret = f.Invoke(init, this._array[this._index]);
+            var ret = ((IFunction<object, object, object>)f).Invoke(init, this._array[this._index]);
             for (var x = this._index + 1; x < this._array.Length; x++)
             {
-                if ((bool)new IsReduced().Invoke(ret))
-                    return ((IDeref)ret).Deref();
-                ret = f.Invoke(ret, this._array[x]);
+                if (ret is Reduced r)
+                    return r.Deref();
+                ret = ((IFunction<object, object, object>)f).Invoke(ret, this._array[x]);
             }
-            if ((bool)new IsReduced().Invoke(ret))
-                return ((IDeref)ret).Deref();
+            if (ret is Reduced r2)
+                return r2.Deref();
 
             return ret;
         }

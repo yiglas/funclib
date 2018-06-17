@@ -1,5 +1,4 @@
-﻿using FunctionalLibrary.Collections;
-using FunctionalLibrary.Core;
+﻿using FunctionalLibrary.Core;
 using NUnit.Framework;
 using System;
 using System.Text;
@@ -12,7 +11,7 @@ namespace FunctionalLibrary.Tests.Core
         [Test]
         public void Nth_should_use_zero_based_indexing()
         {
-            var seq = Vector.Create("a", "b", "c", "d");
+            var seq = new Vector().Invoke("a", "b", "c", "d");
             var expected = "a";
             var actual = new Nth().Invoke(seq, 0);
 

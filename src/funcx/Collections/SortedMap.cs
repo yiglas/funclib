@@ -328,12 +328,12 @@ namespace FunctionalLibrary.Collections
                 return MakeBlack(key, val, insert, right);
         }
 
-        public object Reduce(IFunction<object, object, object, object> f, object init)
+        public object ReduceKV(IFunction f, object init)
         {
             if (this._tree != null)
                 init = this._tree.Reduce(f, init);
-            if ((bool)new IsReduced().Invoke(init))
-                init = ((IDeref)init).Deref();
+            if (init is Reduced r)
+                return r.Deref();
             return init;
         }
     }

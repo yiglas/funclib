@@ -10,7 +10,6 @@ namespace FunctionalLibrary.Core
         IFunction<object, object, object, object>,
         IFunction<object, object, object, object, object>,
         IFunctionParams<object, object, object, object, object, object>
-
     {
         public object Invoke(object args) => new Seq().Invoke(args);
         public object Invoke(object a, object args) => new Cons().Invoke(a, args);

@@ -4,11 +4,13 @@ using System.Text;
 namespace FunctionalLibrary.Core
 {
     public class Map :
+        IFunction<object, object>,
         IFunction<object, object, object>,
         IFunction<object, object, object, object>,
         IFunction<object, object, object, object, object>,
         IFunctionParams<object, object, object, object, object, object>
     {
+        public object Invoke(object f) => new Function<object, object>(rf => new TransducerFunction(f, rf));
         public object Invoke(object f, object coll)
         {
             var fn = (IFunction<object, object>)f;
@@ -84,6 +86,27 @@ namespace FunctionalLibrary.Core
 
                     return null;
                 });
+        }
+
+        
+        public class TransducerFunction :
+            ATransducerFunction,
+            IFunctionParams<object, object, object, object>
+        {
+            object _f;
+
+            public TransducerFunction(object f, object rf) :
+                base(rf)
+            {
+                this._f = f;
+            }
+
+            #region Overrides
+            public override object Invoke(object result, object input) => ((IFunction<object, object, object>)this._rf).Invoke(result, ((IFunction<object, object>)this._f).Invoke(input));
+            #endregion
+
+            public object Invoke(object result, object input, params object[] inputs) =>
+                ((IFunction<object, object, object>)this._rf).Invoke(result, ((IFunction<object, object>)this._f).Invoke(new Apply().Invoke(this._f, input, inputs)));
         }
     }
 }

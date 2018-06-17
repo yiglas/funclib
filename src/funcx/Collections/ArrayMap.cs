@@ -162,13 +162,13 @@ namespace FunctionalLibrary.Collections
         #endregion
 
 
-        public object Reduce(IFunction<object, object, object, object> f, object init)
+        public object ReduceKV(IFunction f, object init)
         {
             for (int i = 0; i < this._array.Length; i += 2)
             {
-                init = f.Invoke(init, this._array[i], this._array[i + 1]);
-                if ((bool)new IsReduced().Invoke(init))
-                    return ((IDeref)init).Deref();
+                init = ((IFunction<object, object, object, object>)f).Invoke(init, this._array[i], this._array[i + 1]);
+                if (init is Reduced r)
+                    return r.Deref();
             }
             return init;
         }

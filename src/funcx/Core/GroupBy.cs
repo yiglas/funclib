@@ -4,16 +4,17 @@ using System.Text;
 
 namespace FunctionalLibrary.Core
 {
-    //public class GroupBy<TKey, TValue> :
-    //    IFunction<IFunction<TValue, TKey>, IEnumerable<TValue>, IDictionary<TKey, IList<TValue>>>
-    //{
-    //    public IDictionary<TKey, IList<TValue>> Invoke(IFunction<TValue, TKey> f, IEnumerable<TValue> coll) =>
-    //        new Reduce<IDictionary<TKey, IList<TValue>>, TValue>().Invoke(
-    //            new Function<IDictionary<TKey, IList<TValue>>, TValue, IDictionary<TKey, IList<TValue>>>(
-    //                (ret, x) =>
-    //                {
-    //                    var k = f.Invoke(x);
-    //                    return new AssocT<TKey, IList<TValue>>().Invoke(ret, (k, new Conj<TValue>().Invoke(new Get<TKey, IList<TValue>>().Invoke(ret, k, new List<TValue>()), x)));
-    //                }), new Dictionary<TKey, IList<TValue>>(), coll);
-    //}
+    public class GroupBy :
+        IFunction<object, object, object>
+    {
+        public object Invoke(object f, object coll) =>
+            new Persistent().Invoke(
+                new Reduce().Invoke(
+                    new Function<object, object, object>((ret, x) =>
+                    {
+                        var k = ((IFunction<object, object>)f).Invoke(x);
+                        return new AssocT().Invoke(ret, k, new Conj().Invoke(new Get().Invoke(ret, k, new Vector().Invoke()), x));
+                    }), new Transient().Invoke(new HashMap().Invoke()), coll));
+    }
+
 }

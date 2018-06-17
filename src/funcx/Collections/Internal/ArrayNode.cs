@@ -161,15 +161,14 @@ namespace FunctionalLibrary.Collections.Internal
             return new BitmapIndexedNode(edit, bitmap, newArray);
         }
 
-        public object Reduce(IFunction<object, object, object, object> f, object init)
+        public object Reduce(IFunction f, object init)
         {
             foreach (var node in this._array)
             {
                 if (node != null)
                 {
                     init = node.Reduce(f, init);
-                    if ((bool)new IsReduced().Invoke(init))
-                        return init;
+                    if (init is Reduced) return init;
                 }
             }
             return init;

@@ -15,7 +15,7 @@ namespace FunctionalLibrary.Collections
         readonly IList _rest;
         
         List() : this(null, null, 0) { }
-        internal List(object first) : this(first, null, 0) { }
+        internal List(object first) : this(first, null, 1) { }
         List(object first, IList rest, int count)
         {
             this._first = first;
@@ -53,30 +53,30 @@ namespace FunctionalLibrary.Collections
         public override IStack Pop() => this._rest == null ? EMPTY : this._rest;
         #endregion
 
-        public object Reduce(IFunction<object, object, object> f)
+        public object Reduce(IFunction f)
         {
             object ret = First();
             for (var s = Next(); s != null; s = s.Next())
             {
-                ret = f.Invoke(ret, s.First());
-                if ((bool)new IsReduced().Invoke(ret))
-                    return ((IDeref)ret).Deref();
+                ret = ((IFunction<object, object, object>)f).Invoke(ret, s.First());
+                if (ret is Reduced r)
+                    return r.Deref();
             }
 
             return ret;
         }
-        public object Reduce(IFunction<object, object, object> f, object init)
+        public object Reduce(IFunction f, object init)
         {
-            object ret = f.Invoke(init, First());
+            object ret = ((IFunction<object, object, object>)f).Invoke(init, First());
             for (var s = Next(); s != null; s = s.Next())
             {
-                if ((bool)new IsReduced().Invoke(ret))
-                    return ((IDeref)ret).Deref();
-                ret = f.Invoke(ret, s.First());
+                if (ret is Reduced r)
+                    return r.Deref();
+                ret = ((IFunction<object, object, object>)f).Invoke(ret, s.First());
             }
 
-            if ((bool)new IsReduced().Invoke(ret))
-                return ((IDeref)ret).Deref();
+            if (ret is Reduced r2)
+                return r2.Deref();
 
             return ret;
         }

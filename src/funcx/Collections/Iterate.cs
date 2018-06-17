@@ -46,7 +46,7 @@ namespace FunctionalLibrary.Collections
         #endregion
 
         public bool IsRealized() => this._seed != UNREALIZED_SEED;
-        public object Reduce(IFunction<object, object, object> f)
+        public object Reduce(IFunction f)
         {
             object ff = First();
             object ret = ff;
@@ -54,23 +54,23 @@ namespace FunctionalLibrary.Collections
 
             while (true)
             {
-                ret = f.Invoke(ret, v);
-                if ((bool)new IsReduced().Invoke(ret))
-                    return ((IDeref)ret).Deref();
+                ret = ((IFunction<object, object, object>)f).Invoke(ret, v);
+                if (ret is Reduced r)
+                    return r.Deref();
                 v = this._f.Invoke(v);
             }
         }
 
-        public object Reduce(IFunction<object, object, object> f, object init)
+        public object Reduce(IFunction f, object init)
         {
             object ret = init;
             object v = First();
 
             while (true)
             {
-                ret = f.Invoke(ret, v);
-                if ((bool)new IsReduced().Invoke(ret))
-                    return ((IDeref)ret).Deref();
+                ret = ((IFunction<object, object, object>)f).Invoke(ret, v);
+                if (ret is Reduced r)
+                    return r.Deref();
                 v = this._f.Invoke(v);
             }
         }

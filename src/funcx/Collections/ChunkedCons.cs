@@ -25,7 +25,6 @@ namespace FunctionalLibrary.Collections
                 ? new ChunkedCons(this._chunk.DropFirst(), this._more)
                 : this._more == null ? List.EMPTY
                 : this._more;
-
         public override IStack Pop() => throw new NotImplementedException();
         #endregion
 

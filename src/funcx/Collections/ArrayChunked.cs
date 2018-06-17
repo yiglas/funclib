@@ -36,14 +36,14 @@ namespace FunctionalLibrary.Collections
         public object Reduce(IFunction<object, object, object> f, object init)
         {
             var ret = f.Invoke(init, this._array[this._off]);
-            if ((bool)new IsReduced().Invoke(ret))
-                return ((IDeref)ret).Deref();
+            if (ret is Reduced r)
+                return r.Deref();
 
             for (int x = this._off + 1; x < this._end; x++)
             {
                 ret = f.Invoke(ret, this._array[x]);
-                if ((bool)new IsReduced().Invoke(ret))
-                    return ((IDeref)ret).Deref();
+                if (ret is Reduced r2)
+                    return r2.Deref();
             }
 
             return ret;

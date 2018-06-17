@@ -44,6 +44,11 @@ namespace FunctionalLibrary.Core
         TResult Invoke(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5);
     }
 
+    public interface IFunction<T1, T2, T3, T4, T5, T6, TResult> : IFunction
+    {
+        TResult Invoke(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6);
+    }
+
 
 
     public interface IFunctionParams<TRest, TResult> : IFunctionParams
@@ -74,5 +79,25 @@ namespace FunctionalLibrary.Core
     public interface IFunctionParams<T1, T2, T3, T4, T5, TRest, TResult> : IFunctionParams
     {
         TResult Invoke(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, params TRest[] rest);
+    }
+
+    public interface IFunctionParams<T1, T2, T3, T4, T5, T6, TRest, TResult> : IFunctionParams
+    {
+        TResult Invoke(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, params TRest[] rest);
+    }
+
+
+    public interface IMacroFunction : 
+        IFunction<object>
+    {
+        // empty
+    }
+
+    public interface ITransducerFunction :
+        IFunction<object>,
+        IFunction<object, object>,
+        IFunction<object, object, object>
+    {
+        // empty
     }
 }

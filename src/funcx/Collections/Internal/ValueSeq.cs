@@ -43,7 +43,6 @@ namespace FunctionalLibrary.Collections.Internal
             throw new InvalidCastException($"Cannot convert entry to {nameof(KeyValuePair)} or {nameof(System.Collections.DictionaryEntry)}");
         }
         public override ISeq Next() => Create(this._enumerative.Next());
-        public override IStack Pop() => throw new NotImplementedException();
         public override System.Collections.IEnumerator GetEnumerator()
         {
             if (this._enumerable == null) return base.GetEnumerator();
@@ -53,6 +52,7 @@ namespace FunctionalLibrary.Collections.Internal
 
             return null;
         }
+        public override IStack Pop() => throw new NotImplementedException();
         #endregion
     }
 }

@@ -8,9 +8,9 @@ namespace FunctionalLibrary.Tests.Core
     public class PlusShould
     {
         [Test]
-        public void Plus_should_return_one_when_passed_no_paramters()
+        public void Plus_should_return_zero_when_passed_no_paramters()
         {
-            var expected = 1;
+            var expected = 0;
             var actual = new Plus().Invoke();
 
             Assert.AreEqual(expected, actual);

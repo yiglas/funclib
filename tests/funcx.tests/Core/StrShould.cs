@@ -1,5 +1,4 @@
-﻿using FunctionalLibrary.Collections;
-using FunctionalLibrary.Core;
+﻿using FunctionalLibrary.Core;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -49,7 +48,7 @@ namespace FunctionalLibrary.Tests.Core
         public void Str_should_call_to_string_on_objects()
         {
             var expected = "[1 2 3]";
-            var actual = new Str().Invoke(Vector.Create(1, 2, 3));
+            var actual = new Str().Invoke(new Vector().Invoke(1, 2, 3));
 
             Assert.AreEqual(expected, actual);
         }

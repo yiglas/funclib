@@ -128,6 +128,7 @@ namespace FunctionalLibrary.Collections
                 ? this[i]
                 : notFound;
         public virtual ISeq Seq() => Count > 0 ? new VectorSeq(this, 0) : null;
+        public virtual ISeq RSeq() => Count > 0 ? new VectorRSeq(this, Count - 1) : null;
         public virtual object Peek() => Count > 0 ? this[Count - 1] : null;
         public virtual System.Collections.IEnumerator RangedEnumerator(int start, int end)
         {

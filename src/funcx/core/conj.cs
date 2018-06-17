@@ -11,7 +11,7 @@ namespace FunctionalLibrary.Core
         IFunction<object, object, object>,
         IFunctionParams<object, object, object, object>
     {
-        public object Invoke() => Vector.EMPTY;
+        public object Invoke() => Collections.Vector.EMPTY;
         public object Invoke(object coll) => coll;
         public object Invoke(object coll, object x) => 
             coll == null 

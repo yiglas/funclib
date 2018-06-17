@@ -1,4 +1,5 @@
 ﻿using FunctionalLibrary.Collections;
+using FunctionalLibrary.Collections.Internal;
 using System;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,9 @@ namespace FunctionalLibrary.Core
         public object Invoke(object map, object key, object val)
         {
             if (map == null)
-                return ArrayMap.Create(key, val);
+                return new ArrayMap().Invoke(key, val);
 
-            return (map as IAssociative).Assoc(key, val);
+            return ((IAssociative)map).Assoc(key, val);
         }
 
         public object Invoke(object map, object key, object val, params object[] kvs)

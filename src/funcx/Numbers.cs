@@ -19,6 +19,8 @@ namespace FunctionalLibrary
             return LONG;
         }
 
+        internal static object Max(object x, object y) => IsNaN(x) ? x : IsNaN(y) ? y : IsGT(x, y) ? x : y;
+        internal static object Min(object x, object y) => IsNaN(x) ? x : IsNaN(y) ? y : IsLT(x, y) ? x : y;
         internal static object Inc(object x) => Operation(x).Inc(x);
         internal static object Dec(object x) => Operation(x).Dec(x);
         internal static bool IsZero(object x) => Operation(x).IsZero(x);
@@ -77,6 +79,7 @@ namespace FunctionalLibrary
             else return 0;
         }
 
+        internal static bool IsNaN(object x) => (x is double d && double.IsNaN(d)) || (x is float f && float.IsNaN(f));
 
         interface IOperations
         {

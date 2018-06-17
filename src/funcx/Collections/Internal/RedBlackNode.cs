@@ -38,16 +38,16 @@ namespace FunctionalLibrary.Collections.Internal
 
         public override ITransientCollection ToTransient() => throw new InvalidOperationException();
 
-        public object Reduce(IFunction<object, object, object, object> f, object init)
+        public object Reduce(IFunction f, object init)
         {
             if (Left != null)
             {
                 init = Left.Reduce(f, init);
-                if ((bool)new IsReduced().Invoke(init))
+                if (init is Reduced)
                     return init;
             }
-            init = f.Invoke(init, Key, Value);
-            if ((bool)new IsReduced().Invoke(init))
+            init = ((IFunction<object, object, object, object>)f).Invoke(init, Key, Value);
+            if (init is Reduced)
                 return init;
             if (Right != null)
                 init = Right.Reduce(f, init);

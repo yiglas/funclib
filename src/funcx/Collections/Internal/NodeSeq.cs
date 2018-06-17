@@ -58,19 +58,19 @@ namespace FunctionalLibrary.Collections.Internal
         public override IStack Pop() => throw new NotImplementedException();
         #endregion
 
-        public static object Reduce(object[] array, IFunction<object, object, object, object> f, object init)
+        public static object Reduce(object[] array, IFunction f, object init)
         {
             for (int i = 0; i < array.Length; i += 2)
             {
                 if (array[i] != null)
-                    init = f.Invoke(init, array[i], array[i + 1]);
+                    init = ((IFunction<object, object, object, object>)f).Invoke(init, array[i], array[i + 1]);
                 else
                 {
                     var node = (INode)array[i + 1];
                     if (node != null)
                         init = node.Reduce(f, init);
                 }
-                if ((bool)new IsReduced().Invoke(init))
+                if (init is Reduced)
                     return init;
             }
 

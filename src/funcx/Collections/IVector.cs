@@ -9,6 +9,7 @@ namespace FunctionalLibrary.Collections
         IEditableCollection,
         IStack,
         ICounted,
+        IReversible,
         System.Collections.IList,
         System.Collections.IEnumerable
     {

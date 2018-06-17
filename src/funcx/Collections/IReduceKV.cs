@@ -6,6 +6,6 @@ namespace FunctionalLibrary.Collections
 {
     public interface IReduceKV
     {
-        object Reduce(IFunction<object, object, object, object> f, object init);
+        object ReduceKV(IFunction f, object init);
     }
 }

@@ -21,7 +21,7 @@ namespace FunctionalLibrary.Collections
         }
 
         #region Creates
-        public static Repeat Create(object val) => new Repeat(INFINITE, val);
+        public static ISeq Create(object val) => new Repeat(INFINITE, val);
         public static ISeq Create(long count, object val) => count <= 0 ? List.EMPTY : new Repeat(count, val);
         #endregion
 
@@ -37,49 +37,49 @@ namespace FunctionalLibrary.Collections
         public override IStack Pop() => throw new NotImplementedException();
         #endregion
 
-        public object Reduce(IFunction<object, object, object> f)
+        public object Reduce(IFunction f)
         {
             var ret = this._val;
             if (this._count == INFINITE)
             {
                 while (true)
                 {
-                    ret = f.Invoke(ret, this._val);
-                    if ((bool)new IsReduced().Invoke(ret))
-                        return ((IDeref)ret).Deref();
+                    ret = ((IFunction<object, object, object>)f).Invoke(ret, this._val);
+                    if (ret is Reduced r)
+                        return r.Deref();
                 }
             }
             else
             {
                 for (long i = 1;  i < this._count; i++)
                 {
-                    ret = f.Invoke(ret, this._val);
-                    if ((bool)new IsReduced().Invoke(ret))
-                        return ((IDeref)ret).Deref();
+                    ret = ((IFunction<object, object, object>)f).Invoke(ret, this._val);
+                    if (ret is Reduced r)
+                        return r.Deref();
                 }
 
                 return ret;
             }
         }
-        public object Reduce(IFunction<object, object, object> f, object init)
+        public object Reduce(IFunction f, object init)
         {
             var ret = init;
             if (this._count == INFINITE)
             {
                 while (true)
                 {
-                    ret = f.Invoke(ret, this._val);
-                    if ((bool)new IsReduced().Invoke(ret))
-                        return ((IDeref)ret).Deref();
+                    ret = ((IFunction<object, object, object>)f).Invoke(ret, this._val);
+                    if (ret is Reduced r)
+                        return r.Deref();
                 }
             }
             else
             {
                 for (long i = 0; i < this._count; i++)
                 {
-                    ret = f.Invoke(ret, this._val);
-                    if ((bool)new IsReduced().Invoke(ret))
-                        return ((IDeref)ret).Deref();
+                    ret = ((IFunction<object, object, object>)f).Invoke(ret, this._val);
+                    if (ret is Reduced r)
+                        return r.Deref();
                 }
 
                 return ret;

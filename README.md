@@ -2,70 +2,94 @@
 Functional Library for C# that follows the Clojure idiom
 
 To Add:
+
+
+
+merge with
+zipmap
+comparator
+sort
+sort by
+conj!
+dissoc!
+pop!
+disj!
+
+into1
+into-array
+read
+read line
+read string
+sub vec
+time
+
+is set
+set
+
+re pattern
+re matcher
+re groups
+re seq
+re matches
+re find
+rand
+rand int
+rand nth
+
+update
+
+is function
+is seqable
+is list
+is associative
+is sorted
+is counted
+trampoline
+completing
+transduce
+
+mapv
+filterv
+slurp
+spit
+rest
+reductions
+map indexed
+every pred
+some fn
+cat
+halt when
+dedupe
+run!
+
 thread
-apply
 assoc in
 case
 cond
 cond thread
-constantly
 distinct
 is distinct
-drop last
-drop while
-is double
-is every
-find
 flatten
-
-
 get in
-is identical
-
 if not 
 if some
-is int
 keep
-
+keep indexed
 memoize
-merge
-
 mapcat
-partition
 partition all
 partition by
-peek
-pop
 reduce kv
 replace
-is seq
-read
 slurp
 spit
-if some
-
-split at
-split with
-subs
-take last
 take nth
-take while
-
 update in
 is uuid
-
 while
 
 todo:
-1. create persistent list & list<t>
-2. create persistent dictionary & dictionary<k, v>
-3. create persistent vector & vector<v>
-4. create persistent set & set<t>
-5. create persistent structuremap & structuremap<k, v>
-7. create persistent queue<t>
-
-FunctionalLibrary.collection.generic
-FunctionalLibrary.collection
-FunctionalLibrary.core
-FunctionalLibrary.string
-FunctionalLibrary.core.async
+1. create persistent queue<t>
+2. change all invalidcastexception message to match .net invalid castexception message
+3. create a static class with properties for each of the functions so we do not need to say new 
+4. implement transducers

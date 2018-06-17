@@ -6,7 +6,7 @@ namespace FunctionalLibrary.Collections
 {
     public interface IReduce
     {
-        object Reduce(IFunction<object, object, object> f);
-        object Reduce(IFunction<object, object, object> f, object init);
+        object Reduce(IFunction f);
+        object Reduce(IFunction f, object init);
     }
 }

@@ -24,29 +24,29 @@ namespace FunctionalLibrary.Collections.Internal
         public override IStack Pop() => throw new NotImplementedException();
         #endregion
 
-        public object Reduce(IFunction<object, object, object> f)
+        public object Reduce(IFunction f)
         {
             object ret = this._v[this._i];
             for (int x = this._i - 1; x >= 0; x--)
             {
-                ret = f.Invoke(ret, this._v[x]);
-                if ((bool)new IsReduced().Invoke(ret))
-                    return ((IDeref)ret).Deref();
+                ret = ((IFunction<object, object, object>)f).Invoke(ret, this._v[x]);
+                if (ret is Reduced r)
+                    return r.Deref();
             }
 
             return ret;
         }
-        public object Reduce(IFunction<object, object, object> f, object init)
+        public object Reduce(IFunction f, object init)
         {
-            var ret = f.Invoke(init, this._v[this._i]);
+            var ret = ((IFunction<object, object, object>)f).Invoke(init, this._v[this._i]);
             for (int x = this._i - 1; x >= 0; x--)
             {
-                if ((bool)new IsReduced().Invoke(ret))
-                    return ((IDeref)ret).Deref();
-                ret = f.Invoke(ret, this._v[x]);
+                if (ret is Reduced r)
+                    return r.Deref();
+                ret = ((IFunction<object, object, object>)f).Invoke(ret, this._v[x]);
             }
-            if ((bool)new IsReduced().Invoke(ret))
-                return ((IDeref)ret).Deref();
+            if (ret is Reduced r2)
+                return r2.Deref();
 
             return ret;
         }

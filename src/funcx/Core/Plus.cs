@@ -10,7 +10,7 @@ namespace FunctionalLibrary.Core
         IFunction<object, object, object>,
         IFunctionParams<object, object, object, object>
     {
-        public object Invoke() => 1;
+        public object Invoke() => 0;
         public object Invoke(object x) => 
             Numbers.IsNumber(x) 
                 ? x 

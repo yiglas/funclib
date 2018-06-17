@@ -13,7 +13,7 @@ namespace FunctionalLibrary.Collections
     {
         static readonly AtomicReference<Thread> NoEdit = new AtomicReference<Thread>();
         internal static readonly VectorNode EmptyNode = new VectorNode(NoEdit, new object[32]);
-        public static readonly IVector EMPTY = new Vector(0, 5, EmptyNode, new object[32]);
+        public static readonly IVector EMPTY = new Vector(0, 5, EmptyNode, new object[0]);
 
         internal int Shift { get; }
         internal VectorNode Root { get; }
@@ -64,6 +64,30 @@ namespace FunctionalLibrary.Collections
 
         public static Vector Create(params object[] init)
         {
+            if (init.Length <= 32)
+                return new Vector(init.Length, 5, EmptyNode, init);
+
+            var ret = EMPTY.ToTransient();
+            foreach (var item in init)
+                ret = ret.Conj(item);
+
+            return ret.ToPersistent() as Vector;
+        }
+
+        public static Vector Create(System.Collections.IEnumerable init)
+        {
+            if (init is IList l)
+            {
+                int size = l.Count;
+                if (size <= 32)
+                {
+                    var arr = new object[size];
+                    l.CopyTo(arr, 0);
+
+                    return new Vector(size, 5, EmptyNode, arr);
+                }
+            }
+
             var ret = EMPTY.ToTransient();
             foreach (var item in init)
                 ret = ret.Conj(item);
@@ -111,24 +135,24 @@ namespace FunctionalLibrary.Collections
         {
             if (Count - TailOff() < 32)
             {
-                var newTail = new object[this.Tail.Length + 1];
-                System.Array.Copy(this.Tail, newTail, this.Tail.Length);
-                newTail[this.Tail.Length] = o;
-                return new Vector(Count + 1, this.Shift, this.Root, newTail);
+                var newTail = new object[Tail.Length + 1];
+                System.Array.Copy(Tail, newTail, Tail.Length);
+                newTail[Tail.Length] = o;
+                return new Vector(Count + 1, Shift, Root, newTail);
             }
 
             VectorNode newRoot;
-            var tailNode = new VectorNode(this.Root.Edit, this.Tail);
-            int newShift = this.Shift;
+            var tailNode = new VectorNode(Root.Edit, Tail);
+            int newShift = Shift;
 
-            if ((Count >> 5) > (1 << this.Shift))
+            if ((Count >> 5) > (1 << Shift))
             {
-                newRoot = new VectorNode(this.Root.Edit);
-                newRoot.Array[0] = this.Root;
-                newRoot.Array[1] = NewPath(this.Root.Edit, this.Shift, tailNode);
+                newRoot = new VectorNode(Root.Edit);
+                newRoot.Array[0] = Root;
+                newRoot.Array[1] = NewPath(Root.Edit, Shift, tailNode);
                 newShift += 5;
             }
-            else newRoot = PushTail(this.Shift, this.Root, tailNode);
+            else newRoot = PushTail(Shift, Root, tailNode);
 
             return new Vector(Count + 1, newShift, newRoot, new object[] { o });
         }
@@ -253,29 +277,29 @@ namespace FunctionalLibrary.Collections
             }
         }
 
-        public object Reduce(IFunction<object, object, object> f)
+        public object Reduce(IFunction f)
         {
             object init;
             if (Count > 0) init = ToArray(0)[0];
             else
-                return f.Invoke(null, null);
+                return ((IFunction<object>)f).Invoke();
 
             int step = 0;
             for (int i = 0; i < Count; i += step)
             {
                 var array = ToArray(i);
-                for (int j = (i == 0 ? 1 : 0); i < array.Length; ++j)
+                for (int j = (i == 0 ? 1 : 0); j < array.Length; ++j)
                 {
-                    init = f.Invoke(init, array[j]);
-                    if ((bool)new IsReduced().Invoke(init))
-                        return ((IDeref)init).Deref();
+                    init = ((IFunction<object, object, object>)f).Invoke(init, array[j]);
+                    if (init is Reduced r)
+                        return r.Deref();
                 }
                 step = array.Length;
             }
 
             return init;
         }
-        public object Reduce(IFunction<object, object, object> f, object init)
+        public object Reduce(IFunction f, object init)
         {
             int step = 0;
             for (int i = 0; i < Count; i += step)
@@ -283,16 +307,16 @@ namespace FunctionalLibrary.Collections
                 var array = ToArray(i);
                 for (int j = 0; j < array.Length; ++j)
                 {
-                    init = f.Invoke(init, array[j]);
-                    if ((bool)new IsReduced().Invoke(init))
-                        return ((IDeref)init).Deref();
+                    init = ((IFunction<object, object, object>)f).Invoke(init, array[j]);
+                    if (init is Reduced r)
+                        return r.Deref();
                 }
                 step = array.Length;
             }
 
             return init;
         }
-        public object Reduce(IFunction<object, object, object, object> f, object init)
+        public object ReduceKV(IFunction f, object init)
         {
             int step = 0;
             for (int i = 0; i < Count; i += step)
@@ -300,9 +324,9 @@ namespace FunctionalLibrary.Collections
                 var array = ToArray(i);
                 for (int j = 0; j < array.Length; j++)
                 {
-                    init = f.Invoke(init, j + 1, array[j]);
-                    if ((bool)new IsReduced().Invoke(init))
-                        return ((IDeref)init).Deref();
+                    init = ((IFunction<object, object, object, object>)f).Invoke(init, j + 1, array[j]);
+                    if (init is Reduced r)
+                        return r.Deref();
                 }
                 step = array.Length;
             }

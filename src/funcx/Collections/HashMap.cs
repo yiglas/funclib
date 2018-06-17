@@ -176,17 +176,18 @@ namespace FunctionalLibrary.Collections
                 yield return root.Current;
         }
 
-        public object Reduce(IFunction<object, object, object, object> f, object init)
+        public object ReduceKV(IFunction f, object init)
         {
-            init = HasNull ? f.Invoke(init, null, NullValue) : init;
-            if ((bool)new IsReduced().Invoke(init))
-                return ((IDeref)init).Deref();
+            init = HasNull ? ((IFunction<object, object, object, object>)f).Invoke(init, null, NullValue) : init;
+
+            if (init is Reduced r)
+                return r.Deref();
 
             if (Root != null)
             {
                 init = Root.Reduce(f, init);
-                if ((bool)new IsReduced().Invoke(init))
-                    return ((IDeref)init).Deref();
+                if (init is Reduced r2)
+                    return r2.Deref();
                 else
                     return init;
             }
