@@ -10,7 +10,7 @@ namespace FunctionalLibrary.Core
         {
             if ((bool)new Truthy().Invoke(new Some().Invoke(new Identity(), maps)))
             {
-                new Reduce1().Invoke(new Function<object, object, object>((_1, _2) => new Conj().Inovke(new Or().Inovke(_1, new HashMap().Invoke()), _2)), maps);
+                new Reduce1().Invoke(new Function<object, object, object>((_1, _2) => new Conj().Invoke(new Or().Invoke(_1, new HashMap().Invoke()), _2)), maps);
             }
 
             return null;

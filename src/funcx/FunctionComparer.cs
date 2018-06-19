@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using FunctionalLibrary.Core;
+using System;
 using System.Text;
 
 namespace FunctionalLibrary
 {
-    /// <summary>
-    /// Compares two items using a <see cref="Func{T1, T2, TResult}"/> with the TResult a boolean.
-    /// </summary>
-    /// <typeparam name="T">The type of objects to compare.</typeparam>
-    class FunctionComparer<T> : IComparer<T>
+    class FunctionComparer : System.Collections.IComparer
     {
-        Func<T, T, int> _comparator;
+        IFunction<object, object, object> _comparator;
 
-        public FunctionComparer(Func<T, T, int> comparator)
+        public FunctionComparer(object comparator)
         {
-            this._comparator = comparator;
+            this._comparator = (IFunction<object, object, object>)comparator;
         }
 
-        public int Compare(T x, T y) => this._comparator(x, y);
+        public int Compare(object x, object y) => Numbers.ConvertToInt(this._comparator.Invoke(x, y));
     }
 }

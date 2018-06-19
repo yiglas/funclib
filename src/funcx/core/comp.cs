@@ -5,53 +5,38 @@ using System.Text;
 namespace FunctionalLibrary.Core
 {
     public class Comp :
-        IFunction<IFunction<object>, IFunction<object>>,
-        IFunction<IFunction<object, object>, IFunction<object>, IFunction<object>>,
-        IFunction<IFunction<object, object>, IFunction<object, object>, IFunction<object, object>>,
-        IFunction<IFunction<object, object>, IFunction<object, object, object>, IFunction<object, object, object>>,
-        IFunction<IFunction<object, object>, IFunction<object, object, object, object>, IFunction<object, object, object, object>>,
-        IFunction<IFunction<object, object>, IFunctionParams<object, object, object, object, object>, IFunctionParams<object, object, object, object, object>>,
-
-        IFunction<IFunction<object, object>, IFunction<object, object>, IFunction<object>, IFunction<object>>,
-        IFunction<IFunction<object, object>, IFunction<object, object>, IFunction<object, object>, IFunction<object, object>>,
-        IFunction<IFunction<object, object>, IFunction<object, object>, IFunction<object, object, object>, IFunction<object, object, object>>,
-        IFunction<IFunction<object, object>, IFunction<object, object>, IFunction<object, object, object, object>, IFunction<object, object, object, object>>,
-        IFunction<IFunction<object, object>, IFunction<object, object>, IFunctionParams<object, object, object, object, object>, IFunctionParams<object, object, object, object, object>>,
-
-        IFunction<IFunction<object, object>, IFunction<object, object>, IFunction<object, object>, IFunction<object>, IFunction<object>>,
-        IFunction<IFunction<object, object>, IFunction<object, object>, IFunction<object, object>, IFunction<object, object>, IFunction<object, object>>,
-        IFunction<IFunction<object, object>, IFunction<object, object>, IFunction<object, object>, IFunction<object, object, object>, IFunction<object, object, object>>,
-        IFunction<IFunction<object, object>, IFunction<object, object>, IFunction<object, object>, IFunction<object, object, object, object>, IFunction<object, object, object, object>>,
-        IFunction<IFunction<object, object>, IFunction<object, object>, IFunction<object, object>, IFunctionParams<object, object, object, object, object>, IFunctionParams<object, object, object, object, object>>
+        IFunction<object>,
+        IFunction<object, object>,
+        IFunction<object, object, object>,
+        IFunctionParams<object, object, object, object>
     {
-        public IFunction<object> Invoke(IFunction<object> f) => f;
-        public IFunction<object> Invoke(IFunction<object, object> f, IFunction<object> g) => new Function<object>(() => f.Invoke(g.Invoke()));
-        public IFunction<object, object> Invoke(IFunction<object, object> f, IFunction<object, object> g) => new Function<object, object>(x => f.Invoke(g.Invoke(x)));
-        public IFunction<object, object, object> Invoke(IFunction<object, object> f, IFunction<object, object, object> g) =>
-            new Function<object, object, object>((x, y) => f.Invoke(g.Invoke(x, y)));
-        public IFunction<object, object, object, object> Invoke(IFunction<object, object> f, IFunction<object, object, object, object> g) =>
-            new Function<object, object, object, object>((x, y, z) => f.Invoke(g.Invoke(x, y, z)));
-        public IFunctionParams<object, object, object, object, object> Invoke(IFunction<object, object> f, IFunctionParams<object, object, object, object, object> g) =>
-            new FunctionParams<object, object, object, object, object>((x, y, z, args) => f.Invoke(g.Invoke(x, y, z, args)));
+        public object Invoke() => new Identity();
+        public object Invoke(object f) => f;
+        public object Invoke(object f, object g) => new Function(f, g);
+        public object Invoke(object f, object g, params object[] fs) =>
+            new Reduce1().Invoke(this, new ListS().Invoke(f, g, fs));
 
-        public IFunction<object> Invoke(IFunction<object, object> f, IFunction<object, object> g, IFunction<object> h) => new Function<object>(() => f.Invoke(g.Invoke(h.Invoke())));
-        public IFunction<object, object> Invoke(IFunction<object, object> f, IFunction<object, object> g, IFunction<object, object> h) =>
-            new Function<object, object>(x => f.Invoke(g.Invoke(h.Invoke(x))));
-        public IFunction<object, object, object> Invoke(IFunction<object, object> f, IFunction<object, object> g, IFunction<object, object, object> h) =>
-            new Function<object, object, object>((x, y) => f.Invoke(g.Invoke(h.Invoke(x, y))));
-        public IFunction<object, object, object, object> Invoke(IFunction<object, object> f, IFunction<object, object> g, IFunction<object, object, object, object> h) =>
-            new Function<object, object, object, object>((x, y, z) => f.Invoke(g.Invoke(h.Invoke(x, y, z))));
-        public IFunctionParams<object, object, object, object, object> Invoke(IFunction<object, object> f, IFunction<object, object> g, IFunctionParams<object, object, object, object, object> h) =>
-            new FunctionParams<object, object, object, object, object>((x, y, z, args) => f.Invoke(g.Invoke(h.Invoke(x, y, z, args))));
+        public class Function :
+            IFunction<object>,
+            IFunction<object, object>,
+            IFunction<object, object, object>,
+            IFunction<object, object, object, object>,
+            IFunctionParams<object, object, object, object, object>
+        {
+            object _f;
+            object _g;
 
-        public IFunction<object> Invoke(IFunction<object, object> f, IFunction<object, object> g, IFunction<object, object> h, IFunction<object> i) => new Function<object>(() => f.Invoke(g.Invoke(h.Invoke(i.Invoke()))));
-        public IFunction<object, object> Invoke(IFunction<object, object> f, IFunction<object, object> g, IFunction<object, object> h, IFunction<object, object> i) => 
-            new Function<object, object>(x => f.Invoke(g.Invoke(h.Invoke(i.Invoke(x)))));
-        public IFunction<object, object, object> Invoke(IFunction<object, object> f, IFunction<object, object> g, IFunction<object, object> h, IFunction<object, object, object> i) =>
-            new Function<object, object, object>((x, y) => f.Invoke(g.Invoke(h.Invoke(i.Invoke(x, y)))));
-        public IFunction<object, object, object, object> Invoke(IFunction<object, object> f, IFunction<object, object> g, IFunction<object, object> h, IFunction<object, object, object, object> i) =>
-            new Function<object, object, object, object>((x, y, z) => f.Invoke(g.Invoke(h.Invoke(i.Invoke(x, y, z)))));
-        public IFunctionParams<object, object, object, object, object> Invoke(IFunction<object, object> f, IFunction<object, object> g, IFunction<object, object> h, IFunctionParams<object, object, object, object, object> i) =>
-            new FunctionParams<object, object, object, object, object>((x, y, z, args) => f.Invoke(g.Invoke(h.Invoke(i.Invoke(x, y, z, args)))));
+            public Function(object f, object g)
+            {
+                this._f = f;
+                this._g = g;
+            }
+
+            public object Invoke() => ((IFunction<object, object>)this._f).Invoke(((IFunction<object>)this._g).Invoke());
+            public object Invoke(object x) => ((IFunction<object, object>)this._f).Invoke(((IFunction<object, object>)this._g).Invoke(x));
+            public object Invoke(object x, object y) => ((IFunction<object, object>)this._f).Invoke(((IFunction<object, object, object>)this._g).Invoke(x, y));
+            public object Invoke(object x, object y, object z) => ((IFunction<object, object>)this._f).Invoke(((IFunction<object, object, object, object>)this._g).Invoke(x, y, z));
+            public object Invoke(object x, object y, object z, params object[] args) => ((IFunction<object, object>)this._f).Invoke(new Apply().Invoke(this._g, x, y, z, args));
+        }
     }
 }

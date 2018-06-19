@@ -28,7 +28,7 @@ namespace FunctionalLibrary.Core
                 : coll is IVector v ? v[index]
                 : coll is IChunked c ? c[index]
                 : coll is System.Collections.IList l ? l[index]
-                : coll is ReMatcher re ? re.Group(index)
+                : coll is FunctionalLibrary.ReMatcher re ? re.Group(index)
                 : coll is Match m ? m.Groups[index]
                 : coll is System.Collections.DictionaryEntry de ? index == 0 ? de.Key : index == 1 ? de.Value : throw new ArgumentOutOfRangeException(nameof(index))
                 : coll is KeyValuePair kvp ? index == 0 ? kvp.Key : index == 1 ? kvp.Value : throw new ArgumentOutOfRangeException(nameof(index))
@@ -44,7 +44,7 @@ namespace FunctionalLibrary.Core
                 : coll is IVector v ? v[index, notFound]
                 : coll is IChunked c ? c[index, notFound]
                 : coll is System.Collections.IList l ? l[index]
-                : coll is ReMatcher re ? re.IsUnrealizedOrFailed ? notFound : index < re.GroupCount() ? re.Group(index) : notFound
+                : coll is FunctionalLibrary.ReMatcher re ? re.IsUnrealizedOrFailed ? notFound : index < re.GroupCount() ? re.Group(index) : notFound
                 : coll is Match m ? index < m.Groups.Count ? m.Groups[index] : notFound
                 : coll is System.Collections.DictionaryEntry de ? index == 0 ? de.Key : index == 1 ? de.Value : notFound
                 : coll is KeyValuePair kvp ? index == 0 ? kvp.Key : index == 1 ? kvp.Value : notFound
