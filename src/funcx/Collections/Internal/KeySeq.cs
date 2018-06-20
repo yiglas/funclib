@@ -40,7 +40,7 @@ namespace FunctionalLibrary.Collections.Internal
             else if (entry is System.Collections.DictionaryEntry de)
                 return de.Key;
 
-            throw new InvalidCastException($"Cannot convert entry to {nameof(KeyValuePair)} or {nameof(System.Collections.DictionaryEntry)}");
+            throw new InvalidCastException($"Unable to cast object of type '{entry.GetType().FullName}' to type '{typeof(KeyValuePair).FullName}'.");
         }
         public override ISeq Next() => Create(this._enumerative.Next());
         public override IStack Pop() => throw new NotImplementedException();

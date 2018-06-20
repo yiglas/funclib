@@ -31,7 +31,7 @@ namespace FunctionalLibrary.Core
                 if (next != null)
                     return Invoke(y, next.First(), next.More());
 
-                return Invoke(y, new First().Invoke(more));
+                return Invoke(y, next.First());
             }
 
             return false;

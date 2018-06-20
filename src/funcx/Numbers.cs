@@ -31,6 +31,9 @@ namespace FunctionalLibrary
         internal static object Subtract(object x, object y) => Operation(x).Combine(Operation(y)).Subtract(x, y);
         internal static object Multiply(object x, object y) => Operation(x).Combine(Operation(y)).Multiply(x, y);
         internal static object Divide(object x, object y) => Operation(x).Combine(Operation(y)).Divide(x, y);
+
+        internal static object Remainder(object x, object y) => Operation(x).Combine(Operation(y)).Remainder(x, y);
+
         internal static bool IsLT(object x, object y) => Operation(x).Combine(Operation(y)).IsLT(x, y);
         internal static bool IsLTE(object x, object y) => Operation(x).Combine(Operation(y)).IsLTE(x, y);
         internal static bool IsGT(object x, object y) => Operation(x).Combine(Operation(y)).IsGT(x, y);
@@ -98,6 +101,7 @@ namespace FunctionalLibrary
             object Subtract(object x, object y);
             object Multiply(object x, object y);
             object Divide(object x, object y);
+            object Remainder(object x, object y);
 
             bool IsEqual(object x, object y);
             bool IsLT(object x, object y);
@@ -123,6 +127,7 @@ namespace FunctionalLibrary
             public object Subtract(object x, object y) => ConvertToLong(x) - ConvertToLong(y);
             public object Multiply(object x, object y) => ConvertToLong(x) * ConvertToLong(y);
             public object Divide(object x, object y) => ConvertToLong(x) / ConvertToLong(y);
+            public object Remainder(object x, object y) => ConvertToLong(x) % ConvertToLong(y);
 
             public bool IsEqual(object x, object y) => ConvertToLong(x) == ConvertToLong(y);
             public bool IsLT(object x, object y) => ConvertToLong(x) < ConvertToLong(y);
@@ -148,6 +153,7 @@ namespace FunctionalLibrary
             public object Subtract(object x, object y) => ConvertToDouble(x) - ConvertToDouble(y);
             public object Multiply(object x, object y) => ConvertToDouble(x) * ConvertToDouble(y);
             public object Divide(object x, object y) => ConvertToDouble(x) / ConvertToDouble(y);
+            public object Remainder(object x, object y) => ConvertToDouble(x) % ConvertToDouble(y);
 
             public bool IsEqual(object x, object y) => ConvertToDouble(x) == ConvertToDouble(y);
             public bool IsLT(object x, object y) => ConvertToDouble(x) < ConvertToDouble(y);
@@ -180,7 +186,7 @@ namespace FunctionalLibrary
             }
             catch (Exception)
             {
-                throw new InvalidCastException($"{x.GetType().FullName} cannot be casted to Number.");
+                throw new InvalidCastException($"Unable to cast object of type '{x.GetType().FullName}' to type 'Number'.");
             }
         }
 
@@ -208,7 +214,7 @@ namespace FunctionalLibrary
             }
             catch (Exception)
             {
-                throw new InvalidCastException($"{x.GetType().FullName} cannot be casted to Number.");
+                throw new InvalidCastException($"Unable to cast object of type '{x.GetType().FullName}' to type 'Number'.");
             }
 }
 
@@ -236,7 +242,7 @@ namespace FunctionalLibrary
             }
             catch (Exception)
             {
-                throw new InvalidCastException($"{x.GetType().FullName} cannot be casted to Number.");
+                throw new InvalidCastException($"Unable to cast object of type '{x.GetType().FullName}' to type 'Number'.");
             }
         }
 
@@ -252,7 +258,7 @@ namespace FunctionalLibrary
                 || xt == typeof(ushort)
                 || xt == typeof(sbyte)) return ConvertToLong(x);
 
-            throw new ArgumentException($"Bit operations are not supported for type {xt}");
+            throw new InvalidCastException($"Unable to cast object of type '{x.GetType().FullName}' to type '{typeof(long).FullName}'.");
         }
     }
 }

@@ -14,7 +14,7 @@ namespace FunctionalLibrary.Core
                 : coll is System.Collections.IEnumerable e ? IEnumerableToArray(e)
                 : coll is string s ? StringToArray(s)
                 : coll.GetType().IsArray ? ObjectToArray(coll)
-                : throw new InvalidOperationException($"Unable to convert {coll.GetType()} to object[].");
+                : throw new InvalidCastException($"Unable to cast object of type '{coll.GetType().FullName}' to type 'object[]'.");
 
 
         bool TryConvertArray(object coll, out object[] a)

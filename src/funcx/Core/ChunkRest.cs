@@ -7,9 +7,6 @@ namespace FunctionalLibrary.Core
     public class ChunkRest :
         IFunction<object, object>
     {
-        public object Invoke(object s) =>
-            s is IChunkedSeq c
-                ? c.ChunkedMore()
-                : throw new InvalidCastException($"{s.GetType().FullName} cannot be casted to {typeof(IChunkedSeq).FullName}");
+        public object Invoke(object s) => ((IChunkedSeq)s).ChunkedMore();
     }
 }

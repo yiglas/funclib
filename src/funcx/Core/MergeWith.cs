@@ -1,8 +1,7 @@
-﻿using FunctionalLibrary.Core;
-using System;
+﻿using System;
 using System.Text;
 
-namespace FunctionalLibrary
+namespace FunctionalLibrary.Core
 {
     public class MergeWith :
         IFunctionParams<object, object, object>

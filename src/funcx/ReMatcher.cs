@@ -136,7 +136,7 @@
                 throw new InvalidOperationException("Attempt to call group on a non-realized or failed match.");
 
             if (groupIndex < 0 || groupIndex >= this._match.Groups.Count)
-                throw new ArgumentOutOfRangeException("groupIndex", "Attempt to call group with an index out of bounds.");
+                throw new ArgumentOutOfRangeException(nameof(groupIndex), "Attempt to call group with an index out of bounds.");
 
             return this._match.Groups[groupIndex].Value;
         }

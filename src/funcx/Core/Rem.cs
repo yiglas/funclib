@@ -3,9 +3,9 @@ using System.Text;
 
 namespace FunctionalLibrary.Core
 {
-    public class ChunkAppend :
+    public class Rem :
         IFunction<object, object, object>
     {
-        public object Invoke(object b, object x) => ((Collections.ChunkBuffer)b).Add(x);
+        public object Invoke(object num, object div) => Numbers.Remainder(num, div);
     }
 }

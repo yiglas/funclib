@@ -7,10 +7,9 @@ namespace FunctionalLibrary.Core
     public class ChunkCons :
         IFunction<object, object, object>
     {
-        public object Invoke(object chuck, object rest) =>
-            (bool)new IsZero().Invoke(new Count().Invoke(chuck))
+        public object Invoke(object chunk, object rest) =>
+            (bool)new IsZero().Invoke(new Count().Invoke(chunk))
                 ? rest
-                : chuck is IChunked c && rest is ISeq r ? new ChunkedCons(c, r)
-                : throw new InvalidCastException($"{chuck.GetType().FullName} cannot be casted to {typeof(IChunked).FullName}");
+                : new ChunkedCons((IChunked)chunk, (ISeq)rest);
     }
 }

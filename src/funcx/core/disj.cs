@@ -11,10 +11,7 @@ namespace FunctionalLibrary.Core
         IFunctionParams<object, object, object, object>
     {
         public object Invoke(object set) => set;
-        public object Invoke(object set, object key) => 
-            set is ISet s 
-                ? s.Disj(key)
-                : throw new InvalidCastException($"{set.GetType().FullName} cannot be casted to {typeof(ISet).FullName}");
+        public object Invoke(object set, object key) => ((ISet)set).Disj(key);
 
         public object Invoke(object set, object key, params object[] ks)
         {

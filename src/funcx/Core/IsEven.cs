@@ -10,6 +10,6 @@ namespace FunctionalLibrary.Core
         public object Invoke(object n) =>
             (bool)new IsInteger().Invoke(n)
                 ? new IsZero().Invoke(new BitAnd().Invoke(Numbers.ConvertToLong(n), 1))
-                : throw new InvalidCastException($"{n.GetType().FullName} cannot be casted to an Integer.");
+                : throw new InvalidCastException($"Unable to cast object of type '{n.GetType().FullName}' to type '{typeof(int).FullName}'.");
     }
 }

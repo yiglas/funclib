@@ -13,11 +13,10 @@ namespace FunctionalLibrary.Core
     {
         public object Invoke() => Collections.Vector.EMPTY;
         public object Invoke(object coll) => coll;
-        public object Invoke(object coll, object x) => 
-            coll == null 
-                ? new Collections.List(x) 
-                : coll is ICollection c ? c.Cons(x)
-                : throw new InvalidCastException();
+        public object Invoke(object coll, object x) =>
+            coll == null
+                ? new Collections.List(x)
+                : ((ICollection)coll).Cons(x);
 
         public object Invoke(object coll, object x, params object[] xs)
         {

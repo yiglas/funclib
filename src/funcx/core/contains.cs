@@ -16,6 +16,7 @@ namespace FunctionalLibrary.Core
                 : coll is String || coll.GetType().IsArray ? int.TryParse(key.ToString(), out int i) ? i >= 0 && i < (int)new Count().Invoke(coll) : false
                 : coll is ITransientSet ts ? ts.Contains(key)
                 : coll is ITransientAssociative ta ? ta.ContainsKey(key)
+                : coll is ISet s ? s.Contains(key)
                 : throw new ArgumentException($"{nameof(Contains)} is not supported on type {coll.GetType().Name}");
     }
 }

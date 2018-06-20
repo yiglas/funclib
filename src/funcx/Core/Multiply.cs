@@ -14,7 +14,7 @@ namespace FunctionalLibrary.Core
         public object Invoke(object x) =>
             Numbers.IsNumber(x)
                 ? x
-                : throw new InvalidCastException($"{x.GetType().FullName} cannot be casted to Number.");
+                : throw new InvalidCastException($"Unable to cast object of type '{x.GetType().FullName}' to type 'Number'.");
         public object Invoke(object x, object y) => Numbers.Multiply(x, y);
         public object Invoke(object x, object y, params object[] more) => new Reduce1().Invoke(this, Invoke(x, y), more);
     }
