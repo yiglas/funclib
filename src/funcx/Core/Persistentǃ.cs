@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FunctionalLibrary.Core
 {
-    public class Persistent :
+    public class Persistentǃ :
         IFunction<object, object>
     {
         public object Invoke(object coll) => ((ITransientCollection)coll).ToPersistent();

@@ -4,11 +4,34 @@ using System.Text;
 
 namespace FunctionalLibrary.Core
 {
+    /// <summary>
+    /// Unary "&" operator returns the address of its operand. Binary "&" operators are 
+    /// predefined for the integral types and <see cref="bool"/>.
+    /// </summary>
     public class BitAnd :
         IFunction<object, object, object>,
         IFunctionParams<object, object, object, object>
     {
+        /// <summary>
+        /// Unary "&" operator returns the address of its operand. Binary "&" operators are 
+        /// predefined for the integral types and <see cref="bool"/>.
+        /// </summary>
+        /// <param name="x">Left hand side of the operand.</param>
+        /// <param name="y">Right hand side of the operand.</param>
+        /// <returns>
+        /// Returns the <see cref="int"/> value of the operations.
+        /// </returns>
         public object Invoke(object x, object y) => Numbers.And(x, y);
+        /// <summary>
+        /// Unary "&" operator returns the address of its operand. Binary "&" operators are 
+        /// predefined for the integral types and <see cref="bool"/>.
+        /// </summary>
+        /// <param name="x">Left hand side of the operand.</param>
+        /// <param name="y">Right hand side of the operand.</param>
+        /// <param name="more">Rest of the </param>
+        /// <returns>
+        /// Returns the <see cref="int"/> value of the operations.
+        /// </returns>
         public object Invoke(object x, object y, params object[] more) => new Reduce1().Invoke(this, Invoke(x, y), more);
     }
 }

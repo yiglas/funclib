@@ -4,6 +4,9 @@ using System.Text;
 
 namespace FunctionalLibrary.Core
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class BitAndNot :
         IFunction<object, object, object>,
         IFunctionParams<object, object, object, object>

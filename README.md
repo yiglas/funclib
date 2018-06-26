@@ -1,4 +1,18 @@
-# FunctionalLibrary
+﻿# FunctionalLibrary
+
+Functions to are not pure are marked with http://www.fileformat.info/info/unicode/char/01c3/index.htm
+
+http://www.fileformat.info/info/unicode/char/ffda/index.htm
+
+http://www.fileformat.info/info/unicode/char/1405/index.htm 
+http://www.fileformat.info/info/unicode/char/1433/index.htm
+http://www.fileformat.info/info/unicode/char/2d67/index.htm
+ﭸ
+
+http://www.fileformat.info/info/unicode/char/ffda/index.htm
+
+http://www.fileformat.info/info/unicode/char/2d67/index.htm
+
 Functional Library for C# that follows the Clojure idiom
 
 To Add:

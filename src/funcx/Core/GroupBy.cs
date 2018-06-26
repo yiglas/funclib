@@ -8,12 +8,12 @@ namespace FunctionalLibrary.Core
         IFunction<object, object, object>
     {
         public object Invoke(object f, object coll) =>
-            new Persistent().Invoke(
+            new Persistentǃ().Invoke(
                 new Reduce().Invoke(
                     new Function<object, object, object>((ret, x) =>
                     {
                         var k = ((IFunction<object, object>)f).Invoke(x);
-                        return new AssocT().Invoke(ret, k, new Conj().Invoke(new Get().Invoke(ret, k, new Vector().Invoke()), x));
+                        return new Assocǃ().Invoke(ret, k, new Conj().Invoke(new Get().Invoke(ret, k, new Vector().Invoke()), x));
                     }), new Transient().Invoke(new HashMap().Invoke()), coll));
     }
 

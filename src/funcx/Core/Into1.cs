@@ -9,7 +9,7 @@ namespace FunctionalLibrary.Core
     {
         public object Invoke(object to, object from) =>
             to is IEditableCollection e
-                ? new Persistent().Invoke(new Reduce1().Invoke(new ConjT(), new Transient().Invoke(to), from))
+                ? new Persistentǃ().Invoke(new Reduce1().Invoke(new ConjT(), new Transient().Invoke(to), from))
                 : new Reduce1().Invoke(new Conj(), to, from);
     }
 }

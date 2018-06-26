@@ -24,7 +24,7 @@ namespace FunctionalLibrary.Core
         public object Invoke()
         {
             for (int i = 0; i < this._n; i++)
-                this._func.Invoke(this._n);
+                this._func.Invoke(i);
 
             return null;
         }
