@@ -10,6 +10,7 @@ namespace FunctionalLibrary.Collections
         IStack,
         ICounted,
         IReversible,
+        IComparable,
         System.Collections.IList,
         System.Collections.IEnumerable
     {

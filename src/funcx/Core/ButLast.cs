@@ -14,7 +14,9 @@ namespace FunctionalLibrary.Core
         /// Returns a <see cref="Seq"/> of all but the last item. In linear time.
         /// </summary>
         /// <param name="coll">List of times to process.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns a <see cref="ISeq"/> of all items except for the last item.
+        /// </returns>
         public object Invoke(object coll)
         {
             return loop(Collections.Vector.EMPTY, coll);

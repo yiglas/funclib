@@ -4,9 +4,19 @@ using System.Text;
 
 namespace FunctionalLibrary.Core
 {
+    /// <summary>
+    /// Returns the current state of ref.
+    /// </summary>
     public class Deref :
         IFunction<object, object>
     {
-        public object Invoke(object @ref) => @ref is IDeref d ? d.Deref() : null;
+        /// <summary>
+        /// Returns the current state of ref.
+        /// </summary>
+        /// <param name="ref">Object that implements the <see cref="IDeref"/> interface.</param>
+        /// <returns>
+        /// Returns the current state of ref.
+        /// </returns>
+        public object Invoke(object @ref) => ((IDeref)@ref).Deref();
     }
 }

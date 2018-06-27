@@ -15,7 +15,7 @@ namespace FunctionalLibrary.Core
         /// </summary>
         /// <param name="x">Object to get the type of.</param>
         /// <returns>
-        /// Returns the type of object x.
+        /// Returns the <see cref="Type"/> of object x.
         /// </returns>
         public object Invoke(object x) =>
             x == null

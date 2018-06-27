@@ -4,9 +4,30 @@ using System.Text;
 
 namespace FunctionalLibrary.Core
 {
+    /// <summary>
+    /// Returns the number of items in the collection. Passing null as coll returns 0.
+    /// </summary>
     public class Count :
         IFunction<object, object>
     {
+        /// <summary>
+        /// Returns the number of items in the collection. Passing null as coll returns 0.
+        /// </summary>
+        /// <param name="coll">Object to count the number of items exists in the collection.</param>
+        /// <remarks>
+        /// <code>coll</code> can be:
+        /// - <see cref="ICounted"/>
+        /// - <see cref="ICollection"/>
+        /// - <see cref="string"/>
+        /// - <see cref="System.Collections.ICollection"/>
+        /// - <see cref="System.Collections.IDictionary"/>
+        /// - <see cref="System.Collections.DictionaryEntry"/>
+        /// - <see cref="KeyValuePair"/>
+        /// - <see cref="Array"/>
+        /// </remarks>
+        /// <returns>
+        /// Returns an <see cref="int"/> of the number of items in the collection.
+        /// </returns>
         public object Invoke(object coll) =>
             coll is ICounted c
                 ? c.Count

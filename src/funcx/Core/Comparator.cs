@@ -18,9 +18,7 @@ namespace FunctionalLibrary.Core
         /// </summary>
         /// <param name="pred">An object that implements the <see cref="IFunction{T1, T2, TResult}"/> interface.</param>
         /// <returns>
-        /// Returns -1 if pred invoked with x and y passed is truthy.
-        /// Returns 1 if pred invoked with y and x passed is truthy.
-        /// otherwise returns 0.
+        /// Returns a <see cref="int"/> that will be: -1 if pred.Invoke(x, y) is truthy, or 1 if pred.Invoke(y, x) is truthy, otherwise 0
         /// </returns>
         public object Invoke(object pred)
         {

@@ -1,54 +1,50 @@
-﻿using FunctionalLibrary.Collections;
+﻿using FunctionalLibrary.Collections.Internal;
 using System;
-using System.Linq;
 using System.Text;
 
 namespace FunctionalLibrary.Core
 {
     /// <summary>
-    /// Disj[oin]. Returns a new set of the same concrete type, that 
-    /// does not contain they key(s).
+    /// Returns a <see cref="ITransientSet"/> of the same concrete type that
+    /// does not contain key(s).
     /// </summary>
-    public class Disj :
+    public class Disjǃ :
         IFunction<object, object>,
         IFunction<object, object, object>,
         IFunctionParams<object, object, object, object>
     {
         /// <summary>
-        /// Disj[oin]. Returns a new set of the same concrete type, that 
-        /// does not contain they key(s).
+        /// Returns a <see cref="ITransientSet"/> of the same concrete type that
+        /// does not contain key(s).
         /// </summary>
-        /// <param name="set">Object that implements the <see cref="ISet"/> interface.</param>
+        /// <param name="set">Object that implements the <see cref="ITransientSet"/> interface.</param>
         /// <returns>
         /// Returns the set object.
         /// </returns>
         public object Invoke(object set) => set;
         /// <summary>
-        /// Disj[oin]. Returns a new set of the same concrete type, that 
-        /// does not contain they key(s).
+        /// Returns a <see cref="ITransientSet"/> of the same concrete type that
+        /// does not contain key(s).
         /// </summary>
-        /// <param name="set">Object the implements the <see cref="ISet"/> interface.</param>
+        /// <param name="set">Object that implements the <see cref="ITransientSet"/> interface.</param>
         /// <param name="key">Object to remove from the set.</param>
         /// <returns>
-        /// Returns a new <see cref="ISet"/> collection without the key.
+        /// Returns a <see cref="ITransientSet"/> without the key.
         /// </returns>
-        public object Invoke(object set, object key) => ((ISet)set).Disj(key);
+        public object Invoke(object set, object key) => ((ITransientSet)set).Disjoin(key);
         /// <summary>
-        /// Disj[oin]. Returns a new set of the same concrete type, that 
-        /// does not contain they key(s).
+        /// Returns a <see cref="ITransientSet"/> of the same concrete type that
+        /// does not contain key(s).
         /// </summary>
-        /// <param name="set">Object the implements the <see cref="ISet"/> interface.</param>
+        /// <param name="set">Object that implements the <see cref="ITransientSet"/> interface.</param>
         /// <param name="key">Object to remove from the set.</param>
         /// <param name="ks">An array of other object to remove from the set.</param>
         /// <returns>
-        /// Returns null if the set parameter is null, otherwise removes all items from the
-        /// <see cref="ISet"/> collection and returns a new <see cref="ISet"/> collection.
+        /// Returns a <see cref="ITransientSet"/> without all of the items.
         /// </returns>
         public object Invoke(object set, object key, params object[] ks)
         {
-            if (set == null) return null;
-
-            var ret = Invoke(set, key);
+            var ret = ((ITransientSet)set).Disjoin(key);
             if (ks != null && ks.Length > 0)
             {
                 var next = (object[])new ToArray().Invoke(new Next().Invoke(ks));

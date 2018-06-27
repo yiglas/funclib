@@ -14,7 +14,7 @@ namespace FunctionalLibrary.Core
         /// </summary>
         /// <param name="x">Object to coerce into a boolean.</param>
         /// <returns>
-        /// Returns x if it's a boolean, otherwise return x != null.
+        /// Returns a <see cref="bool"/> that indicates either the value of x if its a boolean, otherwise the result of x != null.
         /// </returns>
         public object Invoke(object x) =>
             x is bool b

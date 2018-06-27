@@ -187,5 +187,24 @@ namespace FunctionalLibrary.Collections
             return -1;
         }
         ICollection ICollection.Cons(object o) => Cons(o);
+        public int CompareTo(object obj)
+        {
+            if (obj is IVector v)
+            {
+                if (Count < v.Count) return -1;
+                if (Count > v.Count) return 1;
+
+                for (int i = 0; i < Count; i++)
+                {
+                    var c = (int)new Compare().Invoke(this[i], v[i]);
+                    if (c != 0)
+                        return c;
+                }
+
+                return 0;
+            }
+
+            return 1;
+        }
     }
 }
