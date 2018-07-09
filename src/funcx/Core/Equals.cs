@@ -4,12 +4,30 @@ using System.Text;
 
 namespace FunctionalLibrary.Core
 {
+    /// <summary>
+    /// Returns true if values are equal, otherwise false.
+    /// </summary>
     public class Equals :
         IFunction<object, bool>,
         IFunction<object, object, bool>,
         IFunctionParams<object, object, object, bool>
     {
+        /// <summary>
+        /// Returns true if values are equal, otherwise false.
+        /// </summary>
+        /// <param name="x">First element to test.</param>
+        /// <returns>
+        /// Always true.
+        /// </returns>
         public bool Invoke(object x) => true;
+        /// <summary>
+        /// Returns true if values are equal, otherwise false.
+        /// </summary>
+        /// <param name="x">First element to test.</param>
+        /// <param name="y">Second element to test against.</param>
+        /// <returns>
+        /// Returns true if x is equal to y, otherwise false.
+        /// </returns>
         public bool Invoke(object x, object y)
         {
             if (x == y) return true;
@@ -23,15 +41,28 @@ namespace FunctionalLibrary.Core
 
             return false;
         }
+        /// <summary>
+        /// Returns true if values are equal, otherwise false.
+        /// </summary>
+        /// <param name="x">First element to test.</param>
+        /// <param name="y">Second element to test against.</param>
+        /// <param name="more">All other elements to test.</param>
+        /// <returns>
+        /// Returns true if values are equal, otherwise false.
+        /// </returns>
         public bool Invoke(object x, object y, params object[] more)
         {
             if (Invoke(x, y))
             {
-                var next = (ISeq)new Next().Invoke(more);
-                if (next != null)
-                    return Invoke(y, next.First(), next.More());
+                var next = (object[])new ToArray().Invoke(new Next().Invoke(more));
+                if (next.Length > 0)
+                    return Invoke(y, new First().Invoke(more), next);
 
-                return Invoke(y, next.First());
+                //    var next = (ISeq)new Next().Invoke(more);
+                //if (next != null)
+                //    return Invoke(y, next.First(), next.More());
+
+                return Invoke(y, new First().Invoke(more));
             }
 
             return false;

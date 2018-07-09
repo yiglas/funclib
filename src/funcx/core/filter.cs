@@ -3,11 +3,22 @@ using System.Text;
 
 namespace FunctionalLibrary.Core
 {
+    /// <summary>
+    /// Returns a <see cref="LazySeq"/> of items in coll for which predicate returns a logical true.
+    /// </summary>
     public class Filter :
         IFunction<object, object>,
         IFunction<object, object, object>
     {
         public object Invoke(object pred) => new Function<object, object>(rf => new TransducerFunction(pred, rf));
+        /// <summary>
+        /// Returns a <see cref="LazySeq"/> of items in coll for which predicate returns a logical true.
+        /// </summary>
+        /// <param name="pred">An object that implements <see cref="IFunction{T1, TResult}"/> interface.</param>
+        /// <param name="coll">An object to test.</param>
+        /// <returns>
+        /// Returns a <see cref="LazySeq"/> of items in coll for which predicate returns a logical true.
+        /// </returns>
         public object Invoke(object pred, object coll) =>
             new LazySeq(() =>
             {

@@ -4,11 +4,27 @@ using System.Text;
 
 namespace FunctionalLibrary.Core
 {
+    /// <summary>
+    /// Returns a <see cref="LazySeq"/> of elements of coll without duplicate values.
+    /// </summary>
     public class Distinct :
         IFunction<object>,
         IFunction<object, object>
     {
+        /// <summary>
+        /// Returns a <see cref="LazySeq"/> of elements of coll without duplicate values.
+        /// </summary>
+        /// <returns>
+        /// Returns a <see cref="IFunction{T1, TResult}"/> that returns a <see cref="TransducerFunction"/>.
+        /// </returns>
         public object Invoke() => new Function<object, object>(rf => new TransducerFunction(rf));
+        /// <summary>
+        /// Returns a <see cref="LazySeq"/> of elements of coll without duplicate values.
+        /// </summary>
+        /// <param name="coll">A collection of items to return distinct with.</param>
+        /// <returns>
+        /// Returns a <see cref="LazySeq"/> of unique items from coll.
+        /// </returns>
         public object Invoke(object coll)
         {
             return step(coll, new HashSet().Invoke());

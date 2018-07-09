@@ -19,4 +19,24 @@
     <PackageReference Include="System.Reflection.Emit.Lightweight" Version="4.3.0-preview1-24530-04" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Core.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Core.txt</LastGenOutput>
+    </None>
+    <None Update="Core.txt">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Core.tt</DependentUpon>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Core\Generic\" />
+  </ItemGroup>
+
 </Project>
