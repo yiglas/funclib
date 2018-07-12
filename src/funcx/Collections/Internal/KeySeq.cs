@@ -37,6 +37,7 @@ namespace FunctionalLibrary.Collections.Internal
             var entry = this._enumerative.First();
 
             if (entry is KeyValuePair kvp) return kvp.Key;
+            else if (entry is RedBlackNode rbn) return rbn.Key;
             else if (entry is System.Collections.DictionaryEntry de)
                 return de.Key;
 

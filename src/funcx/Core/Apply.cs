@@ -92,6 +92,9 @@ namespace FunctionalLibrary.Core
                 .OrderByDescending(x => x.ParameterCount)
                 .FirstOrDefault();
 
+            if (fn.ParameterCount - 1 < count && !(f is IFunctionParams))
+                throw new ArityException(count, f.GetType().FullName);
+
             return ApplyTo(fn.InterfaceType, f, args);
         }
 
@@ -109,7 +112,7 @@ namespace FunctionalLibrary.Core
                 : interfaceType == typeof(IFunctionParams<,,,,>) ? ApplyTo((IFunctionParams<object, object, object, object, object>)f, args)
                 : interfaceType == typeof(IFunctionParams<,,,,,>) ? ApplyTo((IFunctionParams<object, object, object, object, object, object>)f, args)
                 : interfaceType == typeof(IFunctionParams<,,,,,,>) ? ApplyTo((IFunctionParams<object, object, object, object, object, object, object>)f, args)
-                : throw new ArityException(args.Count);
+                : throw new ArityException(args.Count, f.GetType().FullName);
 
 
         static object ApplyTo(IFunction<object> f) => f.Invoke();

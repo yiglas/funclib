@@ -51,9 +51,9 @@ namespace FunctionalLibrary.Core
             var ret = Invoke(map, key);
             if (ks != null && ks.Length > 0)
             {
-                var next = (object[])new ToArray().Invoke(new Next().Invoke(ks));
-                if (next.Length > 0)
-                    return Invoke(ret, new First().Invoke(ks), next);
+                var next = new Next().Invoke(ks);
+                if ((bool)new Truthy().Invoke(next))
+                    return Invoke(ret, new First().Invoke(ks), (object[])new ToArray().Invoke(next));
 
                 return Invoke(ret, new First().Invoke(ks));
             }

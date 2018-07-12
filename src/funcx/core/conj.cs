@@ -73,9 +73,9 @@ namespace FunctionalLibrary.Core
         {
             if (xs != null && xs.Length > 0)
             {
-                var next = (object[])new ToArray().Invoke(new Next().Invoke(xs));
-                if (next.Length > 0)
-                    return Invoke(Invoke(coll, x), new First().Invoke(xs), next);
+                var next = new Next().Invoke(xs);
+                if ((bool)new Truthy().Invoke(next))
+                    return Invoke(Invoke(coll, x), new First().Invoke(xs), (object[])new ToArray().Invoke(next));
 
                 return Invoke(Invoke(coll, x), new First().Invoke(xs));
             }

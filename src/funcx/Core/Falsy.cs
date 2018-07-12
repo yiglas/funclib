@@ -14,10 +14,4 @@ namespace FunctionalLibrary.Core
             else return false;
         }
     }
-
-    public class Truthy :
-        IFunction<object, object>
-    {
-        public object Invoke(object source) => !((bool)(new Falsy().Invoke(source)));
-    }
 }

@@ -4,7 +4,8 @@ using System.Text;
 namespace FunctionalLibrary.Collections
 {
     public interface IChunkedSeq :
-        ISeq
+        ISeq,
+        ISequential
     {
         IChunked ChunkedFirst();
         ISeq ChunkedNext();

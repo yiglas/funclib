@@ -1,8 +1,9 @@
-﻿using FunctionalLibrary.Core;
+﻿using FunctionalLibrary.Collections.Internal;
+using FunctionalLibrary.Core;
 using System;
 using System.Text;
 
-namespace FunctionalLibrary.Collections.Internal
+namespace FunctionalLibrary.Collections
 {
     public class ArraySeq :
         ASeq,

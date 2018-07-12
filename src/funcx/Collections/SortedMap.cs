@@ -11,19 +11,20 @@ namespace FunctionalLibrary.Collections
         IReduceKV
     {
         public static readonly SortedMap EMPTY = new SortedMap();
-
-        readonly System.Collections.IComparer _comp;
-        readonly RedBlackNode _tree;
         readonly int _count;
 
         SortedMap() : this(DefaultComparer.Instance, null, 0) { }
         internal SortedMap(System.Collections.IComparer comp) : this(comp, null, 0) { }
-        SortedMap(System.Collections.IComparer comp, RedBlackNode tree, int count)
+        internal SortedMap(System.Collections.IComparer comp, RedBlackNode tree, int count)
         {
-            this._comp = comp;
-            this._tree = tree;
+            Comp = comp;
+            Tree = tree;
             this._count = count;
         }
+
+        internal System.Collections.IComparer Comp { get; }
+
+        internal RedBlackNode Tree { get; }
 
         #region Creates
         public static SortedMap Create(System.Collections.IDictionary init)
@@ -61,10 +62,10 @@ namespace FunctionalLibrary.Collections
 
         #region Overrides
         public override int Count => this._count;
-        public override bool ContainsKey(object key) => NodeAt(key) != null;
+        public override bool ContainsKey(object key) => NodeAt(Comp, Tree, key) != null;
         public override IKeyValuePair Get(object key)
         {
-            var n = NodeAt(key);
+            var n = NodeAt(Comp, Tree, key);
             if (n != null)
                 return new KeyValuePair(n.Key, n.Value);
             return null;
@@ -72,53 +73,53 @@ namespace FunctionalLibrary.Collections
         public override object GetValue(object key) => GetValue(key, null);
         public override object GetValue(object key, object notFound)
         {
-            var n = NodeAt(key);
+            var n = NodeAt(Comp, Tree, key);
             return n != null ? n.Value : notFound;
         }
-        public override ICollection Empty() => new SortedMap(this._comp);
-        public override ISeq Seq() => this._count > 0 ? new SortedMapSeq(this._tree, true, this._count) : null;
+        public override ICollection Empty() => new SortedMap(Comp);
+        public override ISeq Seq() => this._count > 0 ? new SortedMapSeq(Tree, true, this._count) : null;
         public override IMap Assoc(object key, object val)
         {
             var found = new Box(null);
-            var t = Add(this._tree, key, val, found);
+            var t = Add(Comp, Tree, key, val, found);
             if (t == null)
             {
                 var foundNode = found.Value as RedBlackNode;
                 if (foundNode.Value == val)
                     return this;
 
-                return new SortedMap(this._comp, Replace(this._tree, key, val), this._count);
+                return new SortedMap(Comp, Replace(Comp, Tree, key, val), this._count);
             }
 
-            return new SortedMap(this._comp, t.Blacken(), this._count + 1);
+            return new SortedMap(Comp, t.Blacken(), this._count + 1);
         }
         public override IMap Without(object key)
         {
             var found = new Box(null);
-            var t = Remove(this._tree, key, found);
+            var t = Remove(Comp, Tree, key, found);
             if (t == null)
             {
                 if (found.Value == null) return this;
 
-                return new SortedMap(this._comp);
+                return new SortedMap(Comp);
             }
 
-            return new SortedMap(this._comp, t.Blacken(), this._count - 1);
+            return new SortedMap(Comp, t.Blacken(), this._count - 1);
         }
         #endregion
 
-        public System.Collections.IComparer GetComparator() => this._comp;
+        public System.Collections.IComparer GetComparator() => Comp;
 
-        public ISeq Seq(bool ascending) => this._count > 0 ? new SortedMapSeq(this._tree, ascending, this._count) : null;
+        public ISeq Seq(bool ascending) => this._count > 0 ? new SortedMapSeq(Tree, ascending, this._count) : null;
         public ISeq Seq(object key, bool ascending)
         {
             if (this._count > 0)
             {
                 ISeq stack = null;
-                var t = this._tree;
+                var t = Tree;
                 while (t != null)
                 {
-                    int c = this._comp.Compare(key, t.Key);
+                    int c = Comp.Compare(key, t.Key);
                     if (c == 0)
                     {
                         stack = (ISeq)new Core.Cons().Invoke(t, stack);
@@ -155,15 +156,15 @@ namespace FunctionalLibrary.Collections
 
         public override System.Collections.IEnumerator GetKeyEnumerator() => throw new NotImplementedException();
         public override System.Collections.IEnumerator GetValueEnumerator() => throw new NotImplementedException();
-        public override ITransientCollection ToTransient() => throw new NotImplementedException();
+        public override ITransientCollection ToTransient() => new TransientSortedMap(this);
 
 
-        RedBlackNode NodeAt(object key)
+        internal static RedBlackNode NodeAt(System.Collections.IComparer comp, RedBlackNode tree, object key)
         {
-            var t = this._tree;
+            var t = tree;
             while (t != null)
             {
-                int c = this._comp.Compare(key, t.Key);
+                int c = comp.Compare(key, t.Key);
                 if (c == 0) return t;
                 else if (c < 0) t = t.Left;
                 else t = t.Right;
@@ -171,42 +172,42 @@ namespace FunctionalLibrary.Collections
             return t;
         }
 
-        RedBlackNode Add(RedBlackNode t, object key, object val, Box found)
+        internal static RedBlackNode Add(System.Collections.IComparer comp, RedBlackNode t, object key, object val, Box found)
         {
             if (t == null)
                 return val == null ? new RedNode(key) : new RedValueNode(key, val);
-            int c = this._comp.Compare(key, t.Key);
+            int c = comp.Compare(key, t.Key);
             if (c == 0)
             {
                 found.Value = t;
                 return null;
             }
-            var insert = c < 0 ? Add(t.Left, key, val, found) : Add(t.Right, key, val, found);
+            var insert = c < 0 ? Add(comp, t.Left, key, val, found) : Add(comp, t.Right, key, val, found);
             if (insert == null) return null;
             return c < 0
                 ? t.AddLeft(insert)
                 : t.AddRight(insert);
         }
 
-        RedBlackNode Replace(RedBlackNode t, object key, object val)
+        internal static RedBlackNode Replace(System.Collections.IComparer comp, RedBlackNode t, object key, object val)
         {
-            int c = this._comp.Compare(key, t.Key);
+            int c = comp.Compare(key, t.Key);
             return t.Replace(t.Key,
                 c == 0 ? val : t.Value,
-                c < 0 ? Replace(t.Left, key, val) : t.Left,
-                c > 0 ? Replace(t.Right, key, val) : t.Right);
+                c < 0 ? Replace(comp, t.Left, key, val) : t.Left,
+                c > 0 ? Replace(comp, t.Right, key, val) : t.Right);
         }
 
-        RedBlackNode Remove(RedBlackNode t, object key, Box found)
+        internal static RedBlackNode Remove(System.Collections.IComparer comp, RedBlackNode t, object key, Box found)
         {
             if (t == null) return null;
-            int c = this._comp.Compare(key, t.Key);
+            int c = comp.Compare(key, t.Key);
             if (c == 0)
             {
                 found.Value = t;
                 return Append(t.Left, t.Right);
             }
-            var delete = c < 0 ? Remove(t.Left, key, found) : Remove(t.Right, key, found);
+            var delete = c < 0 ? Remove(comp, t.Left, key, found) : Remove(comp, t.Right, key, found);
             if (delete == null && found.Value == null) return null;
             if (c < 0)
                 return (t.Left is BlackNode)
@@ -330,8 +331,8 @@ namespace FunctionalLibrary.Collections
 
         public object ReduceKV(IFunction f, object init)
         {
-            if (this._tree != null)
-                init = this._tree.Reduce(f, init);
+            if (Tree != null)
+                init = Tree.Reduce(f, init);
             if (init is Reduced r)
                 return r.Deref();
             return init;

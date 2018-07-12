@@ -4,9 +4,19 @@ using System.Text;
 
 namespace FunctionalLibrary.Core
 {
+    /// <summary>
+    /// Returns a map from distinct items in coll to the number of times they appear.
+    /// </summary>
     public class Frequencies :
         IFunction<object, object>
     {
+        /// <summary>
+        /// Returns a <see cref="Collections.HashMap"/> from distinct items in coll to the number of times they appear.
+        /// </summary>
+        /// <param name="coll">An object to run distinct against.</param>
+        /// <returns>
+        /// Returns a <see cref="Collections.HashMap"/> from distinct items in coll to the number of times they appear.
+        /// </returns>
         public object Invoke(object coll) =>
             new Persistentǃ().Invoke(
                 new Reduce().Invoke(

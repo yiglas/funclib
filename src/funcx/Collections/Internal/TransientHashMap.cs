@@ -15,8 +15,8 @@ namespace FunctionalLibrary.Collections.Internal
         volatile object _nullValue;
         readonly Box _leafFlag = new Box(null);
 
-        public TransientHashMap(HashMap init)
-            : this(new AtomicReference<Thread>(Thread.CurrentThread), init.Root, init.Count, init.HasNull, init.NullValue) { }
+        public TransientHashMap(HashMap init) :
+            this(new AtomicReference<Thread>(Thread.CurrentThread), init.Root, init.Count, init.HasNull, init.NullValue) { }
 
         TransientHashMap(AtomicReference<Thread> edit, INode root, int count, bool hasNull, object nullValue)
         {

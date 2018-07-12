@@ -34,5 +34,31 @@ namespace FunctionalLibrary.Tests.Core
             Assert.AreEqual(expected, actual);
         }
 
+        [Test]
+        public void Interleave_should_return_an_empty_list_passing_no_parameters()
+        {
+            var expected = FunctionalLibrary.Collections.List.EMPTY;
+            var actual = new Interleave().Invoke();
+
+            Assert.IsTrue(expected == actual);
+        }
+
+        [Test]
+        public void Interleave_should_return_a_lazy_seq()
+        {
+            var actual = new Interleave().Invoke("test");
+
+            Assert.IsInstanceOf<LazySeq>(actual);
+        }
+
+        [Test]
+        public void Interleave_should_return_a_repeating_collection_with_more_than_two_collections()
+        {
+            var expected = new FunctionalLibrary.Core.List().Invoke('A', ' ', 'a', 'B', ' ', 'b', 'C', ' ', 'c');
+            var actual = new ToArray().Invoke(new Interleave().Invoke(new Vector().Invoke('A', 'B', 'C'), new Repeat().Invoke(3, ' '), new Vector().Invoke('a', 'b', 'c')));
+
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }

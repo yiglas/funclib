@@ -4,9 +4,19 @@ using System.Text;
 
 namespace FunctionalLibrary.Core
 {
+    /// <summary>
+    /// Returns <see cref="true"/> if s is a <see cref="IChunkedSeq"/>, otherwise <see cref="false"/>.
+    /// </summary>
     public class IsChunkedSeq :
         IFunction<object, object>
     {
-        public object Invoke(object s) => s is IChunkedSeq;
+        /// <summary>
+        /// Returns <see cref="true"/> if s is a <see cref="IChunkedSeq"/>, otherwise <see cref="false"/>.
+        /// </summary>
+        /// <param name="s">Object to test.</param>
+        /// <returns>
+        /// Returns <see cref="true"/> if s is a <see cref="IChunkedSeq"/>, otherwise <see cref="false"/>.
+        /// </returns>
+        public object Invoke(object s) => new IsInstance().Invoke(typeof(IChunkedSeq), s);
     }
 }

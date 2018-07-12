@@ -4,14 +4,38 @@ using System.Text;
 
 namespace FunctionalLibrary.Core
 {
+    /// <summary>
+    /// Returns a <see cref="LazySeq"/> of the first item in each coll, then the second, etc.
+    /// </summary>
     public class Interleave :
         IFunction<object>,
         IFunction<object, object>,
         IFunction<object, object, object>,
         IFunctionParams<object, object, object, object>
     {
+        /// <summary>
+        /// Returns a <see cref="LazySeq"/> of the first item in each coll, then the second, etc.
+        /// </summary>
+        /// <returns>
+        /// Returns <see cref="Collections.List.EMPTY"/>.
+        /// </returns>
         public object Invoke() => Collections.List.EMPTY;
+        /// <summary>
+        /// Returns a <see cref="LazySeq"/> of the first item in each coll, then the second, etc.
+        /// </summary>
+        /// <param name="c1">The collection returned lazily.</param>
+        /// <returns>
+        /// Returns a <see cref="LazySeq"/> of c1.
+        /// </returns>
         public object Invoke(object c1) => new LazySeq(c1);
+        /// <summary>
+        /// Returns a <see cref="LazySeq"/> of the first item in each coll, then the second, etc.
+        /// </summary>
+        /// <param name="c1">First collection to interleave.</param>
+        /// <param name="c2">Second collection to interleave.</param>
+        /// <returns>
+        /// Returns a <see cref="LazySeq"/> of the first item in each coll, then the second, etc.
+        /// </returns>
         public object Invoke(object c1, object c2) =>
             new LazySeq(() =>
             {
@@ -24,10 +48,19 @@ namespace FunctionalLibrary.Core
 
                 return null;
             });
+        /// <summary>
+        /// Returns a <see cref="LazySeq"/> of the first item in each coll, then the second, etc.
+        /// </summary>
+        /// <param name="c1">First collection to interleave.</param>
+        /// <param name="c2">Second collection to interleave.</param>
+        /// <param name="colls">Rest of the collections to interleave.</param>
+        /// <returns>
+        /// Returns a <see cref="LazySeq"/> of the first item in each coll, then the second, etc.
+        /// </returns>
         public object Invoke(object c1, object c2, params object[] colls) =>
             new LazySeq(() =>
             {
-                var ss = new Map().Invoke(new Seq(), new Conj().Invoke(colls, c2, c1));
+                var ss = new Map().Invoke(new Seq(), new Conj().Invoke(new Seq().Invoke(colls), c2, c1));
                 if ((bool)new IsEvery().Invoke(new Identity(), ss))
                 {
                     return new Concat().Invoke(new Map().Invoke(new First(), ss), new Apply().Invoke(new Interleave(), new Map().Invoke(new Rest(), ss)));
@@ -35,40 +68,4 @@ namespace FunctionalLibrary.Core
                 return null;
             });
     }
-    //public class Interleave :
-    //    IFunction<IEnumerable, IEnumerable<object>>,
-    //    IFunction<IEnumerable, IEnumerable, IEnumerable<object>>,
-    //    IFunctionParams<IEnumerable, IEnumerable, IEnumerable, IEnumerable<object>>
-    //{
-    //    public IEnumerable<object> Invoke(IEnumerable c1)
-    //    {
-    //        if (c1 == null) yield break;
-
-    //        var e1 = c1.GetEnumerator();
-
-    //        while (e1.MoveNext())
-    //        {
-    //            yield return e1.Current;
-    //        }
-    //    }
-
-    //    public IEnumerable<object> Invoke(IEnumerable c1, IEnumerable c2)
-    //    {
-    //        if (c1 == null || c2 == null) yield break;
-
-    //        var e1 = c1.GetEnumerator();
-    //        var e2 = c2.GetEnumerator();
-
-    //        while (e1.MoveNext() && e2.MoveNext())
-    //        {
-    //            yield return e1.Current;
-    //            yield return e2.Current;
-    //        }
-    //    }
-
-    //    public IEnumerable<object> Invoke(IEnumerable c1, IEnumerable c2, params IEnumerable[] colls)
-    //    {
-    //        throw new NotImplementedException("TODO: implement this function. need to get apply to work");
-    //    }
-    //}
 }

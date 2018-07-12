@@ -9,9 +9,8 @@ namespace FunctionalLibrary.Core
         IFunction<object, object>
     {
         public object Invoke(object coll) => 
-            coll is Collections.List l && l.Count == 0
-                ? null
-                : coll is ASeq seq ? seq
+            coll is ASeq seq 
+                ? seq
                 : coll is LazySeq ls ? ls.Seq()
                 : coll == null ? null
                 : coll is ISeqable seqable ? seqable.Seq()

@@ -8,6 +8,7 @@ namespace FunctionalLibrary.Collections
         ISeq,
         ICollection,
         ICounted,
+        ISequential,
         System.Collections.IList,
         System.Collections.ICollection,
         System.Collections.IEnumerable

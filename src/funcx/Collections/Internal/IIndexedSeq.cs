@@ -4,7 +4,8 @@ using System.Text;
 namespace FunctionalLibrary.Collections.Internal
 {
     interface IIndexedSeq :
-        ISeq
+        ISeq,
+        ISequential
     {
         int Index();
     }

@@ -4,11 +4,22 @@ using System.Text;
 
 namespace FunctionalLibrary.Core
 {
+    /// <summary>
+    /// Returns a <see cref="LazySeq"/> of elements separated by sep.
+    /// </summary>
     public class Interpose :
         IFunction<object, object>,
         IFunction<object, object, object>
     {
         public object Invoke(object sep) => new Function<object, object>(rf => new TransducerFunction(sep, rf));
+        /// <summary>
+        /// Returns a <see cref="LazySeq"/> of elements separated by sep.
+        /// </summary>
+        /// <param name="sep">Separator object.</param>
+        /// <param name="coll">Collection to insert the separtor with.</param>
+        /// <returns>
+        /// Returns a <see cref="LazySeq"/> of elements separated by sep.
+        /// </returns>
         public object Invoke(object sep, object coll) =>
             new Drop().Invoke(1, new Interleave().Invoke(new Repeat().Invoke(sep), coll));
         

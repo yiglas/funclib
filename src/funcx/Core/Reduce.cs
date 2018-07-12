@@ -15,7 +15,7 @@ namespace FunctionalLibrary.Core
                 ? r.Reduce((IFunction<object, object, object>)f)
                 : coll is null ? ((IFunction<object>)f).Invoke()
                 : coll is ASeq ? SeqReduce(coll, f)
-                : coll is Collections.LazySeq ? SeqReduce(coll, f)
+                : coll is LazySeq ? SeqReduce(coll, f)
                 : coll is IVector ? SeqReduce(coll, f)
                 : coll is System.Collections.IEnumerable e ? IterReduce(e, f)
                 //: coll is KeySeq ? IterReduce(coll, f)
@@ -27,7 +27,7 @@ namespace FunctionalLibrary.Core
                 ? r.Reduce((IFunction<object, object, object>)f, val)
                 : coll is null ? val
                 : coll is ASeq ? SeqReduce(coll, f, val)
-                : coll is Collections.LazySeq ? SeqReduce(coll, f, val)
+                : coll is LazySeq ? SeqReduce(coll, f, val)
                 : coll is IVector ? SeqReduce(coll, f, val)
                 : coll is System.Collections.IEnumerable e ? IterReduce(e, f, val)
                 //: coll is KeySeq ? IterReduce(coll, f, val)

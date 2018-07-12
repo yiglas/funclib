@@ -5,10 +5,21 @@ using System.Text;
 
 namespace FunctionalLibrary.Core
 {
+    /// <summary>
+    /// Returns the value mapped to the key, notFound or null if key is not present.
+    /// </summary>
     public class Get :
         IFunction<object, object, object>,
         IFunction<object, object, object, object>
     {
+        /// <summary>
+        /// Returns the value mapped to the key, notFound or null if key is not present.
+        /// </summary>
+        /// <param name="map">Object to pull key from.</param>
+        /// <param name="key">If object is a map object, key is the key, otherwise key is an integer of the index.</param>
+        /// <returns>
+        /// Returns the value mapped to the key, notFound or null if key is not present.
+        /// </returns>
         public object Invoke(object map, object key) =>
             map == null
                 ? null
@@ -19,6 +30,15 @@ namespace FunctionalLibrary.Core
                 : (map is string || map.GetType().IsArray) && Numbers.IsNumber(key) ? GetFromArray(map, key)
                 : null;
 
+        /// <summary>
+        /// Returns the value mapped to the key, notFound or null if key is not present.
+        /// </summary>
+        /// <param name="map">Object to pull key from.</param>
+        /// <param name="key">If object is a map object, key is the key, otherwise key is an integer of the index.</param>
+        /// <param name="notFound">Object that returns if the key is not found.</param>
+        /// <returns>
+        /// Returns the value mapped to the key, notFound or null if key is not present.
+        /// </returns>
         public object Invoke(object map, object key, object notFound) =>
             map == null
                 ? notFound

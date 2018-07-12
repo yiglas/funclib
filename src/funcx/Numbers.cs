@@ -9,12 +9,14 @@ namespace FunctionalLibrary
     {
         static readonly LongOperations LONG = new LongOperations();
         static readonly DoubleOperations DOUBLE = new DoubleOperations();
+        static readonly IntOperations INT = new IntOperations();
 
         static IOperations Operation(object x)
         {
             Type type = x.GetType();
 
             if (type == typeof(double) || type == typeof(float)) return DOUBLE;
+            if (type == typeof(int)) return INT;
 
             return LONG;
         }
@@ -87,6 +89,7 @@ namespace FunctionalLibrary
         interface IOperations
         {
             IOperations Combine(IOperations y);
+            IOperations OperationWith(IntOperations x);
             IOperations OperationWith(LongOperations x);
             IOperations OperationWith(DoubleOperations x);
 
@@ -113,6 +116,7 @@ namespace FunctionalLibrary
         sealed class LongOperations : IOperations
         {
             public IOperations Combine(IOperations y) => y.OperationWith(this);
+            public IOperations OperationWith(IntOperations x) => this;
             public IOperations OperationWith(LongOperations x) => this;
             public IOperations OperationWith(DoubleOperations x) => DOUBLE;
 
@@ -139,6 +143,7 @@ namespace FunctionalLibrary
         sealed class DoubleOperations : IOperations
         {
             public IOperations Combine(IOperations y) => y.OperationWith(this);
+            public IOperations OperationWith(IntOperations x) => this;
             public IOperations OperationWith(LongOperations x) => this;
             public IOperations OperationWith(DoubleOperations x) => this;
 
@@ -160,6 +165,33 @@ namespace FunctionalLibrary
             public bool IsLTE(object x, object y) => ConvertToDouble(x) <= ConvertToDouble(y);
             public bool IsGT(object x, object y) => ConvertToDouble(x) > ConvertToDouble(y);
             public bool IsGTE(object x, object y) => ConvertToDouble(x) >= ConvertToDouble(y);
+        }
+
+        sealed class IntOperations : IOperations
+        {
+            public IOperations Combine(IOperations y) => y.OperationWith(this);
+            public IOperations OperationWith(IntOperations x) => this;
+            public IOperations OperationWith(LongOperations x) => LONG;
+            public IOperations OperationWith(DoubleOperations x) => DOUBLE;
+
+            public object Dec(object x) => ConvertToInt(x) - 1;
+            public object Inc(object x) => ConvertToInt(x) + 1;
+            public bool IsNeg(object x) => ConvertToInt(x) < 0;
+            public bool IsPos(object x) => ConvertToInt(x) > 0;
+            public bool IsZero(object x) => ConvertToInt(x) == 0;
+
+            public object Negate(object x) => -ConvertToInt(x);
+            public object Add(object x, object y) => ConvertToInt(x) + ConvertToInt(y);
+            public object Subtract(object x, object y) => ConvertToInt(x) - ConvertToInt(y);
+            public object Multiply(object x, object y) => ConvertToInt(x) * ConvertToInt(y);
+            public object Divide(object x, object y) => ConvertToInt(x) / ConvertToInt(y);
+            public object Remainder(object x, object y) => ConvertToInt(x) % ConvertToInt(y);
+
+            public bool IsEqual(object x, object y) => ConvertToInt(x) == ConvertToInt(y);
+            public bool IsLT(object x, object y) => ConvertToInt(x) < ConvertToInt(y);
+            public bool IsLTE(object x, object y) => ConvertToInt(x) <= ConvertToInt(y);
+            public bool IsGT(object x, object y) => ConvertToInt(x) > ConvertToInt(y);
+            public bool IsGTE(object x, object y) => ConvertToInt(x) >= ConvertToInt(y);
         }
 
         internal static long ConvertToLong(object x)

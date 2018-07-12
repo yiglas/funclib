@@ -9,14 +9,13 @@ namespace FunctionalLibrary.Collections
         ASeq,
         IReduce
     {
-        public static readonly IList EMPTY = new List();
+        public static readonly IList EMPTY = new EmptyList();
 
         readonly object _first;
         readonly IList _rest;
         
-        List() : this(null, null, 0) { }
         internal List(object first) : this(first, null, 1) { }
-        List(object first, IList rest, int count)
+        internal List(object first, IList rest, int count)
         {
             this._first = first;
             this._rest = rest;

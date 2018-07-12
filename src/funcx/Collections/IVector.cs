@@ -11,6 +11,7 @@ namespace FunctionalLibrary.Collections
         ICounted,
         IReversible,
         IComparable,
+        ISequential,
         System.Collections.IList,
         System.Collections.IEnumerable
     {

@@ -12,7 +12,7 @@ namespace FunctionalLibrary.Tests.Core
         public void FNull_should_create_another_function_with_defaults_passing_one_parameter_for_one_arg()
         {
             var hello = new Function<object, object>(x => new Str().Invoke("Hello", " ", x));
-            var defaults = new FNull(hello, "Devin");
+            var defaults = (FNull.Function)new FNull().Invoke(hello, "Devin");
 
             object obj = null;
 
@@ -28,7 +28,7 @@ namespace FunctionalLibrary.Tests.Core
         public void FNull_should_create_another_function_with_defaults_passing_one_parameter_for_two_arg()
         {
             var hello = new Function<object, object, object>((x, y) => new Str().Invoke("Hello", " ", x, " ", y));
-            var defaults = new FNull(hello, "Devin");
+            var defaults = (FNull.Function)new FNull().Invoke(hello, "Devin");
 
             Assert.AreEqual("Hello John Smith", defaults.Invoke("John", "Smith"));
             Assert.AreEqual("Hello Devin Smith", defaults.Invoke(null, "Smith"));
@@ -41,7 +41,7 @@ namespace FunctionalLibrary.Tests.Core
         public void FNull_should_create_another_function_with_defaults_passing_one_parameter_for_three_arg()
         {
             var hello = new Function<object, object, object, object>((x, y, z) => new Str().Invoke("Hello", " ", x, " ", y, " ", z));
-            var defaults = new FNull(hello, "Devin");
+            var defaults = (FNull.Function)new FNull().Invoke(hello, "Devin");
 
             Assert.AreEqual("Hello John Black Smith", defaults.Invoke("John", "Black", "Smith"));
             Assert.AreEqual("Hello Devin Black Smith", defaults.Invoke(null, "Black", "Smith"));
@@ -54,7 +54,7 @@ namespace FunctionalLibrary.Tests.Core
         public void FNull_should_create_another_function_with_defaults_passing_one_parameter_for_X_arg()
         {
             var hello = new FunctionParams<object, object, object, object, object>((x, y, z, rest) => new Apply().Invoke(new Str(), "Hello", " ", x, " ", y, " ", z, " ", rest));
-            var defaults = new FNull(hello, "Devin");
+            var defaults = (FNull.Function)new FNull().Invoke(hello, "Devin");
 
             Assert.AreEqual("Hello John Black Smith 123", defaults.Invoke("John", "Black", "Smith", 1, 2, 3));
             Assert.AreEqual("Hello Devin Black Smith 123", defaults.Invoke(null, "Black", "Smith", 1, 2, 3));
@@ -68,7 +68,7 @@ namespace FunctionalLibrary.Tests.Core
         public void FNull_should_create_another_function_with_defaults_passing_two_parameter_for_two_arg()
         {
             var hello = new Function<object, object, object>((x, y) => new Str().Invoke("Hello", " ", x, " ", y));
-            var defaults = new FNull(hello, "Devin", "Daniel");
+            var defaults = (FNull.Function)new FNull().Invoke(hello, "Devin", "Daniel");
 
             Assert.AreEqual("Hello John Smith", defaults.Invoke("John", "Smith"));
             Assert.AreEqual("Hello Devin Smith", defaults.Invoke(null, "Smith"));
@@ -82,7 +82,7 @@ namespace FunctionalLibrary.Tests.Core
         public void FNull_should_create_another_function_with_defaults_passing_two_parameter_for_three_arg()
         {
             var hello = new Function<object, object, object, object>((x, y, z) => new Str().Invoke("Hello", " ", x, " ", y, " ", z));
-            var defaults = new FNull(hello, "Devin", "Daniel");
+            var defaults = (FNull.Function)new FNull().Invoke(hello, "Devin", "Daniel");
 
             Assert.AreEqual("Hello John Black Smith", defaults.Invoke("John", "Black", "Smith"));
             Assert.AreEqual("Hello Devin Black Smith", defaults.Invoke(null, "Black", "Smith"));
@@ -97,7 +97,7 @@ namespace FunctionalLibrary.Tests.Core
         public void FNull_should_create_another_function_with_defaults_passing_two_parameter_for_X_arg()
         {
             var hello = new FunctionParams<object, object, object, object, object>((x, y, z, rest) => new Apply().Invoke(new Str(), "Hello", " ", x, " ", y, " ", z, " ", rest));
-            var defaults = new FNull(hello, "Devin", "Daniel");
+            var defaults = (FNull.Function)new FNull().Invoke(hello, "Devin", "Daniel");
 
             Assert.AreEqual("Hello John Black Smith 123", defaults.Invoke("John", "Black", "Smith", 1, 2, 3));
             Assert.AreEqual("Hello Devin Black Smith 123", defaults.Invoke(null, "Black", "Smith", 1, 2, 3));
@@ -111,7 +111,7 @@ namespace FunctionalLibrary.Tests.Core
         public void FNull_should_create_another_function_with_defaults_passing_three_parameter_for_three_arg()
         {
             var hello = new Function<object, object, object, object>((x, y, z) => new Str().Invoke("Hello", " ", x, " ", y, " ", z));
-            var defaults = new FNull(hello, "Devin", "Daniel", "Sackett");
+            var defaults = (FNull.Function)new FNull().Invoke(hello, "Devin", "Daniel", "Sackett");
 
             Assert.AreEqual("Hello John Black Smith", defaults.Invoke("John", "Black", "Smith"));
             Assert.AreEqual("Hello Devin Black Smith", defaults.Invoke(null, "Black", "Smith"));
@@ -126,7 +126,7 @@ namespace FunctionalLibrary.Tests.Core
         public void FNull_should_create_another_function_with_defaults_passing_three_parameter_for_X_arg()
         {
             var hello = new FunctionParams<object, object, object, object, object>((x, y, z, rest) => new Apply().Invoke(new Str(), "Hello", " ", x, " ", y, " ", z, " ", rest));
-            var defaults = new FNull(hello, "Devin", "Daniel", "Sackett");
+            var defaults = (FNull.Function)new FNull().Invoke(hello, "Devin", "Daniel", "Sackett");
 
             Assert.AreEqual("Hello John Black Smith 123", defaults.Invoke("John", "Black", "Smith", 1, 2, 3));
             Assert.AreEqual("Hello Devin Black Smith 123", defaults.Invoke(null, "Black", "Smith", 1, 2, 3));

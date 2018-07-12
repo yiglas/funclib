@@ -7,7 +7,8 @@ namespace FunctionalLibrary.Collections
 {
     [Serializable]
     public abstract class ASeq :
-        IList
+        IList,
+        ISeqable
     {
         [NonSerialized]
         protected int _hash = 0;
@@ -96,6 +97,8 @@ namespace FunctionalLibrary.Collections
             return -1;
         }
         public virtual System.Collections.IEnumerator GetEnumerator() => new Enumerator(this);
+        public virtual object Peek() => First();
+        public virtual ISeq Seq() => Count == 0 ? null : this;
         #endregion
 
         public object this[int index]
@@ -144,9 +147,6 @@ namespace FunctionalLibrary.Collections
                 array[i] = e.First();
         }
 
-        public ISeq Seq() => Count == 0 ? null : this;
-
-        public object Peek() => First();
         ICollection ICollection.Cons(object o) => Cons(o);
     }
 }
