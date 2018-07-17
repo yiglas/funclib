@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\funcx\FunctionalLibrary.csproj" />
+    <ProjectReference Include="..\..\..\src\funcx\funclib.csproj" />
   </ItemGroup>
 
 </Project>

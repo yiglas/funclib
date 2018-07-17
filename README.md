@@ -5,8 +5,8 @@ Functional Library for C# that follows the Clojure idiom.
 # To Do:
 * Implement Atom data structure
 * Implement Queue data structure
-* Change namespace to FunctionalLibrary.Core -> FunctionalLibrary
-* Add FunctionalLibrary.Core class that has static methods for each of the Invoke methods.
+* Change namespace to funclib.Components.Core -> FunctionalLibrary
+* Add funclib.Components.Core class that has static methods for each of the Invoke methods.
 ```c#
 public static object Map(object f) => new Map().Invoke(f);
 ```
@@ -45,3 +45,6 @@ http://www.fileformat.info/info/unicode/char/1405/index.htm
 http://www.fileformat.info/info/unicode/char/1433/index.htm
 http://www.fileformat.info/info/unicode/char/2d67/index.htm
 http://www.fileformat.info/info/unicode/char/ffda/index.htm
+
+
+https://unicode-table.com/en/1433/
