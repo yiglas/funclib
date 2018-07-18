@@ -1,9 +1,9 @@
-// Generated on 7/17/2018 1:32:06 PM
+// Generated on 7/17/2018 1:54:20 PM
 using funclib.Collections;
 using funclib.Components.Core;
 using System;
 
-namespace FunctionalLibrary
+namespace funclib
 {
 	public static class Core
 	{
@@ -579,7 +579,7 @@ namespace FunctionalLibrary
 		public static funclib.Components.Core.NNext NNext => new funclib.Components.Core.NNext();
 		public static funclib.Components.Core.Not Not => new funclib.Components.Core.Not();
 		public static funclib.Components.Core.NotEmpty NotEmpty => new funclib.Components.Core.NotEmpty();
-		public static funclib.Components.Core.NotEqual NotEqual => new funclib.Components.Core.NotEqual();
+		public static funclib.Components.Core.IsNotEqual NotEqual => new funclib.Components.Core.IsNotEqual();
 		public static funclib.Components.Core.Nth Nth => new funclib.Components.Core.Nth();
 		public static funclib.Components.Core.NthNext NthNext => new funclib.Components.Core.NthNext();
 		public static funclib.Components.Core.NthRest NthRest => new funclib.Components.Core.NthRest();
@@ -2068,7 +2068,7 @@ namespace FunctionalLibrary
 		/// <returns>
 		/// Always true.
 		/// </returns>
-		public static bool isEqual(object x) => IsEqual.Invoke(x);
+		public static object isEqual(object x) => IsEqual.Invoke(x);
 		/// <summary>
 		/// Returns true if values are equal, otherwise false.
 		/// </summary>
@@ -2077,7 +2077,7 @@ namespace FunctionalLibrary
 		/// <returns>
 		/// Returns true if x is equal to y, otherwise false.
 		/// </returns>
-		public static bool isEqual(object x, object y) => IsEqual.Invoke(x, y);
+		public static object isEqual(object x, object y) => IsEqual.Invoke(x, y);
 		/// <summary>
 		/// Returns true if values are equal, otherwise false.
 		/// </summary>
@@ -2087,7 +2087,7 @@ namespace FunctionalLibrary
 		/// <returns>
 		/// Returns true if values are equal, otherwise false.
 		/// </returns>
-		public static bool isEqual(object x, object y, params object[] more) => IsEqual.Invoke(x, y, more);
+		public static object isEqual(object x, object y, params object[] more) => IsEqual.Invoke(x, y, more);
 		/// <summary>
 		/// Returns <see cref="true"/> if n is an even number.
 		/// </summary>

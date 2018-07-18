@@ -93,6 +93,6 @@ namespace funclib.Collections.Internal
                 : true;
         #endregion
 
-        int Hash(object key) => FunctionalLibrary.Util.GetHashCode(key);
+        int Hash(object key) => funclib.Util.GetHashCode(key);
     }
 }

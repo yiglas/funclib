@@ -11,7 +11,7 @@ namespace funclib.Collections.Internal
     {
         public static readonly System.Collections.IComparer Instance = new DefaultComparer();
 
-        public int Compare(object x, object y) => (int)new Instances.Compare().Invoke(x, y);
+        public int Compare(object x, object y) => (int)new funclib.Components.Core.Compare().Invoke(x, y);
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.SetType(typeof(DefaultComparerSerialization));

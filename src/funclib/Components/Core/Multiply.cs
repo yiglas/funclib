@@ -4,18 +4,56 @@ using System.Text;
 
 namespace funclib.Components.Core
 {
+    /// <summary>
+    /// Returns the product of numbers. No parameters past returns 1. Single parameter there is an 
+    /// implicit 1 passed.
+    /// </summary>
     public class Multiply :
         IFunction<object>,
         IFunction<object, object>,
         IFunction<object, object, object>,
         IFunctionParams<object, object, object, object>
     {
-        public object Invoke() => 0;
-        public object Invoke(object x) =>
-            Numbers.IsNumber(x)
-                ? x
-                : throw new InvalidCastException($"Unable to cast object of type '{x.GetType().FullName}' to type 'Number'.");
+        /// <summary>
+        /// Returns the product of numbers. No parameters past returns 1. Single parameter there is an 
+        /// implicit 1 passed.
+        /// </summary>
+        /// <returns>
+        /// Returns 1.
+        /// </returns>
+        public object Invoke() => 1;
+        /// <summary>
+        /// Returns the product of numbers. No parameters past returns 1. Single parameter there is an 
+        /// implicit 1 passed.
+        /// </summary>
+        /// <param name="x">First parameter multiply.</param>
+        /// <returns>
+        /// Returns the product of numbers. No parameters past returns 1. Single parameter there is an 
+        /// implicit 1 passed.
+        /// </returns>
+        public object Invoke(object x) => Invoke(x, 1);
+        /// <summary>
+        /// Returns the product of numbers. No parameters past returns 1. Single parameter there is an 
+        /// implicit 1 passed.
+        /// </summary>
+        /// <param name="x">First parameter multiply.</param>
+        /// <param name="y">Second parameter multiply.</param>
+        /// <returns>
+        /// Returns the product of numbers. No parameters past returns 1. Single parameter there is an 
+        /// implicit 1 passed.
+        /// </returns>
         public object Invoke(object x, object y) => Numbers.Multiply(x, y);
+        /// <summary>
+        /// Returns the product of numbers. No parameters past returns 1. Single parameter there is an 
+        /// implicit 1 passed.
+        /// </summary>
+        /// <param name="x">First parameter multiply.</param>
+        /// <param name="y">Second parameter multiply.</param>
+        /// <param name="more">Rest of the parameters to multiply.</param>
+        /// <returns>
+        /// Returns the product of numbers. No parameters past returns 1. Single parameter there is an 
+        /// implicit 1 passed.
+        /// </returns>
         public object Invoke(object x, object y, params object[] more) => new Reduce1().Invoke(this, Invoke(x, y), more);
     }
 }

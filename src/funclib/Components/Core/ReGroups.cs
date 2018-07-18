@@ -8,7 +8,7 @@ namespace funclib.Components.Core
     {
         public object Invoke(object m)
         {
-            var matcher = (FunctionalLibrary.ReMatcher)m;
+            var matcher = (funclib.ReMatcher)m;
             var gc = matcher.GroupCount();
             if (gc == 0)
                 return matcher.Group();

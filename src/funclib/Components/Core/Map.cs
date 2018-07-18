@@ -52,7 +52,7 @@ namespace funclib.Components.Core
                         return new ChunkCons().Invoke(b.Chunk(), Invoke(f, new ChunkRest().Invoke(s)));
                     }
                     else
-                        return new Instances.Cons().Invoke(fn.Invoke(new First().Invoke(s)), Invoke(f, new Rest().Invoke(s)));
+                        return new Cons().Invoke(fn.Invoke(new First().Invoke(s)), Invoke(f, new Rest().Invoke(s)));
                 }
 
                 return null;
@@ -82,7 +82,7 @@ namespace funclib.Components.Core
                 var s2 = new Seq().Invoke(c2);
                 if ((bool)new Truthy().Invoke(new And().Invoke(s1, s2)))
                 {
-                    return new Instances.Cons().Invoke(fn.Invoke(new First().Invoke(s1), new First().Invoke(s2)), Invoke(f, new Rest().Invoke(s1), new Rest().Invoke(s2)));
+                    return new Cons().Invoke(fn.Invoke(new First().Invoke(s1), new First().Invoke(s2)), Invoke(f, new Rest().Invoke(s1), new Rest().Invoke(s2)));
                 }
 
                 return null;
@@ -114,7 +114,7 @@ namespace funclib.Components.Core
                 var s3 = new Seq().Invoke(c3);
                 if ((bool)new Truthy().Invoke(new And().Invoke(s1, s2, s3)))
                 {
-                    return new Instances.Cons().Invoke(fn.Invoke(new First().Invoke(s1), new First().Invoke(s2), new First().Invoke(s1)), Invoke(f, new Rest().Invoke(s1), new Rest().Invoke(s2), new Rest().Invoke(s3)));
+                    return new Cons().Invoke(fn.Invoke(new First().Invoke(s1), new First().Invoke(s2), new First().Invoke(s1)), Invoke(f, new Rest().Invoke(s1), new Rest().Invoke(s2), new Rest().Invoke(s3)));
                 }
 
                 return null;

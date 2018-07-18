@@ -5,15 +5,45 @@ using System.Text.RegularExpressions;
 
 namespace funclib.Components.Core
 {
+    /// <summary>
+    /// Returns the value at the index. <see cref="Nth"/> throws an exception if index
+    /// is out of bounds or unless notFound is supplied. <see cref="Nth"/> works on 
+    /// strings, arrays, Regex matcher, lists and O(n) time for sequences.
+    /// </summary>
     public class Nth :
         IFunction<object, object, object>,
         IFunction<object, object, object, object>
     {
+        /// <summary>
+        /// Returns the value at the index. <see cref="Nth"/> throws an exception if index
+        /// is out of bounds or unless notFound is supplied. <see cref="Nth"/> works on 
+        /// strings, arrays, Regex matcher, lists and O(n) time for sequences.
+        /// </summary>
+        /// <param name="coll">Collection to search for index.</param>
+        /// <param name="index">Index to find.</param>
+        /// <returns>
+        /// Returns the value at the index. <see cref="Nth"/> throws an exception if index
+        /// is out of bounds or unless notFound is supplied. <see cref="Nth"/> works on 
+        /// strings, arrays, Regex matcher, lists and O(n) time for sequences.
+        /// </returns>
         public object Invoke(object coll, object index) =>
             int.TryParse(index.ToString(), out int i)
                 ? nth(coll, i)
                 : null;
-                
+
+        /// <summary>
+        /// Returns the value at the index. <see cref="Nth"/> throws an exception if index
+        /// is out of bounds or unless notFound is supplied. <see cref="Nth"/> works on 
+        /// strings, arrays, Regex matcher, lists and O(n) time for sequences.
+        /// </summary>
+        /// <param name="coll">Collection to search for index.</param>
+        /// <param name="index">Index to find.</param>
+        /// <param name="notFound">Value to return if index is not found.</param>
+        /// <returns>
+        /// Returns the value at the index. <see cref="Nth"/> throws an exception if index
+        /// is out of bounds or unless notFound is supplied. <see cref="Nth"/> works on 
+        /// strings, arrays, Regex matcher, lists and O(n) time for sequences.
+        /// </returns>
         public object Invoke(object coll, object index, object notFound) =>
             int.TryParse(index.ToString(), out int i)
                 ? nth(coll, i, notFound)
@@ -28,7 +58,7 @@ namespace funclib.Components.Core
                 : coll is IVector v ? v[index]
                 : coll is IChunked c ? c[index]
                 : coll is System.Collections.IList l ? l[index]
-                : coll is FunctionalLibrary.ReMatcher re ? re.Group(index)
+                : coll is funclib.ReMatcher re ? re.Group(index)
                 : coll is Match m ? m.Groups[index]
                 : coll is System.Collections.DictionaryEntry de ? index == 0 ? de.Key : index == 1 ? de.Value : throw new ArgumentOutOfRangeException(nameof(index))
                 : coll is KeyValuePair kvp ? index == 0 ? kvp.Key : index == 1 ? kvp.Value : throw new ArgumentOutOfRangeException(nameof(index))
@@ -44,7 +74,7 @@ namespace funclib.Components.Core
                 : coll is IVector v ? v[index, notFound]
                 : coll is IChunked c ? c[index, notFound]
                 : coll is System.Collections.IList l ? l[index]
-                : coll is FunctionalLibrary.ReMatcher re ? re.IsUnrealizedOrFailed ? notFound : index < re.GroupCount() ? re.Group(index) : notFound
+                : coll is funclib.ReMatcher re ? re.IsUnrealizedOrFailed ? notFound : index < re.GroupCount() ? re.Group(index) : notFound
                 : coll is Match m ? index < m.Groups.Count ? m.Groups[index] : notFound
                 : coll is System.Collections.DictionaryEntry de ? index == 0 ? de.Key : index == 1 ? de.Value : notFound
                 : coll is KeyValuePair kvp ? index == 0 ? kvp.Key : index == 1 ? kvp.Value : notFound

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace FunctionalLibrary
+namespace funclib
 {
     public static class Variables
     {

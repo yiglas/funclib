@@ -2,7 +2,7 @@
 using System;
 using System.Text;
 
-namespace FunctionalLibrary
+namespace funclib
 {
     class FunctionComparer : System.Collections.IComparer
     {

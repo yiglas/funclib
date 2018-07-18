@@ -8,7 +8,7 @@ namespace funclib.Components.Core
     {
         public object Invoke(object re, object s)
         {
-            var m = (FunctionalLibrary.ReMatcher)new ReMatcher().Invoke(re, s);
+            var m = (funclib.ReMatcher)new ReMatcher().Invoke(re, s);
 
             return step();
 

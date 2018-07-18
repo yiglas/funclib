@@ -122,14 +122,14 @@ namespace funclib.Collections
                     int c = Comp.Compare(key, t.Key);
                     if (c == 0)
                     {
-                        stack = (ISeq)new Instances.Cons().Invoke(t, stack);
+                        stack = (ISeq)new funclib.Components.Core.Cons().Invoke(t, stack);
                         return new SortedMapSeq(stack, ascending);
                     }
                     else if (ascending)
                     {
                         if (c < 0)
                         {
-                            stack = (ISeq)new Instances.Cons().Invoke(t, stack);
+                            stack = (ISeq)new funclib.Components.Core.Cons().Invoke(t, stack);
                             t = t.Left;
                         }
                         else
@@ -139,7 +139,7 @@ namespace funclib.Collections
                     {
                         if (c > 0)
                         {
-                            stack = (ISeq)new Instances.Cons().Invoke(t, stack);
+                            stack = (ISeq)new funclib.Components.Core.Cons().Invoke(t, stack);
                             t = t.Right;
                         }
                         else

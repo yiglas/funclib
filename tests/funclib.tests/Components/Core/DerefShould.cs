@@ -11,7 +11,7 @@ namespace funclib.Tests.Components.Core
         public void Deref_should_return_the_current_state_of_ref()
         {
             var expected = 10;
-            var r = new funclib.Collections.Reduced(expected);
+            var r = new Reduced().Invoke(expected);
             var actual = new Deref().Invoke(r);
 
             Assert.AreEqual(expected, actual);

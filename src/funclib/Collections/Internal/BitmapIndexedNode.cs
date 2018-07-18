@@ -2,7 +2,7 @@
 using System.Text;
 using System.Threading;
 using funclib.Components.Core;
-using static FunctionalLibrary.Util;
+using static funclib.Util;
 
 namespace funclib.Collections.Internal
 {
@@ -45,7 +45,7 @@ namespace funclib.Collections.Internal
                     return new BitmapIndexedNode(null, this._bitmap, CloneAndSet(this._array, 2 * idx + 1, n));
                 }
 
-                if (new Instances.IsEqual().Invoke(key, keyOrNull))
+                if ((bool)new IsEqual().Invoke(key, keyOrNull))
                 {
                     if (val == valOrNode)
                         return this;
@@ -114,7 +114,7 @@ namespace funclib.Collections.Internal
                     if (n == valOrNode) return this;
                     return EditAndSet(edit, 2 * idx + 1, n);
                 }
-                if (new Instances.IsEqual().Invoke(key, keyOrNull))
+                if ((bool)new IsEqual().Invoke(key, keyOrNull))
                 {
                     if (val == valOrNode) return this;
                     return EditAndSet(edit, 2 * idx + 1, val);
@@ -198,7 +198,7 @@ namespace funclib.Collections.Internal
                 return new BitmapIndexedNode(null, this._bitmap ^ bit, RemovePair(this._array, idx));
             }
 
-            if (new Instances.IsEqual().Invoke(key, keyOrNull))
+            if ((bool)new IsEqual().Invoke(key, keyOrNull))
             {
                 return new BitmapIndexedNode(null, this._bitmap ^ bit, RemovePair(this._array, idx));
             }
@@ -225,7 +225,7 @@ namespace funclib.Collections.Internal
                 return EditAndRemovePair(edit, bit, idx);
             }
 
-            if (new Instances.IsEqual().Invoke(key, keyOrNull))
+            if ((bool)new IsEqual().Invoke(key, keyOrNull))
             {
                 removedLeaf.Value = removedLeaf;
                 return EditAndRemovePair(edit, bit, idx);
@@ -245,7 +245,7 @@ namespace funclib.Collections.Internal
 
             if (keyOrNull == null)
                 return ((INode)valOrNode).Get(shift + 5, hash, key);
-            if (new Instances.IsEqual().Invoke(key, keyOrNull))
+            if ((bool)new IsEqual().Invoke(key, keyOrNull))
                 return new KeyValuePair(keyOrNull, valOrNode);
 
             return null;
@@ -262,7 +262,7 @@ namespace funclib.Collections.Internal
 
             if (keyOrNull == null)
                 return ((INode)valOrNode).Get(shift + 5, hash, key, notFound);
-            if (new Instances.IsEqual().Invoke(key, keyOrNull))
+            if ((bool)new IsEqual().Invoke(key, keyOrNull))
                 return valOrNode;
 
             return notFound;

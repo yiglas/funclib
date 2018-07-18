@@ -142,7 +142,7 @@ namespace funclib.Components.Core
         {
             var e = Seq();
             if (e != null) return e.Equals(obj);
-            return obj is System.Collections.IList && new Instances.Seq().Invoke(obj) == null;
+            return obj is System.Collections.IList && new Seq().Invoke(obj) == null;
         }
         #endregion
 
@@ -194,7 +194,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the <see cref="ISeq"/> object calls.
         /// </returns>
-        public ISeq Cons(object o) => (ISeq)new Instances.Cons().Invoke(o, Seq());
+        public ISeq Cons(object o) => (ISeq)new Cons().Invoke(o, Seq());
         /// <summary>
         /// Returns the first object in the <see cref="LazySeq"/>.
         /// </summary>
@@ -268,7 +268,7 @@ namespace funclib.Components.Core
         public bool Contains(object item)
         {
             for (var e = Seq(); e != null; e = e.Next())
-                if (new Instances.IsEqual().Invoke(e.First(), item))
+                if ((bool)new IsEqual().Invoke(e.First(), item))
                     return true;
             return false;
         }
@@ -278,7 +278,7 @@ namespace funclib.Components.Core
         {
             var e = Seq();
             for (int i = 0; e != null; e = e.Next(), i++)
-                if (new Instances.IsEqual().Invoke(e.First(), value))
+                if ((bool)new IsEqual().Invoke(e.First(), value))
                     return i;
             return -1;
         }

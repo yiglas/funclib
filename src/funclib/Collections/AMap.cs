@@ -34,7 +34,7 @@ namespace funclib.Collections
                 {
                     var de = (KeyValuePair)e.First();
                     bool found = d.Contains(de.Key);
-                    if (!found || !new Instances.IsEqual().Invoke(de.Value, d[de.Key]))
+                    if (!found || !(bool)new IsEqual().Invoke(de.Value, d[de.Key]))
                         return false;
                 }
             }

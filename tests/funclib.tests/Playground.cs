@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Text;
-using static FunctionalLibrary.Core;
+using static funclib.Core;
 
 namespace FunctionalLibrary.Tests
 {

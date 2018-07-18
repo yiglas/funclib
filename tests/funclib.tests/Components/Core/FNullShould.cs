@@ -1,5 +1,5 @@
 ﻿using funclib.Components.Core;
-using FunctionalLibrary.Exceptions;
+using funclib.Exceptions;
 using NUnit.Framework;
 using System;
 using System.Text;

@@ -5,30 +5,30 @@ using System.Text;
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns true if values are equal, otherwise false.
+    /// Returns <see cref="true"/> if values are equal, otherwise <see cref="false"/>.
     /// </summary>
     public class IsEqual :
-        IFunction<object, bool>,
-        IFunction<object, object, bool>,
-        IFunctionParams<object, object, object, bool>
+        IFunction<object, object>,
+        IFunction<object, object, object>,
+        IFunctionParams<object, object, object, object>
     {
         /// <summary>
-        /// Returns true if values are equal, otherwise false.
+        /// Returns <see cref="true"/> if values are equal, otherwise <see cref="false"/>.
         /// </summary>
         /// <param name="x">First element to test.</param>
         /// <returns>
         /// Always true.
         /// </returns>
-        public bool Invoke(object x) => true;
+        public object Invoke(object x) => true;
         /// <summary>
-        /// Returns true if values are equal, otherwise false.
+        /// Returns <see cref="true"/> if values are equal, otherwise <see cref="false"/>.
         /// </summary>
         /// <param name="x">First element to test.</param>
         /// <param name="y">Second element to test against.</param>
         /// <returns>
-        /// Returns true if x is equal to y, otherwise false.
+        /// Returns <see cref="true"/> if x is equal to y, otherwise <see cref="false"/>.
         /// </returns>
-        public bool Invoke(object x, object y)
+        public object Invoke(object x, object y)
         {
             if (x == y) return true;
             if (x != null)
@@ -42,17 +42,17 @@ namespace funclib.Components.Core
             return false;
         }
         /// <summary>
-        /// Returns true if values are equal, otherwise false.
+        /// Returns <see cref="true"/> if values are equal, otherwise <see cref="false"/>.
         /// </summary>
         /// <param name="x">First element to test.</param>
         /// <param name="y">Second element to test against.</param>
         /// <param name="more">All other elements to test.</param>
         /// <returns>
-        /// Returns true if values are equal, otherwise false.
+        /// Returns <see cref="true"/> if values are equal, otherwise <see cref="false"/>.
         /// </returns>
-        public bool Invoke(object x, object y, params object[] more)
+        public object Invoke(object x, object y, params object[] more)
         {
-            if (Invoke(x, y))
+            if ((bool)Invoke(x, y))
             {
                 var next = (object[])new ToArray().Invoke(new Next().Invoke(more));
                 if (next.Length > 0)

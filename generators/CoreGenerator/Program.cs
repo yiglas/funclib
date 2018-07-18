@@ -15,8 +15,8 @@ namespace CoreGenerator
         static void Main(string[] args)
         {
             var sw = Stopwatch.StartNew();
-            var dir = new DirectoryInfo(AppContext.BaseDirectory).Parent.Parent.Parent.Parent.Parent.FullName + @"\src\funcx";
-            var files = GetClassFiles(dir + @"\Instances");
+            var dir = new DirectoryInfo(AppContext.BaseDirectory).Parent.Parent.Parent.Parent.Parent.FullName + @"\src\funclib";
+            var files = GetClassFiles(dir + @"\Components\Core");
 
             var lines = new List<string>();
             lines.Add($"// Generated on {DateTime.Now}");
@@ -24,7 +24,7 @@ namespace CoreGenerator
             lines.Add("using funclib.Components.Core;");
             lines.Add("using System;");
             lines.Add("");
-            lines.Add("namespace FunctionalLibrary");
+            lines.Add("namespace funclib");
             lines.Add("{");
             lines.Add("\tpublic static class Core");
             lines.Add("\t{");

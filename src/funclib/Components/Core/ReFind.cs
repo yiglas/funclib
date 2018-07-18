@@ -8,7 +8,7 @@ namespace funclib.Components.Core
         IFunction<object, object>,
         IFunction<object, object, object>
     {
-        public object Invoke(object m) => ((FunctionalLibrary.ReMatcher)m).Find() ? new ReGroups().Invoke(m) : null;
+        public object Invoke(object m) => ((funclib.ReMatcher)m).Find() ? new ReGroups().Invoke(m) : null;
         public object Invoke(object re, object s) => Invoke(new ReMatcher().Invoke(re, s));
     }
 }

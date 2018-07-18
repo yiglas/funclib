@@ -39,7 +39,7 @@ namespace funclib.Collections.Internal
         {
             while (t != null)
             {
-                stack = (ISeq)new Instances.Cons().Invoke(t, stack);
+                stack = (ISeq)new Components.Core.Cons().Invoke(t, stack);
                 t = asc ? t.Left : t.Right;
             }
             return stack;

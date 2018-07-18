@@ -68,7 +68,7 @@ namespace funclib.Components.Core
                 if (iter.MoveNext())
                 {
                     ret = fn.Invoke(ret, iter.Current);
-                    if (ret is Instances.Reduced r)
+                    if (ret is Reduced r)
                         return r.Deref();
                     return loop(ret, fn);
                 }
@@ -86,7 +86,7 @@ namespace funclib.Components.Core
                 if (iter.MoveNext())
                 {
                     var let = fn.Invoke(ret, iter.Current);
-                    if (ret is Instances.Reduced r)
+                    if (ret is Reduced r)
                         return r.Deref();
                     return loop(ret, fn);
                 }
@@ -109,7 +109,7 @@ namespace funclib.Components.Core
                 if ((bool)new IsChunkedSeq().Invoke(s))
                 {
                     var ret = ((IChunked)new ChunkFirst().Invoke(s)).Reduce(f, val);
-                    if (ret is Instances.Reduced r)
+                    if (ret is Reduced r)
                         return r.Deref();
                     return IChunkedSeqReduce(new ChunkNext().Invoke(s), f, ret);
                 }
@@ -131,7 +131,7 @@ namespace funclib.Components.Core
                 if (i < len)
                 {
                     var ret = f.Invoke(v, s[i]);
-                    if (ret is Instances.Reduced r)
+                    if (ret is Reduced r)
                         return r.Deref();
                     return loop((int)new Inc().Invoke(i), ret);
                 }
@@ -151,7 +151,7 @@ namespace funclib.Components.Core
                     if ((bool)new IsIdentical().Invoke(new Class().Invoke(seq), cls))
                     {
                         var ret = f.Invoke(v, seq.First());
-                        if (ret is Instances.Reduced r)
+                        if (ret is Reduced r)
                             return r.Deref();
                         return loop(cls, seq.Next(), ret);
                     }
@@ -180,7 +180,7 @@ namespace funclib.Components.Core
                 if ((bool)new Truthy().Invoke(seq))
                 {
                     var ret = f.Invoke(v, seq.First());
-                    if (ret is Instances.Reduced r)
+                    if (ret is Reduced r)
                         return r.Deref();
 
                     return loop(seq.Next(), ret);

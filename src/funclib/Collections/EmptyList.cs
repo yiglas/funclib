@@ -1,4 +1,5 @@
-﻿using System;
+﻿using funclib.Components.Core;
+using System;
 using System.Collections;
 using System.Text;
 
@@ -21,7 +22,7 @@ namespace funclib.Collections
 
         #region Overrides
         public override int GetHashCode() => 1;
-        public override bool Equals(object obj) => (obj is ISequential || obj is System.Collections.IList) && new Instances.Seq().Invoke(obj) == null;
+        public override bool Equals(object obj) => (obj is ISequential || obj is System.Collections.IList) && new Seq().Invoke(obj) == null;
         public override string ToString() => "()";
         #endregion
 

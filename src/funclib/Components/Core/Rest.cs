@@ -9,7 +9,7 @@ namespace funclib.Components.Core
     {
         public object Invoke(object coll)
         {
-            var enumerate = coll as ISeq ?? (ISeq)new Instances.Seq().Invoke(coll);
+            var enumerate = coll as ISeq ?? (ISeq)new Seq().Invoke(coll);
             if (enumerate == null)
                 return null;
             return enumerate.More();

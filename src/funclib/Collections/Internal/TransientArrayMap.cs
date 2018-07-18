@@ -1,4 +1,5 @@
-﻿using System;
+﻿using funclib.Components.Core;
+using System;
 using System.Text;
 using System.Threading;
 
@@ -79,7 +80,7 @@ namespace funclib.Collections.Internal
                 : true;
         #endregion
 
-        bool IsEqual(object a, object b) => new Instances.IsEqual().Invoke(a, b);
+        bool IsEqual(object a, object b) => (bool)new IsEqual().Invoke(a, b);
 
         int IndexOf(object key)
         {

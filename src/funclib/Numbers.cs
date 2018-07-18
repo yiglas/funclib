@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace FunctionalLibrary
+namespace funclib
 {
     static class Numbers
     {

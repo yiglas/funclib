@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace FunctionalLibrary.Exceptions
+namespace funclib.Exceptions
 {
     public class ArityException : Exception
     {

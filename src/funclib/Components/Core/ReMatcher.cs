@@ -8,6 +8,6 @@ namespace funclib.Components.Core
         IFunction<object, object, object>
     {
         public object Invoke(object re, object s) =>
-            new FunctionalLibrary.ReMatcher((Regex)re, (string)s);
+            new funclib.ReMatcher((Regex)re, (string)s);
     }
 }

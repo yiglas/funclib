@@ -1,5 +1,5 @@
 ﻿using funclib.Collections;
-using FunctionalLibrary.Exceptions;
+using funclib.Exceptions;
 using System;
 using System.Linq;
 using System.Text;

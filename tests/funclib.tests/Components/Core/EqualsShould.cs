@@ -12,25 +12,25 @@ namespace funclib.Tests.Components.Core
         {
             var actual = new IsEqual().Invoke(false);
 
-            Assert.IsTrue(actual);
+            Assert.IsTrue((bool)actual);
         }
 
         [Test]
         public void Equals_should_test_equality_between_two_objects()
         {
-            Assert.IsTrue(new IsEqual().Invoke(1, 1));
-            Assert.IsTrue(new IsEqual().Invoke(new Vector().Invoke(1, 2), new Vector().Invoke(1, 2)));
-            Assert.IsFalse(new IsEqual().Invoke(1, "1"));
-            Assert.IsFalse(new IsEqual().Invoke(null, 1));
+            Assert.IsTrue((bool)new IsEqual().Invoke(1, 1));
+            Assert.IsTrue((bool)new IsEqual().Invoke(new Vector().Invoke(1, 2), new Vector().Invoke(1, 2)));
+            Assert.IsFalse((bool)new IsEqual().Invoke(1, "1"));
+            Assert.IsFalse((bool)new IsEqual().Invoke(null, 1));
         }
 
         [Test]
         public void Equals_should_test_equality_with_unlimited_number_of_objects()
         {
-            Assert.IsTrue(new IsEqual().Invoke(1, 1, 1, 1));
-            Assert.IsTrue(new IsEqual().Invoke(new Vector().Invoke(1, 2), new Vector().Invoke(1, 2), new Vector().Invoke(1, 2)));
-            Assert.IsFalse(new IsEqual().Invoke(1, 1, "1"));
-            Assert.IsFalse(new IsEqual().Invoke(null, 1, 1, 1));
+            Assert.IsTrue((bool)new IsEqual().Invoke(1, 1, 1, 1));
+            Assert.IsTrue((bool)new IsEqual().Invoke(new Vector().Invoke(1, 2), new Vector().Invoke(1, 2), new Vector().Invoke(1, 2)));
+            Assert.IsFalse((bool)new IsEqual().Invoke(1, 1, "1"));
+            Assert.IsFalse((bool)new IsEqual().Invoke(null, 1, 1, 1));
         }
     }
 }

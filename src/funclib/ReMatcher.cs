@@ -1,4 +1,4 @@
-﻿namespace FunctionalLibrary
+﻿namespace funclib
 {
     using System;
     using System.Collections.Generic;

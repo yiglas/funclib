@@ -39,7 +39,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object x, object y, params object[] more)
         {
-            if ((bool)new NotEqual().Invoke(x, y))
+            if ((bool)new IsNotEqual().Invoke(x, y))
                 return loop(new HashSet().Invoke(x, y), more);
 
             return false;

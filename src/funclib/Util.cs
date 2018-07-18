@@ -1,4 +1,4 @@
-﻿namespace FunctionalLibrary
+﻿namespace funclib
 {
     using funclib.Collections;
     using funclib.Collections.Internal;
@@ -99,7 +99,7 @@
             else if (x is ISeq || x is IList)
             {
                 w.Write('(');
-                PrintInnerSeq((ISeq)new Instances.Seq().Invoke(x), w);
+                PrintInnerSeq((ISeq)new Seq().Invoke(x), w);
                 w.Write(')');
             }
             else if (x is string s)

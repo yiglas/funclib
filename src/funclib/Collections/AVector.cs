@@ -29,7 +29,7 @@ namespace funclib.Collections
 
                 for (int i = 0; i < Count; i++)
                 {
-                    if (!new Instances.IsEqual().Invoke(this[i], v[i]))
+                    if (!(bool)new IsEqual().Invoke(this[i], v[i]))
                         return false;
                 }
 
@@ -42,7 +42,7 @@ namespace funclib.Collections
 
                 for (int i = 0; i < Count; i++)
                 {
-                    if (!new Instances.IsEqual().Invoke(this[i], l[i]))
+                    if (!(bool)new IsEqual().Invoke(this[i], l[i]))
                         return false;
                 }
 
@@ -53,7 +53,7 @@ namespace funclib.Collections
             {
                 for (int i = 0; i < Count; i++, e = e.Next())
                 {
-                    if (e == null || !new Instances.IsEqual().Invoke(this[i], e.First()))
+                    if (e == null || !(bool)new IsEqual().Invoke(this[i], e.First()))
                         return false;
                 }
                 if (e != null) return false;
@@ -149,7 +149,7 @@ namespace funclib.Collections
         public bool Contains(object value)
         {
             for (var e = Seq(); e != null; e = e.Next())
-                if (new Instances.IsEqual().Invoke(e.First(), value))
+                if ((bool)new IsEqual().Invoke(e.First(), value))
                     return true;
 
             return false;
@@ -181,7 +181,7 @@ namespace funclib.Collections
         public int IndexOf(object value)
         {
             for (int i = 0; i < Count; i++)
-                if (new Instances.IsEqual().Invoke(this[i], value))
+                if ((bool)new IsEqual().Invoke(this[i], value))
                     return i;
 
             return -1;
