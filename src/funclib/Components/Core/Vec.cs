@@ -22,7 +22,7 @@ namespace funclib.Components.Core
             if (coll == null) return Collections.Vector.EMPTY;
             else if (coll is ISeq s)
             {
-                var seq = new Seq().Invoke(s);
+                var seq = (ISeq)new Seq().Invoke(s);
                 if (seq == null)
                     return Collections.Vector.EMPTY;
 

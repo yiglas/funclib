@@ -31,7 +31,7 @@ namespace funclib.Components.Core
                 {
                     var fst = s.First();
                     var fv = fn.Invoke(fst);
-                    var run = new Cons().Invoke(fst, new TakeWhile().Invoke(new Function<object, object>(x => new IsEqual().Invoke(fv, fn.Invoke(x))), s.Next()));
+                    var run = new Cons().Invoke(fst, new TakeWhile().Invoke(new Function<object, object>(x => new IsEqualTo().Invoke(fv, fn.Invoke(x))), s.Next()));
 
                     return new Cons().Invoke(run, Invoke(f, new Seq().Invoke(new Drop().Invoke(new Count().Invoke(run), s))));
                 }
@@ -70,7 +70,7 @@ namespace funclib.Components.Core
                 var pval = this._pv.Deref();
                 var val = ((IFunction<object, object>)this._f).Invoke(input);
                 new VResetǃ().Invoke(this._pv, val);
-                if ((bool)new Truthy().Invoke(new Or().Invoke(new IsIdentical().Invoke(pval, "::none"), new IsEqual().Invoke(val, pval))))
+                if ((bool)new Truthy().Invoke(new Or().Invoke(new IsIdentical().Invoke(pval, "::none"), new IsEqualTo().Invoke(val, pval))))
                 {
                     this._a.Add(input);
                     return result;

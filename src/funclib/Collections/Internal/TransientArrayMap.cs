@@ -80,7 +80,7 @@ namespace funclib.Collections.Internal
                 : true;
         #endregion
 
-        bool IsEqual(object a, object b) => (bool)new IsEqual().Invoke(a, b);
+        bool IsEqual(object a, object b) => (bool)new IsEqualTo().Invoke(a, b);
 
         int IndexOf(object key)
         {

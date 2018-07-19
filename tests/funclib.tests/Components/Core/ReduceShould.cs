@@ -69,5 +69,14 @@ namespace funclib.Tests.Components.Core
 
             Assert.AreEqual(expected, actual);
         }
+
+        [Test]
+        public void Reduce_should_loop_over_a_string()
+        {
+            var expected = 502;
+            var actual = new Reduce().Invoke(new Plus(), "Devin");
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

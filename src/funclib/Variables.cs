@@ -18,6 +18,7 @@ namespace funclib
             }
         }
 
+
         public static TextWriter _err = Console.Error;
         public static TextWriter Err
         {

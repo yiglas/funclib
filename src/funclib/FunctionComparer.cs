@@ -13,6 +13,13 @@ namespace funclib
             this._comparator = (IFunction<object, object, object>)comparator;
         }
 
-        public int Compare(object x, object y) => Numbers.ConvertToInt(this._comparator.Invoke(x, y));
+        public int Compare(object x, object y)
+        {
+            var result = this._comparator.Invoke(x, y);
+            if (result is bool b)
+                result = b ? -1 : 1;
+
+            return Numbers.ConvertToInt(result);
+        }
     }
 }

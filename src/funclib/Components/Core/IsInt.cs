@@ -19,9 +19,9 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object n) =>
             new Or().Invoke(
-                n is Int32,
-                n is Int64,
-                n is Int16,
-                n is Byte);
+                n is int,
+                n is long,
+                n is short,
+                n is byte);
     }
 }

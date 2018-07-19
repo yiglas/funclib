@@ -208,8 +208,10 @@ namespace CoreGenerator
             switch (name)
             {
                 case "class": return "@class";
+                case "char": return "@char";
                 case "function": return "invoke";
                 case "uUID": return "uuid";
+                case "rSeq": return "rseq";
             }
 
             return name;

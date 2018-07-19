@@ -4,13 +4,13 @@ using System.Text;
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// If x is a boolean return x, otherwise return x != null.
+    /// If x is a <see cref="bool"/> return x, otherwise return x != null.
     /// </summary>
     public class Boolean :
         IFunction<object, object>
     {
         /// <summary>
-        /// If x is a boolean return x, otherwise return x != null.
+        /// If x is a <see cref="bool"/> return x, otherwise return x != null.
         /// </summary>
         /// <param name="x">Object to coerce into a boolean.</param>
         /// <returns>

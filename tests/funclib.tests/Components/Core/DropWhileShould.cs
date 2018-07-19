@@ -15,5 +15,14 @@ namespace funclib.Tests.Components.Core
 
             Assert.AreEqual(expected, actual);
         }
+
+        [Test]
+        public void DropWhile_should_return_empty_list_if_pred_always_returns_false()
+        {
+            var expected = new funclib.Components.Core.List().Invoke();
+            var actual = new ToArray().Invoke(new DropWhile().Invoke(new Partial().Invoke(new IsGreaterThan(), 10), new Vector().Invoke(1, 2, 3, 2, 1)));
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

@@ -30,7 +30,7 @@ namespace funclib.Collections
 
             for (var e = Seq(); e != null; e = e.Next(), me = me.Next())
             {
-                if (me == null || !(bool)new IsEqual().Invoke(e.First(), me.First()))
+                if (me == null || !(bool)new IsEqualTo().Invoke(e.First(), me.First()))
                     return false;
             }
 
@@ -92,7 +92,7 @@ namespace funclib.Collections
         {
             int i = 0;
             for (var e = Seq(); e != null; e = e.Next(), i++)
-                if ((bool)new IsEqual().Invoke(e.First(), value))
+                if ((bool)new IsEqualTo().Invoke(e.First(), value))
                     return i;
             return -1;
         }
@@ -119,7 +119,7 @@ namespace funclib.Collections
         public bool Contains(object value)
         {
             for (var e = Seq(); e != null; e = e.Next())
-                if ((bool)new IsEqual().Invoke(e.First(), value))
+                if ((bool)new IsEqualTo().Invoke(e.First(), value))
                     return true;
 
             return false;

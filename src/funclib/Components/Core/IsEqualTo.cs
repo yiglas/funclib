@@ -7,7 +7,7 @@ namespace funclib.Components.Core
     /// <summary>
     /// Returns <see cref="true"/> if values are equal, otherwise <see cref="false"/>.
     /// </summary>
-    public class IsEqual :
+    public class IsEqualTo :
         IFunction<object, object>,
         IFunction<object, object, object>,
         IFunctionParams<object, object, object, object>
@@ -54,13 +54,9 @@ namespace funclib.Components.Core
         {
             if ((bool)Invoke(x, y))
             {
-                var next = (object[])new ToArray().Invoke(new Next().Invoke(more));
-                if (next.Length > 0)
-                    return Invoke(y, new First().Invoke(more), next);
-
-                //    var next = (ISeq)new Next().Invoke(more);
-                //if (next != null)
-                //    return Invoke(y, next.First(), next.More());
+                var next = new Next().Invoke(more);
+                if ((bool)new Truthy().Invoke(next))
+                    return Invoke(y, new First().Invoke(more), (object[])new ToArray().Invoke(next));
 
                 return Invoke(y, new First().Invoke(more));
             }

@@ -6,10 +6,33 @@ using System.Text;
 
 namespace funclib.Components.Core
 {
+    /// <summary>
+    /// f should implement the <see cref="IFunction{T1, T2, TResult}"/> interface. If val is not supplied,
+    /// returns the result of applying f to the first 2 items in coll, then applying f to the result and 
+    /// the 3rd item, etc. If coll contains no items, f must implement <see cref="IFunction{TResult}"/> 
+    /// interface and reduce returns the result of calling f with no arguments. If coll has only 1 item,
+    /// it is returned and f is not called. If val is supplied, returns the result of applying f to val
+    /// and the first item in coll, then applying f to the result and the 2nd item, etc. If coll contains 
+    /// no items, val is returned and f is not called.
+    /// </summary>
     public class Reduce :
         IFunction<object, object, object>,
         IFunction<object, object, object, object>
     {
+        /// <summary>
+        /// f should implement the <see cref="IFunction{T1, T2, TResult}"/> interface. If val is not supplied,
+        /// returns the result of applying f to the first 2 items in coll, then applying f to the result and 
+        /// the 3rd item, etc. If coll contains no items, f must implement <see cref="IFunction{TResult}"/> 
+        /// interface and reduce returns the result of calling f with no arguments. If coll has only 1 item,
+        /// it is returned and f is not called. If val is supplied, returns the result of applying f to val
+        /// and the first item in coll, then applying f to the result and the 2nd item, etc. If coll contains 
+        /// no items, val is returned and f is not called.
+        /// </summary>
+        /// <param name="f">An object that implements <see cref="IFunction{T1, T2, TResult}"/> interface unless coll has not items, then it needs to implement the <see cref="IFunction{TResult}"/> interface.</param>
+        /// <param name="coll">The collection to reduce.</param>
+        /// <returns>
+        /// Returns the result of calling f to the 1st and 2nd items, then calling f with the result and 3rd item, etc.
+        /// </returns>
         public object Invoke(object f, object coll) =>
             coll is IReduce r
                 ? r.Reduce((IFunction<object, object, object>)f)
@@ -22,6 +45,21 @@ namespace funclib.Components.Core
                 //: coll is ValueSeq ? IterReduce(coll, f)
                 : SeqReduce(coll, f);
 
+        /// <summary>
+        /// f should implement the <see cref="IFunction{T1, T2, TResult}"/> interface. If val is not supplied,
+        /// returns the result of applying f to the first 2 items in coll, then applying f to the result and 
+        /// the 3rd item, etc. If coll contains no items, f must implement <see cref="IFunction{TResult}"/> 
+        /// interface and reduce returns the result of calling f with no arguments. If coll has only 1 item,
+        /// it is returned and f is not called. If val is supplied, returns the result of applying f to val
+        /// and the first item in coll, then applying f to the result and the 2nd item, etc. If coll contains 
+        /// no items, val is returned and f is not called.
+        /// </summary>
+        /// <param name="f">An object that implements <see cref="IFunction{T1, T2, TResult}"/> interface.</param>
+        /// <param name="val">The initial starting value.</param>
+        /// <param name="coll">The collection to reduce over.</param>
+        /// <returns>
+        /// Returns the result of calling f to val and 1st, then calling f with the result and 2nd, etc.
+        /// </returns>
         public object Invoke(object f, object val, object coll) =>
             coll is IReduce r
                 ? r.Reduce((IFunction<object, object, object>)f, val)

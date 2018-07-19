@@ -1,4 +1,4 @@
-// Generated on 7/17/2018 1:54:20 PM
+// Generated on 7/19/2018 7:43:49 AM
 using funclib.Collections;
 using funclib.Components.Core;
 using System;
@@ -60,7 +60,7 @@ namespace funclib
 		public static funclib.Components.Core.BitTest BitTest => new funclib.Components.Core.BitTest();
 		public static funclib.Components.Core.BitXOr BitXOr => new funclib.Components.Core.BitXOr();
 		/// <summary>
-		/// If x is a boolean return x, otherwise return x != null.
+		/// If x is a <see cref="bool"/> return x, otherwise return x != null.
 		/// </summary>
 		public static funclib.Components.Core.Boolean Boolean => new funclib.Components.Core.Boolean();
 		/// <summary>
@@ -68,6 +68,10 @@ namespace funclib
 		/// </summary>
 		public static funclib.Components.Core.ButLast ButLast => new funclib.Components.Core.ButLast();
 		public static funclib.Components.Core.Cat Cat => new funclib.Components.Core.Cat();
+		/// <summary>
+		/// Coerce to char
+		/// </summary>
+		public static funclib.Components.Core.Char Char => new funclib.Components.Core.Char();
 		public static funclib.Components.Core.Chunk Chunk => new funclib.Components.Core.Chunk();
 		public static funclib.Components.Core.ChunkAppend ChunkAppend => new funclib.Components.Core.ChunkAppend();
 		public static funclib.Components.Core.ChunkBuffer ChunkBuffer => new funclib.Components.Core.ChunkBuffer();
@@ -351,9 +355,9 @@ namespace funclib
 		/// </summary>
 		public static funclib.Components.Core.IsEmpty IsEmpty => new funclib.Components.Core.IsEmpty();
 		/// <summary>
-		/// Returns true if values are equal, otherwise false.
+		/// Returns <see cref="true"/> if values are equal, otherwise <see cref="false"/>.
 		/// </summary>
-		public static funclib.Components.Core.IsEqual IsEqual => new funclib.Components.Core.IsEqual();
+		public static funclib.Components.Core.IsEqualTo IsEqual => new funclib.Components.Core.IsEqualTo();
 		/// <summary>
 		/// Returns <see cref="true"/> if n is an even number.
 		/// </summary>
@@ -421,6 +425,10 @@ namespace funclib
 		/// Returns <see cref="false"/> if x is logical true for any item in coll, otherwise <see cref="true"/>.
 		/// </summary>
 		public static funclib.Components.Core.IsNotAny IsNotAny => new funclib.Components.Core.IsNotAny();
+		/// <summary>
+		/// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
+		/// </summary>
+		public static funclib.Components.Core.IsNotEqual IsNotEqual => new funclib.Components.Core.IsNotEqual();
 		/// <summary>
 		/// Returns <see cref="false"/> if x is logical true for every item in coll, otherwise <see cref="true"/>.
 		/// </summary>
@@ -572,40 +580,170 @@ namespace funclib
 		/// ys from x and returns the result.
 		/// </summary>
 		public static funclib.Components.Core.Minus Minus => new funclib.Components.Core.Minus();
+		/// <summary>
+		/// Returns a <see cref="Seq"/> of the items after the first. Calls
+		/// <see cref="Seq"/> on its argument. If there are no more items,
+		/// returns <see cref="Collections.List.EMPTY"/> collection.
+		/// </summary>
 		public static funclib.Components.Core.More More => new funclib.Components.Core.More();
+		/// <summary>
+		/// Returns the product of numbers. No parameters past returns 1. Single parameter there is an
+		/// implicit 1 passed.
+		/// </summary>
 		public static funclib.Components.Core.Multiply Multiply => new funclib.Components.Core.Multiply();
+		/// <summary>
+		/// Returns a <see cref="Seq"/> of the items after the first. Calls
+		/// <see cref="Seq"/> on its argument. If there are no more items,
+		/// returns null.
+		/// </summary>
 		public static funclib.Components.Core.Next Next => new funclib.Components.Core.Next();
+		/// <summary>
+		/// Same as <see cref="Next.Invoke(First.Invoke(object))"/>.
+		/// </summary>
 		public static funclib.Components.Core.NFirst NFirst => new funclib.Components.Core.NFirst();
+		/// <summary>
+		/// Same as <see cref="Next.Invoke(Next.Invoke(object))"/>.
+		/// </summary>
 		public static funclib.Components.Core.NNext NNext => new funclib.Components.Core.NNext();
+		/// <summary>
+		/// Returns <see cref="true"/> if x is logical false, otherwise <see cref="false"/>.
+		/// </summary>
 		public static funclib.Components.Core.Not Not => new funclib.Components.Core.Not();
+		/// <summary>
+		/// Returns <see cref="null"/> if coll is empty, otherwise coll
+		/// </summary>
 		public static funclib.Components.Core.NotEmpty NotEmpty => new funclib.Components.Core.NotEmpty();
-		public static funclib.Components.Core.IsNotEqual NotEqual => new funclib.Components.Core.IsNotEqual();
+		/// <summary>
+		/// Returns the value at the index. <see cref="Nth"/> throws an exception if index
+		/// is out of bounds or unless notFound is supplied. <see cref="Nth"/> works on
+		/// strings, arrays, Regex matcher, lists and O(n) time for sequences.
+		/// </summary>
 		public static funclib.Components.Core.Nth Nth => new funclib.Components.Core.Nth();
+		/// <summary>
+		/// Returns the nth next of colls. <see cref="Seq"/> is called when n is zero.
+		/// </summary>
 		public static funclib.Components.Core.NthNext NthNext => new funclib.Components.Core.NthNext();
+		/// <summary>
+		/// Returns the nth rest of coll, coll when n is 0.
+		/// </summary>
 		public static funclib.Components.Core.NthRest NthRest => new funclib.Components.Core.NthRest();
+		/// <summary>
+		/// Evaluates objects one at a time, from left to right. If a object returns
+		/// a logical true value then it is returned and stops evaluating
+		/// all other expressions. Otherwise, it returns the value of the last object.
+		/// </summary>
 		public static funclib.Components.Core.Or Or => new funclib.Components.Core.Or();
+		/// <summary>
+		/// Takes a <see cref="IFunction"/> f and fewer than the normal arguments, and returns a
+		/// <see cref="Function"/> that take the rest of the arguments.
+		/// </summary>
 		public static funclib.Components.Core.Partial Partial => new funclib.Components.Core.Partial();
+		/// <summary>
+		/// Returns a <see cref="LazySeq"/> of lists of n items each, at offsets step
+		/// apart. If step is not supplied, defaults to n, i.e. the partitions do not
+		/// overlap. If a pad collections is supplied, use its elements a necessary
+		/// to complete last partition up to n items. In case there are not enough
+		/// padding elements, return a partition with  less than n items.
+		/// </summary>
 		public static funclib.Components.Core.Partition Partition => new funclib.Components.Core.Partition();
+		/// <summary>
+		/// Returns a <see cref="LazySeq"/> of lists like <see cref="Partition"/>, but my include
+		/// partitions with fewer then n items at the end.
+		/// </summary>
 		public static funclib.Components.Core.PartitionAll PartitionAll => new funclib.Components.Core.PartitionAll();
+		/// <summary>
+		/// Applies <see cref="IFunction{T1, TResult}"/> to each value in coll, splitting it each
+		/// time f returns a new value. Returns a <see cref="LazySeq"/> of partitions.
+		/// </summary>
 		public static funclib.Components.Core.PartitionBy PartitionBy => new funclib.Components.Core.PartitionBy();
+		/// <summary>
+		/// Returns the same as <see cref="Collections.List"/>'s <see cref="Collections.List.First"/> method,
+		/// for <see cref="Collections.Queue"/>'s <see cref="Collections.Queue.Peek"/> method, for
+		/// <see cref="Collections.Vector"/>'s <see cref="Last"/> (but much more efficient). If the collection
+		/// is empty return null.
+		/// </summary>
 		public static funclib.Components.Core.Peek Peek => new funclib.Components.Core.Peek();
+		/// <summary>
+		/// Returns a new, persistent version of the <see cref="ITransientCollection"/>, in
+		/// constant time. The <see cref="ITransientCollection"/> cannot be used after this
+		/// call.
+		/// </summary>
 		public static funclib.Components.Core.Persistentǃ Persistentǃ => new funclib.Components.Core.Persistentǃ();
+		/// <summary>
+		/// Returns the sum of numbers. No parameters past returns 0.
+		/// </summary>
 		public static funclib.Components.Core.Plus Plus => new funclib.Components.Core.Plus();
+		/// <summary>
+		/// For <see cref="Collections.List"/> or <see cref="Collections.Queue"/> returns a
+		/// new <see cref="Collections.List"/>/<see cref="Collections.Queue"/> without the first
+		/// item. For <see cref="Collections.Vector"/>, returns a new <see cref="Collections.Vector"/>
+		/// without the last time. If the coll is empty, throws an exception.
+		/// </summary>
 		public static funclib.Components.Core.Pop Pop => new funclib.Components.Core.Pop();
-		public static funclib.Components.Core.Popǃ PopT => new funclib.Components.Core.Popǃ();
+		/// <summary>
+		/// Removes the last time from a <see cref="ITransientVector"/>. If
+		/// the collection is empty, throw an exception.
+		/// </summary>
+		public static funclib.Components.Core.Popǃ Popǃ => new funclib.Components.Core.Popǃ();
+		/// <summary>
+		/// Prints the object(s) to the <see cref="Variables.Out"/> stream.
+		/// </summary>
+		public static funclib.Components.Core.Print Print => new funclib.Components.Core.Print();
+		/// <summary>
+		/// The same as <see cref="Print"/> but followed by a <see cref="Environment.NewLine"/>.
+		/// </summary>
 		public static funclib.Components.Core.PrintLn PrintLn => new funclib.Components.Core.PrintLn();
+		/// <summary>
+		/// Returns a <see cref="Random"/> floating point number between
+		/// 0 (inclusive) and n (default 1) (exclusive).
+		/// </summary>
 		public static funclib.Components.Core.Rand Rand => new funclib.Components.Core.Rand();
+		/// <summary>
+		/// Returns a <see cref="Random"/> <see cref="int"/> between 0 (inclusive) and n (exclusive).
+		/// </summary>
 		public static funclib.Components.Core.RandInt RandInt => new funclib.Components.Core.RandInt();
+		/// <summary>
+		/// Return a random element of the <see cref="Collections.ISequential"/> collection.
+		/// </summary>
 		public static funclib.Components.Core.RandNth RandNth => new funclib.Components.Core.RandNth();
+		/// <summary>
+		/// Returns a <see cref="LazySeq"/> of numbers from start (inclusive) to end
+		/// (Exclusive), by step, where start defaults to 0, step to 1, and end to
+		/// infinity. When step is equal to 0, returns an infinite sequence of
+		/// start. When start is equal to end, returns empty list.
+		/// </summary>
 		public static funclib.Components.Core.Range Range => new funclib.Components.Core.Range();
+		/// <summary>
+		/// f should implement the <see cref="IFunction{T1, T2, TResult}"/> interface. If val is not supplied,
+		/// returns the result of applying f to the first 2 items in coll, then applying f to the result and
+		/// the 3rd item, etc. If coll contains no items, f must implement <see cref="IFunction{TResult}"/>
+		/// interface and reduce returns the result of calling f with no arguments. If coll has only 1 item,
+		/// it is returned and f is not called. If val is supplied, returns the result of applying f to val
+		/// and the first item in coll, then applying f to the result and the 2nd item, etc. If coll contains
+		/// no items, val is returned and f is not called.
+		/// </summary>
 		public static funclib.Components.Core.Reduce Reduce => new funclib.Components.Core.Reduce();
 		/// <summary>
 		/// Wraps x in a way such that a <see cref="Reduce"/> will terminate with the value x.
 		/// </summary>
 		public static funclib.Components.Core.Reduced Reduced => new funclib.Components.Core.Reduced();
 		public static funclib.Components.Core.ReduceKV ReduceKV => new funclib.Components.Core.ReduceKV();
+		/// <summary>
+		/// Returns a <see cref="LazySeq"/> of the intermediate values of the reductions
+		/// (as per reduce) of coll by f, starting with init.
+		/// </summary>
 		public static funclib.Components.Core.Reductions Reductions => new funclib.Components.Core.Reductions();
+		/// <summary>
+		/// Returns the next <see cref="Regex"/> match, if any, of string to pattern, using <see cref="funclib.ReMatcher.Find"/>.
+		/// Uses <see cref="ReGroups"/> to return the group.
+		/// </summary>
 		public static funclib.Components.Core.ReFind ReFind => new funclib.Components.Core.ReFind();
+		/// <summary>
+		/// Returns the groups from the most recent match/find. If there are no
+		/// nested groups, returns a string of the entire match. If there are
+		/// nested groups, returns a <see cref="Collections.Vector"/> of groups,
+		/// the first element being the entire match.
+		/// </summary>
 		public static funclib.Components.Core.ReGroups ReGroups => new funclib.Components.Core.ReGroups();
 		public static funclib.Components.Core.Rem Rem => new funclib.Components.Core.Rem();
 		public static funclib.Components.Core.ReMatcher ReMatcher => new funclib.Components.Core.ReMatcher();
@@ -903,7 +1041,7 @@ namespace funclib
 		public static object bitXOr(object x, object y) => BitXOr.Invoke(x, y);
 		public static object bitXOr(object x, object y, params object[] more) => BitXOr.Invoke(x, y, more);
 		/// <summary>
-		/// If x is a boolean return x, otherwise return x != null.
+		/// If x is a <see cref="bool"/> return x, otherwise return x != null.
 		/// </summary>
 		/// <param name="x">Object to coerce into a boolean.</param>
 		/// <returns>
@@ -919,6 +1057,14 @@ namespace funclib
 		/// </returns>
 		public static object butLast(object coll) => ButLast.Invoke(coll);
 		public static object cat(object rf) => Cat.Invoke(rf);
+		/// <summary>
+		/// Coerce to char
+		/// </summary>
+		/// <param name="x">The number to convert to a <see cref="char"/>.</param>
+		/// <returns>
+		/// Returns a <see cref="char"/> value.
+		/// </returns>
+		public static object @char(object x) => Char.Invoke(x);
 		public static object chunk(object b) => Chunk.Invoke(b);
 		public static object chunkAppend(object b, object x) => ChunkAppend.Invoke(b, x);
 		public static object chunkBuffer(object capacity) => ChunkBuffer.Invoke(capacity);
@@ -950,7 +1096,7 @@ namespace funclib
 		/// of args, applies the right-most of functions to the args, the next function
 		/// (right-to-left) to the result, ect.
 		/// </summary>
-		/// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
+		/// <param name="f">Object that implements the <see cref="IFunction{T1, TResult}"/> interface.</param>
 		/// <returns>
 		/// Returns the passed in function.
 		/// </returns>
@@ -961,7 +1107,7 @@ namespace funclib
 		/// of args, applies the right-most of functions to the args, the next function
 		/// (right-to-left) to the result, ect.
 		/// </summary>
-		/// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
+		/// <param name="f">Object that implements the <see cref="IFunction{T1, TResult}"/> interface.</param>
 		/// <param name="g">Object that implements the <see cref="IFunction"/> interface.</param>
 		/// <returns>
 		/// Returns <see cref="Function"/> with f and g composed together.
@@ -973,7 +1119,7 @@ namespace funclib
 		/// of args, applies the right-most of functions to the args, the next function
 		/// (right-to-left) to the result, ect.
 		/// </summary>
-		/// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
+		/// <param name="f">Object that implements the <see cref="IFunction{T1, TResult}"/> interface.</param>
 		/// <param name="g">Object that implements the <see cref="IFunction"/> interface.</param>
 		/// <param name="fs">Array of objects that implement the <see cref="IFunction"/> interface.</param>
 		/// <returns>
@@ -2062,7 +2208,7 @@ namespace funclib
 		/// </returns>
 		public static object isEmpty(object coll) => IsEmpty.Invoke(coll);
 		/// <summary>
-		/// Returns true if values are equal, otherwise false.
+		/// Returns <see cref="true"/> if values are equal, otherwise <see cref="false"/>.
 		/// </summary>
 		/// <param name="x">First element to test.</param>
 		/// <returns>
@@ -2070,22 +2216,22 @@ namespace funclib
 		/// </returns>
 		public static object isEqual(object x) => IsEqual.Invoke(x);
 		/// <summary>
-		/// Returns true if values are equal, otherwise false.
+		/// Returns <see cref="true"/> if values are equal, otherwise <see cref="false"/>.
 		/// </summary>
 		/// <param name="x">First element to test.</param>
 		/// <param name="y">Second element to test against.</param>
 		/// <returns>
-		/// Returns true if x is equal to y, otherwise false.
+		/// Returns <see cref="true"/> if x is equal to y, otherwise <see cref="false"/>.
 		/// </returns>
 		public static object isEqual(object x, object y) => IsEqual.Invoke(x, y);
 		/// <summary>
-		/// Returns true if values are equal, otherwise false.
+		/// Returns <see cref="true"/> if values are equal, otherwise <see cref="false"/>.
 		/// </summary>
 		/// <param name="x">First element to test.</param>
 		/// <param name="y">Second element to test against.</param>
 		/// <param name="more">All other elements to test.</param>
 		/// <returns>
-		/// Returns true if values are equal, otherwise false.
+		/// Returns <see cref="true"/> if values are equal, otherwise <see cref="false"/>.
 		/// </returns>
 		public static object isEqual(object x, object y, params object[] more) => IsEqual.Invoke(x, y, more);
 		/// <summary>
@@ -2226,6 +2372,33 @@ namespace funclib
 		/// Returns <see cref="true"/> if x is logical true for any item in coll, otherwise <see cref="false"/>.
 		/// </returns>
 		public static object isNotAny(object pred, object coll) => IsNotAny.Invoke(pred, coll);
+		/// <summary>
+		/// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
+		/// </summary>
+		/// <param name="x">First element to test.</param>
+		/// <returns>
+		/// Returns false.
+		/// </returns>
+		public static object isNotEqual(object x) => IsNotEqual.Invoke(x);
+		/// <summary>
+		/// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
+		/// </summary>
+		/// <param name="x">First element to test.</param>
+		/// <param name="y">Second element to test</param>
+		/// <returns>
+		/// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
+		/// </returns>
+		public static object isNotEqual(object x, object y) => IsNotEqual.Invoke(x, y);
+		/// <summary>
+		/// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
+		/// </summary>
+		/// <param name="x">First element to test.</param>
+		/// <param name="y">Second element to test against.</param>
+		/// <param name="more">All other elements to test.</param>
+		/// <returns>
+		/// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
+		/// </returns>
+		public static object isNotEqual(object x, object y, params object[] more) => IsNotEqual.Invoke(x, y, more);
 		/// <summary>
 		/// Returns <see cref="false"/> if x is logical true for every item in coll, otherwise <see cref="true"/>.
 		/// </summary>
@@ -2771,56 +2944,547 @@ namespace funclib
 		/// Returns the result of subtracting y from x then rest of the more values.
 		/// </returns>
 		public static object minus(object x, object y, params object[] more) => Minus.Invoke(x, y, more);
+		/// <summary>
+		/// Returns a <see cref="Seq"/> of the items after the first. Calls
+		/// <see cref="Seq"/> on its argument. If there are no more items,
+		/// returns <see cref="Collections.List.EMPTY"/> collection.
+		/// </summary>
+		/// <param name="coll">Should be a <see cref="Collections.ISeqable"/> collection.</param>
+		/// <returns>
+		/// Returns a <see cref="Seq"/> of the items after the first. Calls
+		/// <see cref="Seq"/> on its argument. If there are no more items,
+		/// returns <see cref="Collections.List.EMPTY"/> collection.
+		/// </returns>
 		public static object more(object coll) => More.Invoke(coll);
+		/// <summary>
+		/// Returns the product of numbers. No parameters past returns 1. Single parameter there is an
+		/// implicit 1 passed.
+		/// </summary>
+		/// <returns>
+		/// Returns 1.
+		/// </returns>
 		public static object multiply() => Multiply.Invoke();
+		/// <summary>
+		/// Returns the product of numbers. No parameters past returns 1. Single parameter there is an
+		/// implicit 1 passed.
+		/// </summary>
+		/// <param name="x">First parameter multiply.</param>
+		/// <returns>
+		/// Returns the product of numbers. No parameters past returns 1. Single parameter there is an
+		/// implicit 1 passed.
+		/// </returns>
 		public static object multiply(object x) => Multiply.Invoke(x);
+		/// <summary>
+		/// Returns the product of numbers. No parameters past returns 1. Single parameter there is an
+		/// implicit 1 passed.
+		/// </summary>
+		/// <param name="x">First parameter multiply.</param>
+		/// <param name="y">Second parameter multiply.</param>
+		/// <returns>
+		/// Returns the product of numbers. No parameters past returns 1. Single parameter there is an
+		/// implicit 1 passed.
+		/// </returns>
 		public static object multiply(object x, object y) => Multiply.Invoke(x, y);
+		/// <summary>
+		/// Returns the product of numbers. No parameters past returns 1. Single parameter there is an
+		/// implicit 1 passed.
+		/// </summary>
+		/// <param name="x">First parameter multiply.</param>
+		/// <param name="y">Second parameter multiply.</param>
+		/// <param name="more">Rest of the parameters to multiply.</param>
+		/// <returns>
+		/// Returns the product of numbers. No parameters past returns 1. Single parameter there is an
+		/// implicit 1 passed.
+		/// </returns>
 		public static object multiply(object x, object y, params object[] more) => Multiply.Invoke(x, y, more);
+		/// <summary>
+		/// Returns a <see cref="Seq"/> of the items after the first. Calls
+		/// <see cref="Seq"/> on its argument. If there are no more items,
+		/// returns null.
+		/// </summary>
+		/// <param name="coll">Should be a <see cref="Collections.ISeqable"/> collection.</param>
+		/// <returns>
+		/// Returns a <see cref="Seq"/> of the items after the first. Calls
+		/// <see cref="Seq"/> on its argument. If there are no more items,
+		/// returns null.
+		/// </returns>
 		public static object next(object coll) => Next.Invoke(coll);
+		/// <summary>
+		/// Same as <see cref="Next.Invoke(First.Invoke(object))"/>.
+		/// </summary>
+		/// <param name="x">Object to return the first item's next item.</param>
+		/// <returns>
+		/// Returns the first item's next item
+		/// </returns>
 		public static object nFirst(object x) => NFirst.Invoke(x);
+		/// <summary>
+		/// Same as <see cref="Next.Invoke(Next.Invoke(object))"/>.
+		/// </summary>
+		/// <param name="x">Object to return the next item's next item.</param>
+		/// <returns>
+		/// Returns the next item's next item
+		/// </returns>
 		public static object nNext(object x) => NNext.Invoke(x);
+		/// <summary>
+		/// Returns <see cref="true"/> if x is logical false, otherwise <see cref="false"/>.
+		/// </summary>
+		/// <param name="x">Object to test.</param>
+		/// <returns>
+		/// Returns <see cref="true"/> if x is logical false, otherwise <see cref="false"/>.
+		/// </returns>
 		public static object not(object x) => Not.Invoke(x);
+		/// <summary>
+		/// Returns <see cref="null"/> if coll is empty, otherwise coll
+		/// </summary>
+		/// <param name="coll">Object to test.</param>
+		/// <returns>
+		/// Returns <see cref="null"/> if coll is empty, otherwise coll
+		/// </returns>
 		public static object notEmpty(object coll) => NotEmpty.Invoke(coll);
-		public static object notEqual(object x) => NotEqual.Invoke(x);
-		public static object notEqual(object x, object y) => NotEqual.Invoke(x, y);
-		public static object notEqual(object x, object y, params object[] more) => NotEqual.Invoke(x, y, more);
+		/// <summary>
+		/// Returns the value at the index. <see cref="Nth"/> throws an exception if index
+		/// is out of bounds or unless notFound is supplied. <see cref="Nth"/> works on
+		/// strings, arrays, Regex matcher, lists and O(n) time for sequences.
+		/// </summary>
+		/// <param name="coll">Collection to search for index.</param>
+		/// <param name="index">Index to find.</param>
+		/// <returns>
+		/// Returns the value at the index. <see cref="Nth"/> throws an exception if index
+		/// is out of bounds or unless notFound is supplied. <see cref="Nth"/> works on
+		/// strings, arrays, Regex matcher, lists and O(n) time for sequences.
+		/// </returns>
 		public static object nth(object coll, object index) => Nth.Invoke(coll, index);
+		/// <summary>
+		/// Returns the value at the index. <see cref="Nth"/> throws an exception if index
+		/// is out of bounds or unless notFound is supplied. <see cref="Nth"/> works on
+		/// strings, arrays, Regex matcher, lists and O(n) time for sequences.
+		/// </summary>
+		/// <param name="coll">Collection to search for index.</param>
+		/// <param name="index">Index to find.</param>
+		/// <param name="notFound">Value to return if index is not found.</param>
+		/// <returns>
+		/// Returns the value at the index. <see cref="Nth"/> throws an exception if index
+		/// is out of bounds or unless notFound is supplied. <see cref="Nth"/> works on
+		/// strings, arrays, Regex matcher, lists and O(n) time for sequences.
+		/// </returns>
 		public static object nth(object coll, object index, object notFound) => Nth.Invoke(coll, index, notFound);
+		/// <summary>
+		/// Returns the nth next of colls. <see cref="Seq"/> is called when n is zero.
+		/// </summary>
+		/// <param name="coll">The collection to loop.</param>
+		/// <param name="n">Number of Items to drop.</param>
+		/// <returns>
+		/// Returns the nth next of colls. <see cref="Seq"/> is called when n is zero.
+		/// </returns>
 		public static object nthNext(object coll, object n) => NthNext.Invoke(coll, n);
+		/// <summary>
+		/// Returns the nth rest of coll, coll when n is 0.
+		/// </summary>
+		/// <param name="coll">The collection to loop.</param>
+		/// <param name="n">Number of Items to drop.</param>
+		/// <returns>
+		/// Returns the nth rest of coll, coll when n is 0.
+		/// </returns>
 		public static object nthRest(object coll, object n) => NthRest.Invoke(coll, n);
+		/// <summary>
+		/// Evaluates objects one at a time, from left to right. If a object returns
+		/// a logical true value then it is returned and stops evaluating
+		/// all other expressions. Otherwise, it returns the value of the last object.
+		/// </summary>
+		/// <returns>
+		/// Returns null.
+		/// </returns>
 		public static object or() => Or.Invoke();
+		/// <summary>
+		/// Evaluates objects one at a time, from left to right. If a object returns
+		/// a logical true value then it is returned and stops evaluating
+		/// all other expressions. Otherwise, it returns the value of the last object.
+		/// </summary>
+		/// <param name="x">Object to return.</param>
+		/// <remarks>
+		/// If x implements interface <see cref="IFunction{TResult}"/> then the object's
+		/// Invoke() method is executed and sets its results to x.
+		/// </remarks>
+		/// <returns>
+		/// Evaluates objects one at a time, from left to right. If a object returns
+		/// a logical true value then it is returned and stops evaluating
+		/// all other expressions. Otherwise, it returns the value of the last object.
+		/// </returns>
 		public static object or(object x) => Or.Invoke(x);
+		/// <summary>
+		/// Evaluates objects one at a time, from left to right. If a object returns
+		/// a logical true value then it is returned and stops evaluating
+		/// all other expressions. Otherwise, it returns the value of the last object.
+		/// </summary>
+		/// <param name="x">First object to test.</param>
+		/// <param name="next">Rest of the objects to test.</param>
+		/// <returns>
+		/// Evaluates objects one at a time, from left to right. If a object returns
+		/// a logical true value then it is returned and stops evaluating
+		/// all other expressions. Otherwise, it returns the value of the last object.
+		/// </returns>
 		public static object or(object x, params object[] next) => Or.Invoke(x, next);
+		/// <summary>
+		/// Takes a <see cref="IFunction"/> f and fewer than the normal arguments, and returns a
+		/// <see cref="Function"/> that take the rest of the arguments.
+		/// </summary>
+		/// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
+		/// <param name="arg1">First argument to the function.</param>
+		/// <returns>
+		/// Returns <see cref="Function"/> that when executed will take args + additional args.
+		/// </returns>
 		public static object partial(object f, object arg1) => Partial.Invoke(f, arg1);
+		/// <summary>
+		/// Takes a <see cref="IFunction"/> f and fewer than the normal arguments, and returns a
+		/// <see cref="Function"/> that take the rest of the arguments.
+		/// </summary>
+		/// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
+		/// <param name="arg1">First argument to the function.</param>
+		/// <param name="arg2">Second argument to the function.</param>
+		/// <returns>
+		/// Returns <see cref="Function"/> that when executed will take args + additional args.
+		/// </returns>
 		public static object partial(object f, object arg1, object arg2) => Partial.Invoke(f, arg1, arg2);
+		/// <summary>
+		/// Takes a <see cref="IFunction"/> f and fewer than the normal arguments, and returns a
+		/// <see cref="Function"/> that take the rest of the arguments.
+		/// </summary>
+		/// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
+		/// <param name="arg1">First argument to the function.</param>
+		/// <param name="arg2">Second argument to the function.</param>
+		/// <param name="arg3">Third argument to the function.</param>
+		/// <returns>
+		/// Returns <see cref="Function"/> that when executed will take args + additional args.
+		/// </returns>
 		public static object partial(object f, object arg1, object arg2, object arg3) => Partial.Invoke(f, arg1, arg2, arg3);
+		/// <summary>
+		/// Takes a <see cref="IFunction"/> f and fewer than the normal arguments, and returns a
+		/// <see cref="Function"/> that take the rest of the arguments.
+		/// </summary>
+		/// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
+		/// <param name="arg1">First argument to the function.</param>
+		/// <param name="arg2">Second argument to the function.</param>
+		/// <param name="arg3">Third argument to the function.</param>
+		/// <param name="more">Rest of the arguments to the function.</param>
+		/// <returns>
+		/// Returns <see cref="Function"/> that when executed will take args + additional args.
+		/// </returns>
 		public static object partial(object f, object arg1, object arg2, object arg3, params object[] more) => Partial.Invoke(f, arg1, arg2, arg3, more);
+		/// <summary>
+		/// Returns a <see cref="LazySeq"/> of lists of n items each, at offsets step
+		/// apart. If step is not supplied, defaults to n, i.e. the partitions do not
+		/// overlap. If a pad collections is supplied, use its elements a necessary
+		/// to complete last partition up to n items. In case there are not enough
+		/// padding elements, return a partition with  less than n items.
+		/// </summary>
+		/// <param name="n">A <see cref="int"/> specifying the size of each group.</param>
+		/// <param name="coll">A collection that can be <see cref="Seq"/> over.</param>
+		/// <returns>
+		/// Returns a <see cref="LazySeq"/> of lists of n items each, at offsets step
+		/// apart. If step is not supplied, defaults to n, i.e. the partitions do not
+		/// overlap. If a pad collections is supplied, use its elements a necessary
+		/// to complete last partition up to n items. In case there are not enough
+		/// padding elements, return a partition with  less than n items.
+		/// </returns>
 		public static object partition(object n, object coll) => Partition.Invoke(n, coll);
+		/// <summary>
+		/// Returns a <see cref="LazySeq"/> of lists of n items each, at offsets step
+		/// apart. If step is not supplied, defaults to n, i.e. the partitions do not
+		/// overlap. If a pad collections is supplied, use its elements a necessary
+		/// to complete last partition up to n items. In case there are not enough
+		/// padding elements, return a partition with  less than n items.
+		/// </summary>
+		/// <param name="n">A <see cref="int"/> specifying the size of each group.</param>
+		/// <param name="step">A <see cref="int"/> specifying the starting point for each group.</param>
+		/// <param name="coll">A collection that can be <see cref="Seq"/> over.</param>
+		/// <returns>
+		/// Returns a <see cref="LazySeq"/> of lists of n items each, at offsets step
+		/// apart. If step is not supplied, defaults to n, i.e. the partitions do not
+		/// overlap. If a pad collections is supplied, use its elements a necessary
+		/// to complete last partition up to n items. In case there are not enough
+		/// padding elements, return a partition with  less than n items.
+		/// </returns>
 		public static object partition(object n, object step, object coll) => Partition.Invoke(n, step, coll);
+		/// <summary>
+		/// Returns a <see cref="LazySeq"/> of lists of n items each, at offsets step
+		/// apart. If step is not supplied, defaults to n, i.e. the partitions do not
+		/// overlap. If a pad collections is supplied, use its elements a necessary
+		/// to complete last partition up to n items. In case there are not enough
+		/// padding elements, return a partition with  less than n items.
+		/// </summary>
+		/// <param name="n">A <see cref="int"/> specifying the size of each group.</param>
+		/// <param name="step">A <see cref="int"/> specifing the starting point for each group.</param>
+		/// <param name="pad">A collection to pad results with.</param>
+		/// <param name="coll">A collection that can be <see cref="Seq"/> over.</param>
+		/// <returns>
+		/// Returns a <see cref="LazySeq"/> of lists of n items each, at offsets step
+		/// apart. If step is not supplied, defaults to n, i.e. the partitions do not
+		/// overlap. If a pad collections is supplied, use its elements a necessary
+		/// to complete last partition up to n items. In case there are not enough
+		/// padding elements, return a partition with  less than n items.
+		/// </returns>
 		public static object partition(object n, object step, object pad, object coll) => Partition.Invoke(n, step, pad, coll);
 		public static object partitionAll(object n) => PartitionAll.Invoke(n);
+		/// <summary>
+		/// Returns a <see cref="LazySeq"/> of lists like <see cref="Partition"/>, but my include
+		/// partitions with fewer then n items at the end.
+		/// </summary>
+		/// <param name="n">A <see cref="int"/> specifying the size of each group.</param>
+		/// <param name="coll">A collection that can be <see cref="Seq"/> over.</param>
+		/// <returns>
+		/// Returns a <see cref="LazySeq"/> of lists like <see cref="Partition"/>, but my include
+		/// partitions with fewer then n items at the end.
+		/// </returns>
 		public static object partitionAll(object n, object coll) => PartitionAll.Invoke(n, coll);
+		/// <summary>
+		/// Returns a <see cref="LazySeq"/> of lists like <see cref="Partition"/>, but my include
+		/// partitions with fewer then n items at the end.
+		/// </summary>
+		/// <param name="n">A <see cref="int"/> specifying the size of each group.</param>
+		/// <param name="step">A <see cref="int"/> specifying the starting point for each group.</param>
+		/// <param name="coll">A collection that can be <see cref="Seq"/> over.</param>
+		/// <returns>
+		/// Returns a <see cref="LazySeq"/> of lists like <see cref="Partition"/>, but my include
+		/// partitions with fewer then n items at the end.
+		/// </returns>
 		public static object partitionAll(object n, object step, object coll) => PartitionAll.Invoke(n, step, coll);
 		public static object partitionBy(object f) => PartitionBy.Invoke(f);
+		/// <summary>
+		/// Applies <see cref="IFunction{T1, TResult}"/> to each value in coll, splitting it each
+		/// time f returns a new value. Returns a <see cref="LazySeq"/> of partitions.
+		/// </summary>
+		/// <param name="f">An object that implements the <see cref="IFunction{T1, TResult}"/> interface.</param>
+		/// <param name="coll">A collection that can be <see cref="Seq"/> over.</param>
+		/// <returns>
+		/// Returns a <see cref="LazySeq"/> of partitions.
+		/// </returns>
 		public static object partitionBy(object f, object coll) => PartitionBy.Invoke(f, coll);
+		/// <summary>
+		/// Returns the same as <see cref="Collections.List"/>'s <see cref="Collections.List.First"/> method,
+		/// for <see cref="Collections.Queue"/>'s <see cref="Collections.Queue.Peek"/> method, for
+		/// <see cref="Collections.Vector"/>'s <see cref="Last"/> (but much more efficient). If the collection
+		/// is empty return null.
+		/// </summary>
+		/// <param name="coll">An object that implements the <see cref="IStack"/> interface.</param>
+		/// <returns>
+		/// Returns the same as <see cref="Collections.List"/>'s <see cref="Collections.List.First"/> method,
+		/// for <see cref="Collections.Queue"/>'s <see cref="Collections.Queue.Peek"/> method, for
+		/// <see cref="Collections.Vector"/>'s <see cref="Last"/> (but much more efficient). If the collection
+		/// is empty return null.
+		/// </returns>
 		public static object peek(object coll) => Peek.Invoke(coll);
+		/// <summary>
+		/// Returns a new, persistent version of the <see cref="ITransientCollection"/>, in
+		/// constant time. The <see cref="ITransientCollection"/> cannot be used after this
+		/// call.
+		/// </summary>
+		/// <param name="coll">An object that implements the <see cref="ITransientCollection"/> interface.</param>
+		/// <returns>
+		/// Returns a new, persistent version of the <see cref="ITransientCollection"/>, in
+		/// constant time.
+		/// </returns>
 		public static object persistentǃ(object coll) => Persistentǃ.Invoke(coll);
+		/// <summary>
+		/// Returns the sum of numbers. No parameters past returns 0.
+		/// </summary>
+		/// <returns>
+		/// Returns 0.
+		/// </returns>
 		public static object plus() => Plus.Invoke();
+		/// <summary>
+		/// Returns the sum of numbers. No parameters past returns 0.
+		/// </summary>
+		/// <param name="x">First parameter added.</param>
+		/// <returns>
+		/// Returns the sum of numbers. No parameters past returns 0.
+		/// </returns>
 		public static object plus(object x) => Plus.Invoke(x);
+		/// <summary>
+		/// Returns the sum of numbers. No parameters past returns 0.
+		/// </summary>
+		/// <param name="x">First parameter added.</param>
+		/// <param name="y">Second parameter added.</param>
+		/// <returns>
+		/// Returns the sum of numbers. No parameters past returns 0.
+		/// </returns>
 		public static object plus(object x, object y) => Plus.Invoke(x, y);
+		/// <summary>
+		/// Returns the sum of numbers. No parameters past returns 0.
+		/// </summary>
+		/// <param name="x">First parameter added.</param>
+		/// <param name="y">Second parameter added.</param>
+		/// <param name="more">Rest of the parameters to add.</param>
+		/// <returns>
+		/// Returns the sum of numbers. No parameters past returns 0.
+		/// </returns>
 		public static object plus(object x, object y, params object[] more) => Plus.Invoke(x, y, more);
+		/// <summary>
+		/// For <see cref="Collections.List"/> or <see cref="Collections.Queue"/> returns a
+		/// new <see cref="Collections.List"/>/<see cref="Collections.Queue"/> without the first
+		/// item. For <see cref="Collections.Vector"/>, returns a new <see cref="Collections.Vector"/>
+		/// without the last time. If the coll is empty, throws an exception.
+		/// </summary>
+		/// <param name="coll">An object that implements a <see cref="IStack"/> interface.</param>
+		/// <returns>
+		/// Returns the same collection type as the input, minus the last item in a <see cref="Collections.Vector"/>
+		/// or first time in a <see cref="Collections.List"/> or <see cref="Collections.Queue"/>
+		/// </returns>
 		public static object pop(object coll) => Pop.Invoke(coll);
-		public static object popT(object coll) => PopT.Invoke(coll);
+		/// <summary>
+		/// Removes the last time from a <see cref="ITransientVector"/>. If
+		/// the collection is empty, throw an exception.
+		/// </summary>
+		/// <param name="coll">An object that implements the <see cref="ITransientVector"/> interface.</param>
+		/// <returns>
+		/// Returns coll.
+		/// </returns>
+		public static object popǃ(object coll) => Popǃ.Invoke(coll);
+		/// <summary>
+		/// Prints the object(s) to the <see cref="Variables.Out"/> stream.
+		/// </summary>
+		/// <returns>
+		/// Returns null.
+		/// </returns>
+		public static object print() => Print.Invoke();
+		/// <summary>
+		/// Prints the object(s) to the <see cref="Variables.Out"/> stream.
+		/// </summary>
+		/// <param name="x">Object to print.</param>
+		/// <returns>
+		/// Returns null.
+		/// </returns>
+		public static object print(object x) => Print.Invoke(x);
+		/// <summary>
+		/// Prints the object(s) to the <see cref="Variables.Out"/> stream.
+		/// </summary>
+		/// <param name="x">First object to print.</param>
+		/// <param name="more">Rest of the object to print.</param>
+		/// <returns>
+		/// Returns null.
+		/// </returns>
+		public static object print(object x, params object[] more) => Print.Invoke(x, more);
+		/// <summary>
+		/// The same as <see cref="Print"/> but followed by a <see cref="Environment.NewLine"/>.
+		/// </summary>
+		/// <param name="more">Any objects you want to print.</param>
+		/// <returns>
+		/// Returns null.
+		/// </returns>
 		public static object printLn(params object[] more) => PrintLn.Invoke(more);
+		/// <summary>
+		/// Returns a <see cref="Random"/> floating point number between
+		/// 0 (inclusive) and n (default 1) (exclusive).
+		/// </summary>
+		/// <returns>
+		/// Returns a <see cref="Random"/> floating point number between
+		/// 0 (inclusive) and n (default 1) (exclusive).
+		/// </returns>
 		public static object rand() => Rand.Invoke();
+		/// <summary>
+		/// Returns a <see cref="Random"/> floating point number between
+		/// 0 (inclusive) and n (default 1) (exclusive).
+		/// </summary>
+		/// <param name="n">An <see cref="int"/> for the exclusive value.</param>
+		/// <returns>
+		/// Returns a <see cref="Random"/> floating point number between
+		/// 0 (inclusive) and n (default 1) (exclusive).
+		/// </returns>
 		public static object rand(object n) => Rand.Invoke(n);
+		/// <summary>
+		/// Returns a <see cref="Random"/> <see cref="int"/> between 0 (inclusive) and n (exclusive).
+		/// </summary>
+		/// <param name="n">An <see cref="int"/> for the exclusive value.</param>
+		/// <returns>
+		/// Returns a <see cref="Random"/> <see cref="int"/> between 0 (inclusive) and n (exclusive).
+		/// </returns>
 		public static object randInt(object n) => RandInt.Invoke(n);
+		/// <summary>
+		/// Return a random element of the <see cref="Collections.ISequential"/> collection.
+		/// </summary>
+		/// <param name="coll">Collection to search for index.</param>
+		/// <returns>
+		/// Return a random element of the <see cref="Collections.ISequential"/> collection.
+		/// </returns>
 		public static object randNth(object coll) => RandNth.Invoke(coll);
+		/// <summary>
+		/// Returns a <see cref="LazySeq"/> of numbers from start (inclusive) to end
+		/// (Exclusive), by step, where start defaults to 0, step to 1, and end to
+		/// infinity. When step is equal to 0, returns an infinite sequence of
+		/// start. When start is equal to end, returns empty list.
+		/// </summary>
+		/// <returns>
+		/// Returns a <see cref="Collections.Iterate"/> collection starting at 0 continues infinitly.
+		/// </returns>
 		public static object range() => Range.Invoke();
+		/// <summary>
+		/// Returns a <see cref="LazySeq"/> of numbers from start (inclusive) to end
+		/// (Exclusive), by step, where start defaults to 0, step to 1, and end to
+		/// infinity. When step is equal to 0, returns an infinite sequence of
+		/// start. When start is equal to end, returns empty list.
+		/// </summary>
+		/// <param name="end">Either a <see cref="long"/> or <see cref="int"/> value to identify the end value.</param>
+		/// <returns>
+		/// Returns either <see cref="Collections.LongRange"/> if end is <see cref="long"/> or <see cref="Collections.Range"/> if end
+		/// is <see cref="int"/>.
+		/// </returns>
 		public static object range(object end) => Range.Invoke(end);
+		/// <summary>
+		/// Returns a <see cref="LazySeq"/> of numbers from start (inclusive) to end
+		/// (Exclusive), by step, where start defaults to 0, step to 1, and end to
+		/// infinity. When step is equal to 0, returns an infinite sequence of
+		/// start. When start is equal to end, returns empty list.
+		/// </summary>
+		/// <param name="start">Either a <see cref="long"/> or <see cref="int"/> value to identify the start value.</param>
+		/// <param name="end">Either a <see cref="long"/> or <see cref="int"/> value to identify the end value.</param>
+		/// <returns>
+		/// Returns either <see cref="Collections.LongRange"/> if end/start is <see cref="long"/> or <see cref="Collections.Range"/> if end/start
+		/// is <see cref="int"/>.
+		/// </returns>
 		public static object range(object start, object end) => Range.Invoke(start, end);
+		/// <summary>
+		/// Returns a <see cref="LazySeq"/> of numbers from start (inclusive) to end
+		/// (Exclusive), by step, where start defaults to 0, step to 1, and end to
+		/// infinity. When step is equal to 0, returns an infinite sequence of
+		/// start. When start is equal to end, returns empty list.
+		/// </summary>
+		/// <param name="start">Either a <see cref="long"/> or <see cref="int"/> value to identify the start value.</param>
+		/// <param name="end">Either a <see cref="long"/> or <see cref="int"/> value to identify the end value.</param>
+		/// <param name="step">Either a <see cref="long"/> or <see cref="int"/> value to identify the step value.</param>
+		/// <returns>
+		/// Returns either <see cref="Collections.LongRange"/> if end/start/step is <see cref="long"/> or <see cref="Collections.Range"/> if end/start/step
+		/// is <see cref="int"/>.
+		/// </returns>
 		public static object range(object start, object end, object step) => Range.Invoke(start, end, step);
+		/// <summary>
+		/// f should implement the <see cref="IFunction{T1, T2, TResult}"/> interface. If val is not supplied,
+		/// returns the result of applying f to the first 2 items in coll, then applying f to the result and
+		/// the 3rd item, etc. If coll contains no items, f must implement <see cref="IFunction{TResult}"/>
+		/// interface and reduce returns the result of calling f with no arguments. If coll has only 1 item,
+		/// it is returned and f is not called. If val is supplied, returns the result of applying f to val
+		/// and the first item in coll, then applying f to the result and the 2nd item, etc. If coll contains
+		/// no items, val is returned and f is not called.
+		/// </summary>
+		/// <param name="f">An object that implements <see cref="IFunction{T1, T2, TResult}"/> interface unless coll has not items, then it needs to implement the <see cref="IFunction{TResult}"/> interface.</param>
+		/// <param name="coll">The collection to reduce.</param>
+		/// <returns>
+		/// Returns the result of calling f to the 1st and 2nd items, then calling f with the result and 3rd item, etc.
+		/// </returns>
 		public static object reduce(object f, object coll) => Reduce.Invoke(f, coll);
+		/// <summary>
+		/// f should implement the <see cref="IFunction{T1, T2, TResult}"/> interface. If val is not supplied,
+		/// returns the result of applying f to the first 2 items in coll, then applying f to the result and
+		/// the 3rd item, etc. If coll contains no items, f must implement <see cref="IFunction{TResult}"/>
+		/// interface and reduce returns the result of calling f with no arguments. If coll has only 1 item,
+		/// it is returned and f is not called. If val is supplied, returns the result of applying f to val
+		/// and the first item in coll, then applying f to the result and the 2nd item, etc. If coll contains
+		/// no items, val is returned and f is not called.
+		/// </summary>
+		/// <param name="f">An object that implements <see cref="IFunction{T1, T2, TResult}"/> interface.</param>
+		/// <param name="val">The initial starting value.</param>
+		/// <param name="coll">The collection to reduce over.</param>
+		/// <returns>
+		/// Returns the result of calling f to val and 1st, then calling f with the result and 2nd, etc.
+		/// </returns>
 		public static object reduce(object f, object val, object coll) => Reduce.Invoke(f, val, coll);
 		/// <summary>
 		/// Wraps x in a way such that a <see cref="Reduce"/> will terminate with the value x.
@@ -2830,13 +3494,87 @@ namespace funclib
 		/// Returns <see cref="Reduced"/> object that wraps x.
 		/// </returns>
 		public static object reduced(object x) => Reduced.Invoke(x);
+		/// <summary>
+		/// Reduces a <see cref="IAssociative"/> collection. f should implement <see cref="IFunction{T1, T2, T3, TResult}"/> interface.
+		/// Returns the result of applying f to init, the 1st key and value in coll. Then applying f to that result and the
+		/// 2nd key and value, etc. If coll contains no entries, returns init and f is not called. Note: <see cref="ReduceKV"/>
+		/// is supported on <see cref="IVector"/>'s where the keys will be the ordinal values.
+		/// </summary>
+		/// <param name="f">An object that implements the <see cref="IFunction{T1, T2, T3, TResult}"/> interface.</param>
+		/// <param name="init">The initial value for the reducing.</param>
+		/// <param name="coll">The collection that implements <see cref="IAssociative"/> interface.</param>
+		/// <returns>
+		/// Returns the result of applying f to init, the 1st key and value in coll. Then applying f to that result and the
+		/// 2nd key and value, etc. If coll contains no entries, returns init and f is not called.
+		/// </returns>
 		public static object reduceKV(object f, object init, object coll) => ReduceKV.Invoke(f, init, coll);
+		/// <summary>
+		/// Returns a <see cref="LazySeq"/> of the intermediate values of the reductions
+		/// (as per reduce) of coll by f, starting with init.
+		/// </summary>
+		/// <param name="f">An object that implements the <see cref="IFunction{TResult}"/> if coll contains no items, otherwise <see cref="IFunction{T1, T2, TResult}"/> interface.</param>
+		/// <param name="coll">A object that can be <see cref="Seq"/> over.</param>
+		/// <returns>
+		/// Returns a <see cref="LazySeq"/> of the intermediate values of the reductions
+		/// (as per reduce) of coll by f, starting with init.
+		/// </returns>
 		public static object reductions(object f, object coll) => Reductions.Invoke(f, coll);
+		/// <summary>
+		/// Returns a <see cref="LazySeq"/> of the intermediate values of the reductions
+		/// (as per reduce) of coll by f, starting with init.
+		/// </summary>
+		/// <param name="f">An object that implements the <see cref="IFunction{T1, T2, TResult}"/> interface.</param>
+		/// <param name="init">The initial starting value.</param>
+		/// <param name="coll">A object that can be <see cref="Seq"/> over.</param>
+		/// <returns>
+		/// Returns a <see cref="LazySeq"/> of the intermediate values of the reductions
+		/// (as per reduce) of coll by f, starting with init.
+		/// </returns>
 		public static object reductions(object f, object init, object coll) => Reductions.Invoke(f, init, coll);
+		/// <summary>
+		/// Returns the next <see cref="Regex"/> match, if any, of string to pattern, using <see cref="ReMatcher.Find"/>.
+		/// Uses <see cref="ReGroups"/> to return the group.
+		/// </summary>
+		/// <param name="m">A <see cref="ReMatcher"/> object already initialized.</param>
+		/// <returns>
+		/// Returns the next <see cref="Regex"/> match, if any, of string to pattern, using <see cref="ReMatcher.Find"/>.
+		/// Uses <see cref="ReGroups"/> to return the group.
+		/// </returns>
 		public static object reFind(object m) => ReFind.Invoke(m);
+		/// <summary>
+		/// Returns the next <see cref="Regex"/> match, if any, of string to pattern, using <see cref="ReMatcher.Find"/>.
+		/// Uses <see cref="ReGroups"/> to return the group.
+		/// </summary>
+		/// <param name="re">A <see cref="Regex"/> object.</param>
+		/// <param name="s">The string to search for a match(s).</param>
+		/// <returns>
+		/// Returns the next <see cref="Regex"/> match, if any, of string to pattern, using <see cref="ReMatcher.Find"/>.
+		/// Uses <see cref="ReGroups"/> to return the group.
+		/// </returns>
 		public static object reFind(object re, object s) => ReFind.Invoke(re, s);
+		/// <summary>
+		/// Returns the groups from the most recent match/find. If there are no
+		/// nested groups, returns a string of the entire match. If there are
+		/// nested groups, returns a <see cref="Collections.Vector"/> of groups,
+		/// the first element being the entire match.
+		/// </summary>
+		/// <param name="m">A <see cref="ReMatcher"/> instance.</param>
+		/// <returns>
+		/// Returns the groups from the most recent match/find. If there are no
+		/// nested groups, returns a string of the entire match. If there are
+		/// nested groups, returns a <see cref="Collections.Vector"/> of groups,
+		/// the first element being the entire match.
+		/// </returns>
 		public static object reGroups(object m) => ReGroups.Invoke(m);
 		public static object rem(object num, object div) => Rem.Invoke(num, div);
+		/// <summary>
+		/// Returns an instance of <see cref="ReMatcher"/> to be used in <see cref="ReFind"/>.
+		/// </summary>
+		/// <param name="re">If re is a <see cref="string"/>, it creates a new <see cref="Regex"/> instance with this as its pattern, otherwise it needs to be a <see cref="Regex"/> object.</param>
+		/// <param name="s">The string to search for a match(s).</param>
+		/// <returns>
+		/// Returns an instance of <see cref="ReMatcher"/>.
+		/// </returns>
 		public static object reMatcher(object re, object s) => ReMatcher.Invoke(re, s);
 		public static object reMatches(object re, object s) => ReMatches.Invoke(re, s);
 		public static object rePattern(object s) => RePattern.Invoke(s);

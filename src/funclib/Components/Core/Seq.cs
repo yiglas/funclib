@@ -5,9 +5,34 @@ using System.Text;
 
 namespace funclib.Components.Core
 {
+    /// <summary>
+    /// Returns a <see cref="ISeq"/> on the collection. If the collection is empty
+    /// returns null. Passing null as the collection, returns null. <see cref="Seq"/>
+    /// works on <see cref="string"/>s, <see cref="Array"/>s or any object that implements
+    /// the <see cref="System.Collections.IEnumerable"/> interface. Note: that <see cref="Seq"/>
+    /// caches values, thus <see cref="Seq"/> should not be used on any enumerable repeatedly
+    /// returns the same mutable object.
+    /// </summary>
     public class Seq :
         IFunction<object, object>
     {
+        /// <summary>
+        /// Returns a <see cref="ISeq"/> on the collection. If the collection is empty
+        /// returns null. Passing null as the collection, returns null. <see cref="Seq"/>
+        /// works on <see cref="string"/>s, <see cref="Array"/>s or any object that implements
+        /// the <see cref="System.Collections.IEnumerable"/> interface. Note: that <see cref="Seq"/>
+        /// caches values, thus <see cref="Seq"/> should not be used on any enumerable repeatedly
+        /// returns the same mutable object.
+        /// </summary>
+        /// <param name="coll">The collection to <see cref="Seq"/> over.</param>
+        /// <returns>
+        /// Returns a <see cref="ISeq"/> on the collection. If the collection is empty
+        /// returns null. Passing null as the collection, returns null. <see cref="Seq"/>
+        /// works on <see cref="string"/>s, <see cref="Array"/>s or any object that implements
+        /// the <see cref="System.Collections.IEnumerable"/> interface. Note: that <see cref="Seq"/>
+        /// caches values, thus <see cref="Seq"/> should not be used on any enumerable repeatedly
+        /// returns the same mutable object.
+        /// </returns>
         public object Invoke(object coll) => 
             coll is ASeq seq 
                 ? seq

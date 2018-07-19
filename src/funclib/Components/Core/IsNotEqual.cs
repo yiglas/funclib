@@ -27,7 +27,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
         /// </returns>
-        public object Invoke(object x, object y) => new Not().Invoke(new IsEqual().Invoke(x, y));
+        public object Invoke(object x, object y) => new Not().Invoke(new IsEqualTo().Invoke(x, y));
         /// <summary>
         /// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
         /// </summary>
@@ -37,6 +37,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
         /// </returns>
-        public object Invoke(object x, object y, params object[] more) => new Not().Invoke(new Apply().Invoke(new IsEqual(), x, y, more));
+        public object Invoke(object x, object y, params object[] more) => new Not().Invoke(new Apply().Invoke(new IsEqualTo(), x, y, more));
     }
 }

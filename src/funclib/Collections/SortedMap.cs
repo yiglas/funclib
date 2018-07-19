@@ -54,7 +54,7 @@ namespace funclib.Collections
             {
                 if (init.Next() == null)
                     throw new ArgumentException($"No value supplied for key: {init.First()}");
-                ret = ret.Assoc(init.First(), init.Next().First());
+                ret = ret.Assoc(init.First(), new Second().Invoke(init));
             }
             return ret as SortedMap;
         }

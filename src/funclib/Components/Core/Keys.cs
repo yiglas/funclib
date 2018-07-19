@@ -14,16 +14,16 @@ namespace funclib.Components.Core
         /// <summary>
         /// Returns a <see cref="Seq"/> of the <see cref="IMap"/>'s keys.
         /// </summary>
-        /// <param name="coll">An object that implements the <see cref="IMap"/> interface.</param>
+        /// <param name="map">An object that implements the <see cref="IMap"/> interface.</param>
         /// <returns>
         /// Returns a <see cref="Seq"/> of the <see cref="IMap"/>'s keys.
         /// </returns>
-        public object Invoke(object coll)
+        public object Invoke(object map)
         {
-            if (coll is IMap map)
-                return KeySeq.Create(map);
+            if (map is IMap m)
+                return KeySeq.Create(m);
 
-            return KeySeq.Create((ISeq)new Seq().Invoke(coll));
+            return KeySeq.Create((ISeq)new Seq().Invoke(map));
         }
     }
 }
