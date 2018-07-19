@@ -7,13 +7,37 @@ using System.Text.RegularExpressions;
 
 namespace funclib.Components.Core
 {
-    class Print :
+    /// <summary>
+    /// Prints the object(s) to the <see cref="Variables.Out"/> stream.
+    /// </summary>
+    public class Print :
         IFunction<object>,
         IFunction<object, object>,
         IFunctionParams<object, object, object>
     {
+        /// <summary>
+        /// Prints the object(s) to the <see cref="Variables.Out"/> stream.
+        /// </summary>
+        /// <returns>
+        /// Returns null.
+        /// </returns>
         public object Invoke() => null;
+        /// <summary>
+        /// Prints the object(s) to the <see cref="Variables.Out"/> stream.
+        /// </summary>
+        /// <param name="x">Object to print.</param>
+        /// <returns>
+        /// Returns null.
+        /// </returns>
         public object Invoke(object x) { Pr(x, Variables.Out); return null; }
+        /// <summary>
+        /// Prints the object(s) to the <see cref="Variables.Out"/> stream.
+        /// </summary>
+        /// <param name="x">First object to print.</param>
+        /// <param name="more">Rest of the object to print.</param>
+        /// <returns>
+        /// Returns null.
+        /// </returns>
         public object Invoke(object x, params object[] more)
         {
             Invoke(x);
@@ -55,8 +79,8 @@ namespace funclib.Components.Core
                 case DateTimeOffset dto: Pr(dto, w); break;
                 case Guid g: Pr(g, w); break;
                 case TimeSpan ts: Pr(ts, w); break;
-                case System.Collections.IDictionary dict: Pr(dict, w); break;
-                case System.Collections.ICollection coll: Pr(coll, w); break;
+                //case System.Collections.IDictionary dict: Pr(dict, w); break;
+                //case System.Collections.ICollection coll: Pr(coll, w); break;
                 case ValueType vt: PrintDefault(vt, w); break;
                 default:
                     PrintObject(x, w);
@@ -92,6 +116,7 @@ namespace funclib.Components.Core
         void Pr(DateTime o, TextWriter w) => w.Write($"#inst \"{o.ToString("yyyy-MM-ddTHH:mm:ss.fff-00:00")}\"");
         void Pr(DateTimeOffset o, TextWriter w) => w.Write($"#inst \"{o.ToString("yyyy-MM-ddTHH:mm:ss.fffzzzz")}\"");
         void Pr(Guid o, TextWriter w) => w.Write($"#uuid \"{o}\"");
+        void Pr(TimeSpan o, TextWriter w) => w.Write(o.ToString());
         void PrintObject(object o, TextWriter w)
         {
             w.Write("#object[");
@@ -107,24 +132,23 @@ namespace funclib.Components.Core
             Pr(o.ToString(), w);
             w.Write("]");
         }
-        void Pr(string o, TextWriter w) => w.Write($"\"{o}\"");
+        void Pr(string o, TextWriter w) => w.Write(o);
         void Pr(Type o, TextWriter w) => w.Write(o.FullName);
         void Pr(char o, TextWriter w) => w.Write($"\\{o}");
         void Pr(Regex o, TextWriter w)
         {
             w.Write("#\"");
+            w.Write(o.ToString());
             w.Write("\"");
-
-            throw new NotImplementedException();
         }
-        void Pr(ISeq o, TextWriter w) => throw new NotImplementedException();
-        void Pr(IVector o, TextWriter w) => throw new NotImplementedException();
-        void Pr(IMap o, TextWriter w) => throw new NotImplementedException();
-        void Pr(ISet o, TextWriter w) => throw new NotImplementedException();
+        void Pr(ISeq o, TextWriter w) => w.Write(o.ToString());
+        void Pr(IVector o, TextWriter w) => w.Write(o.ToString());
+        void Pr(IMap o, TextWriter w) => w.Write(o.ToString());
+        void Pr(ISet o, TextWriter w) => w.Write(o.ToString());
         void Pr(IDeref o, TextWriter w) => throw new NotImplementedException();
         void Pr(StackFrame o, TextWriter w) => throw new NotImplementedException();
         void Pr(Exception o, TextWriter w) => throw new NotImplementedException();
-        void Pr(System.Collections.IDictionary o, TextWriter w) => throw new NotImplementedException();
+        void Pr(System.Collections.IDictionary o, TextWriter w) => w.Write(Util.Print(o));
         void Pr(System.Collections.ICollection o, TextWriter w) => throw new NotImplementedException();
     }
 }

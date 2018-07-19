@@ -4,7 +4,6 @@ Functional Library for C# that follows the Clojure idiom.
 
 # To Do:
 * Implement Atom data structure
-* Implement Queue data structure
 * Missing functions:
 	- read
 	- read line

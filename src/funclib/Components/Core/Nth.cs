@@ -73,7 +73,7 @@ namespace funclib.Components.Core
                 : coll.GetType().IsArray ? nth((Array)coll, index, notFound)
                 : coll is IVector v ? v[index, notFound]
                 : coll is IChunked c ? c[index, notFound]
-                : coll is System.Collections.IList l ? l[index]
+                : coll is System.Collections.IList l ? index < l.Count ? l[index] : notFound 
                 : coll is funclib.ReMatcher re ? re.IsUnrealizedOrFailed ? notFound : index < re.GroupCount() ? re.Group(index) : notFound
                 : coll is Match m ? index < m.Groups.Count ? m.Groups[index] : notFound
                 : coll is System.Collections.DictionaryEntry de ? index == 0 ? de.Key : index == 1 ? de.Value : notFound

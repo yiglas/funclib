@@ -33,8 +33,8 @@ namespace funclib.Tests.Components.Core
             var testNotNull = new Function<bool>(() => true);
             var testNull = new Function<bool?>(() => null);
 
-            Assert.AreEqual(true, and.Invoke(testNotNull, null));
-            Assert.AreEqual(null, and.Invoke(testNull, true));
+            Assert.IsNotNull(and.Invoke(testNotNull, null));
+            Assert.AreEqual(true, and.Invoke(testNull, true));
         }
 
         [Test]
@@ -48,7 +48,7 @@ namespace funclib.Tests.Components.Core
         {
             int i = 0;
 
-            var actual = new And().Invoke(new Function<object>(() => { i = i + 1; return null; }), false);
+            var actual = new And().Invoke(new Function<object>(() => { i = i + 1; return null; }).Invoke(), false);
 
             Assert.IsNull(actual);
             Assert.AreEqual(i, 1);

@@ -4,11 +4,24 @@ using System.Text;
 
 namespace funclib.Components.Core
 {
+    /// <summary>
+    /// Applies <see cref="IFunction{T1, TResult}"/> to each value in coll, splitting it each 
+    /// time f returns a new value. Returns a <see cref="LazySeq"/> of partitions.
+    /// </summary>
     public class PartitionBy :
         IFunction<object, object>,
         IFunction<object, object, object>
     {
         public object Invoke(object f) => new Function<object, object>(rf => new TransducerFunction(f, rf));
+        /// <summary>
+        /// Applies <see cref="IFunction{T1, TResult}"/> to each value in coll, splitting it each 
+        /// time f returns a new value. Returns a <see cref="LazySeq"/> of partitions.
+        /// </summary>
+        /// <param name="f">An object that implements the <see cref="IFunction{T1, TResult}"/> interface.</param>
+        /// <param name="coll">A collection that can be <see cref="Seq"/> over.</param>
+        /// <returns>
+        /// Returns a <see cref="LazySeq"/> of partitions.
+        /// </returns>
         public object Invoke(object f, object coll) =>
             new LazySeq(() =>
             {

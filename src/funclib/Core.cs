@@ -592,7 +592,7 @@ namespace funclib
 		public static funclib.Components.Core.Persistentǃ Persistentǃ => new funclib.Components.Core.Persistentǃ();
 		public static funclib.Components.Core.Plus Plus => new funclib.Components.Core.Plus();
 		public static funclib.Components.Core.Pop Pop => new funclib.Components.Core.Pop();
-		public static funclib.Components.Core.PopT PopT => new funclib.Components.Core.PopT();
+		public static funclib.Components.Core.Popǃ PopT => new funclib.Components.Core.Popǃ();
 		public static funclib.Components.Core.PrintLn PrintLn => new funclib.Components.Core.PrintLn();
 		public static funclib.Components.Core.Rand Rand => new funclib.Components.Core.Rand();
 		public static funclib.Components.Core.RandInt RandInt => new funclib.Components.Core.RandInt();

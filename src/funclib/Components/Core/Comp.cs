@@ -33,7 +33,7 @@ namespace funclib.Components.Core
         /// of args, applies the right-most of functions to the args, the next function
         /// (right-to-left) to the result, ect.
         /// </summary>
-        /// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
+        /// <param name="f">Object that implements the <see cref="IFunction{T1, TResult}"/> interface.</param>
         /// <returns>
         /// Returns the passed in function.
         /// </returns>
@@ -44,7 +44,7 @@ namespace funclib.Components.Core
         /// of args, applies the right-most of functions to the args, the next function
         /// (right-to-left) to the result, ect.
         /// </summary>
-        /// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
+        /// <param name="f">Object that implements the <see cref="IFunction{T1, TResult}"/> interface.</param>
         /// <param name="g">Object that implements the <see cref="IFunction"/> interface.</param>
         /// <returns>
         /// Returns <see cref="Function"/> with f and g composed together.
@@ -56,7 +56,7 @@ namespace funclib.Components.Core
         /// of args, applies the right-most of functions to the args, the next function
         /// (right-to-left) to the result, ect.
         /// </summary>
-        /// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
+        /// <param name="f">Object that implements the <see cref="IFunction{T1, TResult}"/> interface.</param>
         /// <param name="g">Object that implements the <see cref="IFunction"/> interface.</param>
         /// <param name="fs">Array of objects that implement the <see cref="IFunction"/> interface.</param>
         /// <returns>
@@ -75,17 +75,17 @@ namespace funclib.Components.Core
             IFunction<object, object, object, object>,
             IFunctionParams<object, object, object, object, object>
         {
-            IFunction _f;
+            IFunction<object, object> _f;
             IFunction _g;
 
             /// <summary>
             /// Creates a new <see cref="Function"/> object.
             /// </summary>
-            /// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
+            /// <param name="f">Object that implements the <see cref="IFunction{T1, TResult}"/> interface.</param>
             /// <param name="g">Object that implements the <see cref="IFunction"/> interface.</param>
             internal Function(object f, object g)
             {
-                this._f = (IFunction)f;
+                this._f = (IFunction<object, object>)f;
                 this._g = (IFunction)g;
             }
 
@@ -95,7 +95,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns the results of calling f.
             /// </returns>
-            public object Invoke() => ((IFunction<object, object>)this._f).Invoke(((IFunction<object>)this._g).Invoke());
+            public object Invoke() => this._f.Invoke(((IFunction<object>)this._g).Invoke());
             /// <summary>
             /// Invoke g with parameter x, then passing the results to f.
             /// </summary>
@@ -103,7 +103,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns the results of calling f.
             /// </returns>
-            public object Invoke(object x) => ((IFunction<object, object>)this._f).Invoke(Apply.ApplyTo(this._g, (ISeq)new List().Invoke(x)));
+            public object Invoke(object x) => this._f.Invoke(Apply.ApplyTo(this._g, (ISeq)new List().Invoke(x)));
             /// <summary>
             /// <summary>
             /// Invoke g with parameter x and y, then passing the results to f.
@@ -113,7 +113,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns the results of calling f.
             /// </returns>
-            public object Invoke(object x, object y) => ((IFunction<object, object>)this._f).Invoke(Apply.ApplyTo(this._g, (ISeq)new List().Invoke(x, y)));
+            public object Invoke(object x, object y) => this._f.Invoke(Apply.ApplyTo(this._g, (ISeq)new List().Invoke(x, y)));
             /// <summary>
             /// Invoke g with parameter x, y and z, then passing the results to f.
             /// </summary>
@@ -123,7 +123,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns the results of calling f.
             /// </returns>
-            public object Invoke(object x, object y, object z) => ((IFunction<object, object>)this._f).Invoke(Apply.ApplyTo(this._g, (ISeq)new List().Invoke(x, y, z)));
+            public object Invoke(object x, object y, object z) => this._f.Invoke(Apply.ApplyTo(this._g, (ISeq)new List().Invoke(x, y, z)));
             /// <summary>
             /// Invoke g with parameter x, y, z and args, then passing the results to f.
             /// </summary>
@@ -134,7 +134,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns the results of calling f.
             /// </returns>
-            public object Invoke(object x, object y, object z, params object[] args) => ((IFunction<object, object>)this._f).Invoke(new Apply().Invoke(this._g, x, y, z, args));
+            public object Invoke(object x, object y, object z, params object[] args) => this._f.Invoke(new Apply().Invoke(this._g, x, y, z, args));
         }
     }
 }

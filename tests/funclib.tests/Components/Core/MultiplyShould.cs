@@ -10,7 +10,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Multiply_should_return_zero_when_passed_no_paramters()
         {
-            var expected = 0;
+            var expected = 1;
             var actual = new Multiply().Invoke();
 
             Assert.AreEqual(expected, actual);

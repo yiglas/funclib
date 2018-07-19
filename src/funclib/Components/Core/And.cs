@@ -37,20 +37,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns x or the result of calling Invoke on x.
         /// </returns>
-        public object Invoke(object x)
-        {
-            if (x != null)
-            {
-                if (x.GetType().GetInterfaces().Any(y => y.IsGenericType && y.GetGenericTypeDefinition() == typeof(IFunction<>)))
-                {
-                    dynamic f = x;
-                    x = f.Invoke();
-                }
-            }
-
-            return x;
-        }
-
+        public object Invoke(object x) => x;
         /// <summary>
         /// Evaluates objects one at a time, from left to right. If a object returns 
         /// a logical false (null or false) then it is returned and stops evaluating
@@ -67,19 +54,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object x, params object[] next)
         {
-            if (next == null || next.Length <= 0)
-                return Invoke(x);
-
-            if (x != null)
-            {
-                if (x.GetType().GetInterfaces().Any(y => y.IsGenericType && y.GetGenericTypeDefinition() == typeof(IFunction<>)))
-                {
-                    dynamic f = x;
-                    x = f.Invoke();
-                }
-            }
-
-            if ((bool)new Truthy().Invoke(x))
+            if ((bool)new Truthy().Invoke(x) && (next?.Length ?? 0) > 0)
                 return Invoke(next[0], next.Skip(1).ToArray());
             
             return x;

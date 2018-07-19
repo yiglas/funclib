@@ -19,7 +19,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object n) =>
             new And().Invoke(
-                new Function<object>(() => new IsInt().Invoke(n)),
-                new Function<object>(() => new Not().Invoke(new IsNeg().Invoke(n))));
+                new IsInt().Invoke(n),
+                new Not().Invoke(new IsNeg().Invoke(n)));
     }
 }

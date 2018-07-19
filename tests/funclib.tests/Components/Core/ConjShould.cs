@@ -65,6 +65,5 @@ namespace funclib.Tests.Components.Core
             Assert.AreEqual(expected, actual);
             Assert.IsInstanceOf<funclib.Collections.List>(actual);
         }
-
     }
 }

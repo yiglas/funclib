@@ -14,8 +14,8 @@ namespace funclib.Components.Core
             if ((bool)new Truthy().Invoke(s))
             {
                 return new Or().Invoke(
-                    new Function<object>(() => fn.Invoke(s.First())),
-                    new Function<object>(() => Invoke(pred, s.Next()))
+                    fn.Invoke(s.First()),
+                    Invoke(pred, s.Next())
                     );
             }
             return null;

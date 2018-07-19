@@ -19,9 +19,9 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object n) =>
             new Or().Invoke(
-                new Function<object>(() => n is Int32),
-                new Function<object>(() => n is Int64),
-                new Function<object>(() => n is Int16),
-                new Function<object>(() => n is Byte));
+                n is Int32,
+                n is Int64,
+                n is Int16,
+                n is Byte);
     }
 }

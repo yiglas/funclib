@@ -13,7 +13,7 @@ namespace funclib
 
         static IOperations Operation(object x)
         {
-            Type type = x.GetType();
+            Type type = x?.GetType();
 
             if (type == typeof(double) || type == typeof(float)) return DOUBLE;
             if (type == typeof(int)) return INT;

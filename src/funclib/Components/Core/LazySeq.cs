@@ -18,8 +18,8 @@ namespace funclib.Components.Core
         System.Collections.IList        
     {
         IFunction<object> _fn;
-        object _ev;
-        ISeq _e;
+        object _sv;
+        ISeq _s;
 
         /// <summary>
         /// Returns the count of items, evaluated and caching each item as it counts.
@@ -114,7 +114,7 @@ namespace funclib.Components.Core
         internal LazySeq(ISeq e)
         {
             this._fn = null;
-            this._e = e;
+            this._s = e;
         }
 
         #region Overrides
@@ -163,28 +163,28 @@ namespace funclib.Components.Core
         public ISeq Seq()
         {
             eval();
-            if (this._ev != null)
+            if (this._sv != null)
             {
-                var ls = this._ev;
-                this._ev = null;
+                var ls = this._sv;
+                this._sv = null;
                 while (ls is LazySeq l)
                     ls = l.eval();
 
-                this._e = (ISeq)new Seq().Invoke(ls);
+                this._s = (ISeq)new Seq().Invoke(ls);
             }
-            return this._e;
+            return this._s;
         }
 
         object eval()
         {
             if (this._fn != null)
             {
-                this._ev = this._fn.Invoke();
+                this._sv = this._fn.Invoke();
                 this._fn = null;
             }
-            if (this._ev != null) return this._ev;
+            if (this._sv != null) return this._sv;
 
-            return this._e;
+            return this._s;
         }
 
         /// <summary>
@@ -204,8 +204,8 @@ namespace funclib.Components.Core
         public object First()
         {
             Seq();
-            if (this._e == null) return null;
-            return this._e.First();
+            if (this._s == null) return null;
+            return this._s.First();
         }
         /// <summary>
         /// Returns the rest of the objects in the <see cref="LazySeq"/>. If the 
@@ -218,8 +218,8 @@ namespace funclib.Components.Core
         public ISeq Next()
         {
             Seq();
-            if (this._e == null) return null;
-            return this._e.Next();
+            if (this._s == null) return null;
+            return this._s.Next();
         }
         /// <summary>
         /// Returns the rest of the objects in the <see cref="LazySeq"/>. If the 
@@ -232,8 +232,8 @@ namespace funclib.Components.Core
         public ISeq More()
         {
             Seq();
-            if (this._e == null) return Collections.List.EMPTY;
-            return this._e.More();
+            if (this._s == null) return Collections.List.EMPTY;
+            return this._s.More();
         }
         ICollection ICollection.Cons(object o) => Cons(o);
         /// <summary>
