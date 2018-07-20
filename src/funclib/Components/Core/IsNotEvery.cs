@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -19,6 +20,6 @@ namespace funclib.Components.Core
         /// Returns <see cref="false"/> if x is logical true for every item in coll, otherwise <see cref="true"/>.
         /// </returns>
         public object Invoke(object pred, object coll) =>
-            ((IFunction<object, object, object>)new Comp().Invoke(new Not(), new IsEvery())).Invoke(pred, coll);
+            ((IFunction<object, object, object>)comp(new Not(), new IsEvery())).Invoke(pred, coll);
     }
 }

@@ -12,7 +12,7 @@ namespace funclib.Components.Core
         IFunction<object, object>,
         IFunctionParams<object, object, object>
     {
-        public object Invoke(object f) => new Comp().Invoke(new Map().Invoke(f), new Cat());
+        public object Invoke(object f) => comp(new Map().Invoke(f), new Cat());
         /// <summary>
         /// Returns the result of applying <see cref="Concat"/> to the result of applying 
         /// <see cref="Map"/> to f and colls. Thus function f should return a collections.

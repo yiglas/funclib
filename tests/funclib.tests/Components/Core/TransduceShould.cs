@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -12,7 +13,7 @@ namespace funclib.Tests.Components.Core
         [SetUp]
         public void SetUp()
         {
-            xf = new Comp().Invoke(new Filter().Invoke(new IsOdd()), new Take().Invoke(10));
+            xf = comp(new Filter().Invoke(new IsOdd()), new Take().Invoke(10));
         }
 
         [Test]
