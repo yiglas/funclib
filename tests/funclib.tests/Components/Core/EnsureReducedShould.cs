@@ -8,21 +8,20 @@ namespace funclib.Tests.Components.Core
     public class EnsureReducedShould
     {
         [Test]
-        public void EnsureReduced_should_return_value_if_already_reduced()
+        public void EnsureReduced_should_return_the_value_wrapped()
         {
-            var expected = 1;
             var actual = new EnsureReduced().Invoke(1);
 
-            Assert.AreEqual(expected, actual);
+            Assert.IsInstanceOf<Reduced>(actual);
         }
 
         [Test]
         public void EnsureReduced_should_return_the_deref_value_if_its_reduced()
         {
-            var expected = 1;
-            var actual = new EnsureReduced().Invoke(new Reduced().Invoke(1));
+            var expected = new Reduced().Invoke(1);
+            var actual = new EnsureReduced().Invoke(expected);
 
-            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(expected == actual);
         }
     }
 }

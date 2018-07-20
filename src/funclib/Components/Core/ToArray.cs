@@ -4,9 +4,22 @@ using System.Text;
 
 namespace funclib.Components.Core
 {
+    /// <summary>
+    /// Returns an <see cref="object[]"/> containing the contents of coll, which 
+    /// can be any collection.
+    /// </summary>
     public class ToArray :
         IFunction<object, object>
     {
+        /// <summary>
+        /// Returns an <see cref="object[]"/> containing the contents of coll, which 
+        /// can be any collection.
+        /// </summary>
+        /// <param name="coll">A collection of items to convert into an object.</param>
+        /// <returns>
+        /// Returns an <see cref="object[]"/> containing the contents of coll, which 
+        /// can be any collection. Returns empty <see cref="object[]"/> if coll is null.
+        /// </returns>
         public object Invoke(object coll) =>
             coll == null
                 ? new object[] { }

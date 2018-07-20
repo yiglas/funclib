@@ -1,0 +1,62 @@
+﻿using funclib.Components.Core;
+using NUnit.Framework;
+using System;
+using System.Text;
+
+namespace funclib.Tests.Components.Core
+{
+    public class UpdateShould
+    {
+        [Test]
+        public void Update_should_update_value_for_given_key_but_not_update_the_source_stucture()
+        {
+            var p = new ArrayMap().Invoke(":name", "James", ":age", 26);
+
+            var actual = new Update().Invoke(p, ":age", new Inc());
+
+            Assert.AreNotEqual(p, actual);
+        }
+
+        [Test]
+        public void Update_should_update_value_for_given_key()
+        {
+            var p = new ArrayMap().Invoke(":name", "James", ":age", 26);
+
+            var expected = new ArrayMap().Invoke(":name", "James", ":age", 27);
+            var actual = new Update().Invoke(p, ":age", new Inc());
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Update_should_update_value_for_give_key_with_paramerters()
+        {
+            var p = new ArrayMap().Invoke(":name", "James", ":age", 26);
+
+            var expected = new ArrayMap().Invoke(":name", "James", ":age", 36);
+            var actual = new Update().Invoke(p, ":age", new Plus(), 10);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Update_should_add_key_value_if_key_doesnot_exist()
+        {
+            var p = new ArrayMap().Invoke();
+
+            var expected = new ArrayMap().Invoke(":some-key", "foo");
+            var actual = new Update().Invoke(p, ":some-key", new Function<object, object>(x => new Str().Invoke("foo", x)));
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void Update_should_also_work_with_vectors()
+        {
+            var expected = new Vector().Invoke(2, 2, 3);
+            var actual = new Update().Invoke(new Vector().Invoke(1, 2, 3), 0, new Inc());
+
+            Assert.AreEqual(expected, actual);
+        }
+    }
+}

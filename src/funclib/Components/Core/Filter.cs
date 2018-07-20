@@ -68,17 +68,17 @@ namespace funclib.Components.Core
         public class TransducerFunction :
             ATransducerFunction
         {
-            object _pred;
+            IFunction<object, object> _pred;
 
             public TransducerFunction(object pred, object rf) :
                 base(rf)
             {
-                this._pred = pred;
+                this._pred = (IFunction<object, object>)pred;
             }
 
             #region Overrides
             public override object Invoke(object result, object input) =>
-                (bool)new Truthy().Invoke(((IFunction<object, object>)this._pred).Invoke(input))
+                (bool)new Truthy().Invoke(this._pred.Invoke(input))
                     ? ((IFunction<object, object, object>)this._rf).Invoke(result, input)
                     : result;
             #endregion

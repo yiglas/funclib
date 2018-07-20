@@ -15,7 +15,6 @@ namespace FunctionalLibrary.Tests
         }
 
 
-
         [Test]
         public void Trying_to_figure_out_where_items_are_placed_with_array()
         {

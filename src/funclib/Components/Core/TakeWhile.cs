@@ -4,11 +4,28 @@ using System.Text;
 
 namespace funclib.Components.Core
 {
+    /// <summary>
+    /// Returns a <see cref="LazySeq"/> of successive items from coll while 
+    /// <see cref="IFunction{T1, T2, TResult}"/> pred returns a logical true. pred
+    /// must be free of side-effects.
+    /// </summary>
     public class TakeWhile :
         IFunction<object, object>,
         IFunction<object, object, object>
     {
         public object Invoke(object pred) => new Function<object, object>(rf => new TransducerFunction(pred, rf));
+        /// <summary>
+        /// Returns a <see cref="LazySeq"/> of successive items from coll while 
+        /// <see cref="IFunction{T1, T2, TResult}"/> pred returns a logical true. pred
+        /// must be free of side-effects.
+        /// </summary>
+        /// <param name="pred">An object that implements the <see cref="IFunction{T1, T2, TResult}"/> interface.</param>
+        /// <param name="coll">List of times to process.</param>
+        /// <returns>
+        /// Returns a <see cref="LazySeq"/> of successive items from coll while 
+        /// <see cref="IFunction{T1, T2, TResult}"/> pred returns a logical true. pred
+        /// must be free of side-effects.
+        /// </returns>
         public object Invoke(object pred, object coll) =>
             new LazySeq(() =>
             {

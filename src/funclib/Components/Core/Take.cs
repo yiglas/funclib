@@ -5,11 +5,25 @@ using System.Text;
 
 namespace funclib.Components.Core
 {
+    /// <summary>
+    /// Returns a <see cref="LazySeq"/> of the first n items in the coll, or all items
+    /// if there are fewer than n.
+    /// </summary>
     public class Take :
         IFunction<object, object>,
         IFunction<object, object, object>
     {
         public object Invoke(object n) => new Function<object, object>(rf => new TransducerFunction(n, rf));
+        /// <summary>
+        /// Returns a <see cref="LazySeq"/> of the first n items in the coll, or all items
+        /// if there are fewer than n.
+        /// </summary>
+        /// <param name="n">An <see cref="int"/> of the items to take from the collection.</param>
+        /// <param name="coll">The collection to take the first x items from.</param>
+        /// <returns>
+        /// Returns a <see cref="LazySeq"/> of the first n items in the coll, or all items
+        /// if there are fewer than n.
+        /// </returns>
         public object Invoke(object n, object coll) =>
             new LazySeq(new Function<object>(() =>
             {
@@ -38,8 +52,10 @@ namespace funclib.Components.Core
             public override object Invoke(object result, object input)
             {
                 var n = this._nv.Deref();
-                var nn = new VSwapǃ(this._nv, new Dec());
-                result = (bool)new IsPos().Invoke(n) ? ((IFunction<object, object, object>)this._rf).Invoke(result, input) : result;
+                var nn = new VSwapǃ(this._nv, new Dec()).Invoke();
+                result = (bool)new IsPos().Invoke(n) 
+                    ? Apply.ApplyTo((IFunction)this._rf, (ISeq)new List().Invoke(result, input))
+                    : result;
 
                 if ((bool)new Not().Invoke(new IsPos().Invoke(nn)))
                     return new EnsureReduced().Invoke(result);

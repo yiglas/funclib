@@ -56,11 +56,14 @@ namespace CoreGenerator
                     var className = n.Identifier.Text;
                     var fullName = GetFullyQualifiedName(n);
                     var comments = GetComments(n);
+                    var privateName = "__" + className.ToLower();
+
+                    a.Add($"static {fullName} {privateName};");
 
                     if (comments != null)
                         comments.ForEach(x => a.Add(x));
 
-                    a.Add($"public static {fullName} {className} => new {fullName}();");
+                    a.Add($"public static {fullName} {className} => {privateName} ?? ({privateName} = new {fullName}());");
                     return a;
                 }));
 
@@ -208,6 +211,7 @@ namespace CoreGenerator
             switch (name)
             {
                 case "class": return "@class";
+                case "do": return "@do";
                 case "char": return "@char";
                 case "function": return "invoke";
                 case "uUID": return "uuid";
