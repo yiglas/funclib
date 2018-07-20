@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void ButLast_should_return_all_but_last_item()
         {
             var expected = new Vector().Invoke(1, 2);
-            var actual = new ButLast().Invoke(new Vector().Invoke(1, 2, 3));
+            var actual = butLast(new Vector().Invoke(1, 2, 3));
 
             Assert.AreEqual(expected, actual);
         }
@@ -19,7 +20,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void ButLast_should_return_null_if_empty_list_passed()
         {
-            var actual = new ButLast().Invoke(new Vector().Invoke());
+            var actual = butLast(new Vector().Invoke());
 
             Assert.IsNull(actual);
         }
@@ -27,7 +28,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void ButLast_should_return_null_if_passed_null()
         {
-            var actual = new ButLast().Invoke(null);
+            var actual = butLast(null);
 
             Assert.IsNull(actual);
         }
