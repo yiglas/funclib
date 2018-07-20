@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -21,7 +22,7 @@ namespace funclib.Components.Core
             new Persistentǃ().Invoke(
                 new Reduce().Invoke(
                     new Function<object, object, object>((counts, x) =>
-                        new Assocǃ().Invoke(counts, x, new Inc().Invoke(new Get().Invoke(counts, x, 0)))),
+                        assocǃ(counts, x, new Inc().Invoke(new Get().Invoke(counts, x, 0)))),
                     new Transient().Invoke(new HashMap().Invoke()), coll));
     }
 }

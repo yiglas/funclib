@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -31,7 +32,7 @@ namespace funclib.Components.Core
                     new Function<object, object, object>((ret, x) =>
                     {
                         var k = ((IFunction<object, object>)f).Invoke(x);
-                        return new Assocǃ().Invoke(ret, k, new Conj().Invoke(new Get().Invoke(ret, k, new Vector().Invoke()), x));
+                        return assocǃ(ret, k, new Conj().Invoke(new Get().Invoke(ret, k, new Vector().Invoke()), x));
                     }), new Transient().Invoke(new HashMap().Invoke()), coll));
     }
 
