@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -161,7 +162,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Print_should_write_IMap()
         {
-            var expected = new ArrayMap().Invoke(":a", 1, ":b", 2);
+            var expected = arrayMap(":a", 1, ":b", 2);
             new Print().Invoke(expected);
             Assert.AreEqual(this._writer.ToString(), "{\":a\" 1, \":b\" 2}");
         }

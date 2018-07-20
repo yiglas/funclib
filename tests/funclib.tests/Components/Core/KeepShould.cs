@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -29,7 +30,7 @@ namespace funclib.Tests.Components.Core
         public void Keep_should_be_able_to_be_used_with_maps()
         {
             var expected = new funclib.Components.Core.List().Invoke(1, 2);
-            var actual = new Keep().Invoke(new ArrayMap().Invoke(":a", 1, ":b", 2, ":c", 3), new Vector().Invoke(":a", ":b", ":d"));
+            var actual = new Keep().Invoke(arrayMap(":a", 1, ":b", 2, ":c", 3), new Vector().Invoke(":a", ":b", ":d"));
 
             Assert.AreEqual(expected, actual);
         }

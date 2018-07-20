@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -12,7 +13,7 @@ namespace funclib.Tests.Components.Core
         {
             Assert.IsTrue((bool)new IsVector().Invoke(new Vector().Invoke(1, 2, 3)));
             Assert.IsTrue((bool)new IsVector().Invoke(new Vec().Invoke(new object[] { 1, 2, 3 })));
-            Assert.IsTrue((bool)new IsVector().Invoke(new First().Invoke(new ArrayMap().Invoke(":a", 1, ":b", 2, ":c", 3))));
+            Assert.IsTrue((bool)new IsVector().Invoke(new First().Invoke(arrayMap(":a", 1, ":b", 2, ":c", 3))));
         }
 
         [Test]

@@ -3,6 +3,7 @@ using funclib.Collections.Internal;
 using System;
 using System.Linq;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -31,7 +32,7 @@ namespace funclib.Components.Core
         public object Invoke(object map, object key, object val)
         {
             if (map == null)
-                return new ArrayMap().Invoke(key, val);
+                return arrayMap(key, val);
 
             return ((IAssociative)map).Assoc(key, val);
         }

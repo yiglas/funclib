@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void IsAssociative_should_return_true_if_an_object_that_implements_IAssociative()
         {
             Assert.IsTrue((bool)new IsAssociative().Invoke(new HashMap().Invoke()));
-            Assert.IsTrue((bool)new IsAssociative().Invoke(new ArrayMap().Invoke()));
+            Assert.IsTrue((bool)new IsAssociative().Invoke(arrayMap()));
         }
 
         [Test]

@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -20,7 +21,7 @@ namespace funclib.Tests.Components.Core
         public void Sort_should_sort_using_a_function()
         {
             var expected = new funclib.Components.Core.List().Invoke(10, 5, 2);
-            var actual = new Sort().Invoke(new IsGreaterThan(), new Values().Invoke(new ArrayMap().Invoke(":foo", 5, ":bar", 2, ":baz", 10)));
+            var actual = new Sort().Invoke(new IsGreaterThan(), new Values().Invoke(arrayMap(":foo", 5, ":bar", 2, ":baz", 10)));
 
             Assert.AreEqual(expected, actual);
         }

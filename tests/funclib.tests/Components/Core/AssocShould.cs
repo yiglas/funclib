@@ -1,8 +1,8 @@
 ﻿using funclib.Components.Core;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -36,7 +36,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Assoc_should_allow_passing_null_as_the_map_and_its_return_is_ArrayMap()
         {
-            var expected = new ArrayMap().Invoke(1, 2);
+            var expected = arrayMap(1, 2);
             var actual = new Assoc().Invoke(null, 1, 2);
 
             Assert.AreEqual(expected, actual);

@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -28,7 +29,7 @@ namespace funclib.Tests.Components.Core
         public void FFirst_should_return_first_key_when_passed_array_map()
         {
             var expected = "a";
-            var actual = new FFirst().Invoke(new ArrayMap().Invoke("a", 1, "b", 2, "c", 3));
+            var actual = new FFirst().Invoke(arrayMap("a", 1, "b", 2, "c", 3));
 
             Assert.AreEqual(expected, actual);
         }

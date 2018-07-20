@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -46,7 +47,7 @@ namespace funclib.Tests.Components.Core
         public void DropLast_should_work_with_map_structures()
         {
             var expected = new funclib.Components.Core.List().Invoke(new funclib.Collections.KeyValuePair(":a", 1), new funclib.Collections.KeyValuePair(":b", 2));
-            var actual = new ToArray().Invoke(new DropLast().Invoke(2, new ArrayMap().Invoke(":a", 1, ":b", 2, ":c", 3, ":d", 4)));
+            var actual = new ToArray().Invoke(new DropLast().Invoke(2, arrayMap(":a", 1, ":b", 2, ":c", 3, ":d", 4)));
 
             Assert.AreEqual(expected, actual);
         }
