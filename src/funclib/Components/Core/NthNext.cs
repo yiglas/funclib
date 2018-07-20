@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -20,7 +21,7 @@ namespace funclib.Components.Core
         public object Invoke(object coll, object n)
         {
             var xs = new Seq().Invoke(coll);
-            if ((bool)new Truthy().Invoke(new And().Invoke(xs, new IsPos().Invoke(n))))
+            if ((bool)new Truthy().Invoke(and(xs, new IsPos().Invoke(n))))
                 return Invoke(new Next().Invoke(xs), new Dec().Invoke(n));
 
             return xs;

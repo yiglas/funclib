@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -41,7 +42,7 @@ namespace funclib.Components.Core
             {
                 var s1 = new Seq().Invoke(c1);
                 var s2 = new Seq().Invoke(c2);
-                if ((bool)new Truthy().Invoke(new And().Invoke(s1, s2)))
+                if ((bool)new Truthy().Invoke(and(s1, s2)))
                 {
                     return new Cons().Invoke(new First().Invoke(s1), new Cons().Invoke(new First().Invoke(s2), Invoke(new Rest().Invoke(s1), new Rest().Invoke(s2))));
                 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -80,7 +81,7 @@ namespace funclib.Components.Core
             {
                 var s1 = new Seq().Invoke(c1);
                 var s2 = new Seq().Invoke(c2);
-                if ((bool)new Truthy().Invoke(new And().Invoke(s1, s2)))
+                if ((bool)new Truthy().Invoke(and(s1, s2)))
                 {
                     return new Cons().Invoke(fn.Invoke(new First().Invoke(s1), new First().Invoke(s2)), Invoke(f, new Rest().Invoke(s1), new Rest().Invoke(s2)));
                 }
@@ -112,7 +113,7 @@ namespace funclib.Components.Core
                 var s1 = new Seq().Invoke(c1);
                 var s2 = new Seq().Invoke(c2);
                 var s3 = new Seq().Invoke(c3);
-                if ((bool)new Truthy().Invoke(new And().Invoke(s1, s2, s3)))
+                if ((bool)new Truthy().Invoke(and(s1, s2, s3)))
                 {
                     return new Cons().Invoke(fn.Invoke(new First().Invoke(s1), new First().Invoke(s2), new First().Invoke(s1)), Invoke(f, new Rest().Invoke(s1), new Rest().Invoke(s2), new Rest().Invoke(s3)));
                 }

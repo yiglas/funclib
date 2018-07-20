@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -28,7 +29,7 @@ namespace funclib.Components.Core
             #region Overrides
             public override object Invoke(object result)
             {
-                if ((bool)new Truthy().Invoke(new And().Invoke(new IsMap().Invoke(result), new Contains().Invoke(result, "::halt"))))
+                if ((bool)new Truthy().Invoke(and(new IsMap().Invoke(result), new Contains().Invoke(result, "::halt"))))
                 {
                     return new Get().Invoke(result, "::halt");
                 }

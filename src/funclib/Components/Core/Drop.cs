@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -25,7 +26,7 @@ namespace funclib.Components.Core
         object step(object n, object coll)
         {
             var s = new Seq().Invoke(coll);
-            if ((bool)new Truthy().Invoke(new And().Invoke(new IsPos().Invoke(n), s)))
+            if ((bool)new Truthy().Invoke(and(new IsPos().Invoke(n), s)))
             {
                 return step(new Dec().Invoke(n), new Rest().Invoke(s));
             }

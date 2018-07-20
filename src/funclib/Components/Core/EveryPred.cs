@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -111,9 +112,9 @@ namespace funclib.Components.Core
             public object Invoke(object x) =>
                 this._ps != null
                     ? new IsEvery().Invoke(new Function<object, object>(_1 => ((IFunction<object, object>)_1).Invoke(x)), this._ps)
-                    : this._p3 != null ? new Boolean().Invoke(new And().Invoke(Pred(this._p1, x), Pred(this._p2, x), Pred(this._p3, x)))
-                    : this._p2 != null ? new Boolean().Invoke(new And().Invoke(Pred(this._p1, x), Pred(this._p2, x)))
-                    : new Boolean().Invoke(new And().Invoke(Pred(this._p1, x)));
+                    : this._p3 != null ? new Boolean().Invoke(and(Pred(this._p1, x), Pred(this._p2, x), Pred(this._p3, x)))
+                    : this._p2 != null ? new Boolean().Invoke(and(Pred(this._p1, x), Pred(this._p2, x)))
+                    : new Boolean().Invoke(and(Pred(this._p1, x)));
             /// <summary>
             /// Returns the result of executing the supplied predicates.
             /// </summary>
@@ -124,10 +125,10 @@ namespace funclib.Components.Core
             /// </returns>
             public object Invoke(object x, object y) =>
                 this._ps != null
-                    ? new IsEvery().Invoke(new Function<object, object>(_1 => new And().Invoke(Pred(_1, x), Pred(_1, y))), this._ps)
-                    : this._p3 != null ? new Boolean().Invoke(new And().Invoke(Pred(this._p1, x), Pred(this._p2, x), Pred(this._p3, x), Pred(this._p1, y), Pred(this._p2, y), Pred(this._p3, y)))
-                    : this._p2 != null ? new Boolean().Invoke(new And().Invoke(Pred(this._p1, x), Pred(this._p2, x), Pred(this._p1, y), Pred(this._p2, y)))
-                    : new Boolean().Invoke(new And().Invoke(Pred(this._p1, x), Pred(this._p1, y)));
+                    ? new IsEvery().Invoke(new Function<object, object>(_1 => and(Pred(_1, x), Pred(_1, y))), this._ps)
+                    : this._p3 != null ? new Boolean().Invoke(and(Pred(this._p1, x), Pred(this._p2, x), Pred(this._p3, x), Pred(this._p1, y), Pred(this._p2, y), Pred(this._p3, y)))
+                    : this._p2 != null ? new Boolean().Invoke(and(Pred(this._p1, x), Pred(this._p2, x), Pred(this._p1, y), Pred(this._p2, y)))
+                    : new Boolean().Invoke(and(Pred(this._p1, x), Pred(this._p1, y)));
             /// <summary>
             /// Returns the result of executing the supplied predicates.
             /// </summary>
@@ -139,10 +140,10 @@ namespace funclib.Components.Core
             /// </returns>
             public object Invoke(object x, object y, object z) =>
                 this._ps != null
-                    ? new IsEvery().Invoke(new Function<object, object>(_1 => new And().Invoke(Pred(_1, x), Pred(_1, y), Pred(_1, z))), this._ps)
-                    : this._p3 != null ? new Boolean().Invoke(new And().Invoke(Pred(this._p1, x), Pred(this._p2, x), Pred(this._p3, x), Pred(this._p1, y), Pred(this._p2, y), Pred(this._p3, y), Pred(this._p1, z), Pred(this._p2, z), Pred(this._p3, z)))
-                    : this._p2 != null ? new Boolean().Invoke(new And().Invoke(Pred(this._p1, x), Pred(this._p2, x), Pred(this._p1, y), Pred(this._p2, y), Pred(this._p1, z), Pred(this._p2, z)))
-                    : new Boolean().Invoke(new And().Invoke(Pred(this._p1, x), Pred(this._p1, y), Pred(this._p1, z)));
+                    ? new IsEvery().Invoke(new Function<object, object>(_1 => and(Pred(_1, x), Pred(_1, y), Pred(_1, z))), this._ps)
+                    : this._p3 != null ? new Boolean().Invoke(and(Pred(this._p1, x), Pred(this._p2, x), Pred(this._p3, x), Pred(this._p1, y), Pred(this._p2, y), Pred(this._p3, y), Pred(this._p1, z), Pred(this._p2, z), Pred(this._p3, z)))
+                    : this._p2 != null ? new Boolean().Invoke(and(Pred(this._p1, x), Pred(this._p2, x), Pred(this._p1, y), Pred(this._p2, y), Pred(this._p1, z), Pred(this._p2, z)))
+                    : new Boolean().Invoke(and(Pred(this._p1, x), Pred(this._p1, y), Pred(this._p1, z)));
             /// <summary>
             /// Returns the result of executing the supplied predicates.
             /// </summary>
@@ -155,10 +156,10 @@ namespace funclib.Components.Core
             /// </returns>
             public object Invoke(object x, object y, object z, params object[] args) =>
                 this._ps != null
-                    ? new Boolean().Invoke(new And().Invoke(new Function(this._p1, this._p2, this._p3, this._ps).Invoke(x, y, z), new IsEvery().Invoke(new Function<object, object>(_1 => new IsEvery().Invoke(_1, args)), this._ps)))
-                    : this._p3 != null ? new Boolean().Invoke(new And().Invoke(new Function(this._p1, this._p2, this._p3, this._ps).Invoke(x, y, z), new IsEvery().Invoke(new Function<object, object>(_1 => new And().Invoke(this._p1.Invoke(_1), this._p2.Invoke(_1), this._p3.Invoke(_1))), args)))
-                    : this._p2 != null ? new Boolean().Invoke(new And().Invoke(new Function(this._p1, this._p2, this._p3, this._ps).Invoke(x, y, z), new IsEvery().Invoke(new Function<object, object>(_1 => new And().Invoke(this._p1.Invoke(_1), this._p2.Invoke(_1))), args)))
-                    : new Boolean().Invoke(new And().Invoke(new Function(this._p1).Invoke(x, y, z), new IsEvery().Invoke(this._p1, args)));
+                    ? new Boolean().Invoke(and(new Function(this._p1, this._p2, this._p3, this._ps).Invoke(x, y, z), new IsEvery().Invoke(new Function<object, object>(_1 => new IsEvery().Invoke(_1, args)), this._ps)))
+                    : this._p3 != null ? new Boolean().Invoke(and(new Function(this._p1, this._p2, this._p3, this._ps).Invoke(x, y, z), new IsEvery().Invoke(new Function<object, object>(_1 => and(this._p1.Invoke(_1), this._p2.Invoke(_1), this._p3.Invoke(_1))), args)))
+                    : this._p2 != null ? new Boolean().Invoke(and(new Function(this._p1, this._p2, this._p3, this._ps).Invoke(x, y, z), new IsEvery().Invoke(new Function<object, object>(_1 => and(this._p1.Invoke(_1), this._p2.Invoke(_1))), args)))
+                    : new Boolean().Invoke(and(new Function(this._p1).Invoke(x, y, z), new IsEvery().Invoke(this._p1, args)));
 
             IFunction<object> Pred(IFunction<object, object> p, object x) => new Function<object>(() => p.Invoke(x));
             IFunction<object> Pred(object p, object x) => new Function<object>(() => ((IFunction<object, object>)p).Invoke(x));

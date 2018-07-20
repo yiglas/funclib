@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using funclib.Components.Core;
 using System.Collections;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -40,7 +41,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void And_should_return_true_with_nothing_is_passed()
         {
-            Assert.AreEqual(true, new And().Invoke());
+            Assert.AreEqual(true, and());
         }
 
         [Test]
@@ -48,7 +49,7 @@ namespace funclib.Tests.Components.Core
         {
             int i = 0;
 
-            var actual = new And().Invoke(new Function<object>(() => { i = i + 1; return null; }).Invoke(), false);
+            var actual = and(new Function<object>(() => { i = i + 1; return null; }).Invoke(), false);
 
             Assert.IsNull(actual);
             Assert.AreEqual(i, 1);
@@ -60,7 +61,7 @@ namespace funclib.Tests.Components.Core
             int i = 0;
 
             var expected = false;
-            var actual = new And().Invoke(false, new Function<object>(() => { i = i + 1; return null; }));
+            var actual = and(false, new Function<object>(() => { i = i + 1; return null; }));
 
             Assert.AreEqual(expected, actual);
             Assert.AreEqual(i, 0);

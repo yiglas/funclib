@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -24,7 +25,7 @@ namespace funclib.Components.Core
 
             object loop(object map, ISeq ks, ISeq vs)
             {
-                if ((bool)new Truthy().Invoke(new And().Invoke(ks, vs)))
+                if ((bool)new Truthy().Invoke(and(ks, vs)))
                 {
                     return loop(new Assoc().Invoke(map, ks.First(), vs.First()), ks.Next(), vs.Next());
                 }

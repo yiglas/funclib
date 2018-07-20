@@ -1,4 +1,4 @@
-// Generated on 7/19/2018 8:55:57 PM
+// Generated on 7/20/2018 11:20:55 AM
 using funclib.Collections;
 using funclib.Components.Core;
 using System;
@@ -231,6 +231,12 @@ namespace funclib
 		/// Divides number(s).
 		/// </summary>
 		public static funclib.Components.Core.Divide Divide => __divide ?? (__divide = new funclib.Components.Core.Divide());
+		static funclib.Components.Core.Do __do;
+		/// <summary>
+		/// Evaluates the expressions in order and returns the value of the last.
+		/// If no expressions are supplied, returns null.
+		/// </summary>
+		public static funclib.Components.Core.Do Do => __do ?? (__do = new funclib.Components.Core.Do());
 		static funclib.Components.Core.DoAll __doall;
 		/// <summary>
 		/// For <see cref="LazySeq"/> that are produced via other functions and have side effects.
@@ -270,7 +276,7 @@ namespace funclib
 		public static funclib.Components.Core.Empty Empty => __empty ?? (__empty = new funclib.Components.Core.Empty());
 		static funclib.Components.Core.EnsureReduced __ensurereduced;
 		/// <summary>
-		/// If x is already <see cref="IsReduced"/>, return it else return <see cref="Collections.Reduced.Deref"/> value.
+		/// If x is already <see cref="IsReduced"/>, return it else return <see cref="Reduced"/> value.
 		/// </summary>
 		public static funclib.Components.Core.EnsureReduced EnsureReduced => __ensurereduced ?? (__ensurereduced = new funclib.Components.Core.EnsureReduced());
 		static funclib.Components.Core.EveryPred __everypred;
@@ -282,6 +288,10 @@ namespace funclib
 		/// </summary>
 		public static funclib.Components.Core.EveryPred EveryPred => __everypred ?? (__everypred = new funclib.Components.Core.EveryPred());
 		static funclib.Components.Core.Falsy __falsy;
+		/// <summary>
+		/// Returns <see cref="true"/> if the object is a logical false. i.e.
+		/// If source is null or source is bool and that value is false.
+		/// </summary>
 		public static funclib.Components.Core.Falsy Falsy => __falsy ?? (__falsy = new funclib.Components.Core.Falsy());
 		static funclib.Components.Core.FFirst __ffirst;
 		/// <summary>
@@ -1084,22 +1094,66 @@ namespace funclib
 		/// </summary>
 		public static funclib.Components.Core.Subs Subs => __subs ?? (__subs = new funclib.Components.Core.Subs());
 		static funclib.Components.Core.SubVec __subvec;
+		/// <summary>
+		/// Returns a <see cref="IVector"/> of the items in <see cref="IVector"/> from start (inclusive)
+		/// to end (exclusive). If end is not supplied, default to <see cref="Count"/> of <see cref="IVector"/>.
+		/// </summary>
 		public static funclib.Components.Core.SubVec SubVec => __subvec ?? (__subvec = new funclib.Components.Core.SubVec());
 		static funclib.Components.Core.Take __take;
+		/// <summary>
+		/// Returns a <see cref="LazySeq"/> of the first n items in the coll, or all items
+		/// if there are fewer than n.
+		/// </summary>
 		public static funclib.Components.Core.Take Take => __take ?? (__take = new funclib.Components.Core.Take());
 		static funclib.Components.Core.TakeLast __takelast;
+		/// <summary>
+		/// Returns a <see cref="ISeq"/> of the last n items in coll. Depending on the
+		/// type of coll may be no better than linear time.
+		/// </summary>
 		public static funclib.Components.Core.TakeLast TakeLast => __takelast ?? (__takelast = new funclib.Components.Core.TakeLast());
 		static funclib.Components.Core.TakeNth __takenth;
+		/// <summary>
+		/// Returns a <see cref="LazySeq"/> of every nth item in coll.
+		/// </summary>
 		public static funclib.Components.Core.TakeNth TakeNth => __takenth ?? (__takenth = new funclib.Components.Core.TakeNth());
 		static funclib.Components.Core.TakeWhile __takewhile;
+		/// <summary>
+		/// Returns a <see cref="LazySeq"/> of successive items from coll while
+		/// <see cref="IFunction{T1, T2, TResult}"/> pred returns a logical true. pred
+		/// must be free of side-effects.
+		/// </summary>
 		public static funclib.Components.Core.TakeWhile TakeWhile => __takewhile ?? (__takewhile = new funclib.Components.Core.TakeWhile());
 		static funclib.Components.Core.ToArray __toarray;
+		/// <summary>
+		/// Returns an <see cref="object[]"/> containing the contents of coll, which
+		/// can be any collection.
+		/// </summary>
 		public static funclib.Components.Core.ToArray ToArray => __toarray ?? (__toarray = new funclib.Components.Core.ToArray());
 		static funclib.Components.Core.Trampoline __trampoline;
+		/// <summary>
+		/// <see cref="Trampoline"/> can be used to convert algorithms requiring mutual
+		/// recursion without stake consumption. Calls f with supplied args, if any. If
+		/// f returns a fn, calls the fn with no arguments and continues to repeat, until
+		/// the return value is not a fn. then returns the non-fn value. Note: that if you
+		/// want to return a fn as a final value, you must wrap it in some data structure
+		/// and unpack it after trampoline returns.
+		/// </summary>
 		public static funclib.Components.Core.Trampoline Trampoline => __trampoline ?? (__trampoline = new funclib.Components.Core.Trampoline());
 		static funclib.Components.Core.Transduce __transduce;
+		/// <summary>
+		/// This is still experimental!
+		/// Reduce with a transformation of f (xf). If init is not supplied <see cref="IFunction{TResult}"/> is
+		/// called to produce it. f should be a reducing step function that accepts both 1 and 2 arguments, if
+		/// it accepts only 2 you can add the arity-1 with <see cref="Completing"/>. Returns the result of
+		/// applying (thre transformed) xf to init and the first item in coll, then applying xf to the result
+		/// of the 2nd item, etc. If coll contains no items, returns init and f is not called. Note: that
+		/// certain transforms my inject or skip items.
+		/// </summary>
 		public static funclib.Components.Core.Transduce Transduce => __transduce ?? (__transduce = new funclib.Components.Core.Transduce());
 		static funclib.Components.Core.Transient __transient;
+		/// <summary>
+		/// Returns a new transient version of the collection, in constant time.
+		/// </summary>
 		public static funclib.Components.Core.Transient Transient => __transient ?? (__transient = new funclib.Components.Core.Transient());
 		static funclib.Components.Core.TreeSeq __treeseq;
 		/// <summary>
@@ -1107,12 +1161,26 @@ namespace funclib
 		/// </summary>
 		public static funclib.Components.Core.TreeSeq TreeSeq => __treeseq ?? (__treeseq = new funclib.Components.Core.TreeSeq());
 		static funclib.Components.Core.Truthy __truthy;
+		/// <summary>
+		/// Returns <see cref="true"/> if source is a logical true. i.e.:
+		/// source is not null or if source is boolean true.
+		/// </summary>
 		public static funclib.Components.Core.Truthy Truthy => __truthy ?? (__truthy = new funclib.Components.Core.Truthy());
 		static funclib.Components.Core.Unreduce __unreduce;
+		/// <summary>
+		/// If x is <see cref="IsReduced"/> returns true, return <see cref="Reduced.Deref"/>,
+		/// otherwise return x.
+		/// </summary>
 		public static funclib.Components.Core.Unreduce Unreduce => __unreduce ?? (__unreduce = new funclib.Components.Core.Unreduce());
 		static funclib.Components.Core.UnsignedBitShiftRigth __unsignedbitshiftrigth;
 		public static funclib.Components.Core.UnsignedBitShiftRigth UnsignedBitShiftRigth => __unsignedbitshiftrigth ?? (__unsignedbitshiftrigth = new funclib.Components.Core.UnsignedBitShiftRigth());
 		static funclib.Components.Core.Update __update;
+		/// <summary>
+		/// 'Updates' a value in an <see cref="IAssociative"/> structure. where k is a key and f is
+		/// a <see cref="IFunction"/> that will take the old value and any supplied args and return
+		/// a new value, and returns a new structure. If the key does not exists, null is passed as
+		/// the old value.
+		/// </summary>
 		public static funclib.Components.Core.Update Update => __update ?? (__update = new funclib.Components.Core.Update());
 		static funclib.Components.Core.UpdateIn __updatein;
 		/// <summary>
@@ -1848,6 +1916,15 @@ namespace funclib
 		/// </returns>
 		public static object divide(object x, object y, params object[] more) => Divide.Invoke(x, y, more);
 		/// <summary>
+		/// Evaluates the expressions in order and returns the value of the last.
+		/// If no expressions are supplied, returns null.
+		/// </summary>
+		/// <param name="rest">Objects array.</param>
+		/// <returns>
+		/// Returns the value of the last.
+		/// </returns>
+		public static object @do(params object[] rest) => Do.Invoke(rest);
+		/// <summary>
 		/// For <see cref="LazySeq"/> that are produced via other functions and have side effects.
 		/// The side effects are not produces until the sequence is consumed. <see cref="DoAll"/>
 		/// walks though successive next, retains the head and returns it, thus causing the
@@ -1953,11 +2030,11 @@ namespace funclib
 		/// </returns>
 		public static object empty(object coll) => Empty.Invoke(coll);
 		/// <summary>
-		/// If x is already <see cref="IsReduced"/>, return it else return <see cref="Collections.Reduced.Deref"/> value.
+		/// If x is already <see cref="IsReduced"/>, return it else return <see cref="Reduced"/> value.
 		/// </summary>
 		/// <param name="x">Object to reduce or not.</param>
 		/// <returns>
-		/// Either x if it already <see cref="IsReduced"/> or <see cref="Collections.Reduced.Deref"/>ed value.
+		/// If x is already <see cref="IsReduced"/>, return it else return <see cref="Reduced"/> value.
 		/// </returns>
 		public static object ensureReduced(object x) => EnsureReduced.Invoke(x);
 		/// <summary>
@@ -2010,6 +2087,15 @@ namespace funclib
 		/// Returns <see cref="true"/> if p returns a logical true, otherwise <see cref="false"/>.
 		/// </returns>
 		public static object everyPred(object p1, object p2, object p3, params object[] ps) => EveryPred.Invoke(p1, p2, p3, ps);
+		/// <summary>
+		/// Returns <see cref="true"/> if the object is a logical false. i.e.
+		/// If source is null or source is bool and that value is false.
+		/// </summary>
+		/// <param name="source">Object to test.</param>
+		/// <returns>
+		/// Returns <see cref="true"/> if the object is a logical false. i.e.
+		/// If source is null or source is bool and that value is false.
+		/// </returns>
 		public static object falsy(object source) => Falsy.Invoke(source);
 		/// <summary>
 		/// Returns the first item's first item. Same as <see cref="First.Invoke(First.Invoke(object))"/>.
@@ -4371,22 +4457,167 @@ namespace funclib
 		/// the length of this instance and length is zero.
 		/// </returns>
 		public static object subs(object s, object start, object end) => Subs.Invoke(s, start, end);
+		/// <summary>
+		/// Returns a <see cref="IVector"/> of the items in <see cref="IVector"/> from start (inclusive)
+		/// to end (exclusive). If end is not supplied, default to <see cref="Count"/> of <see cref="IVector"/>.
+		/// </summary>
+		/// <param name="v">An object that implements the <see cref="IVector"/> interface.</param>
+		/// <param name="start">The zero-based starting index position.</param>
+		/// <returns>
+		/// Returns a <see cref="IVector"/> of the items in <see cref="IVector"/> from start (inclusive)
+		/// to end (exclusive). If end is not supplied, default to <see cref="Count"/> of <see cref="IVector"/>.
+		/// </returns>
 		public static object subVec(object v, object start) => SubVec.Invoke(v, start);
+		/// <summary>
+		/// Returns a <see cref="IVector"/> of the items in <see cref="IVector"/> from start (inclusive)
+		/// to end (exclusive). If end is not supplied, default to <see cref="Count"/> of <see cref="IVector"/>.
+		/// </summary>
+		/// <param name="v">An object that implements the <see cref="IVector"/> interface.</param>
+		/// <param name="start">The zero-based starting index position.</param>
+		/// <param name="end">The number of items.</param>
+		/// <returns>
+		/// Returns a <see cref="IVector"/> of the items in <see cref="IVector"/> from start (inclusive)
+		/// to end (exclusive). If end is not supplied, default to <see cref="Count"/> of <see cref="IVector"/>.
+		/// </returns>
 		public static object subVec(object v, object start, object end) => SubVec.Invoke(v, start, end);
 		public static object take(object n) => Take.Invoke(n);
+		/// <summary>
+		/// Returns a <see cref="LazySeq"/> of the first n items in the coll, or all items
+		/// if there are fewer than n.
+		/// </summary>
+		/// <param name="n">An <see cref="int"/> of the items to take from the collection.</param>
+		/// <param name="coll">The collection to take the first x items from.</param>
+		/// <returns>
+		/// Returns a <see cref="LazySeq"/> of the first n items in the coll, or all items
+		/// if there are fewer than n.
+		/// </returns>
 		public static object take(object n, object coll) => Take.Invoke(n, coll);
+		/// <summary>
+		/// Returns a <see cref="ISeq"/> of the last n items in coll. Depending on the
+		/// type of coll may be no better than linear time.
+		/// </summary>
+		/// <param name="n">An <see cref="int"/> of the items to take from the end of the collection.</param>
+		/// <param name="coll">The collection to drop the first x items from.</param>
+		/// <returns>
+		/// Returns a <see cref="ISeq"/> of the last n items in coll. Depending on the
+		/// type of coll may be no better than linear time.
+		/// </returns>
 		public static object takeLast(object n, object coll) => TakeLast.Invoke(n, coll);
 		public static object takeNth(object n) => TakeNth.Invoke(n);
+		/// <summary>
+		/// Returns a <see cref="LazySeq"/> of every nth item in coll.
+		/// </summary>
+		/// <param name="n">An <see cref="int"/> of the items to take every nth from collection.</param>
+		/// <param name="coll">The collection to drop the first x items from.</param>
+		/// <returns>
+		/// Returns a <see cref="LazySeq"/> of every nth item in coll.
+		/// </returns>
 		public static object takeNth(object n, object coll) => TakeNth.Invoke(n, coll);
 		public static object takeWhile(object pred) => TakeWhile.Invoke(pred);
+		/// <summary>
+		/// Returns a <see cref="LazySeq"/> of successive items from coll while
+		/// <see cref="IFunction{T1, T2, TResult}"/> pred returns a logical true. pred
+		/// must be free of side-effects.
+		/// </summary>
+		/// <param name="pred">An object that implements the <see cref="IFunction{T1, T2, TResult}"/> interface.</param>
+		/// <param name="coll">List of times to process.</param>
+		/// <returns>
+		/// Returns a <see cref="LazySeq"/> of successive items from coll while
+		/// <see cref="IFunction{T1, T2, TResult}"/> pred returns a logical true. pred
+		/// must be free of side-effects.
+		/// </returns>
 		public static object takeWhile(object pred, object coll) => TakeWhile.Invoke(pred, coll);
+		/// <summary>
+		/// Evaluates the <see cref="IFunction{TResult}"/> and prints the time it took.
+		/// Returns the value of <see cref="IFunction{TResult}"/>.
+		/// </summary>
+		/// <param name="fn">Take a <see cref="Func{TResult}"/> and convert it to <see cref="IFunction{TResult}"/> to be executed.</param>
 		public static object time(Func<object> fn) => new Time(fn).Invoke();
+		/// <summary>
+		/// Evaluates the <see cref="IFunction{TResult}"/> and prints the time it took.
+		/// Returns the value of <see cref="IFunction{TResult}"/>.
+		/// </summary>
+		/// <param name="fn">A function to be executed.</param>
 		public static object time(IFunction<object> fn) => new Time(fn).Invoke();
+		/// <summary>
+		/// Returns an <see cref="object[]"/> containing the contents of coll, which
+		/// can be any collection.
+		/// </summary>
+		/// <param name="coll">A collection of items to convert into an object.</param>
+		/// <returns>
+		/// Returns an <see cref="object[]"/> containing the contents of coll, which
+		/// can be any collection. Returns empty <see cref="object[]"/> if coll is null.
+		/// </returns>
 		public static object toArray(object coll) => ToArray.Invoke(coll);
+		/// <summary>
+		/// <see cref="Trampoline"/> can be used to convert algorithms requiring mutual
+		/// recursion without stake consumption. Calls f with supplied args, if any. If
+		/// f returns a fn, calls the fn with no arguments and continues to repeat, until
+		/// the return value is not a fn. then returns the non-fn value. Note: that if you
+		/// want to return a fn as a final value, you must wrap it in some data structure
+		/// and unpack it after trampoline returns.
+		/// </summary>
+		/// <param name="f">An object that implements the <see cref="IFunction{TResult}"/> interface.</param>
+		/// <returns>
+		/// Returns the first non-fn value.
+		/// </returns>
 		public static object trampoline(object f) => Trampoline.Invoke(f);
+		/// <summary>
+		/// <see cref="Trampoline"/> can be used to convert algorithms requiring mutual
+		/// recursion without stake consumption. Calls f with supplied args, if any. If
+		/// f returns a fn, calls the fn with no arguments and continues to repeat, until
+		/// the return value is not a fn. then returns the non-fn value. Note: that if you
+		/// want to return a fn as a final value, you must wrap it in some data structure
+		/// and unpack it after trampoline returns.
+		/// </summary>
+		/// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
+		/// <param name="args">A list of parameters</param>
+		/// <returns>
+		/// Returns the first non-fn value.
+		/// </returns>
 		public static object trampoline(object f, params object[] args) => Trampoline.Invoke(f, args);
+		/// <summary>
+		/// This is still experimental!
+		/// Reduce with a transformation of f (xf). If init is not supplied <see cref="IFunction{TResult}"/> is
+		/// called to produce it. f should be a reducing step function that accepts both 1 and 2 arguments, if
+		/// it accepts only 2 you can add the arity-1 with <see cref="Completing"/>. Returns the result of
+		/// applying (thre transformed) xf to init and the first item in coll, then applying xf to the result
+		/// of the 2nd item, etc. If coll contains no items, returns init and f is not called. Note: that
+		/// certain transforms my inject or skip items.
+		/// </summary>
+		/// <param name="xform">An object that implements the <see cref="IFunction{T1, TResult}"/> interface.</param>
+		/// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
+		/// <param name="coll">A collection of items to reduce.</param>
+		/// <returns>
+		/// Returns the result of applying (thre transformed) xf to init and the first item in coll, then applying
+		/// xf to the result of the 2nd item, etc. If coll contains no items, returns init and f is not called.
+		/// </returns>
 		public static object transduce(object xform, object f, object coll) => Transduce.Invoke(xform, f, coll);
+		/// <summary>
+		/// This is still experimental!
+		/// Reduce with a transformation of f (xf). If init is not supplied <see cref="IFunction{TResult}"/> is
+		/// called to produce it. f should be a reducing step function that accepts both 1 and 2 arguments, if
+		/// it accepts only 2 you can add the arity-1 with <see cref="Completing"/>. Returns the result of
+		/// applying (thre transformed) xf to init and the first item in coll, then applying xf to the result
+		/// of the 2nd item, etc. If coll contains no items, returns init and f is not called. Note: that
+		/// certain transforms my inject or skip items.
+		/// </summary>
+		/// <param name="xform">An object that implements the <see cref="IFunction{T1, TResult}"/> interface.</param>
+		/// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
+		/// <param name="init">The initial seed value.</param>
+		/// <param name="coll">A collection of items to reduce.</param>
+		/// <returns>
+		/// Returns the result of applying (thre transformed) xf to init and the first item in coll, then applying
+		/// xf to the result of the 2nd item, etc. If coll contains no items, returns init and f is not called.
+		/// </returns>
 		public static object transduce(object xform, object f, object init, object coll) => Transduce.Invoke(xform, f, init, coll);
+		/// <summary>
+		/// Returns a new transient version of the collection, in constant time.
+		/// </summary>
+		/// <param name="coll">An object that implements the <see cref="IEditableCollection"/> interface.</param>
+		/// <returns>
+		/// Returns a new transient version of the collection, in constant time.
+		/// </returns>
 		public static object transient(object coll) => Transient.Invoke(coll);
 		/// <summary>
 		/// Returns a <see cref="LazySeq"/> of the nodes in a tree, via a depth-first walk.
@@ -4399,13 +4630,116 @@ namespace funclib
 		/// Returns a <see cref="LazySeq"/> of the nodes in a tree.
 		/// </returns>
 		public static object treeSeq(object branch, object children, object root) => TreeSeq.Invoke(branch, children, root);
+		/// <summary>
+		/// Returns <see cref="true"/> if source is a logical true. i.e.:
+		/// source is not null or if source is boolean true.
+		/// </summary>
+		/// <param name="source">Object to test.</param>
+		/// <returns>
+		/// Returns <see cref="true"/> if source is a logical true. i.e.:
+		/// source is not null or if source is boolean true.
+		/// </returns>
 		public static object truthy(object source) => Truthy.Invoke(source);
+		/// <summary>
+		/// If x is <see cref="IsReduced"/> returns true, return <see cref="Reduced.Deref"/>,
+		/// otherwise return x.
+		/// </summary>
+		/// <param name="x">Object that can be <see cref="Reduced"/> or is already reduced.</param>
+		/// <returns>
+		/// If x is <see cref="IsReduced"/> returns true, return <see cref="Reduced.Deref"/>,
+		/// otherwise return x.
+		/// </returns>
 		public static object unreduce(object x) => Unreduce.Invoke(x);
 		public static object unsignedBitShiftRigth(object x, object n) => UnsignedBitShiftRigth.Invoke(x, n);
+		/// <summary>
+		/// 'Updates' a value in an <see cref="IAssociative"/> structure. where k is a key and f is
+		/// a <see cref="IFunction"/> that will take the old value and any supplied args and return
+		/// a new value, and returns a new structure. If the key does not exists, null is passed as
+		/// the old value.
+		/// </summary>
+		/// <param name="m">An object that implements the <see cref="IAssociative"/> interface.</param>
+		/// <param name="k">The key for the value to update.</param>
+		/// <param name="f">A <see cref="IFunction"/> that takes the old value and any additional args and outputs the new value for the key.</param>
+		/// <returns>
+		/// 'Updates' a value in an <see cref="IAssociative"/> structure. where k is a key and f is
+		/// a <see cref="IFunction"/> that will take the old value and any supplied args and return
+		/// a new value, and returns a new structure. If the key does not exists, null is passed as
+		/// the old value.
+		/// </returns>
 		public static object update(object m, object k, object f) => Update.Invoke(m, k, f);
+		/// <summary>
+		/// 'Updates' a value in an <see cref="IAssociative"/> structure. where k is a key and f is
+		/// a <see cref="IFunction"/> that will take the old value and any supplied args and return
+		/// a new value, and returns a new structure. If the key does not exists, null is passed as
+		/// the old value.
+		/// </summary>
+		/// <param name="m">An object that implements the <see cref="IAssociative"/> interface.</param>
+		/// <param name="k">The key for the value to update.</param>
+		/// <param name="f">A <see cref="IFunction"/> that takes the old value and any additional args and outputs the new value for the key.</param>
+		/// <param name="x">Second argument to the passed in function.</param>
+		/// <returns>
+		/// 'Updates' a value in an <see cref="IAssociative"/> structure. where k is a key and f is
+		/// a <see cref="IFunction"/> that will take the old value and any supplied args and return
+		/// a new value, and returns a new structure. If the key does not exists, null is passed as
+		/// the old value.
+		/// </returns>
 		public static object update(object m, object k, object f, object x) => Update.Invoke(m, k, f, x);
+		/// <summary>
+		/// 'Updates' a value in an <see cref="IAssociative"/> structure. where k is a key and f is
+		/// a <see cref="IFunction"/> that will take the old value and any supplied args and return
+		/// a new value, and returns a new structure. If the key does not exists, null is passed as
+		/// the old value.
+		/// </summary>
+		/// <param name="m">An object that implements the <see cref="IAssociative"/> interface.</param>
+		/// <param name="k">The key for the value to update.</param>
+		/// <param name="f">A <see cref="IFunction"/> that takes the old value and any additional args and outputs the new value for the key.</param>
+		/// <param name="x">Second argument to the passed in function.</param>
+		/// <param name="y">Third argument to the passed in function.</param>
+		/// <returns>
+		/// 'Updates' a value in an <see cref="IAssociative"/> structure. where k is a key and f is
+		/// a <see cref="IFunction"/> that will take the old value and any supplied args and return
+		/// a new value, and returns a new structure. If the key does not exists, null is passed as
+		/// the old value.
+		/// </returns>
 		public static object update(object m, object k, object f, object x, object y) => Update.Invoke(m, k, f, x, y);
+		/// <summary>
+		/// 'Updates' a value in an <see cref="IAssociative"/> structure. where k is a key and f is
+		/// a <see cref="IFunction"/> that will take the old value and any supplied args and return
+		/// a new value, and returns a new structure. If the key does not exists, null is passed as
+		/// the old value.
+		/// </summary>
+		/// <param name="m">An object that implements the <see cref="IAssociative"/> interface.</param>
+		/// <param name="k">The key for the value to update.</param>
+		/// <param name="f">A <see cref="IFunction"/> that takes the old value and any additional args and outputs the new value for the key.</param>
+		/// <param name="x">Second argument to the passed in function.</param>
+		/// <param name="y">Third argument to the passed in function.</param>
+		/// <param name="z">Fourth argument to the passed in function.</param>
+		/// <returns>
+		/// 'Updates' a value in an <see cref="IAssociative"/> structure. where k is a key and f is
+		/// a <see cref="IFunction"/> that will take the old value and any supplied args and return
+		/// a new value, and returns a new structure. If the key does not exists, null is passed as
+		/// the old value.
+		/// </returns>
 		public static object update(object m, object k, object f, object x, object y, object z) => Update.Invoke(m, k, f, x, y, z);
+		/// <summary>
+		/// 'Updates' a value in an <see cref="IAssociative"/> structure. where k is a key and f is
+		/// a <see cref="IFunction"/> that will take the old value and any supplied args and return
+		/// a new value, and returns a new structure. If the key does not exists, null is passed as
+		/// the old value.
+		/// </summary>
+		/// <param name="m">An object that implements the <see cref="IAssociative"/> interface.</param>
+		/// <param name="k">The key for the value to update.</param>
+		/// <param name="f">A <see cref="IFunction"/> that takes the old value and any additional args and outputs the new value for the key.</param>
+		/// <param name="x">Second argument to the passed in function.</param>
+		/// <param name="y">Third argument to the passed in function.</param>
+		/// <param name="z">Fourth argument to the passed in function.</param>
+		/// <param name="more">Rest of the arguments to the passed in function.</param>
+		/// <returns>
+		/// 'Updates' a value in an <see cref="IAssociative"/> structure. where k is a key and f is
+		/// a <see cref="IFunction"/> that will take the old value and any supplied args and return
+		/// a new value, and returns a new structure. If the key does not exists, null is passed as
+		/// the old value.
+		/// </returns>
 		public static object update(object m, object k, object f, object x, object y, object z, params object[] more) => Update.Invoke(m, k, f, x, y, z, more);
 		/// <summary>
 		/// 'Updates' a value in a nested <see cref="Collections.IAssociative"/> structure,

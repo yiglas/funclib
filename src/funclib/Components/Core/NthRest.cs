@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -23,7 +24,7 @@ namespace funclib.Components.Core
 
             object loop(object i, object xs)
             {
-                var holder = new And().Invoke(new IsPos().Invoke(i), new Seq().Invoke(xs));
+                var holder = and(new IsPos().Invoke(i), new Seq().Invoke(xs));
 
                 if ((bool)new Truthy().Invoke(holder))
                     return loop(new Dec().Invoke(i), new Rest().Invoke(holder));
