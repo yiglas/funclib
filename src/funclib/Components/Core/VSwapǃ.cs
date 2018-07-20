@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -33,6 +34,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the reseted <see cref="Volatile"/> object.
         /// </returns>
-        public object Invoke() => this._v.Reset(new Apply().Invoke(this._f, this._v.Deref(), this._args));
+        public object Invoke() => this._v.Reset(apply(this._f, this._v.Deref(), this._args));
     }
 }

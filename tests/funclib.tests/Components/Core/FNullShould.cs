@@ -3,6 +3,7 @@ using funclib.Exceptions;
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -53,7 +54,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void FNull_should_create_another_function_with_defaults_passing_one_parameter_for_X_arg()
         {
-            var hello = new FunctionParams<object, object, object, object, object>((x, y, z, rest) => new Apply().Invoke(new Str(), "Hello", " ", x, " ", y, " ", z, " ", rest));
+            var hello = new FunctionParams<object, object, object, object, object>((x, y, z, rest) => apply(new Str(), "Hello", " ", x, " ", y, " ", z, " ", rest));
             var defaults = (FNull.Function)new FNull().Invoke(hello, "Devin");
 
             Assert.AreEqual("Hello John Black Smith 123", defaults.Invoke("John", "Black", "Smith", 1, 2, 3));
@@ -96,7 +97,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void FNull_should_create_another_function_with_defaults_passing_two_parameter_for_X_arg()
         {
-            var hello = new FunctionParams<object, object, object, object, object>((x, y, z, rest) => new Apply().Invoke(new Str(), "Hello", " ", x, " ", y, " ", z, " ", rest));
+            var hello = new FunctionParams<object, object, object, object, object>((x, y, z, rest) => apply(new Str(), "Hello", " ", x, " ", y, " ", z, " ", rest));
             var defaults = (FNull.Function)new FNull().Invoke(hello, "Devin", "Daniel");
 
             Assert.AreEqual("Hello John Black Smith 123", defaults.Invoke("John", "Black", "Smith", 1, 2, 3));
@@ -125,7 +126,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void FNull_should_create_another_function_with_defaults_passing_three_parameter_for_X_arg()
         {
-            var hello = new FunctionParams<object, object, object, object, object>((x, y, z, rest) => new Apply().Invoke(new Str(), "Hello", " ", x, " ", y, " ", z, " ", rest));
+            var hello = new FunctionParams<object, object, object, object, object>((x, y, z, rest) => apply(new Str(), "Hello", " ", x, " ", y, " ", z, " ", rest));
             var defaults = (FNull.Function)new FNull().Invoke(hello, "Devin", "Daniel", "Sackett");
 
             Assert.AreEqual("Hello John Black Smith 123", defaults.Invoke("John", "Black", "Smith", 1, 2, 3));

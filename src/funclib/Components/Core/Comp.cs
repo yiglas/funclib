@@ -1,7 +1,7 @@
 ﻿using funclib.Collections;
 using System;
-using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -134,7 +134,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns the results of calling f.
             /// </returns>
-            public object Invoke(object x, object y, object z, params object[] args) => this._f.Invoke(new Apply().Invoke(this._g, x, y, z, args));
+            public object Invoke(object x, object y, object z, params object[] args) => this._f.Invoke(apply(this._g, x, y, z, args));
         }
     }
 }

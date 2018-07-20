@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -29,7 +30,7 @@ namespace funclib.Tests.Components.Core
         public void Interleave_should_work_with_apply()
         {
             var expected = new funclib.Components.Core.List().Invoke(0.1, 0, 0.2, 1, 0.3, 2);
-            var actual = new Apply().Invoke(new Interleave(), new object[] { new Vector().Invoke(0.1, 0.2, 0.3), new Range().Invoke() });
+            var actual = apply(new Interleave(), new object[] { new Vector().Invoke(0.1, 0.2, 0.3), new Range().Invoke() });
 
             Assert.AreEqual(expected, actual);
         }

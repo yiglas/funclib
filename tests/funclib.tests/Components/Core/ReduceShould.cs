@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -59,9 +60,9 @@ namespace funclib.Tests.Components.Core
         {
             var remap = new FunctionParams<object, object, object>((f, c) =>
             {
-                var inter = new Apply().Invoke(new Interleave(), c);
+                var inter = apply(new Interleave(), c);
                 var neuesc = new Partition().Invoke(new Count().Invoke(c), inter);
-                return new Reduce().Invoke(new Function<object, object, object>((s, k) => new Conj().Invoke(s, new Apply().Invoke(f, k))), new Vector().Invoke(), neuesc);
+                return new Reduce().Invoke(new Function<object, object, object>((s, k) => new Conj().Invoke(s, apply(f, k))), new Vector().Invoke(), neuesc);
             });
 
             var expected = new Vector().Invoke(0.0, 0.2, 0.6);

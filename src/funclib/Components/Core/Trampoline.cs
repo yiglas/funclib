@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -49,6 +50,6 @@ namespace funclib.Components.Core
         /// Returns the first non-fn value.
         /// </returns>
         public object Invoke(object f, params object[] args) =>
-            Invoke(new Function<object>(() => new Apply().Invoke(f, args)));
+            Invoke(new Function<object>(() => apply(f, args)));
     }
 }

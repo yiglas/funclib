@@ -1,8 +1,7 @@
 ﻿using funclib.Exceptions;
 using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -162,7 +161,7 @@ namespace funclib.Components.Core
                 var y = this._count == 1 ? b : b ?? this._y;
                 var z = this._count == 2 ? c : c ?? this._z;
 
-                return new Apply().Invoke(this._f, x, y, z, ds);
+                return apply(this._f, x, y, z, ds);
             }
         }
     }

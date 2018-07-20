@@ -1,7 +1,7 @@
 ﻿using funclib.Collections;
 using System;
-using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -75,7 +75,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns a <see cref="bool"/> that the opposite truthy value when calling the function.
             /// </returns>
-            public object Invoke(object x, object y, params object[] zs) => new Not().Invoke(new Apply().Invoke(this._func, x, y, zs));
+            public object Invoke(object x, object y, params object[] zs) => new Not().Invoke(apply(this._func, x, y, zs));
         }
     }
 }

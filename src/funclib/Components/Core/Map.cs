@@ -141,7 +141,7 @@ namespace funclib.Components.Core
         public object Invoke(object f, object c1, object c2, object c3, params object[] colls)
         {
             return Invoke(
-                new Function<object, object>(x => new Apply().Invoke(f, x)),
+                new Function<object, object>(x => apply(f, x)),
                 step(new Conj().Invoke(colls, c3, c2, c1)));
 
             object step(object cs) =>
@@ -175,7 +175,7 @@ namespace funclib.Components.Core
             #endregion
 
             public object Invoke(object result, object input, params object[] inputs) =>
-                ((IFunction<object, object, object>)this._rf).Invoke(result, ((IFunction<object, object>)this._f).Invoke(new Apply().Invoke(this._f, input, inputs)));
+                ((IFunction<object, object, object>)this._rf).Invoke(result, ((IFunction<object, object>)this._f).Invoke(apply(this._f, input, inputs)));
         }
     }
 }

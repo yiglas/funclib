@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -22,6 +22,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a collection.
         /// </returns>
-        public object Invoke(object f, params object[] colls) => new Apply().Invoke(new Concat(), new Apply().Invoke(new Map(), f, colls));
+        public object Invoke(object f, params object[] colls) => apply(new Concat(), apply(new Map(), f, colls));
     }
 }

@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -110,6 +111,6 @@ namespace funclib.Components.Core
         /// the old value. 
         /// </returns>
         public object Invoke(object m, object k, object f, object x, object y, object z, params object[] more) =>
-            new Assoc().Invoke(m, k, new Apply().Invoke(f, new Get().Invoke(m, k), x, y, z, more));
+            new Assoc().Invoke(m, k, apply(f, new Get().Invoke(m, k), x, y, z, more));
     }
 }

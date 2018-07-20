@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -46,7 +47,7 @@ namespace funclib.Components.Core
             if ((bool)new Truthy().Invoke(nmore))
                 return Invoke(new First().Invoke(more), nmore);
 
-            return new Apply().Invoke(this, more);
+            return apply(this, more);
         }
 
         void Pr(object x, TextWriter w)

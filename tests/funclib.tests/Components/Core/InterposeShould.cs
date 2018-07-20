@@ -2,6 +2,8 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -28,7 +30,7 @@ namespace funclib.Tests.Components.Core
         public void Interpose_should_concat_a_string_using_apply()
         {
             var expected = "one, two, three";
-            var actual = new Apply().Invoke(new Str(), new Interpose().Invoke(", ", new Vector().Invoke("one", "two", "three")));
+            var actual = apply(new Str(), new Interpose().Invoke(", ", new Vector().Invoke("one", "two", "three")));
 
             Assert.AreEqual(expected, actual);
         }

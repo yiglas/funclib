@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -19,7 +19,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(params object[] more)
         {
-            new Apply().Invoke(new Print(), more);
+            apply(new Print(), more);
             Variables.Out.Write(Environment.NewLine);
             Variables.Out.Flush();
             return null;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -183,7 +184,7 @@ namespace funclib.Components.Core
             object Exec(object f, object x) => ((IFunction<object, object>)f).Invoke(x);
             object Exec(object f, object x, object y) => ((IFunction<object, object, object>)f).Invoke(x, y);
             object Exec(object f, object x, object y, object z) => ((IFunction<object, object, object, object>)f).Invoke(x, y, z);
-            object Exec(object f, object x, object y, object z, params object[] args) => new Apply().Invoke(f, x, y, z, args);
+            object Exec(object f, object x, object y, object z, params object[] args) => apply(f, x, y, z, args);
 
             object Reduce(object fs) => new Reduce1().Invoke(new Function<object, object, object>((_1, _2) => new Conj().Invoke(_1, Exec(_2))), new Vector().Invoke(), fs);
             object Reduce(object fs, object x) => new Reduce1().Invoke(new Function<object, object, object>((_1, _2) => new Conj().Invoke(_1, Exec(_2, x))), new Vector().Invoke(), fs);

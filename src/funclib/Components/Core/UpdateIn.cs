@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -37,7 +38,7 @@ namespace funclib.Components.Core
             if ((bool)new Truthy().Invoke(ks))
                 return new Assoc().Invoke(m, k, up(new Get().Invoke(m, k), ks, f, args));
 
-            return new Assoc().Invoke(m, k, new Apply().Invoke(f, new Get().Invoke(m, k), args));
+            return new Assoc().Invoke(m, k, apply(f, new Get().Invoke(m, k), args));
         }
     }
 }
