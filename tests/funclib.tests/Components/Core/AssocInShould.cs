@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -12,7 +13,7 @@ namespace funclib.Tests.Components.Core
         {
             var expected = new Vector().Invoke(new HashMap().Invoke("Name", "James", "Age", 26), new HashMap().Invoke("Name", "John", "Age", 44));
             var map = new Vector().Invoke(new HashMap().Invoke("Name", "James", "Age", 26), new HashMap().Invoke("Name", "John", "Age", 26));
-            var actual = new AssocIn().Invoke(map, new Vector().Invoke(1, "Age"), 44);
+            var actual = assocIn(map, new Vector().Invoke(1, "Age"), 44);
 
             Assert.AreEqual(expected, actual);
         }
