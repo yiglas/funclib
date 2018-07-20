@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -17,6 +18,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if n is an even number.
         /// </returns>
-        public object Invoke(object n) => new IsZero().Invoke(new BitAnd().Invoke(Numbers.ConvertToLong(n), 1));
+        public object Invoke(object n) => new IsZero().Invoke(bitAnd(Numbers.ConvertToLong(n), 1));
     }
 }
