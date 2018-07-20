@@ -3,6 +3,7 @@ using funclib.Collections.Internal;
 using System;
 using System.Linq;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -179,14 +180,14 @@ namespace funclib.Components.Core
 
         object ObjectReduce(object s, IFunction<object, object, object> f, object val)
         {
-            return loop((Type)new Class().Invoke(s), s, val);
+            return loop((Type)@class(s), s, val);
 
             object loop(Type cls, object c, object v)
             {
                 var seq = (ISeq)new Seq().Invoke(c);
                 if ((bool)new Truthy().Invoke(seq))
                 {
-                    if ((bool)new IsIdentical().Invoke(new Class().Invoke(seq), cls))
+                    if ((bool)new IsIdentical().Invoke(@class(seq), cls))
                     {
                         var ret = f.Invoke(v, seq.First());
                         if (ret is Reduced r)

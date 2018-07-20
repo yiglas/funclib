@@ -121,7 +121,7 @@ namespace funclib.Components.Core
         void PrintObject(object o, TextWriter w)
         {
             w.Write("#object[");
-            var c = (Type)new Class().Invoke(o);
+            var c = (Type)@class(o);
             if (c.IsArray)
             {
                 Pr(c.Name, w);
