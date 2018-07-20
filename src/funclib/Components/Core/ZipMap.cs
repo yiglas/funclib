@@ -27,7 +27,7 @@ namespace funclib.Components.Core
             {
                 if ((bool)new Truthy().Invoke(and(ks, vs)))
                 {
-                    return loop(new Assoc().Invoke(map, ks.First(), vs.First()), ks.Next(), vs.Next());
+                    return loop(assoc(map, ks.First(), vs.First()), ks.Next(), vs.Next());
                 }
 
                 return map;

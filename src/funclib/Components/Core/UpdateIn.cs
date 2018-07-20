@@ -36,9 +36,9 @@ namespace funclib.Components.Core
             ks = new More().Invoke(ks);
 
             if ((bool)new Truthy().Invoke(ks))
-                return new Assoc().Invoke(m, k, up(new Get().Invoke(m, k), ks, f, args));
+                return assoc(m, k, up(new Get().Invoke(m, k), ks, f, args));
 
-            return new Assoc().Invoke(m, k, apply(f, new Get().Invoke(m, k), args));
+            return assoc(m, k, apply(f, new Get().Invoke(m, k), args));
         }
     }
 }

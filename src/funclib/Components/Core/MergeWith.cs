@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -39,10 +40,10 @@ namespace funclib.Components.Core
                 var v = new Value().Invoke(e);
                 if ((bool)new Contains().Invoke(m, k))
                 {
-                    return new Assoc().Invoke(m, k, ((IFunction<object, object, object>)f).Invoke(new Get().Invoke(m, k), v));
+                    return assoc(m, k, ((IFunction<object, object, object>)f).Invoke(new Get().Invoke(m, k), v));
                 }
 
-                return new Assoc().Invoke(m, k, v);
+                return assoc(m, k, v);
             }
 
             object merge2(object m1, object m2) => new Reduce1().Invoke(new Function<object, object, object>(mergeEntry), new Or().Invoke(m1, new HashMap().Invoke()), new Seq().Invoke(m2));
