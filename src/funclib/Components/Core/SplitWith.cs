@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -18,6 +19,6 @@ namespace funclib.Components.Core
         /// Returns a <see cref="Collections.Vector"/> of [<see cref="TakeWhile.Invoke(object, object)"/>, <see cref="DropWhile.Invoke(object, object)"/>].
         /// </returns>
         public object Invoke(object pred, object coll) =>
-            new Vector().Invoke(new TakeWhile().Invoke(pred, coll), new DropWhile().Invoke(pred, coll));
+            new Vector().Invoke(new TakeWhile().Invoke(pred, coll), dropWhile(pred, coll));
     }
 }
