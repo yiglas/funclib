@@ -34,7 +34,7 @@ namespace funclib.Components.Core
                         var size = (int)count(c);
                         var b = (Collections.ChunkBuffer)new ChunkBuffer().Invoke(size);
 
-                        new DoTimes(size, i =>
+                        doTimes(size, i =>
                         {
                             var v = new Nth().Invoke(c, i);
                             if ((bool)new Truthy().Invoke(fn.Invoke(v)))
@@ -42,7 +42,7 @@ namespace funclib.Components.Core
                                 return new ChunkAppend().Invoke(b, v);
                             }
                             return null;
-                        }).Invoke();
+                        });
 
                         return new ChunkCons().Invoke(b.Chunk(), Invoke(pred, new ChunkRest().Invoke(s)));
                     }
