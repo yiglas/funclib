@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -23,6 +24,6 @@ namespace funclib.Components.Core
         /// Returns a <see cref="LazySeq"/> that when invoked flattens the sequence.
         /// </returns>
         public object Invoke(object x) =>
-            new Filter().Invoke(new Complement().Invoke(new IsSequential()), new Rest().Invoke(new TreeSeq().Invoke(new IsSequential(), new Seq(), x)));
+            new Filter().Invoke(complement(new IsSequential()), new Rest().Invoke(new TreeSeq().Invoke(new IsSequential(), new Seq(), x)));
     }
 }

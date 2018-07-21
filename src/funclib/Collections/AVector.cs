@@ -2,6 +2,7 @@
 using funclib.Components.Core;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Collections
 {
@@ -196,7 +197,7 @@ namespace funclib.Collections
 
                 for (int i = 0; i < Count; i++)
                 {
-                    var c = (int)new Compare().Invoke(this[i], v[i]);
+                    var c = (int)compare(this[i], v[i]);
                     if (c != 0)
                         return c;
                 }
