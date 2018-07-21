@@ -34,7 +34,7 @@ namespace funclib.Components.Core
                     {
                         var c = new ChunkFirst().Invoke(s);
                         var size = (int)count(c);
-                        var b = new ChunkBuffer().Invoke(size);
+                        var b = chunkBuffer(size);
 
                         doTimes(size, i =>
                         {
