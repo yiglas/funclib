@@ -30,10 +30,10 @@ namespace CalculatorService.Controllers
         public long Multiply(int a, int b, int c) => (long)new Time(() => new Multiply().Invoke(a, b, c)).Invoke();
 
         [HttpGet("divide/{a}/{b}")]
-        public double Divide(double a, double b) => (double)new Time(() => new Divide().Invoke(a, b)).Invoke();
+        public double Divide(double a, double b) => (double)new Time(() => divide(a, b)).Invoke();
 
         [HttpGet("divide/{a}/{b}/{c}")]
-        public double Divide(double a, double b, double c) => (double)new Time(() => new Divide().Invoke(a, b, c)).Invoke();
+        public double Divide(double a, double b, double c) => (double)new Time(() => divide(a, b, c)).Invoke();
 
     }
 }
