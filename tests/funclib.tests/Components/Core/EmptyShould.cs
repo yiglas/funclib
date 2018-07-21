@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void Empty_should_return_an_emtpy_collection()
         {
             var expected = new Vector().Invoke();
-            var actual = new Empty().Invoke(new Vector().Invoke(1, 2, 3));
+            var actual = empty(new Vector().Invoke(1, 2, 3));
 
             Assert.IsInstanceOf<funclib.Collections.Vector>(actual);
             Assert.AreEqual(expected, actual);
