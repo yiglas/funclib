@@ -127,7 +127,7 @@ namespace funclib.Components.Core
             /// </returns>
             public object Invoke(object x) =>
                 this._argCount == 4
-                    ? apply(this._func, this._arg1, this._arg2, this._arg3, new Concat().Invoke(this._more, new object[] { x }))
+                    ? apply(this._func, this._arg1, this._arg2, this._arg3, concat(this._more, new object[] { x }))
                     : this._argCount == 3 ? Apply.ApplyTo(this._func, (ISeq)new List().Invoke(this._arg1, this._arg2, this._arg3, x))
                     : this._argCount == 2 ? Apply.ApplyTo(this._func, (ISeq)new List().Invoke(this._arg1, this._arg2, x))
                     : Apply.ApplyTo(this._func, (ISeq)new List().Invoke(this._arg1, x));
@@ -141,7 +141,7 @@ namespace funclib.Components.Core
             /// </returns>
             public object Invoke(object x, object y) =>
                 this._argCount == 4
-                    ? apply(this._func, this._arg1, this._arg2, this._arg3, new Concat().Invoke(this._more, new object[] { x, y }))
+                    ? apply(this._func, this._arg1, this._arg2, this._arg3, concat(this._more, new object[] { x, y }))
                     : this._argCount == 3 ? Apply.ApplyTo(this._func, (ISeq)new List().Invoke(this._arg1, this._arg2, this._arg3, x, y))
                     : this._argCount == 2 ? Apply.ApplyTo(this._func, (ISeq)new List().Invoke(this._arg1, this._arg2, x, y))
                     : Apply.ApplyTo(this._func, (ISeq)new List().Invoke(this._arg1, x, y));
@@ -156,7 +156,7 @@ namespace funclib.Components.Core
             /// </returns>
             public object Invoke(object x, object y, object z) =>
                 this._argCount == 4
-                    ? apply(this._func, this._arg1, this._arg2, this._arg3, new Concat().Invoke(this._more, new object[] { x, y, z }))
+                    ? apply(this._func, this._arg1, this._arg2, this._arg3, concat(this._more, new object[] { x, y, z }))
                     : this._argCount == 3 ? Apply.ApplyTo(this._func, (ISeq)new List().Invoke(this._arg1, this._arg2, this._arg3, x, y, z))
                     : this._argCount == 2 ? Apply.ApplyTo(this._func, (ISeq)new List().Invoke(this._arg1, this._arg2, x, y, z))
                     : Apply.ApplyTo(this._func, (ISeq)new List().Invoke(this._arg1, x, y, z));
@@ -172,7 +172,7 @@ namespace funclib.Components.Core
             /// </returns>
             public object Invoke(object x, object y, object z, params object[] args) =>
                this._argCount == 4
-                    ? apply(this._func, this._arg1, this._arg2, this._arg3, new Concat().Invoke(this._more, new object[] { x, y, z }, args))
+                    ? apply(this._func, this._arg1, this._arg2, this._arg3, concat(this._more, new object[] { x, y, z }, args))
                     : this._argCount == 3 ? apply(this._func, this._arg1, this._arg2, this._arg3, x, y, z, new Seq().Invoke(args))
                     : this._argCount == 2 ? apply(this._func, this._arg1, this._arg2, x, y, z, new Seq().Invoke(args))
                     : apply(this._func, this._arg1, x, y, z, new Seq().Invoke(args));

@@ -64,7 +64,7 @@ namespace funclib.Components.Core
                 var ss = new Map().Invoke(new Seq(), new Conj().Invoke(new Seq().Invoke(colls), c2, c1));
                 if ((bool)new IsEvery().Invoke(new Identity(), ss))
                 {
-                    return new Concat().Invoke(new Map().Invoke(new First(), ss), apply(new Interleave(), new Map().Invoke(new Rest(), ss)));
+                    return concat(new Map().Invoke(new First(), ss), apply(new Interleave(), new Map().Invoke(new Rest(), ss)));
                 }
                 return null;
             });

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -89,7 +90,7 @@ namespace funclib.Components.Core
                     if (n.Equals(new Count().Invoke(p)))
                         return new Cons().Invoke(p, Invoke(n, step, pad, new NthRest().Invoke(s, step)));
 
-                    return new List().Invoke(new Take().Invoke(n, new Concat().Invoke(p, pad)));
+                    return new List().Invoke(new Take().Invoke(n, concat(p, pad)));
                 }
                 return null;
             });
