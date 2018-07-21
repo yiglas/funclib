@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -54,7 +55,7 @@ namespace funclib.Components.Core
                     if ((bool)new Contains().Invoke(s, f))
                         return false;
 
-                    return loop(new Conj().Invoke(s, f), etc);
+                    return loop(conj(s, f), etc);
                 }
                 else return true;
             }

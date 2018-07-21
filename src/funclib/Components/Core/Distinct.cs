@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -47,7 +48,7 @@ namespace funclib.Components.Core
                         return Invoke(new Rest().Invoke(s), seen);
                     }
 
-                    return new Cons().Invoke(f, Invoke(new Rest().Invoke(s), new Conj().Invoke(seen, f)));
+                    return new Cons().Invoke(f, Invoke(new Rest().Invoke(s), conj(seen, f)));
                 }
 
                 return null;

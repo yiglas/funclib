@@ -186,11 +186,11 @@ namespace funclib.Components.Core
             object Exec(object f, object x, object y, object z) => ((IFunction<object, object, object, object>)f).Invoke(x, y, z);
             object Exec(object f, object x, object y, object z, params object[] args) => apply(f, x, y, z, args);
 
-            object Reduce(object fs) => new Reduce1().Invoke(new Function<object, object, object>((_1, _2) => new Conj().Invoke(_1, Exec(_2))), new Vector().Invoke(), fs);
-            object Reduce(object fs, object x) => new Reduce1().Invoke(new Function<object, object, object>((_1, _2) => new Conj().Invoke(_1, Exec(_2, x))), new Vector().Invoke(), fs);
-            object Reduce(object fs, object x, object y) => new Reduce1().Invoke(new Function<object, object, object>((_1, _2) => new Conj().Invoke(_1, Exec(_2, x, y))), new Vector().Invoke(), fs);
-            object Reduce(object fs, object x, object y, object z) => new Reduce1().Invoke(new Function<object, object, object>((_1, _2) => new Conj().Invoke(_1, Exec(_2, x, y, z))), new Vector().Invoke(), fs);
-            object Reduce(object fs, object x, object y, object z, params object[] args) => new Reduce1().Invoke(new Function<object, object, object>((_1, _2) => new Conj().Invoke(_1, Exec(_2, x, y, z, args))), new Vector().Invoke(), fs);
+            object Reduce(object fs) => new Reduce1().Invoke(new Function<object, object, object>((_1, _2) => conj(_1, Exec(_2))), new Vector().Invoke(), fs);
+            object Reduce(object fs, object x) => new Reduce1().Invoke(new Function<object, object, object>((_1, _2) => conj(_1, Exec(_2, x))), new Vector().Invoke(), fs);
+            object Reduce(object fs, object x, object y) => new Reduce1().Invoke(new Function<object, object, object>((_1, _2) => conj(_1, Exec(_2, x, y))), new Vector().Invoke(), fs);
+            object Reduce(object fs, object x, object y, object z) => new Reduce1().Invoke(new Function<object, object, object>((_1, _2) => conj(_1, Exec(_2, x, y, z))), new Vector().Invoke(), fs);
+            object Reduce(object fs, object x, object y, object z, params object[] args) => new Reduce1().Invoke(new Function<object, object, object>((_1, _2) => conj(_1, Exec(_2, x, y, z, args))), new Vector().Invoke(), fs);
         }
     }
 }

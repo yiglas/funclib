@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -37,7 +38,7 @@ namespace funclib.Components.Core
             object loop(object ret, int c = 0)
             {
                 if (c <= gc)
-                    return loop(new Conj().Invoke(ret, matcher.Group(c)), (int)new Inc().Invoke(c));
+                    return loop(conj(ret, matcher.Group(c)), (int)new Inc().Invoke(c));
 
                 return ret;
             }

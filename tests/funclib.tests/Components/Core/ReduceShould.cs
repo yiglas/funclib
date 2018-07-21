@@ -62,7 +62,7 @@ namespace funclib.Tests.Components.Core
             {
                 var inter = apply(new Interleave(), c);
                 var neuesc = new Partition().Invoke(new Count().Invoke(c), inter);
-                return new Reduce().Invoke(new Function<object, object, object>((s, k) => new Conj().Invoke(s, apply(f, k))), new Vector().Invoke(), neuesc);
+                return new Reduce().Invoke(new Function<object, object, object>((s, k) => conj(s, apply(f, k))), new Vector().Invoke(), neuesc);
             });
 
             var expected = new Vector().Invoke(0.0, 0.2, 0.6);

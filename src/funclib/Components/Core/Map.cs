@@ -142,7 +142,7 @@ namespace funclib.Components.Core
         {
             return Invoke(
                 new Function<object, object>(x => apply(f, x)),
-                step(new Conj().Invoke(colls, c3, c2, c1)));
+                step(conj(colls, c3, c2, c1)));
 
             object step(object cs) =>
                 new LazySeq(() =>

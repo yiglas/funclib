@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -27,7 +28,7 @@ namespace funclib.Components.Core
                 if ((bool)new Truthy().Invoke(keys))
                 {
                     var entry = new Find().Invoke(map, keys.First());
-                    return loop((bool)new Truthy().Invoke(entry) ? new Conj().Invoke(ret, entry) : ret, keys.Next());
+                    return loop((bool)new Truthy().Invoke(entry) ? conj(ret, entry) : ret, keys.Next());
                 }
 
                 return ret;
