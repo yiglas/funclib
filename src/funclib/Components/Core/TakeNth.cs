@@ -27,7 +27,7 @@ namespace funclib.Components.Core
                 var s = (ISeq)new Seq().Invoke(coll);
                 if ((bool)new Truthy().Invoke(s))
                 {
-                    return cons(s.First(), Invoke(n, new Drop().Invoke(n, s)));
+                    return cons(s.First(), Invoke(n, drop(n, s)));
                 }
                 return null;
             });

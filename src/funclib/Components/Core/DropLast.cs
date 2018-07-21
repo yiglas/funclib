@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -27,6 +27,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="LazySeq"/> of items without the last n items.
         /// </returns>
-        public object Invoke(object n, object coll) => new Map().Invoke(new Function<object, object, object>((x, _) => x), coll, new Drop().Invoke(n, coll));
+        public object Invoke(object n, object coll) => new Map().Invoke(new Function<object, object, object>((x, _) => x), coll, drop(n, coll));
     }
 }

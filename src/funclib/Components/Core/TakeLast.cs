@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -24,7 +25,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object n, object coll)
         {
-            return loop((ISeq)new Seq().Invoke(coll), (ISeq)new Seq().Invoke(new Drop().Invoke(n, coll)));
+            return loop((ISeq)new Seq().Invoke(coll), (ISeq)new Seq().Invoke(drop(n, coll)));
 
             object loop(ISeq s, ISeq lead)
             {

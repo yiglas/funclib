@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -21,7 +22,7 @@ namespace funclib.Components.Core
         /// Returns a <see cref="LazySeq"/> of elements separated by sep.
         /// </returns>
         public object Invoke(object sep, object coll) =>
-            new Drop().Invoke(1, new Interleave().Invoke(new Repeat().Invoke(sep), coll));
+            drop(1, new Interleave().Invoke(new Repeat().Invoke(sep), coll));
         
         public class TransducerFunction :
             ATransducerFunction
