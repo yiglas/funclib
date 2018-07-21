@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -19,7 +20,7 @@ namespace funclib.Tests.Components.Core
                 return new Function<object>(() => foo.Invoke(
                     new Do().Invoke(
                         new PrintLn().Invoke(":x", x),
-                        new Dec().Invoke(x))));
+                        dec(x))));
             });
 
             var actual = new Trampoline().Invoke(foo, 10);

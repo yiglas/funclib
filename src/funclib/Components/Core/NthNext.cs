@@ -22,7 +22,7 @@ namespace funclib.Components.Core
         {
             var xs = new Seq().Invoke(coll);
             if ((bool)new Truthy().Invoke(and(xs, new IsPos().Invoke(n))))
-                return Invoke(new Next().Invoke(xs), new Dec().Invoke(n));
+                return Invoke(new Next().Invoke(xs), dec(n));
 
             return xs;
         }
