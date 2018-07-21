@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -12,7 +13,7 @@ namespace funclib.Tests.Components.Core
         {
             var expected = 10;
             var r = new Reduced().Invoke(expected);
-            var actual = new Deref().Invoke(r);
+            var actual = deref(r);
 
             Assert.AreEqual(expected, actual);
         }
