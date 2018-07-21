@@ -150,7 +150,7 @@ namespace funclib.Components.Core
                     var ret = ((IChunked)chunkFirst(s)).Reduce(f, val);
                     if (ret is Reduced r)
                         return r.Deref();
-                    return IChunkedSeqReduce(new ChunkNext().Invoke(s), f, ret);
+                    return IChunkedSeqReduce(chunkNext(s), f, ret);
                 }
 
                 return InterfaceOrNaiveReduce(s, f, val);
