@@ -49,7 +49,7 @@ namespace funclib.Components.Core
                         doTimes(size, 
                             i => chunkAppend(b, fn.Invoke(new Nth().Invoke(c, i))));
 
-                        return chunkCons(b.Chunk(), Invoke(f, new ChunkRest().Invoke(s)));
+                        return chunkCons(b.Chunk(), Invoke(f, chunkRest(s)));
                     }
                     else
                         return cons(fn.Invoke(new First().Invoke(s)), Invoke(f, new Rest().Invoke(s)));
