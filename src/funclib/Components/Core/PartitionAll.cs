@@ -42,7 +42,7 @@ namespace funclib.Components.Core
                 var s = new Seq().Invoke(coll);
                 if ((bool)new Truthy().Invoke(s))
                 {
-                    var seq = new DoAll().Invoke(new Take().Invoke(n, s));
+                    var seq = doAll(new Take().Invoke(n, s));
                     return cons(seq, Invoke(n, step, new NthRest().Invoke(s, step)));
                 }
                 return null;
