@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -26,7 +26,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object coll)
         {
-            new DoRun().Invoke(coll);
+            doRun(coll);
             return coll;
         }
         /// <summary>
@@ -42,7 +42,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object n, object coll)
         {
-            new DoRun().Invoke(n, coll);
+            doRun(n, coll);
             return coll;
         }
     }
