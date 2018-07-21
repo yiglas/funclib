@@ -59,7 +59,7 @@ namespace funclib.Components.Core
                     : result;
 
                 if ((bool)new Not().Invoke(new IsPos().Invoke(nn)))
-                    return new EnsureReduced().Invoke(result);
+                    return ensureReduced(result);
 
                 return result;
             }

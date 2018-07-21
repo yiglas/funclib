@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -10,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void EnsureReduced_should_return_the_value_wrapped()
         {
-            var actual = new EnsureReduced().Invoke(1);
+            var actual = ensureReduced(1);
 
             Assert.IsInstanceOf<Reduced>(actual);
         }
@@ -19,7 +20,7 @@ namespace funclib.Tests.Components.Core
         public void EnsureReduced_should_return_the_deref_value_if_its_reduced()
         {
             var expected = new Reduced().Invoke(1);
-            var actual = new EnsureReduced().Invoke(expected);
+            var actual = ensureReduced(expected);
 
             Assert.IsTrue(expected == actual);
         }
