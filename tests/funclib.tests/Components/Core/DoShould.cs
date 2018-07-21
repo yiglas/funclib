@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void Do_should_run_each_express_and_return_last()
         {
             var expected = 2;
-            var actual = new Do().Invoke(
+            var actual = @do(
                 new PrintLn().Invoke("LOG: Computing..."),
                 new Plus().Invoke(1, 1));
 

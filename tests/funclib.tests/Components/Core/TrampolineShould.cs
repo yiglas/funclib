@@ -18,7 +18,7 @@ namespace funclib.Tests.Components.Core
                     return new PrintLn().Invoke("done");
 
                 return new Function<object>(() => foo.Invoke(
-                    new Do().Invoke(
+                    @do(
                         new PrintLn().Invoke(":x", x),
                         dec(x))));
             });
