@@ -42,7 +42,7 @@ namespace funclib.Components.Core
                 {
                     if ((bool)new IsChunkedSeq().Invoke(s))
                     {
-                        var c = new ChunkFirst().Invoke(s);
+                        var c = chunkFirst(s);
                         var size = (int)count(c);
                         var b = (Collections.ChunkBuffer)chunkBuffer(size);
 

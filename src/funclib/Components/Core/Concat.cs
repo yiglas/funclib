@@ -47,7 +47,7 @@ namespace funclib.Components.Core
                 if ((bool)new Truthy().Invoke(s))
                 {
                     if ((bool)new IsChunkedSeq().Invoke(s))
-                        return chunkCons(new ChunkFirst().Invoke(s), Invoke(new ChunkRest().Invoke(s), y));
+                        return chunkCons(chunkFirst(s), Invoke(new ChunkRest().Invoke(s), y));
                     else
                         return cons(new First().Invoke(s), Invoke(new Rest().Invoke(s), y));
                 }
@@ -74,7 +74,7 @@ namespace funclib.Components.Core
                     if ((bool)new Truthy().Invoke(xys))
                     {
                         if ((bool)new IsChunkedSeq().Invoke(xys))
-                            return chunkCons(new ChunkFirst().Invoke(xys), cat(new ChunkRest().Invoke(xys), zss));
+                            return chunkCons(chunkFirst(xys), cat(new ChunkRest().Invoke(xys), zss));
                         else
                             return cons(new First().Invoke(xys), cat(new Rest().Invoke(xys), zss));
                     }

@@ -147,7 +147,7 @@ namespace funclib.Components.Core
             {
                 if ((bool)new IsChunkedSeq().Invoke(s))
                 {
-                    var ret = ((IChunked)new ChunkFirst().Invoke(s)).Reduce(f, val);
+                    var ret = ((IChunked)chunkFirst(s)).Reduce(f, val);
                     if (ret is Reduced r)
                         return r.Deref();
                     return IChunkedSeqReduce(new ChunkNext().Invoke(s), f, ret);

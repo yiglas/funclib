@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -23,7 +24,7 @@ namespace funclib.Components.Core
             if ((bool)new Truthy().Invoke(s))
             {
                 if ((bool)new IsChunkedSeq().Invoke(s))
-                    return Invoke(f, ((IChunked)new ChunkFirst().Invoke(s)).Reduce((IFunction<object, object, object>)f, val), new ChunkNext().Invoke(s));
+                    return Invoke(f, ((IChunked)chunkFirst(s)).Reduce((IFunction<object, object, object>)f, val), new ChunkNext().Invoke(s));
                 else
                     return Invoke(f, ((IFunction<object, object, object>)f).Invoke(val, new First().Invoke(s)), new Next().Invoke(s));
             }
