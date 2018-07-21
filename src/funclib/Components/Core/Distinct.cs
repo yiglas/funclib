@@ -43,7 +43,7 @@ namespace funclib.Components.Core
                 var s = new Seq().Invoke(xs);
                 if ((bool)new Truthy().Invoke(s))
                 {
-                    if ((bool)new Contains().Invoke(seen, f))
+                    if ((bool)contains(seen, f))
                     {
                         return Invoke(new Rest().Invoke(s), seen);
                     }
@@ -69,7 +69,7 @@ namespace funclib.Components.Core
             #region Overrides
             public override object Invoke(object result, object input)
             {
-                if ((bool)new Contains().Invoke(this._seen, input))
+                if ((bool)contains(this._seen, input))
                 {
                     return result;
                 }

@@ -52,7 +52,7 @@ namespace funclib.Components.Core
 
                 if ((bool)new Truthy().Invoke(xs))
                 {
-                    if ((bool)new Contains().Invoke(s, f))
+                    if ((bool)contains(s, f))
                         return false;
 
                     return loop(conj(s, f), etc);

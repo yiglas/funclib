@@ -38,7 +38,7 @@ namespace funclib.Components.Core
             {
                 var k = new Key().Invoke(e);
                 var v = new Value().Invoke(e);
-                if ((bool)new Contains().Invoke(m, k))
+                if ((bool)contains(m, k))
                 {
                     return assoc(m, k, ((IFunction<object, object, object>)f).Invoke(new Get().Invoke(m, k), v));
                 }
