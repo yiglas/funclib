@@ -39,7 +39,7 @@ namespace funclib.Components.Core
                             var v = new Nth().Invoke(c, i);
                             if ((bool)new Truthy().Invoke(fn.Invoke(v)))
                             {
-                                return new ChunkAppend().Invoke(b, v);
+                                return chunkAppend(b, v);
                             }
                             return null;
                         });

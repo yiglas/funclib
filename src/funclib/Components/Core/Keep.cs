@@ -41,7 +41,7 @@ namespace funclib.Components.Core
                             var y = ((IFunction<object, object>)f).Invoke(new Nth().Invoke(c, i));
                             if (!(bool)new IsNull().Invoke(y))
                             {
-                                new ChunkAppend().Invoke(b, y);
+                                chunkAppend(b, y);
                             }
                             return null;
                         });
