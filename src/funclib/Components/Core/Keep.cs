@@ -46,7 +46,7 @@ namespace funclib.Components.Core
                             return null;
                         });
 
-                        return new ChunkCons().Invoke(chunk(b), Invoke(f, new ChunkRest().Invoke(s)));
+                        return chunkCons(chunk(b), Invoke(f, new ChunkRest().Invoke(s)));
                     }
 
                     var x = ((IFunction<object, object>)f).Invoke(s.First());

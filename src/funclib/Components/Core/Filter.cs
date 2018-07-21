@@ -44,7 +44,7 @@ namespace funclib.Components.Core
                             return null;
                         });
 
-                        return new ChunkCons().Invoke(b.Chunk(), Invoke(pred, new ChunkRest().Invoke(s)));
+                        return chunkCons(b.Chunk(), Invoke(pred, new ChunkRest().Invoke(s)));
                     }
                     else
                     {
