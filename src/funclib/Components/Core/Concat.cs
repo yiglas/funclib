@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -48,7 +49,7 @@ namespace funclib.Components.Core
                     if ((bool)new IsChunkedSeq().Invoke(s))
                         return new ChunkCons().Invoke(new ChunkFirst().Invoke(s), Invoke(new ChunkRest().Invoke(s), y));
                     else
-                        return new Cons().Invoke(new First().Invoke(s), Invoke(new Rest().Invoke(s), y));
+                        return cons(new First().Invoke(s), Invoke(new Rest().Invoke(s), y));
                 }
                 else
                     return y;
@@ -75,7 +76,7 @@ namespace funclib.Components.Core
                         if ((bool)new IsChunkedSeq().Invoke(xys))
                             return new ChunkCons().Invoke(new ChunkFirst().Invoke(xys), cat(new ChunkRest().Invoke(xys), zss));
                         else
-                            return new Cons().Invoke(new First().Invoke(xys), cat(new Rest().Invoke(xys), zss));
+                            return cons(new First().Invoke(xys), cat(new Rest().Invoke(xys), zss));
                     }
                     else if ((bool)new Truthy().Invoke(zss))
                     {

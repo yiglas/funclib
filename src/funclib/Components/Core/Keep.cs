@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -54,7 +55,7 @@ namespace funclib.Components.Core
                         return Invoke(f, new Rest().Invoke(s));
                     }
 
-                    return new Cons().Invoke(x, Invoke(f, new Rest().Invoke(s)));
+                    return cons(x, Invoke(f, new Rest().Invoke(s)));
                 }
 
                 return null;

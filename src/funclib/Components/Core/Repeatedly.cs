@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -24,7 +25,7 @@ namespace funclib.Components.Core
         /// calls to it.
         /// </returns>
         public object Invoke(object f) =>
-            new LazySeq(() => new Cons().Invoke(((IFunction<object>)f).Invoke(), new Repeatedly().Invoke(f)));
+            new LazySeq(() => cons(((IFunction<object>)f).Invoke(), new Repeatedly().Invoke(f)));
         /// <summary>
         /// Takes a function of no args, presumably with side effects, and
         /// returns an infinite (or length n if supplied) <see cref="LazySeq"/> of

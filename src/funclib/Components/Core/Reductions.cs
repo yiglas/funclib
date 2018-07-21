@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -50,7 +51,7 @@ namespace funclib.Components.Core
             if (init is Reduced r)
                 return new List().Invoke(r.Deref());
 
-            return new Cons().Invoke(init, new LazySeq(() =>
+            return cons(init, new LazySeq(() =>
             {
                 var s = (ISeq)new Seq().Invoke(coll);
                 if ((bool)new Truthy().Invoke(s))

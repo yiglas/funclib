@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -31,9 +32,9 @@ namespace funclib.Components.Core
                 {
                     var fst = s.First();
                     var fv = fn.Invoke(fst);
-                    var run = new Cons().Invoke(fst, new TakeWhile().Invoke(new Function<object, object>(x => new IsEqualTo().Invoke(fv, fn.Invoke(x))), s.Next()));
+                    var run = cons(fst, new TakeWhile().Invoke(new Function<object, object>(x => new IsEqualTo().Invoke(fv, fn.Invoke(x))), s.Next()));
 
-                    return new Cons().Invoke(run, Invoke(f, new Seq().Invoke(new Drop().Invoke(new Count().Invoke(run), s))));
+                    return cons(run, Invoke(f, new Seq().Invoke(new Drop().Invoke(new Count().Invoke(run), s))));
                 }
                 return null;
             });

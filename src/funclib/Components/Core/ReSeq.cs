@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -29,7 +30,7 @@ namespace funclib.Components.Core
             object step()
             {
                 if (m.Find())
-                    return new Cons().Invoke(new ReGroups().Invoke(m), new LazySeq(step));
+                    return cons(new ReGroups().Invoke(m), new LazySeq(step));
 
                 return null;
             }

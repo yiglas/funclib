@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -33,7 +34,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the result of calling <see cref="Cons"/>.
         /// </returns>
-        public object Invoke(object a, object args) => new Cons().Invoke(a, args);
+        public object Invoke(object a, object args) => cons(a, args);
         /// <summary>
         /// Creates a new <see cref="Seq"/> containing the items perpended to the rest, the
         /// last of which will be treated as a sequence.
@@ -44,7 +45,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the result of calling <see cref="Cons"/>.
         /// </returns>
-        public object Invoke(object a, object b, object args) => new Cons().Invoke(a, new Cons().Invoke(b, args));
+        public object Invoke(object a, object b, object args) => cons(a, cons(b, args));
         /// <summary>
         /// Creates a new <see cref="Seq"/> containing the items perpended to the rest, the
         /// last of which will be treated as a sequence.
@@ -56,7 +57,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the result of calling <see cref="Cons"/>.
         /// </returns>
-        public object Invoke(object a, object b, object c, object args) => new Cons().Invoke(a, new Cons().Invoke(b, new Cons().Invoke(c, args)));
+        public object Invoke(object a, object b, object c, object args) => cons(a, cons(b, cons(c, args)));
         /// <summary>
         /// Creates a new <see cref="Seq"/> containing the items perpended to the rest, the
         /// last of which will be treated as a sequence.
@@ -70,6 +71,6 @@ namespace funclib.Components.Core
         /// Returns the result of calling <see cref="Cons"/>.
         /// </returns>
         public object Invoke(object a, object b, object c, object d, params object[] more) => 
-            new Cons().Invoke(a, new Cons().Invoke(b, new Cons().Invoke(c, new Cons().Invoke(d, new Spread().Invoke(more)))));
+            cons(a, cons(b, cons(c, cons(d, new Spread().Invoke(more)))));
     }
 }

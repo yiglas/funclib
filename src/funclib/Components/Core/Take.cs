@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -31,7 +32,7 @@ namespace funclib.Components.Core
                 {
                     var s = (ISeq)new Seq().Invoke(coll);
                     if ((bool)new Truthy().Invoke(s))
-                        return new Cons().Invoke(s.First(), Invoke(new Dec().Invoke(n), new Rest().Invoke(s)));
+                        return cons(s.First(), Invoke(new Dec().Invoke(n), new Rest().Invoke(s)));
                 }
 
                 return null;

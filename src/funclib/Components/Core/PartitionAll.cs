@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -42,7 +43,7 @@ namespace funclib.Components.Core
                 if ((bool)new Truthy().Invoke(s))
                 {
                     var seq = new DoAll().Invoke(new Take().Invoke(n, s));
-                    return new Cons().Invoke(seq, Invoke(n, step, new NthRest().Invoke(s, step)));
+                    return cons(seq, Invoke(n, step, new NthRest().Invoke(s, step)));
                 }
                 return null;
             });

@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -14,7 +15,7 @@ namespace funclib.Components.Core
             if (next == null)
                 return new Seq().Invoke(new First().Invoke(argList));
 
-            return new Cons().Invoke(new First().Invoke(argList), new Spread().Invoke(next));
+            return cons(new First().Invoke(argList), new Spread().Invoke(next));
         }
     }
 }

@@ -53,7 +53,7 @@ namespace funclib.Components.Core
                         return new ChunkCons().Invoke(b.Chunk(), Invoke(f, new ChunkRest().Invoke(s)));
                     }
                     else
-                        return new Cons().Invoke(fn.Invoke(new First().Invoke(s)), Invoke(f, new Rest().Invoke(s)));
+                        return cons(fn.Invoke(new First().Invoke(s)), Invoke(f, new Rest().Invoke(s)));
                 }
 
                 return null;
@@ -83,7 +83,7 @@ namespace funclib.Components.Core
                 var s2 = new Seq().Invoke(c2);
                 if ((bool)new Truthy().Invoke(and(s1, s2)))
                 {
-                    return new Cons().Invoke(fn.Invoke(new First().Invoke(s1), new First().Invoke(s2)), Invoke(f, new Rest().Invoke(s1), new Rest().Invoke(s2)));
+                    return cons(fn.Invoke(new First().Invoke(s1), new First().Invoke(s2)), Invoke(f, new Rest().Invoke(s1), new Rest().Invoke(s2)));
                 }
 
                 return null;
@@ -115,7 +115,7 @@ namespace funclib.Components.Core
                 var s3 = new Seq().Invoke(c3);
                 if ((bool)new Truthy().Invoke(and(s1, s2, s3)))
                 {
-                    return new Cons().Invoke(fn.Invoke(new First().Invoke(s1), new First().Invoke(s2), new First().Invoke(s1)), Invoke(f, new Rest().Invoke(s1), new Rest().Invoke(s2), new Rest().Invoke(s3)));
+                    return cons(fn.Invoke(new First().Invoke(s1), new First().Invoke(s2), new First().Invoke(s1)), Invoke(f, new Rest().Invoke(s1), new Rest().Invoke(s2), new Rest().Invoke(s3)));
                 }
 
                 return null;
@@ -150,7 +150,7 @@ namespace funclib.Components.Core
                     var ss = Invoke(new Seq(), cs);
                     if ((bool)new IsEvery().Invoke(new Identity(), ss))
                     {
-                        return new Cons().Invoke(Invoke(new First(), ss), step(Invoke(new Rest(), ss)));
+                        return cons(Invoke(new First(), ss), step(Invoke(new Rest(), ss)));
                     }
 
                     return null;

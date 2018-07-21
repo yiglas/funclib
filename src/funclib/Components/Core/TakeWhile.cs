@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -34,7 +35,7 @@ namespace funclib.Components.Core
                 {
                     var result = ((IFunction<object, object>)pred).Invoke(s.First());
                     if ((bool)new Truthy().Invoke(result))
-                        return new Cons().Invoke(s.First(), Invoke(pred, new Rest().Invoke(s)));
+                        return cons(s.First(), Invoke(pred, new Rest().Invoke(s)));
                 }
                 return null;
             });

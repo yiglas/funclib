@@ -3,6 +3,7 @@ using funclib.Exceptions;
 using System;
 using System.Linq;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -78,7 +79,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object f, object a, object b, object c, object d, params object[] args) =>
             ApplyTo((IFunction)f,
-                (ISeq)new Cons().Invoke(a, new Cons().Invoke(b, new Cons().Invoke(c, new Cons().Invoke(d, new Spread().Invoke(args))))));
+                (ISeq)cons(a, cons(b, cons(c, cons(d, new Spread().Invoke(args))))));
 
         internal static object ApplyTo(IFunction f, ISeq args)
         {

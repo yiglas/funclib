@@ -58,7 +58,7 @@ namespace funclib.Components.Core
                 {
                     var p = new DoAll().Invoke(new Take().Invoke(n, s));
                     if (n.Equals(new Count().Invoke(p)))
-                        return new Cons().Invoke(p, Invoke(n, step, new NthRest().Invoke(s, step)));
+                        return cons(p, Invoke(n, step, new NthRest().Invoke(s, step)));
                 }
                 return null;
             });
@@ -88,7 +88,7 @@ namespace funclib.Components.Core
                 {
                     var p = new DoAll().Invoke(new Take().Invoke(n, s));
                     if (n.Equals(new Count().Invoke(p)))
-                        return new Cons().Invoke(p, Invoke(n, step, pad, new NthRest().Invoke(s, step)));
+                        return cons(p, Invoke(n, step, pad, new NthRest().Invoke(s, step)));
 
                     return new List().Invoke(new Take().Invoke(n, concat(p, pad)));
                 }

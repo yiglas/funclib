@@ -2,6 +2,7 @@
 using funclib.Collections.Internal;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -194,7 +195,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the <see cref="ISeq"/> object calls.
         /// </returns>
-        public ISeq Cons(object o) => (ISeq)new Cons().Invoke(o, Seq());
+        public ISeq Cons(object o) => (ISeq)cons(o, Seq());
         /// <summary>
         /// Returns the first object in the <see cref="LazySeq"/>.
         /// </summary>

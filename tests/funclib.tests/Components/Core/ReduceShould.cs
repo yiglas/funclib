@@ -41,7 +41,7 @@ namespace funclib.Tests.Components.Core
         public void Reduce_should_cons_two_vectors_into_a_list()
         {
             var expected = new funclib.Components.Core.List().Invoke(6, 5, 4, 1, 2, 3);
-            var actual = new Reduce().Invoke(new Function<object, object, object>((a, b) => new Cons().Invoke(b, a)), new Vector().Invoke(1, 2, 3), new Vector().Invoke(4, 5, 6));
+            var actual = new Reduce().Invoke(new Function<object, object, object>((a, b) => cons(b, a)), new Vector().Invoke(1, 2, 3), new Vector().Invoke(4, 5, 6));
 
             Assert.AreEqual(expected, actual);
         }

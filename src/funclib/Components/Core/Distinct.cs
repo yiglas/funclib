@@ -48,7 +48,7 @@ namespace funclib.Components.Core
                         return Invoke(new Rest().Invoke(s), seen);
                     }
 
-                    return new Cons().Invoke(f, Invoke(new Rest().Invoke(s), conj(seen, f)));
+                    return cons(f, Invoke(new Rest().Invoke(s), conj(seen, f)));
                 }
 
                 return null;

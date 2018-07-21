@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -52,7 +53,7 @@ namespace funclib.Components.Core
 
                         if ((bool)new Truthy().Invoke(fn.Invoke(f)))
                         {
-                            return new Cons().Invoke(f, Invoke(pred, r));
+                            return cons(f, Invoke(pred, r));
                         }
                         else
                         {

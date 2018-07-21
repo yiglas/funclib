@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -35,7 +36,7 @@ namespace funclib.Components.Core
 
             public object Invoke(object node) =>
                 new LazySeq(() => 
-                    new Cons().Invoke(node,
+                    cons(node,
                         (bool)new Truthy().Invoke(this._branch.Invoke(node))
                             ? new MapCat().Invoke(this, this._children.Invoke(node))
                             : null));
