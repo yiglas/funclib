@@ -1,8 +1,8 @@
 ﻿using funclib.Components.Core;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -22,7 +22,7 @@ namespace funclib.Tests.Components.Core
         {
             var actual = new Vec().Invoke(null);
 
-            Assert.AreEqual(0, new Count().Invoke(actual));
+            Assert.AreEqual(0, count(actual));
         }
 
         [Test]
@@ -30,7 +30,7 @@ namespace funclib.Tests.Components.Core
         {
             var actual = new Vec().Invoke(new funclib.Components.Core.List().Invoke());
 
-            Assert.AreEqual(0, new Count().Invoke(actual));
+            Assert.AreEqual(0, count(actual));
         }
     }
 }

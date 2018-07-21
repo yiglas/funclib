@@ -61,7 +61,7 @@ namespace funclib.Tests.Components.Core
             var remap = new FunctionParams<object, object, object>((f, c) =>
             {
                 var inter = apply(new Interleave(), c);
-                var neuesc = new Partition().Invoke(new Count().Invoke(c), inter);
+                var neuesc = new Partition().Invoke(count(c), inter);
                 return new Reduce().Invoke(new Function<object, object, object>((s, k) => conj(s, apply(f, k))), new Vector().Invoke(), neuesc);
             });
 

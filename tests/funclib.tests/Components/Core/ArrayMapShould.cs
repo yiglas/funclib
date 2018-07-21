@@ -14,7 +14,7 @@ namespace funclib.Tests.Components.Core
             var expected = 0;
             var actual = arrayMap();
 
-            Assert.AreEqual(expected, new Count().Invoke(actual));
+            Assert.AreEqual(expected, count(actual));
         }
     }
 }

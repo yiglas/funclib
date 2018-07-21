@@ -1,8 +1,8 @@
 ﻿using funclib.Components.Core;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -13,7 +13,7 @@ namespace funclib.Tests.Components.Core
         {
             var actual = new Partition().Invoke(4, new Range().Invoke(6));
 
-            Assert.AreEqual(1, new Count().Invoke(actual));
+            Assert.AreEqual(1, count(actual));
         }
 
         [Test]

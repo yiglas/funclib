@@ -1,8 +1,8 @@
 ﻿using funclib.Components.Core;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -23,7 +23,7 @@ namespace funclib.Tests.Components.Core
             var expected = new Transient().Invoke(new Vector().Invoke(1, 2, 3));
             var actual = new Popǃ().Invoke(expected);
 
-            Assert.AreEqual(2, new Count().Invoke(expected));
+            Assert.AreEqual(2, count(expected));
         }
     }
 }

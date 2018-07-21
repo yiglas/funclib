@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -22,7 +23,7 @@ namespace funclib.Components.Core
         /// Returns a <see cref="IVector"/> of the items in <see cref="IVector"/> from start (inclusive)
         /// to end (exclusive). If end is not supplied, default to <see cref="Count"/> of <see cref="IVector"/>.
         /// </returns>
-        public object Invoke(object v, object start) => Invoke(v, start, new Count().Invoke(v));
+        public object Invoke(object v, object start) => Invoke(v, start, count(v));
         /// <summary>
         /// Returns a <see cref="IVector"/> of the items in <see cref="IVector"/> from start (inclusive)
         /// to end (exclusive). If end is not supplied, default to <see cref="Count"/> of <see cref="IVector"/>.

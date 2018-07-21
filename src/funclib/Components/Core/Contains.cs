@@ -2,6 +2,7 @@
 using funclib.Collections.Internal;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -42,7 +43,7 @@ namespace funclib.Components.Core
                 ? false
                 : coll is IAssociative a ? a.ContainsKey(key)
                 : coll is System.Collections.IDictionary d ? d.Contains(key)
-                : coll is string || coll.GetType().IsArray ? int.TryParse(key.ToString(), out int i) ? i >= 0 && i < (int)new Count().Invoke(coll) : false
+                : coll is string || coll.GetType().IsArray ? int.TryParse(key.ToString(), out int i) ? i >= 0 && i < (int)count(coll) : false
                 : coll is ITransientSet ts ? ts.Contains(key)
                 : coll is ITransientAssociative ta ? ta.ContainsKey(key)
                 : coll is ISet s ? s.Contains(key)

@@ -43,7 +43,7 @@ namespace funclib.Components.Core
                     if ((bool)new IsChunkedSeq().Invoke(s))
                     {
                         var c = new ChunkFirst().Invoke(s);
-                        var size = (int)new Count().Invoke(c);
+                        var size = (int)count(c);
                         var b = (Collections.ChunkBuffer)new ChunkBuffer().Invoke(size);
 
                         new DoTimes(size, i =>

@@ -57,7 +57,7 @@ namespace funclib.Components.Core
                 if ((bool)new Truthy().Invoke(s))
                 {
                     var p = new DoAll().Invoke(new Take().Invoke(n, s));
-                    if (n.Equals(new Count().Invoke(p)))
+                    if (n.Equals(count(p)))
                         return cons(p, Invoke(n, step, new NthRest().Invoke(s, step)));
                 }
                 return null;
@@ -87,7 +87,7 @@ namespace funclib.Components.Core
                 if ((bool)new Truthy().Invoke(s))
                 {
                     var p = new DoAll().Invoke(new Take().Invoke(n, s));
-                    if (n.Equals(new Count().Invoke(p)))
+                    if (n.Equals(count(p)))
                         return cons(p, Invoke(n, step, pad, new NthRest().Invoke(s, step)));
 
                     return new List().Invoke(new Take().Invoke(n, concat(p, pad)));

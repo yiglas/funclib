@@ -34,7 +34,7 @@ namespace funclib.Components.Core
                     var fv = fn.Invoke(fst);
                     var run = cons(fst, new TakeWhile().Invoke(new Function<object, object>(x => new IsEqualTo().Invoke(fv, fn.Invoke(x))), s.Next()));
 
-                    return cons(run, Invoke(f, new Seq().Invoke(new Drop().Invoke(new Count().Invoke(run), s))));
+                    return cons(run, Invoke(f, new Seq().Invoke(new Drop().Invoke(count(run), s))));
                 }
                 return null;
             });

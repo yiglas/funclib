@@ -2,6 +2,7 @@
 using funclib.Collections.Internal;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -52,13 +53,13 @@ namespace funclib.Components.Core
         object GetFromArray(object map, object key)
         {
             int n = Numbers.ConvertToInt(key);
-            return n >= 0 && n < (int)new Count().Invoke(map) ? new Nth().Invoke(map, n) : null;
+            return n >= 0 && n < (int)count(map) ? new Nth().Invoke(map, n) : null;
         }
 
         object GetFromArray(object map, object key, object notFound)
         {
             int n = Numbers.ConvertToInt(key);
-            return n >= 0 && n < (int)new Count().Invoke(map) ? new Nth().Invoke(map, n) : notFound;
+            return n >= 0 && n < (int)count(map) ? new Nth().Invoke(map, n) : notFound;
         }
     }
 }

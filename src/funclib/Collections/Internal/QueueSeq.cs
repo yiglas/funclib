@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Collections.Internal
 {
@@ -18,7 +19,7 @@ namespace funclib.Collections.Internal
         }
 
         #region Overrides
-        public override int Count => (int)new Count().Invoke(this._f) + (int)new Count().Invoke(this._rseq);
+        public override int Count => (int)count(this._f) + (int)count(this._rseq);
         public override object First() => this._f.First();
         public override ISeq Next()
         {

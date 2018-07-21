@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -48,7 +49,7 @@ namespace funclib.Components.Core
         object[] ObjectToArray(object coll)
         {
             var seq = (ISeq)new Seq().Invoke(coll);
-            var ret = new object[(int)new Count().Invoke(seq)];
+            var ret = new object[(int)count(seq)];
             for (int i = 0; i < ret.Length; i++, seq = seq.Next())
                 ret[i] = seq.First();
             return ret;
