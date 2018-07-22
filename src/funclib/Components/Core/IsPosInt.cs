@@ -21,6 +21,6 @@ namespace funclib.Components.Core
         public object Invoke(object n) =>
             and(
                 new IsInt().Invoke(n),
-                new IsPos().Invoke(n));
+                isPos(n));
     }
 }

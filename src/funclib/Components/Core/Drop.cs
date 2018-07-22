@@ -26,7 +26,7 @@ namespace funclib.Components.Core
         object step(object n, object coll)
         {
             var s = new Seq().Invoke(coll);
-            if ((bool)new Truthy().Invoke(and(new IsPos().Invoke(n), s)))
+            if ((bool)new Truthy().Invoke(and(isPos(n), s)))
             {
                 return step(dec(n), new Rest().Invoke(s));
             }
@@ -49,7 +49,7 @@ namespace funclib.Components.Core
             {
                 var n = this._nv.Deref();
                 new VSwapǃ(this._nv, new Dec());
-                if ((bool)new IsPos().Invoke(n))
+                if ((bool)isPos(n))
                     return result;
 
                 return ((IFunction<object, object, object>)this._rf).Invoke(result, input);

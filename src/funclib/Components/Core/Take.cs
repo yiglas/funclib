@@ -28,7 +28,7 @@ namespace funclib.Components.Core
         public object Invoke(object n, object coll) =>
             new LazySeq(new Function<object>(() =>
             {
-                if ((bool)new IsPos().Invoke(n))
+                if ((bool)isPos(n))
                 {
                     var s = (ISeq)new Seq().Invoke(coll);
                     if ((bool)new Truthy().Invoke(s))
@@ -54,11 +54,11 @@ namespace funclib.Components.Core
             {
                 var n = this._nv.Deref();
                 var nn = new VSwapǃ(this._nv, new Dec()).Invoke();
-                result = (bool)new IsPos().Invoke(n) 
+                result = (bool)isPos(n) 
                     ? Apply.ApplyTo((IFunction)this._rf, (ISeq)new List().Invoke(result, input))
                     : result;
 
-                if ((bool)new Not().Invoke(new IsPos().Invoke(nn)))
+                if ((bool)new Not().Invoke(isPos(nn)))
                     return ensureReduced(result);
 
                 return result;
