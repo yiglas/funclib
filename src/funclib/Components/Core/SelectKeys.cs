@@ -27,7 +27,7 @@ namespace funclib.Components.Core
             {
                 if ((bool)new Truthy().Invoke(keys))
                 {
-                    var entry = new Find().Invoke(map, keys.First());
+                    var entry = find(map, keys.First());
                     return loop((bool)new Truthy().Invoke(entry) ? conj(ret, entry) : ret, keys.Next());
                 }
 
