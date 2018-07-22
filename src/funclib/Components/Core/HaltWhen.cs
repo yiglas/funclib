@@ -31,7 +31,7 @@ namespace funclib.Components.Core
             {
                 if ((bool)new Truthy().Invoke(and(new IsMap().Invoke(result), contains(result, "::halt"))))
                 {
-                    return new Get().Invoke(result, "::halt");
+                    return get(result, "::halt");
                 }
 
                 return ((IFunction<object, object>)this._rf).Invoke(result);

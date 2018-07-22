@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void GetIn_should_return_the_value_from_a_deep_structure()
         {
             var expected = "Sally Functional";
-            var actual = new GetIn().Invoke(new System.Collections.Generic.Dictionary<string, object>()
+            var actual = getIn(new System.Collections.Generic.Dictionary<string, object>()
             {
                 ["username"] = "sally",
                 ["profile"] = new System.Collections.Generic.Dictionary<string, object>()

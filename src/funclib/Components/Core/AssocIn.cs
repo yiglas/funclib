@@ -31,7 +31,7 @@ namespace funclib.Components.Core
             ks = new Next().Invoke(ks);
 
             if ((bool)new Truthy().Invoke(ks))
-                return assoc(m, k, Invoke(new Get().Invoke(m, k), ks, v));
+                return assoc(m, k, Invoke(get(m, k), ks, v));
 
             return assoc(m, k, v);
         }

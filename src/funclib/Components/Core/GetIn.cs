@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -42,7 +43,7 @@ namespace funclib.Components.Core
         {
             if ((bool)new Truthy().Invoke(ks))
             {
-                m = new Get().Invoke(m, ks.First(), sentinel);
+                m = get(m, ks.First(), sentinel);
                 if ((bool)new IsIdentical().Invoke(m, sentinel))
                     return notFound;
 
