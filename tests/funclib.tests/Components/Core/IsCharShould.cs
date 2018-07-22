@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -10,17 +11,17 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsChar_should_return_true_if_an_object_is_a_char()
         {
-            Assert.IsTrue((bool)new IsChar().Invoke('c'));
+            Assert.IsTrue((bool)isChar('c'));
 
             object b = 'c';
-            Assert.IsTrue((bool)new IsChar().Invoke(b));
+            Assert.IsTrue((bool)isChar(b));
         }
 
         [Test]
         public void IsChar_should_return_false_if_an_object_is_not_a_char()
         {
-            Assert.IsFalse((bool)new IsChar().Invoke(1));
-            Assert.IsFalse((bool)new IsChar().Invoke(null));
+            Assert.IsFalse((bool)isChar(1));
+            Assert.IsFalse((bool)isChar(null));
         }
     }
 }
