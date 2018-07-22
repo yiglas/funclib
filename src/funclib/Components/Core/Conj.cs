@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -75,9 +76,9 @@ namespace funclib.Components.Core
             {
                 var next = new Next().Invoke(xs);
                 if ((bool)new Truthy().Invoke(next))
-                    return Invoke(Invoke(coll, x), new First().Invoke(xs), (object[])new ToArray().Invoke(next));
+                    return Invoke(Invoke(coll, x), first(xs), (object[])new ToArray().Invoke(next));
 
-                return Invoke(Invoke(coll, x), new First().Invoke(xs));
+                return Invoke(Invoke(coll, x), first(xs));
             }
             else
                 return Invoke(coll, x);

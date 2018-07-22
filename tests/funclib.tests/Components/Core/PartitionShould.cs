@@ -21,7 +21,7 @@ namespace funclib.Tests.Components.Core
         {
             var actual = new Partition().Invoke(4, 6, new Range().Invoke(20));
 
-            Assert.AreEqual(6, new First().Invoke(new Second().Invoke(actual)));
+            Assert.AreEqual(6, first(new Second().Invoke(actual)));
         }
 
         [Test]
@@ -29,7 +29,7 @@ namespace funclib.Tests.Components.Core
         {
             var actual = new Partition().Invoke(4, 3, new Range().Invoke(20));
 
-            Assert.AreEqual(3, new First().Invoke(new Second().Invoke(actual)));
+            Assert.AreEqual(3, first(new Second().Invoke(actual)));
         }
 
         [Test]

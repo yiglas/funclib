@@ -27,7 +27,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object m, object ks, object v)
         {
-            var k = new First().Invoke(ks);
+            var k = first(ks);
             ks = new Next().Invoke(ks);
 
             if ((bool)new Truthy().Invoke(ks))

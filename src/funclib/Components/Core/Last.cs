@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -23,7 +24,7 @@ namespace funclib.Components.Core
             if ((bool)new Truthy().Invoke(n))
                 return Invoke(n);
 
-            return new First().Invoke(s);
+            return first(s);
         }
             
     }

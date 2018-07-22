@@ -32,7 +32,7 @@ namespace funclib.Components.Core
 
         object up(object m, object ks, object f, object args)
         {
-            var k = new First().Invoke(ks);
+            var k = first(ks);
             ks = new More().Invoke(ks);
 
             if ((bool)new Truthy().Invoke(ks))

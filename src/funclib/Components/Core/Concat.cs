@@ -49,7 +49,7 @@ namespace funclib.Components.Core
                     if ((bool)new IsChunkedSeq().Invoke(s))
                         return chunkCons(chunkFirst(s), Invoke(chunkRest(s), y));
                     else
-                        return cons(new First().Invoke(s), Invoke(new Rest().Invoke(s), y));
+                        return cons(first(s), Invoke(new Rest().Invoke(s), y));
                 }
                 else
                     return y;
@@ -76,11 +76,11 @@ namespace funclib.Components.Core
                         if ((bool)new IsChunkedSeq().Invoke(xys))
                             return chunkCons(chunkFirst(xys), cat(chunkRest(xys), zss));
                         else
-                            return cons(new First().Invoke(xys), cat(new Rest().Invoke(xys), zss));
+                            return cons(first(xys), cat(new Rest().Invoke(xys), zss));
                     }
                     else if ((bool)new Truthy().Invoke(zss))
                     {
-                        return cat(new First().Invoke(zss), new Next().Invoke(zss));
+                        return cat(first(zss), new Next().Invoke(zss));
                     }
                     else
                         return null;

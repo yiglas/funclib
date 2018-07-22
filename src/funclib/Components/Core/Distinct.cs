@@ -39,7 +39,7 @@ namespace funclib.Components.Core
         {
             public object Invoke(object xs, object seen)
             {
-                var f = new First().Invoke(xs);
+                var f = first(xs);
                 var s = new Seq().Invoke(xs);
                 if ((bool)new Truthy().Invoke(s))
                 {

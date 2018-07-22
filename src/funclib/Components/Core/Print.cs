@@ -45,7 +45,7 @@ namespace funclib.Components.Core
             Variables.Out.Write(' ');
             var nmore = new Next().Invoke(more);
             if ((bool)new Truthy().Invoke(nmore))
-                return Invoke(new First().Invoke(more), nmore);
+                return Invoke(first(more), nmore);
 
             return apply(this, more);
         }

@@ -1,6 +1,7 @@
 ﻿using funclib.Components.Core;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Collections.Internal
 {
@@ -38,7 +39,7 @@ namespace funclib.Collections.Internal
                     throw new InvalidOperationException("No current value.");
 
                 if (this._curr == this._start)
-                    this._curr = new First().Invoke(this._next);
+                    this._curr = first(this._next);
 
                 return this._curr;
             }

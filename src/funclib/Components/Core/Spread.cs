@@ -13,9 +13,9 @@ namespace funclib.Components.Core
             if (argList == null) return null;
             var next = new Next().Invoke(argList);
             if (next == null)
-                return new Seq().Invoke(new First().Invoke(argList));
+                return new Seq().Invoke(first(argList));
 
-            return cons(new First().Invoke(argList), new Spread().Invoke(next));
+            return cons(first(argList), new Spread().Invoke(next));
         }
     }
 }

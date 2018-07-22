@@ -47,7 +47,7 @@ namespace funclib.Components.Core
             
             object loop(object s, object xs)
             {
-                var f = new First().Invoke(xs);
+                var f = first(xs);
                 var etc = new Seq().Invoke(new Rest().Invoke(xs));
 
                 if ((bool)new Truthy().Invoke(xs))

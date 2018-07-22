@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -17,6 +17,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the first item's first item
         /// </returns>
-        public object Invoke(object x) => new First().Invoke(new First().Invoke(x));
+        public object Invoke(object x) => first(first(x));
     }
 }

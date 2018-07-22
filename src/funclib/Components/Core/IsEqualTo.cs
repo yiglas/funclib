@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -56,9 +57,9 @@ namespace funclib.Components.Core
             {
                 var next = new Next().Invoke(more);
                 if ((bool)new Truthy().Invoke(next))
-                    return Invoke(y, new First().Invoke(more), (object[])new ToArray().Invoke(next));
+                    return Invoke(y, first(more), (object[])new ToArray().Invoke(next));
 
-                return Invoke(y, new First().Invoke(more));
+                return Invoke(y, first(more));
             }
 
             return false;

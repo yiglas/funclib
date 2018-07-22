@@ -1,9 +1,8 @@
 ﻿using funclib.Collections.Internal;
 using funclib.Components.Core;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Collections
 {
@@ -58,7 +57,7 @@ namespace funclib.Collections
         }
         #endregion
 
-        public object Peek() => new First().Invoke(this._f);
+        public object Peek() => first(this._f);
         public IStack Pop()
         {
             if (this._f == null) return this;
@@ -92,7 +91,7 @@ namespace funclib.Collections
                     array.SetValue(s.First(), i);
             }
         }
-        public IEnumerator GetEnumerator()
+        public System.Collections.IEnumerator GetEnumerator()
         {
             for (var s = this._f; s != null; s = s.Next())
                 yield return s.First();

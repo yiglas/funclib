@@ -48,7 +48,7 @@ namespace funclib.Components.Core
                     }
                     else
                     {
-                        var f = new First().Invoke(s);
+                        var f = first(s);
                         var r = new Rest().Invoke(s);
 
                         if ((bool)new Truthy().Invoke(fn.Invoke(f)))

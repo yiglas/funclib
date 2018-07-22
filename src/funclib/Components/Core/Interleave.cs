@@ -44,7 +44,7 @@ namespace funclib.Components.Core
                 var s2 = new Seq().Invoke(c2);
                 if ((bool)new Truthy().Invoke(and(s1, s2)))
                 {
-                    return cons(new First().Invoke(s1), cons(new First().Invoke(s2), Invoke(new Rest().Invoke(s1), new Rest().Invoke(s2))));
+                    return cons(first(s1), cons(first(s2), Invoke(new Rest().Invoke(s1), new Rest().Invoke(s2))));
                 }
 
                 return null;
