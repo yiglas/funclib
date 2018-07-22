@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -10,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Filter_should_return_a_lazy_seq()
         {
-            var actual = new Filter().Invoke(new IsEven(), new Range().Invoke(10));
+            var actual = filter(new IsEven(), new Range().Invoke(10));
 
             Assert.IsInstanceOf<LazySeq>(actual);
         }
@@ -19,7 +20,7 @@ namespace funclib.Tests.Components.Core
         public void Filter_should_filter_range_of_values()
         {
             var expected = new funclib.Components.Core.List().Invoke(0, 2, 4, 6, 8);
-            var actual = new ToArray().Invoke(new Filter().Invoke(new IsEven(), new Range().Invoke(10)));
+            var actual = new ToArray().Invoke(filter(new IsEven(), new Range().Invoke(10)));
 
             Assert.AreEqual(expected, actual);
         }
@@ -28,7 +29,7 @@ namespace funclib.Tests.Components.Core
         public void Filter_should_filter_a_string()
         {
             var expected = new funclib.Components.Core.List().Invoke('d', 'e', 'v', 'i', 'n');
-            var actual = new ToArray().Invoke(new Filter().Invoke(new Function<object, object>(x => !string.IsNullOrWhiteSpace(x.ToString())), "d e v i n"));
+            var actual = new ToArray().Invoke(filter(new Function<object, object>(x => !string.IsNullOrWhiteSpace(x.ToString())), "d e v i n"));
 
             Assert.AreEqual(expected, actual);
         }

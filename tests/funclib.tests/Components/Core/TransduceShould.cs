@@ -13,7 +13,7 @@ namespace funclib.Tests.Components.Core
         [SetUp]
         public void SetUp()
         {
-            xf = comp(new Filter().Invoke(new IsOdd()), new Take().Invoke(10));
+            xf = comp(filter(new IsOdd()), new Take().Invoke(10));
         }
 
         [Test]
