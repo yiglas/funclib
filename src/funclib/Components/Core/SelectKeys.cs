@@ -21,7 +21,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object map, object keyseq)
         {
-            return loop(new HashMap().Invoke(), (ISeq)new Seq().Invoke(keyseq));
+            return loop(hashMap(), (ISeq)new Seq().Invoke(keyseq));
 
             object loop(object ret, ISeq keys)
             {

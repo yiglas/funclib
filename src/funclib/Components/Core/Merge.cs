@@ -28,7 +28,7 @@ namespace funclib.Components.Core
         {
             if ((bool)new Truthy().Invoke(new Some().Invoke(new Identity(), maps)))
             {
-                return new Reduce1().Invoke(new Function<object, object, object>((_1, _2) => conj(new Or().Invoke(_1, new HashMap().Invoke()), _2)), maps);
+                return new Reduce1().Invoke(new Function<object, object, object>((_1, _2) => conj(new Or().Invoke(_1, hashMap()), _2)), maps);
             }
 
             return null;

@@ -46,7 +46,7 @@ namespace funclib.Components.Core
                 return assoc(m, k, v);
             }
 
-            object merge2(object m1, object m2) => new Reduce1().Invoke(new Function<object, object, object>(mergeEntry), new Or().Invoke(m1, new HashMap().Invoke()), new Seq().Invoke(m2));
+            object merge2(object m1, object m2) => new Reduce1().Invoke(new Function<object, object, object>(mergeEntry), new Or().Invoke(m1, hashMap()), new Seq().Invoke(m2));
         }
     }
 }

@@ -33,7 +33,7 @@ namespace funclib.Components.Core
                     {
                         var k = ((IFunction<object, object>)f).Invoke(x);
                         return assocǃ(ret, k, conj(get(ret, k, new Vector().Invoke()), x));
-                    }), new Transient().Invoke(new HashMap().Invoke()), coll));
+                    }), new Transient().Invoke(hashMap()), coll));
     }
 
 }

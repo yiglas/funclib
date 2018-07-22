@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -10,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsMap_should_return_true_if_an_object_is_IMap()
         {
-            Assert.IsTrue((bool)new IsCounted().Invoke(new HashMap().Invoke()));
+            Assert.IsTrue((bool)new IsCounted().Invoke(hashMap()));
         }
 
         [Test]

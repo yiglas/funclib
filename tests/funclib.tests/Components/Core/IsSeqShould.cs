@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -20,7 +21,7 @@ namespace funclib.Tests.Components.Core
         {
             Assert.IsFalse((bool)new IsSeq().Invoke(1));
             Assert.IsFalse((bool)new IsSeq().Invoke(new Vector().Invoke(1)));
-            Assert.IsFalse((bool)new IsSeq().Invoke(new HashMap().Invoke(":a", 1, ":b", 2)));
+            Assert.IsFalse((bool)new IsSeq().Invoke(hashMap(":a", 1, ":b", 2)));
         }
     }
 }

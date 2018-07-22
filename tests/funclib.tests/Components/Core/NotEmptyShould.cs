@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -12,7 +13,7 @@ namespace funclib.Tests.Components.Core
         {
             Assert.IsNull(new NotEmpty().Invoke(new Vector().Invoke()));
             Assert.IsNull(new NotEmpty().Invoke(new funclib.Components.Core.List().Invoke()));
-            Assert.IsNull(new NotEmpty().Invoke(new HashMap().Invoke()));
+            Assert.IsNull(new NotEmpty().Invoke(hashMap()));
             Assert.IsNull(new NotEmpty().Invoke(null));
         }
 

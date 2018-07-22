@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void Find_should_return_KeyValuePair_if_found()
         {
             var expected = new funclib.Collections.KeyValuePair(":a", 1);
-            var actual = find(new HashMap().Invoke(":a", 1, ":b", 2, ":c", 3), ":a");
+            var actual = find(hashMap(":a", 1, ":b", 2, ":c", 3), ":a");
 
             Assert.IsInstanceOf<funclib.Collections.KeyValuePair>(actual);
             Assert.AreEqual(expected, actual);
@@ -21,7 +21,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Find_should_return_null_when_key_doesnot_exist()
         {
-            var actual = find(new HashMap().Invoke(":a", 1, ":b", 2, ":c", 3), ":d");
+            var actual = find(hashMap(":a", 1, ":b", 2, ":c", 3), ":d");
 
             Assert.IsNull(actual);
         }

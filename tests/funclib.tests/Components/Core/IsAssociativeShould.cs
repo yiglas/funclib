@@ -11,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsAssociative_should_return_true_if_an_object_that_implements_IAssociative()
         {
-            Assert.IsTrue((bool)new IsAssociative().Invoke(new HashMap().Invoke()));
+            Assert.IsTrue((bool)new IsAssociative().Invoke(hashMap()));
             Assert.IsTrue((bool)new IsAssociative().Invoke(arrayMap()));
         }
 
