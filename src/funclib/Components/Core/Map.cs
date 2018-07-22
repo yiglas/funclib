@@ -147,7 +147,7 @@ namespace funclib.Components.Core
                 new LazySeq(() =>
                 {
                     var ss = Invoke(new Seq(), cs);
-                    if ((bool)new IsEvery().Invoke(new Identity(), ss))
+                    if ((bool)isEvery(new Identity(), ss))
                     {
                         return cons(Invoke(new First(), ss), step(Invoke(new Rest(), ss)));
                     }
