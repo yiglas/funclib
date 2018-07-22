@@ -170,7 +170,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Print_should_write_ISet()
         {
-            var expected = new HashSet().Invoke(1, 2, 3);
+            var expected = hashSet(1, 2, 3);
             new Print().Invoke(expected);
             Assert.AreEqual(this._writer.ToString(), "#{1 2 3}");
         }

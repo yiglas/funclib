@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void Seq_should_return_null_when_passed_an_empty_list()
         {
             Assert.IsNull(new Seq().Invoke(new Vector().Invoke()));
-            Assert.IsNull(new Seq().Invoke(new HashSet().Invoke()));
+            Assert.IsNull(new Seq().Invoke(hashSet()));
             Assert.IsNull(new Seq().Invoke(new funclib.Components.Core.List().Invoke()));
         }
 

@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void Vec_should_create_a_vector_from_a_ISeq()
         {
             var expected = new Vector().Invoke(1, 2, 3);
-            var actual = new Vec().Invoke(new HashSet().Invoke(1, 2, 3));
+            var actual = new Vec().Invoke(hashSet(1, 2, 3));
 
             Assert.AreEqual(expected, actual);
         }

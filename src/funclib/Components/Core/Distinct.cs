@@ -27,7 +27,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object coll)
         {
-            return step(coll, new HashSet().Invoke());
+            return step(coll, hashSet());
 
             object step(object xs, object seen) =>
                 new LazySeq(() => new Function().Invoke(xs, seen));
@@ -63,7 +63,7 @@ namespace funclib.Components.Core
             public TransducerFunction(object rf) :
                 base(rf)
             {
-                this._seen = (Volatileǃ)new Volatileǃ().Invoke(new HashSet().Invoke());
+                this._seen = (Volatileǃ)new Volatileǃ().Invoke(hashSet());
             }
 
             #region Overrides

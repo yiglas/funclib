@@ -22,8 +22,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Reduce_should_conj_vector_to_hash_set()
         {
-            var expected = new HashSet().Invoke(":a", ":b", ":c");
-            var actual = new Reduce().Invoke(new Conj(), new HashSet().Invoke(), new Vector().Invoke(":a", ":b", ":c"));
+            var expected = hashSet(":a", ":b", ":c");
+            var actual = new Reduce().Invoke(new Conj(), hashSet(), new Vector().Invoke(":a", ":b", ":c"));
 
             Assert.AreEqual(expected, actual);
         }

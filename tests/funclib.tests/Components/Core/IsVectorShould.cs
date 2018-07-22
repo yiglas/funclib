@@ -21,7 +21,7 @@ namespace funclib.Tests.Components.Core
         {
             Assert.IsFalse((bool)new IsVector().Invoke(1));
             Assert.IsFalse((bool)new IsVector().Invoke(null));
-            Assert.IsFalse((bool)new IsVector().Invoke(new HashSet().Invoke(1, 2, 3)));
+            Assert.IsFalse((bool)new IsVector().Invoke(hashSet(1, 2, 3)));
         }
     }
 }
