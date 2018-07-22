@@ -2,6 +2,7 @@
 using funclib.Components.Core;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Collections
 {
@@ -31,7 +32,7 @@ namespace funclib.Collections
                 bool duplicateKey = false;
                 for (int j = 0; j < i; j += 2)
                 {
-                    if ((bool)new IsEqualTo().Invoke(init[i], init[j]))
+                    if ((bool)isEqualTo(init[i], init[j]))
                     {
                         duplicateKey = true;
                         break;
@@ -49,7 +50,7 @@ namespace funclib.Collections
                     bool duplicateKey = false;
                     for (int j = 0; j < m; j += 2)
                     {
-                        if ((bool)new IsEqualTo().Invoke(init[i], nodups[j]))
+                        if ((bool)isEqualTo(init[i], nodups[j]))
                         {
                             duplicateKey = true;
                             break;
@@ -61,7 +62,7 @@ namespace funclib.Collections
                         int j;
                         for (j = init.Length -2; j >= i; j -= 2)
                         {
-                            if ((bool)new IsEqualTo().Invoke(init[i], init[j]))
+                            if ((bool)isEqualTo(init[i], init[j]))
                             {
                                 break;
                             }

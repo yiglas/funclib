@@ -2,6 +2,7 @@
 using funclib.Components.Core;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Collections
 {
@@ -34,7 +35,7 @@ namespace funclib.Collections
                 {
                     var de = (KeyValuePair)e.First();
                     bool found = d.Contains(de.Key);
-                    if (!found || !(bool)new IsEqualTo().Invoke(de.Value, d[de.Key]))
+                    if (!found || !(bool)isEqualTo(de.Value, d[de.Key]))
                         return false;
                 }
             }

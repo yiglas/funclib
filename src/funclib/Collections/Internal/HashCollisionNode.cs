@@ -3,6 +3,7 @@ using System.Text;
 using System.Threading;
 using funclib.Components.Core;
 using static funclib.Util;
+using static funclib.Core;
 
 namespace funclib.Collections.Internal
 {
@@ -84,7 +85,7 @@ namespace funclib.Collections.Internal
             int idx = FindIndex(key);
 
             if (idx < 0) return null;
-            if ((bool)new IsEqualTo().Invoke(key, this._array[idx])) return new KeyValuePair(this._array[idx], this._array[idx + 1]);
+            if ((bool)isEqualTo(key, this._array[idx])) return new KeyValuePair(this._array[idx], this._array[idx + 1]);
 
             return null;
         }
@@ -94,7 +95,7 @@ namespace funclib.Collections.Internal
             int idx = FindIndex(key);
 
             if (idx < 0) return notFound;
-            if ((bool)new IsEqualTo().Invoke(key, this._array[idx])) return this._array[idx + 1];
+            if ((bool)isEqualTo(key, this._array[idx])) return this._array[idx + 1];
 
             return notFound;
         }
@@ -148,7 +149,7 @@ namespace funclib.Collections.Internal
         {
             for (int i = 0; i < 2 * this._count; i += 2)
             {
-                if ((bool)new IsEqualTo().Invoke(key, this._array[i]))
+                if ((bool)isEqualTo(key, this._array[i]))
                     return i;
             }
             return -1;

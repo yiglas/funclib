@@ -37,7 +37,7 @@ namespace funclib.Collections
 
             var ms = (ISeq)new Seq().Invoke(obj);
             for (var e = Seq(); e != null; e = e.Next(), ms = ms.Next())
-                if (ms == null || !(bool)new IsEqualTo().Invoke(e.First(), ms.First()))
+                if (ms == null || !(bool)isEqualTo(e.First(), ms.First()))
                     return false;
 
             return ms == null;

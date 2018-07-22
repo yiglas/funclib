@@ -269,7 +269,7 @@ namespace funclib.Components.Core
         public bool Contains(object item)
         {
             for (var e = Seq(); e != null; e = e.Next())
-                if ((bool)new IsEqualTo().Invoke(e.First(), item))
+                if ((bool)isEqualTo(e.First(), item))
                     return true;
             return false;
         }
@@ -279,7 +279,7 @@ namespace funclib.Components.Core
         {
             var e = Seq();
             for (int i = 0; e != null; e = e.Next(), i++)
-                if ((bool)new IsEqualTo().Invoke(e.First(), value))
+                if ((bool)isEqualTo(e.First(), value))
                     return i;
             return -1;
         }
