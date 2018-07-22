@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void Identity_should_return_its_argument()
         {
             var expected = 4;
-            var actual = new Identity().Invoke(4);
+            var actual = identity(4);
 
             Assert.AreEqual(expected, actual);
         }
