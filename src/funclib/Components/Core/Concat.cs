@@ -46,7 +46,7 @@ namespace funclib.Components.Core
                 var s = new Seq().Invoke(x);
                 if ((bool)new Truthy().Invoke(s))
                 {
-                    if ((bool)new IsChunkedSeq().Invoke(s))
+                    if ((bool)isChunkedSeq(s))
                         return chunkCons(chunkFirst(s), Invoke(chunkRest(s), y));
                     else
                         return cons(first(s), Invoke(new Rest().Invoke(s), y));
@@ -73,7 +73,7 @@ namespace funclib.Components.Core
                     xys = new Seq().Invoke(xys);
                     if ((bool)new Truthy().Invoke(xys))
                     {
-                        if ((bool)new IsChunkedSeq().Invoke(xys))
+                        if ((bool)isChunkedSeq(xys))
                             return chunkCons(chunkFirst(xys), cat(chunkRest(xys), zss));
                         else
                             return cons(first(xys), cat(new Rest().Invoke(xys), zss));

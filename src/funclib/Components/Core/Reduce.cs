@@ -145,7 +145,7 @@ namespace funclib.Components.Core
             s = new Seq().Invoke(s);
             if ((bool)new Truthy().Invoke(s))
             {
-                if ((bool)new IsChunkedSeq().Invoke(s))
+                if ((bool)isChunkedSeq(s))
                 {
                     var ret = ((IChunked)chunkFirst(s)).Reduce(f, val);
                     if (ret is Reduced r)

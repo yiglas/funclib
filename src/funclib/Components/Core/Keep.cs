@@ -30,7 +30,7 @@ namespace funclib.Components.Core
                 var s = (ISeq)new Seq().Invoke(coll);
                 if ((bool)new Truthy().Invoke(s))
                 {
-                    if ((bool)new IsChunkedSeq().Invoke(s))
+                    if ((bool)isChunkedSeq(s))
                     {
                         var c = chunkFirst(s);
                         var size = (int)count(c);
