@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void Flatten_should_flatten_nested_vectors()
         {
             var expected = new funclib.Components.Core.List().Invoke(1, 2, 3);
-            var actual = new ToArray().Invoke(new Flatten().Invoke(new Vector().Invoke(1, new Vector().Invoke(2, 3))));
+            var actual = new ToArray().Invoke(flatten(new Vector().Invoke(1, new Vector().Invoke(2, 3))));
 
             Assert.AreEqual(expected, actual);
         }
