@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -17,6 +17,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if x is an odd number, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object n) => new Not().Invoke(new IsEven().Invoke(n));
+        public object Invoke(object n) => new Not().Invoke(isEven(n));
     }
 }
