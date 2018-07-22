@@ -11,14 +11,14 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsMap_should_return_true_if_an_object_is_IMap()
         {
-            Assert.IsTrue((bool)new IsCounted().Invoke(hashMap()));
+            Assert.IsTrue((bool)isCounted(hashMap()));
         }
 
         [Test]
         public void IsMap_should_return_false_if_an_object_is_not_IMap()
         {
-            Assert.IsFalse((bool)new IsCounted().Invoke(1));
-            Assert.IsFalse((bool)new IsCounted().Invoke(null));
+            Assert.IsFalse((bool)isCounted(1));
+            Assert.IsFalse((bool)isCounted(null));
         }
     }
 }
