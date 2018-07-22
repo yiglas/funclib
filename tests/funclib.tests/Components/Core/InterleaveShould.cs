@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void Interleave_should_combine_two_lists()
         {
             var expected = new funclib.Components.Core.List().Invoke(":a", 1, ":b", 2, ":c", 3);
-            var actual = new Interleave().Invoke(new Vector().Invoke(":a", ":b", ":c"), new Vector().Invoke(1, 2, 3));
+            var actual = interleave(new Vector().Invoke(":a", ":b", ":c"), new Vector().Invoke(1, 2, 3));
 
             Assert.AreEqual(expected, actual);
         }
@@ -21,7 +21,7 @@ namespace funclib.Tests.Components.Core
         public void Interleave_should_work_with_a_repeated_collection()
         {
             var expected = new funclib.Components.Core.List().Invoke("a", 1, "a", 2, "a", 3);
-            var actual = new Interleave().Invoke(new Repeat().Invoke("a"), new Vector().Invoke(1, 2, 3));
+            var actual = interleave(new Repeat().Invoke("a"), new Vector().Invoke(1, 2, 3));
 
             Assert.AreEqual(expected, actual);
         }
@@ -39,7 +39,7 @@ namespace funclib.Tests.Components.Core
         public void Interleave_should_return_an_empty_list_passing_no_parameters()
         {
             var expected = funclib.Collections.List.EMPTY;
-            var actual = new Interleave().Invoke();
+            var actual = interleave();
 
             Assert.IsTrue(expected == actual);
         }
@@ -47,7 +47,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Interleave_should_return_a_lazy_seq()
         {
-            var actual = new Interleave().Invoke("test");
+            var actual = interleave("test");
 
             Assert.IsInstanceOf<LazySeq>(actual);
         }
@@ -56,7 +56,7 @@ namespace funclib.Tests.Components.Core
         public void Interleave_should_return_a_repeating_collection_with_more_than_two_collections()
         {
             var expected = new funclib.Components.Core.List().Invoke('A', ' ', 'a', 'B', ' ', 'b', 'C', ' ', 'c');
-            var actual = new ToArray().Invoke(new Interleave().Invoke(new Vector().Invoke('A', 'B', 'C'), new Repeat().Invoke(3, ' '), new Vector().Invoke('a', 'b', 'c')));
+            var actual = new ToArray().Invoke(interleave(new Vector().Invoke('A', 'B', 'C'), new Repeat().Invoke(3, ' '), new Vector().Invoke('a', 'b', 'c')));
 
             Assert.AreEqual(expected, actual);
         }
