@@ -19,7 +19,7 @@ namespace funclib.Tests.Components.Core
 
             //Assert.AreEqual(expected, actual);
 
-            //object positive_numbers(object n) => new funclib.Components.Core.LazySeq(() => (ISeq)new funclib.Components.Core.Cons().Invoke(n, positive_numbers(new Inc().Invoke(n))));
+            //object positive_numbers(object n) => new funclib.Components.Core.LazySeq(() => (ISeq)new funclib.Components.Core.Cons().Invoke(n, positive_numbers(inc(n))));
         }
 
     //    [Test]

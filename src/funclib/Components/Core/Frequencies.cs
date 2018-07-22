@@ -22,7 +22,7 @@ namespace funclib.Components.Core
             new Persistentǃ().Invoke(
                 new Reduce().Invoke(
                     new Function<object, object, object>((counts, x) =>
-                        assocǃ(counts, x, new Inc().Invoke(get(counts, x, 0)))),
+                        assocǃ(counts, x, inc(get(counts, x, 0)))),
                     new Transient().Invoke(hashMap()), coll));
     }
 }

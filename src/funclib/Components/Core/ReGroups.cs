@@ -38,7 +38,7 @@ namespace funclib.Components.Core
             object loop(object ret, int c = 0)
             {
                 if (c <= gc)
-                    return loop(conj(ret, matcher.Group(c)), (int)new Inc().Invoke(c));
+                    return loop(conj(ret, matcher.Group(c)), (int)inc(c));
 
                 return ret;
             }

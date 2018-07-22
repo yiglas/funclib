@@ -172,7 +172,7 @@ namespace funclib.Components.Core
                     var ret = f.Invoke(v, s[i]);
                     if (ret is Reduced r)
                         return r.Deref();
-                    return loop((int)new Inc().Invoke(i), ret);
+                    return loop((int)inc(i), ret);
                 }
                 return v;
             }
