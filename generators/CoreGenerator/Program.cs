@@ -206,7 +206,9 @@ namespace CoreGenerator
 
         static string FixClassName(string name)
         {
-            name = Char.ToLowerInvariant(name[0]) + name.Substring(1);
+            name = Char.ToLowerInvariant(name[0]).ToString()
+                + Char.ToLowerInvariant(name[1]).ToString()
+                + name.Substring(2);
 
             switch (name)
             {
@@ -214,7 +216,7 @@ namespace CoreGenerator
                 case "do": return "@do";
                 case "char": return "@char";
                 case "function": return "invoke";
-                case "uUID": return "uuid";
+                case "uuID": return "uuid";
                 case "rSeq": return "rseq";
             }
 

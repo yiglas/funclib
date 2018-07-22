@@ -1,4 +1,4 @@
-// Generated on 7/20/2018 11:20:55 AM
+// Generated on 7/21/2018 12:39:47 PM
 using funclib.Collections;
 using funclib.Components.Core;
 using System;
@@ -2104,7 +2104,7 @@ namespace funclib
 		/// <returns>
 		/// Returns the first item's first item
 		/// </returns>
-		public static object fFirst(object x) => FFirst.Invoke(x);
+		public static object ffirst(object x) => FFirst.Invoke(x);
 		public static object filter(object pred) => Filter.Invoke(pred);
 		/// <summary>
 		/// Returns a <see cref="LazySeq"/> of items in coll for which predicate returns a logical true.
@@ -2152,7 +2152,7 @@ namespace funclib
 		/// <returns>
 		/// Returns the first item's next list.
 		/// </returns>
-		public static object fNext(object x) => FNext.Invoke(x);
+		public static object fnext(object x) => FNext.Invoke(x);
 		/// <summary>
 		/// Takes a <see cref="IFunction"/> f, and returns a <see cref="Function"/> that calls f, replacing
 		/// a null first argument with the supplied value x. Higher arity versions can replace arguments in
@@ -2164,7 +2164,7 @@ namespace funclib
 		/// <returns>
 		/// Returns a <see cref="Function"/> that is null-patched.
 		/// </returns>
-		public static object fNull(object f, object x) => FNull.Invoke(f, x);
+		public static object fnull(object f, object x) => FNull.Invoke(f, x);
 		/// <summary>
 		/// Takes a <see cref="IFunction"/> f, and returns a <see cref="Function"/> that calls f, replacing
 		/// a null first argument with the supplied value x. Higher arity versions can replace arguments in
@@ -2177,7 +2177,7 @@ namespace funclib
 		/// <returns>
 		/// Returns a <see cref="Function"/> that is null-patched.
 		/// </returns>
-		public static object fNull(object f, object x, object y) => FNull.Invoke(f, x, y);
+		public static object fnull(object f, object x, object y) => FNull.Invoke(f, x, y);
 		/// <summary>
 		/// Takes a <see cref="IFunction"/> f, and returns a <see cref="Function"/> that calls f, replacing
 		/// a null first argument with the supplied value x. Higher arity versions can replace arguments in
@@ -2191,7 +2191,7 @@ namespace funclib
 		/// <returns>
 		/// Returns a <see cref="Function"/> that is null-patched.
 		/// </returns>
-		public static object fNull(object f, object x, object y, object z) => FNull.Invoke(f, x, y, z);
+		public static object fnull(object f, object x, object y, object z) => FNull.Invoke(f, x, y, z);
 		/// <summary>
 		/// Formats a string using <see cref="string.Format(string, object[])"/> format syntax.
 		/// </summary>
@@ -3550,7 +3550,7 @@ namespace funclib
 		/// <returns>
 		/// Returns the first item's next item
 		/// </returns>
-		public static object nFirst(object x) => NFirst.Invoke(x);
+		public static object nfirst(object x) => NFirst.Invoke(x);
 		/// <summary>
 		/// Same as <see cref="Next.Invoke(Next.Invoke(object))"/>.
 		/// </summary>
@@ -3558,7 +3558,7 @@ namespace funclib
 		/// <returns>
 		/// Returns the next item's next item
 		/// </returns>
-		public static object nNext(object x) => NNext.Invoke(x);
+		public static object nnext(object x) => NNext.Invoke(x);
 		/// <summary>
 		/// Returns <see cref="true"/> if x is logical false, otherwise <see cref="false"/>.
 		/// </summary>
@@ -4888,14 +4888,14 @@ namespace funclib
 		/// <returns>
 		/// Returns the new <see cref="Volatile"/> object set to newVal.
 		/// </returns>
-		public static object vResetǃ(object vol, object newVal) => VResetǃ.Invoke(vol, newVal);
+		public static object vresetǃ(object vol, object newVal) => VResetǃ.Invoke(vol, newVal);
 		/// <summary>
 		/// Non-atomically swaps the value of volatile.
 		/// </summary>
 		/// <param name="vol">A <see cref="Volatile"/> object.</param>
 		/// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
 		/// <param name="args">Any additional arguments passed to f</param>
-		public static object vSwapǃ(object vol, object f, params object[] args) => new VSwapǃ(vol, f, args).Invoke();
+		public static object vswapǃ(object vol, object f, params object[] args) => new VSwapǃ(vol, f, args).Invoke();
 		/// <summary>
 		/// Returns a <see cref="HashMap"/> with the keys mapped to the corresponding values
 		/// </summary>
