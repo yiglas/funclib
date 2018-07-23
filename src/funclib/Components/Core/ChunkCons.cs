@@ -9,7 +9,7 @@ namespace funclib.Components.Core
         IFunction<object, object, object>
     {
         public object Invoke(object chunk, object rest) =>
-            (bool)new IsZero().Invoke(count(chunk))
+            (bool)isZero(count(chunk))
                 ? rest
                 : new ChunkedCons((IChunked)chunk, (ISeq)rest);
     }

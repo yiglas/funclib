@@ -57,7 +57,7 @@ namespace funclib.Components.Core
             #region Overrides
             public override object Invoke(object result)
             {
-                if (!(bool)new IsZero().Invoke(this._a.Count))
+                if (!(bool)isZero(this._a.Count))
                 {
                     var v = new Vec().Invoke(this._a.ToArray());
                     this._a.Clear();
