@@ -1,4 +1,4 @@
-// Generated on 7/23/2018 10:39:11 AM
+// Generated on 7/23/2018 10:42:55 AM
 using funclib.Collections;
 using funclib.Components.Core;
 using System;
@@ -50,8 +50,6 @@ namespace funclib
 		/// index must be less than or equal to the count of vector. Returns coll.
 		/// </summary>
 		public static funclib.Components.Core.Assocǃ Assocǃ => __assocǃ ?? (__assocǃ = new funclib.Components.Core.Assocǃ());
-		static funclib.Components.Core.ATransducerFunction __atransducerfunction;
-		public static funclib.Components.Core.ATransducerFunction ATransducerFunction => __atransducerfunction ?? (__atransducerfunction = new funclib.Components.Core.ATransducerFunction());
 		static funclib.Components.Core.BitAnd __bitand;
 		/// <summary>
 		/// Unary "&" operator returns the address of its operand. Binary "&" operators are
@@ -407,7 +405,7 @@ namespace funclib
 		/// </summary>
 		public static funclib.Components.Core.Into Into => __into ?? (__into = new funclib.Components.Core.Into());
 		static funclib.Components.Core.Into1 __into1;
-		public static funclib.Components.Core.Into1 Into1 => __into1 ?? (__into1 = new funclib.Components.Core.Into1());
+		internal static funclib.Components.Core.Into1 Into1 => __into1 ?? (__into1 = new funclib.Components.Core.Into1());
 		static funclib.Components.Core.IntoArray __intoarray;
 		public static funclib.Components.Core.IntoArray IntoArray => __intoarray ?? (__intoarray = new funclib.Components.Core.IntoArray());
 		static funclib.Components.Core.IsAny __isany;
@@ -877,7 +875,7 @@ namespace funclib
 		/// </summary>
 		public static funclib.Components.Core.Popǃ Popǃ => __popǃ ?? (__popǃ = new funclib.Components.Core.Popǃ());
 		static funclib.Components.Core.PreservingReduced __preservingreduced;
-		public static funclib.Components.Core.PreservingReduced PreservingReduced => __preservingreduced ?? (__preservingreduced = new funclib.Components.Core.PreservingReduced());
+		internal static funclib.Components.Core.PreservingReduced PreservingReduced => __preservingreduced ?? (__preservingreduced = new funclib.Components.Core.PreservingReduced());
 		static funclib.Components.Core.Print __print;
 		/// <summary>
 		/// Prints the object(s) to the <see cref="Variables.Out"/> stream.
@@ -924,7 +922,7 @@ namespace funclib
 		/// </summary>
 		public static funclib.Components.Core.Reduce Reduce => __reduce ?? (__reduce = new funclib.Components.Core.Reduce());
 		static funclib.Components.Core.Reduce1 __reduce1;
-		public static funclib.Components.Core.Reduce1 Reduce1 => __reduce1 ?? (__reduce1 = new funclib.Components.Core.Reduce1());
+		internal static funclib.Components.Core.Reduce1 Reduce1 => __reduce1 ?? (__reduce1 = new funclib.Components.Core.Reduce1());
 		static funclib.Components.Core.Reduced __reduced;
 		/// <summary>
 		/// Wraps x in a way such that a <see cref="Reduce"/> will terminate with the value x.
@@ -1087,7 +1085,7 @@ namespace funclib
 		/// </summary>
 		public static funclib.Components.Core.SplitWith SplitWith => __splitwith ?? (__splitwith = new funclib.Components.Core.SplitWith());
 		static funclib.Components.Core.Spread __spread;
-		public static funclib.Components.Core.Spread Spread => __spread ?? (__spread = new funclib.Components.Core.Spread());
+		internal static funclib.Components.Core.Spread Spread => __spread ?? (__spread = new funclib.Components.Core.Spread());
 		static funclib.Components.Core.Str __str;
 		/// <summary>
 		/// With no args, returns empty string. With one arg, returns arg.ToString(). If

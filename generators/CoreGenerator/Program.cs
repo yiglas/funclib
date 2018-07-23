@@ -53,6 +53,7 @@ namespace CoreGenerator
                 {
                     if (!FilterClasses(n)) return a;
 
+                    var modifier = GetModifier(n.Modifiers);
                     var className = n.Identifier.Text;
                     var fullName = GetFullyQualifiedName(n);
                     var comments = GetComments(n);
@@ -63,7 +64,7 @@ namespace CoreGenerator
                     if (comments != null)
                         comments.ForEach(x => a.Add(x));
 
-                    a.Add($"public static {fullName} {className} => {privateName} ?? ({privateName} = new {fullName}());");
+                    a.Add($"{modifier} static {fullName} {className} => {privateName} ?? ({privateName} = new {fullName}());");
                     return a;
                 }));
 
@@ -251,6 +252,7 @@ namespace CoreGenerator
                 case "DoTimes":
                 case "Function":
                 case "FunctionParams":
+                case "ATransducerFunction":
                     return false;
             }
 
