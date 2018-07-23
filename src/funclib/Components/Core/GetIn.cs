@@ -44,7 +44,7 @@ namespace funclib.Components.Core
             if ((bool)new Truthy().Invoke(ks))
             {
                 m = get(m, ks.First(), sentinel);
-                if ((bool)new IsIdentical().Invoke(m, sentinel))
+                if ((bool)isIdentical(m, sentinel))
                     return notFound;
 
                 return loop(sentinel, m, ks.Next(), notFound);

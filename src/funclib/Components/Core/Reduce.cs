@@ -187,7 +187,7 @@ namespace funclib.Components.Core
                 var seq = (ISeq)new Seq().Invoke(c);
                 if ((bool)new Truthy().Invoke(seq))
                 {
-                    if ((bool)new IsIdentical().Invoke(@class(seq), cls))
+                    if ((bool)isIdentical(@class(seq), cls))
                     {
                         var ret = f.Invoke(v, seq.First());
                         if (ret is Reduced r)
