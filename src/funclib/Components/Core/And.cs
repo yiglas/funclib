@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -54,7 +55,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object x, params object[] next)
         {
-            if ((bool)new Truthy().Invoke(x) && (next?.Length ?? 0) > 0)
+            if ((bool)truthy(x) && (next?.Length ?? 0) > 0)
                 return Invoke(next[0], next.Skip(1).ToArray());
             
             return x;

@@ -56,7 +56,7 @@ namespace funclib.Components.Core
             if ((bool)Invoke(x, y))
             {
                 var n = next(more);
-                if ((bool)new Truthy().Invoke(n))
+                if ((bool)truthy(n))
                     return Invoke(y, first(more), (object[])toArray(n));
 
                 return Invoke(y, first(more));

@@ -38,7 +38,7 @@ namespace funclib.Components.Core
             return lazySeq(() =>
             {
                 var s = seq(coll);
-                if ((bool)new Truthy().Invoke(s))
+                if ((bool)truthy(s))
                 {
                     if ((bool)isChunkedSeq(s))
                     {
@@ -80,7 +80,7 @@ namespace funclib.Components.Core
             {
                 var s1 = seq(c1);
                 var s2 = seq(c2);
-                if ((bool)new Truthy().Invoke(and(s1, s2)))
+                if ((bool)truthy(and(s1, s2)))
                 {
                     return cons(fn.Invoke(first(s1), first(s2)), Invoke(f, rest(s1), rest(s2)));
                 }
@@ -112,7 +112,7 @@ namespace funclib.Components.Core
                 var s1 = seq(c1);
                 var s2 = seq(c2);
                 var s3 = seq(c3);
-                if ((bool)new Truthy().Invoke(and(s1, s2, s3)))
+                if ((bool)truthy(and(s1, s2, s3)))
                 {
                     return cons(fn.Invoke(first(s1), first(s2), first(s1)), Invoke(f, rest(s1), rest(s2), rest(s3)));
                 }

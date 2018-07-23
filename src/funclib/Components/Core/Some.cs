@@ -26,7 +26,7 @@ namespace funclib.Components.Core
         {
             var fn = (IFunction<object, object>)pred;
             var s = (ISeq)seq(coll);
-            if ((bool)new Truthy().Invoke(s))
+            if ((bool)truthy(s))
             {
                 return or(
                     fn.Invoke(s.First()),

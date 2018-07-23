@@ -21,7 +21,7 @@ namespace funclib.Components.Core
         public object Invoke(object coll, object n)
         {
             var xs = seq(coll);
-            if ((bool)new Truthy().Invoke(and(xs, isPos(n))))
+            if ((bool)truthy(and(xs, isPos(n))))
                 return Invoke(next(xs), dec(n));
 
             return xs;

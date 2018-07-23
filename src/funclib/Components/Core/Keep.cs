@@ -28,7 +28,7 @@ namespace funclib.Components.Core
             lazySeq(() =>
             {
                 var s = (ISeq)seq(coll);
-                if ((bool)new Truthy().Invoke(s))
+                if ((bool)truthy(s))
                 {
                     if ((bool)isChunkedSeq(s))
                     {

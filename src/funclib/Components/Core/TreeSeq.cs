@@ -37,7 +37,7 @@ namespace funclib.Components.Core
             public object Invoke(object node) =>
                 lazySeq(() => 
                     cons(node,
-                        (bool)new Truthy().Invoke(this._branch.Invoke(node))
+                        (bool)truthy(this._branch.Invoke(node))
                             ? mapCat(this, this._children.Invoke(node))
                             : null));
         }

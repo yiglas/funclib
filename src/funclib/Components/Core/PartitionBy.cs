@@ -28,7 +28,7 @@ namespace funclib.Components.Core
             {
                 var fn = ((IFunction<object, object>)f);
                 var s = (ISeq)seq(coll);
-                if ((bool)new Truthy().Invoke(s))
+                if ((bool)truthy(s))
                 {
                     var fst = s.First();
                     var fv = fn.Invoke(fst);
@@ -71,7 +71,7 @@ namespace funclib.Components.Core
                 var pval = this._pv.Deref();
                 var val = ((IFunction<object, object>)this._f).Invoke(input);
                 new VResetǃ().Invoke(this._pv, val);
-                if ((bool)new Truthy().Invoke(or(isIdentical(pval, "::none"), isEqualTo(val, pval))))
+                if ((bool)truthy(or(isIdentical(pval, "::none"), isEqualTo(val, pval))))
                 {
                     this._a.Add(input);
                     return result;

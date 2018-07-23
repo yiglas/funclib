@@ -35,7 +35,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object comp, object coll)
         {
-            if ((bool)new Truthy().Invoke(seq(coll)))
+            if ((bool)truthy(seq(coll)))
             {
                 var a = (object[])toArray(coll);
                 Array.Sort(a, new FunctionComparer(comp));

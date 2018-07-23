@@ -41,7 +41,7 @@ namespace funclib.Components.Core
             {
                 var f = first(xs);
                 var s = seq(xs);
-                if ((bool)new Truthy().Invoke(s))
+                if ((bool)truthy(s))
                 {
                     if ((bool)contains(seen, f))
                     {

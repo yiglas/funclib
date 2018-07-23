@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -42,7 +43,7 @@ namespace funclib.Components.Core
         {
             var ret = ((ITransientAssociative)coll).Assoc(key, val);
 
-            if ((bool)new Truthy().Invoke(kvs))
+            if ((bool)truthy(kvs))
             {
                 if (kvs.Length == 2)
                     return Invoke(ret, kvs[0], kvs[1]);

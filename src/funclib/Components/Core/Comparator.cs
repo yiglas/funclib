@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -26,9 +27,9 @@ namespace funclib.Components.Core
 
             return new Function<object, object, object>((x, y) =>
             {
-                if ((bool)new Truthy().Invoke(p.Invoke(x, y)))
+                if ((bool)truthy(p.Invoke(x, y)))
                     return -1;
-                else if ((bool)new Truthy().Invoke(p.Invoke(y, x)))
+                else if ((bool)truthy(p.Invoke(y, x)))
                     return 1;
                 else
                     return 0;

@@ -40,7 +40,7 @@ namespace funclib.Components.Core
             #region Overrides
             public override object Invoke(object result, object input)
             {
-                if ((bool)new Truthy().Invoke(this._started.Deref()))
+                if ((bool)truthy(this._started.Deref()))
                 {
                     var sepr = ((IFunction<object, object, object>)this._rf).Invoke(result, this._sep);
                     if ((bool)isReduced(sepr))

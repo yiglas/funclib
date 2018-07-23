@@ -54,7 +54,7 @@ namespace funclib.Components.Core
             lazySeq(() =>
             {
                 var s = seq(coll);
-                if ((bool)new Truthy().Invoke(s))
+                if ((bool)truthy(s))
                 {
                     var p = doAll(take(n, s));
                     if (n.Equals(count(p)))
@@ -84,7 +84,7 @@ namespace funclib.Components.Core
             lazySeq(() =>
             {
                 var s = seq(coll);
-                if ((bool)new Truthy().Invoke(s))
+                if ((bool)truthy(s))
                 {
                     var p = doAll(take(n, s));
                     if (n.Equals(count(p)))

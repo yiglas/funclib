@@ -40,7 +40,7 @@ namespace funclib.Components.Core
             lazySeq(() =>
             {
                 var s = seq(coll);
-                if ((bool)new Truthy().Invoke(s))
+                if ((bool)truthy(s))
                 {
                     var seq = doAll(take(n, s));
                     return cons(seq, Invoke(n, step, nthRest(s, step)));

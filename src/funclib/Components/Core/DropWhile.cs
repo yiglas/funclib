@@ -30,7 +30,7 @@ namespace funclib.Components.Core
             object step(IFunction<object, object> p, object c)
             {
                 var s = (ISeq)seq(c);
-                if ((bool)new Truthy().Invoke(and(s, p.Invoke(s?.First()))))
+                if ((bool)truthy(and(s, p.Invoke(s?.First()))))
                     return step(p, rest(s));
 
                 return s;
@@ -55,7 +55,7 @@ namespace funclib.Components.Core
             public override object Invoke(object result, object input)
             {
                 var drop = this._dv.Deref();
-                if ((bool)new Truthy().Invoke(and(drop, ((IFunction<object, object>)this._pred).Invoke(input))))
+                if ((bool)truthy(and(drop, ((IFunction<object, object>)this._pred).Invoke(input))))
                 {
                     return result;
                 }

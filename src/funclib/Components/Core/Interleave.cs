@@ -42,7 +42,7 @@ namespace funclib.Components.Core
             {
                 var s1 = seq(c1);
                 var s2 = seq(c2);
-                if ((bool)new Truthy().Invoke(and(s1, s2)))
+                if ((bool)truthy(and(s1, s2)))
                 {
                     return cons(first(s1), cons(first(s2), Invoke(rest(s1), rest(s2))));
                 }

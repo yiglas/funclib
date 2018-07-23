@@ -44,7 +44,7 @@ namespace funclib.Components.Core
             Invoke(x);
             Variables.Out.Write(' ');
             var nmore = next(more);
-            if ((bool)new Truthy().Invoke(nmore))
+            if ((bool)truthy(nmore))
                 return Invoke(first(more), nmore);
 
             return apply(this, more);
@@ -92,7 +92,7 @@ namespace funclib.Components.Core
         string FPStr(object x)
         {
             var s = (string)str(x);
-            if ((bool)new Truthy().Invoke(or(s.Contains("."), s.Contains("E"))))
+            if ((bool)truthy(or(s.Contains("."), s.Contains("E"))))
                 return s;
 
             return $"{s}.0";

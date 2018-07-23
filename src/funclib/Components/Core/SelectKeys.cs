@@ -25,10 +25,10 @@ namespace funclib.Components.Core
 
             object loop(object ret, ISeq keys)
             {
-                if ((bool)new Truthy().Invoke(keys))
+                if ((bool)truthy(keys))
                 {
                     var entry = find(map, keys.First());
-                    return loop((bool)new Truthy().Invoke(entry) ? conj(ret, entry) : ret, keys.Next());
+                    return loop((bool)truthy(entry) ? conj(ret, entry) : ret, keys.Next());
                 }
 
                 return ret;

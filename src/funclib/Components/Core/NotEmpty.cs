@@ -18,7 +18,7 @@ namespace funclib.Components.Core
         /// Returns <see cref="null"/> if coll is empty, otherwise coll
         /// </returns>
         public object Invoke(object coll) =>
-            (bool)new Truthy().Invoke(seq(coll))
+            (bool)truthy(seq(coll))
                 ? coll
                 : null;
     }

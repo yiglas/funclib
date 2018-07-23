@@ -25,7 +25,7 @@ namespace funclib.Components.Core
 
             object loop(object map, ISeq ks, ISeq vs)
             {
-                if ((bool)new Truthy().Invoke(and(ks, vs)))
+                if ((bool)truthy(and(ks, vs)))
                 {
                     return loop(assoc(map, ks.First(), vs.First()), ks.Next(), vs.Next());
                 }

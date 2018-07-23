@@ -12,7 +12,7 @@ namespace funclib.Components.Core
         public object Invoke(object f, object coll)
         {
             var s = (ISeq)seq(coll);
-            if ((bool)new Truthy().Invoke(s))
+            if ((bool)truthy(s))
                 return Invoke(f, s.First(), s.Next());
             else
                 return ((IFunction<object>)f).Invoke();
@@ -21,7 +21,7 @@ namespace funclib.Components.Core
         {
             var s = (ISeq)seq(coll);
 
-            if ((bool)new Truthy().Invoke(s))
+            if ((bool)truthy(s))
             {
                 if ((bool)isChunkedSeq(s))
                     return Invoke(f, ((IChunked)chunkFirst(s)).Reduce((IFunction<object, object, object>)f, val), chunkNext(s));

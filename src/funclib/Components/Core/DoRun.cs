@@ -27,7 +27,7 @@ namespace funclib.Components.Core
         public object Invoke(object coll)
         {
             var s = seq(coll);
-            if ((bool)new Truthy().Invoke(s))
+            if ((bool)truthy(s))
             {
                 return Invoke(next(s));
             }
@@ -47,7 +47,7 @@ namespace funclib.Components.Core
         public object Invoke(object n, object coll)
         {
             var s = seq(coll);   
-            if ((bool)new Truthy().Invoke(and(s, isPos(n))))
+            if ((bool)truthy(and(s, isPos(n))))
             {
                 return Invoke(dec(n), next(s));
             }

@@ -44,7 +44,7 @@ namespace funclib.Components.Core
             lazySeq(() =>
             {
                 var s = seq(x);
-                if ((bool)new Truthy().Invoke(s))
+                if ((bool)truthy(s))
                 {
                     if ((bool)isChunkedSeq(s))
                         return chunkCons(chunkFirst(s), Invoke(chunkRest(s), y));
@@ -71,14 +71,14 @@ namespace funclib.Components.Core
                 lazySeq(() =>
                 {
                     xys = seq(xys);
-                    if ((bool)new Truthy().Invoke(xys))
+                    if ((bool)truthy(xys))
                     {
                         if ((bool)isChunkedSeq(xys))
                             return chunkCons(chunkFirst(xys), cat(chunkRest(xys), zss));
                         else
                             return cons(first(xys), cat(rest(xys), zss));
                     }
-                    else if ((bool)new Truthy().Invoke(zss))
+                    else if ((bool)truthy(zss))
                     {
                         return cat(first(zss), next(zss));
                     }

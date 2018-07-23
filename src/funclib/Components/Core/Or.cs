@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -54,7 +55,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object x, params object[] next)
         {
-            if ((bool)new Truthy().Invoke(x))
+            if ((bool)truthy(x))
                 return x;
 
             if ((next?.Length ?? 0) <= 0)

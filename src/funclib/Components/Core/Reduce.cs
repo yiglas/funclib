@@ -77,7 +77,7 @@ namespace funclib.Components.Core
         object SeqReduce(object coll, object f)
         {
             var s = (ISeq)seq(coll);
-            if ((bool)new Truthy().Invoke(s))
+            if ((bool)truthy(s))
             {
                 var fn = (IFunction<object, object, object>)f;
                 return InternalReduce(s.Next(), fn, s.First());
@@ -143,7 +143,7 @@ namespace funclib.Components.Core
         object IChunkedSeqReduce(object s, IFunction<object, object, object> f, object val)
         {
             s = seq(s);
-            if ((bool)new Truthy().Invoke(s))
+            if ((bool)truthy(s))
             {
                 if ((bool)isChunkedSeq(s))
                 {
@@ -185,7 +185,7 @@ namespace funclib.Components.Core
             object loop(Type cls, object c, object v)
             {
                 var sq = (ISeq)seq(c);
-                if ((bool)new Truthy().Invoke(sq))
+                if ((bool)truthy(sq))
                 {
                     if ((bool)isIdentical(@class(sq), cls))
                     {
@@ -216,7 +216,7 @@ namespace funclib.Components.Core
             object loop(object s, object v)
             {
                 var sq = (ISeq)seq(s);
-                if ((bool)new Truthy().Invoke(sq))
+                if ((bool)truthy(sq))
                 {
                     var ret = f.Invoke(v, sq.First());
                     if (ret is Reduced r)

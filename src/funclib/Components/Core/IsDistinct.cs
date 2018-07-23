@@ -50,7 +50,7 @@ namespace funclib.Components.Core
                 var f = first(xs);
                 var etc = seq(rest(xs));
 
-                if ((bool)new Truthy().Invoke(xs))
+                if ((bool)truthy(xs))
                 {
                     if ((bool)contains(s, f))
                         return false;

@@ -29,7 +29,7 @@ namespace funclib.Components.Core
 
             object loop(ISeq s, ISeq lead)
             {
-                if ((bool)new Truthy().Invoke(lead))
+                if ((bool)truthy(lead))
                     return loop(s.Next(), lead.Next());
 
                 return s;

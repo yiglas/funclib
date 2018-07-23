@@ -26,7 +26,7 @@ namespace funclib.Components.Core
                 var fn = (IFunction<object, object>)pred;
 
                 var s = seq(coll);
-                if ((bool)new Truthy().Invoke(s))
+                if ((bool)truthy(s))
                 {
                     if ((bool)isChunkedSeq(s))
                     {
@@ -37,7 +37,7 @@ namespace funclib.Components.Core
                         doTimes(size, i =>
                         {
                             var v = nth(c, i);
-                            if ((bool)new Truthy().Invoke(fn.Invoke(v)))
+                            if ((bool)truthy(fn.Invoke(v)))
                             {
                                 return chunkAppend(b, v);
                             }
@@ -51,7 +51,7 @@ namespace funclib.Components.Core
                         var f = first(s);
                         var r = rest(s);
 
-                        if ((bool)new Truthy().Invoke(fn.Invoke(f)))
+                        if ((bool)truthy(fn.Invoke(f)))
                         {
                             return cons(f, Invoke(pred, r));
                         }
@@ -79,7 +79,7 @@ namespace funclib.Components.Core
 
             #region Overrides
             public override object Invoke(object result, object input) =>
-                (bool)new Truthy().Invoke(this._pred.Invoke(input))
+                (bool)truthy(this._pred.Invoke(input))
                     ? ((IFunction<object, object, object>)this._rf).Invoke(result, input)
                     : result;
             #endregion

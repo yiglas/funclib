@@ -29,7 +29,7 @@ namespace funclib.Components.Core
             #region Overrides
             public override object Invoke(object result)
             {
-                if ((bool)new Truthy().Invoke(and(isMap(result), contains(result, "::halt"))))
+                if ((bool)truthy(and(isMap(result), contains(result, "::halt"))))
                 {
                     return get(result, "::halt");
                 }
@@ -38,9 +38,9 @@ namespace funclib.Components.Core
             }
             public override object Invoke(object result, object input)
             {
-                if ((bool)new Truthy().Invoke(this._pred.Invoke(input)))
+                if ((bool)truthy(this._pred.Invoke(input)))
                 {
-                    var haltVal = (bool)new Truthy().Invoke(this._retf) ? this._retf.Invoke(((IFunction<object, object>)this._rf).Invoke(result), input) : input;
+                    var haltVal = (bool)truthy(this._retf) ? this._retf.Invoke(((IFunction<object, object>)this._rf).Invoke(result), input) : input;
                     return reduced(hashMap("::halt", haltVal));
                 }
 

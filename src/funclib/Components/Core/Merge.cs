@@ -26,7 +26,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(params object[] maps)
         {
-            if ((bool)new Truthy().Invoke(some(new Identity(), maps)))
+            if ((bool)truthy(some(new Identity(), maps)))
             {
                 return reduce1(new Function<object, object, object>((_1, _2) => conj(or(_1, hashMap()), _2)), maps);
             }

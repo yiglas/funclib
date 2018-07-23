@@ -30,7 +30,7 @@ namespace funclib.Components.Core
             var k = first(ks);
             ks = next(ks);
 
-            if ((bool)new Truthy().Invoke(ks))
+            if ((bool)truthy(ks))
                 return assoc(m, k, Invoke(get(m, k), ks, v));
 
             return assoc(m, k, v);
