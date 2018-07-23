@@ -52,10 +52,10 @@ namespace funclib.Components.Core
                     var x = ((IFunction<object, object>)f).Invoke(s.First());
                     if ((bool)isNull(x))
                     {
-                        return Invoke(f, new Rest().Invoke(s));
+                        return Invoke(f, rest(s));
                     }
 
-                    return cons(x, Invoke(f, new Rest().Invoke(s)));
+                    return cons(x, Invoke(f, rest(s)));
                 }
 
                 return null;

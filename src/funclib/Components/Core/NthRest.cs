@@ -27,7 +27,7 @@ namespace funclib.Components.Core
                 var holder = and(isPos(i), new Seq().Invoke(xs));
 
                 if ((bool)new Truthy().Invoke(holder))
-                    return loop(dec(i), new Rest().Invoke(holder));
+                    return loop(dec(i), rest(holder));
 
                 return xs;
             }

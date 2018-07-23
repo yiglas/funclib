@@ -29,7 +29,7 @@ namespace funclib.Components.Core
                 var s = (ISeq)new Seq().Invoke(coll);
                 if ((bool)new Truthy().Invoke(s))
                 {
-                    return Invoke(f, s.First(), new Rest().Invoke(s));
+                    return Invoke(f, s.First(), rest(s));
                 }
 
                 return list(((IFunction<object>)f).Invoke());
@@ -55,7 +55,7 @@ namespace funclib.Components.Core
             {
                 var s = (ISeq)new Seq().Invoke(coll);
                 if ((bool)new Truthy().Invoke(s))
-                    return Invoke(f, ((IFunction<object, object, object>)f).Invoke(init, s.First()), new Rest().Invoke(s));
+                    return Invoke(f, ((IFunction<object, object, object>)f).Invoke(init, s.First()), rest(s));
 
                 return null;
             }));

@@ -31,7 +31,7 @@ namespace funclib.Components.Core
             {
                 var s = (ISeq)new Seq().Invoke(c);
                 if ((bool)new Truthy().Invoke(and(s, p.Invoke(s?.First()))))
-                    return step(p, new Rest().Invoke(s));
+                    return step(p, rest(s));
 
                 return s;
             }

@@ -45,10 +45,10 @@ namespace funclib.Components.Core
                 {
                     if ((bool)contains(seen, f))
                     {
-                        return Invoke(new Rest().Invoke(s), seen);
+                        return Invoke(rest(s), seen);
                     }
 
-                    return cons(f, Invoke(new Rest().Invoke(s), conj(seen, f)));
+                    return cons(f, Invoke(rest(s), conj(seen, f)));
                 }
 
                 return null;

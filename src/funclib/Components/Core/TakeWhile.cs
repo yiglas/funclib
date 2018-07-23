@@ -35,7 +35,7 @@ namespace funclib.Components.Core
                 {
                     var result = ((IFunction<object, object>)pred).Invoke(s.First());
                     if ((bool)new Truthy().Invoke(result))
-                        return cons(s.First(), Invoke(pred, new Rest().Invoke(s)));
+                        return cons(s.First(), Invoke(pred, rest(s)));
                 }
                 return null;
             });

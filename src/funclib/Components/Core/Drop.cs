@@ -28,7 +28,7 @@ namespace funclib.Components.Core
             var s = new Seq().Invoke(coll);
             if ((bool)new Truthy().Invoke(and(isPos(n), s)))
             {
-                return step(dec(n), new Rest().Invoke(s));
+                return step(dec(n), rest(s));
             }
             return s;
         }

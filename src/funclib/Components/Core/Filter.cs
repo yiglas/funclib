@@ -49,7 +49,7 @@ namespace funclib.Components.Core
                     else
                     {
                         var f = first(s);
-                        var r = new Rest().Invoke(s);
+                        var r = rest(s);
 
                         if ((bool)new Truthy().Invoke(fn.Invoke(f)))
                         {
