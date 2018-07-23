@@ -29,7 +29,7 @@ namespace funclib.Components.Core
             #region Overrides
             public override object Invoke(object result)
             {
-                if ((bool)new Truthy().Invoke(and(new IsMap().Invoke(result), contains(result, "::halt"))))
+                if ((bool)new Truthy().Invoke(and(isMap(result), contains(result, "::halt"))))
                 {
                     return get(result, "::halt");
                 }
