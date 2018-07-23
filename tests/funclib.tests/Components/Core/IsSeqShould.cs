@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void IsSeq_should_return_true_if_ISeq()
         {
             Assert.IsTrue((bool)isSeq(new Seq().Invoke(new Vector().Invoke(1))));
-            Assert.IsTrue((bool)isSeq(new funclib.Components.Core.List().Invoke(1, 2, 3)));
+            Assert.IsTrue((bool)isSeq(list(1, 2, 3)));
             Assert.IsTrue((bool)isSeq(new Seq().Invoke(new Range().Invoke(1, 5))));
         }
 

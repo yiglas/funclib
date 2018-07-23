@@ -11,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Interleave_should_combine_two_lists()
         {
-            var expected = new funclib.Components.Core.List().Invoke(":a", 1, ":b", 2, ":c", 3);
+            var expected = list(":a", 1, ":b", 2, ":c", 3);
             var actual = interleave(new Vector().Invoke(":a", ":b", ":c"), new Vector().Invoke(1, 2, 3));
 
             Assert.AreEqual(expected, actual);
@@ -20,7 +20,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Interleave_should_work_with_a_repeated_collection()
         {
-            var expected = new funclib.Components.Core.List().Invoke("a", 1, "a", 2, "a", 3);
+            var expected = list("a", 1, "a", 2, "a", 3);
             var actual = interleave(new Repeat().Invoke("a"), new Vector().Invoke(1, 2, 3));
 
             Assert.AreEqual(expected, actual);
@@ -29,7 +29,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Interleave_should_work_with_apply()
         {
-            var expected = new funclib.Components.Core.List().Invoke(0.1, 0, 0.2, 1, 0.3, 2);
+            var expected = list(0.1, 0, 0.2, 1, 0.3, 2);
             var actual = apply(new Interleave(), new object[] { new Vector().Invoke(0.1, 0.2, 0.3), new Range().Invoke() });
 
             Assert.AreEqual(expected, actual);
@@ -55,7 +55,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Interleave_should_return_a_repeating_collection_with_more_than_two_collections()
         {
-            var expected = new funclib.Components.Core.List().Invoke('A', ' ', 'a', 'B', ' ', 'b', 'C', ' ', 'c');
+            var expected = list('A', ' ', 'a', 'B', ' ', 'b', 'C', ' ', 'c');
             var actual = new ToArray().Invoke(interleave(new Vector().Invoke('A', 'B', 'C'), new Repeat().Invoke(3, ' '), new Vector().Invoke('a', 'b', 'c')));
 
             Assert.AreEqual(expected, actual);

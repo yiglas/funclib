@@ -31,7 +31,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Conj_should_return_new_list_if_null_passed_as_the_collection()
         {
-            var expected = new funclib.Components.Core.List().Invoke(1);
+            var expected = list(1);
             var actual = conj(null, 1);
 
             Assert.AreEqual(expected, actual);
@@ -60,8 +60,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Conj_should_add_all_objects_passed()
         {
-            var expected = new funclib.Components.Core.List().Invoke(5, 4, 3, 1, 2);
-            var actual = conj(new funclib.Components.Core.List().Invoke(1, 2), 3, 4, 5);
+            var expected = list(5, 4, 3, 1, 2);
+            var actual = conj(list(1, 2), 3, 4, 5);
 
             Assert.AreEqual(expected, actual);
             Assert.IsInstanceOf<funclib.Collections.List>(actual);

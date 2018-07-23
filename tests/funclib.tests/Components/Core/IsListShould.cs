@@ -11,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsList_should_return_true_if_an_object_is_IList()
         {
-            Assert.IsTrue((bool)isList(new funclib.Components.Core.List().Invoke()));
+            Assert.IsTrue((bool)isList(list()));
         }
 
         [Test]

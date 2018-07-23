@@ -90,7 +90,7 @@ namespace funclib.Components.Core
                     if (n.Equals(count(p)))
                         return cons(p, Invoke(n, step, pad, new NthRest().Invoke(s, step)));
 
-                    return new List().Invoke(new Take().Invoke(n, concat(p, pad)));
+                    return list(new Take().Invoke(n, concat(p, pad)));
                 }
                 return null;
             });

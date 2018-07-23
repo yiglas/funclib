@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void NotEmpty_should_return_null_for_empty_collections()
         {
             Assert.IsNull(new NotEmpty().Invoke(new Vector().Invoke()));
-            Assert.IsNull(new NotEmpty().Invoke(new funclib.Components.Core.List().Invoke()));
+            Assert.IsNull(new NotEmpty().Invoke(list()));
             Assert.IsNull(new NotEmpty().Invoke(hashMap()));
             Assert.IsNull(new NotEmpty().Invoke(null));
         }

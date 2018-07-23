@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -10,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void NthNext_should_return_the_items_after_passed_number()
         {
-            var expected = new funclib.Components.Core.List().Invoke(3, 4, 5, 6, 7, 8, 9);
+            var expected = list(3, 4, 5, 6, 7, 8, 9);
             var actual = new NthNext().Invoke(new Range().Invoke(10), 3);
 
             Assert.AreEqual(expected, actual);

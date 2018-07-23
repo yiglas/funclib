@@ -19,7 +19,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Filter_should_filter_range_of_values()
         {
-            var expected = new funclib.Components.Core.List().Invoke(0, 2, 4, 6, 8);
+            var expected = list(0, 2, 4, 6, 8);
             var actual = new ToArray().Invoke(filter(new IsEven(), new Range().Invoke(10)));
 
             Assert.AreEqual(expected, actual);
@@ -28,7 +28,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Filter_should_filter_a_string()
         {
-            var expected = new funclib.Components.Core.List().Invoke('d', 'e', 'v', 'i', 'n');
+            var expected = list('d', 'e', 'v', 'i', 'n');
             var actual = new ToArray().Invoke(filter(new Function<object, object>(x => !string.IsNullOrWhiteSpace(x.ToString())), "d e v i n"));
 
             Assert.AreEqual(expected, actual);

@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -10,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void TakeLast_should_return_last_number()
         {
-            var expected = new funclib.Components.Core.List().Invoke(3, 4);
+            var expected = list(3, 4);
             var actual = new TakeLast().Invoke(2, new Vector().Invoke(1, 2, 3, 4));
 
             Assert.AreEqual(expected, actual);
@@ -19,7 +20,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void TakeLast_should_return_complete_list_if_number_is_greater_than_list()
         {
-            var expected = new funclib.Components.Core.List().Invoke(4);
+            var expected = list(4);
             var actual = new TakeLast().Invoke(2, new Vector().Invoke(4));
 
             Assert.AreEqual(expected, actual);

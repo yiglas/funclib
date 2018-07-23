@@ -40,7 +40,7 @@ namespace funclib.Tests.Components.Core
         public void Peek_should_return_the_first_element_of_a_list()
         {
             var expected = 1;
-            var actual = new Peek().Invoke(new funclib.Components.Core.List().Invoke(1, 2, 3));
+            var actual = new Peek().Invoke(list(1, 2, 3));
 
             Assert.AreEqual(expected, actual);
         }
@@ -60,7 +60,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Peek_should_return_null_if_empty_list()
         {
-            Assert.IsNull(new Peek().Invoke(new funclib.Components.Core.List().Invoke()));
+            Assert.IsNull(new Peek().Invoke(list()));
         }
     }
 }

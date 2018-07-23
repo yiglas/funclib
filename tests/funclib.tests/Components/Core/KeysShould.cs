@@ -11,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Keys_should_return_only_the_keys_of_a_map()
         {
-            var expected = new funclib.Components.Core.List().Invoke(":keys", ":some");
+            var expected = list(":keys", ":some");
             var actual = keys(arrayMap(":keys", "and", ":some", "values"));
 
             Assert.AreEqual(expected, actual);

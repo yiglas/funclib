@@ -11,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void DropWhile_should_return_a_list_with_item_after_first_false()
         {
-            var expected = new funclib.Components.Core.List().Invoke(1, 2, 4, -5, -6, 0, 1);
+            var expected = list(1, 2, 4, -5, -6, 0, 1);
             var actual = new ToArray().Invoke(dropWhile(new IsNeg(), new Vector().Invoke(-1, -2, -6, -7, 1, 2, 4, -5, -6, 0, 1)));
 
             Assert.AreEqual(expected, actual);
@@ -20,7 +20,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void DropWhile_should_return_empty_list_if_pred_always_returns_false()
         {
-            var expected = new funclib.Components.Core.List().Invoke();
+            var expected = list();
             var actual = new ToArray().Invoke(dropWhile(new Partial().Invoke(new IsGreaterThan(), 10), new Vector().Invoke(1, 2, 3, 2, 1)));
 
             Assert.AreEqual(expected, actual);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -40,7 +41,7 @@ namespace funclib.Components.Core
                 Array.Sort(a, new FunctionComparer(comp));
                 return new Seq().Invoke(a);
             }
-            return new List().Invoke();
+            return list();
         }
             
     }

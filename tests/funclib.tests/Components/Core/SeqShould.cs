@@ -13,7 +13,7 @@ namespace funclib.Tests.Components.Core
         {
             Assert.IsNull(new Seq().Invoke(new Vector().Invoke()));
             Assert.IsNull(new Seq().Invoke(hashSet()));
-            Assert.IsNull(new Seq().Invoke(new funclib.Components.Core.List().Invoke()));
+            Assert.IsNull(new Seq().Invoke(list()));
         }
 
         [Test]

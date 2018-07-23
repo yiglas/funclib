@@ -103,7 +103,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns the results of calling f.
             /// </returns>
-            public object Invoke(object x) => this._f.Invoke(Apply.ApplyTo(this._g, (ISeq)new List().Invoke(x)));
+            public object Invoke(object x) => this._f.Invoke(Apply.ApplyTo(this._g, (ISeq)list(x)));
             /// <summary>
             /// <summary>
             /// Invoke g with parameter x and y, then passing the results to f.
@@ -113,7 +113,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns the results of calling f.
             /// </returns>
-            public object Invoke(object x, object y) => this._f.Invoke(Apply.ApplyTo(this._g, (ISeq)new List().Invoke(x, y)));
+            public object Invoke(object x, object y) => this._f.Invoke(Apply.ApplyTo(this._g, (ISeq)list(x, y)));
             /// <summary>
             /// Invoke g with parameter x, y and z, then passing the results to f.
             /// </summary>
@@ -123,7 +123,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns the results of calling f.
             /// </returns>
-            public object Invoke(object x, object y, object z) => this._f.Invoke(Apply.ApplyTo(this._g, (ISeq)new List().Invoke(x, y, z)));
+            public object Invoke(object x, object y, object z) => this._f.Invoke(Apply.ApplyTo(this._g, (ISeq)list(x, y, z)));
             /// <summary>
             /// Invoke g with parameter x, y, z and args, then passing the results to f.
             /// </summary>

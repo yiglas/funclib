@@ -11,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void FFirst_should_return_null_if_empty_empty()
         {
-            var actual = ffirst(new funclib.Components.Core.List().Invoke(new Vector().Invoke()));
+            var actual = ffirst(list(new Vector().Invoke()));
 
             Assert.IsNull(actual);
         }
@@ -20,7 +20,7 @@ namespace funclib.Tests.Components.Core
         public void FFirst_should_return_the_first_items_first_item()
         {
             var expected = "a";
-            var actual = ffirst(new Vector().Invoke(new funclib.Components.Core.List().Invoke("a", "b", "c"), new funclib.Components.Core.List().Invoke("b", "c", "d")));
+            var actual = ffirst(new Vector().Invoke(list("a", "b", "c"), list("b", "c", "d")));
 
             Assert.AreEqual(expected, actual);
         }

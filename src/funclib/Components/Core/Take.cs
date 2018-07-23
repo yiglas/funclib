@@ -55,7 +55,7 @@ namespace funclib.Components.Core
                 var n = this._nv.Deref();
                 var nn = new VSwapǃ(this._nv, new Dec()).Invoke();
                 result = (bool)isPos(n) 
-                    ? Apply.ApplyTo((IFunction)this._rf, (ISeq)new List().Invoke(result, input))
+                    ? Apply.ApplyTo((IFunction)this._rf, (ISeq)list(result, input))
                     : result;
 
                 if ((bool)new Not().Invoke(isPos(nn)))

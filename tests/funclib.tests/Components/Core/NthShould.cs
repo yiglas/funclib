@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -51,7 +52,7 @@ namespace funclib.Tests.Components.Core
         public void Nth_should_find_item_in_list()
         {
             var expected = 2;
-            var actual = new Nth().Invoke(new funclib.Components.Core.List().Invoke(1, 2, 3, 4), 1);
+            var actual = new Nth().Invoke(list(1, 2, 3, 4), 1);
 
             Assert.AreEqual(expected, actual);
         }
@@ -59,14 +60,14 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Nth_should_throw_IndexOutOfRangeException_for_list()
         {
-            Assert.Throws<IndexOutOfRangeException>(() => new Nth().Invoke(new funclib.Components.Core.List().Invoke(1, 2, 3, 4), 10));
+            Assert.Throws<IndexOutOfRangeException>(() => new Nth().Invoke(list(1, 2, 3, 4), 10));
         }
 
         [Test]
         public void Nth_should_not_throw_IndexOutOfRangeException_when_notFound_value_is_passed()
         {
             var expected = -1;
-            var actual = new Nth().Invoke(new funclib.Components.Core.List().Invoke(1, 2, 3, 4), 10, -1);
+            var actual = new Nth().Invoke(list(1, 2, 3, 4), 10, -1);
 
             Assert.AreEqual(expected, actual);
         }

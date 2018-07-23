@@ -24,7 +24,7 @@ namespace funclib.Tests.Components.Core
         public void FNext_should_return_first_item_of_the_next_list()
         {
             var expected = new Vector().Invoke("b", "a", "c");
-            var actual = fnext(new funclib.Components.Core.List().Invoke(new Vector().Invoke("a", "b", "c"), new Vector().Invoke("b", "a", "c")));
+            var actual = fnext(list(new Vector().Invoke("a", "b", "c"), new Vector().Invoke("b", "a", "c")));
 
             Assert.AreEqual(expected, actual);
         }

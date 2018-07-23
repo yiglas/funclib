@@ -28,7 +28,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Vec_should_return_empty_vector_when_past_empty_list()
         {
-            var actual = new Vec().Invoke(new funclib.Components.Core.List().Invoke());
+            var actual = new Vec().Invoke(list());
 
             Assert.AreEqual(0, count(actual));
         }

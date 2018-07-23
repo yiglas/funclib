@@ -32,7 +32,7 @@ namespace funclib.Components.Core
                     return Invoke(f, s.First(), new Rest().Invoke(s));
                 }
 
-                return new List().Invoke(((IFunction<object>)f).Invoke());
+                return list(((IFunction<object>)f).Invoke());
             });
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace funclib.Components.Core
         public object Invoke(object f, object init, object coll)
         {
             if (init is Reduced r)
-                return new List().Invoke(r.Deref());
+                return list(r.Deref());
 
             return cons(init, lazySeq(() =>
             {
