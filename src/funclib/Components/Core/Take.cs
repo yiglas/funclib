@@ -26,7 +26,7 @@ namespace funclib.Components.Core
         /// if there are fewer than n.
         /// </returns>
         public object Invoke(object n, object coll) =>
-            new LazySeq(new Function<object>(() =>
+            lazySeq(new Function<object>(() =>
             {
                 if ((bool)isPos(n))
                 {

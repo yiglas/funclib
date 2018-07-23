@@ -51,7 +51,7 @@ namespace funclib.Components.Core
         /// padding elements, return a partition with  less than n items.
         /// </returns>
         public object Invoke(object n, object step, object coll) =>
-            new LazySeq(() =>
+            lazySeq(() =>
             {
                 var s = new Seq().Invoke(coll);
                 if ((bool)new Truthy().Invoke(s))
@@ -81,7 +81,7 @@ namespace funclib.Components.Core
         /// padding elements, return a partition with  less than n items.
         /// </returns>
         public object Invoke(object n, object step, object pad, object coll) =>
-            new LazySeq(() =>
+            lazySeq(() =>
             {
                 var s = new Seq().Invoke(coll);
                 if ((bool)new Truthy().Invoke(s))

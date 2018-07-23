@@ -25,7 +25,7 @@ namespace funclib.Components.Core
         /// Note: this means false return values will be included. F must be free of side-effects.
         /// </returns>
         public object Invoke(object f, object coll) =>
-            new LazySeq(() =>
+            lazySeq(() =>
             {
                 var s = (ISeq)new Seq().Invoke(coll);
                 if ((bool)new Truthy().Invoke(s))

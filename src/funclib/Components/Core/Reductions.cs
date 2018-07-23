@@ -24,7 +24,7 @@ namespace funclib.Components.Core
         /// (as per reduce) of coll by f, starting with init.
         /// </returns>
         public object Invoke(object f, object coll) =>
-            new LazySeq(() =>
+            lazySeq(() =>
             {
                 var s = (ISeq)new Seq().Invoke(coll);
                 if ((bool)new Truthy().Invoke(s))
@@ -51,7 +51,7 @@ namespace funclib.Components.Core
             if (init is Reduced r)
                 return new List().Invoke(r.Deref());
 
-            return cons(init, new LazySeq(() =>
+            return cons(init, lazySeq(() =>
             {
                 var s = (ISeq)new Seq().Invoke(coll);
                 if ((bool)new Truthy().Invoke(s))

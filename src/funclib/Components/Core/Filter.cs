@@ -21,7 +21,7 @@ namespace funclib.Components.Core
         /// Returns a <see cref="LazySeq"/> of items in coll for which predicate returns a logical true.
         /// </returns>
         public object Invoke(object pred, object coll) =>
-            new LazySeq(() =>
+            lazySeq(() =>
             {
                 var fn = (IFunction<object, object>)pred;
 

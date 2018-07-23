@@ -21,7 +21,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="LazySeq"/> of items without the first x items.
         /// </returns>
-        public object Invoke(object n, object coll) => new LazySeq(() => step(n, coll));
+        public object Invoke(object n, object coll) => lazySeq(() => step(n, coll));
 
         object step(object n, object coll)
         {

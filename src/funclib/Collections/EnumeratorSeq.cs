@@ -1,6 +1,7 @@
 ﻿using funclib.Components.Core;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Collections.Internal
 {
@@ -15,7 +16,7 @@ namespace funclib.Collections.Internal
         }
 
         #region Creates
-        public static ISeq Create(System.Collections.IEnumerator enumerator) => !enumerator.MoveNext() ? null : new LazySeq(new EnumeratorSeq(enumerator)); 
+        public static ISeq Create(System.Collections.IEnumerator enumerator) => !enumerator.MoveNext() ? null : lazySeq(new EnumeratorSeq(enumerator)); 
         #endregion
 
         #region Functions

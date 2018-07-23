@@ -25,7 +25,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object pred, object coll)
         {
-            return new LazySeq(() => step((IFunction<object, object>)pred, coll));
+            return lazySeq(() => step((IFunction<object, object>)pred, coll));
 
             object step(IFunction<object, object> p, object c)
             {

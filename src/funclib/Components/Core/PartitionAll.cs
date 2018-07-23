@@ -37,7 +37,7 @@ namespace funclib.Components.Core
         /// partitions with fewer then n items at the end.
         /// </returns>
         public object Invoke(object n, object step, object coll) =>
-            new LazySeq(() =>
+            lazySeq(() =>
             {
                 var s = new Seq().Invoke(coll);
                 if ((bool)new Truthy().Invoke(s))

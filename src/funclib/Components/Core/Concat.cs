@@ -21,7 +21,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="LazySeq"/>, when invoked returns null.
         /// </returns>
-        public object Invoke() => new LazySeq(new Function<object>(() => null));
+        public object Invoke() => lazySeq(new Function<object>(() => null));
         /// <summary>
         /// Returns a <see cref="LazySeq"/> representing the concatenation of the elements
         /// in the supplied colls.
@@ -30,7 +30,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returna a <see cref="LazySeq"/>, when invoked returns x.
         /// </returns>
-        public object Invoke(object x) => new LazySeq(new Function<object>(() => x));
+        public object Invoke(object x) => lazySeq(new Function<object>(() => x));
         /// <summary>
         /// Returns a <see cref="LazySeq"/> representing the concatenation of the elements
         /// in the supplied colls.
@@ -41,7 +41,7 @@ namespace funclib.Components.Core
         /// Returns a <see cref="LazySeq"/> that will concatenate y to x.
         /// </returns>
         public object Invoke(object x, object y) =>
-            new LazySeq(() =>
+            lazySeq(() =>
             {
                 var s = new Seq().Invoke(x);
                 if ((bool)new Truthy().Invoke(s))
@@ -68,7 +68,7 @@ namespace funclib.Components.Core
         {
             Func<object, object, object> cat = null;
             cat = (xys, zss) =>
-                new LazySeq(() =>
+                lazySeq(() =>
                 {
                     xys = new Seq().Invoke(xys);
                     if ((bool)new Truthy().Invoke(xys))

@@ -24,7 +24,7 @@ namespace funclib.Components.Core
         /// Returns a <see cref="LazySeq"/> of partitions.
         /// </returns>
         public object Invoke(object f, object coll) =>
-            new LazySeq(() =>
+            lazySeq(() =>
             {
                 var fn = ((IFunction<object, object>)f);
                 var s = (ISeq)new Seq().Invoke(coll);

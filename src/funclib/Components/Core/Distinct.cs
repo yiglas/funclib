@@ -30,7 +30,7 @@ namespace funclib.Components.Core
             return step(coll, hashSet());
 
             object step(object xs, object seen) =>
-                new LazySeq(() => new Function().Invoke(xs, seen));
+                lazySeq(() => new Function().Invoke(xs, seen));
         }
 
 

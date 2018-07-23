@@ -28,7 +28,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="LazySeq"/> of c1.
         /// </returns>
-        public object Invoke(object c1) => new LazySeq(c1);
+        public object Invoke(object c1) => lazySeq(c1);
         /// <summary>
         /// Returns a <see cref="LazySeq"/> of the first item in each coll, then the second, etc.
         /// </summary>
@@ -38,7 +38,7 @@ namespace funclib.Components.Core
         /// Returns a <see cref="LazySeq"/> of the first item in each coll, then the second, etc.
         /// </returns>
         public object Invoke(object c1, object c2) =>
-            new LazySeq(() =>
+            lazySeq(() =>
             {
                 var s1 = new Seq().Invoke(c1);
                 var s2 = new Seq().Invoke(c2);
@@ -59,7 +59,7 @@ namespace funclib.Components.Core
         /// Returns a <see cref="LazySeq"/> of the first item in each coll, then the second, etc.
         /// </returns>
         public object Invoke(object c1, object c2, params object[] colls) =>
-            new LazySeq(() =>
+            lazySeq(() =>
             {
                 var ss = new Map().Invoke(new Seq(), conj(new Seq().Invoke(colls), c2, c1));
                 if ((bool)isEvery(new Identity(), ss))

@@ -22,7 +22,7 @@ namespace funclib.Components.Core
         /// Returns a <see cref="LazySeq"/> of every nth item in coll.
         /// </returns>
         public object Invoke(object n, object coll) =>
-            new LazySeq(() =>
+            lazySeq(() =>
             {
                 var s = (ISeq)new Seq().Invoke(coll);
                 if ((bool)new Truthy().Invoke(s))

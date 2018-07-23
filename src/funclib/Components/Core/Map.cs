@@ -35,7 +35,7 @@ namespace funclib.Components.Core
         public object Invoke(object f, object coll)
         {
             var fn = (IFunction<object, object>)f;
-            return new LazySeq(() =>
+            return lazySeq(() =>
             {
                 var s = new Seq().Invoke(coll);
                 if ((bool)new Truthy().Invoke(s))
@@ -76,7 +76,7 @@ namespace funclib.Components.Core
         public object Invoke(object f, object c1, object c2)
         {
             var fn = (IFunction<object, object, object>)f;
-            return new LazySeq(() =>
+            return lazySeq(() =>
             {
                 var s1 = new Seq().Invoke(c1);
                 var s2 = new Seq().Invoke(c2);
@@ -107,7 +107,7 @@ namespace funclib.Components.Core
         public object Invoke(object f, object c1, object c2, object c3)
         {
             var fn = (IFunction<object, object, object, object>)f;
-            return new LazySeq(() =>
+            return lazySeq(() =>
             {
                 var s1 = new Seq().Invoke(c1);
                 var s2 = new Seq().Invoke(c2);
@@ -144,7 +144,7 @@ namespace funclib.Components.Core
                 step(conj(colls, c3, c2, c1)));
 
             object step(object cs) =>
-                new LazySeq(() =>
+                lazySeq(() =>
                 {
                     var ss = Invoke(new Seq(), cs);
                     if ((bool)isEvery(new Identity(), ss))
