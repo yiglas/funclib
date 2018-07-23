@@ -48,7 +48,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns a <see cref="bool"/> that the opposite truthy value when calling the function.
             /// </returns>
-            public object Invoke() => new Not().Invoke(((IFunction<object>)this._func).Invoke());
+            public object Invoke() => not(((IFunction<object>)this._func).Invoke());
             /// <summary>
             /// Returns the opposite truthy value when calling the function with one parameters.
             /// </summary>
@@ -56,7 +56,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns a <see cref="bool"/> that the opposite truthy value when calling the function.
             /// </returns>
-            public object Invoke(object x) => new Not().Invoke(Apply.ApplyTo(this._func, (ISeq)list(x)));
+            public object Invoke(object x) => not(Apply.ApplyTo(this._func, (ISeq)list(x)));
             /// <summary>
             /// Returns the opposite truthy value when calling the function with two parameters.
             /// </summary>
@@ -65,7 +65,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns a <see cref="bool"/> that the opposite truthy value when calling the function.
             /// </returns>
-            public object Invoke(object x, object y) => new Not().Invoke(Apply.ApplyTo(this._func, (ISeq)list(x, y)));
+            public object Invoke(object x, object y) => not(Apply.ApplyTo(this._func, (ISeq)list(x, y)));
             /// <summary>
             /// Returns the opposite truthy value when calling the function with more than two parameters.
             /// </summary>
@@ -75,7 +75,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns a <see cref="bool"/> that the opposite truthy value when calling the function.
             /// </returns>
-            public object Invoke(object x, object y, params object[] zs) => new Not().Invoke(apply(this._func, x, y, zs));
+            public object Invoke(object x, object y, params object[] zs) => not(apply(this._func, x, y, zs));
         }
     }
 }

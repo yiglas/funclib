@@ -28,7 +28,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if no two arguments are equal, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object x, object y) => new Not().Invoke(isEqualTo(x, y));
+        public object Invoke(object x, object y) => not(isEqualTo(x, y));
         /// <summary>
         /// Returns <see cref="true"/> if no two arguments are equal, otherwise <see cref="false"/>.
         /// </summary>

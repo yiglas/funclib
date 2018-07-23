@@ -17,6 +17,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if x is an odd number, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object n) => new Not().Invoke(isEven(n));
+        public object Invoke(object n) => not(isEven(n));
     }
 }

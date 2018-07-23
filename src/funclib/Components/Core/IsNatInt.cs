@@ -18,9 +18,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if x is a non-negative <see cref="int"/>, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object n) =>
-            and(
-                isInt(n),
-                new Not().Invoke(isNeg(n)));
+        public object Invoke(object n) => and(isInt(n), not(isNeg(n)));
     }
 }

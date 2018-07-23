@@ -18,6 +18,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if x is not <see cref="null"/>, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object x) => new Not().Invoke(isNull(x));
+        public object Invoke(object x) => not(isNull(x));
     }
 }

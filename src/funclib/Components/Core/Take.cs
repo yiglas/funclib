@@ -58,7 +58,7 @@ namespace funclib.Components.Core
                     ? Apply.ApplyTo((IFunction)this._rf, (ISeq)list(result, input))
                     : result;
 
-                if ((bool)new Not().Invoke(isPos(nn)))
+                if ((bool)not(isPos(nn)))
                     return ensureReduced(result);
 
                 return result;
