@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -10,15 +11,15 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsSome_should_return_true_if_not_null()
         {
-            Assert.IsTrue((bool)new IsSome().Invoke(1));
-            Assert.IsTrue((bool)new IsSome().Invoke(false));
-            Assert.IsTrue((bool)new IsSome().Invoke(new Vector().Invoke(1, 2, 3)));
+            Assert.IsTrue((bool)isSome(1));
+            Assert.IsTrue((bool)isSome(false));
+            Assert.IsTrue((bool)isSome(new Vector().Invoke(1, 2, 3)));
         }
 
         [Test]
         public void IsSome_should_return_false_if_is_null()
         {
-            Assert.IsFalse((bool)new IsSome().Invoke(null));
+            Assert.IsFalse((bool)isSome(null));
         }
     }
 }
