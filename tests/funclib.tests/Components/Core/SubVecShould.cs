@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -10,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void SubVec_should_return_a_vector()
         {
-            var actual = new SubVec().Invoke(new Vector().Invoke(1, 2, 3, 4, 5, 6, 7), 2);
+            var actual = subVec(new Vector().Invoke(1, 2, 3, 4, 5, 6, 7), 2);
 
             Assert.IsInstanceOf<funclib.Collections.IVector>(actual);
         }
@@ -19,7 +20,7 @@ namespace funclib.Tests.Components.Core
         public void SubVec_should_return_all_items_after_start()
         {
             var expected = new Vector().Invoke(3, 4, 5, 6, 7);
-            var actual = new SubVec().Invoke(new Vector().Invoke(1, 2, 3, 4, 5, 6, 7), 2);
+            var actual = subVec(new Vector().Invoke(1, 2, 3, 4, 5, 6, 7), 2);
 
             Assert.AreEqual(expected, actual);
         }
@@ -28,7 +29,7 @@ namespace funclib.Tests.Components.Core
         public void SubVec_should_return_all_items_after_start_but_before_end()
         {
             var expected = new Vector().Invoke(3, 4);
-            var actual = new SubVec().Invoke(new Vector().Invoke(1, 2, 3, 4, 5, 6, 7), 2, 4);
+            var actual = subVec(new Vector().Invoke(1, 2, 3, 4, 5, 6, 7), 2, 4);
 
             Assert.AreEqual(expected, actual);
         }
