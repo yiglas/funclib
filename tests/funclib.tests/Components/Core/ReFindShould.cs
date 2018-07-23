@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -14,7 +15,7 @@ namespace funclib.Tests.Components.Core
             var matcher = new ReMatcher().Invoke(new RePattern().Invoke(@"\d+"), phoneNumber);
 
             var expected = "123";
-            var actual = new ReFind().Invoke(matcher);
+            var actual = reFind(matcher);
 
             Assert.AreEqual(expected, actual);
         }
@@ -26,8 +27,8 @@ namespace funclib.Tests.Components.Core
             var matcher = new ReMatcher().Invoke(new RePattern().Invoke(@"\d+"), phoneNumber);
 
             var expected = "456";
-            new ReFind().Invoke(matcher);
-            var actual = new ReFind().Invoke(matcher);
+            reFind(matcher);
+            var actual = reFind(matcher);
 
             Assert.AreEqual(expected, actual);
         }
@@ -38,11 +39,11 @@ namespace funclib.Tests.Components.Core
             var phoneNumber = "123-456-789-1234";
             var matcher = new ReMatcher().Invoke(new RePattern().Invoke(@"\d+"), phoneNumber);
 
-            new ReFind().Invoke(matcher);
-            new ReFind().Invoke(matcher);
-            new ReFind().Invoke(matcher);
-            new ReFind().Invoke(matcher);
-            var actual = new ReFind().Invoke(matcher);
+            reFind(matcher);
+            reFind(matcher);
+            reFind(matcher);
+            reFind(matcher);
+            var actual = reFind(matcher);
 
             Assert.IsNull(actual);
         }
@@ -53,7 +54,7 @@ namespace funclib.Tests.Components.Core
             var phoneNumber = "123-456-789-1234";
             
             var expected = "123";
-            var actual = new ReFind().Invoke(new RePattern().Invoke(@"\d+"), phoneNumber);
+            var actual = reFind(new RePattern().Invoke(@"\d+"), phoneNumber);
 
             Assert.AreEqual(expected, actual);
         }

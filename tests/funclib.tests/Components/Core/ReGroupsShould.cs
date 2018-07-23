@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -13,7 +14,7 @@ namespace funclib.Tests.Components.Core
             var phoneNumber = "123-456-789-1234";
             var matcher = new ReMatcher().Invoke(new RePattern().Invoke(@"((\d+)-(\d+))"), phoneNumber);
 
-            new ReFind().Invoke(matcher);
+            reFind(matcher);
             var actual = new ReGroups().Invoke(matcher);
 
             Assert.IsInstanceOf<funclib.Collections.Vector>(actual);
