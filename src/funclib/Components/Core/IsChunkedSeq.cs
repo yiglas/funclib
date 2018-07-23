@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -17,6 +18,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if s is a <see cref="IChunkedSeq"/>, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object s) => new IsInstance().Invoke(typeof(IChunkedSeq), s);
+        public object Invoke(object s) => isInstance(typeof(IChunkedSeq), s);
     }
 }

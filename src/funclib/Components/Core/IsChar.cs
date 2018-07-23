@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -17,6 +18,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if x is a <see cref="char"/>, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object x) => new IsInstance().Invoke(typeof(char), x);
+        public object Invoke(object x) => isInstance(typeof(char), x);
     }
 }

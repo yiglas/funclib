@@ -17,6 +17,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if coll implements <see cref="ISorted"/> interface, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object coll) => new IsInstance().Invoke(typeof(ISorted), coll);
+        public object Invoke(object coll) => isInstance(typeof(ISorted), coll);
     }
 }

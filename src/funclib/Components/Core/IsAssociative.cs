@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -17,6 +18,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if coll implements <see cref="IAssociative"/> interface, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object coll) => new IsInstance().Invoke(typeof(IAssociative), coll);
+        public object Invoke(object coll) => isInstance(typeof(IAssociative), coll);
     }
 }

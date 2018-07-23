@@ -1,6 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using funclib.Collections;
+using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -37,7 +38,7 @@ namespace funclib.Components.Core
         /// Returns a new collection with the same data type of to consisting of to with all of the items of from conjoined.
         /// </returns>
         public object Invoke(object to, object from) =>
-            (bool)new IsInstance().Invoke(typeof(Collections.IEditableCollection), to)
+            (bool)isInstance(typeof(IEditableCollection), to)
                 ? new Persistentǃ().Invoke(new Reduce().Invoke(new Conjǃ(), new Transient().Invoke(to), from))
                 : new Reduce().Invoke(new Conj(), to, from);
         /// <summary>
@@ -50,7 +51,7 @@ namespace funclib.Components.Core
         /// Returns a new collection with the same data type of to consisting of to with all of the items of from conjoined.
         /// </returns>
         public object Invoke(object to, object xform, object from) =>
-            (bool)new IsInstance().Invoke(typeof(Collections.IEditableCollection), to)
+            (bool)isInstance(typeof(IEditableCollection), to)
                 ? new Persistentǃ().Invoke(new Transduce().Invoke(xform, new Conjǃ(), new Transient().Invoke(to), from))
                 : new Transduce().Invoke(xform, new Conj(), to, from);
     }

@@ -18,7 +18,7 @@ namespace funclib.Components.Core
         /// Returns an instance of <see cref="Regex"/>, for use, e.g. in <see cref="ReMatcher"/>.
         /// </returns>
         public object Invoke(object s) =>
-            (bool)new IsInstance().Invoke(typeof(Regex), s)
+            (bool)isInstance(typeof(Regex), s)
                 ? s
                 : new Regex((string)s);
     }

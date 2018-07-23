@@ -17,6 +17,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if x is a <see cref="IList"/>, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object x) => new IsInstance().Invoke(typeof(IList), x);
+        public object Invoke(object x) => isInstance(typeof(IList), x);
     }
 }

@@ -16,6 +16,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if x is of type <see cref="Reduced"/>, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object x) => new IsInstance().Invoke(typeof(Reduced), x);
+        public object Invoke(object x) => isInstance(typeof(Reduced), x);
     }
 }
