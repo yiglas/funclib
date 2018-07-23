@@ -33,7 +33,7 @@ namespace funclib.Components.Core
         object up(object m, object ks, object f, object args)
         {
             var k = first(ks);
-            ks = new More().Invoke(ks);
+            ks = more(ks);
 
             if ((bool)new Truthy().Invoke(ks))
                 return assoc(m, k, up(get(m, k), ks, f, args));
