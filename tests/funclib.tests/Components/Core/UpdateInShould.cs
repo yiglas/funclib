@@ -14,7 +14,7 @@ namespace funclib.Tests.Components.Core
             var expected = new Vector().Invoke(hashMap(":name", "James", ":age", 26), hashMap(":name", "John", ":age", 44));
             var users = new Vector().Invoke(hashMap(":name", "James", ":age", 26), hashMap(":name", "John", ":age", 43));
 
-            var actual = new UpdateIn().Invoke(users, new Vector().Invoke(1, ":age"), new Inc());
+            var actual = updateIn(users, new Vector().Invoke(1, ":age"), new Inc());
 
             Assert.AreEqual(expected, actual);
         }
