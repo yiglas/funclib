@@ -73,6 +73,7 @@ namespace CoreGenerator
                     GetMethodDeclarations(classDeclaration, acc, (a, n) =>
                     {
                         var className = classDeclaration.Identifier.Text;
+                        var modifier = GetModifier(classDeclaration.Modifiers);
                         var methodName = n.Identifier.Text;
                         var returnType = n.ReturnType.ToString();
                         var typedParameters = classDeclaration.TypeParameterList?.ToString();
@@ -94,7 +95,7 @@ namespace CoreGenerator
                                 if (comments != null)
                                     comments.ForEach(x => a.Add(x));
 
-                                a.Add($"public static {className}{typedParameters} func{typedParameters}{parameters} => new {className}{typedParameters}({string.Join(", ", parameterList)});");
+                                a.Add($"{modifier} static {className}{typedParameters} func{typedParameters}{parameters} => new {className}{typedParameters}({string.Join(", ", parameterList)});");
                                 return a;
                             });
 
@@ -106,7 +107,7 @@ namespace CoreGenerator
                             if (comments != null)
                                 comments.ForEach(x => a.Add(x));
 
-                            a.Add($"public static {returnType} invoke{typedParameters}({constructorParams}{(string.IsNullOrWhiteSpace(parameters) ? "" : ", " + parameters)}) => func.Invoke({string.Join(", ", parameterList)});");
+                            a.Add($"{modifier} static {returnType} invoke{typedParameters}({constructorParams}{(string.IsNullOrWhiteSpace(parameters) ? "" : ", " + parameters)}) => func.Invoke({string.Join(", ", parameterList)});");
                         }
                         else if (className == "LazySeq")
                         {
@@ -120,7 +121,7 @@ namespace CoreGenerator
                                 if (comments != null)
                                     comments.ForEach(x => a.Add(x));
 
-                                a.Add($"public static {className}{typedParameters} {FixClassName(className)}{typedParameters}{constructorParams} => new {className}{typedParameters}({string.Join(", ", parameterList)});");
+                                a.Add($"{modifier} static {className}{typedParameters} {FixClassName(className)}{typedParameters}{constructorParams} => new {className}{typedParameters}({string.Join(", ", parameterList)});");
                                 return a;
                             });
                         }
@@ -136,7 +137,7 @@ namespace CoreGenerator
                                 if (comments != null)
                                     comments.ForEach(x => a.Add(x));
 
-                                a.Add($"public static {returnType} {FixClassName(className)}{typedParameters}{constructorParams} => new {className}{typedParameters}({string.Join(", ", parameterList)}).Invoke();");
+                                a.Add($"{modifier} static {returnType} {FixClassName(className)}{typedParameters}{constructorParams} => new {className}{typedParameters}({string.Join(", ", parameterList)}).Invoke();");
                                 return a;
                             });
                         }
@@ -149,7 +150,7 @@ namespace CoreGenerator
                             if (comments != null)
                                 comments.ForEach(x => a.Add(x));
 
-                            a.Add($"public static {returnType} {FixClassName(className)}{typedParameters}{parameters} => {className}.{methodName}({string.Join(", ", parameterList)});");
+                            a.Add($"{modifier} static {returnType} {FixClassName(className)}{typedParameters}{parameters} => {className}.{methodName}({string.Join(", ", parameterList)});");
                         }
 
                         return a;
@@ -167,6 +168,11 @@ namespace CoreGenerator
                 ?.Where(x => !string.IsNullOrWhiteSpace(x))
                 ?.ToList();
 
+        static string GetModifier(SyntaxTokenList modifier) =>
+            modifier.Count == 1
+                ? modifier[0].Text
+                : "internal";
+
         static IList<CSharpSyntaxTree> GetClassFiles(string directory) =>
             Directory.EnumerateFiles(directory)
                 .Where(x => Path.GetExtension(x) == ".cs")
@@ -178,7 +184,7 @@ namespace CoreGenerator
             syntaxTree.GetRoot()
                     .DescendantNodes()
                     .OfType<ClassDeclarationSyntax>()
-                    .Where(x => IsPublic(x.Modifiers) && IsChildOfNamespace(x))
+                    .Where(x => IsChildOfNamespace(x))
                     .Aggregate(seed, aggregate);
 
         static IList<string> GetMethodDeclarations(ClassDeclarationSyntax classDeclaration, IList<string> seed, Func<IList<string>, MethodDeclarationSyntax, IList<string>> aggregate) =>

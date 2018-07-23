@@ -1,4 +1,4 @@
-// Generated on 7/23/2018 7:58:28 AM
+// Generated on 7/23/2018 10:39:11 AM
 using funclib.Collections;
 using funclib.Components.Core;
 using System;
@@ -50,6 +50,8 @@ namespace funclib
 		/// index must be less than or equal to the count of vector. Returns coll.
 		/// </summary>
 		public static funclib.Components.Core.Assocǃ Assocǃ => __assocǃ ?? (__assocǃ = new funclib.Components.Core.Assocǃ());
+		static funclib.Components.Core.ATransducerFunction __atransducerfunction;
+		public static funclib.Components.Core.ATransducerFunction ATransducerFunction => __atransducerfunction ?? (__atransducerfunction = new funclib.Components.Core.ATransducerFunction());
 		static funclib.Components.Core.BitAnd __bitand;
 		/// <summary>
 		/// Unary "&" operator returns the address of its operand. Binary "&" operators are
@@ -874,6 +876,8 @@ namespace funclib
 		/// the collection is empty, throw an exception.
 		/// </summary>
 		public static funclib.Components.Core.Popǃ Popǃ => __popǃ ?? (__popǃ = new funclib.Components.Core.Popǃ());
+		static funclib.Components.Core.PreservingReduced __preservingreduced;
+		public static funclib.Components.Core.PreservingReduced PreservingReduced => __preservingreduced ?? (__preservingreduced = new funclib.Components.Core.PreservingReduced());
 		static funclib.Components.Core.Print __print;
 		/// <summary>
 		/// Prints the object(s) to the <see cref="Variables.Out"/> stream.
@@ -919,6 +923,8 @@ namespace funclib
 		/// no items, val is returned and f is not called.
 		/// </summary>
 		public static funclib.Components.Core.Reduce Reduce => __reduce ?? (__reduce = new funclib.Components.Core.Reduce());
+		static funclib.Components.Core.Reduce1 __reduce1;
+		public static funclib.Components.Core.Reduce1 Reduce1 => __reduce1 ?? (__reduce1 = new funclib.Components.Core.Reduce1());
 		static funclib.Components.Core.Reduced __reduced;
 		/// <summary>
 		/// Wraps x in a way such that a <see cref="Reduce"/> will terminate with the value x.
@@ -1080,6 +1086,8 @@ namespace funclib
 		/// Returns a <see cref="Collections.Vector"/> of [<see cref="TakeWhile.Invoke(object, object)"/>, <see cref="DropWhile.Invoke(object, object)"/>].
 		/// </summary>
 		public static funclib.Components.Core.SplitWith SplitWith => __splitwith ?? (__splitwith = new funclib.Components.Core.SplitWith());
+		static funclib.Components.Core.Spread __spread;
+		public static funclib.Components.Core.Spread Spread => __spread ?? (__spread = new funclib.Components.Core.Spread());
 		static funclib.Components.Core.Str __str;
 		/// <summary>
 		/// With no args, returns empty string. With one arg, returns arg.ToString(). If
@@ -2539,7 +2547,7 @@ namespace funclib
 		/// Returns a new collection with the same data type of to consisting of to with all of the items of from conjoined.
 		/// </returns>
 		public static object into(object to, object xform, object from) => Into.Invoke(to, xform, from);
-		public static object into1(object to, object from) => Into1.Invoke(to, from);
+		internal static object into1(object to, object from) => Into1.Invoke(to, from);
 		public static object intoArray(object aseq) => IntoArray.Invoke(aseq);
 		public static object intoArray(object type, object aseq) => IntoArray.Invoke(type, aseq);
 		/// <summary>
@@ -3873,6 +3881,7 @@ namespace funclib
 		/// Returns coll.
 		/// </returns>
 		public static object popǃ(object coll) => Popǃ.Invoke(coll);
+		internal static object preservingReduced(object rf) => PreservingReduced.Invoke(rf);
 		/// <summary>
 		/// Prints the object(s) to the <see cref="Variables.Out"/> stream.
 		/// </summary>
@@ -4020,6 +4029,8 @@ namespace funclib
 		/// Returns the result of calling f to val and 1st, then calling f with the result and 2nd, etc.
 		/// </returns>
 		public static object reduce(object f, object val, object coll) => Reduce.Invoke(f, val, coll);
+		internal static object reduce1(object f, object coll) => Reduce1.Invoke(f, coll);
+		internal static object reduce1(object f, object val, object coll) => Reduce1.Invoke(f, val, coll);
 		/// <summary>
 		/// Wraps x in a way such that a <see cref="Reduce"/> will terminate with the value x.
 		/// </summary>
@@ -4402,6 +4413,7 @@ namespace funclib
 		/// Returns a <see cref="Collections.Vector"/> of [<see cref="TakeWhile.Invoke(object, object)"/>, <see cref="DropWhile.Invoke(object, object)"/>].
 		/// </returns>
 		public static object splitWith(object pred, object coll) => SplitWith.Invoke(pred, coll);
+		internal static object spread(object argList) => Spread.Invoke(argList);
 		/// <summary>
 		/// With no args, returns empty string. With one arg, returns arg.ToString(). If
 		/// arg is null return empty string. With more than one arg, returns the concatenation
