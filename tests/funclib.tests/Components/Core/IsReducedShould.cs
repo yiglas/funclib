@@ -11,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsReduced_should_return_true_if_reduced()
         {
-            Assert.IsTrue((bool)isReduced(new Reduced().Invoke("foo")));
+            Assert.IsTrue((bool)isReduced(reduced("foo")));
         }
 
         [Test]

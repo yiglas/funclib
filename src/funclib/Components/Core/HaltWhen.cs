@@ -41,7 +41,7 @@ namespace funclib.Components.Core
                 if ((bool)new Truthy().Invoke(this._pred.Invoke(input)))
                 {
                     var haltVal = (bool)new Truthy().Invoke(this._retf) ? this._retf.Invoke(((IFunction<object, object>)this._rf).Invoke(result), input) : input;
-                    return new Reduced().Invoke(hashMap("::halt", haltVal));
+                    return reduced(hashMap("::halt", haltVal));
                 }
 
                 return ((IFunction<object, object, object>)this._rf).Invoke(result, input);

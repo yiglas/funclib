@@ -56,7 +56,7 @@ namespace funclib.Components.Core
             public override object Invoke(object result, object input) =>
                 (bool)new Truthy().Invoke(((IFunction<object, object>)this._pred).Invoke(input))
                     ? ((IFunction<object, object, object>)this._rf).Invoke(result, input)
-                    : new Reduced().Invoke(result);
+                    : reduced(result);
             #endregion
         }
     }

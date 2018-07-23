@@ -19,7 +19,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void EnsureReduced_should_return_the_deref_value_if_its_reduced()
         {
-            var expected = new Reduced().Invoke(1);
+            var expected = reduced(1);
             var actual = ensureReduced(expected);
 
             Assert.IsTrue(expected == actual);

@@ -81,7 +81,7 @@ namespace funclib.Components.Core
                 this._a.Clear();
                 var ret = ((IFunction<object, object, object>)this._rf).Invoke(result, v);
 
-                if (!(bool)new Reduced().Invoke(ret))
+                if (!(bool)reduced(ret))
                     this._a.Add(input);
 
                 return ret;

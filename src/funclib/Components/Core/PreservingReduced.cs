@@ -12,7 +12,7 @@ namespace funclib.Components.Core
             {
                 var ret = ((IFunction<object, object, object>)rf).Invoke(_1, _2);
                 if ((bool)isReduced(ret))
-                    return new Reduced().Invoke(ret);
+                    return reduced(ret);
                 return ret;
             });
     }
