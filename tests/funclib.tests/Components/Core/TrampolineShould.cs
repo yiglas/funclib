@@ -14,7 +14,7 @@ namespace funclib.Tests.Components.Core
             IFunction<object, object> foo = null;
             foo = new Function<object, object>(x =>
             {
-                if ((bool)new IsLessThan().Invoke(x, 0))
+                if ((bool)isLessThan(x, 0))
                     return new PrintLn().Invoke("done");
 
                 return new Function<object>(() => foo.Invoke(
