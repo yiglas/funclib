@@ -71,6 +71,6 @@ namespace funclib.Components.Core
         /// Returns the result of calling <see cref="Cons"/>.
         /// </returns>
         public object Invoke(object a, object b, object c, object d, params object[] more) => 
-            cons(a, cons(b, cons(c, cons(d, new Spread().Invoke(more)))));
+            cons(a, cons(b, cons(c, cons(d, spread(more)))));
     }
 }

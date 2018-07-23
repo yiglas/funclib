@@ -78,8 +78,7 @@ namespace funclib.Components.Core
         /// Returns the results of executing f with the given arguments.
         /// </returns>
         public object Invoke(object f, object a, object b, object c, object d, params object[] args) =>
-            ApplyTo((IFunction)f,
-                (ISeq)cons(a, cons(b, cons(c, cons(d, new Spread().Invoke(args))))));
+            ApplyTo((IFunction)f, (ISeq)cons(a, cons(b, cons(c, cons(d, spread(args))))));
 
         internal static object ApplyTo(IFunction f, ISeq args)
         {

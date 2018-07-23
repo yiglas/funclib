@@ -15,7 +15,7 @@ namespace funclib.Components.Core
             if (n == null)
                 return seq(first(argList));
 
-            return cons(first(argList), new Spread().Invoke(n));
+            return cons(first(argList), Invoke(n));
         }
     }
 }
