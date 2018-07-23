@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -44,7 +45,7 @@ namespace funclib.Components.Core
             var fn = (IFunction<object, object>)keyfn;
             var cfn = (IFunction<object, object, object>)comp;
 
-            return new Sort().Invoke(new Function<object, object, object>((x, y) => cfn.Invoke(fn.Invoke(x), fn.Invoke(y))), coll);
+            return sort(new Function<object, object, object>((x, y) => cfn.Invoke(fn.Invoke(x), fn.Invoke(y))), coll);
         }
     }
 }
