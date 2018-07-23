@@ -38,7 +38,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the results of executing f with the given arguments.
         /// </returns>
-        public object Invoke(object f, object x, object args) => ApplyTo((IFunction)f, (ISeq)new ListS().Invoke(x, args));
+        public object Invoke(object f, object x, object args) => ApplyTo((IFunction)f, (ISeq)listS(x, args));
         /// <summary>
         /// Applies <see cref="IFunction"/> f to the argument list formed prepending 
         /// intervening arguments to args.
@@ -50,7 +50,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the results of executing f with the given arguments.
         /// </returns>
-        public object Invoke(object f, object x, object y, object args) => ApplyTo((IFunction)f, (ISeq)new ListS().Invoke(x, y, args));
+        public object Invoke(object f, object x, object y, object args) => ApplyTo((IFunction)f, (ISeq)listS(x, y, args));
         /// <summary>
         /// Applies <see cref="IFunction"/> f to the argument list formed prepending 
         /// intervening arguments to args.
@@ -63,7 +63,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the results of executing f with the given arguments.
         /// </returns>
-        public object Invoke(object f, object x, object y, object z, object args) => ApplyTo((IFunction)f, (ISeq)new ListS().Invoke(x, y, z, args));
+        public object Invoke(object f, object x, object y, object z, object args) => ApplyTo((IFunction)f, (ISeq)listS(x, y, z, args));
         /// <summary>
         /// Applies <see cref="IFunction"/> f to the argument list formed prepending 
         /// intervening arguments to args.

@@ -102,7 +102,7 @@ namespace funclib.Components.Core
             internal Function(object f, object g, object h, object[] fs) :
                 this(null, null, null)
             {
-                this._fs = (object[])new ToArray().Invoke(new ListS().Invoke(f, g, h, fs));
+                this._fs = (object[])new ToArray().Invoke(listS(f, g, h, fs));
             }
 
             /// <summary>

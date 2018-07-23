@@ -92,7 +92,7 @@ namespace funclib.Components.Core
             }
             internal Function(object p1, object p2, object p3, params object[] ps)
             {
-                this._ps = new ListS().Invoke(p1, p2, p3, ps);
+                this._ps = listS(p1, p2, p3, ps);
             }
 
             /// <summary>
