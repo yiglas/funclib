@@ -11,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsVolatile_should_return_true_if_volatile()
         {
-            Assert.IsTrue((bool)isVolatile(new Volatileǃ().Invoke("foo")));
+            Assert.IsTrue((bool)isVolatile(volatileǃ("foo")));
         }
 
         [Test]

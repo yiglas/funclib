@@ -43,7 +43,7 @@ namespace funclib.Components.Core
                 base(rf)
             {
                 this._n = n;
-                this._iv = (Volatileǃ)new Volatileǃ().Invoke(-1);
+                this._iv = (Volatileǃ)volatileǃ(-1);
             }
 
             #region Overrides

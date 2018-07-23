@@ -34,7 +34,7 @@ namespace funclib.Components.Core
                 base(rf)
             {
                 this._sep = sep;
-                this._started = (Volatileǃ)new Volatileǃ().Invoke(false);
+                this._started = (Volatileǃ)volatileǃ(false);
             }
 
             #region Overrides

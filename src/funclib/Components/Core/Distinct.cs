@@ -63,7 +63,7 @@ namespace funclib.Components.Core
             public TransducerFunction(object rf) :
                 base(rf)
             {
-                this._seen = (Volatileǃ)new Volatileǃ().Invoke(hashSet());
+                this._seen = (Volatileǃ)volatileǃ(hashSet());
             }
 
             #region Overrides

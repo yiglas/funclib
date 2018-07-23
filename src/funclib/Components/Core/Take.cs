@@ -46,7 +46,7 @@ namespace funclib.Components.Core
             public TransducerFunction(object n, object rf) :
                 base(rf)
             {
-                this._nv = (Volatileǃ)new Volatileǃ().Invoke(n);
+                this._nv = (Volatileǃ)volatileǃ(n);
             }
 
             #region Overrides

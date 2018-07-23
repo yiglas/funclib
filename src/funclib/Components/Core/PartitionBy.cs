@@ -51,7 +51,7 @@ namespace funclib.Components.Core
             {
                 this._f = f;
                 this._a = new System.Collections.ArrayList();
-                this._pv = (Volatileǃ)new Volatileǃ().Invoke("::none");
+                this._pv = (Volatileǃ)volatileǃ("::none");
             }
 
             #region Overrides
