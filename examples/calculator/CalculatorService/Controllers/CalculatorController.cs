@@ -12,10 +12,10 @@ namespace CalculatorService.Controllers
     public class CalculatorController : Controller
     {
         [HttpGet("add/{a}/{b}")]
-        public long Add(int a, int b) => (long)time(() => plus(a, b)); //(long)new Time(() => new Plus().Invoke(a, b)).Invoke();
+        public long Add(int a, int b) => (long)time(() => plus(a, b)); //(long)new Time(() => plus(a, b)).Invoke();
 
         [HttpGet("add/{a}/{b}/{c}")]
-        public long Add(int a, int b, int c) => (long)time(() => plus(a, b, c));  //(long)new Time(() => new Plus().Invoke(a, b, c)).Invoke();
+        public long Add(int a, int b, int c) => (long)time(() => plus(a, b, c));  //(long)new Time(() => plus(a, b, c)).Invoke();
 
         [HttpGet("subtract/{a}/{b}")]
         public long Subtract(int a, int b) => (long)new Time(() => minus(a, b)).Invoke();
