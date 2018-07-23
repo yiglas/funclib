@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -16,7 +17,7 @@ namespace funclib.Components.Core
             public TransducerFunction(object rf) : 
                 base(rf)
             {
-                this._rrf = new PreservingReduced().Invoke(rf);
+                this._rrf = preservingReduced(rf);
             }
 
             #region Override
