@@ -7,7 +7,7 @@ namespace funclib.Components.Core
     /// <summary>
     /// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
     /// </summary>
-    public class IsNotEqual :
+    public class IsNotEqualTo :
         IFunction<object, object>,
         IFunction<object, object, object>,
         IFunctionParams<object, object, object, object>

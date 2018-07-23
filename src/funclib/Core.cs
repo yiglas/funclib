@@ -559,11 +559,11 @@ namespace funclib
 		/// Returns <see cref="false"/> if x is logical true for any item in coll, otherwise <see cref="true"/>.
 		/// </summary>
 		public static funclib.Components.Core.IsNotAny IsNotAny => __isnotany ?? (__isnotany = new funclib.Components.Core.IsNotAny());
-		static funclib.Components.Core.IsNotEqual __isnotequal;
+		static funclib.Components.Core.IsNotEqualTo __isnotequalto;
 		/// <summary>
 		/// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
 		/// </summary>
-		public static funclib.Components.Core.IsNotEqual IsNotEqual => __isnotequal ?? (__isnotequal = new funclib.Components.Core.IsNotEqual());
+		public static funclib.Components.Core.IsNotEqualTo IsNotEqualTo => __isnotequalto ?? (__isnotequalto = new funclib.Components.Core.IsNotEqualTo());
 		static funclib.Components.Core.IsNotEvery __isnotevery;
 		/// <summary>
 		/// Returns <see cref="false"/> if x is logical true for every item in coll, otherwise <see cref="true"/>.
@@ -2913,7 +2913,7 @@ namespace funclib
 		/// <returns>
 		/// Returns false.
 		/// </returns>
-		public static object isNotEqual(object x) => IsNotEqual.Invoke(x);
+		public static object isNotEqualTo(object x) => IsNotEqualTo.Invoke(x);
 		/// <summary>
 		/// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
 		/// </summary>
@@ -2922,7 +2922,7 @@ namespace funclib
 		/// <returns>
 		/// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
 		/// </returns>
-		public static object isNotEqual(object x, object y) => IsNotEqual.Invoke(x, y);
+		public static object isNotEqualTo(object x, object y) => IsNotEqualTo.Invoke(x, y);
 		/// <summary>
 		/// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
 		/// </summary>
@@ -2932,7 +2932,7 @@ namespace funclib
 		/// <returns>
 		/// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
 		/// </returns>
-		public static object isNotEqual(object x, object y, params object[] more) => IsNotEqual.Invoke(x, y, more);
+		public static object isNotEqualTo(object x, object y, params object[] more) => IsNotEqualTo.Invoke(x, y, more);
 		/// <summary>
 		/// Returns <see cref="false"/> if x is logical true for every item in coll, otherwise <see cref="true"/>.
 		/// </summary>
