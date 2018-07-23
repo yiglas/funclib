@@ -4,6 +4,9 @@ using System.Text.RegularExpressions;
 
 namespace funclib.Components.Core
 {
+    /// <summary>
+    /// Returns an instance of <see cref="ReMatcher"/> for use in <see cref="ReFind"/>.
+    /// </summary>
     public class ReMatcher :
         IFunction<object, object, object>
     {
