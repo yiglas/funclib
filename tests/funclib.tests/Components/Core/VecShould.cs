@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void Vec_should_create_a_vector_from_a_ISeq()
         {
             var expected = new Vector().Invoke(1, 2, 3);
-            var actual = new Vec().Invoke(hashSet(1, 2, 3));
+            var actual = vec(hashSet(1, 2, 3));
 
             Assert.AreEqual(expected, actual);
         }
@@ -20,7 +20,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Vec_should_return_empty_vector_when_past_null()
         {
-            var actual = new Vec().Invoke(null);
+            var actual = vec(null);
 
             Assert.AreEqual(0, count(actual));
         }
@@ -28,7 +28,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Vec_should_return_empty_vector_when_past_empty_list()
         {
-            var actual = new Vec().Invoke(list());
+            var actual = vec(list());
 
             Assert.AreEqual(0, count(actual));
         }

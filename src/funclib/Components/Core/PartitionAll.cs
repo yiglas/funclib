@@ -66,7 +66,7 @@ namespace funclib.Components.Core
             {
                 if (!(bool)isZero(this._a.Count))
                 {
-                    var v = new Vec().Invoke(this._a.ToArray());
+                    var v = vec(this._a.ToArray());
                     this._a.Clear();
                     result = unreduce(((IFunction<object, object, object>)this._rf).Invoke(result, v));
                 }
@@ -78,7 +78,7 @@ namespace funclib.Components.Core
                 this._a.Add(input);
                 if (this._n == this._a.Count)
                 {
-                    var v = new Vec().Invoke(this._a.ToArray());
+                    var v = vec(this._a.ToArray());
                     this._a.Clear();
                     return ((IFunction<object, object, object>)this._rf).Invoke(result, v);
                 }

@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void RSeq_should_reverse_a_vector()
         {
             var expected = list(9, 8, 7, 6, 5, 4, 3, 2, 1, 0);
-            var actual = rseq(new Vec().Invoke(range(10)));
+            var actual = rseq(vec(range(10)));
 
             Assert.AreEqual(expected, actual);
         }

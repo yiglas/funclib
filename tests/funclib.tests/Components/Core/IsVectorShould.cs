@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void IsVector_should_return_true_if_an_object_is_false()
         {
             Assert.IsTrue((bool)isVector(new Vector().Invoke(1, 2, 3)));
-            Assert.IsTrue((bool)isVector(new Vec().Invoke(new object[] { 1, 2, 3 })));
+            Assert.IsTrue((bool)isVector(vec(new object[] { 1, 2, 3 })));
             Assert.IsTrue((bool)isVector(first(arrayMap(":a", 1, ":b", 2, ":c", 3))));
         }
 
