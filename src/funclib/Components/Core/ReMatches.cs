@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -24,7 +25,7 @@ namespace funclib.Components.Core
         {
             var m = (ReMatcher)new ReMatcher().Invoke(re, s);
             if (m.Matches())
-                return new ReGroups().Invoke(m);
+                return reGroups(m);
 
             return null;
         }

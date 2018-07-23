@@ -30,7 +30,7 @@ namespace funclib.Components.Core
             object step()
             {
                 if (m.Find())
-                    return cons(new ReGroups().Invoke(m), lazySeq(step));
+                    return cons(reGroups(m), lazySeq(step));
 
                 return null;
             }

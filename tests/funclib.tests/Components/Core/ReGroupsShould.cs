@@ -15,7 +15,7 @@ namespace funclib.Tests.Components.Core
             var matcher = new ReMatcher().Invoke(new RePattern().Invoke(@"((\d+)-(\d+))"), phoneNumber);
 
             reFind(matcher);
-            var actual = new ReGroups().Invoke(matcher);
+            var actual = reGroups(matcher);
 
             Assert.IsInstanceOf<funclib.Collections.Vector>(actual);
         }
