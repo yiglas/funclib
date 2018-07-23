@@ -31,7 +31,7 @@ namespace funclib.Components.Core
         public object Invoke(object f)
         {
             var ret = ((IFunction<object>)f).Invoke();
-            if ((bool)new IsFunction().Invoke(ret))
+            if ((bool)isFunction(ret))
                 return Invoke(ret);
 
             return ret;

@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -10,14 +11,14 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsFunction_should_return_true_if_an_object_is_IFunction()
         {
-            Assert.IsTrue((bool)new IsFunction().Invoke(new Vector()));
+            Assert.IsTrue((bool)isFunction(new Vector()));
         }
 
         [Test]
         public void IsFunction_should_return_false_if_an_object_is_not_IFunction()
         {
-            Assert.IsFalse((bool)new IsFunction().Invoke(1));
-            Assert.IsFalse((bool)new IsFunction().Invoke(null));
+            Assert.IsFalse((bool)isFunction(1));
+            Assert.IsFalse((bool)isFunction(null));
         }
     }
 }
