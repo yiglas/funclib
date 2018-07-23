@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void Map_should_apply_function_to_each_item_passed()
         {
             var expected = list(2, 3, 4, 5, 6);
-            var actual = new Map().Invoke(new Inc(), new Vector().Invoke(1, 2, 3, 4, 5));
+            var actual = map(new Inc(), new Vector().Invoke(1, 2, 3, 4, 5));
 
             Assert.AreEqual(expected, actual);
         }

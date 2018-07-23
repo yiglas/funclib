@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -15,7 +16,7 @@ namespace funclib.Tests.Components.Core
             var expected = list.Invoke(":a", ":b", ":d", ":e", ":c", ":f");
 
             var tree = list.Invoke(":a", list.Invoke(":b", list.Invoke(":d"), list.Invoke(":e")), list.Invoke(":c", list.Invoke(":f")));
-            var actual = new ToArray().Invoke(new Map().Invoke(new First(), new TreeSeq().Invoke(new Next(), new Rest(), tree)));
+            var actual = new ToArray().Invoke(map(new First(), new TreeSeq().Invoke(new Next(), new Rest(), tree)));
 
             Assert.AreEqual(expected, actual);
         }

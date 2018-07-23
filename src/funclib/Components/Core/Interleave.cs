@@ -61,10 +61,10 @@ namespace funclib.Components.Core
         public object Invoke(object c1, object c2, params object[] colls) =>
             lazySeq(() =>
             {
-                var ss = new Map().Invoke(new Seq(), conj(new Seq().Invoke(colls), c2, c1));
+                var ss = map(new Seq(), conj(new Seq().Invoke(colls), c2, c1));
                 if ((bool)isEvery(new Identity(), ss))
                 {
-                    return concat(new Map().Invoke(new First(), ss), apply(new Interleave(), new Map().Invoke(new Rest(), ss)));
+                    return concat(map(new First(), ss), apply(new Interleave(), map(new Rest(), ss)));
                 }
                 return null;
             });
