@@ -22,7 +22,7 @@ namespace funclib.Components.Core
         /// Returns a <see cref="LazySeq"/> of elements separated by sep.
         /// </returns>
         public object Invoke(object sep, object coll) =>
-            drop(1, interleave(new Repeat().Invoke(sep), coll));
+            drop(1, interleave(repeat(sep), coll));
         
         public class TransducerFunction :
             ATransducerFunction

@@ -21,7 +21,7 @@ namespace funclib.Tests.Components.Core
         public void Interleave_should_work_with_a_repeated_collection()
         {
             var expected = list("a", 1, "a", 2, "a", 3);
-            var actual = interleave(new Repeat().Invoke("a"), new Vector().Invoke(1, 2, 3));
+            var actual = interleave(repeat("a"), new Vector().Invoke(1, 2, 3));
 
             Assert.AreEqual(expected, actual);
         }
@@ -56,7 +56,7 @@ namespace funclib.Tests.Components.Core
         public void Interleave_should_return_a_repeating_collection_with_more_than_two_collections()
         {
             var expected = list('A', ' ', 'a', 'B', ' ', 'b', 'C', ' ', 'c');
-            var actual = new ToArray().Invoke(interleave(new Vector().Invoke('A', 'B', 'C'), new Repeat().Invoke(3, ' '), new Vector().Invoke('a', 'b', 'c')));
+            var actual = new ToArray().Invoke(interleave(new Vector().Invoke('A', 'B', 'C'), repeat(3, ' '), new Vector().Invoke('a', 'b', 'c')));
 
             Assert.AreEqual(expected, actual);
         }
