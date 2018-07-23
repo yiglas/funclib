@@ -36,7 +36,7 @@ namespace funclib.Components.Core
 
                         doTimes(size, i =>
                         {
-                            var v = new Nth().Invoke(c, i);
+                            var v = nth(c, i);
                             if ((bool)new Truthy().Invoke(fn.Invoke(v)))
                             {
                                 return chunkAppend(b, v);

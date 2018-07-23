@@ -47,7 +47,7 @@ namespace funclib.Components.Core
                         var b = (Collections.ChunkBuffer)chunkBuffer(size);
 
                         doTimes(size, 
-                            i => chunkAppend(b, fn.Invoke(new Nth().Invoke(c, i))));
+                            i => chunkAppend(b, fn.Invoke(nth(c, i))));
 
                         return chunkCons(b.Chunk(), Invoke(f, chunkRest(s)));
                     }

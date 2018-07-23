@@ -53,13 +53,13 @@ namespace funclib.Components.Core
         object GetFromArray(object map, object key)
         {
             int n = Numbers.ConvertToInt(key);
-            return n >= 0 && n < (int)count(map) ? new Nth().Invoke(map, n) : null;
+            return n >= 0 && n < (int)count(map) ? nth(map, n) : null;
         }
 
         object GetFromArray(object map, object key, object notFound)
         {
             int n = Numbers.ConvertToInt(key);
-            return n >= 0 && n < (int)count(map) ? new Nth().Invoke(map, n) : notFound;
+            return n >= 0 && n < (int)count(map) ? nth(map, n) : notFound;
         }
     }
 }

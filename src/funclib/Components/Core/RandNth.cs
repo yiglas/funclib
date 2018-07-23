@@ -17,6 +17,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Return a random element of the <see cref="Collections.ISequential"/> collection.
         /// </returns>
-        public object Invoke(object coll) => new Nth().Invoke(coll, new RandInt().Invoke(count(coll)));
+        public object Invoke(object coll) => nth(coll, new RandInt().Invoke(count(coll)));
     }
 }
