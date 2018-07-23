@@ -13,7 +13,7 @@ namespace funclib.Tests.Components.Core
         {
             var expected = 2;
             var actual = @do(
-                new PrintLn().Invoke("LOG: Computing..."),
+                printLn("LOG: Computing..."),
                 plus(1, 1));
 
             Assert.AreEqual(expected, actual);

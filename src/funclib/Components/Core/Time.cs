@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -41,7 +42,7 @@ namespace funclib.Components.Core
             var sw = Stopwatch.StartNew();
             var ret = this._func.Invoke();
             sw.Stop();
-            new PrintLn().Invoke($"Elapsed time: {sw.Elapsed}");
+            printLn($"Elapsed time: {sw.Elapsed}");
             return ret;
         }
     }

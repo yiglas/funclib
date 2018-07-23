@@ -25,7 +25,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Print_should_write_string()
         {
-            new PrintLn().Invoke("Foo");
+            printLn("Foo");
             Assert.AreEqual(this._writer.ToString(), "Foo" + Environment.NewLine);
         }
     }

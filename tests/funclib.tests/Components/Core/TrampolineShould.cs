@@ -15,11 +15,11 @@ namespace funclib.Tests.Components.Core
             foo = new Function<object, object>(x =>
             {
                 if ((bool)isLessThan(x, 0))
-                    return new PrintLn().Invoke("done");
+                    return printLn("done");
 
                 return new Function<object>(() => foo.Invoke(
                     @do(
-                        new PrintLn().Invoke(":x", x),
+                        printLn(":x", x),
                         dec(x))));
             });
 
