@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -10,15 +11,15 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsPosInt_should_return_true_if_is_a_positive_int()
         {
-            Assert.IsTrue((bool)new IsPosInt().Invoke(1));
+            Assert.IsTrue((bool)isPosInt(1));
         }
 
         [Test]
         public void IsPosInt_should_return_false_if_is_not_a_positive_int()
         {
-            Assert.IsFalse((bool)new IsPosInt().Invoke(0));
-            Assert.IsFalse((bool)new IsPosInt().Invoke((double)1));
-            Assert.IsFalse((bool)new IsPosInt().Invoke(-1));
+            Assert.IsFalse((bool)isPosInt(0));
+            Assert.IsFalse((bool)isPosInt((double)1));
+            Assert.IsFalse((bool)isPosInt(-1));
         }
     }
 }

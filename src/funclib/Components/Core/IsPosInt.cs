@@ -18,9 +18,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if x is a positive <see cref="IsInt"/>, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object n) =>
-            and(
-                isInt(n),
-                isPos(n));
+        public object Invoke(object n) => and(isInt(n), isPos(n));
     }
 }
