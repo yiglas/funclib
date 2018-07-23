@@ -52,7 +52,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object to, object xform, object from) =>
             (bool)isInstance(typeof(IEditableCollection), to)
-                ? persistentǃ(new Transduce().Invoke(xform, new Conjǃ(), new Transient().Invoke(to), from))
-                : new Transduce().Invoke(xform, new Conj(), to, from);
+                ? persistentǃ(transduce(xform, new Conjǃ(), new Transient().Invoke(to), from))
+                : transduce(xform, new Conj(), to, from);
     }
 }

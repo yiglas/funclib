@@ -20,7 +20,7 @@ namespace funclib.Tests.Components.Core
         public void Transduce_should_return_the_numbers_as_a_sequence()
         {
             var expected = new Vector().Invoke(1, 3, 5, 7, 9, 11, 13, 15, 17, 19);
-            var actual = new Transduce().Invoke(xf, new Conj(), range());
+            var actual = transduce(xf, new Conj(), range());
 
             Assert.AreEqual(expected, actual);
         }
@@ -29,7 +29,7 @@ namespace funclib.Tests.Components.Core
         public void Transduce_should_return_sumed_values()
         {
             var expected = 100;
-            var actual = new Transduce().Invoke(xf, new Plus(), range());
+            var actual = transduce(xf, new Plus(), range());
 
             Assert.AreEqual(expected, actual);
         }
@@ -38,7 +38,7 @@ namespace funclib.Tests.Components.Core
         public void Transduce_should_return_sumed_values_with_seed_value()
         {
             var expected = 117;
-            var actual = new Transduce().Invoke(xf, new Plus(), 17, range());
+            var actual = transduce(xf, new Plus(), 17, range());
 
             Assert.AreEqual(expected, actual);
         }
@@ -47,7 +47,7 @@ namespace funclib.Tests.Components.Core
         public void Transduce_should_return_string_when_called_via_str()
         {
             var expected = "135791113151719";
-            var actual = new Transduce().Invoke(xf, new Str(), range());
+            var actual = transduce(xf, new Str(), range());
 
             Assert.AreEqual(expected, actual);
         }
