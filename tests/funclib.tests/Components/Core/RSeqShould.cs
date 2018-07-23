@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -10,10 +11,10 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void RSeq_should_reverse_a_vector()
         {
-            //var expected = list(9, 8, 7, 6, 5, 4, 3, 2, 1, 0);
-            //var actual = new RSeq().Invoke(new Vec().Invoke(range(10)));
+            var expected = list(9, 8, 7, 6, 5, 4, 3, 2, 1, 0);
+            var actual = rseq(new Vec().Invoke(range(10)));
 
-            //Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
     }
 }
