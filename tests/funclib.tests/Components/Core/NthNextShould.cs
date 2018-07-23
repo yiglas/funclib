@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void NthNext_should_return_the_items_after_passed_number()
         {
             var expected = list(3, 4, 5, 6, 7, 8, 9);
-            var actual = new NthNext().Invoke(new Range().Invoke(10), 3);
+            var actual = nthNext(new Range().Invoke(10), 3);
 
             Assert.AreEqual(expected, actual);
         }
@@ -20,7 +20,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void NthNext_should_return_a_null_if_an_empty_collection_is_passed()
         {
-            var actual = new NthNext().Invoke(new Vector().Invoke(), 3);
+            var actual = nthNext(new Vector().Invoke(), 3);
 
             Assert.IsNull(actual);
         }
