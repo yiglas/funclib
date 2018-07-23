@@ -11,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void ReSeq_should_return_a_lazyseq()
         {
-            var actual = new ReSeq().Invoke(rePattern(@"\d"), ".NET 1.1.1");
+            var actual = reSeq(rePattern(@"\d"), ".NET 1.1.1");
 
             Assert.IsInstanceOf<funclib.Collections.Cons>(actual);
         }
