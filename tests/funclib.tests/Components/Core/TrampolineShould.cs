@@ -23,7 +23,7 @@ namespace funclib.Tests.Components.Core
                         dec(x))));
             });
 
-            var actual = new Trampoline().Invoke(foo, 10);
+            var actual = trampoline(foo, 10);
 
             Assert.IsNull(actual);
         }
