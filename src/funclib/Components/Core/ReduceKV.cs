@@ -28,7 +28,7 @@ namespace funclib.Components.Core
                 : coll is IMap m ? reduce(new Function<object, object, object>((ret, kv) =>
                 {
                     var k = key(kv);
-                    var v = new Value().Invoke(kv);
+                    var v = value(kv);
 
                     return ((IFunction<object, object, object, object>)f).Invoke(ret, k, v);
                 }), init, coll)

@@ -37,7 +37,7 @@ namespace funclib.Components.Core
             object mergeEntry(object m, object e)
             {
                 var k = key(e);
-                var v = new Value().Invoke(e);
+                var v = value(e);
                 if ((bool)contains(m, k))
                 {
                     return assoc(m, k, ((IFunction<object, object, object>)f).Invoke(get(m, k), v));
