@@ -56,7 +56,7 @@ namespace funclib.Components.Core
                 var s = seq(coll);
                 if ((bool)new Truthy().Invoke(s))
                 {
-                    var p = doAll(new Take().Invoke(n, s));
+                    var p = doAll(take(n, s));
                     if (n.Equals(count(p)))
                         return cons(p, Invoke(n, step, nthRest(s, step)));
                 }
@@ -86,11 +86,11 @@ namespace funclib.Components.Core
                 var s = seq(coll);
                 if ((bool)new Truthy().Invoke(s))
                 {
-                    var p = doAll(new Take().Invoke(n, s));
+                    var p = doAll(take(n, s));
                     if (n.Equals(count(p)))
                         return cons(p, Invoke(n, step, pad, nthRest(s, step)));
 
-                    return list(new Take().Invoke(n, concat(p, pad)));
+                    return list(take(n, concat(p, pad)));
                 }
                 return null;
             });

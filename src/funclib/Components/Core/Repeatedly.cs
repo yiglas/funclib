@@ -38,6 +38,6 @@ namespace funclib.Components.Core
         /// returns an infinite (or length n if supplied) <see cref="LazySeq"/> of
         /// calls to it.
         /// </returns>
-        public object Invoke(object n, object f) => new Take().Invoke(n, Invoke(f));
+        public object Invoke(object n, object f) => take(n, Invoke(f));
     }
 }

@@ -15,7 +15,7 @@ namespace funclib.Tests.Components.Core
         public void LazySeq_should_()
         {
             //var expected = list.Create(1, 2, 3, 4, 5);
-            //var actual = new ToArray().Invoke(new Take().Invoke(5, positive_numbers(1)));
+            //var actual = new ToArray().Invoke(take(5, positive_numbers(1)));
 
             //Assert.AreEqual(expected, actual);
 

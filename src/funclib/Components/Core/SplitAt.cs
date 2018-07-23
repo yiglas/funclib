@@ -19,6 +19,6 @@ namespace funclib.Components.Core
         /// Returns a <see cref="Collections.Vector"/> of [<see cref="Take.Invoke(object, object)"/>, <see cref="Drop.Invoke(object, object)"/>].
         /// </returns>
         public object Invoke(object n, object coll) =>
-            new Vector().Invoke(new Take().Invoke(n, coll), drop(n, coll));
+            new Vector().Invoke(take(n, coll), drop(n, coll));
     }
 }
