@@ -92,7 +92,7 @@ namespace funclib.Components.Core
         string FPStr(object x)
         {
             var s = (string)new Str().Invoke(x);
-            if ((bool)new Truthy().Invoke(new Or().Invoke(s.Contains("."), s.Contains("E"))))
+            if ((bool)new Truthy().Invoke(or(s.Contains("."), s.Contains("E"))))
                 return s;
 
             return $"{s}.0";

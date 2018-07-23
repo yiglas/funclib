@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -27,7 +28,7 @@ namespace funclib.Components.Core
             var s = (ISeq)new Seq().Invoke(coll);
             if ((bool)new Truthy().Invoke(s))
             {
-                return new Or().Invoke(
+                return or(
                     fn.Invoke(s.First()),
                     Invoke(pred, s.Next())
                     );

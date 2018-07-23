@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -48,7 +49,7 @@ namespace funclib.Components.Core
         /// otherwise <see cref="false"/>.
         /// </returns>
         public object Invoke(object n) =>
-            new Or().Invoke(
+            or(
                 n is int,
                 n is long,
                 n is short,
