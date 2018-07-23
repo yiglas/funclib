@@ -19,7 +19,7 @@ namespace funclib.Components.Core
         /// Returns a <see cref="Collections.HashSet"/> of the distinct elements of coll.
         /// </returns>
         public object Invoke(object coll) =>
-            (bool)new IsSet().Invoke(coll)
+            (bool)isSet(coll)
                 ? coll
                 : coll is IReduce r ? new Persistentǃ().Invoke(r.Reduce(new Conjǃ(), new Transient().Invoke(hashSet())))
                 : new Persistentǃ().Invoke(new Reduce1().Invoke(new Conjǃ(), new Transient().Invoke(hashSet()), coll));
