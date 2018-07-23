@@ -24,7 +24,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the key found otherwise null.
         /// </returns>
-        public object Invoke(object m, object ks) => new Reduce1().Invoke(new Get(), m, ks);
+        public object Invoke(object m, object ks) => reduce1(new Get(), m, ks);
         /// <summary>
         /// Returns the value in a nested associative structure, where ks
         /// is a sequence of keys. Returns null if the key is not present,

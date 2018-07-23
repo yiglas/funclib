@@ -63,7 +63,7 @@ namespace funclib.Components.Core
         /// Returns <see cref="Function"/> with f, g and fs composed together.
         /// </returns>
         public object Invoke(object f, object g, params object[] fs) =>
-            new Reduce1().Invoke(this, listS(f, g, fs));
+            reduce1(this, listS(f, g, fs));
 
         /// <summary>
         /// Internal function that does the <see cref="Comp"/>.

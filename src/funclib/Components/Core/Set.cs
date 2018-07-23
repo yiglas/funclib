@@ -22,6 +22,6 @@ namespace funclib.Components.Core
             (bool)isSet(coll)
                 ? coll
                 : coll is IReduce r ? persistentǃ(r.Reduce(new Conjǃ(), new Transient().Invoke(hashSet())))
-                : persistentǃ(new Reduce1().Invoke(new Conjǃ(), new Transient().Invoke(hashSet()), coll));
+                : persistentǃ(reduce1(new Conjǃ(), new Transient().Invoke(hashSet()), coll));
     }
 }

@@ -29,7 +29,7 @@ namespace funclib.Components.Core
         {
             if ((bool)new Truthy().Invoke(new Some().Invoke(new Identity(), maps)))
             {
-                return new Reduce1().Invoke(new Function<object, object, object>(merge2), maps);
+                return reduce1(new Function<object, object, object>(merge2), maps);
             }
 
             return null;
@@ -46,7 +46,7 @@ namespace funclib.Components.Core
                 return assoc(m, k, v);
             }
 
-            object merge2(object m1, object m2) => new Reduce1().Invoke(new Function<object, object, object>(mergeEntry), or(m1, hashMap()), new Seq().Invoke(m2));
+            object merge2(object m1, object m2) => reduce1(new Function<object, object, object>(mergeEntry), or(m1, hashMap()), new Seq().Invoke(m2));
         }
     }
 }

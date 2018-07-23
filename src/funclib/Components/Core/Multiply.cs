@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -54,6 +55,6 @@ namespace funclib.Components.Core
         /// Returns the product of numbers. No parameters past returns 1. Single parameter there is an 
         /// implicit 1 passed.
         /// </returns>
-        public object Invoke(object x, object y, params object[] more) => new Reduce1().Invoke(this, Invoke(x, y), more);
+        public object Invoke(object x, object y, params object[] more) => reduce1(this, Invoke(x, y), more);
     }
 }
