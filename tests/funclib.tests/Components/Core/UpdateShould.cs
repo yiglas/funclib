@@ -13,7 +13,7 @@ namespace funclib.Tests.Components.Core
         {
             var p = arrayMap(":name", "James", ":age", 26);
 
-            var actual = new Update().Invoke(p, ":age", new Inc());
+            var actual = update(p, ":age", new Inc());
 
             Assert.AreNotEqual(p, actual);
         }
@@ -24,7 +24,7 @@ namespace funclib.Tests.Components.Core
             var p = arrayMap(":name", "James", ":age", 26);
 
             var expected = arrayMap(":name", "James", ":age", 27);
-            var actual = new Update().Invoke(p, ":age", new Inc());
+            var actual = update(p, ":age", new Inc());
 
             Assert.AreEqual(expected, actual);
         }
@@ -35,7 +35,7 @@ namespace funclib.Tests.Components.Core
             var p = arrayMap(":name", "James", ":age", 26);
 
             var expected = arrayMap(":name", "James", ":age", 36);
-            var actual = new Update().Invoke(p, ":age", new Plus(), 10);
+            var actual = update(p, ":age", new Plus(), 10);
 
             Assert.AreEqual(expected, actual);
         }
@@ -46,7 +46,7 @@ namespace funclib.Tests.Components.Core
             var p = arrayMap();
 
             var expected = arrayMap(":some-key", "foo");
-            var actual = new Update().Invoke(p, ":some-key", new Function<object, object>(x => str("foo", x)));
+            var actual = update(p, ":some-key", new Function<object, object>(x => str("foo", x)));
 
             Assert.AreEqual(expected, actual);
         }
@@ -55,7 +55,7 @@ namespace funclib.Tests.Components.Core
         public void Update_should_also_work_with_vectors()
         {
             var expected = new Vector().Invoke(2, 2, 3);
-            var actual = new Update().Invoke(new Vector().Invoke(1, 2, 3), 0, new Inc());
+            var actual = update(new Vector().Invoke(1, 2, 3), 0, new Inc());
 
             Assert.AreEqual(expected, actual);
         }
