@@ -11,17 +11,17 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsSeq_should_return_true_if_ISeq()
         {
-            Assert.IsTrue((bool)new IsSeq().Invoke(new Seq().Invoke(new Vector().Invoke(1))));
-            Assert.IsTrue((bool)new IsSeq().Invoke(new funclib.Components.Core.List().Invoke(1, 2, 3)));
-            Assert.IsTrue((bool)new IsSeq().Invoke(new Seq().Invoke(new Range().Invoke(1, 5))));
+            Assert.IsTrue((bool)isSeq(new Seq().Invoke(new Vector().Invoke(1))));
+            Assert.IsTrue((bool)isSeq(new funclib.Components.Core.List().Invoke(1, 2, 3)));
+            Assert.IsTrue((bool)isSeq(new Seq().Invoke(new Range().Invoke(1, 5))));
         }
 
         [Test]
         public void IsSeq_should_return_false_if_not_ISeq()
         {
-            Assert.IsFalse((bool)new IsSeq().Invoke(1));
-            Assert.IsFalse((bool)new IsSeq().Invoke(new Vector().Invoke(1)));
-            Assert.IsFalse((bool)new IsSeq().Invoke(hashMap(":a", 1, ":b", 2)));
+            Assert.IsFalse((bool)isSeq(1));
+            Assert.IsFalse((bool)isSeq(new Vector().Invoke(1)));
+            Assert.IsFalse((bool)isSeq(hashMap(":a", 1, ":b", 2)));
         }
     }
 }
