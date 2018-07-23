@@ -16,7 +16,7 @@ namespace funclib.Tests.Components.Core
             var expected = list.Invoke(":a", ":b", ":d", ":e", ":c", ":f");
 
             var tree = list.Invoke(":a", list.Invoke(":b", list.Invoke(":d"), list.Invoke(":e")), list.Invoke(":c", list.Invoke(":f")));
-            var actual = toArray(map(new First(), new TreeSeq().Invoke(new Next(), new Rest(), tree)));
+            var actual = toArray(map(new First(), treeSeq(new Next(), new Rest(), tree)));
 
             Assert.AreEqual(expected, actual);
         }

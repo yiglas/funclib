@@ -24,6 +24,6 @@ namespace funclib.Components.Core
         /// Returns a <see cref="LazySeq"/> that when invoked flattens the sequence.
         /// </returns>
         public object Invoke(object x) =>
-            filter(complement(new IsSequential()), rest(new TreeSeq().Invoke(new IsSequential(), new Seq(), x)));
+            filter(complement(new IsSequential()), rest(treeSeq(new IsSequential(), new Seq(), x)));
     }
 }
