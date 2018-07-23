@@ -13,7 +13,7 @@ namespace funclib.Components.Core
         IFunction<object, object>,
         IFunction<object, object, object>
     {
-        public object Invoke(object f) => new Function<object, object>(rf => new TransducerFunction(f, rf));
+        public object Invoke(object f) => func<object, object>(rf => new TransducerFunction(f, rf));
         /// <summary>
         /// Applies <see cref="IFunction{T1, TResult}"/> to each value in coll, splitting it each 
         /// time f returns a new value. Returns a <see cref="LazySeq"/> of partitions.
@@ -32,7 +32,7 @@ namespace funclib.Components.Core
                 {
                     var fst = s.First();
                     var fv = fn.Invoke(fst);
-                    var run = cons(fst, takeWhile(new Function<object, object>(x => isEqualTo(fv, fn.Invoke(x))), s.Next()));
+                    var run = cons(fst, takeWhile(func<object, object>(x => isEqualTo(fv, fn.Invoke(x))), s.Next()));
 
                     return cons(run, Invoke(f, seq(drop(count(run), s))));
                 }

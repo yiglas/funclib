@@ -14,7 +14,7 @@ namespace funclib.Components.Core
         IFunction<object, object>,
         IFunction<object, object, object>
     {
-        public object Invoke(object n) => new Function<object, object>(rf => new TransducerFunction(n, rf));
+        public object Invoke(object n) => func<object, object>(rf => new TransducerFunction(n, rf));
         /// <summary>
         /// Returns a <see cref="LazySeq"/> of the first n items in the coll, or all items
         /// if there are fewer than n.
@@ -26,7 +26,7 @@ namespace funclib.Components.Core
         /// if there are fewer than n.
         /// </returns>
         public object Invoke(object n, object coll) =>
-            lazySeq(new Function<object>(() =>
+            lazySeq(func(() =>
             {
                 if ((bool)isPos(n))
                 {

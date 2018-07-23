@@ -14,7 +14,7 @@ namespace funclib.Components.Core
         IFunction<object, object>,
         IFunction<object, object, object>
     {
-        public object Invoke(object pred) => new Function<object, object>(rf => new TransducerFunction(pred, rf));
+        public object Invoke(object pred) => func<object, object>(rf => new TransducerFunction(pred, rf));
         /// <summary>
         /// Returns a <see cref="LazySeq"/> of successive items from coll while 
         /// <see cref="IFunction{T1, T2, TResult}"/> pred returns a logical true. pred

@@ -13,7 +13,7 @@ namespace funclib.Components.Core
         IFunction<object, object>,
         IFunction<object, object, object>
     {
-        public object Invoke(object pred) => new Function<object, object>(rf => new TransducerFunction(pred, rf));
+        public object Invoke(object pred) => func<object, object>(rf => new TransducerFunction(pred, rf));
         /// <summary>
         /// Returns a <see cref="LazySeq"/> of the items in coll starting from the first item 
         /// for which the predicate returns a logical false.

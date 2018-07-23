@@ -186,11 +186,11 @@ namespace funclib.Components.Core
             object Exec(object f, object x, object y, object z) => ((IFunction<object, object, object, object>)f).Invoke(x, y, z);
             object Exec(object f, object x, object y, object z, params object[] args) => apply(f, x, y, z, args);
 
-            object Reduce(object fs) => reduce1(new Function<object, object, object>((_1, _2) => conj(_1, Exec(_2))), vector(), fs);
-            object Reduce(object fs, object x) => reduce1(new Function<object, object, object>((_1, _2) => conj(_1, Exec(_2, x))), vector(), fs);
-            object Reduce(object fs, object x, object y) => reduce1(new Function<object, object, object>((_1, _2) => conj(_1, Exec(_2, x, y))), vector(), fs);
-            object Reduce(object fs, object x, object y, object z) => reduce1(new Function<object, object, object>((_1, _2) => conj(_1, Exec(_2, x, y, z))), vector(), fs);
-            object Reduce(object fs, object x, object y, object z, params object[] args) => reduce1(new Function<object, object, object>((_1, _2) => conj(_1, Exec(_2, x, y, z, args))), vector(), fs);
+            object Reduce(object fs) => reduce1(func((object _1, object _2) => conj(_1, Exec(_2))), vector(), fs);
+            object Reduce(object fs, object x) => reduce1(func((object _1, object _2) => conj(_1, Exec(_2, x))), vector(), fs);
+            object Reduce(object fs, object x, object y) => reduce1(func((object _1, object _2) => conj(_1, Exec(_2, x, y))), vector(), fs);
+            object Reduce(object fs, object x, object y, object z) => reduce1(func((object _1, object _2) => conj(_1, Exec(_2, x, y, z))), vector(), fs);
+            object Reduce(object fs, object x, object y, object z, params object[] args) => reduce1(func((object _1, object _2) => conj(_1, Exec(_2, x, y, z, args))), vector(), fs);
         }
     }
 }

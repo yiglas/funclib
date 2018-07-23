@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -19,7 +20,7 @@ namespace funclib.Components.Core
         /// <param name="n">Number of times to execute the fn.</param>
         /// <param name="fn">The function to execute.</param>
         public DoTimes(int n, Func<int, object> fn) :
-            this(n, new Function<int, object>(fn))
+            this(n, func(fn))
         {
         }
 

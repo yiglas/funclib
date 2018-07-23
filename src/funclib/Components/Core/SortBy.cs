@@ -45,7 +45,7 @@ namespace funclib.Components.Core
             var fn = (IFunction<object, object>)keyfn;
             var cfn = (IFunction<object, object, object>)comp;
 
-            return sort(new Function<object, object, object>((x, y) => cfn.Invoke(fn.Invoke(x), fn.Invoke(y))), coll);
+            return sort(func((object x, object y) => cfn.Invoke(fn.Invoke(x), fn.Invoke(y))), coll);
         }
     }
 }

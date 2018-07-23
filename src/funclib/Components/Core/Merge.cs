@@ -28,7 +28,7 @@ namespace funclib.Components.Core
         {
             if ((bool)truthy(some(new Identity(), maps)))
             {
-                return reduce1(new Function<object, object, object>((_1, _2) => conj(or(_1, hashMap()), _2)), maps);
+                return reduce1(func((object _1, object _2) => conj(or(_1, hashMap()), _2)), maps);
             }
 
             return null;

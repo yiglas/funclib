@@ -13,7 +13,7 @@ namespace funclib.Components.Core
         IFunction<object, object, object>,
         IFunction<object, object, object, object>
     {
-        public object Invoke(object n) => new Function<object, object>(rf => new TransducerFunction(n, rf));
+        public object Invoke(object n) => func<object, object>(rf => new TransducerFunction(n, rf));
         /// <summary>
         /// Returns a <see cref="LazySeq"/> of lists like <see cref="Partition"/>, but my include
         /// partitions with fewer then n items at the end.

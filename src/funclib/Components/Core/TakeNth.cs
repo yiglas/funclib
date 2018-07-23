@@ -12,7 +12,7 @@ namespace funclib.Components.Core
         IFunction<object, object>,
         IFunction<object, object, object>
     {
-        public object Invoke(object n) => new Function<object, object>(rf => new TransducerFunction(n, rf));
+        public object Invoke(object n) => func<object, object>(rf => new TransducerFunction(n, rf));
         /// <summary>
         /// Returns a <see cref="LazySeq"/> of every nth item in coll.
         /// </summary>

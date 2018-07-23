@@ -12,7 +12,7 @@ namespace funclib.Components.Core
         IFunction<object, object>,
         IFunction<object, object, object>
     {
-        public object Invoke(object sep) => new Function<object, object>(rf => new TransducerFunction(sep, rf));
+        public object Invoke(object sep) => func<object, object>(rf => new TransducerFunction(sep, rf));
         /// <summary>
         /// Returns a <see cref="LazySeq"/> of elements separated by sep.
         /// </summary>

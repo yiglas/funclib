@@ -19,10 +19,6 @@ namespace funclib.Components.Core
         /// Returns a <see cref="Collections.HashMap"/> from distinct items in coll to the number of times they appear.
         /// </returns>
         public object Invoke(object coll) =>
-            persistentǃ(
-                reduce(
-                    new Function<object, object, object>((counts, x) =>
-                        assocǃ(counts, x, inc(get(counts, x, 0)))),
-                    transient(hashMap()), coll));
+            persistentǃ(reduce(func((object counts, object x) => assocǃ(counts, x, inc(get(counts, x, 0)))), transient(hashMap()), coll));
     }
 }

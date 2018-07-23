@@ -21,7 +21,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="LazySeq"/>, when invoked returns null.
         /// </returns>
-        public object Invoke() => lazySeq(new Function<object>(() => null));
+        public object Invoke() => lazySeq(func(() => (object)null));
         /// <summary>
         /// Returns a <see cref="LazySeq"/> representing the concatenation of the elements
         /// in the supplied colls.
@@ -30,7 +30,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returna a <see cref="LazySeq"/>, when invoked returns x.
         /// </returns>
-        public object Invoke(object x) => lazySeq(new Function<object>(() => x));
+        public object Invoke(object x) => lazySeq(func(() => x));
         /// <summary>
         /// Returns a <see cref="LazySeq"/> representing the concatenation of the elements
         /// in the supplied colls.

@@ -49,7 +49,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the first non-fn value.
         /// </returns>
-        public object Invoke(object f, params object[] args) =>
-            Invoke(new Function<object>(() => apply(f, args)));
+        public object Invoke(object f, params object[] args) => Invoke(func(() => apply(f, args)));
     }
 }

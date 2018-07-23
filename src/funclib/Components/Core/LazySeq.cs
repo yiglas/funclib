@@ -88,7 +88,7 @@ namespace funclib.Components.Core
         /// </summary>
         /// <param name="fn">A function to evaluate during each <see cref="LazySeq.Seq"/> call.</param>
         public LazySeq(Func<object> fn) :
-            this(new Function<object>(fn))
+            this(func(fn))
         { }
 
         /// <summary>

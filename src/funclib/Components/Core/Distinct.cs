@@ -17,7 +17,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="IFunction{T1, TResult}"/> that returns a <see cref="TransducerFunction"/>.
         /// </returns>
-        public object Invoke() => new Function<object, object>(rf => new TransducerFunction(rf));
+        public object Invoke() => func<object, object>(rf => new TransducerFunction(rf));
         /// <summary>
         /// Returns a <see cref="LazySeq"/> of elements of coll without duplicate values.
         /// </summary>

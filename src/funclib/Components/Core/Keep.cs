@@ -13,7 +13,7 @@ namespace funclib.Components.Core
         IFunction<object, object>,
         IFunction<object, object, object>
     {
-        public object Invoke(object f) => new Function<object, object>(rf => new TransducerFunction(f, rf));
+        public object Invoke(object f) => func<object, object>(rf => new TransducerFunction(f, rf));
         /// <summary>
         /// Returns a <see cref="LazySeq"/> of the non-null results of <see cref="IFunction{T1, TResult}"/>.
         /// Note: this means false return values will be included. F must be free of side-effects.

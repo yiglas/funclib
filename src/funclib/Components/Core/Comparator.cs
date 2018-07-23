@@ -25,14 +25,16 @@ namespace funclib.Components.Core
         {
             var p = (IFunction<object, object, object>)pred;
 
-            return new Function<object, object, object>((x, y) =>
+            return func((object x, object y) =>
             {
+                object ret = 0;
+
                 if ((bool)truthy(p.Invoke(x, y)))
-                    return -1;
+                    ret = -1;
                 else if ((bool)truthy(p.Invoke(y, x)))
-                    return 1;
-                else
-                    return 0;
+                    ret = 1;
+
+                return ret;
             });
         }
     }

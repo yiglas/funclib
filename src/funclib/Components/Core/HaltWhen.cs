@@ -9,8 +9,7 @@ namespace funclib.Components.Core
         IFunction<object, object, object>
     {
         public object Invoke(object pred) => Invoke(pred, null);
-        public object Invoke(object pred, object retf) =>
-            new Function<object, object>(rf => new TransducerFunction(pred, retf, rf));
+        public object Invoke(object pred, object retf) => func<object, object>(rf => new TransducerFunction(pred, retf, rf));
 
 
         public class TransducerFunction :

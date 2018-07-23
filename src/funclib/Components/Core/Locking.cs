@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -20,7 +21,7 @@ namespace funclib.Components.Core
         /// <param name="x">Object to lock.</param>
         /// <param name="fn"><see cref="Func{TResult}"/> to execute.</param>
         public Locking(object x, Func<object> fn) :
-            this(x, new Function<object>(fn))
+            this(x, func(fn))
         { }
 
         /// <summary>

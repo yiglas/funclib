@@ -29,7 +29,7 @@ namespace funclib.Components.Core
         public object Invoke(object f, object coll) =>
             persistentǃ(
                 reduce(
-                    new Function<object, object, object>((ret, x) =>
+                    func((object ret, object x) =>
                     {
                         var k = ((IFunction<object, object>)f).Invoke(x);
                         return assocǃ(ret, k, conj(get(ret, k, vector()), x));

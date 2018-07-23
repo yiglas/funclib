@@ -17,7 +17,7 @@ namespace funclib.Components.Core
         IFunction<object, object, object, object, object>,
         IFunctionParams<object, object, object, object, object, object>
     {
-        public object Invoke(object f) => new Function<object, object>(rf => new TransducerFunction(f, rf));
+        public object Invoke(object f) => func<object, object>(rf => new TransducerFunction(f, rf));
         /// <summary>
         /// Returns a <see cref="LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
         /// to the set of first items of each coll, followed by applying <see cref="IFunction"/> to the set
@@ -139,9 +139,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object f, object c1, object c2, object c3, params object[] colls)
         {
-            return Invoke(
-                new Function<object, object>(x => apply(f, x)),
-                step(conj(colls, c3, c2, c1)));
+            return Invoke(func((object x) => apply(f, x)), step(conj(colls, c3, c2, c1)));
 
             object step(object cs) =>
                 lazySeq(() =>
