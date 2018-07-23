@@ -15,7 +15,7 @@ namespace funclib.Tests.Components.Core
         //    var largeVec = new Vec().Invoke(new Range().Invoke(0, 100));
 
         //    var sw = Stopwatch.StartNew();
-        //    var actual = new Peek().Invoke(largeVec);
+        //    var actual = peek(largeVec);
         //    sw.Stop();
         //    var peekTime = sw.ElapsedMilliseconds;
 
@@ -31,7 +31,7 @@ namespace funclib.Tests.Components.Core
         public void Peek_should_return_the_last_element_of_a_vector()
         {
             var expected = 3;
-            var actual = new Peek().Invoke(new Vector().Invoke(1, 2, 3));
+            var actual = peek(new Vector().Invoke(1, 2, 3));
 
             Assert.AreEqual(expected, actual);
         }
@@ -40,7 +40,7 @@ namespace funclib.Tests.Components.Core
         public void Peek_should_return_the_first_element_of_a_list()
         {
             var expected = 1;
-            var actual = new Peek().Invoke(list(1, 2, 3));
+            var actual = peek(list(1, 2, 3));
 
             Assert.AreEqual(expected, actual);
         }
@@ -48,19 +48,19 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Peek_should_return_null_if_empty_vector()
         {
-            Assert.IsNull(new Peek().Invoke(new Vector().Invoke()));
+            Assert.IsNull(peek(new Vector().Invoke()));
         }
 
         [Test]
         public void Peek_should_return_null_when_null_is_passed()
         {
-            Assert.IsNull(new Peek().Invoke(null));
+            Assert.IsNull(peek(null));
         }
 
         [Test]
         public void Peek_should_return_null_if_empty_list()
         {
-            Assert.IsNull(new Peek().Invoke(list()));
+            Assert.IsNull(peek(list()));
         }
     }
 }
