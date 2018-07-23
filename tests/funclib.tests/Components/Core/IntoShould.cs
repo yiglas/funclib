@@ -11,8 +11,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Into_should_conjoin_values_from_into_to()
         {
-            var expected = new SortedMap().Invoke(":a", 1, ":b", 2, ":c", 3);
-            var actual = into(new SortedMap().Invoke(), new Vector().Invoke(new Vector().Invoke(":a", 1), new Vector().Invoke(":b", 2), new Vector().Invoke(":c", 3)));
+            var expected = sortedMap(":a", 1, ":b", 2, ":c", 3);
+            var actual = into(sortedMap(), new Vector().Invoke(new Vector().Invoke(":a", 1), new Vector().Invoke(":b", 2), new Vector().Invoke(":c", 3)));
 
             Assert.AreEqual(expected, actual);
             Assert.IsInstanceOf<funclib.Collections.SortedMap>(actual);
@@ -31,8 +31,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Into_should_change_from_one_type_of_map_to_another()
         {
-            var expected = new SortedMap().Invoke(":a", 1, ":b", 2, ":c", 3);
-            var actual = into(new SortedMap().Invoke(), arrayMap(":a", 1, ":b", 2, ":c", 3));
+            var expected = sortedMap(":a", 1, ":b", 2, ":c", 3);
+            var actual = into(sortedMap(), arrayMap(":a", 1, ":b", 2, ":c", 3));
 
             Assert.AreEqual(expected, actual);
             Assert.IsInstanceOf<funclib.Collections.SortedMap>(actual);
