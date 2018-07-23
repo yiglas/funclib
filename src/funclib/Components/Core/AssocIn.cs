@@ -28,7 +28,7 @@ namespace funclib.Components.Core
         public object Invoke(object m, object ks, object v)
         {
             var k = first(ks);
-            ks = new Next().Invoke(ks);
+            ks = next(ks);
 
             if ((bool)new Truthy().Invoke(ks))
                 return assoc(m, k, Invoke(get(m, k), ks, v));

@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -17,6 +18,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the next item's next item
         /// </returns>
-        public object Invoke(object x) => new Next().Invoke(new Next().Invoke(x));
+        public object Invoke(object x) => next(next(x));
     }
 }

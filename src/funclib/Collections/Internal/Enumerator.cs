@@ -56,7 +56,7 @@ namespace funclib.Collections.Internal
                 this._next = new Seq().Invoke(this._next);
             }
             else
-                this._next = new Next().Invoke(this._next);
+                this._next = next(this._next);
 
             return this._next != null;
         }

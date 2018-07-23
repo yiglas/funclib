@@ -29,7 +29,7 @@ namespace funclib.Components.Core
             var s = new Seq().Invoke(coll);
             if ((bool)new Truthy().Invoke(s))
             {
-                return Invoke(new Next().Invoke(s));
+                return Invoke(next(s));
             }
             return null;
         }
@@ -49,7 +49,7 @@ namespace funclib.Components.Core
             var s = new Seq().Invoke(coll);   
             if ((bool)new Truthy().Invoke(and(s, isPos(n))))
             {
-                return Invoke(dec(n), new Next().Invoke(s));
+                return Invoke(dec(n), next(s));
             }
             return null;
         }

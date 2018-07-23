@@ -17,6 +17,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the first item's next list.
         /// </returns>
-        public object Invoke(object x) => first(new Next().Invoke(x));
+        public object Invoke(object x) => first(next(x));
     }
 }

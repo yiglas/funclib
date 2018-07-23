@@ -40,9 +40,9 @@ namespace funclib.Components.Core
 
             if (ks != null && ks.Length > 0)
             {
-                var next = new Next().Invoke(ks);
-                if ((bool)new Truthy().Invoke(next))
-                    return Invoke(ret, first(ks), (object[])new ToArray().Invoke(next));
+                var n = next(ks);
+                if ((bool)new Truthy().Invoke(n))
+                    return Invoke(ret, first(ks), (object[])new ToArray().Invoke(n));
 
                 return Invoke(ret, first(ks));
             }

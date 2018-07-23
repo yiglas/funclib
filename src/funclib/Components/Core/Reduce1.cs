@@ -26,7 +26,7 @@ namespace funclib.Components.Core
                 if ((bool)isChunkedSeq(s))
                     return Invoke(f, ((IChunked)chunkFirst(s)).Reduce((IFunction<object, object, object>)f, val), chunkNext(s));
                 else
-                    return Invoke(f, ((IFunction<object, object, object>)f).Invoke(val, first(s)), new Next().Invoke(s));
+                    return Invoke(f, ((IFunction<object, object, object>)f).Invoke(val, first(s)), next(s));
             }
 
             return val;

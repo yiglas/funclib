@@ -24,7 +24,7 @@ namespace funclib.Components.Core
             
             object loop(object ret, object s)
             {
-                var n = new Next().Invoke(s);
+                var n = next(s);
                 if ((bool)new Truthy().Invoke(n))
                     return loop(conj(ret, first(s)), n);
                 return new Seq().Invoke(ret);

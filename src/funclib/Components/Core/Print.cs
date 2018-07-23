@@ -43,7 +43,7 @@ namespace funclib.Components.Core
         {
             Invoke(x);
             Variables.Out.Write(' ');
-            var nmore = new Next().Invoke(more);
+            var nmore = next(more);
             if ((bool)new Truthy().Invoke(nmore))
                 return Invoke(first(more), nmore);
 

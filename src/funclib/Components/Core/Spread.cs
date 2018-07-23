@@ -11,11 +11,11 @@ namespace funclib.Components.Core
         public object Invoke(object argList)
         {
             if (argList == null) return null;
-            var next = new Next().Invoke(argList);
-            if (next == null)
+            var n = next(argList);
+            if (n == null)
                 return new Seq().Invoke(first(argList));
 
-            return cons(first(argList), new Spread().Invoke(next));
+            return cons(first(argList), new Spread().Invoke(n));
         }
     }
 }

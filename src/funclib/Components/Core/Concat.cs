@@ -80,7 +80,7 @@ namespace funclib.Components.Core
                     }
                     else if ((bool)new Truthy().Invoke(zss))
                     {
-                        return cat(first(zss), new Next().Invoke(zss));
+                        return cat(first(zss), next(zss));
                     }
                     else
                         return null;
