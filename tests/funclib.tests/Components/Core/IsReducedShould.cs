@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -10,13 +11,13 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsReduced_should_return_true_if_reduced()
         {
-            Assert.IsTrue((bool)new IsReduced().Invoke(new Reduced().Invoke("foo")));
+            Assert.IsTrue((bool)isReduced(new Reduced().Invoke("foo")));
         }
 
         [Test]
         public void IsReduced_should_return_false_if_not_reduced()
         {
-            Assert.IsFalse((bool)new IsReduced().Invoke(0));
+            Assert.IsFalse((bool)isReduced(0));
         }
     }
 }

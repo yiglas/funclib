@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -20,7 +21,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsSeqable_should_return_false_if_not_object_is_seqable()
         {
-            Assert.IsFalse((bool)new IsReduced().Invoke(0));
+            Assert.IsFalse((bool)isReduced(0));
         }
     }
 }

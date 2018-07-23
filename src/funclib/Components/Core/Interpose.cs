@@ -43,7 +43,7 @@ namespace funclib.Components.Core
                 if ((bool)new Truthy().Invoke(this._started.Deref()))
                 {
                     var sepr = ((IFunction<object, object, object>)this._rf).Invoke(result, this._sep);
-                    if ((bool)new IsReduced().Invoke(sepr))
+                    if ((bool)isReduced(sepr))
                         return sepr;
 
                     return ((IFunction<object, object, object>)this._rf).Invoke(sepr, input);
