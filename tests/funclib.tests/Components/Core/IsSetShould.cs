@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void IsSet_should_return_true_if_reduced()
         {
             Assert.IsTrue((bool)isSet(hashSet(1, 2, 3)));
-            Assert.IsTrue((bool)isSet(new SortedSet().Invoke(1, 2, 3)));
+            Assert.IsTrue((bool)isSet(sortedSet(1, 2, 3)));
         }
 
         [Test]

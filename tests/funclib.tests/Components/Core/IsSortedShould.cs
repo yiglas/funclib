@@ -11,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsSorted_should_return_true_if_implements_sorted()
         {
-            Assert.IsTrue((bool)isSorted(new SortedSet().Invoke(1, 2, 3)));
+            Assert.IsTrue((bool)isSorted(sortedSet(1, 2, 3)));
         }
 
         [Test]
