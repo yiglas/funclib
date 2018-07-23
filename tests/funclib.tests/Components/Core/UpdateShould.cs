@@ -46,7 +46,7 @@ namespace funclib.Tests.Components.Core
             var p = arrayMap();
 
             var expected = arrayMap(":some-key", "foo");
-            var actual = new Update().Invoke(p, ":some-key", new Function<object, object>(x => new Str().Invoke("foo", x)));
+            var actual = new Update().Invoke(p, ":some-key", new Function<object, object>(x => str("foo", x)));
 
             Assert.AreEqual(expected, actual);
         }

@@ -91,7 +91,7 @@ namespace funclib.Components.Core
 
         string FPStr(object x)
         {
-            var s = (string)new Str().Invoke(x);
+            var s = (string)str(x);
             if ((bool)new Truthy().Invoke(or(s.Contains("."), s.Contains("E"))))
                 return s;
 
@@ -99,7 +99,7 @@ namespace funclib.Components.Core
         }
 
 
-        void PrintDefault(object o, TextWriter w) => w.Write(new Str().Invoke(o));
+        void PrintDefault(object o, TextWriter w) => w.Write(str(o));
         void Pr(double o, TextWriter w)
         {
             if (o == double.PositiveInfinity) Pr("##Inf", w);
