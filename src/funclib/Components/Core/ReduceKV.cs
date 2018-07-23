@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -26,7 +27,7 @@ namespace funclib.Components.Core
                 : coll is IReduceKV r ? r.ReduceKV((IFunction<object, object, object, object>)f, init)
                 : coll is IMap m ? new Reduce().Invoke(new Function<object, object, object>((ret, kv) =>
                 {
-                    var k = new Key().Invoke(kv);
+                    var k = key(kv);
                     var v = new Value().Invoke(kv);
 
                     return ((IFunction<object, object, object, object>)f).Invoke(ret, k, v);

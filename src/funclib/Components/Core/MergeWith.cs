@@ -36,7 +36,7 @@ namespace funclib.Components.Core
 
             object mergeEntry(object m, object e)
             {
-                var k = new Key().Invoke(e);
+                var k = key(e);
                 var v = new Value().Invoke(e);
                 if ((bool)contains(m, k))
                 {
