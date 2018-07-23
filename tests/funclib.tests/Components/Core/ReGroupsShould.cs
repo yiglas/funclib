@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void ReGroups_should_return_a_vector()
         {
             var phoneNumber = "123-456-789-1234";
-            var matcher = reMatcher(new RePattern().Invoke(@"((\d+)-(\d+))"), phoneNumber);
+            var matcher = reMatcher(rePattern(@"((\d+)-(\d+))"), phoneNumber);
 
             reFind(matcher);
             var actual = reGroups(matcher);

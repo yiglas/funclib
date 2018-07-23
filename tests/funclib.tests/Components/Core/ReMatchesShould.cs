@@ -11,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void ReMatches_should_match_entire_string_and_return_null_if_not_matched()
         {
-            var actual = reMatches(new RePattern().Invoke(@"hello"), "hello, world");
+            var actual = reMatches(rePattern(@"hello"), "hello, world");
 
             Assert.IsNull(actual);
         }
@@ -20,7 +20,7 @@ namespace funclib.Tests.Components.Core
         public void ReMatches_should_match_entire_string()
         {
             var expected = "hello, world";
-            var actual = reMatches(new RePattern().Invoke(@"hello.*"), "hello, world");
+            var actual = reMatches(rePattern(@"hello.*"), "hello, world");
 
             Assert.AreEqual(expected, actual);
         }
@@ -29,7 +29,7 @@ namespace funclib.Tests.Components.Core
         public void Rematches_should_return_a_vector_when_groups_are_uses()
         {
             var expected = new Vector().Invoke("hello, world", "world");
-            var actual = reMatches(new RePattern().Invoke(@"hello, (.*)"), "hello, world");
+            var actual = reMatches(rePattern(@"hello, (.*)"), "hello, world");
 
             Assert.AreEqual(expected, actual);
         }
