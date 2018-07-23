@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void SortBy_should_sort_vector_by_comparor()
         {
             var expected = list("c", "bb", "aaa");
-            var actual = new SortBy().Invoke(new Count(), new Vector().Invoke("aaa", "c", "bb"));
+            var actual = sortBy(new Count(), new Vector().Invoke("aaa", "c", "bb"));
 
             Assert.AreEqual(expected, actual);
         }
@@ -21,7 +21,7 @@ namespace funclib.Tests.Components.Core
         public void SortBy_should_sort_by_keyfn_and_comparor()
         {
             var expected = list(new Vector().Invoke(2, 3), new Vector().Invoke(2, 2), new Vector().Invoke(1, 2));
-            var actual = new SortBy().Invoke(new First(), new IsGreaterThan(), new Vector().Invoke(new Vector().Invoke(1, 2), new Vector().Invoke(2, 2), new Vector().Invoke(2, 3)));
+            var actual = sortBy(new First(), new IsGreaterThan(), new Vector().Invoke(new Vector().Invoke(1, 2), new Vector().Invoke(2, 2), new Vector().Invoke(2, 3)));
             
             Assert.AreEqual(expected, actual);
         }
