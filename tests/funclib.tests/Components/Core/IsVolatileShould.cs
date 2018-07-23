@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
-
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,13 +11,13 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsVolatile_should_return_true_if_volatile()
         {
-            Assert.IsTrue((bool)new IsVolatile().Invoke(new Volatileǃ().Invoke("foo")));
+            Assert.IsTrue((bool)isVolatile(new Volatileǃ().Invoke("foo")));
         }
 
         [Test]
         public void IsVolatile_should_return_false_if_not_volatile()
         {
-            Assert.IsFalse((bool)new IsVolatile().Invoke(0));
+            Assert.IsFalse((bool)isVolatile(0));
         }
     }
 }
