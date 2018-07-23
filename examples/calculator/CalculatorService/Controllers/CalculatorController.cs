@@ -24,10 +24,10 @@ namespace CalculatorService.Controllers
         public long Subtract(int a, int b, int c) => (long)new Time(() => minus(a, b, c)).Invoke();
 
         [HttpGet("multiply/{a}/{b}")]
-        public long Multiply(int a, int b) => (long)new Time(() => new Multiply().Invoke(a, b)).Invoke();
+        public long Multiply(int a, int b) => (long)new Time(() => multiply(a, b)).Invoke();
 
         [HttpGet("multiply/{a}/{b}/{c}")]
-        public long Multiply(int a, int b, int c) => (long)new Time(() => new Multiply().Invoke(a, b, c)).Invoke();
+        public long Multiply(int a, int b, int c) => (long)new Time(() => multiply(a, b, c)).Invoke();
 
         [HttpGet("divide/{a}/{b}")]
         public double Divide(double a, double b) => (double)new Time(() => divide(a, b)).Invoke();
