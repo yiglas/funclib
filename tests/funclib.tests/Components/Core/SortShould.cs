@@ -21,7 +21,7 @@ namespace funclib.Tests.Components.Core
         public void Sort_should_sort_using_a_function()
         {
             var expected = list(10, 5, 2);
-            var actual = sort(new IsGreaterThan(), new Values().Invoke(arrayMap(":foo", 5, ":bar", 2, ":baz", 10)));
+            var actual = sort(new IsGreaterThan(), values(arrayMap(":foo", 5, ":bar", 2, ":baz", 10)));
 
             Assert.AreEqual(expected, actual);
         }
