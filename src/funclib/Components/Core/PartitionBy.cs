@@ -61,7 +61,7 @@ namespace funclib.Components.Core
                 {
                     var v = new Vec().Invoke(this._a.ToArray());
                     this._a.Clear();
-                    result = new Unreduce().Invoke(((IFunction<object, object, object>)this._rf).Invoke(result, v));
+                    result = unreduce(((IFunction<object, object, object>)this._rf).Invoke(result, v));
                 }
 
                 return ((IFunction<object, object>)this._rf).Invoke(result);
