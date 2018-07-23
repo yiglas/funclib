@@ -33,6 +33,6 @@ namespace funclib.Components.Core
         /// Returns the next <see cref="Regex"/> match, if any, of string to pattern, using <see cref="ReMatcher.Find"/>.
         /// Uses <see cref="ReGroups"/> to return the group.
         /// </returns>
-        public object Invoke(object re, object s) => Invoke(new ReMatcher().Invoke(re, s));
+        public object Invoke(object re, object s) => Invoke(reMatcher(re, s));
     }
 }

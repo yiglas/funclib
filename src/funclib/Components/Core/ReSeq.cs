@@ -23,7 +23,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object re, object s)
         {
-            var m = (ReMatcher)new ReMatcher().Invoke(re, s);
+            var m = (ReMatcher)reMatcher(re, s);
 
             return step();
 

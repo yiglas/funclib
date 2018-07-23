@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void ReFind_should_return_first_match_when_called_once()
         {
             var phoneNumber = "123-456-789-1234";
-            var matcher = new ReMatcher().Invoke(new RePattern().Invoke(@"\d+"), phoneNumber);
+            var matcher = reMatcher(new RePattern().Invoke(@"\d+"), phoneNumber);
 
             var expected = "123";
             var actual = reFind(matcher);
@@ -24,7 +24,7 @@ namespace funclib.Tests.Components.Core
         public void Refind_should_return_second_match_when_called_twice()
         {
             var phoneNumber = "123-456-789-1234";
-            var matcher = new ReMatcher().Invoke(new RePattern().Invoke(@"\d+"), phoneNumber);
+            var matcher = reMatcher(new RePattern().Invoke(@"\d+"), phoneNumber);
 
             var expected = "456";
             reFind(matcher);
@@ -37,7 +37,7 @@ namespace funclib.Tests.Components.Core
         public void Refind_should_return_null_when_matches_have_been_exausted()
         {
             var phoneNumber = "123-456-789-1234";
-            var matcher = new ReMatcher().Invoke(new RePattern().Invoke(@"\d+"), phoneNumber);
+            var matcher = reMatcher(new RePattern().Invoke(@"\d+"), phoneNumber);
 
             reFind(matcher);
             reFind(matcher);
