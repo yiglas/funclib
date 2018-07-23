@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -10,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Repeatedly_should_return_an_lazyseq()
         {
-            var actual = new Repeatedly().Invoke(new Function<object>(() => new RandInt().Invoke(11)));
+            var actual = new Repeatedly().Invoke(new Function<object>(() => randInt(11)));
 
             Assert.IsInstanceOf<LazySeq>(actual);
         }
