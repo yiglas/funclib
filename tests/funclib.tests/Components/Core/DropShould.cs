@@ -11,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Drop_should_return_a_lazy_seq()
         {
-            var actual = drop(1, new Vector().Invoke(1, 2, 3, 4, 5));
+            var actual = drop(1, vector(1, 2, 3, 4, 5));
 
             Assert.IsInstanceOf<LazySeq>(actual);
         }

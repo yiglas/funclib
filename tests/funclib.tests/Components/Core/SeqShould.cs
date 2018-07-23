@@ -11,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Seq_should_return_null_when_passed_an_empty_list()
         {
-            Assert.IsNull(seq(new Vector().Invoke()));
+            Assert.IsNull(seq(vector()));
             Assert.IsNull(seq(hashSet()));
             Assert.IsNull(seq(list()));
         }

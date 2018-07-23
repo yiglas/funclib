@@ -14,7 +14,7 @@ namespace funclib.Tests.Components.Core
             Assert.IsTrue((bool)isSeqable(null));
             Assert.IsTrue((bool)isSeqable(""));
             Assert.IsTrue((bool)isSeqable(new System.Collections.Generic.List<string>()));
-            Assert.IsTrue((bool)isSeqable(new Vector().Invoke()));
+            Assert.IsTrue((bool)isSeqable(vector()));
             Assert.IsTrue((bool)isSeqable(lazySeq()));
         }
 

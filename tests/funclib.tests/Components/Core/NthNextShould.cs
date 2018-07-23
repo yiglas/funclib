@@ -20,7 +20,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void NthNext_should_return_a_null_if_an_empty_collection_is_passed()
         {
-            var actual = nthNext(new Vector().Invoke(), 3);
+            var actual = nthNext(vector(), 3);
 
             Assert.IsNull(actual);
         }

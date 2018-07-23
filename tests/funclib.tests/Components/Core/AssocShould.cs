@@ -46,8 +46,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Assoc_should_allow_vectors_as_well()
         {
-            var expected = new Vector().Invoke(10, 2, 3);
-            var actual = assoc(new Vector().Invoke(1, 2, 3), 0, 10);
+            var expected = vector(10, 2, 3);
+            var actual = assoc(vector(1, 2, 3), 0, 10);
 
             Assert.AreEqual(expected, actual);
         }
@@ -55,14 +55,14 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Assoc_should_throw_exception_if_adding_vector_out_of_bounds()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => assoc(new Vector().Invoke(1, 2, 3), 4, 10));
+            Assert.Throws<ArgumentOutOfRangeException>(() => assoc(vector(1, 2, 3), 4, 10));
         }
 
         [Test]
         public void Assoc_should_add_item_to_vector()
         {
-            var expected = new Vector().Invoke(1, 2, 3, 10);
-            var actual = assoc(new Vector().Invoke(1, 2, 3), 3, 10);
+            var expected = vector(1, 2, 3, 10);
+            var actual = assoc(vector(1, 2, 3), 3, 10);
 
             Assert.AreEqual(expected, actual);
         }

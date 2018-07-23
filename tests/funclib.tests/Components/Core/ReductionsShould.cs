@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void Reductions_should_sum_each_item_with_its_prediceser()
         {
             var expected = list(1, 2, 3, 4);
-            var actual = reductions(new Plus(), new Vector().Invoke(1, 1, 1, 1));
+            var actual = reductions(new Plus(), vector(1, 1, 1, 1));
 
             Assert.AreEqual(expected, actual);
         }
@@ -20,8 +20,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Reductions_should_conj_vectors()
         {
-            var expected = new Vector().Invoke(new Vector().Invoke(), new Vector().Invoke(1), new Vector().Invoke(1, 2), new Vector().Invoke(1, 2, 3));
-            var actual = reductions(new Conj(), new Vector().Invoke(), list(1, 2, 3));
+            var expected = vector(vector(), vector(1), vector(1, 2), vector(1, 2, 3));
+            var actual = reductions(new Conj(), vector(), list(1, 2, 3));
 
             Assert.AreEqual(expected, actual);
         }

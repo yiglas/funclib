@@ -30,7 +30,7 @@ namespace funclib.Tests.Components.Core
         public void Keep_should_be_able_to_be_used_with_maps()
         {
             var expected = list(1, 2);
-            var actual = keep(arrayMap(":a", 1, ":b", 2, ":c", 3), new Vector().Invoke(":a", ":b", ":d"));
+            var actual = keep(arrayMap(":a", 1, ":b", 2, ":c", 3), vector(":a", ":b", ":d"));
 
             Assert.AreEqual(expected, actual);
         }

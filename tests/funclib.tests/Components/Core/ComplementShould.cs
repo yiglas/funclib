@@ -14,8 +14,8 @@ namespace funclib.Tests.Components.Core
         {
             var notEmpty = (Complement.Function)complement(new IsEmpty());
 
-            Assert.IsFalse((bool)notEmpty.Invoke(new Vector().Invoke()));
-            Assert.IsTrue((bool)notEmpty.Invoke(new Vector().Invoke(1, 2)));
+            Assert.IsFalse((bool)notEmpty.Invoke(vector()));
+            Assert.IsTrue((bool)notEmpty.Invoke(vector(1, 2)));
         }
 
         [Test]

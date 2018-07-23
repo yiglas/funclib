@@ -18,7 +18,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsString_should_return_false_if_x_is_not_string()
         {
-            Assert.IsFalse((bool)isString(new Vector().Invoke("1", "2", "3")));
+            Assert.IsFalse((bool)isString(vector("1", "2", "3")));
             Assert.IsFalse((bool)isString('a'));
             Assert.IsFalse((bool)isString(null));
             Assert.IsFalse((bool)isString(1));

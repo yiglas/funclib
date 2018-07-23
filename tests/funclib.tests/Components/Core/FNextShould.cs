@@ -11,20 +11,20 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void FNext_should_return_null_with_no_items()
         {
-            Assert.IsNull(fnext(new Vector().Invoke()));
+            Assert.IsNull(fnext(vector()));
         }
 
         [Test]
         public void FNext_should_return_null_with_only_one_item()
         {
-            Assert.IsNull(fnext(new Vector().Invoke(1)));
+            Assert.IsNull(fnext(vector(1)));
         }
 
         [Test]
         public void FNext_should_return_first_item_of_the_next_list()
         {
-            var expected = new Vector().Invoke("b", "a", "c");
-            var actual = fnext(list(new Vector().Invoke("a", "b", "c"), new Vector().Invoke("b", "a", "c")));
+            var expected = vector("b", "a", "c");
+            var actual = fnext(list(vector("a", "b", "c"), vector("b", "a", "c")));
 
             Assert.AreEqual(expected, actual);
         }

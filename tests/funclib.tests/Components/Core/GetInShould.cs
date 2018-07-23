@@ -24,7 +24,7 @@ namespace funclib.Tests.Components.Core
                         ["state"] = "CA"
                     }
                 }
-            }, new Vector().Invoke("profile", "name"));
+            }, vector("profile", "name"));
 
             Assert.AreEqual(expected, actual);
         }

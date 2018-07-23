@@ -28,7 +28,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Rematches_should_return_a_vector_when_groups_are_uses()
         {
-            var expected = new Vector().Invoke("hello, world", "world");
+            var expected = vector("hello, world", "world");
             var actual = reMatches(rePattern(@"hello, (.*)"), "hello, world");
 
             Assert.AreEqual(expected, actual);

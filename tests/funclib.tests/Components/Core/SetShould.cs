@@ -11,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Set_should_return_a_hashset()
         {
-            var actual = set(new Vector().Invoke(1, 1, 2, 3, 2, 4, 5, 5));
+            var actual = set(vector(1, 1, 2, 3, 2, 4, 5, 5));
 
             Assert.IsInstanceOf<funclib.Collections.HashSet>(actual);
         }

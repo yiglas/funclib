@@ -11,8 +11,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void ButLast_should_return_all_but_last_item()
         {
-            var expected = new Vector().Invoke(1, 2);
-            var actual = butLast(new Vector().Invoke(1, 2, 3));
+            var expected = vector(1, 2);
+            var actual = butLast(vector(1, 2, 3));
 
             Assert.AreEqual(expected, actual);
         }
@@ -20,7 +20,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void ButLast_should_return_null_if_empty_list_passed()
         {
-            var actual = butLast(new Vector().Invoke());
+            var actual = butLast(vector());
 
             Assert.IsNull(actual);
         }

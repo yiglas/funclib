@@ -13,9 +13,9 @@ namespace funclib.Tests.Components.Core
         {
             var actual = sortedMapBy(new IsGreaterThan(), 1, "a", 2, "b", 3, "c");
 
-            Assert.AreEqual(new Vector().Invoke(3, "c"), first(actual));
-            Assert.AreEqual(new Vector().Invoke(2, "b"), second(actual));
-            Assert.AreEqual(new Vector().Invoke(1, "a"), last(actual));
+            Assert.AreEqual(vector(3, "c"), first(actual));
+            Assert.AreEqual(vector(2, "b"), second(actual));
+            Assert.AreEqual(vector(1, "a"), last(actual));
         }
     }
 }

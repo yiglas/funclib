@@ -11,8 +11,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Empty_should_return_an_emtpy_collection()
         {
-            var expected = new Vector().Invoke();
-            var actual = empty(new Vector().Invoke(1, 2, 3));
+            var expected = vector();
+            var actual = empty(vector(1, 2, 3));
 
             Assert.IsInstanceOf<funclib.Collections.Vector>(actual);
             Assert.AreEqual(expected, actual);

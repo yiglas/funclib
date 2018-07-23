@@ -11,9 +11,9 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void AssocIn_should_update_item_in_vector()
         {
-            var expected = new Vector().Invoke(hashMap("Name", "James", "Age", 26), hashMap("Name", "John", "Age", 44));
-            var map = new Vector().Invoke(hashMap("Name", "James", "Age", 26), hashMap("Name", "John", "Age", 26));
-            var actual = assocIn(map, new Vector().Invoke(1, "Age"), 44);
+            var expected = vector(hashMap("Name", "James", "Age", 26), hashMap("Name", "John", "Age", 44));
+            var map = vector(hashMap("Name", "James", "Age", 26), hashMap("Name", "John", "Age", 26));
+            var actual = assocIn(map, vector(1, "Age"), 44);
 
             Assert.AreEqual(expected, actual);
         }

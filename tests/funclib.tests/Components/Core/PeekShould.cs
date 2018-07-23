@@ -31,7 +31,7 @@ namespace funclib.Tests.Components.Core
         public void Peek_should_return_the_last_element_of_a_vector()
         {
             var expected = 3;
-            var actual = peek(new Vector().Invoke(1, 2, 3));
+            var actual = peek(vector(1, 2, 3));
 
             Assert.AreEqual(expected, actual);
         }
@@ -48,7 +48,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Peek_should_return_null_if_empty_vector()
         {
-            Assert.IsNull(peek(new Vector().Invoke()));
+            Assert.IsNull(peek(vector()));
         }
 
         [Test]

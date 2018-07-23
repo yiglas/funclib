@@ -21,7 +21,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="ITransientCollection"/> for an empty <see cref="Collections.Vector"/>.
         /// </returns>
-        public object Invoke() => transient(new Vector().Invoke());
+        public object Invoke() => transient(vector());
         /// <summary>
         /// Adds x to the transient collection. and returns coll. The addition may happen 
         /// at different places depending on the concrete type of the collection.

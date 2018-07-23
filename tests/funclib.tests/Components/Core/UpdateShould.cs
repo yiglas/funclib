@@ -54,8 +54,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Update_should_also_work_with_vectors()
         {
-            var expected = new Vector().Invoke(2, 2, 3);
-            var actual = update(new Vector().Invoke(1, 2, 3), 0, new Inc());
+            var expected = vector(2, 2, 3);
+            var actual = update(vector(1, 2, 3), 0, new Inc());
 
             Assert.AreEqual(expected, actual);
         }

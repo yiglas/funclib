@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void Flatten_should_flatten_nested_vectors()
         {
             var expected = list(1, 2, 3);
-            var actual = toArray(flatten(new Vector().Invoke(1, new Vector().Invoke(2, 3))));
+            var actual = toArray(flatten(vector(1, vector(2, 3))));
 
             Assert.AreEqual(expected, actual);
         }

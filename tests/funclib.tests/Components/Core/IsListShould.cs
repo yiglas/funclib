@@ -17,7 +17,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsList_should_return_false_if_an_object_is_not_IList()
         {
-            Assert.IsFalse((bool)isList(new Vector().Invoke()));
+            Assert.IsFalse((bool)isList(vector()));
             Assert.IsFalse((bool)isList(null));
         }
     }

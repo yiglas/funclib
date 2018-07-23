@@ -154,7 +154,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Print_should_write_IVector()
         {
-            var expected = new Vector().Invoke(1, 2, 3);
+            var expected = vector(1, 2, 3);
             print(expected);
             Assert.AreEqual(this._writer.ToString(), "[1 2 3]");
         }

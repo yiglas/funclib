@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void Sort_should_sort_ascending()
         {
             var expected = list(1, 2, 3, 4);
-            var actual = sort(new Vector().Invoke(3, 1, 2, 4));
+            var actual = sort(vector(3, 1, 2, 4));
 
             Assert.AreEqual(expected, actual);
         }

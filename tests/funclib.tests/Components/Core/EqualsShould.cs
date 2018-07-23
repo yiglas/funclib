@@ -20,7 +20,7 @@ namespace funclib.Tests.Components.Core
         public void Equals_should_test_equality_between_two_objects()
         {
             Assert.IsTrue((bool)isEqualTo(1, 1));
-            Assert.IsTrue((bool)isEqualTo(new Vector().Invoke(1, 2), new Vector().Invoke(1, 2)));
+            Assert.IsTrue((bool)isEqualTo(vector(1, 2), vector(1, 2)));
             Assert.IsFalse((bool)isEqualTo(1, "1"));
             Assert.IsFalse((bool)isEqualTo(null, 1));
         }
@@ -29,7 +29,7 @@ namespace funclib.Tests.Components.Core
         public void Equals_should_test_equality_with_unlimited_number_of_objects()
         {
             Assert.IsTrue((bool)isEqualTo(1, 1, 1, 1));
-            Assert.IsTrue((bool)isEqualTo(new Vector().Invoke(1, 2), new Vector().Invoke(1, 2), new Vector().Invoke(1, 2)));
+            Assert.IsTrue((bool)isEqualTo(vector(1, 2), vector(1, 2), vector(1, 2)));
             Assert.IsFalse((bool)isEqualTo(1, 1, "1"));
             Assert.IsFalse((bool)isEqualTo(null, 1, 1, 1));
         }

@@ -11,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsCounted_should_return_true_if_an_object_is_ICounted()
         {
-            Assert.IsTrue((bool)isCounted(new Vector().Invoke()));
+            Assert.IsTrue((bool)isCounted(vector()));
         }
 
         [Test]

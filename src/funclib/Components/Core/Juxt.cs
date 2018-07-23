@@ -114,9 +114,9 @@ namespace funclib.Components.Core
             public object Invoke() =>
                 this._fs != null
                     ? Reduce(this._fs)
-                    : this._h != null ? new Vector().Invoke(Exec(this._f), Exec(this._g), Exec(this._h))
-                    : this._g != null ? new Vector().Invoke(Exec(this._f), Exec(this._g))
-                    : new Vector().Invoke(Exec(this._f));
+                    : this._h != null ? vector(Exec(this._f), Exec(this._g), Exec(this._h))
+                    : this._g != null ? vector(Exec(this._f), Exec(this._g))
+                    : vector(Exec(this._f));
             /// <summary>
             /// Invoke the functions with a single parameter
             /// </summary>
@@ -128,9 +128,9 @@ namespace funclib.Components.Core
                 this._fs != null
                     ? Reduce(this._fs, x)
                     : this._h != null
-                    ? new Vector().Invoke(Exec(this._f, x), Exec(this._g, x), Exec(this._h, x))
-                    : this._g != null ? new Vector().Invoke(Exec(this._f, x), Exec(this._g, x))
-                    : new Vector().Invoke(Exec(this._f, x));
+                    ? vector(Exec(this._f, x), Exec(this._g, x), Exec(this._h, x))
+                    : this._g != null ? vector(Exec(this._f, x), Exec(this._g, x))
+                    : vector(Exec(this._f, x));
             /// <summary>
             /// Invoke the functions with a multiple parameter
             /// </summary>
@@ -143,9 +143,9 @@ namespace funclib.Components.Core
                 this._fs != null
                     ? Reduce(this._fs, x, y)
                     : this._h != null
-                    ? new Vector().Invoke(Exec(this._f, x, y), Exec(this._g, x, y), Exec(this._h, x, y))
-                    : this._g != null ? new Vector().Invoke(Exec(this._f, x, y), Exec(this._g, x, y))
-                    : new Vector().Invoke(Exec(this._f, x, y));
+                    ? vector(Exec(this._f, x, y), Exec(this._g, x, y), Exec(this._h, x, y))
+                    : this._g != null ? vector(Exec(this._f, x, y), Exec(this._g, x, y))
+                    : vector(Exec(this._f, x, y));
             /// <summary>
             /// Invoke the functions with a multiple parameter
             /// </summary>
@@ -159,9 +159,9 @@ namespace funclib.Components.Core
                 this._fs != null
                     ? Reduce(this._fs, x, y, z)
                     : this._h != null
-                    ? new Vector().Invoke(Exec(this._f, x, y, z), Exec(this._g, x, y, z), Exec(this._h, x, y, z))
-                    : this._g != null ? new Vector().Invoke(Exec(this._f, x, y, z), Exec(this._g, x, y, z))
-                    : new Vector().Invoke(Exec(this._f, x, y, z));
+                    ? vector(Exec(this._f, x, y, z), Exec(this._g, x, y, z), Exec(this._h, x, y, z))
+                    : this._g != null ? vector(Exec(this._f, x, y, z), Exec(this._g, x, y, z))
+                    : vector(Exec(this._f, x, y, z));
             /// <summary>
             /// Invoke the functions with a multiple parameter
             /// </summary>
@@ -176,9 +176,9 @@ namespace funclib.Components.Core
                 this._fs != null
                     ? Reduce(this._fs, x, y, z, args)
                     : this._h != null
-                    ? new Vector().Invoke(Exec(this._f, x, y, z, args), Exec(this._g, x, y, z, args), Exec(this._h, x, y, z, args))
-                    : this._g != null ? new Vector().Invoke(Exec(this._f, x, y, z, args), Exec(this._g, x, y, z, args))
-                    : new Vector().Invoke(Exec(this._f, x, y, z, args));
+                    ? vector(Exec(this._f, x, y, z, args), Exec(this._g, x, y, z, args), Exec(this._h, x, y, z, args))
+                    : this._g != null ? vector(Exec(this._f, x, y, z, args), Exec(this._g, x, y, z, args))
+                    : vector(Exec(this._f, x, y, z, args));
 
             object Exec(object f) => ((IFunction<object>)f).Invoke();
             object Exec(object f, object x) => ((IFunction<object, object>)f).Invoke(x);
@@ -186,11 +186,11 @@ namespace funclib.Components.Core
             object Exec(object f, object x, object y, object z) => ((IFunction<object, object, object, object>)f).Invoke(x, y, z);
             object Exec(object f, object x, object y, object z, params object[] args) => apply(f, x, y, z, args);
 
-            object Reduce(object fs) => reduce1(new Function<object, object, object>((_1, _2) => conj(_1, Exec(_2))), new Vector().Invoke(), fs);
-            object Reduce(object fs, object x) => reduce1(new Function<object, object, object>((_1, _2) => conj(_1, Exec(_2, x))), new Vector().Invoke(), fs);
-            object Reduce(object fs, object x, object y) => reduce1(new Function<object, object, object>((_1, _2) => conj(_1, Exec(_2, x, y))), new Vector().Invoke(), fs);
-            object Reduce(object fs, object x, object y, object z) => reduce1(new Function<object, object, object>((_1, _2) => conj(_1, Exec(_2, x, y, z))), new Vector().Invoke(), fs);
-            object Reduce(object fs, object x, object y, object z, params object[] args) => reduce1(new Function<object, object, object>((_1, _2) => conj(_1, Exec(_2, x, y, z, args))), new Vector().Invoke(), fs);
+            object Reduce(object fs) => reduce1(new Function<object, object, object>((_1, _2) => conj(_1, Exec(_2))), vector(), fs);
+            object Reduce(object fs, object x) => reduce1(new Function<object, object, object>((_1, _2) => conj(_1, Exec(_2, x))), vector(), fs);
+            object Reduce(object fs, object x, object y) => reduce1(new Function<object, object, object>((_1, _2) => conj(_1, Exec(_2, x, y))), vector(), fs);
+            object Reduce(object fs, object x, object y, object z) => reduce1(new Function<object, object, object>((_1, _2) => conj(_1, Exec(_2, x, y, z))), vector(), fs);
+            object Reduce(object fs, object x, object y, object z, params object[] args) => reduce1(new Function<object, object, object>((_1, _2) => conj(_1, Exec(_2, x, y, z, args))), vector(), fs);
         }
     }
 }

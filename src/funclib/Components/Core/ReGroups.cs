@@ -33,7 +33,7 @@ namespace funclib.Components.Core
             if (gc == 0)
                 return matcher.Group();
 
-            return loop(new Vector().Invoke());
+            return loop(vector());
 
             object loop(object ret, int c = 0)
             {

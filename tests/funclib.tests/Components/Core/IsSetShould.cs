@@ -18,7 +18,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsSet_should_return_false_if_not_reduced()
         {
-            Assert.IsFalse((bool)isSet(new Vector().Invoke(1, 2, 3)));
+            Assert.IsFalse((bool)isSet(vector(1, 2, 3)));
         }
     }
 }

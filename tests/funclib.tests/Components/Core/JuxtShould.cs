@@ -11,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Juxt_should_extract_values_from_a_map()
         {
-            var expected = new Vector().Invoke('T', 10);
+            var expected = vector('T', 10);
             var actual = ((IFunction<object, object>)juxt(new First(), new Count())).Invoke("This Rocks");
 
             Assert.AreEqual(expected, actual);

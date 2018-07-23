@@ -48,7 +48,7 @@ namespace funclib.Tests.Components.Core
         public void Str_should_call_to_string_on_objects()
         {
             var expected = "[1 2 3]";
-            var actual = str(new Vector().Invoke(1, 2, 3));
+            var actual = str(vector(1, 2, 3));
 
             Assert.AreEqual(expected, actual);
         }

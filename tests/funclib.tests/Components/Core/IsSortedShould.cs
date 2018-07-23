@@ -17,7 +17,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsSorted_should_return_false_if_doesnot_implements_sorted()
         {
-            Assert.IsFalse((bool)isSorted(new Vector().Invoke(1, 2, 3)));
+            Assert.IsFalse((bool)isSorted(vector(1, 2, 3)));
         }
     }
 }

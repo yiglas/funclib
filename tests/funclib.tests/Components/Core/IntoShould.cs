@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void Into_should_conjoin_values_from_into_to()
         {
             var expected = sortedMap(":a", 1, ":b", 2, ":c", 3);
-            var actual = into(sortedMap(), new Vector().Invoke(new Vector().Invoke(":a", 1), new Vector().Invoke(":b", 2), new Vector().Invoke(":c", 3)));
+            var actual = into(sortedMap(), vector(vector(":a", 1), vector(":b", 2), vector(":c", 3)));
 
             Assert.AreEqual(expected, actual);
             Assert.IsInstanceOf<funclib.Collections.SortedMap>(actual);
@@ -21,8 +21,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Into_should_split_map_into_a_vector_of_vectors()
         {
-            var expected = new Vector().Invoke(new Vector().Invoke(1, 2), new Vector().Invoke(3, 4));
-            var actual = into(new Vector().Invoke(), arrayMap(1, 2, 3, 4));
+            var expected = vector(vector(1, 2), vector(3, 4));
+            var actual = into(vector(), arrayMap(1, 2, 3, 4));
 
             Assert.AreEqual(expected, actual);
             Assert.IsInstanceOf<funclib.Collections.Vector>(actual);

@@ -30,7 +30,7 @@ namespace funclib.Tests.Components.Core
         public void Find_should_return_KeyValuePair_where_key_is_index_value_is_item_in_vector()
         {
             var expected = new funclib.Collections.KeyValuePair(2, ":c");
-            var actual = find(new Vector().Invoke(":a", ":b", ":c"), 2);
+            var actual = find(vector(":a", ":b", ":c"), 2);
 
             Assert.AreEqual(expected, actual);
         }

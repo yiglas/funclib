@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void Last_should_return_last_item_for_a_vector()
         {
             var expected = 5;
-            var actual = last(new Vector().Invoke(1, 2, 3, 4, 5));
+            var actual = last(vector(1, 2, 3, 4, 5));
 
             Assert.AreEqual(expected, actual);
         }

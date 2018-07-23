@@ -20,8 +20,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void NthRest_should_return_empty_collection_if_empty_collection_is_passed()
         {
-            var expected = new Vector().Invoke();
-            var actual = nthRest(new Vector().Invoke(), 3);
+            var expected = vector();
+            var actual = nthRest(vector(), 3);
 
             Assert.AreEqual(expected, actual);
         }

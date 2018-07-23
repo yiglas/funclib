@@ -13,7 +13,7 @@ namespace funclib.Tests.Components.Core
         {
             Assert.IsTrue((bool)isSome(1));
             Assert.IsTrue((bool)isSome(false));
-            Assert.IsTrue((bool)isSome(new Vector().Invoke(1, 2, 3)));
+            Assert.IsTrue((bool)isSome(vector(1, 2, 3)));
         }
 
         [Test]

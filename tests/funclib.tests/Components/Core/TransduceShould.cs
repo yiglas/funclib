@@ -19,7 +19,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Transduce_should_return_the_numbers_as_a_sequence()
         {
-            var expected = new Vector().Invoke(1, 3, 5, 7, 9, 11, 13, 15, 17, 19);
+            var expected = vector(1, 3, 5, 7, 9, 11, 13, 15, 17, 19);
             var actual = transduce(xf, new Conj(), range());
 
             Assert.AreEqual(expected, actual);

@@ -11,19 +11,19 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Reduce_should_sum_values_passed()
         {
-            Assert.AreEqual(15, reduce(new Plus(), new Vector().Invoke(1, 2, 3, 4, 5)));
-            Assert.AreEqual(0, reduce(new Plus(), new Vector().Invoke()));
-            Assert.AreEqual(1, reduce(new Plus(), new Vector().Invoke(1)));
-            Assert.AreEqual(3, reduce(new Plus(), new Vector().Invoke(1, 2)));
-            Assert.AreEqual(1, reduce(new Plus(), 1, new Vector().Invoke()));
-            Assert.AreEqual(6, reduce(new Plus(), 1, new Vector().Invoke(2, 3)));
+            Assert.AreEqual(15, reduce(new Plus(), vector(1, 2, 3, 4, 5)));
+            Assert.AreEqual(0, reduce(new Plus(), vector()));
+            Assert.AreEqual(1, reduce(new Plus(), vector(1)));
+            Assert.AreEqual(3, reduce(new Plus(), vector(1, 2)));
+            Assert.AreEqual(1, reduce(new Plus(), 1, vector()));
+            Assert.AreEqual(6, reduce(new Plus(), 1, vector(2, 3)));
         }
 
         [Test]
         public void Reduce_should_conj_vector_to_hash_set()
         {
             var expected = hashSet(":a", ":b", ":c");
-            var actual = reduce(new Conj(), hashSet(), new Vector().Invoke(":a", ":b", ":c"));
+            var actual = reduce(new Conj(), hashSet(), vector(":a", ":b", ":c"));
 
             Assert.AreEqual(expected, actual);
         }
@@ -31,8 +31,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Reduce_should_conj_two_vectors()
         {
-            var expected = new Vector().Invoke(1, 2, 3, 4, 5, 6);
-            var actual = reduce(new Conj(), new Vector().Invoke(1, 2, 3), new Vector().Invoke(4, 5, 6));
+            var expected = vector(1, 2, 3, 4, 5, 6);
+            var actual = reduce(new Conj(), vector(1, 2, 3), vector(4, 5, 6));
 
             Assert.AreEqual(expected, actual);
         }
@@ -41,7 +41,7 @@ namespace funclib.Tests.Components.Core
         public void Reduce_should_cons_two_vectors_into_a_list()
         {
             var expected = list(6, 5, 4, 1, 2, 3);
-            var actual = reduce(new Function<object, object, object>((a, b) => cons(b, a)), new Vector().Invoke(1, 2, 3), new Vector().Invoke(4, 5, 6));
+            var actual = reduce(new Function<object, object, object>((a, b) => cons(b, a)), vector(1, 2, 3), vector(4, 5, 6));
 
             Assert.AreEqual(expected, actual);
         }
@@ -62,11 +62,11 @@ namespace funclib.Tests.Components.Core
             {
                 var inter = apply(new Interleave(), c);
                 var neuesc = new Partition().Invoke(count(c), inter);
-                return reduce(new Function<object, object, object>((s, k) => conj(s, apply(f, k))), new Vector().Invoke(), neuesc);
+                return reduce(new Function<object, object, object>((s, k) => conj(s, apply(f, k))), vector(), neuesc);
             });
 
-            var expected = new Vector().Invoke(0.0, 0.2, 0.6);
-            var actual = remap.Invoke(new Multiply(), new Vector().Invoke(0.1, 0.2, 0.3), range());
+            var expected = vector(0.0, 0.2, 0.6);
+            var actual = remap.Invoke(new Multiply(), vector(0.1, 0.2, 0.3), range());
 
             Assert.AreEqual(expected, actual);
         }

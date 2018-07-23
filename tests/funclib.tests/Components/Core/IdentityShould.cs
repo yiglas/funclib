@@ -21,7 +21,7 @@ namespace funclib.Tests.Components.Core
         public void Identity_should_filter_out_falsy_values()
         {
             var expected = list(1, 2, 3, 4, true, 1234);
-            var actual = toArray(filter(new Identity(), new Vector().Invoke(1, 2, 3, null, 4, false, true, 1234)));
+            var actual = toArray(filter(new Identity(), vector(1, 2, 3, null, 4, false, true, 1234)));
 
             Assert.AreEqual(expected, actual);
         }

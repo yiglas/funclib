@@ -11,8 +11,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Conj_should_add_to_end_of_vector()
         {
-            var expected = new Vector().Invoke(1, 2);
-            var actual = conj(new Vector().Invoke(1), 2);
+            var expected = vector(1, 2);
+            var actual = conj(vector(1), 2);
 
             Assert.AreEqual(expected, actual);
             Assert.IsInstanceOf<funclib.Collections.Vector>(actual);
@@ -21,8 +21,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Conj_should_add_one_item_to_a_vector()
         {
-            var expected = new Vector().Invoke(1);
-            var actual = conj(new Vector().Invoke(), 1);
+            var expected = vector(1);
+            var actual = conj(vector(), 1);
 
             Assert.AreEqual(expected, actual);
             Assert.IsInstanceOf<funclib.Collections.Vector>(actual);
@@ -41,7 +41,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Conj_should_return_a_empty_vector_when_no_values_are_passed()
         {
-            var expected = new Vector().Invoke();
+            var expected = vector();
             var actual = conj();
 
             Assert.AreEqual(expected, actual);
@@ -51,7 +51,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Conj_should_return_coll_if_not_object_are_to_be_added()
         {
-            var expected = new Vector().Invoke(1);
+            var expected = vector(1);
             var actual = conj(expected);
 
             Assert.IsTrue(expected == actual);

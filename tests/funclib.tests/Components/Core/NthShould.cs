@@ -11,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Nth_should_use_zero_based_indexing()
         {
-            var seq = new Vector().Invoke("a", "b", "c", "d");
+            var seq = vector("a", "b", "c", "d");
             var expected = "a";
             var actual = nth(seq, 0);
 

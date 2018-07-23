@@ -11,10 +11,10 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void UpdateIn_should_update_single_value_in_nested_strcuture()
         {
-            var expected = new Vector().Invoke(hashMap(":name", "James", ":age", 26), hashMap(":name", "John", ":age", 44));
-            var users = new Vector().Invoke(hashMap(":name", "James", ":age", 26), hashMap(":name", "John", ":age", 43));
+            var expected = vector(hashMap(":name", "James", ":age", 26), hashMap(":name", "John", ":age", 44));
+            var users = vector(hashMap(":name", "James", ":age", 26), hashMap(":name", "John", ":age", 43));
 
-            var actual = updateIn(users, new Vector().Invoke(1, ":age"), new Inc());
+            var actual = updateIn(users, vector(1, ":age"), new Inc());
 
             Assert.AreEqual(expected, actual);
         }

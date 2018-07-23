@@ -35,7 +35,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Partition_should_fill_the_last_parition_if_not_enough_items()
         {
-            var actual = new Partition().Invoke(3, 6, new Vector().Invoke("a"), range(20));
+            var actual = new Partition().Invoke(3, 6, vector("a"), range(20));
 
             Assert.AreEqual("a", last(last(actual)));
         }

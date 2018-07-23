@@ -11,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Pop_should_return_same_as_the_input_type()
         {
-            var actual = pop(new Vector().Invoke(1, 2, 3));
+            var actual = pop(vector(1, 2, 3));
 
             Assert.IsInstanceOf<funclib.Collections.Vector>(actual);
         }
@@ -19,8 +19,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Pop_should_return_all_but_first_for_vectors()
         {
-            var expected = new Vector().Invoke(1, 2);
-            var actual = pop(new Vector().Invoke(1, 2, 3));
+            var expected = vector(1, 2);
+            var actual = pop(vector(1, 2, 3));
 
             Assert.AreEqual(expected, actual);
         }
@@ -28,7 +28,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Pop_should_return_null_if_past_empty_seq()
         {
-            Assert.Throws<InvalidOperationException>(() => pop(new Vector().Invoke()));
+            Assert.Throws<InvalidOperationException>(() => pop(vector()));
         }
     }
 }
