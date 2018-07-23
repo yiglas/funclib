@@ -11,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Set_should_return_a_hashset()
         {
-            var actual = new Set().Invoke(new Vector().Invoke(1, 1, 2, 3, 2, 4, 5, 5));
+            var actual = set(new Vector().Invoke(1, 1, 2, 3, 2, 4, 5, 5));
 
             Assert.IsInstanceOf<funclib.Collections.HashSet>(actual);
         }
@@ -20,7 +20,7 @@ namespace funclib.Tests.Components.Core
         public void Set_should_return_a_distinct_list_of_items_from_a_list()
         {
             var expected = hashSet(1, 2, 3, 4, 5);
-            var actual = new Set().Invoke(list(1, 1, 2, 3, 2, 4, 5, 5));
+            var actual = set(list(1, 1, 2, 3, 2, 4, 5, 5));
 
             Assert.AreEqual(expected, actual);
         }
@@ -29,7 +29,7 @@ namespace funclib.Tests.Components.Core
         public void Set_should_return_an_empty_set_if_passed_null()
         {
             var expected = hashSet();
-            var actual = new Set().Invoke(null);
+            var actual = set(null);
 
             Assert.AreEqual(expected, actual);
         }
