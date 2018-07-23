@@ -21,7 +21,7 @@ namespace funclib.Tests.Components.Core
         public void Keep_should_return_values_from_function()
         {
             var expected = new funclib.Components.Core.List().Invoke(1, 3, 5, 7, 9);
-            var actual = new Keep().Invoke(new Function<object, object>(x => (bool)new IsOdd().Invoke(x) ? x : null), new Range().Invoke(10));
+            var actual = new Keep().Invoke(new Function<object, object>(x => (bool)isOdd(x) ? x : null), new Range().Invoke(10));
 
             Assert.AreEqual(expected, actual);
         }
