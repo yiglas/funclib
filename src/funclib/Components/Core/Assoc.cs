@@ -57,9 +57,9 @@ namespace funclib.Components.Core
             {
                 var n = nnext(kvs);
                 if (n == null)
-                    return Invoke(ret, first(kvs), new Second().Invoke(kvs));
+                    return Invoke(ret, first(kvs), second(kvs));
                 else
-                    return Invoke(ret, first(kvs), new Second().Invoke(kvs), (object[])new ToArray().Invoke(n));
+                    return Invoke(ret, first(kvs), second(kvs), (object[])new ToArray().Invoke(n));
             }
             else
                 throw new ArgumentException($"{nameof(Assoc)} expects an even number of arguments.");

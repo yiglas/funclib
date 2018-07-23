@@ -2,6 +2,7 @@
 using funclib.Components.Core;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Collections
 {
@@ -54,7 +55,7 @@ namespace funclib.Collections
             {
                 if (init.Next() == null)
                     throw new ArgumentException($"No value supplied for key: {init.First()}");
-                ret = ret.Assoc(init.First(), new Second().Invoke(init));
+                ret = ret.Assoc(init.First(), second(init));
             }
             return ret as SortedMap;
         }
