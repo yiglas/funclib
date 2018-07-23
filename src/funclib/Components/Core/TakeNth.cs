@@ -50,7 +50,7 @@ namespace funclib.Components.Core
             public override object Invoke(object result, object input)
             {
                 var i = new VSwapǃ(this._iv, new Inc()).Invoke();
-                if ((bool)isZero(new Rem().Invoke(i, this._n)))
+                if ((bool)isZero(rem(i, this._n)))
                 {
                     return ((IFunction<object, object, object>)this._rf).Invoke(result, input);
                 }

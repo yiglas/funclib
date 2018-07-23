@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void Rem_should_return_the_remainder_of_two_numbers()
         {
             var expected = 1;
-            var actual = new Rem().Invoke(10, 9);
+            var actual = rem(10, 9);
 
             Assert.AreEqual(expected, actual);
         }
@@ -20,7 +21,7 @@ namespace funclib.Tests.Components.Core
         public void Rem_should_return_zero_if_no_remainder()
         {
             var expected = 0;
-            var actual = new Rem().Invoke(2, 2);
+            var actual = rem(2, 2);
 
             Assert.AreEqual(expected, actual);
         }
