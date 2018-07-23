@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -10,22 +11,22 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsInteger_should_return_true_if_an_object_is_integer()
         {
-            Assert.IsTrue((bool)new IsInteger().Invoke(1));
-            Assert.IsTrue((bool)new IsInteger().Invoke((short)1));
-            Assert.IsTrue((bool)new IsInteger().Invoke((long)1));
-            Assert.IsTrue((bool)new IsInteger().Invoke((byte)1));
-            Assert.IsTrue((bool)new IsInteger().Invoke((uint)1));
-            Assert.IsTrue((bool)new IsInteger().Invoke((ushort)1));
-            Assert.IsTrue((bool)new IsInteger().Invoke((ulong)1));
-            Assert.IsTrue((bool)new IsInteger().Invoke((sbyte)1));
-            Assert.IsTrue((bool)new IsInteger().Invoke((char)1));
+            Assert.IsTrue((bool)isInteger(1));
+            Assert.IsTrue((bool)isInteger((short)1));
+            Assert.IsTrue((bool)isInteger((long)1));
+            Assert.IsTrue((bool)isInteger((byte)1));
+            Assert.IsTrue((bool)isInteger((uint)1));
+            Assert.IsTrue((bool)isInteger((ushort)1));
+            Assert.IsTrue((bool)isInteger((ulong)1));
+            Assert.IsTrue((bool)isInteger((sbyte)1));
+            Assert.IsTrue((bool)isInteger((char)1));
         }
 
         [Test]
         public void IsInteger_should_return_false_if_an_object_is_not_integer()
         {
-            Assert.IsFalse((bool)new IsInteger().Invoke(1D));
-            Assert.IsFalse((bool)new IsInteger().Invoke(null));
+            Assert.IsFalse((bool)isInteger(1D));
+            Assert.IsFalse((bool)isInteger(null));
         }
     }
 }
