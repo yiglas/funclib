@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void Popǃ_should_return_itself()
         {
             var expected = new Transient().Invoke(new Vector().Invoke(1, 2, 3));
-            var actual = new Popǃ().Invoke(expected);
+            var actual = popǃ(expected);
 
             Assert.IsTrue(expected == actual);
         }
@@ -21,7 +21,7 @@ namespace funclib.Tests.Components.Core
         public void Popǃ_should_modify_the_original_structure()
         {
             var expected = new Transient().Invoke(new Vector().Invoke(1, 2, 3));
-            var actual = new Popǃ().Invoke(expected);
+            var actual = popǃ(expected);
 
             Assert.AreEqual(2, count(expected));
         }
