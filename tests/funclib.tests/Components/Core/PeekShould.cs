@@ -1,10 +1,9 @@
 ﻿using funclib.Components.Core;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -21,7 +20,7 @@ namespace funclib.Tests.Components.Core
         //    var peekTime = sw.ElapsedMilliseconds;
 
         //    sw.Restart();
-        //    new Last().Invoke(largeVec);
+        //    last(largeVec);
         //    sw.Stop();
         //    var lastTime = sw.ElapsedMilliseconds;
 

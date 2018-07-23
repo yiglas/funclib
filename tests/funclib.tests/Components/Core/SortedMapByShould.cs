@@ -15,7 +15,7 @@ namespace funclib.Tests.Components.Core
 
             Assert.AreEqual(new Vector().Invoke(3, "c"), first(actual));
             Assert.AreEqual(new Vector().Invoke(2, "b"), new Second().Invoke(actual));
-            Assert.AreEqual(new Vector().Invoke(1, "a"), new Last().Invoke(actual));
+            Assert.AreEqual(new Vector().Invoke(1, "a"), last(actual));
         }
     }
 }

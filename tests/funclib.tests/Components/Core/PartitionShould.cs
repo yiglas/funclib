@@ -37,7 +37,7 @@ namespace funclib.Tests.Components.Core
         {
             var actual = new Partition().Invoke(3, 6, new Vector().Invoke("a"), new Range().Invoke(20));
 
-            Assert.AreEqual("a", new Last().Invoke(new Last().Invoke(actual)));
+            Assert.AreEqual("a", last(last(actual)));
         }
     }
 }

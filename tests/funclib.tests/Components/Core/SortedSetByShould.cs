@@ -15,7 +15,7 @@ namespace funclib.Tests.Components.Core
 
             Assert.AreEqual(8, first(actual));
             Assert.AreEqual(5, new Second().Invoke(actual));
-            Assert.AreEqual(1, new Last().Invoke(actual));
+            Assert.AreEqual(1, last(actual));
         }
     }
 }
