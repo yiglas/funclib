@@ -21,7 +21,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Complement_should_return_the_complement_with_muliple_param_for_a_given_function()
         {
-            var containsChar = new Function<object, object, object>((s, c) => new Some().Invoke(new Function<object, object>(x => c.Equals(x)), s));
+            var containsChar = new Function<object, object, object>((s, c) => some(new Function<object, object>(x => c.Equals(x)), s));
 
             Assert.IsTrue((bool)containsChar.Invoke("abc", 'b'));
         }

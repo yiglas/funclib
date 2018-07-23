@@ -27,7 +27,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object f, params object[] maps)
         {
-            if ((bool)new Truthy().Invoke(new Some().Invoke(new Identity(), maps)))
+            if ((bool)new Truthy().Invoke(some(new Identity(), maps)))
             {
                 return reduce1(new Function<object, object, object>(merge2), maps);
             }
