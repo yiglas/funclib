@@ -11,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Repeatedly_should_return_an_lazyseq()
         {
-            var actual = new Repeatedly().Invoke(new Function<object>(() => randInt(11)));
+            var actual = repeatedly(new Function<object>(() => randInt(11)));
 
             Assert.IsInstanceOf<LazySeq>(actual);
         }
@@ -21,7 +21,7 @@ namespace funclib.Tests.Components.Core
         {
             var l = new System.Collections.Generic.List<int>();
 
-            var actual = new ToArray().Invoke(new Take().Invoke(5, new Repeatedly().Invoke(new Function<object>(() => { l.Add(1); return null; }))));
+            var actual = new ToArray().Invoke(new Take().Invoke(5, repeatedly(new Function<object>(() => { l.Add(1); return null; }))));
 
             Assert.AreEqual(5, l.Count);
         }
@@ -31,7 +31,7 @@ namespace funclib.Tests.Components.Core
         {
             var l = new System.Collections.Generic.List<int>();
 
-            var actual = new ToArray().Invoke(new Repeatedly().Invoke(5, new Function<object>(() => { l.Add(1); return null; })));
+            var actual = new ToArray().Invoke(repeatedly(5, new Function<object>(() => { l.Add(1); return null; })));
 
             Assert.AreEqual(5, l.Count);
         }
