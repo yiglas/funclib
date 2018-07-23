@@ -21,6 +21,6 @@ namespace funclib.Components.Core
         public object Invoke(object n) =>
             and(
                 isInt(n),
-                new Not().Invoke(new IsNeg().Invoke(n)));
+                new Not().Invoke(isNeg(n)));
     }
 }
