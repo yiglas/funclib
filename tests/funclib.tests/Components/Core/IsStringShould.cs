@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -10,17 +11,17 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsString_should_return_true_if_x_is_string()
         {
-            Assert.IsTrue((bool)new IsString().Invoke("abc"));
-            Assert.IsTrue((bool)new IsString().Invoke(""));
+            Assert.IsTrue((bool)isString("abc"));
+            Assert.IsTrue((bool)isString(""));
         }
 
         [Test]
         public void IsString_should_return_false_if_x_is_not_string()
         {
-            Assert.IsFalse((bool)new IsString().Invoke(new Vector().Invoke("1", "2", "3")));
-            Assert.IsFalse((bool)new IsString().Invoke('a'));
-            Assert.IsFalse((bool)new IsString().Invoke(null));
-            Assert.IsFalse((bool)new IsString().Invoke(1));
+            Assert.IsFalse((bool)isString(new Vector().Invoke("1", "2", "3")));
+            Assert.IsFalse((bool)isString('a'));
+            Assert.IsFalse((bool)isString(null));
+            Assert.IsFalse((bool)isString(1));
         }
     }
 }
