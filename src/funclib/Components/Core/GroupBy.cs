@@ -27,7 +27,7 @@ namespace funclib.Components.Core
         /// <see cref="IFunction{T1, TResult}"/> f.
         /// </returns>
         public object Invoke(object f, object coll) =>
-            new Persistentǃ().Invoke(
+            persistentǃ(
                 new Reduce().Invoke(
                     new Function<object, object, object>((ret, x) =>
                     {
