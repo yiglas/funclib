@@ -39,8 +39,8 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object to, object from) =>
             (bool)isInstance(typeof(IEditableCollection), to)
-                ? persistentǃ(new Reduce().Invoke(new Conjǃ(), new Transient().Invoke(to), from))
-                : new Reduce().Invoke(new Conj(), to, from);
+                ? persistentǃ(reduce(new Conjǃ(), new Transient().Invoke(to), from))
+                : reduce(new Conj(), to, from);
         /// <summary>
         /// Returns a new collection consisting of to with all of the items of from conjoined. 
         /// </summary>

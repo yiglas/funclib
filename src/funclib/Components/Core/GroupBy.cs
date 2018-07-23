@@ -28,7 +28,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object f, object coll) =>
             persistentǃ(
-                new Reduce().Invoke(
+                reduce(
                     new Function<object, object, object>((ret, x) =>
                     {
                         var k = ((IFunction<object, object>)f).Invoke(x);

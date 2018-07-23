@@ -20,7 +20,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object coll) =>
             persistentǃ(
-                new Reduce().Invoke(
+                reduce(
                     new Function<object, object, object>((counts, x) =>
                         assocǃ(counts, x, inc(get(counts, x, 0)))),
                     new Transient().Invoke(hashMap()), coll));

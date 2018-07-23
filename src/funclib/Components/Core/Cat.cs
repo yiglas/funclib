@@ -21,7 +21,7 @@ namespace funclib.Components.Core
             }
 
             #region Override
-            public override object Invoke(object result, object input) => new Reduce().Invoke(this._rrf, result, input);
+            public override object Invoke(object result, object input) => reduce(this._rrf, result, input);
             #endregion
         }
     }

@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -59,7 +60,7 @@ namespace funclib.Components.Core
             if (coll is IReduce r)
                 ret = r.Reduce((IFunction)xf, init);
             else
-                ret = new Reduce().Invoke(xf, init);
+                ret = reduce(xf, init);
 
             return ((IFunction<object, object>)xf).Invoke(ret);
         }

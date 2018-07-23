@@ -25,7 +25,7 @@ namespace funclib.Components.Core
             coll == null
                 ? init
                 : coll is IReduceKV r ? r.ReduceKV((IFunction<object, object, object, object>)f, init)
-                : coll is IMap m ? new Reduce().Invoke(new Function<object, object, object>((ret, kv) =>
+                : coll is IMap m ? reduce(new Function<object, object, object>((ret, kv) =>
                 {
                     var k = key(kv);
                     var v = new Value().Invoke(kv);
