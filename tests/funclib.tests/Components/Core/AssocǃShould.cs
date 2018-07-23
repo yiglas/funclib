@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void Assocǃ_should_update_map_and_not_return_new()
         {
             var expected = hashMap(":x", 1, ":y", 2, ":z", 3);
-            var actual = persistentǃ(assocǃ(new Transient().Invoke(expected), ":x", 1, ":y", 2, ":z", 3));
+            var actual = persistentǃ(assocǃ(transient(expected), ":x", 1, ":y", 2, ":z", 3));
 
             Assert.AreEqual(expected, actual);
         }

@@ -23,6 +23,6 @@ namespace funclib.Components.Core
                 reduce(
                     new Function<object, object, object>((counts, x) =>
                         assocǃ(counts, x, inc(get(counts, x, 0)))),
-                    new Transient().Invoke(hashMap()), coll));
+                    transient(hashMap()), coll));
     }
 }

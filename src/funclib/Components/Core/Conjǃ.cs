@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -20,7 +21,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="ITransientCollection"/> for an empty <see cref="Collections.Vector"/>.
         /// </returns>
-        public object Invoke() => new Transient().Invoke(new Vector().Invoke());
+        public object Invoke() => transient(new Vector().Invoke());
         /// <summary>
         /// Adds x to the transient collection. and returns coll. The addition may happen 
         /// at different places depending on the concrete type of the collection.

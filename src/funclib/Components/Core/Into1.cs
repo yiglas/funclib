@@ -10,7 +10,7 @@ namespace funclib.Components.Core
     {
         public object Invoke(object to, object from) =>
             to is IEditableCollection e
-                ? persistentǃ(reduce1(new Conjǃ(), new Transient().Invoke(to), from))
+                ? persistentǃ(reduce1(new Conjǃ(), transient(to), from))
                 : reduce1(new Conj(), to, from);
     }
 }
