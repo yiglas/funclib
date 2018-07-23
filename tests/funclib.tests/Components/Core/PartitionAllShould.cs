@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void PartitionAll_should_return_fewer_then_n_times()
         {
             var expected = 2;
-            var actual = partitionAll(4, new Range().Invoke(10));
+            var actual = partitionAll(4, range(10));
 
             Assert.AreEqual(expected, count(last(actual)));
         }

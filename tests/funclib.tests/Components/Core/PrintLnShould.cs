@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System;
 using System.IO;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Tests.Components.Core
 {

@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         //[Test]
         //public void Peek_should_be_more_efficient_than_last_for_large_vectors()
         //{
-        //    var largeVec = new Vec().Invoke(new Range().Invoke(0, 100));
+        //    var largeVec = new Vec().Invoke(range(0, 100));
 
         //    var sw = Stopwatch.StartNew();
         //    var actual = peek(largeVec);

@@ -13,7 +13,7 @@ namespace funclib.Tests.Components.Core
         {
             Assert.IsTrue((bool)isSeq(new Seq().Invoke(new Vector().Invoke(1))));
             Assert.IsTrue((bool)isSeq(list(1, 2, 3)));
-            Assert.IsTrue((bool)isSeq(new Seq().Invoke(new Range().Invoke(1, 5))));
+            Assert.IsTrue((bool)isSeq(new Seq().Invoke(range(1, 5))));
         }
 
         [Test]

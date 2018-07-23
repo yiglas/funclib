@@ -22,7 +22,7 @@ namespace funclib.Tests.Components.Core
         public void ZipMap_should_zip_two_list_together_with_one_being_infinit()
         {
             var expected = arrayMap(":a", 0, ":b", 1, ":c", 2);
-            var actual = new ZipMap().Invoke(new Vector().Invoke(":a", ":b", ":c"), new Range().Invoke());
+            var actual = new ZipMap().Invoke(new Vector().Invoke(":a", ":b", ":c"), range());
 
             Assert.AreEqual(expected, actual);
         }

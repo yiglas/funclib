@@ -11,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Filter_should_return_a_lazy_seq()
         {
-            var actual = filter(new IsEven(), new Range().Invoke(10));
+            var actual = filter(new IsEven(), range(10));
 
             Assert.IsInstanceOf<LazySeq>(actual);
         }
@@ -20,7 +20,7 @@ namespace funclib.Tests.Components.Core
         public void Filter_should_filter_range_of_values()
         {
             var expected = list(0, 2, 4, 6, 8);
-            var actual = new ToArray().Invoke(filter(new IsEven(), new Range().Invoke(10)));
+            var actual = new ToArray().Invoke(filter(new IsEven(), range(10)));
 
             Assert.AreEqual(expected, actual);
         }

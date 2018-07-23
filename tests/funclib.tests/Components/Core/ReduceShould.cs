@@ -50,7 +50,7 @@ namespace funclib.Tests.Components.Core
         public void Reduce_should_process_an_range()
         {
             var expected = 45;
-            var actual = new Reduce().Invoke(new Plus(), 0, new Range().Invoke(10));
+            var actual = new Reduce().Invoke(new Plus(), 0, range(10));
 
             Assert.AreEqual(expected, actual);
         }
@@ -66,7 +66,7 @@ namespace funclib.Tests.Components.Core
             });
 
             var expected = new Vector().Invoke(0.0, 0.2, 0.6);
-            var actual = remap.Invoke(new Multiply(), new Vector().Invoke(0.1, 0.2, 0.3), new Range().Invoke());
+            var actual = remap.Invoke(new Multiply(), new Vector().Invoke(0.1, 0.2, 0.3), range());
 
             Assert.AreEqual(expected, actual);
         }

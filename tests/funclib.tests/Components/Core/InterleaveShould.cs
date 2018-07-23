@@ -30,7 +30,7 @@ namespace funclib.Tests.Components.Core
         public void Interleave_should_work_with_apply()
         {
             var expected = list(0.1, 0, 0.2, 1, 0.3, 2);
-            var actual = apply(new Interleave(), new object[] { new Vector().Invoke(0.1, 0.2, 0.3), new Range().Invoke() });
+            var actual = apply(new Interleave(), new object[] { new Vector().Invoke(0.1, 0.2, 0.3), range() });
 
             Assert.AreEqual(expected, actual);
         }

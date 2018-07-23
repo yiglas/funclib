@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void NthNext_should_return_the_items_after_passed_number()
         {
             var expected = list(3, 4, 5, 6, 7, 8, 9);
-            var actual = nthNext(new Range().Invoke(10), 3);
+            var actual = nthNext(range(10), 3);
 
             Assert.AreEqual(expected, actual);
         }

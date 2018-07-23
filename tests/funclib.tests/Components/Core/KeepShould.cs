@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         public void Keep_should_return_return_return_list_with_results()
         {
             var expected = list(false, true, false, true, false, true, false, true, false);
-            var actual = keep(new IsEven(), new Range().Invoke(1, 10));
+            var actual = keep(new IsEven(), range(1, 10));
 
             Assert.AreEqual(expected, actual);
         }
@@ -21,7 +21,7 @@ namespace funclib.Tests.Components.Core
         public void Keep_should_return_values_from_function()
         {
             var expected = list(1, 3, 5, 7, 9);
-            var actual = keep(new Function<object, object>(x => (bool)isOdd(x) ? x : null), new Range().Invoke(10));
+            var actual = keep(new Function<object, object>(x => (bool)isOdd(x) ? x : null), range(10));
 
             Assert.AreEqual(expected, actual);
         }
