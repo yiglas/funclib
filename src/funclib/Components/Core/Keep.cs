@@ -39,7 +39,7 @@ namespace funclib.Components.Core
                         doTimes(size, i =>
                         {
                             var y = ((IFunction<object, object>)f).Invoke(new Nth().Invoke(c, i));
-                            if (!(bool)new IsNull().Invoke(y))
+                            if (!(bool)isNull(y))
                             {
                                 chunkAppend(b, y);
                             }
@@ -50,7 +50,7 @@ namespace funclib.Components.Core
                     }
 
                     var x = ((IFunction<object, object>)f).Invoke(s.First());
-                    if ((bool)new IsNull().Invoke(x))
+                    if ((bool)isNull(x))
                     {
                         return Invoke(f, new Rest().Invoke(s));
                     }
@@ -76,7 +76,7 @@ namespace funclib.Components.Core
             public override object Invoke(object result, object input)
             {
                 var v = ((IFunction<object, object>)this._f).Invoke(input);
-                if ((bool)new IsNull().Invoke(v))
+                if ((bool)isNull(v))
                     return result;
 
                 return ((IFunction<object, object, object>)this._rf).Invoke(result, v);
