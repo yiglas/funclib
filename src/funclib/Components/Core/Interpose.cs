@@ -49,7 +49,7 @@ namespace funclib.Components.Core
                     return ((IFunction<object, object, object>)this._rf).Invoke(sepr, input);
                 }
 
-                new VResetǃ().Invoke(this._started, true);
+                vresetǃ(this._started, true);
                 return ((IFunction<object, object, object>)this._rf).Invoke(result, input);
             }
             #endregion

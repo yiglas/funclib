@@ -43,7 +43,7 @@ namespace funclib.Tests.Components.Core
             var val = volatileǃ(0);
 
             var expected = "nothing";
-            var actual = new VResetǃ().Invoke(val, "nothing");
+            var actual = vresetǃ(val, "nothing");
 
             Assert.AreEqual(expected, actual);
             Assert.AreEqual(expected, deref(val));

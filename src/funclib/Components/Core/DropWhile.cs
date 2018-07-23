@@ -60,7 +60,7 @@ namespace funclib.Components.Core
                     return result;
                 }
 
-                new VResetǃ().Invoke(this._dv, null);
+                vresetǃ(this._dv, null);
                 return ((IFunction<object, object, object>)this._rf).Invoke(result, input);
             }
             #endregion

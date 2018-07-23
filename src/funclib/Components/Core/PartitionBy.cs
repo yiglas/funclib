@@ -70,7 +70,7 @@ namespace funclib.Components.Core
             {
                 var pval = this._pv.Deref();
                 var val = ((IFunction<object, object>)this._f).Invoke(input);
-                new VResetǃ().Invoke(this._pv, val);
+                vresetǃ(this._pv, val);
                 if ((bool)truthy(or(isIdentical(pval, "::none"), isEqualTo(val, pval))))
                 {
                     this._a.Add(input);
