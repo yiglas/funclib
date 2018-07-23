@@ -37,7 +37,7 @@ namespace funclib.Components.Core
         {
             if ((bool)new Truthy().Invoke(seq(coll)))
             {
-                var a = (object[])new ToArray().Invoke(coll);
+                var a = (object[])toArray(coll);
                 Array.Sort(a, new FunctionComparer(comp));
                 return seq(a);
             }

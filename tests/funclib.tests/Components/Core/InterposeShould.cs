@@ -20,7 +20,7 @@ namespace funclib.Tests.Components.Core
         public void Interpose_should_return_a_list_of_items_with_the_sep_in_between_each()
         {
             var expected = list("one", ", ", "two", ", ", "three");
-            var actual = new ToArray().Invoke(interpose(", ", new Vector().Invoke("one", "two", "three")));
+            var actual = toArray(interpose(", ", new Vector().Invoke("one", "two", "three")));
 
             Assert.AreEqual(expected, actual);
         }

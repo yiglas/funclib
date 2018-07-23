@@ -44,7 +44,7 @@ namespace funclib.Components.Core
             {
                 var n = next(more);
                 if ((bool)new Truthy().Invoke(n))
-                    return Invoke(y, first(more), (object[])new ToArray().Invoke(n));
+                    return Invoke(y, first(more), (object[])toArray(n));
 
                 return Invoke(y, first(more));
             }

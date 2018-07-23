@@ -39,7 +39,7 @@ namespace funclib.Tests.Components.Core
         public void Keep_should_be_able_to_be_used_with_sets()
         {
             var expected = list(2, 3);
-            var actual = new ToArray().Invoke(keep(hashSet(0, 1, 2, 3), hashSet(2, 3, 4, 5)));
+            var actual = toArray(keep(hashSet(0, 1, 2, 3), hashSet(2, 3, 4, 5)));
 
             Assert.AreEqual(expected, actual);
         }

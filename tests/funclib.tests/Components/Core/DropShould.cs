@@ -20,7 +20,7 @@ namespace funclib.Tests.Components.Core
         public void Drop_should_return_all_times_execute_first_n_items()
         {
             var expected = list(3, 4, 5);
-            var actual = new ToArray().Invoke(drop(2, list(1, 2, 3, 4, 5)));
+            var actual = toArray(drop(2, list(1, 2, 3, 4, 5)));
 
             Assert.AreEqual(expected, actual);
         }

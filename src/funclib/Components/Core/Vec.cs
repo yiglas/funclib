@@ -31,7 +31,7 @@ namespace funclib.Components.Core
             }
             else if (coll is System.Collections.IEnumerable e) return Collections.Vector.Create(e);
             else
-                return Collections.Vector.Create((object[])new ToArray().Invoke(coll));
+                return Collections.Vector.Create((object[])toArray(coll));
         }
     }
 }

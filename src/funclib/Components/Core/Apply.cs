@@ -140,29 +140,29 @@ namespace funclib.Components.Core
                 (args = args.Next()).First(),
                 Ret((args = args.Next()).First(), args = null));
         static object ApplyTo(IFunctionParams<object, object> f, ISeq args) => 
-            f.Invoke((object[])new ToArray().Invoke(Ret(args.First(), args = null)));
+            f.Invoke((object[])toArray(Ret(args.First(), args = null)));
         static object ApplyTo(IFunctionParams<object, object, object> f, ISeq args) =>
             f.Invoke(
                 args.First(), 
-                (object[])new ToArray().Invoke(Ret((args = args.Next()), args = null)));
+                (object[])toArray(Ret((args = args.Next()), args = null)));
         static object ApplyTo(IFunctionParams<object, object, object, object> f, ISeq args) =>
             f.Invoke(
                 args.First(),
                 (args = args.Next()).First(),
-                (object[])new ToArray().Invoke(Ret((args = args.Next()), args = null)));
+                (object[])toArray(Ret((args = args.Next()), args = null)));
         static object ApplyTo(IFunctionParams<object, object, object, object, object> f, ISeq args) =>
             f.Invoke(
                 args.First(),
                 (args = args.Next()).First(),
                 (args = args.Next()).First(),
-                (object[])new ToArray().Invoke(Ret((args = args.Next()), args = null)));
+                (object[])toArray(Ret((args = args.Next()), args = null)));
         static object ApplyTo(IFunctionParams<object, object, object, object, object, object> f, ISeq args) =>
             f.Invoke(
                 args.First(),
                 (args = args.Next()).First(),
                 (args = args.Next()).First(),
                 (args = args.Next()).First(),
-                (object[])new ToArray().Invoke(Ret((args = args.Next()), args = null)));
+                (object[])toArray(Ret((args = args.Next()), args = null)));
         static object ApplyTo(IFunctionParams<object, object, object, object, object, object, object> f, ISeq args) =>
             f.Invoke(
                 args.First(),
@@ -170,7 +170,7 @@ namespace funclib.Components.Core
                 (args = args.Next()).First(),
                 (args = args.Next()).First(),
                 (args = args.Next()).First(),
-                (object[])new ToArray().Invoke(Ret((args = args.Next()), args = null)));
+                (object[])toArray(Ret((args = args.Next()), args = null)));
 
         public static object Ret(object ret, object nullable) => ret;
     }

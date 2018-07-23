@@ -12,7 +12,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Concat_should_join_two_vectors_together()
         {
-            var actual = (object[])new ToArray().Invoke(concat(new Vector().Invoke(1, 2), new Vector().Invoke(3, 4)));
+            var actual = (object[])toArray(concat(new Vector().Invoke(1, 2), new Vector().Invoke(3, 4)));
 
             Assert.AreEqual(4, actual.Length);
             Assert.AreEqual(1, actual[0]);
@@ -24,7 +24,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Concat_should_join_muliple_items()
         {
-            var actual = (object[])new ToArray().Invoke(concat(new Vector().Invoke("a", "b"), null, new Vector().Invoke(1, new Vector().Invoke(2, 3), 4)));
+            var actual = (object[])toArray(concat(new Vector().Invoke("a", "b"), null, new Vector().Invoke(1, new Vector().Invoke(2, 3), 4)));
 
             Assert.AreEqual(5, actual.Length);
             Assert.AreEqual("a", actual[0]);

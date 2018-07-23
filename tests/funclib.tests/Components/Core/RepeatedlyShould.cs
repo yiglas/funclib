@@ -21,7 +21,7 @@ namespace funclib.Tests.Components.Core
         {
             var l = new System.Collections.Generic.List<int>();
 
-            var actual = new ToArray().Invoke(take(5, repeatedly(new Function<object>(() => { l.Add(1); return null; }))));
+            var actual = toArray(take(5, repeatedly(new Function<object>(() => { l.Add(1); return null; }))));
 
             Assert.AreEqual(5, l.Count);
         }
@@ -31,7 +31,7 @@ namespace funclib.Tests.Components.Core
         {
             var l = new System.Collections.Generic.List<int>();
 
-            var actual = new ToArray().Invoke(repeatedly(5, new Function<object>(() => { l.Add(1); return null; })));
+            var actual = toArray(repeatedly(5, new Function<object>(() => { l.Add(1); return null; })));
 
             Assert.AreEqual(5, l.Count);
         }
