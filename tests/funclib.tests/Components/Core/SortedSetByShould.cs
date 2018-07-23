@@ -11,7 +11,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void SortedSetBy_should_create_new_set_sorted_by_the_function()
         {
-            var actual = new SortedSetBy().Invoke(new IsGreaterThan(), 3, 5, 8, 2, 1);
+            var actual = sortedSetBy(new IsGreaterThan(), 3, 5, 8, 2, 1);
 
             Assert.AreEqual(8, first(actual));
             Assert.AreEqual(5, second(actual));
