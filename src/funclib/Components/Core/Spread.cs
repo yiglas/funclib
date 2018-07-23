@@ -13,7 +13,7 @@ namespace funclib.Components.Core
             if (argList == null) return null;
             var n = next(argList);
             if (n == null)
-                return new Seq().Invoke(first(argList));
+                return seq(first(argList));
 
             return cons(first(argList), new Spread().Invoke(n));
         }

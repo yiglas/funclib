@@ -1,15 +1,16 @@
-﻿namespace funclib
-{
-    using funclib.Collections;
-    using funclib.Collections.Internal;
-    using funclib.Components.Core;
-    using System;
-    using System.Globalization;
-    using System.IO;
-    using System.Text;
-    using System.Text.RegularExpressions;
-    using System.Threading;
+﻿using funclib.Collections;
+using funclib.Collections.Internal;
+using funclib.Components.Core;
+using System;
+using System.Globalization;
+using System.IO;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using static funclib.Core;
 
+namespace funclib
+{
     static class Util
     {
         internal static int GetHashCode(object o) => o == null ? 0 : o.GetHashCode();
@@ -99,7 +100,7 @@
             else if (x is ISeq || x is IList)
             {
                 w.Write('(');
-                PrintInnerSeq((ISeq)new Seq().Invoke(x), w);
+                PrintInnerSeq((ISeq)seq(x), w);
                 w.Write(')');
             }
             else if (x is string s)

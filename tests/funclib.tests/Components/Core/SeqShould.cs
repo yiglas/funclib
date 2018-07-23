@@ -11,15 +11,15 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Seq_should_return_null_when_passed_an_empty_list()
         {
-            Assert.IsNull(new Seq().Invoke(new Vector().Invoke()));
-            Assert.IsNull(new Seq().Invoke(hashSet()));
-            Assert.IsNull(new Seq().Invoke(list()));
+            Assert.IsNull(seq(new Vector().Invoke()));
+            Assert.IsNull(seq(hashSet()));
+            Assert.IsNull(seq(list()));
         }
 
         [Test]
         public void Seq_should_return_char_array_when_passed_a_string()
         {
-            var actual = (funclib.Collections.ISeq)new Seq().Invoke("abc");
+            var actual = (funclib.Collections.ISeq)seq("abc");
 
             Assert.AreEqual(3, actual.Count);
         }
@@ -27,8 +27,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Seq_should_return_null_if_passed()
         {
-            Assert.IsNull(new Seq().Invoke(null));
-            Assert.IsNull(new Seq().Invoke(""));
+            Assert.IsNull(seq(null));
+            Assert.IsNull(seq(""));
         }
     }
 }

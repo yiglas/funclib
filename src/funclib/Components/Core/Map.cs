@@ -37,7 +37,7 @@ namespace funclib.Components.Core
             var fn = (IFunction<object, object>)f;
             return lazySeq(() =>
             {
-                var s = new Seq().Invoke(coll);
+                var s = seq(coll);
                 if ((bool)new Truthy().Invoke(s))
                 {
                     if ((bool)isChunkedSeq(s))
@@ -78,8 +78,8 @@ namespace funclib.Components.Core
             var fn = (IFunction<object, object, object>)f;
             return lazySeq(() =>
             {
-                var s1 = new Seq().Invoke(c1);
-                var s2 = new Seq().Invoke(c2);
+                var s1 = seq(c1);
+                var s2 = seq(c2);
                 if ((bool)new Truthy().Invoke(and(s1, s2)))
                 {
                     return cons(fn.Invoke(first(s1), first(s2)), Invoke(f, rest(s1), rest(s2)));
@@ -109,9 +109,9 @@ namespace funclib.Components.Core
             var fn = (IFunction<object, object, object, object>)f;
             return lazySeq(() =>
             {
-                var s1 = new Seq().Invoke(c1);
-                var s2 = new Seq().Invoke(c2);
-                var s3 = new Seq().Invoke(c3);
+                var s1 = seq(c1);
+                var s2 = seq(c2);
+                var s3 = seq(c3);
                 if ((bool)new Truthy().Invoke(and(s1, s2, s3)))
                 {
                     return cons(fn.Invoke(first(s1), first(s2), first(s1)), Invoke(f, rest(s1), rest(s2), rest(s3)));

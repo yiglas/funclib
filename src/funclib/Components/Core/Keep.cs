@@ -27,7 +27,7 @@ namespace funclib.Components.Core
         public object Invoke(object f, object coll) =>
             lazySeq(() =>
             {
-                var s = (ISeq)new Seq().Invoke(coll);
+                var s = (ISeq)seq(coll);
                 if ((bool)new Truthy().Invoke(s))
                 {
                     if ((bool)isChunkedSeq(s))

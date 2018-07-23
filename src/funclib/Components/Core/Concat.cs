@@ -43,7 +43,7 @@ namespace funclib.Components.Core
         public object Invoke(object x, object y) =>
             lazySeq(() =>
             {
-                var s = new Seq().Invoke(x);
+                var s = seq(x);
                 if ((bool)new Truthy().Invoke(s))
                 {
                     if ((bool)isChunkedSeq(s))
@@ -70,7 +70,7 @@ namespace funclib.Components.Core
             cat = (xys, zss) =>
                 lazySeq(() =>
                 {
-                    xys = new Seq().Invoke(xys);
+                    xys = seq(xys);
                     if ((bool)new Truthy().Invoke(xys))
                     {
                         if ((bool)isChunkedSeq(xys))

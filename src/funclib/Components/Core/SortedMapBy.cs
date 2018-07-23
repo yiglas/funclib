@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -24,6 +25,6 @@ namespace funclib.Components.Core
         /// <see cref="IFunction{T1, T2, TResult}"/> comparator. If any keys are equal, they are handled as
         /// if by repeated uses of <see cref="Assoc"/>.
         /// </returns>
-        public object Invoke(object comparator, params object[] keyvals) => Collections.SortedMap.Create(new FunctionComparer(comparator), (ISeq)new Seq().Invoke(keyvals));
+        public object Invoke(object comparator, params object[] keyvals) => Collections.SortedMap.Create(new FunctionComparer(comparator), (ISeq)seq(keyvals));
     }
 }

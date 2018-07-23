@@ -25,7 +25,7 @@ namespace funclib.Components.Core
             {
                 var fn = (IFunction<object, object>)pred;
 
-                var s = new Seq().Invoke(coll);
+                var s = seq(coll);
                 if ((bool)new Truthy().Invoke(s))
                 {
                     if ((bool)isChunkedSeq(s))

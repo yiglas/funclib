@@ -25,7 +25,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object n, object coll)
         {
-            return loop((ISeq)new Seq().Invoke(coll), (ISeq)new Seq().Invoke(drop(n, coll)));
+            return loop((ISeq)seq(coll), (ISeq)seq(drop(n, coll)));
 
             object loop(ISeq s, ISeq lead)
             {

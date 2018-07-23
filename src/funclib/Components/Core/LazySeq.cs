@@ -143,7 +143,7 @@ namespace funclib.Components.Core
         {
             var e = Seq();
             if (e != null) return e.Equals(obj);
-            return obj is System.Collections.IList && new Seq().Invoke(obj) == null;
+            return obj is System.Collections.IList && seq(obj) == null;
         }
         #endregion
 
@@ -171,7 +171,7 @@ namespace funclib.Components.Core
                 while (ls is LazySeq l)
                     ls = l.eval();
 
-                this._s = (ISeq)new Seq().Invoke(ls);
+                this._s = (ISeq)seq(ls);
             }
             return this._s;
         }

@@ -53,7 +53,7 @@ namespace funclib.Collections.Internal
             if (!this._realized)
             {
                 this._realized = true;
-                this._next = new Seq().Invoke(this._next);
+                this._next = seq(this._next);
             }
             else
                 this._next = next(this._next);

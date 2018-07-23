@@ -24,7 +24,7 @@ namespace funclib.Components.Core
         public object Invoke(object n, object coll) =>
             lazySeq(() =>
             {
-                var s = (ISeq)new Seq().Invoke(coll);
+                var s = (ISeq)seq(coll);
                 if ((bool)new Truthy().Invoke(s))
                 {
                     return cons(s.First(), Invoke(n, drop(n, s)));

@@ -2,6 +2,7 @@
 using System;
 using System.Globalization;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -46,7 +47,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object x, params object[] ys)
         {
-            return inner(new StringBuilder((string)Invoke(x)), (ISeq)new Seq().Invoke(ys)).ToString();
+            return inner(new StringBuilder((string)Invoke(x)), (ISeq)seq(ys)).ToString();
 
             StringBuilder inner(StringBuilder sb, ISeq more)
             {

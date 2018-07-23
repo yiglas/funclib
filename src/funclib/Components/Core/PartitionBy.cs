@@ -27,14 +27,14 @@ namespace funclib.Components.Core
             lazySeq(() =>
             {
                 var fn = ((IFunction<object, object>)f);
-                var s = (ISeq)new Seq().Invoke(coll);
+                var s = (ISeq)seq(coll);
                 if ((bool)new Truthy().Invoke(s))
                 {
                     var fst = s.First();
                     var fv = fn.Invoke(fst);
                     var run = cons(fst, new TakeWhile().Invoke(new Function<object, object>(x => isEqualTo(fv, fn.Invoke(x))), s.Next()));
 
-                    return cons(run, Invoke(f, new Seq().Invoke(drop(count(run), s))));
+                    return cons(run, Invoke(f, seq(drop(count(run), s))));
                 }
                 return null;
             });

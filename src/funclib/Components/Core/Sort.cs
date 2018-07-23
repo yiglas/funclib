@@ -35,11 +35,11 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object comp, object coll)
         {
-            if ((bool)new Truthy().Invoke(new Seq().Invoke(coll)))
+            if ((bool)new Truthy().Invoke(seq(coll)))
             {
                 var a = (object[])new ToArray().Invoke(coll);
                 Array.Sort(a, new FunctionComparer(comp));
-                return new Seq().Invoke(a);
+                return seq(a);
             }
             return list();
         }

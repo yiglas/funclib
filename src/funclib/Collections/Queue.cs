@@ -35,7 +35,7 @@ namespace funclib.Collections
         {
             if (!(obj is ISequential)) return false;
 
-            var ms = (ISeq)new Seq().Invoke(obj);
+            var ms = (ISeq)seq(obj);
             for (var e = Seq(); e != null; e = e.Next(), ms = ms.Next())
                 if (ms == null || !(bool)isEqualTo(e.First(), ms.First()))
                     return false;
@@ -66,14 +66,14 @@ namespace funclib.Collections
 
             if (f1 == null)
             {
-                f1 = (ISeq)new Seq().Invoke(this._r);
+                f1 = (ISeq)seq(this._r);
                 r1 = null;
             }
             return new Queue(Count - 1, f1, r1);
         }
         public ICollection Cons(object o) => throw new NotImplementedException();
         public ICollection Empty() => EMPTY;
-        public ISeq Seq() => this._f == null ? null : new QueueSeq(this._f, (ISeq)new Seq().Invoke(this._r));
+        public ISeq Seq() => this._f == null ? null : new QueueSeq(this._f, (ISeq)seq(this._r));
         public void CopyTo(Array array, int index)
         {
             if (array == null) throw new ArgumentNullException(nameof(array));

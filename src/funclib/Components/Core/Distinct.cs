@@ -40,7 +40,7 @@ namespace funclib.Components.Core
             public object Invoke(object xs, object seen)
             {
                 var f = first(xs);
-                var s = new Seq().Invoke(xs);
+                var s = seq(xs);
                 if ((bool)new Truthy().Invoke(s))
                 {
                     if ((bool)contains(seen, f))

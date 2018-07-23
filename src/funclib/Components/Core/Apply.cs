@@ -27,7 +27,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the results of executing f with the given arguments.
         /// </returns>
-        public object Invoke(object f, object args) => ApplyTo((IFunction)f, (ISeq)new Seq().Invoke(args));
+        public object Invoke(object f, object args) => ApplyTo((IFunction)f, (ISeq)seq(args));
         /// <summary>
         /// Applies <see cref="IFunction"/> f to the argument list formed prepending 
         /// intervening arguments to args.

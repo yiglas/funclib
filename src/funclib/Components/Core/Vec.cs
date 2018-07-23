@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -22,11 +23,11 @@ namespace funclib.Components.Core
             if (coll == null) return Collections.Vector.EMPTY;
             else if (coll is ISeq s)
             {
-                var seq = (ISeq)new Seq().Invoke(s);
-                if (seq == null)
+                var sq = (ISeq)seq(s);
+                if (sq == null)
                     return Collections.Vector.EMPTY;
 
-                return Collections.Vector.Create(seq);
+                return Collections.Vector.Create(sq);
             }
             else if (coll is System.Collections.IEnumerable e) return Collections.Vector.Create(e);
             else

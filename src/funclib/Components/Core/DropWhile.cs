@@ -29,7 +29,7 @@ namespace funclib.Components.Core
 
             object step(IFunction<object, object> p, object c)
             {
-                var s = (ISeq)new Seq().Invoke(c);
+                var s = (ISeq)seq(c);
                 if ((bool)new Truthy().Invoke(and(s, p.Invoke(s?.First()))))
                     return step(p, rest(s));
 

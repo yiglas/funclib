@@ -18,6 +18,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if coll has no items. Same as <see cref="Not.Invoke(Seq.Invoke(object))"/>.
         /// </returns>
-        public object Invoke(object coll) => not(new Seq().Invoke(coll));
+        public object Invoke(object coll) => not(seq(coll));
     }
 }

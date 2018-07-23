@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -46,7 +47,7 @@ namespace funclib.Components.Core
 
         int CountCollection(object o)
         {
-            var s = (ISeq)new Seq().Invoke(o);
+            var s = (ISeq)seq(o);
             o = null;
             int i = 0;
             for(; s != null; s = s.Next())

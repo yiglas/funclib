@@ -11,7 +11,7 @@ namespace funclib.Components.Core
     {
         public object Invoke(object f, object coll)
         {
-            var s = (ISeq)new Seq().Invoke(coll);
+            var s = (ISeq)seq(coll);
             if ((bool)new Truthy().Invoke(s))
                 return Invoke(f, s.First(), s.Next());
             else
@@ -19,7 +19,7 @@ namespace funclib.Components.Core
         }
         public object Invoke(object f, object val, object coll)
         {
-            var s = (ISeq)new Seq().Invoke(coll);
+            var s = (ISeq)seq(coll);
 
             if ((bool)new Truthy().Invoke(s))
             {

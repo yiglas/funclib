@@ -37,7 +37,7 @@ namespace funclib.Components.Core
         /// Returns the key found otherwise notFound.
         /// </returns>
         public object Invoke(object m, object ks, object notFound) =>
-            loop(new object(), m, (ISeq)new Seq().Invoke(ks), notFound);
+            loop(new object(), m, (ISeq)seq(ks), notFound);
 
         object loop(object sentinel, object m, ISeq ks, object notFound)
         {

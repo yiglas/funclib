@@ -24,7 +24,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the result of calling <see cref="Seq"/> with args.
         /// </returns>
-        public object Invoke(object args) => new Seq().Invoke(args);
+        public object Invoke(object args) => seq(args);
         /// <summary>
         /// Creates a new <see cref="Seq"/> containing the items perpended to the rest, the
         /// last of which will be treated as a sequence.

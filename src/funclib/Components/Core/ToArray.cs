@@ -48,10 +48,10 @@ namespace funclib.Components.Core
 
         object[] ObjectToArray(object coll)
         {
-            var seq = (ISeq)new Seq().Invoke(coll);
-            var ret = new object[(int)count(seq)];
-            for (int i = 0; i < ret.Length; i++, seq = seq.Next())
-                ret[i] = seq.First();
+            var s = (ISeq)seq(coll);
+            var ret = new object[(int)count(s)];
+            for (int i = 0; i < ret.Length; i++, s = s.Next())
+                ret[i] = s.First();
             return ret;
         }
 

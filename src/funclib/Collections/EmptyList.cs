@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Collections
 {
@@ -22,7 +23,7 @@ namespace funclib.Collections
 
         #region Overrides
         public override int GetHashCode() => 1;
-        public override bool Equals(object obj) => (obj is ISequential || obj is System.Collections.IList) && new Seq().Invoke(obj) == null;
+        public override bool Equals(object obj) => (obj is ISequential || obj is System.Collections.IList) && seq(obj) == null;
         public override string ToString() => "()";
         #endregion
 

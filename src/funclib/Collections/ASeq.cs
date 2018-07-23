@@ -27,7 +27,7 @@ namespace funclib.Collections
             if (this == obj) return true;
             if (!(obj is System.Collections.IList)) return false;
 
-            var me = (ISeq)new Seq().Invoke(obj);
+            var me = (ISeq)seq(obj);
 
             for (var e = Seq(); e != null; e = e.Next(), me = me.Next())
             {

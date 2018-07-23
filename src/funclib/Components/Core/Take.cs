@@ -30,7 +30,7 @@ namespace funclib.Components.Core
             {
                 if ((bool)isPos(n))
                 {
-                    var s = (ISeq)new Seq().Invoke(coll);
+                    var s = (ISeq)seq(coll);
                     if ((bool)new Truthy().Invoke(s))
                         return cons(s.First(), Invoke(dec(n), rest(s)));
                 }

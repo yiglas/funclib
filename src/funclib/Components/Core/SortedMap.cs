@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -29,6 +30,6 @@ namespace funclib.Components.Core
         /// Returns a new <see cref="Collections.SortedMap"/> with supplied mappings. If any keys are
         /// equal, they are handled as if by repeated uses of assoc.
         /// </returns>
-        public object Invoke(params object[] keyvals) => Collections.SortedMap.Create((ISeq)new Seq().Invoke(keyvals));
+        public object Invoke(params object[] keyvals) => Collections.SortedMap.Create((ISeq)seq(keyvals));
     }
 }

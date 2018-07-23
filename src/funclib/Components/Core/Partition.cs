@@ -53,7 +53,7 @@ namespace funclib.Components.Core
         public object Invoke(object n, object step, object coll) =>
             lazySeq(() =>
             {
-                var s = new Seq().Invoke(coll);
+                var s = seq(coll);
                 if ((bool)new Truthy().Invoke(s))
                 {
                     var p = doAll(new Take().Invoke(n, s));
@@ -83,7 +83,7 @@ namespace funclib.Components.Core
         public object Invoke(object n, object step, object pad, object coll) =>
             lazySeq(() =>
             {
-                var s = new Seq().Invoke(coll);
+                var s = seq(coll);
                 if ((bool)new Truthy().Invoke(s))
                 {
                     var p = doAll(new Take().Invoke(n, s));

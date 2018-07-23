@@ -76,7 +76,7 @@ namespace funclib.Components.Core
 
         object SeqReduce(object coll, object f)
         {
-            var s = (ISeq)new Seq().Invoke(coll);
+            var s = (ISeq)seq(coll);
             if ((bool)new Truthy().Invoke(s))
             {
                 var fn = (IFunction<object, object, object>)f;
@@ -88,7 +88,7 @@ namespace funclib.Components.Core
 
         object SeqReduce(object coll, object f, object val)
         {
-            var s = (ISeq)new Seq().Invoke(coll);
+            var s = (ISeq)seq(coll);
             return InternalReduce(s, (IFunction<object, object, object>)f, val);
         }
 
@@ -142,7 +142,7 @@ namespace funclib.Components.Core
 
         object IChunkedSeqReduce(object s, IFunction<object, object, object> f, object val)
         {
-            s = new Seq().Invoke(s);
+            s = seq(s);
             if ((bool)new Truthy().Invoke(s))
             {
                 if ((bool)isChunkedSeq(s))
@@ -184,18 +184,18 @@ namespace funclib.Components.Core
 
             object loop(Type cls, object c, object v)
             {
-                var seq = (ISeq)new Seq().Invoke(c);
-                if ((bool)new Truthy().Invoke(seq))
+                var sq = (ISeq)seq(c);
+                if ((bool)new Truthy().Invoke(sq))
                 {
-                    if ((bool)isIdentical(@class(seq), cls))
+                    if ((bool)isIdentical(@class(sq), cls))
                     {
-                        var ret = f.Invoke(v, seq.First());
+                        var ret = f.Invoke(v, sq.First());
                         if (ret is Reduced r)
                             return r.Deref();
-                        return loop(cls, seq.Next(), ret);
+                        return loop(cls, sq.Next(), ret);
                     }
 
-                    return InterfaceOrNaiveReduce(seq, f, v);
+                    return InterfaceOrNaiveReduce(sq, f, v);
                 }
                 return v;
             }
@@ -215,14 +215,14 @@ namespace funclib.Components.Core
 
             object loop(object s, object v)
             {
-                var seq = (ISeq)new Seq().Invoke(s);
-                if ((bool)new Truthy().Invoke(seq))
+                var sq = (ISeq)seq(s);
+                if ((bool)new Truthy().Invoke(sq))
                 {
-                    var ret = f.Invoke(v, seq.First());
+                    var ret = f.Invoke(v, sq.First());
                     if (ret is Reduced r)
                         return r.Deref();
 
-                    return loop(seq.Next(), ret);
+                    return loop(sq.Next(), ret);
                 }
                 return v;
             }

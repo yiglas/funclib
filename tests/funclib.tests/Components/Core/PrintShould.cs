@@ -146,7 +146,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Print_should_write_ISeq()
         {
-            var expected = new Seq().Invoke(list(1, 2, 3));
+            var expected = seq(list(1, 2, 3));
             print(expected);
             Assert.AreEqual(this._writer.ToString(), "(1 2 3)");
         }

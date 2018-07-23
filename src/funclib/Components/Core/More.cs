@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -26,7 +27,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object coll)
         {
-            var enumerate = coll as ISeq ?? (ISeq)new Seq().Invoke(coll);
+            var enumerate = coll as ISeq ?? (ISeq)seq(coll);
             if (enumerate == null)
                 return Collections.List.EMPTY;
             return enumerate.Next();

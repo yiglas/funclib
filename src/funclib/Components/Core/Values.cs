@@ -3,6 +3,7 @@ using funclib.Collections.Internal;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -24,7 +25,7 @@ namespace funclib.Components.Core
             if (map is IMap m)
                 return ValueSeq.Create(m);
 
-            return ValueSeq.Create((ISeq)new Seq().Invoke(map));
+            return ValueSeq.Create((ISeq)seq(map));
         }
     }
 }

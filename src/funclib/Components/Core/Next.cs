@@ -1,6 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -25,10 +26,10 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object coll)
         {
-            var seq = coll as ISeq ?? (ISeq)new Seq().Invoke(coll);
-            if (seq == null)
+            var s = coll as ISeq ?? (ISeq)seq(coll);
+            if (s == null)
                 return null;
-            return seq.Next();
+            return s.Next();
         }
     }
 }
