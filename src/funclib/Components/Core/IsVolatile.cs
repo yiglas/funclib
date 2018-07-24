@@ -18,6 +18,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if x is of type <see cref="Volatile"/>, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object x) => isInstance(typeof(Volatileǃ), x);
+        public object Invoke(object x) => x is Volatileǃ;
     }
 }

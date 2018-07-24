@@ -17,9 +17,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="null"/> if coll is empty, otherwise coll
         /// </returns>
-        public object Invoke(object coll) =>
-            (bool)truthy(seq(coll))
-                ? coll
-                : null;
+        public object Invoke(object coll) => (bool)truthy(seq(coll)) ? coll : null;
     }
 }

@@ -38,27 +38,21 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if no two arguments are equal, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object x, object y, params object[] more)
+        public object Invoke(object x, object y, params object[] more) => (bool)isNotEqualTo(x, y) ? loop(hashSet(x, y), more) : false;
+
+        static object loop(object s, object xs)
         {
-            if ((bool)new IsNotEqualTo().Invoke(x, y))
-                return loop(hashSet(x, y), more);
+            var f = first(xs);
+            var etc = seq(rest(xs));
 
-            return false;
-            
-            object loop(object s, object xs)
+            if ((bool)truthy(xs))
             {
-                var f = first(xs);
-                var etc = seq(rest(xs));
+                if ((bool)contains(s, f))
+                    return false;
 
-                if ((bool)truthy(xs))
-                {
-                    if ((bool)contains(s, f))
-                        return false;
-
-                    return loop(conj(s, f), etc);
-                }
-                else return true;
+                return loop(conj(s, f), etc);
             }
+            else return true;
         }
     }
 }

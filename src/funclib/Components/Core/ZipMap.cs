@@ -21,13 +21,13 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object keys, object vals)
         {
-            return loop(hashMap(), (ISeq)seq(keys), (ISeq)seq(vals));
+            return loop(hashMap(), seq(keys), seq(vals));
 
-            object loop(object map, ISeq ks, ISeq vs)
+            object loop(object map, object ks, object vs)
             {
                 if ((bool)truthy(and(ks, vs)))
                 {
-                    return loop(assoc(map, ks.First(), vs.First()), ks.Next(), vs.Next());
+                    return loop(assoc(map, first(ks), first(vs)), next(ks), next(vs));
                 }
 
                 return map;

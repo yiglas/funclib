@@ -34,7 +34,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="string.Empty"/> if x is null, otherwise <see cref="object.ToString()"/>.
         /// </returns>
-        public object Invoke(object x) => x == null ? "" : string.Format(CultureInfo.InvariantCulture, "{0}", x);
+        public object Invoke(object x) => x is null ? "" : string.Format(CultureInfo.InvariantCulture, "{0}", x);
         /// <summary>
         /// With no args, returns empty string. With one arg, returns arg.ToString(). If 
         /// arg is null return empty string. With more than one arg, returns the concatenation 
@@ -47,13 +47,13 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object x, params object[] ys)
         {
-            return inner(new StringBuilder((string)Invoke(x)), (ISeq)seq(ys)).ToString();
+            return inner(new StringBuilder((string)Invoke(x)), seq(ys)).ToString();
 
-            StringBuilder inner(StringBuilder sb, ISeq more)
+            StringBuilder inner(StringBuilder sb, object more)
             {
                 if (more != null)
                 {
-                    return inner(sb.Append(Invoke(more.First())), more.Next());
+                    return inner(sb.Append(Invoke(first(more))), next(more));
                 }
                 return sb;
             }

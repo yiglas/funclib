@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -15,8 +15,8 @@ namespace funclib.Components.Core
         }
 
         #region Virtual Methods
-        public virtual object Invoke() => ((IFunction<object>)this._rf).Invoke();
-        public virtual object Invoke(object result) => ((IFunction<object, object>)this._rf).Invoke(result);
+        public virtual object Invoke() => invoke(this._rf);
+        public virtual object Invoke(object result) => invoke(this._rf, result);
         #endregion
 
         #region Abstract Methods

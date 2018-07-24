@@ -11,6 +11,6 @@ namespace funclib.Collections
         object this[int index] { get; set; }
         object this[int index, object notFound] { get; set; }
         IChunked DropFirst();
-        object Reduce(IFunction<object, object, object> f, object init);
+        object Reduce(object f, object init);
     }
 }

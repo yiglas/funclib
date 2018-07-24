@@ -53,7 +53,7 @@ namespace funclib.Components.Core
         /// onto the list.
         /// </returns>
         public object Invoke(object coll, object x) =>
-            coll == null
+            coll is null
                 ? new Collections.List(x)
                 : ((ICollection)coll).Cons(x);
 

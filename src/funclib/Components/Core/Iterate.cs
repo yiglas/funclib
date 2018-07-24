@@ -20,6 +20,6 @@ namespace funclib.Components.Core
         /// Returns a <see cref="LazySeq"/> of x, f.Invoke(x), f.Invoke(f.Inovke(x))... 
         /// f must be free of side-effects.
         /// </returns>
-        public object Invoke(object f, object x) => Collections.Iterate.Create((IFunction<object, object>)f, x);
+        public object Invoke(object f, object x) => Collections.Iterate.Create(f, x);
     }
 }

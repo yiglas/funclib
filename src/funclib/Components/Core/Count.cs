@@ -32,10 +32,10 @@ namespace funclib.Components.Core
         public object Invoke(object coll) =>
             coll is ICounted c
                 ? c.Count
-                : CountFrom(Ret(coll, coll == null));
+                : CountFrom(Ret(coll, coll is null));
 
-        int CountFrom(object coll) =>
-            coll == null
+        static int CountFrom(object coll) =>
+            coll is null
                 ? 0
                 : coll is ICollection ? CountCollection(coll)
                 : coll is string s ? s.Length
@@ -45,7 +45,7 @@ namespace funclib.Components.Core
                 : coll is Array a ? a.GetLength(0)
                 : throw new InvalidOperationException($"Count not supported on this type: {coll.GetType().FullName}");
 
-        int CountCollection(object o)
+        static int CountCollection(object o)
         {
             var s = (ISeq)seq(o);
             o = null;
@@ -59,6 +59,6 @@ namespace funclib.Components.Core
             return i;
         }
 
-        public static object Ret(object ret, object nullable) => ret;
+        static object Ret(object ret, object nullable) => ret;
     }
 }

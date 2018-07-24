@@ -37,7 +37,7 @@ namespace funclib.Components.Core
             coll is ASeq seq 
                 ? seq
                 : coll is LazySeq ls ? ls.Seq()
-                : coll == null ? null
+                : coll is null ? null
                 : coll is ISeqable seqable ? seqable.Seq()
                 : coll.GetType().IsArray ? ArraySeq.Create((object[])coll)
                 : coll is string s ? StringSeq.Create(s)

@@ -1,6 +1,7 @@
-﻿using System;
+﻿using funclib.Components.Core;
+using System;
 using System.Text;
-using funclib.Components.Core;
+using static funclib.Core;
 
 namespace funclib.Collections
 {
@@ -11,12 +12,12 @@ namespace funclib.Collections
     {
         static readonly object UNREALIZED_SEED = new object();
 
-        readonly IFunction<object, object> _f;
+        readonly object _f;
         readonly object _prevSeed;
         volatile object _seed;
         volatile ISeq _next;
 
-        Iterate(IFunction<object, object> f, object prevSeed, object seed)
+        Iterate(object f, object prevSeed, object seed)
         {
             this._f = f;
             this._prevSeed = prevSeed;
@@ -24,20 +25,20 @@ namespace funclib.Collections
         }
 
         #region Creates
-        public static Iterate Create(IFunction<object, object> f, object seed) => new Iterate(f, null, seed);
+        public static Iterate Create(object f, object seed) => new Iterate(f, null, seed);
         #endregion
 
         #region Overrides
         public override object First()
         {
             if (this._seed == UNREALIZED_SEED)
-                this._seed = this._f.Invoke(this._prevSeed);
+                this._seed = invoke(this._f, this._prevSeed);
 
             return this._seed;
         }
         public override ISeq Next()
         {
-            if (this._next == null)
+            if (this._next is null)
                 this._next = new Iterate(this._f, First(), UNREALIZED_SEED);
 
             return this._next;
@@ -46,32 +47,32 @@ namespace funclib.Collections
         #endregion
 
         public bool IsRealized() => this._seed != UNREALIZED_SEED;
-        public object Reduce(IFunction f)
+        public object Reduce(object f)
         {
             object ff = First();
             object ret = ff;
-            object v = this._f.Invoke(ff);
+            object v = invoke(this._f, ff);
 
             while (true)
             {
-                ret = ((IFunction<object, object, object>)f).Invoke(ret, v);
+                ret = invoke(f, ret, v);
                 if (ret is Reduced r)
                     return r.Deref();
-                v = this._f.Invoke(v);
+                v = invoke(this._f, v);
             }
         }
 
-        public object Reduce(IFunction f, object init)
+        public object Reduce(object f, object init)
         {
             object ret = init;
             object v = First();
 
             while (true)
             {
-                ret = ((IFunction<object, object, object>)f).Invoke(ret, v);
+                ret = invoke(f, ret, v);
                 if (ret is Reduced r)
                     return r.Deref();
-                v = this._f.Invoke(v);
+                v = invoke(this._f, v);
             }
         }
     }

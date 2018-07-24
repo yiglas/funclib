@@ -13,7 +13,7 @@ namespace funclib
 {
     static class Util
     {
-        internal static int GetHashCode(object o) => o == null ? 0 : o.GetHashCode();
+        internal static int GetHashCode(object o) => o is null ? 0 : o.GetHashCode();
         internal static int GetHash(object o) => GetHashCode(o);
 
         internal static int BitCount(int x)
@@ -95,7 +95,7 @@ namespace funclib
 
         internal static void Print(object x, TextWriter w)
         {
-            if (x == null)
+            if (x is null)
                 w.Write("null");
             else if (x is ISeq || x is IList)
             {

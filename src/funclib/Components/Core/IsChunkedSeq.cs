@@ -18,6 +18,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if s is a <see cref="IChunkedSeq"/>, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object s) => isInstance(typeof(IChunkedSeq), s);
+        public object Invoke(object s) => s is IChunkedSeq;
     }
 }

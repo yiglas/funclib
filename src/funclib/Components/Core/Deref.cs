@@ -1,5 +1,4 @@
-﻿using funclib.Collections;
-using System;
+﻿using System;
 using System.Text;
 
 namespace funclib.Components.Core

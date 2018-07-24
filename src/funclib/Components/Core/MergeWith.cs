@@ -27,7 +27,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object f, params object[] maps)
         {
-            if ((bool)truthy(some(new Identity(), maps)))
+            if ((bool)truthy(some(funclib.Core.Identity, maps)))
             {
                 return reduce1(func<object, object, object>(merge2), maps);
             }
@@ -40,7 +40,7 @@ namespace funclib.Components.Core
                 var v = value(e);
                 if ((bool)contains(m, k))
                 {
-                    return assoc(m, k, ((IFunction<object, object, object>)f).Invoke(get(m, k), v));
+                    return assoc(m, k, invoke(f, get(m, k), v));
                 }
 
                 return assoc(m, k, v);

@@ -37,7 +37,7 @@ namespace funclib.Collections.Internal
                 var keyOrNull = this._array[2 * idx];
                 var valOrNode = this._array[2 * idx + 1];
 
-                if (keyOrNull == null)
+                if (keyOrNull is null)
                 {
                     var n = ((INode)valOrNode).Assoc(shift + 5, hash, key, val, addedLeaf);
                     if (n == valOrNode)
@@ -76,7 +76,7 @@ namespace funclib.Collections.Internal
                     {
                         if (((this._bitmap >> i) & 1) != 0)
                         {
-                            if (this._array[j] == null)
+                            if (this._array[j] is null)
                                 nodes[i] = this._array[j + 1] as INode;
                             else
                                 nodes[i] = EMPTY.Assoc(shift + 5, GetHash(this._array[j]), this._array[j], this._array[j + 1], addedLeaf);
@@ -109,7 +109,7 @@ namespace funclib.Collections.Internal
                 var keyOrNull = this._array[2 * idx];
                 var valOrNode = this._array[2 * idx + 1];
                 
-                if (keyOrNull == null)
+                if (keyOrNull is null)
                 {
                     var n = ((INode)valOrNode).Assoc(edit, shift + 5, hash, key, val, addedLeaf);
                     if (n == valOrNode) return this;
@@ -151,7 +151,7 @@ namespace funclib.Collections.Internal
                     {
                         if (((this._bitmap >> i) & 1) != 0)
                         {
-                            if (this._array[j] == null)
+                            if (this._array[j] is null)
                             {
                                 nodes[i] = this._array[j + 1] as INode;
                             }
@@ -188,7 +188,7 @@ namespace funclib.Collections.Internal
             int idx = Index(bit);
             var keyOrNull = this._array[2 * idx];
             var valOrNode = this._array[2 * idx + 1];
-            if (keyOrNull == null)
+            if (keyOrNull is null)
             {
                 var n = ((INode)valOrNode).Without(shift + 5, hash, key);
 
@@ -215,7 +215,7 @@ namespace funclib.Collections.Internal
             int idx = Index(bit);
             var keyOrNull = this._array[2 * idx];
             var valOrNode = this._array[2 * idx + 1];
-            if (keyOrNull == null)
+            if (keyOrNull is null)
             {
                 var n = ((INode)valOrNode).Without(edit, shift + 5, hash, key, removedLeaf);
 
@@ -244,7 +244,7 @@ namespace funclib.Collections.Internal
             var keyOrNull = this._array[2 * idx];
             var valOrNode = this._array[2 * idx + 1];
 
-            if (keyOrNull == null)
+            if (keyOrNull is null)
                 return ((INode)valOrNode).Get(shift + 5, hash, key);
             if ((bool)isEqualTo(key, keyOrNull))
                 return new KeyValuePair(keyOrNull, valOrNode);
@@ -261,7 +261,7 @@ namespace funclib.Collections.Internal
             var keyOrNull = this._array[2 * idx];
             var valOrNode = this._array[2 * idx + 1];
 
-            if (keyOrNull == null)
+            if (keyOrNull is null)
                 return ((INode)valOrNode).Get(shift + 5, hash, key, notFound);
             if ((bool)isEqualTo(key, keyOrNull))
                 return valOrNode;
@@ -322,6 +322,6 @@ namespace funclib.Collections.Internal
             return editable;
         }
 
-        public object Reduce(IFunction f, object init) => NodeSeq.Reduce(this._array, f, init);
+        public object Reduce(object f, object init) => NodeSeq.Reduce(this._array, f, init);
     }
 }

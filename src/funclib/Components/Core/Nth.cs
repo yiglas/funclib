@@ -50,8 +50,8 @@ namespace funclib.Components.Core
                 : null;
 
 
-        object nth(object coll, int index) =>
-            coll == null
+        static object nth(object coll, int index) =>
+            coll is null
                 ? null
                 : coll is string s ? s[index]
                 : coll.GetType().IsArray ? nth((Array)coll, index)
@@ -65,8 +65,8 @@ namespace funclib.Components.Core
                 : coll is ISeq seq ? nth(seq, index)
                 : throw new InvalidOperationException($"{nameof(Nth)} no supported on this type: {coll.GetType().FullName}");
 
-        object nth(object coll, int index, object notFound) =>
-            coll == null
+        static object nth(object coll, int index, object notFound) =>
+            coll is null
                 ? notFound
                 : index < 0 ? notFound
                 : coll is string s ? index < s.Length ? s[index] : notFound
@@ -81,7 +81,7 @@ namespace funclib.Components.Core
                 : coll is ISeq seq ? nth(seq, index, notFound)
                 : notFound;
 
-        object nth(ISeq seq, int index)
+        static object nth(ISeq seq, int index)
         {
             for (int i = 0; i < index && seq != null; ++i, seq = seq.Next())
             {
@@ -91,7 +91,7 @@ namespace funclib.Components.Core
             throw new ArgumentOutOfRangeException(nameof(index));
         }
 
-        object nth(ISeq seq, int index, object notFound)
+        static object nth(ISeq seq, int index, object notFound)
         {
             for (int i = 0; i < index && seq != null; ++i, seq = seq.Next())
             {
@@ -101,8 +101,7 @@ namespace funclib.Components.Core
             return notFound;
         }
 
-        object nth(Array coll, int index) => coll.GetValue(index);
-        object nth(Array coll, int index, object notFound) => index < coll.Length ? coll.GetValue(index) : notFound;
-
+        static object nth(Array coll, int index) => coll.GetValue(index);
+        static object nth(Array coll, int index, object notFound) => index < coll.Length ? coll.GetValue(index) : notFound;
     }
 }

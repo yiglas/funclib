@@ -17,6 +17,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if x is a <see cref="double"/>, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object x) => isInstance(typeof(double), x);
+        public object Invoke(object x) => x is double;
     }
 }

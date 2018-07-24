@@ -23,7 +23,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object n, object coll) => lazySeq(() => step(n, coll));
 
-        object step(object n, object coll)
+        static object step(object n, object coll)
         {
             var s = seq(coll);
             if ((bool)truthy(and(isPos(n), s)))
@@ -52,7 +52,7 @@ namespace funclib.Components.Core
                 if ((bool)isPos(n))
                     return result;
 
-                return ((IFunction<object, object, object>)this._rf).Invoke(result, input);
+                return invoke(this._rf, result, input);
             }
             #endregion
         }

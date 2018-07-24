@@ -2,6 +2,7 @@
 using funclib.Components.Core;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Collections
 {
@@ -49,30 +50,30 @@ namespace funclib.Collections
                 items[i] = this._array[i];
             return items;
         }
-        public object Reduce(IFunction f)
+        public object Reduce(object f)
         {
-            if (this._array == null) return null;
+            if (this._array is null) return null;
 
             var ret = this._array[this._index];
             for (var x = this._index + 1; x < this._array.Length; x++)
             {
-                ret = ((IFunction<object, object, object>)f).Invoke(ret, this._array[x]);
+                ret = invoke(f, ret, this._array[x]);
                 if (ret is Reduced r)
                     return r.Deref();
             }
 
             return ret;
         }
-        public object Reduce(IFunction f, object init)
+        public object Reduce(object f, object init)
         {
-            if (this._array == null) return null;
+            if (this._array is null) return null;
 
-            var ret = ((IFunction<object, object, object>)f).Invoke(init, this._array[this._index]);
+            var ret = invoke(f, init, this._array[this._index]);
             for (var x = this._index + 1; x < this._array.Length; x++)
             {
                 if (ret is Reduced r)
                     return r.Deref();
-                ret = ((IFunction<object, object, object>)f).Invoke(ret, this._array[x]);
+                ret = invoke(f, ret, this._array[x]);
             }
             if (ret is Reduced r2)
                 return r2.Deref();

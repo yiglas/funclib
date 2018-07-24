@@ -18,6 +18,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if coll implements <see cref="IVector"/> interface, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object x) => isInstance(typeof(IVector), x);
+        public object Invoke(object x) => x is IVector;
     }
 }

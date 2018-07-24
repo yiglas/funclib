@@ -2,6 +2,7 @@
 using funclib.Components.Core;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Collections
 {
@@ -49,29 +50,29 @@ namespace funclib.Collections
         public override ISeq Cons(object o) => new List(o, this, Count + 1);
         public override object First() => this._first;
         public override ISeq Next() => Count == 1 ? null : this._rest;
-        public override IStack Pop() => this._rest == null ? EMPTY : this._rest;
+        public override IStack Pop() => this._rest is null ? EMPTY : this._rest;
         #endregion
 
-        public object Reduce(IFunction f)
+        public object Reduce(object f)
         {
             object ret = First();
             for (var s = Next(); s != null; s = s.Next())
             {
-                ret = ((IFunction<object, object, object>)f).Invoke(ret, s.First());
+                ret = invoke(f, ret, s.First());
                 if (ret is Reduced r)
                     return r.Deref();
             }
 
             return ret;
         }
-        public object Reduce(IFunction f, object init)
+        public object Reduce(object f, object init)
         {
-            object ret = ((IFunction<object, object, object>)f).Invoke(init, First());
+            object ret = invoke(f, init, First());
             for (var s = Next(); s != null; s = s.Next())
             {
                 if (ret is Reduced r)
                     return r.Deref();
-                ret = ((IFunction<object, object, object>)f).Invoke(ret, s.First());
+                ret = invoke(f, ret, s.First());
             }
 
             if (ret is Reduced r2)

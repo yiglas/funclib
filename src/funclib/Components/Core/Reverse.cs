@@ -18,6 +18,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="Seq"/> of the items in coll in reverse order.
         /// </returns>
-        public object Invoke(object coll) => reduce1(new Conj(), list(), coll);
+        public object Invoke(object coll) => reduce1(funclib.Core.Conj, list(), coll);
     }
 }

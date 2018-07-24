@@ -18,9 +18,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns an instance of <see cref="Regex"/>, for use, e.g. in <see cref="ReMatcher"/>.
         /// </returns>
-        public object Invoke(object s) =>
-            (bool)isInstance(typeof(Regex), s)
-                ? s
-                : new Regex((string)s);
+        public object Invoke(object s) => s is Regex ? s : new Regex((string)s);
     }
 }

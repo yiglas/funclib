@@ -23,8 +23,6 @@ namespace funclib.Components.Core
         public object Invoke(object pred, object coll) =>
             lazySeq(() =>
             {
-                var fn = (IFunction<object, object>)pred;
-
                 var s = seq(coll);
                 if ((bool)truthy(s))
                 {
@@ -37,7 +35,7 @@ namespace funclib.Components.Core
                         doTimes(size, i =>
                         {
                             var v = nth(c, i);
-                            if ((bool)truthy(fn.Invoke(v)))
+                            if ((bool)truthy(invoke(pred, v)))
                             {
                                 return chunkAppend(b, v);
                             }
@@ -51,7 +49,7 @@ namespace funclib.Components.Core
                         var f = first(s);
                         var r = rest(s);
 
-                        if ((bool)truthy(fn.Invoke(f)))
+                        if ((bool)truthy(invoke(pred, f)))
                         {
                             return cons(f, Invoke(pred, r));
                         }
@@ -69,18 +67,18 @@ namespace funclib.Components.Core
         public class TransducerFunction :
             ATransducerFunction
         {
-            IFunction<object, object> _pred;
+            object _pred;
 
             public TransducerFunction(object pred, object rf) :
                 base(rf)
             {
-                this._pred = (IFunction<object, object>)pred;
+                this._pred = pred;
             }
 
             #region Overrides
             public override object Invoke(object result, object input) =>
-                (bool)truthy(this._pred.Invoke(input))
-                    ? ((IFunction<object, object, object>)this._rf).Invoke(result, input)
+                (bool)truthy(invoke(this._pred, input))
+                    ? invoke(this._rf, result, input)
                     : result;
             #endregion
         }

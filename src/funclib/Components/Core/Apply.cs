@@ -19,7 +19,7 @@ namespace funclib.Components.Core
         IFunctionParams<object, object, object, object, object, object, object>
     {
         /// <summary>
-        /// Applies <see cref="IFunction"/> f to the argument list formed prepending 
+        /// Applies <see cref="IFunction"/> f to the argument list formed perpending 
         /// intervening arguments to args.
         /// </summary>
         /// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
@@ -27,9 +27,9 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the results of executing f with the given arguments.
         /// </returns>
-        public object Invoke(object f, object args) => ApplyTo((IFunction)f, (ISeq)seq(args));
+        public object Invoke(object f, object args) => ApplyTo(f, seq(args));
         /// <summary>
-        /// Applies <see cref="IFunction"/> f to the argument list formed prepending 
+        /// Applies <see cref="IFunction"/> f to the argument list formed perpending 
         /// intervening arguments to args.
         /// </summary>
         /// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
@@ -38,9 +38,9 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the results of executing f with the given arguments.
         /// </returns>
-        public object Invoke(object f, object x, object args) => ApplyTo((IFunction)f, (ISeq)listS(x, args));
+        public object Invoke(object f, object x, object args) => ApplyTo(f, listS(x, args));
         /// <summary>
-        /// Applies <see cref="IFunction"/> f to the argument list formed prepending 
+        /// Applies <see cref="IFunction"/> f to the argument list formed perpending 
         /// intervening arguments to args.
         /// </summary>
         /// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
@@ -50,9 +50,9 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the results of executing f with the given arguments.
         /// </returns>
-        public object Invoke(object f, object x, object y, object args) => ApplyTo((IFunction)f, (ISeq)listS(x, y, args));
+        public object Invoke(object f, object x, object y, object args) => ApplyTo(f, listS(x, y, args));
         /// <summary>
-        /// Applies <see cref="IFunction"/> f to the argument list formed prepending 
+        /// Applies <see cref="IFunction"/> f to the argument list formed perpending 
         /// intervening arguments to args.
         /// </summary>
         /// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
@@ -63,9 +63,9 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the results of executing f with the given arguments.
         /// </returns>
-        public object Invoke(object f, object x, object y, object z, object args) => ApplyTo((IFunction)f, (ISeq)listS(x, y, z, args));
+        public object Invoke(object f, object x, object y, object z, object args) => ApplyTo(f, listS(x, y, z, args));
         /// <summary>
-        /// Applies <see cref="IFunction"/> f to the argument list formed prepending 
+        /// Applies <see cref="IFunction"/> f to the argument list formed perpending 
         /// intervening arguments to args.
         /// </summary>
         /// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
@@ -78,27 +78,27 @@ namespace funclib.Components.Core
         /// Returns the results of executing f with the given arguments.
         /// </returns>
         public object Invoke(object f, object a, object b, object c, object d, params object[] args) =>
-            ApplyTo((IFunction)f, (ISeq)cons(a, cons(b, cons(c, cons(d, spread(args))))));
+            ApplyTo(f, cons(a, cons(b, cons(c, cons(d, spread(args))))));
 
-        internal static object ApplyTo(IFunction f, ISeq args)
+        internal static object ApplyTo(object f, object args)
         {
-            var count = args?.Count ?? 0;
+            var cnt = (int)count(args);
 
             var fn = f.GetType()
                 .GetInterfaces()
                 .Where(x => x.IsGenericType)
                 .Select(x => new { InterfaceType = x.GetGenericTypeDefinition(), ParameterCount = x.GenericTypeArguments.Count() })
-                .Where(x => x.ParameterCount - 1  <= count)
+                .Where(x => x.ParameterCount - 1  <= cnt)
                 .OrderByDescending(x => x.ParameterCount)
                 .FirstOrDefault();
 
-            if (fn.ParameterCount - 1 < count && !(f is IFunctionParams))
-                throw new ArityException(count, f.GetType().FullName);
+            if (fn == null || (fn.ParameterCount - 1 < cnt && !(f is IFunctionParams)))
+                throw new ArityException(cnt, f.GetType().FullName);
 
-            return ApplyTo(fn.InterfaceType, f, args);
+            return ApplyTo(fn.InterfaceType, f, (ISeq)args);
         }
 
-        static object ApplyTo(Type interfaceType, IFunction f, ISeq args) =>
+        static object ApplyTo(Type interfaceType, object f, ISeq args) =>
             interfaceType == typeof(IFunction<>)
                 ? ApplyTo((IFunction<object>)f)
                 : interfaceType == typeof(IFunction<,>) ? ApplyTo((IFunction<object, object>)f, args)
@@ -139,8 +139,9 @@ namespace funclib.Components.Core
                 (args = args.Next()).First(),
                 (args = args.Next()).First(),
                 Ret((args = args.Next()).First(), args = null));
-        static object ApplyTo(IFunctionParams<object, object> f, ISeq args) => 
-            f.Invoke((object[])toArray(Ret(args.First(), args = null)));
+        static object ApplyTo(IFunctionParams<object, object> f, ISeq args) =>
+            //f.Invoke((object[])toArray(Ret(args.First(), args = null)));
+            f.Invoke(Ret(args.First(), args = null));
         static object ApplyTo(IFunctionParams<object, object, object> f, ISeq args) =>
             f.Invoke(
                 args.First(), 

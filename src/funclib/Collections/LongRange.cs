@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Collections
 {
@@ -136,31 +137,31 @@ namespace funclib.Collections
         public ISeq ChunkedMore()
         {
             ForceChunk();
-            if (this._chunk == null) return List.EMPTY;
+            if (this._chunk is null) return List.EMPTY;
             return this._chunkNext;
         }
 
         public ISeq ChunkedNext() => ChunkedMore().Seq();
-        public object Reduce(IFunction f)
+        public object Reduce(object f)
         {
             object acc = this._start;
             long i = this._start + this._step;
             while (!this._boundsCheck.ExceededBounds(i))
             {
-                acc = ((IFunction<object, object, object>)f).Invoke(acc, i);
+                acc = invoke(f, acc, i);
                 if (acc is Reduced r)
                     return r.Deref();
                 i += this._step;
             }
             return acc;
         }
-        public object Reduce(IFunction f, object init)
+        public object Reduce(object f, object init)
         {
             var acc = init;
             long i = this._start;
             do
             {
-                acc = ((IFunction<object, object, object>)f).Invoke(acc, i);
+                acc = invoke(f, acc, i);
                 if (acc is Reduced r)
                     return r.Deref();
                 i += this._step;

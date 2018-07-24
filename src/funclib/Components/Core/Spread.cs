@@ -10,9 +10,9 @@ namespace funclib.Components.Core
     {
         public object Invoke(object argList)
         {
-            if (argList == null) return null;
+            if (argList is null) return null;
             var n = next(argList);
-            if (n == null)
+            if (n is null)
                 return seq(first(argList));
 
             return cons(first(argList), Invoke(n));

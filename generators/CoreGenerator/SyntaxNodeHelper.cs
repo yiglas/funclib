@@ -13,7 +13,7 @@ namespace CoreGenerator
             // set defaults
             result = null;
 
-            if (syntaxNode == null)
+            if (syntaxNode is null)
             {
                 return false;
             }
@@ -22,7 +22,7 @@ namespace CoreGenerator
             {
                 syntaxNode = syntaxNode.Parent;
 
-                if (syntaxNode == null)
+                if (syntaxNode is null)
                 {
                     return false;
                 }

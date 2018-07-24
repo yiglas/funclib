@@ -26,7 +26,7 @@ namespace funclib.Collections.Internal
             int idx = Mask(hash, shift);
 
             var node = this._array[idx];
-            if (node == null)
+            if (node is null)
                 return new ArrayNode(null, this._count + 1, CloneAndSet(this._array, idx, BitmapIndexedNode.EMPTY.Assoc(shift + 5, hash, key, val, addedLeaf)));
 
             var n = node.Assoc(shift + 5, hash, key, val, addedLeaf);
@@ -38,7 +38,7 @@ namespace funclib.Collections.Internal
         {
             int idx = Mask(hash, shift);
             var node = this._array[idx];
-            if (node == null)
+            if (node is null)
             {
                 var editable = EditAndSet(edit, idx, BitmapIndexedNode.EMPTY.Assoc(edit, shift + 5, hash, key, val, addedLeaf));
                 editable._count++;
@@ -54,7 +54,7 @@ namespace funclib.Collections.Internal
         {
             int idx = Mask(hash, shift);
             var node = this._array[idx];
-            if (node == null) return null;
+            if (node is null) return null;
 
             return node.Get(shift + 5, hash, key);
         }
@@ -62,7 +62,7 @@ namespace funclib.Collections.Internal
         {
             int idx = Mask(hash, shift);
             var node = this._array[idx];
-            if (node == null) return notFound;
+            if (node is null) return notFound;
 
             return node.Get(shift + 5, hash, key, notFound);
         }
@@ -70,12 +70,12 @@ namespace funclib.Collections.Internal
         {
             int idx = Mask(hash, shift);
             var node = this._array[idx];
-            if (node == null) return this;
+            if (node is null) return this;
 
             var n = node.Without(shift + 5, hash, key);
             if (n == node) return this;
 
-            if (n == null)
+            if (n is null)
             {
                 if (this._count <= 8) return Pack(null, idx);
 
@@ -88,12 +88,12 @@ namespace funclib.Collections.Internal
         {
             int idx = Mask(hash, shift);
             var node = this._array[idx];
-            if (node == null) return this;
+            if (node is null) return this;
 
             var n = node.Without(edit, shift + 5, hash, key, removedLeaf);
             if (n == node) return this;
 
-            if (n == null)
+            if (n is null)
             {
                 if (this._count <= 8) return Pack(edit, idx);
 
@@ -161,7 +161,7 @@ namespace funclib.Collections.Internal
             return new BitmapIndexedNode(edit, bitmap, newArray);
         }
 
-        public object Reduce(IFunction f, object init)
+        public object Reduce(object f, object init)
         {
             foreach (var node in this._array)
             {

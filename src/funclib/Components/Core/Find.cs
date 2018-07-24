@@ -20,7 +20,7 @@ namespace funclib.Components.Core
         /// Returns the <see cref="KeyValuePair"/> for the key, or null if key is not present.
         /// </returns>
         public object Invoke(object map, object key) =>
-            map == null
+            map is null
                 ? null
                 : map is IAssociative a ? a.Get(key)
                 : map is System.Collections.IDictionary d ? d.Contains(key) ? KeyValuePair.Create(key, d[key]) : null

@@ -35,12 +35,12 @@ namespace funclib.Components.Core
         /// <summary>
         /// Gets the flag indicating if the <see cref="Regex"/> or match are in a failed state.
         /// </summary>
-        public bool IsFailed => this._regex == null && this._match == null;
+        public bool IsFailed => this._regex is null && this._match is null;
 
         /// <summary>
         /// Gets a flag indicating if the <see cref="ReMatcher"/> is in a Unrealized or Failed state. 
         /// </summary>
-        public bool IsUnrealizedOrFailed => this._regex != null && this._match == null;
+        public bool IsUnrealizedOrFailed => this._regex != null && this._match is null;
 
         /// <summary>
         /// Find the next match.
@@ -81,7 +81,7 @@ namespace funclib.Components.Core
         /// <returns></returns>
         public bool Matches()
         {
-            if (this._regex == null)
+            if (this._regex is null)
                 return false;
 
             string pattern = this._regex.ToString();
@@ -105,7 +105,7 @@ namespace funclib.Components.Core
         /// </returns>
         public int GroupCount()
         {
-            if (this._match == null)
+            if (this._match is null)
                 throw new InvalidOperationException("Attempt to call GroupCount on a non-realized or failed match.");
 
             return this._match.Groups.Count - 1;
@@ -117,7 +117,7 @@ namespace funclib.Components.Core
         /// <returns></returns>
         public string Group()
         {
-            if (this._match == null)
+            if (this._match is null)
                 throw new InvalidOperationException("Attempt to call group on a non-realized or failed match.");
 
             return this._match.Value;
@@ -133,7 +133,7 @@ namespace funclib.Components.Core
         /// </returns>
         public string Group(int groupIndex)
         {
-            if (this._match == null)
+            if (this._match is null)
                 throw new InvalidOperationException("Attempt to call group on a non-realized or failed match.");
 
             if (groupIndex < 0 || groupIndex >= this._match.Groups.Count)

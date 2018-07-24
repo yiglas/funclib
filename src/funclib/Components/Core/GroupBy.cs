@@ -31,7 +31,7 @@ namespace funclib.Components.Core
                 reduce(
                     func((object ret, object x) =>
                     {
-                        var k = ((IFunction<object, object>)f).Invoke(x);
+                        var k = invoke(f, x);
                         return assocǃ(ret, k, conj(get(ret, k, vector()), x));
                     }), transient(hashMap()), coll));
     }

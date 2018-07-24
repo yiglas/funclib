@@ -21,14 +21,14 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object map, object keyseq)
         {
-            return loop(hashMap(), (ISeq)seq(keyseq));
+            return loop(hashMap(), seq(keyseq));
 
-            object loop(object ret, ISeq keys)
+            object loop(object ret, object keys)
             {
                 if ((bool)truthy(keys))
                 {
-                    var entry = find(map, keys.First());
-                    return loop((bool)truthy(entry) ? conj(ret, entry) : ret, keys.Next());
+                    var entry = find(map, first(keys));
+                    return loop((bool)truthy(entry) ? conj(ret, entry) : ret, next(keys));
                 }
 
                 return ret;

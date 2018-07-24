@@ -26,13 +26,12 @@ namespace funclib.Components.Core
         public object Invoke(object f, object coll) =>
             lazySeq(() =>
             {
-                var fn = ((IFunction<object, object>)f);
-                var s = (ISeq)seq(coll);
+                var s = seq(coll);
                 if ((bool)truthy(s))
                 {
-                    var fst = s.First();
-                    var fv = fn.Invoke(fst);
-                    var run = cons(fst, takeWhile(func<object, object>(x => isEqualTo(fv, fn.Invoke(x))), s.Next()));
+                    var fst = first(s);
+                    var fv = invoke(f, fst);
+                    var run = cons(fst, takeWhile(func<object, object>(x => isEqualTo(fv, invoke(f, x))), next(s)));
 
                     return cons(run, Invoke(f, seq(drop(count(run), s))));
                 }
@@ -61,15 +60,15 @@ namespace funclib.Components.Core
                 {
                     var v = vec(this._a.ToArray());
                     this._a.Clear();
-                    result = unreduce(((IFunction<object, object, object>)this._rf).Invoke(result, v));
+                    result = unreduce(invoke(this._rf, result, v));
                 }
 
-                return ((IFunction<object, object>)this._rf).Invoke(result);
+                return invoke(this._rf, result);
             }
             public override object Invoke(object result, object input)
             {
                 var pval = this._pv.Deref();
-                var val = ((IFunction<object, object>)this._f).Invoke(input);
+                var val = invoke(this._f, input);
                 vresetǃ(this._pv, val);
                 if ((bool)truthy(or(isIdentical(pval, "::none"), isEqualTo(val, pval))))
                 {
@@ -79,7 +78,7 @@ namespace funclib.Components.Core
 
                 var v = vec(this._a.ToArray());
                 this._a.Clear();
-                var ret = ((IFunction<object, object, object>)this._rf).Invoke(result, v);
+                var ret = invoke(this._rf, result, v);
 
                 if (!(bool)reduced(ret))
                     this._a.Add(input);

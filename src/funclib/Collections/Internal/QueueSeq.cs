@@ -25,9 +25,9 @@ namespace funclib.Collections.Internal
         {
             var f1 = this._f.Next();
             var r1 = this._rseq;
-            if (f1 == null)
+            if (f1 is null)
             {
-                if (this._rseq == null) return null;
+                if (this._rseq is null) return null;
                 f1 = this._rseq;
                 r1 = null;
             }

@@ -18,17 +18,14 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="ISeq"/> of all items except for the last item.
         /// </returns>
-        public object Invoke(object coll)
+        public object Invoke(object coll) => anonymous(vector(), coll);
+
+        static object anonymous(object ret, object s)
         {
-            return loop(Collections.Vector.EMPTY, coll);
-            
-            object loop(object ret, object s)
-            {
-                var n = next(s);
-                if ((bool)truthy(n))
-                    return loop(conj(ret, first(s)), n);
-                return seq(ret);
-            }
+            var n = next(s);
+            if ((bool)truthy(n))
+                return anonymous(conj(ret, first(s)), n);
+            return seq(ret);
         }
     }
 }

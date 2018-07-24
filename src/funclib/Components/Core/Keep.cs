@@ -27,7 +27,7 @@ namespace funclib.Components.Core
         public object Invoke(object f, object coll) =>
             lazySeq(() =>
             {
-                var s = (ISeq)seq(coll);
+                var s = seq(coll);
                 if ((bool)truthy(s))
                 {
                     if ((bool)isChunkedSeq(s))
@@ -38,7 +38,7 @@ namespace funclib.Components.Core
 
                         doTimes(size, i =>
                         {
-                            var y = ((IFunction<object, object>)f).Invoke(nth(c, i));
+                            var y = invoke(f, nth(c, i));
                             if (!(bool)isNull(y))
                             {
                                 chunkAppend(b, y);
@@ -49,7 +49,7 @@ namespace funclib.Components.Core
                         return chunkCons(chunk(b), Invoke(f, chunkRest(s)));
                     }
 
-                    var x = ((IFunction<object, object>)f).Invoke(s.First());
+                    var x = invoke(f, first(s));
                     if ((bool)isNull(x))
                     {
                         return Invoke(f, rest(s));
@@ -75,11 +75,11 @@ namespace funclib.Components.Core
             #region Overrides
             public override object Invoke(object result, object input)
             {
-                var v = ((IFunction<object, object>)this._f).Invoke(input);
+                var v = invoke(this._f, input);
                 if ((bool)isNull(v))
                     return result;
 
-                return ((IFunction<object, object, object>)this._rf).Invoke(result, v);
+                return invoke(this._rf, result, v);
             }
             #endregion
         }

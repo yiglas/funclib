@@ -36,7 +36,7 @@ namespace funclib.Collections.Internal
         public ISeq ChunkedMore()
         {
             var e = ChunkedNext();
-            if (e == null)
+            if (e is null)
                 return List.EMPTY;
             return e;
         }

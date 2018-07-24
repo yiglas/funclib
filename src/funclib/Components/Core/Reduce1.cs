@@ -11,22 +11,22 @@ namespace funclib.Components.Core
     {
         public object Invoke(object f, object coll)
         {
-            var s = (ISeq)seq(coll);
+            var s = seq(coll);
             if ((bool)truthy(s))
-                return Invoke(f, s.First(), s.Next());
+                return Invoke(f, first(s), next(s));
             else
-                return ((IFunction<object>)f).Invoke();
+                return invoke(f);
         }
         public object Invoke(object f, object val, object coll)
         {
-            var s = (ISeq)seq(coll);
+            var s = seq(coll);
 
             if ((bool)truthy(s))
             {
                 if ((bool)isChunkedSeq(s))
-                    return Invoke(f, ((IChunked)chunkFirst(s)).Reduce((IFunction<object, object, object>)f, val), chunkNext(s));
+                    return Invoke(f, ((IChunked)chunkFirst(s)).Reduce(f, val), chunkNext(s));
                 else
-                    return Invoke(f, ((IFunction<object, object, object>)f).Invoke(val, first(s)), next(s));
+                    return Invoke(f, invoke(f, val, first(s)), next(s));
             }
 
             return val;

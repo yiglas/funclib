@@ -30,9 +30,9 @@ namespace funclib.Components.Core
             {
                 if ((bool)isPos(n))
                 {
-                    var s = (ISeq)seq(coll);
+                    var s = seq(coll);
                     if ((bool)truthy(s))
-                        return cons(s.First(), Invoke(dec(n), rest(s)));
+                        return cons(first(s), Invoke(dec(n), rest(s)));
                 }
 
                 return null;
@@ -55,7 +55,7 @@ namespace funclib.Components.Core
                 var n = this._nv.Deref();
                 var nn = new VSwapǃ(this._nv, new Dec()).Invoke();
                 result = (bool)isPos(n) 
-                    ? Apply.ApplyTo((IFunction)this._rf, (ISeq)list(result, input))
+                    ? invoke(this._rf, result, input)
                     : result;
 
                 if ((bool)not(isPos(nn)))

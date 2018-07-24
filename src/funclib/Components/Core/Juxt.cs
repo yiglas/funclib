@@ -180,17 +180,17 @@ namespace funclib.Components.Core
                     : this._g != null ? vector(Exec(this._f, x, y, z, args), Exec(this._g, x, y, z, args))
                     : vector(Exec(this._f, x, y, z, args));
 
-            object Exec(object f) => ((IFunction<object>)f).Invoke();
-            object Exec(object f, object x) => ((IFunction<object, object>)f).Invoke(x);
-            object Exec(object f, object x, object y) => ((IFunction<object, object, object>)f).Invoke(x, y);
-            object Exec(object f, object x, object y, object z) => ((IFunction<object, object, object, object>)f).Invoke(x, y, z);
-            object Exec(object f, object x, object y, object z, params object[] args) => apply(f, x, y, z, args);
+            static object Exec(object f) => invoke(f);
+            static object Exec(object f, object x) => invoke(f, x);
+            static object Exec(object f, object x, object y) => invoke(f, x, y);
+            static object Exec(object f, object x, object y, object z) => invoke(f, x, y, z);
+            static object Exec(object f, object x, object y, object z, params object[] args) => apply(f, x, y, z, args);
 
-            object Reduce(object fs) => reduce1(func((object _1, object _2) => conj(_1, Exec(_2))), vector(), fs);
-            object Reduce(object fs, object x) => reduce1(func((object _1, object _2) => conj(_1, Exec(_2, x))), vector(), fs);
-            object Reduce(object fs, object x, object y) => reduce1(func((object _1, object _2) => conj(_1, Exec(_2, x, y))), vector(), fs);
-            object Reduce(object fs, object x, object y, object z) => reduce1(func((object _1, object _2) => conj(_1, Exec(_2, x, y, z))), vector(), fs);
-            object Reduce(object fs, object x, object y, object z, params object[] args) => reduce1(func((object _1, object _2) => conj(_1, Exec(_2, x, y, z, args))), vector(), fs);
+            static object Reduce(object fs) => reduce1(func((object _1, object _2) => conj(_1, Exec(_2))), vector(), fs);
+            static object Reduce(object fs, object x) => reduce1(func((object _1, object _2) => conj(_1, Exec(_2, x))), vector(), fs);
+            static object Reduce(object fs, object x, object y) => reduce1(func((object _1, object _2) => conj(_1, Exec(_2, x, y))), vector(), fs);
+            static object Reduce(object fs, object x, object y, object z) => reduce1(func((object _1, object _2) => conj(_1, Exec(_2, x, y, z))), vector(), fs);
+            static object Reduce(object fs, object x, object y, object z, params object[] args) => reduce1(func((object _1, object _2) => conj(_1, Exec(_2, x, y, z, args))), vector(), fs);
         }
     }
 }

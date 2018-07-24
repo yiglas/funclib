@@ -10,7 +10,7 @@ namespace funclib.Components.Core
         public object Invoke(object rf) =>
             func((object _1, object _2) =>
             {
-                var ret = ((IFunction<object, object, object>)rf).Invoke(_1, _2);
+                var ret = invoke(rf, _1, _2);
                 if ((bool)isReduced(ret))
                     return reduced(ret);
                 return ret;

@@ -1,6 +1,7 @@
 ﻿using funclib.Components.Core;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Collections.Internal
 {
@@ -58,12 +59,12 @@ namespace funclib.Collections.Internal
         public override IStack Pop() => throw new NotImplementedException();
         #endregion
 
-        public static object Reduce(object[] array, IFunction f, object init)
+        public static object Reduce(object[] array, object f, object init)
         {
             for (int i = 0; i < array.Length; i += 2)
             {
                 if (array[i] != null)
-                    init = ((IFunction<object, object, object, object>)f).Invoke(init, array[i], array[i + 1]);
+                    init = invoke(f, init, array[i], array[i + 1]);
                 else
                 {
                     var node = (INode)array[i + 1];

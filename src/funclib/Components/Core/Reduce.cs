@@ -36,8 +36,8 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object f, object coll) =>
             coll is IReduce r
-                ? r.Reduce((IFunction<object, object, object>)f)
-                : coll is null ? ((IFunction<object>)f).Invoke()
+                ? r.Reduce(f)
+                : coll is null ? invoke(f)
                 : coll is ASeq ? SeqReduce(coll, f)
                 : coll is LazySeq ? SeqReduce(coll, f)
                 : coll is IVector ? SeqReduce(coll, f)
@@ -63,7 +63,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object f, object val, object coll) =>
             coll is IReduce r
-                ? r.Reduce((IFunction<object, object, object>)f, val)
+                ? r.Reduce(f, val)
                 : coll is null ? val
                 : coll is ASeq ? SeqReduce(coll, f, val)
                 : coll is LazySeq ? SeqReduce(coll, f, val)
@@ -74,39 +74,34 @@ namespace funclib.Components.Core
                 : SeqReduce(coll, f, val);
 
 
-        object SeqReduce(object coll, object f)
+        static object SeqReduce(object coll, object f)
         {
-            var s = (ISeq)seq(coll);
+            var s = seq(coll);
             if ((bool)truthy(s))
             {
-                var fn = (IFunction<object, object, object>)f;
-                return InternalReduce(s.Next(), fn, s.First());
+                return InternalReduce(next(s), f, first(s));
             }
 
-            return ((IFunction<object>)f).Invoke();
+            return invoke(f);
         }
 
-        object SeqReduce(object coll, object f, object val)
-        {
-            var s = (ISeq)seq(coll);
-            return InternalReduce(s, (IFunction<object, object, object>)f, val);
-        }
+        static object SeqReduce(object coll, object f, object val) => InternalReduce(seq(coll), f, val);
 
-        object IterReduce(System.Collections.IEnumerable coll, object f)
+        static object IterReduce(System.Collections.IEnumerable coll, object f)
         {
             var iter = coll.GetEnumerator();
             if (iter.MoveNext())
             {
-                return loop(iter.Current, (IFunction<object, object, object>)f);
+                return loop(iter.Current, f);
             }
 
-            return ((IFunction<object>)f).Invoke();
+            return invoke(f);
 
-            object loop(object ret, IFunction<object, object, object> fn)
+            object loop(object ret, object fn)
             {
                 if (iter.MoveNext())
                 {
-                    ret = fn.Invoke(ret, iter.Current);
+                    ret = invoke(fn, ret, iter.Current);
                     if (ret is Reduced r)
                         return r.Deref();
                     return loop(ret, fn);
@@ -115,16 +110,16 @@ namespace funclib.Components.Core
             }
         }
 
-        object IterReduce(System.Collections.IEnumerable coll, object f, object val)
+        static object IterReduce(System.Collections.IEnumerable coll, object f, object val)
         {
             var iter = coll.GetEnumerator();
-            return loop(val, (IFunction<object, object, object>)f);
+            return loop(val, f);
 
-            object loop(object ret, IFunction<object, object, object> fn)
+            object loop(object ret, object fn)
             {
                 if (iter.MoveNext())
                 {
-                    var let = fn.Invoke(ret, iter.Current);
+                    ret = invoke(fn, ret, iter.Current);
                     if (ret is Reduced r)
                         return r.Deref();
                     return loop(ret, fn);
@@ -133,14 +128,14 @@ namespace funclib.Components.Core
             }
         }
 
-        object InternalReduce(object s, IFunction<object, object, object> f, object val) =>
-            s == null
+        static object InternalReduce(object s, object f, object val) =>
+            s is null
                 ? val
                 : s is IChunkedSeq ? IChunkedSeqReduce(s, f, val)
                 : s is StringSeq strSeq ? StringSeqReduce(strSeq, f, val)
                 : ObjectReduce(s, f, val);
 
-        object IChunkedSeqReduce(object s, IFunction<object, object, object> f, object val)
+        static object IChunkedSeqReduce(object s, object f, object val)
         {
             s = seq(s);
             if ((bool)truthy(s))
@@ -158,7 +153,7 @@ namespace funclib.Components.Core
             return val;
         }
 
-        object StringSeqReduce(StringSeq strSeq, IFunction<object, object, object> f, object val)
+        static object StringSeqReduce(StringSeq strSeq, object f, object val)
         {
             var s = strSeq.S;
             var len = s.Length;
@@ -169,7 +164,7 @@ namespace funclib.Components.Core
             {
                 if (i < len)
                 {
-                    var ret = f.Invoke(v, s[i]);
+                    var ret = invoke(f, v, s[i]);
                     if (ret is Reduced r)
                         return r.Deref();
                     return loop((int)inc(i), ret);
@@ -178,21 +173,21 @@ namespace funclib.Components.Core
             }
         }
 
-        object ObjectReduce(object s, IFunction<object, object, object> f, object val)
+        static object ObjectReduce(object s, object f, object val)
         {
-            return loop((Type)@class(s), s, val);
+            return loop(@class(s), s, val);
 
-            object loop(Type cls, object c, object v)
+            object loop(object cls, object c, object v)
             {
-                var sq = (ISeq)seq(c);
+                var sq = seq(c);
                 if ((bool)truthy(sq))
                 {
                     if ((bool)isIdentical(@class(sq), cls))
                     {
-                        var ret = f.Invoke(v, sq.First());
+                        var ret = invoke(f, v, first(sq));
                         if (ret is Reduced r)
                             return r.Deref();
-                        return loop(cls, sq.Next(), ret);
+                        return loop(cls, next(sq), ret);
                     }
 
                     return InterfaceOrNaiveReduce(sq, f, v);
@@ -201,7 +196,7 @@ namespace funclib.Components.Core
             }
         }
 
-        object InterfaceOrNaiveReduce(object coll, IFunction<object, object, object> f, object val)
+        static object InterfaceOrNaiveReduce(object coll, object f, object val)
         {
             if (coll is IReduce r)
                 return r.Reduce(f, val);
@@ -209,20 +204,20 @@ namespace funclib.Components.Core
             return NaiveSeqReduce(coll, f, val);
         }
 
-        object NaiveSeqReduce(object coll, IFunction<object, object, object> f, object val)
+        static object NaiveSeqReduce(object coll, object f, object val)
         {
             return loop(coll, val);
 
             object loop(object s, object v)
             {
-                var sq = (ISeq)seq(s);
+                var sq = seq(s);
                 if ((bool)truthy(sq))
                 {
-                    var ret = f.Invoke(v, sq.First());
+                    var ret = invoke(f, v, first(sq));
                     if (ret is Reduced r)
                         return r.Deref();
 
-                    return loop(sq.Next(), ret);
+                    return loop(next(sq), ret);
                 }
                 return v;
             }

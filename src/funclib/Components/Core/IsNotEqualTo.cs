@@ -38,6 +38,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
         /// </returns>
-        public object Invoke(object x, object y, params object[] more) => not(apply(new IsEqualTo(), x, y, more));
+        public object Invoke(object x, object y, params object[] more) => not(apply(funclib.Core.IsEqualTo, x, y, more));
     }
 }

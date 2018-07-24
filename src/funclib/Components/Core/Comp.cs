@@ -1,5 +1,4 @@
-﻿using funclib.Collections;
-using System;
+﻿using System;
 using System.Text;
 using static funclib.Core;
 
@@ -26,7 +25,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the <see cref="Identity"/> fucntion;
         /// </returns>
-        public object Invoke() => new Identity();
+        public object Invoke() => funclib.Core.Identity;
         /// <summary>
         /// Takes a set of functions and returns a function that is the composition of
         /// those functions. The returned <see cref="Function"/> takes a variable number 
@@ -75,8 +74,8 @@ namespace funclib.Components.Core
             IFunction<object, object, object, object>,
             IFunctionParams<object, object, object, object, object>
         {
-            IFunction<object, object> _f;
-            IFunction _g;
+            object _f;
+            object _g;
 
             /// <summary>
             /// Creates a new <see cref="Function"/> object.
@@ -85,8 +84,8 @@ namespace funclib.Components.Core
             /// <param name="g">Object that implements the <see cref="IFunction"/> interface.</param>
             internal Function(object f, object g)
             {
-                this._f = (IFunction<object, object>)f;
-                this._g = (IFunction)g;
+                this._f = f;
+                this._g = g;
             }
 
             /// <summary>
@@ -95,7 +94,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns the results of calling f.
             /// </returns>
-            public object Invoke() => this._f.Invoke(((IFunction<object>)this._g).Invoke());
+            public object Invoke() => invoke(this._f, invoke(this._g));
             /// <summary>
             /// Invoke g with parameter x, then passing the results to f.
             /// </summary>
@@ -103,7 +102,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns the results of calling f.
             /// </returns>
-            public object Invoke(object x) => this._f.Invoke(Apply.ApplyTo(this._g, (ISeq)list(x)));
+            public object Invoke(object x) => invoke(this._f, invoke(this._g, x));
             /// <summary>
             /// <summary>
             /// Invoke g with parameter x and y, then passing the results to f.
@@ -113,7 +112,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns the results of calling f.
             /// </returns>
-            public object Invoke(object x, object y) => this._f.Invoke(Apply.ApplyTo(this._g, (ISeq)list(x, y)));
+            public object Invoke(object x, object y) => invoke(this._f, invoke(this._g, x, y));
             /// <summary>
             /// Invoke g with parameter x, y and z, then passing the results to f.
             /// </summary>
@@ -123,7 +122,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns the results of calling f.
             /// </returns>
-            public object Invoke(object x, object y, object z) => this._f.Invoke(Apply.ApplyTo(this._g, (ISeq)list(x, y, z)));
+            public object Invoke(object x, object y, object z) => invoke(this._f, invoke(this._g, x, y, z));
             /// <summary>
             /// Invoke g with parameter x, y, z and args, then passing the results to f.
             /// </summary>
@@ -134,7 +133,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns the results of calling f.
             /// </returns>
-            public object Invoke(object x, object y, object z, params object[] args) => this._f.Invoke(apply(this._g, x, y, z, args));
+            public object Invoke(object x, object y, object z, params object[] args) => invoke(this._f, invoke(this._g, x, y, z, args));
         }
     }
 }

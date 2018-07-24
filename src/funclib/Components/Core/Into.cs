@@ -39,8 +39,8 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object to, object from) =>
             (bool)isInstance(typeof(IEditableCollection), to)
-                ? persistentǃ(reduce(new Conjǃ(), transient(to), from))
-                : reduce(new Conj(), to, from);
+                ? persistentǃ(reduce(funclib.Core.Conjǃ, transient(to), from))
+                : reduce(funclib.Core.Conj, to, from);
         /// <summary>
         /// Returns a new collection consisting of to with all of the items of from conjoined. 
         /// </summary>
@@ -52,7 +52,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object to, object xform, object from) =>
             (bool)isInstance(typeof(IEditableCollection), to)
-                ? persistentǃ(transduce(xform, new Conjǃ(), transient(to), from))
-                : transduce(xform, new Conj(), to, from);
+                ? persistentǃ(transduce(xform, funclib.Core.Conjǃ, transient(to), from))
+                : transduce(xform, funclib.Core.Conj, to, from);
     }
 }

@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Collections
 {
@@ -85,26 +86,26 @@ namespace funclib.Collections
         public override IStack Pop() => throw new NotImplementedException();
         #endregion
 
-        public object Reduce(IFunction f)
+        public object Reduce(object f)
         {
             var acc = this._start;
             var i = Numbers.Add(this._start, this._step);
             while (!this._boundsCheck.ExceededBounds(i))
             {
-                acc = ((IFunction<object, object, object>)f).Invoke(acc, i);
+                acc = invoke(f, acc, i);
                 if (acc is Reduced r)
                     return r.Deref();
                 i = Numbers.Add(i, this._step);
             }
             return acc;
         }
-        public object Reduce(IFunction f, object init)
+        public object Reduce(object f, object init)
         {
             var acc = init;
             var i = this._start;
             while (!this._boundsCheck.ExceededBounds(i))
             {
-                acc = ((IFunction<object, object, object>)f).Invoke(acc, i);
+                acc = invoke(f, acc, i);
                 if (acc is Reduced r)
                     return r.Deref();
                 i = Numbers.Add(i, this._step);
@@ -116,7 +117,7 @@ namespace funclib.Collections
         public ISeq ChunkedMore()
         {
             ForceChunk();
-            if (this._chunkNext == null) return List.EMPTY;
+            if (this._chunkNext is null) return List.EMPTY;
             return this._chunkNext;
         }
         public ISeq ChunkedNext() => ChunkedMore().Seq();

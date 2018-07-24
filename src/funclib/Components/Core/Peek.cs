@@ -26,6 +26,6 @@ namespace funclib.Components.Core
         /// <see cref="Collections.Vector"/>'s <see cref="Last"/> (but much more efficient). If the collection
         /// is empty return null.
         /// </returns>
-        public object Invoke(object coll) => coll == null ? null : ((IStack)coll).Peek();
+        public object Invoke(object coll) => coll is null ? null : ((IStack)coll).Peek();
     }
 }

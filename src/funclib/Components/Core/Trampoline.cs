@@ -30,7 +30,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object f)
         {
-            var ret = ((IFunction<object>)f).Invoke();
+            var ret = invoke(f);
             if ((bool)isFunction(ret))
                 return Invoke(ret);
 

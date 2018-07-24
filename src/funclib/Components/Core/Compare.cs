@@ -31,11 +31,11 @@ namespace funclib.Components.Core
             if (x == y) return 0;
             if (x != null)
             {
-                if (y == null) return 1;
+                if (y is null) return 1;
                 if (Numbers.IsNumber(x) && Numbers.IsNumber(y))
                     return Numbers.Compare(x, y);
 
-                return (x as IComparable).CompareTo(y);
+                return ((IComparable)x).CompareTo(y);
             }
 
             return -1;

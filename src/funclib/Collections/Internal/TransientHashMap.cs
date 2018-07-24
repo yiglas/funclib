@@ -33,7 +33,7 @@ namespace funclib.Collections.Internal
         #region Overrides
         protected override ITransientMap DoAssoc(object key, object val)
         {
-            if (key == null)
+            if (key is null)
             {
                 if (this._nullValue != val) this._nullValue = val;
                 if (!this._hasNull)
@@ -54,10 +54,10 @@ namespace funclib.Collections.Internal
         }
         protected override int DoCount() => this._count;
         protected override object DoGetValue(object key, object notFound) =>
-            key == null
+            key is null
                 ? this._hasNull ? this._nullValue
                 : notFound
-                : this._root == null ? notFound
+                : this._root is null ? notFound
                 : this._root.Get(0, Hash(key), key, notFound);
 
         protected override IMap DoToPersistent()
@@ -68,7 +68,7 @@ namespace funclib.Collections.Internal
 
         protected override ITransientMap DoWithout(object key)
         {
-            if (key == null)
+            if (key is null)
             {
                 if (!this._hasNull) return this;
                 this._hasNull = false;
@@ -77,7 +77,7 @@ namespace funclib.Collections.Internal
                 return this;
             }
 
-            if (this._root == null) return this;
+            if (this._root is null) return this;
 
             this._leafFlag.Value = null;
             var root = this._root.Without(this._edit, 0, Hash(key), key, this._leafFlag);
@@ -88,7 +88,7 @@ namespace funclib.Collections.Internal
             return this;
         }
         protected override bool EnsureEditable() =>
-            this._edit.Get() == null
+            this._edit.Get() is null
                 ? throw new InvalidOperationException("Transient used after persistent! call")
                 : true;
         #endregion

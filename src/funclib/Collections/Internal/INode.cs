@@ -15,6 +15,6 @@ namespace funclib.Collections.Internal
         object Get(int shift, int hash, object key, object notFound);
         ISeq GetNodeEnumerative();
         System.Collections.IEnumerator GetEnumerator(Func<object, object, object> d);
-        object Reduce(IFunction f, object init);
+        object Reduce(object f, object init);
     }
 }

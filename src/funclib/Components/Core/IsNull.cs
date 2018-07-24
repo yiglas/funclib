@@ -18,6 +18,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if x is <see cref="null"/>, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object x) => isIdentical(x, null);
+        public object Invoke(object x) => x is null;
     }
 }

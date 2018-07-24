@@ -22,7 +22,7 @@ namespace funclib.Components.Core
         /// can be any collection. Returns empty <see cref="object[]"/> if coll is null.
         /// </returns>
         public object Invoke(object coll) =>
-            coll == null
+            coll is null
                 ? new object[] { }
                 : TryConvertArray(coll, out object[] a) ? a
                 : coll is System.Collections.IEnumerable e ? IEnumerableToArray(e)
@@ -31,13 +31,13 @@ namespace funclib.Components.Core
                 : throw new InvalidCastException($"Unable to cast object of type '{coll.GetType().FullName}' to type 'object[]'.");
 
 
-        bool TryConvertArray(object coll, out object[] a)
+        static bool TryConvertArray(object coll, out object[] a)
         {
             a = coll as object[];
             return a != null;
         }
 
-        object[] StringToArray(string s)
+        static object[] StringToArray(string s)
         {
             var chars = s.ToCharArray();
             var ret = new object[chars.Length];
@@ -46,7 +46,7 @@ namespace funclib.Components.Core
             return ret;
         }
 
-        object[] ObjectToArray(object coll)
+        static object[] ObjectToArray(object coll)
         {
             var s = (ISeq)seq(coll);
             var ret = new object[(int)count(s)];
@@ -55,7 +55,7 @@ namespace funclib.Components.Core
             return ret;
         }
 
-        object[] IEnumerableToArray(System.Collections.IEnumerable e)
+        static object[] IEnumerableToArray(System.Collections.IEnumerable e)
         {
             var list = new System.Collections.Generic.List<object>();
             foreach (var o in e)

@@ -22,7 +22,7 @@ namespace funclib.Components.Core
         /// Returns the value mapped to the key, notFound or null if key is not present.
         /// </returns>
         public object Invoke(object map, object key) =>
-            map == null
+            map is null
                 ? null
                 : map is IGetValue g ? g.GetValue(key)
                 : map is System.Collections.IDictionary d ? d[key]
@@ -41,7 +41,7 @@ namespace funclib.Components.Core
         /// Returns the value mapped to the key, notFound or null if key is not present.
         /// </returns>
         public object Invoke(object map, object key, object notFound) =>
-            map == null
+            map is null
                 ? notFound
                 : map is IGetValue g ? g.GetValue(key, notFound)
                 : map is System.Collections.IDictionary d ? d.Contains(key) ? d[key] : notFound
@@ -50,13 +50,13 @@ namespace funclib.Components.Core
                 : (map is string || map.GetType().IsArray) && Numbers.IsNumber(key) ? GetFromArray(map, key, notFound)
                 : notFound;
 
-        object GetFromArray(object map, object key)
+        static object GetFromArray(object map, object key)
         {
             int n = Numbers.ConvertToInt(key);
             return n >= 0 && n < (int)count(map) ? nth(map, n) : null;
         }
 
-        object GetFromArray(object map, object key, object notFound)
+        static object GetFromArray(object map, object key, object notFound)
         {
             int n = Numbers.ConvertToInt(key);
             return n >= 0 && n < (int)count(map) ? nth(map, n) : notFound;

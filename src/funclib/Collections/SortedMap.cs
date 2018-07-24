@@ -41,7 +41,7 @@ namespace funclib.Collections
             IMap ret = EMPTY;
             for (; init != null; init = init.Next().Next())
             {
-                if (init.Next() == null)
+                if (init.Next() is null)
                     throw new ArgumentException($"No value supplied for key: {init.First()}");
                 ret = ret.Assoc(init.First(), init.Next().First());
             }
@@ -53,7 +53,7 @@ namespace funclib.Collections
             IMap ret = new SortedMap(comp);
             for (; init != null; init = init.Next().Next())
             {
-                if (init.Next() == null)
+                if (init.Next() is null)
                     throw new ArgumentException($"No value supplied for key: {init.First()}");
                 ret = ret.Assoc(init.First(), second(init));
             }
@@ -83,7 +83,7 @@ namespace funclib.Collections
         {
             var found = new Box(null);
             var t = Add(Comp, Tree, key, val, found);
-            if (t == null)
+            if (t is null)
             {
                 var foundNode = found.Value as RedBlackNode;
                 if (foundNode.Value == val)
@@ -98,9 +98,9 @@ namespace funclib.Collections
         {
             var found = new Box(null);
             var t = Remove(Comp, Tree, key, found);
-            if (t == null)
+            if (t is null)
             {
-                if (found.Value == null) return this;
+                if (found.Value is null) return this;
 
                 return new SortedMap(Comp);
             }
@@ -175,8 +175,8 @@ namespace funclib.Collections
 
         internal static RedBlackNode Add(System.Collections.IComparer comp, RedBlackNode t, object key, object val, Box found)
         {
-            if (t == null)
-                return val == null ? new RedNode(key) : new RedValueNode(key, val);
+            if (t is null)
+                return val is null ? new RedNode(key) : new RedValueNode(key, val);
             int c = comp.Compare(key, t.Key);
             if (c == 0)
             {
@@ -184,7 +184,7 @@ namespace funclib.Collections
                 return null;
             }
             var insert = c < 0 ? Add(comp, t.Left, key, val, found) : Add(comp, t.Right, key, val, found);
-            if (insert == null) return null;
+            if (insert is null) return null;
             return c < 0
                 ? t.AddLeft(insert)
                 : t.AddRight(insert);
@@ -201,7 +201,7 @@ namespace funclib.Collections
 
         internal static RedBlackNode Remove(System.Collections.IComparer comp, RedBlackNode t, object key, Box found)
         {
-            if (t == null) return null;
+            if (t is null) return null;
             int c = comp.Compare(key, t.Key);
             if (c == 0)
             {
@@ -209,7 +209,7 @@ namespace funclib.Collections
                 return Append(t.Left, t.Right);
             }
             var delete = c < 0 ? Remove(comp, t.Left, key, found) : Remove(comp, t.Right, key, found);
-            if (delete == null && found.Value == null) return null;
+            if (delete is null && found.Value is null) return null;
             if (c < 0)
                 return (t.Left is BlackNode)
                     ? BalanceLeftDelete(t.Key, t.Value, delete, t.Right)
@@ -221,8 +221,8 @@ namespace funclib.Collections
 
         static RedBlackNode Append(RedBlackNode left, RedBlackNode right)
         {
-            if (left == null) return right;
-            if (right == null) return left;
+            if (left is null) return right;
+            if (right is null) return left;
             else if (left is RedNode)
             {
                 if (right is RedNode)
@@ -252,13 +252,13 @@ namespace funclib.Collections
 
         internal static RedNode MakeRed(object key, object val, RedBlackNode left, RedBlackNode right)
         {
-            if (left == null && right == null)
+            if (left is null && right is null)
             {
-                if (val == null)
+                if (val is null)
                     return new RedNode(key);
                 return new RedValueNode(key, val);
             }
-            if (val == null)
+            if (val is null)
                 return new RedBranchNode(key, left, right);
 
             return new RedBranchValueNode(key, val, left, right);
@@ -266,13 +266,13 @@ namespace funclib.Collections
 
         internal static BlackNode MakeBlack(object key, object val, RedBlackNode left, RedBlackNode right)
         {
-            if (left == null && right == null)
+            if (left is null && right is null)
             {
-                if (val == null)
+                if (val is null)
                     return new BlackNode(key);
                 return new BlackValueNode(key, val);
             }
-            if (val == null)
+            if (val is null)
                 return new BlackBranchNode(key, left, right);
 
             return new BlackBranchValueNode(key, val, left, right);
@@ -330,7 +330,7 @@ namespace funclib.Collections
                 return MakeBlack(key, val, insert, right);
         }
 
-        public object ReduceKV(IFunction f, object init)
+        public object ReduceKV(object f, object init)
         {
             if (Tree != null)
                 init = Tree.Reduce(f, init);

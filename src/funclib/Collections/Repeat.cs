@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using funclib.Components.Core;
+using static funclib.Core;
 
 namespace funclib.Collections
 {
@@ -37,14 +38,14 @@ namespace funclib.Collections
         public override IStack Pop() => throw new NotImplementedException();
         #endregion
 
-        public object Reduce(IFunction f)
+        public object Reduce(object f)
         {
             var ret = this._val;
             if (this._count == INFINITE)
             {
                 while (true)
                 {
-                    ret = ((IFunction<object, object, object>)f).Invoke(ret, this._val);
+                    ret = invoke(f, ret, this._val);
                     if (ret is Reduced r)
                         return r.Deref();
                 }
@@ -53,7 +54,7 @@ namespace funclib.Collections
             {
                 for (long i = 1;  i < this._count; i++)
                 {
-                    ret = ((IFunction<object, object, object>)f).Invoke(ret, this._val);
+                    ret = invoke(f, ret, this._val);
                     if (ret is Reduced r)
                         return r.Deref();
                 }
@@ -61,14 +62,14 @@ namespace funclib.Collections
                 return ret;
             }
         }
-        public object Reduce(IFunction f, object init)
+        public object Reduce(object f, object init)
         {
             var ret = init;
             if (this._count == INFINITE)
             {
                 while (true)
                 {
-                    ret = ((IFunction<object, object, object>)f).Invoke(ret, this._val);
+                    ret = invoke(f, ret, this._val);
                     if (ret is Reduced r)
                         return r.Deref();
                 }
@@ -77,7 +78,7 @@ namespace funclib.Collections
             {
                 for (long i = 0; i < this._count; i++)
                 {
-                    ret = ((IFunction<object, object, object>)f).Invoke(ret, this._val);
+                    ret = invoke(f, ret, this._val);
                     if (ret is Reduced r)
                         return r.Deref();
                 }

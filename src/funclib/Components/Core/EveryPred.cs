@@ -161,8 +161,7 @@ namespace funclib.Components.Core
                     : this._p2 != null ? boolean(and(new Function(this._p1, this._p2, this._p3, this._ps).Invoke(x, y, z), isEvery(func((object _1) => and(this._p1.Invoke(_1), this._p2.Invoke(_1))), args)))
                     : boolean(and(new Function(this._p1).Invoke(x, y, z), isEvery(this._p1, args)));
 
-            IFunction<object> Pred(IFunction<object, object> p, object x) => func(() => p.Invoke(x));
-            IFunction<object> Pred(object p, object x) => Pred((IFunction<object, object>)p, x);
+            static object Pred(object p, object x) => invoke(p, x);
         }
     }
 }

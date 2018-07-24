@@ -34,7 +34,7 @@ namespace funclib.Components.Core
         /// Returns the result of applying (thre transformed) xf to init and the first item in coll, then applying 
         /// xf to the result of the 2nd item, etc. If coll contains no items, returns init and f is not called.
         /// </returns>
-        public object Invoke(object xform, object f, object coll) => Invoke(xform, f, ((IFunction<object>)f).Invoke(), coll);
+        public object Invoke(object xform, object f, object coll) => Invoke(xform, f, invoke(f), coll);
         /// <summary>
         /// This is still experimental!
         /// Reduce with a transformation of f (xf). If init is not supplied <see cref="IFunction{TResult}"/> is
@@ -54,15 +54,15 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object xform, object f, object init, object coll)
         {
-            var xf = ((IFunction<object, object>)xform).Invoke(f);
+            var xf = invoke(xform, f);
             object ret;
 
             if (coll is IReduce r)
-                ret = r.Reduce((IFunction)xf, init);
+                ret = r.Reduce(xf, init);
             else
                 ret = reduce(xf, init);
 
-            return ((IFunction<object, object>)xf).Invoke(ret);
+            return invoke(xf, ret);
         }
     }
 }

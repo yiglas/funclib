@@ -22,15 +22,15 @@ namespace funclib.Components.Core
         /// 2nd key and value, etc. If coll contains no entries, returns init and f is not called.
         /// </returns>
         public object Invoke(object f, object init, object coll) =>
-            coll == null
+            coll is null
                 ? init
-                : coll is IReduceKV r ? r.ReduceKV((IFunction<object, object, object, object>)f, init)
+                : coll is IReduceKV r ? r.ReduceKV(f, init)
                 : coll is IMap m ? reduce(func((object ret, object kv) =>
                 {
                     var k = key(kv);
                     var v = value(kv);
 
-                    return ((IFunction<object, object, object, object>)f).Invoke(ret, k, v);
+                    return invoke(f, ret, k, v);
                 }), init, coll)
                 : throw new InvalidCastException($"Unable to cast object of type '{coll.GetType().FullName}' to type '{typeof(IReduceKV).FullName}'.");
     }

@@ -1,7 +1,8 @@
-﻿using System;
+﻿using funclib.Components.Core;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using funclib.Components.Core;
+using static funclib.Core;
 
 namespace funclib.Collections.Internal
 {
@@ -33,13 +34,13 @@ namespace funclib.Collections.Internal
                 ? throw new InvalidOperationException("DropFirst of empty chunk")
                 : new LongChunked(this._start + this._step, this._step, Count - 1);
 
-        public object Reduce(IFunction<object, object, object> f, object init)
+        public object Reduce(object f, object init)
         {
             var x = this._start;
             var ret = init;
             for (int i = 0; i < Count; i++)
             {
-                ret = f.Invoke(ret, x);
+                ret = invoke(f, ret, x);
                 if (ret is Reduced r)
                     return r.Deref();
                 x += this._step;

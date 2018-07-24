@@ -9,6 +9,15 @@ namespace funclib.Tests.Components.Core
     public class DropShould
     {
         [Test]
+        public void Drop_should_work_with_arrays()
+        {
+            var expected = list(2, 3);
+            var actual = drop(1, new object[] { 1, 2, 3 });
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void Drop_should_return_a_lazy_seq()
         {
             var actual = drop(1, vector(1, 2, 3, 4, 5));

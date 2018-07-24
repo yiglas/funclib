@@ -39,7 +39,7 @@ namespace funclib.Components.Core
         /// Returns a <see cref="bool"/>: true if key is present in the collection, otherwise false.
         /// </returns>
         public object Invoke(object coll, object key) =>
-            coll == null
+            coll is null
                 ? false
                 : coll is IAssociative a ? a.ContainsKey(key)
                 : coll is System.Collections.IDictionary d ? d.Contains(key)

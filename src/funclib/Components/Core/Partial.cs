@@ -73,7 +73,7 @@ namespace funclib.Components.Core
             IFunction<object, object, object, object>,
             IFunctionParams<object, object, object, object, object>
         {
-            IFunction _func;
+            object _func;
             object _arg1 = null;
             object _arg2 = null;
             object _arg3 = null;
@@ -98,7 +98,7 @@ namespace funclib.Components.Core
 
             Function(object f, object arg1, object arg2, object arg3, object[] more, int count)
             {
-                this._func = (IFunction)f;
+                this._func = f;
                 this._arg1 = arg1;
                 this._arg2 = arg2;
                 this._arg3 = arg3;
@@ -115,9 +115,9 @@ namespace funclib.Components.Core
             public object Invoke() =>
                 this._argCount == 4
                     ? apply(this._func, this._arg1, this._arg2, this._arg3, seq(this._more))
-                    : this._argCount == 3 ? Apply.ApplyTo(this._func, (ISeq)list(this._arg1, this._arg2, this._arg3))
-                    : this._argCount == 2 ? Apply.ApplyTo(this._func, (ISeq)list(this._arg1, this._arg2))
-                    : Apply.ApplyTo(this._func, (ISeq)list(this._arg1));
+                    : this._argCount == 3 ? invoke(this._func, this._arg1, this._arg2, this._arg3)
+                    : this._argCount == 2 ? invoke(this._func, this._arg1, this._arg2)
+                    : invoke(this._func, this._arg1);
             /// <summary>
             /// Executes the function with the initial arguments.
             /// </summary>
@@ -128,9 +128,9 @@ namespace funclib.Components.Core
             public object Invoke(object x) =>
                 this._argCount == 4
                     ? apply(this._func, this._arg1, this._arg2, this._arg3, concat(this._more, new object[] { x }))
-                    : this._argCount == 3 ? Apply.ApplyTo(this._func, (ISeq)list(this._arg1, this._arg2, this._arg3, x))
-                    : this._argCount == 2 ? Apply.ApplyTo(this._func, (ISeq)list(this._arg1, this._arg2, x))
-                    : Apply.ApplyTo(this._func, (ISeq)list(this._arg1, x));
+                    : this._argCount == 3 ? invoke(this._func, this._arg1, this._arg2, this._arg3, x)
+                    : this._argCount == 2 ? invoke(this._func, this._arg1, this._arg2, x)
+                    : invoke(this._func, this._arg1, x);
             /// <summary>
             /// Executes the function with the initial arguments.
             /// </summary>
@@ -142,9 +142,9 @@ namespace funclib.Components.Core
             public object Invoke(object x, object y) =>
                 this._argCount == 4
                     ? apply(this._func, this._arg1, this._arg2, this._arg3, concat(this._more, new object[] { x, y }))
-                    : this._argCount == 3 ? Apply.ApplyTo(this._func, (ISeq)list(this._arg1, this._arg2, this._arg3, x, y))
-                    : this._argCount == 2 ? Apply.ApplyTo(this._func, (ISeq)list(this._arg1, this._arg2, x, y))
-                    : Apply.ApplyTo(this._func, (ISeq)list(this._arg1, x, y));
+                    : this._argCount == 3 ? invoke(this._func, this._arg1, this._arg2, this._arg3, x, y)
+                    : this._argCount == 2 ? invoke(this._func, this._arg1, this._arg2, x, y)
+                    : invoke(this._func, this._arg1, x, y);
             /// <summary>
             /// Executes the function with the initial arguments.
             /// </summary>
@@ -157,9 +157,9 @@ namespace funclib.Components.Core
             public object Invoke(object x, object y, object z) =>
                 this._argCount == 4
                     ? apply(this._func, this._arg1, this._arg2, this._arg3, concat(this._more, new object[] { x, y, z }))
-                    : this._argCount == 3 ? Apply.ApplyTo(this._func, (ISeq)list(this._arg1, this._arg2, this._arg3, x, y, z))
-                    : this._argCount == 2 ? Apply.ApplyTo(this._func, (ISeq)list(this._arg1, this._arg2, x, y, z))
-                    : Apply.ApplyTo(this._func, (ISeq)list(this._arg1, x, y, z));
+                    : this._argCount == 3 ? invoke(this._func, this._arg1, this._arg2, this._arg3, x, y, z)
+                    : this._argCount == 2 ? invoke(this._func, this._arg1, this._arg2, x, y, z)
+                    : invoke(this._func, this._arg1, x, y, z);
             /// <summary>
             /// Executes the function with the initial arguments.
             /// </summary>

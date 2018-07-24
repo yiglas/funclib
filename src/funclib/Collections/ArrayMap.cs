@@ -163,11 +163,11 @@ namespace funclib.Collections
         #endregion
 
 
-        public object ReduceKV(IFunction f, object init)
+        public object ReduceKV(object f, object init)
         {
             for (int i = 0; i < this._array.Length; i += 2)
             {
-                init = ((IFunction<object, object, object, object>)f).Invoke(init, this._array[i], this._array[i + 1]);
+                init = invoke(f, init, this._array[i], this._array[i + 1]);
                 if (init is Reduced r)
                     return r.Deref();
             }
@@ -185,8 +185,8 @@ namespace funclib.Collections
             return -1;
 
             Func<object, object, bool> predicate(object k) =>
-                k == null
-                    ? (k1, k2) => k2 == null
+                k is null
+                    ? (k1, k2) => k2 is null
                     : Numbers.IsNumber(k) ? new Func<object, object, bool>((k1, k2) => Numbers.IsEqual(k1, k2))
                     : (object k1, object k2) => k1.Equals(k2);
         }

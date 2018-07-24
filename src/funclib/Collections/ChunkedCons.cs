@@ -23,12 +23,12 @@ namespace funclib.Collections
         public override ISeq More() =>
             this._chunk.Count > 1
                 ? new ChunkedCons(this._chunk.DropFirst(), this._more)
-                : this._more == null ? List.EMPTY
+                : this._more is null ? List.EMPTY
                 : this._more;
         public override IStack Pop() => throw new NotImplementedException();
         #endregion
 
-        public ISeq ChunkedMore() => this._more == null ? List.EMPTY : this._more;
+        public ISeq ChunkedMore() => this._more is null ? List.EMPTY : this._more;
         public IChunked ChunkedFirst() => this._chunk;
         public ISeq ChunkedNext() => ChunkedMore().Seq();
     }

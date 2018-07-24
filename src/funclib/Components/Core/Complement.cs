@@ -18,7 +18,7 @@ namespace funclib.Components.Core
         /// </summary>
         /// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
         /// <returns>
-        /// Returns a <see cref="bool"/> value which is the opposite truthy value.
+        /// Returns a <see cref="Function"/> that returns a <see cref="bool"/> value which is the opposite truthy value.
         /// </returns>
         public object Invoke(object f) => new Function(f);
 
@@ -31,7 +31,7 @@ namespace funclib.Components.Core
             IFunction<object, object, object>,
             IFunctionParams<object, object, object, object>
         {
-            IFunction _func;
+            object _func;
 
             /// <summary>
             /// Creates a new <see cref="Function"/> object.
@@ -39,7 +39,7 @@ namespace funclib.Components.Core
             /// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
             internal Function(object f)
             {
-                this._func = (IFunction)f;
+                this._func = f;
             }
 
             /// <summary>
@@ -48,7 +48,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns a <see cref="bool"/> that the opposite truthy value when calling the function.
             /// </returns>
-            public object Invoke() => not(((IFunction<object>)this._func).Invoke());
+            public object Invoke() => not(invoke(this._func));
             /// <summary>
             /// Returns the opposite truthy value when calling the function with one parameters.
             /// </summary>
@@ -56,7 +56,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns a <see cref="bool"/> that the opposite truthy value when calling the function.
             /// </returns>
-            public object Invoke(object x) => not(Apply.ApplyTo(this._func, (ISeq)list(x)));
+            public object Invoke(object x) => not(invoke(this._func, x));
             /// <summary>
             /// Returns the opposite truthy value when calling the function with two parameters.
             /// </summary>
@@ -65,7 +65,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns a <see cref="bool"/> that the opposite truthy value when calling the function.
             /// </returns>
-            public object Invoke(object x, object y) => not(Apply.ApplyTo(this._func, (ISeq)list(x, y)));
+            public object Invoke(object x, object y) => not(invoke(this._func, x, y));
             /// <summary>
             /// Returns the opposite truthy value when calling the function with more than two parameters.
             /// </summary>

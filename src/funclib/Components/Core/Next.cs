@@ -27,7 +27,7 @@ namespace funclib.Components.Core
         public object Invoke(object coll)
         {
             var s = coll as ISeq ?? (ISeq)seq(coll);
-            if (s == null)
+            if (s is null)
                 return null;
             return s.Next();
         }

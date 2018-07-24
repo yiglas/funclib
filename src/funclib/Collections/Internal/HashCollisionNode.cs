@@ -190,6 +190,6 @@ namespace funclib.Collections.Internal
             return editable;
         }
 
-        public object Reduce(IFunction f, object init) => NodeSeq.Reduce(this._array, f, init);
+        public object Reduce(object f, object init) => NodeSeq.Reduce(this._array, f, init);
     }
 }

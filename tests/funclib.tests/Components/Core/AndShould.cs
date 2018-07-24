@@ -29,13 +29,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void And_should_allow_passing_functions()
         {
-            var and = new And();
-
-            var testNotNull = new Function<bool>(() => true);
-            var testNull = new Function<bool?>(() => null);
-
-            Assert.IsNotNull(and.Invoke(testNotNull, null));
-            Assert.AreEqual(true, and.Invoke(testNull, true));
+            Assert.IsNotNull(and(func(() => true), null));
         }
 
         [Test]

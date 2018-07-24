@@ -1,6 +1,7 @@
 ﻿using funclib.Components.Core;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Collections
 {
@@ -33,15 +34,15 @@ namespace funclib.Collections
                 ? throw new InvalidOperationException($"{nameof(DropFirst)} of empty {nameof(ArrayChunked)}")
                 : new ArrayChunked(this._array, this._off + 1, this._end);
 
-        public object Reduce(IFunction<object, object, object> f, object init)
+        public object Reduce(object f, object init)
         {
-            var ret = f.Invoke(init, this._array[this._off]);
+            var ret = invoke(f, init, this._array[this._off]);
             if (ret is Reduced r)
                 return r.Deref();
 
             for (int x = this._off + 1; x < this._end; x++)
             {
-                ret = f.Invoke(ret, this._array[x]);
+                ret = invoke(f, ret, this._array[x]);
                 if (ret is Reduced r2)
                     return r2.Deref();
             }

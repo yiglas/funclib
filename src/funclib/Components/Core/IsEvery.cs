@@ -24,8 +24,7 @@ namespace funclib.Components.Core
         public object Invoke(object pred, object coll)
         {
             if ((bool)isNull(seq(coll))) return true;
-            var fn = (IFunction<object, object>)pred;
-            if ((bool)truthy(fn.Invoke(first(coll))))
+            if ((bool)truthy(invoke(pred, first(coll))))
                 return Invoke(pred, next(coll));
             return false;
         }

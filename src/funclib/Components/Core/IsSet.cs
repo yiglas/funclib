@@ -18,6 +18,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if coll implements <see cref="ISequential"/> interface, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object x) => isInstance(typeof(ISet), x);
+        public object Invoke(object x) => x is ISet;
     }
 }

@@ -76,7 +76,7 @@ namespace funclib.Collections.Internal
             return this;
         }
         protected override bool EnsureEditable() =>
-            this._owner == null
+            this._owner is null
                 ? throw new InvalidOperationException("Transient used after persistent! call")
                 : true;
         #endregion

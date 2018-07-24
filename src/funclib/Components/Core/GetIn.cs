@@ -24,7 +24,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the key found otherwise null.
         /// </returns>
-        public object Invoke(object m, object ks) => reduce1(new Get(), m, ks);
+        public object Invoke(object m, object ks) => reduce1(funclib.Core.Get, m, ks);
         /// <summary>
         /// Returns the value in a nested associative structure, where ks
         /// is a sequence of keys. Returns null if the key is not present,
@@ -37,17 +37,17 @@ namespace funclib.Components.Core
         /// Returns the key found otherwise notFound.
         /// </returns>
         public object Invoke(object m, object ks, object notFound) =>
-            loop(new object(), m, (ISeq)seq(ks), notFound);
+            loop(new object(), m, seq(ks), notFound);
 
-        object loop(object sentinel, object m, ISeq ks, object notFound)
+        static object loop(object sentinel, object m, object ks, object notFound)
         {
             if ((bool)truthy(ks))
             {
-                m = get(m, ks.First(), sentinel);
+                m = get(m, first(ks), sentinel);
                 if ((bool)isIdentical(m, sentinel))
                     return notFound;
 
-                return loop(sentinel, m, ks.Next(), notFound);
+                return loop(sentinel, m, next(ks), notFound);
             }
 
             return m;

@@ -33,7 +33,7 @@ namespace funclib.Collections.Internal
         {
             var found = new Box(null);
             var t = SortedMap.Add(this._comp, this._tree, key, val, found);
-            if (t == null)
+            if (t is null)
             {
                 var foundNode = found.Value as RedBlackNode;
                 if (foundNode.Value == val)
@@ -62,7 +62,7 @@ namespace funclib.Collections.Internal
         {
             var found = new Box(null);
             var t = SortedMap.Remove(this._comp, this._tree, key, found);
-            if (t == null)
+            if (t is null)
             {
                 return this;
             }
@@ -72,7 +72,7 @@ namespace funclib.Collections.Internal
             return this;
         }
         protected override bool EnsureEditable() =>
-            this._edit.Get() == null
+            this._edit.Get() is null
                 ? throw new InvalidOperationException("Transient used after persistent! call")
                 : true;
         #endregion

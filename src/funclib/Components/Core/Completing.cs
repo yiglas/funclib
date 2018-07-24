@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -7,26 +8,27 @@ namespace funclib.Components.Core
         IFunction<object, object>,
         IFunction<object, object, object>
     {
-        public object Invoke(object f) => Invoke(f, new Identity());
-        public object Invoke(object f, object cf) => new Function(f, cf);
+        public object Invoke(object f) => Invoke(f, funclib.Core.Identity);
+        public object Invoke(object f, object cf) => new TransducerFunction(f, cf);
 
-        public class Function :
-            IFunction<object>,
-            IFunction<object, object>,
-            IFunction<object, object, object>
+        public class TransducerFunction :
+            ATransducerFunction
         {
             object _f;
             object _cf;
 
-            internal Function(object f, object cf)
+            internal TransducerFunction(object f, object cf) :
+                base(null)
             {
                 this._f = f;
                 this._cf = cf;
             }
 
-            public object Invoke() => ((IFunction<object>)this._f).Invoke();
-            public object Invoke(object x) => ((IFunction<object, object>)this._cf).Invoke(x);
-            public object Invoke(object x, object y) => ((IFunction<object, object, object>)this._f).Invoke(x, y);
+            #region Overrides
+            public override object Invoke() => invoke(this._f);
+            public override object Invoke(object x) => invoke(this._cf, x);
+            public override object Invoke(object x, object y) => invoke(this._f, x, y);
+            #endregion
         }
     }
 }

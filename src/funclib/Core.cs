@@ -1,4 +1,4 @@
-// Generated on 7/23/2018 10:42:55 AM
+// Generated on 7/23/2018 2:44:38 PM
 using funclib.Collections;
 using funclib.Components.Core;
 using System;
@@ -408,6 +408,8 @@ namespace funclib
 		internal static funclib.Components.Core.Into1 Into1 => __into1 ?? (__into1 = new funclib.Components.Core.Into1());
 		static funclib.Components.Core.IntoArray __intoarray;
 		public static funclib.Components.Core.IntoArray IntoArray => __intoarray ?? (__intoarray = new funclib.Components.Core.IntoArray());
+		static funclib.Components.Core.InvokeFunction __invokefunction;
+		public static funclib.Components.Core.InvokeFunction InvokeFunction => __invokefunction ?? (__invokefunction = new funclib.Components.Core.InvokeFunction());
 		static funclib.Components.Core.IsAny __isany;
 		/// <summary>
 		/// Returns <see cref="true"/> given any argument.
@@ -956,6 +958,9 @@ namespace funclib
 		/// </summary>
 		public static funclib.Components.Core.Rem Rem => __rem ?? (__rem = new funclib.Components.Core.Rem());
 		static funclib.Components.Core.ReMatcher __rematcher;
+		/// <summary>
+		/// Returns an instance of <see cref="ReMatcher"/> for use in <see cref="ReFind"/>.
+		/// </summary>
 		public static funclib.Components.Core.ReMatcher ReMatcher => __rematcher ?? (__rematcher = new funclib.Components.Core.ReMatcher());
 		static funclib.Components.Core.ReMatches __rematches;
 		/// <summary>
@@ -2548,6 +2553,11 @@ namespace funclib
 		internal static object into1(object to, object from) => Into1.Invoke(to, from);
 		public static object intoArray(object aseq) => IntoArray.Invoke(aseq);
 		public static object intoArray(object type, object aseq) => IntoArray.Invoke(type, aseq);
+		public static object invoke(object f) => InvokeFunction.Invoke(f);
+		public static object invoke(object f, object x) => InvokeFunction.Invoke(f, x);
+		public static object invoke(object f, object x, object y) => InvokeFunction.Invoke(f, x, y);
+		public static object invoke(object f, object x, object y, object z) => InvokeFunction.Invoke(f, x, y, z);
+		public static object invoke(object f, object a, object b, object c, params object[] ds) => InvokeFunction.Invoke(f, a, b, c, ds);
 		/// <summary>
 		/// Returns <see cref="true"/> given any argument.
 		/// </summary>

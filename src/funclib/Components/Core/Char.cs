@@ -17,15 +17,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="char"/> value.
         /// </returns>
-        public object Invoke(object x)
-        {
-            if (x is char) return x;
-
-            var n = Numbers.ConvertToLong(x);
-            if (n < char.MinValue || n > char.MaxValue)
-                throw new ArgumentException($"Value is out of range for char: {x}");
-
-            return (char)n;
-        }
+        public object Invoke(object x) => Convert.ToChar(x);
     }
 }

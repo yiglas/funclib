@@ -19,7 +19,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="false"/> if x is logical true for every item in coll, otherwise <see cref="true"/>.
         /// </returns>
-        public object Invoke(object pred, object coll) =>
-            ((IFunction<object, object, object>)comp(new Not(), new IsEvery())).Invoke(pred, coll);
+        public object Invoke(object pred, object coll) => invoke(comp(funclib.Core.Not, funclib.Core.IsEvery), pred, coll);
     }
 }

@@ -24,5 +24,14 @@ namespace FunctionalLibrary.Tests
             var actual5 = conj(list(1, 2, 3, 4), 5);
             var actual3 = concat(new object[] { 1, 2, 3, 4 }, new object[] { 5 });
         }
+
+        [Test]
+        public void Trying_invoke_function()
+        {
+            var notEmpty = complement(IsEmpty);
+
+            Assert.IsFalse((bool)invoke(notEmpty, vector()));
+            Assert.IsTrue((bool)invoke(notEmpty, vector(1, 2)));
+        }
     }
 }

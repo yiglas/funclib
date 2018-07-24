@@ -47,7 +47,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object map, object key, params object[] ks)
         {
-            if (map == null) return null;
+            if (map is null) return null;
 
             var ret = Invoke(map, key);
             if (ks != null && ks.Length > 0)

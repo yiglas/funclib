@@ -93,7 +93,7 @@ namespace funclib.Collections.Internal
             var newTail = ToEditableArray(this._count - 2);
             var newRoot = PopTail(this._shift, this._root) ?? new VectorNode(this._root.Edit);
             int newShift = this._shift;
-            if (this._shift > 5 && newRoot.Array[1] == null)
+            if (this._shift > 5 && newRoot.Array[1] is null)
             {
                 newRoot = EnsureEditable((VectorNode)newRoot.Array[0]);
                 newShift -= 5;
@@ -182,7 +182,7 @@ namespace funclib.Collections.Internal
         bool EnsureEditable()
         {
             var owner = this._root.Edit.Get();
-            if (owner == null)
+            if (owner is null)
                 throw new InvalidOperationException("Transient used after persistent! call");
             return true;
         }
@@ -252,7 +252,7 @@ namespace funclib.Collections.Internal
             if (level > 5)
             {
                 var newChild = PopTail(level - 5, (VectorNode)node.Array[subIdx]);
-                if (newChild == null && subIdx == 0)
+                if (newChild is null && subIdx == 0)
                     return null;
                 else
                 {

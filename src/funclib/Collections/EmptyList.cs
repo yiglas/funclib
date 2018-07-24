@@ -23,7 +23,7 @@ namespace funclib.Collections
 
         #region Overrides
         public override int GetHashCode() => 1;
-        public override bool Equals(object obj) => (obj is ISequential || obj is System.Collections.IList) && seq(obj) == null;
+        public override bool Equals(object obj) => (obj is ISequential || obj is System.Collections.IList) && seq(obj) is null;
         public override string ToString() => "()";
         #endregion
 

@@ -24,7 +24,7 @@ namespace funclib.Components.Core
         public object Invoke(object coll)
         {
             var enumerate = coll as ISeq ?? (ISeq)seq(coll);
-            if (enumerate == null)
+            if (enumerate is null)
                 return null;
             return enumerate.First();
         }

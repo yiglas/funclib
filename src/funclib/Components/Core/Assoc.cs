@@ -31,7 +31,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object map, object key, object val)
         {
-            if (map == null)
+            if (map is null)
                 return arrayMap(key, val);
 
             return ((IAssociative)map).Assoc(key, val);
@@ -56,7 +56,7 @@ namespace funclib.Components.Core
             if (kvs.Count() % 2 == 0)
             {
                 var n = nnext(kvs);
-                if (n == null)
+                if (n is null)
                     return Invoke(ret, first(kvs), second(kvs));
                 else
                     return Invoke(ret, first(kvs), second(kvs), (object[])toArray(n));

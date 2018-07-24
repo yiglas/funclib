@@ -18,7 +18,7 @@ namespace funclib.Components.Core
         /// Returns <see cref="true"/> if x can be supported by the <see cref="Seq"/> function, otherwise <see cref="false"/>.
         /// </returns>
         public object Invoke(object x) =>
-            x == null
+            x is null
                 || x is ISeq
                 || x is ISeqable
                 || x.GetType().IsArray

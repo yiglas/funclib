@@ -18,14 +18,14 @@ namespace funclib.Collections.Internal
 
         #region Creates
         public static KeySeq Create(ISeq enumerative) =>
-            enumerative == null
+            enumerative is null
                 ? null
                 : new KeySeq(enumerative, null);
 
         public static KeySeq Create(IMap map)
         {
             var enumerative = map?.Seq();
-            if (enumerative == null) return null;
+            if (enumerative is null) return null;
 
             return new KeySeq(enumerative, map);
         }
@@ -47,7 +47,7 @@ namespace funclib.Collections.Internal
         public override IStack Pop() => throw new NotImplementedException();
         public override System.Collections.IEnumerator GetEnumerator()
         {
-            if (this._enumerable == null) return base.GetEnumerator();
+            if (this._enumerable is null) return base.GetEnumerator();
 
             if (this._enumerable is IMapEnumerable m)
                 return m.GetKeyEnumerator();

@@ -20,11 +20,11 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object coll)
         {
-            if (coll == null) return Collections.Vector.EMPTY;
+            if (coll is null) return Collections.Vector.EMPTY;
             else if (coll is ISeq s)
             {
                 var sq = (ISeq)seq(s);
-                if (sq == null)
+                if (sq is null)
                     return Collections.Vector.EMPTY;
 
                 return Collections.Vector.Create(sq);

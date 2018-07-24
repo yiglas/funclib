@@ -128,7 +128,7 @@ namespace funclib.Components.Core
         public override int GetHashCode()
         {
             var e = Seq();
-            if (e == null) return 1;
+            if (e is null) return 1;
             return Util.GetHashCode(e);
         }
 
@@ -143,7 +143,7 @@ namespace funclib.Components.Core
         {
             var e = Seq();
             if (e != null) return e.Equals(obj);
-            return obj is System.Collections.IList && seq(obj) == null;
+            return obj is System.Collections.IList && seq(obj) is null;
         }
         #endregion
 
@@ -205,7 +205,7 @@ namespace funclib.Components.Core
         public object First()
         {
             Seq();
-            if (this._s == null) return null;
+            if (this._s is null) return null;
             return this._s.First();
         }
         /// <summary>
@@ -219,7 +219,7 @@ namespace funclib.Components.Core
         public ISeq Next()
         {
             Seq();
-            if (this._s == null) return null;
+            if (this._s is null) return null;
             return this._s.Next();
         }
         /// <summary>
@@ -233,7 +233,7 @@ namespace funclib.Components.Core
         public ISeq More()
         {
             Seq();
-            if (this._s == null) return Collections.List.EMPTY;
+            if (this._s is null) return Collections.List.EMPTY;
             return this._s.More();
         }
         ICollection ICollection.Cons(object o) => Cons(o);
@@ -246,7 +246,7 @@ namespace funclib.Components.Core
         public ICollection Empty() => Collections.List.EMPTY;
         public void CopyTo(System.Array array, int index)
         {
-            if (array == null) throw new ArgumentNullException(nameof(array));
+            if (array is null) throw new ArgumentNullException(nameof(array));
             if (array.Rank != 1) throw new ArgumentException("Array must be 1-dimensional.");
             if (index < 0) throw new ArgumentOutOfRangeException(nameof(index), "Must be no-negative.");
             if (array.Length - index < Count) throw new InvalidOperationException("The number of elements in source is greater than the available space in the array.");
@@ -257,7 +257,7 @@ namespace funclib.Components.Core
         }
         public void CopyTo(object[] array, int arrayIndex)
         {
-            if (array == null) throw new ArgumentNullException(nameof(array));
+            if (array is null) throw new ArgumentNullException(nameof(array));
             if (array.Rank != 1) throw new ArgumentException("Array must be 1-dimensional.");
             if (arrayIndex < 0) throw new ArgumentOutOfRangeException(nameof(arrayIndex), "Must be no-negative.");
             if (array.Length - arrayIndex < Count) throw new InvalidOperationException("The number of elements in source is greater than the available space in the array.");
@@ -274,7 +274,7 @@ namespace funclib.Components.Core
             return false;
         }
         public System.Collections.IEnumerator GetEnumerator() => new Enumerator(this);
-        public bool IsRealized() => this._fn == null;
+        public bool IsRealized() => this._fn is null;
         public int IndexOf(object value)
         {
             var e = Seq();

@@ -1,5 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
 using System.Text;
 using static funclib.Core;
@@ -11,7 +10,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void EveryPred_should_return_true_if_all_preds_return_logical_true()
         {
-            var actaul = ((IFunction<object, object, object, object>)everyPred(new IsNumber(), new IsOdd())).Invoke(3, 9, 11);
+            var actaul = invoke(everyPred(IsNumber, IsOdd), 3, 9, 11);
 
             Assert.IsTrue((bool)actaul);
         }

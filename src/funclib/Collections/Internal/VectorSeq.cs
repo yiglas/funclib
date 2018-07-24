@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using funclib.Components.Core;
+using static funclib.Core;
 
 namespace funclib.Collections.Internal
 {
@@ -28,26 +29,26 @@ namespace funclib.Collections.Internal
         #endregion
 
 
-        public object Reduce(IFunction f)
+        public object Reduce(object f)
         {
             var ret = this._v[this._i];
             for (int x = this._i + 1; x < this._v.Count; x++)
             {
-                ret = ((IFunction<object, object, object>)f).Invoke(ret, this._v[x]);
+                ret = invoke(f, ret, this._v[x]);
                 if (ret is Reduced r)
                     return r.Deref();
             }
 
             return ret;
         }
-        public object Reduce(IFunction f, object init)
+        public object Reduce(object f, object init)
         {
-            var ret = ((IFunction<object, object, object>)f).Invoke(init, this._v[this._i]);
+            var ret = invoke(f, init, this._v[this._i]);
             for (int x = this._i + 1; x < this._v.Count; x++)
             {
                 if (ret is Reduced r)
                     return r.Deref();
-                ret = ((IFunction<object, object, object>)f).Invoke(ret, this._v[x]);
+                ret = invoke(f, ret, this._v[x]);
             }
             if (ret is Reduced r2)
                 return r2.Deref();

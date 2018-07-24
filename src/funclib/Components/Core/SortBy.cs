@@ -26,7 +26,7 @@ namespace funclib.Components.Core
         /// order is determined by comparing <see cref="IFunction{T1, TResult}"/> key function.
         /// If no comparator is suppled, uses <see cref="Compare"/>.
         /// </returns>
-        public object Invoke(object keyfn, object coll) => Invoke(keyfn, new Compare(), coll);
+        public object Invoke(object keyfn, object coll) => Invoke(keyfn, funclib.Core.Compare, coll);
         /// <summary>
         /// Returns a sorted sequence of the items in coll, where the sort
         /// order is determined by comparing <see cref="IFunction{T1, TResult}"/> key function.
@@ -40,12 +40,7 @@ namespace funclib.Components.Core
         /// order is determined by comparing <see cref="IFunction{T1, TResult}"/> key function.
         /// If no comparator is suppled, uses <see cref="Compare"/>.
         /// </returns>
-        public object Invoke(object keyfn, object comp, object coll)
-        {
-            var fn = (IFunction<object, object>)keyfn;
-            var cfn = (IFunction<object, object, object>)comp;
-
-            return sort(func((object x, object y) => cfn.Invoke(fn.Invoke(x), fn.Invoke(y))), coll);
-        }
+        public object Invoke(object keyfn, object comp, object coll) =>
+            sort(func((object x, object y) => invoke(comp, invoke(keyfn, x), invoke(keyfn, y))), coll);
     }
 }

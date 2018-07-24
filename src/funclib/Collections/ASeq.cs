@@ -31,11 +31,11 @@ namespace funclib.Collections
 
             for (var e = Seq(); e != null; e = e.Next(), me = me.Next())
             {
-                if (me == null || !(bool)isEqualTo(e.First(), me.First()))
+                if (me is null || !(bool)isEqualTo(e.First(), me.First()))
                     return false;
             }
 
-            return me == null;
+            return me is null;
         }
 
         public override int GetHashCode()
@@ -44,7 +44,7 @@ namespace funclib.Collections
             if (hash == 0)
             {
                 for (var e = Seq(); e != null; e = e.Next())
-                    hash = 31 * hash + (e.First() == null ? 0 : e.First().GetHashCode());
+                    hash = 31 * hash + (e.First() is null ? 0 : e.First().GetHashCode());
 
                 this._hash = hash;
             }
@@ -71,7 +71,7 @@ namespace funclib.Collections
         public virtual ISeq More()
         {
             var s = Next();
-            if (s == null) return List.EMPTY;
+            if (s is null) return List.EMPTY;
             return s;
         }
         public virtual int Count
@@ -127,7 +127,7 @@ namespace funclib.Collections
         }
         public void CopyTo(System.Array array, int index)
         {
-            if (array == null) throw new ArgumentNullException(nameof(array));
+            if (array is null) throw new ArgumentNullException(nameof(array));
             if (array.Rank != 1) throw new ArgumentException("Array must be 1-dimensional.");
             if (index < 0) throw new ArgumentOutOfRangeException(nameof(index), "Must be no-negative.");
             if (array.Length - index < Count) throw new InvalidOperationException("The number of elements in source is greater than the available space in the array.");
@@ -138,7 +138,7 @@ namespace funclib.Collections
         }
         public void CopyTo(object[] array, int arrayIndex)
         {
-            if (array == null) throw new ArgumentNullException(nameof(array));
+            if (array is null) throw new ArgumentNullException(nameof(array));
             if (array.Rank != 1) throw new ArgumentException("Array must be 1-dimensional.");
             if (arrayIndex < 0) throw new ArgumentOutOfRangeException(nameof(arrayIndex), "Must be no-negative.");
             if (array.Length - arrayIndex < Count) throw new InvalidOperationException("The number of elements in source is greater than the available space in the array.");

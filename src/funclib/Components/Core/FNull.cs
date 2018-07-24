@@ -97,14 +97,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns the results of invoking the <see cref="IFunction"/> function.
             /// </returns>
-            public object Invoke(object a)
-            {
-                var fn = this._f as IFunction<object, object>;
-                if (fn == null)
-                    throw new ArityException(1, this._f.GetType().FullName);
-
-                return fn.Invoke(a ?? this._x);
-            }
+            public object Invoke(object a) => invoke(this._f, a ?? this._x);
             /// <summary>
             /// Execute the <see cref="IFunction"/>
             /// </summary>
@@ -113,17 +106,10 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns the results of invoking the <see cref="IFunction"/> function.
             /// </returns>
-            public object Invoke(object a, object b)
-            {
-                var fn = this._f as IFunction<object, object, object>;
-                if (fn == null)
-                    throw new ArityException(2, this._f.GetType().FullName);
-
-                var x = a ?? this._x;
-                var y = this._count == 1 ? b : b ?? this._y;
-
-                return fn.Invoke(x, y);
-            }
+            public object Invoke(object a, object b) =>
+                invoke(this._f,
+                    a ?? this._x,
+                    this._count == 1 ? b : b ?? this._y);
             /// <summary>
             /// Execute the <see cref="IFunction"/>
             /// </summary>
@@ -133,18 +119,11 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns the results of invoking the <see cref="IFunction"/> function.
             /// </returns>
-            public object Invoke(object a, object b, object c)
-            {
-                var fn = this._f as IFunction<object, object, object, object>;
-                if (fn == null)
-                    throw new ArityException(3, this._f.GetType().FullName);
-
-                var x = a ?? this._x;
-                var y = this._count == 1 ? b : b ?? this._y;
-                var z = this._count == 2 ? c : c ?? this._z;
-
-                return fn.Invoke(x, y, z);
-            }
+            public object Invoke(object a, object b, object c) =>
+                invoke(this._f,
+                    a ?? this._x,
+                    this._count == 1 ? b : b ?? this._y,
+                    this._count == 2 ? c : c ?? this._z);
             /// <summary>
             /// Execute the <see cref="IFunction"/>
             /// </summary>
@@ -155,14 +134,12 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns the results of invoking the <see cref="IFunction"/> function.
             /// </returns>
-            public object Invoke(object a, object b, object c, params object[] ds)
-            {
-                var x = a ?? this._x;
-                var y = this._count == 1 ? b : b ?? this._y;
-                var z = this._count == 2 ? c : c ?? this._z;
-
-                return apply(this._f, x, y, z, ds);
-            }
+            public object Invoke(object a, object b, object c, params object[] ds) =>
+                apply(this._f, 
+                    a ?? this._x, 
+                    this._count == 1 ? b : b ?? this._y, 
+                    this._count == 2 ? c : c ?? this._z, 
+                    ds);
         }
     }
 }

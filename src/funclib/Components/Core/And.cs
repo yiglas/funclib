@@ -24,7 +24,6 @@ namespace funclib.Components.Core
         /// Returns true.
         /// </returns>
         public object Invoke() => true;
-
         /// <summary>
         /// Evaluates objects one at a time, from left to right. If a object returns 
         /// a logical false (null or false) then it is returned and stops evaluating
@@ -57,7 +56,7 @@ namespace funclib.Components.Core
         {
             if ((bool)truthy(x) && (next?.Length ?? 0) > 0)
                 return Invoke(next[0], next.Skip(1).ToArray());
-            
+
             return x;
         }
     }

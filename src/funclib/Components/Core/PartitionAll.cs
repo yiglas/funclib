@@ -68,10 +68,10 @@ namespace funclib.Components.Core
                 {
                     var v = vec(this._a.ToArray());
                     this._a.Clear();
-                    result = unreduce(((IFunction<object, object, object>)this._rf).Invoke(result, v));
+                    result = unreduce(invoke(this._rf, result, v));
                 }
 
-                return ((IFunction<object, object>)this._rf).Invoke(result);
+                return invoke(this._rf, result);
             }
             public override object Invoke(object result, object input)
             {
@@ -80,7 +80,7 @@ namespace funclib.Components.Core
                 {
                     var v = vec(this._a.ToArray());
                     this._a.Clear();
-                    return ((IFunction<object, object, object>)this._rf).Invoke(result, v);
+                    return invoke(this._rf, result, v);
                 }
 
                 return result;

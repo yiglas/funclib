@@ -24,14 +24,10 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object pred, object coll)
         {
-            var fn = (IFunction<object, object>)pred;
-            var s = (ISeq)seq(coll);
+            var s = seq(coll);
             if ((bool)truthy(s))
             {
-                return or(
-                    fn.Invoke(s.First()),
-                    Invoke(pred, s.Next())
-                    );
+                return or(invoke(pred, first(s)), Invoke(pred, next(s)));
             }
             return null;
         }

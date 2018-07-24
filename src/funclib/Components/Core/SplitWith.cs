@@ -18,7 +18,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="Collections.Vector"/> of [<see cref="TakeWhile.Invoke(object, object)"/>, <see cref="DropWhile.Invoke(object, object)"/>].
         /// </returns>
-        public object Invoke(object pred, object coll) =>
-            vector(takeWhile(pred, coll), dropWhile(pred, coll));
+        public object Invoke(object pred, object coll) => vector(takeWhile(pred, coll), dropWhile(pred, coll));
     }
 }

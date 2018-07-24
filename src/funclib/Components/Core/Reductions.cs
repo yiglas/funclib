@@ -26,13 +26,13 @@ namespace funclib.Components.Core
         public object Invoke(object f, object coll) =>
             lazySeq(() =>
             {
-                var s = (ISeq)seq(coll);
+                var s = seq(coll);
                 if ((bool)truthy(s))
                 {
-                    return Invoke(f, s.First(), rest(s));
+                    return Invoke(f, first(s), rest(s));
                 }
 
-                return list(((IFunction<object>)f).Invoke());
+                return list(invoke(f));
             });
 
         /// <summary>
@@ -53,9 +53,9 @@ namespace funclib.Components.Core
 
             return cons(init, lazySeq(() =>
             {
-                var s = (ISeq)seq(coll);
+                var s = seq(coll);
                 if ((bool)truthy(s))
-                    return Invoke(f, ((IFunction<object, object, object>)f).Invoke(init, s.First()), rest(s));
+                    return Invoke(f, invoke(f, init, first(s)), rest(s));
 
                 return null;
             }));

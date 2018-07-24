@@ -17,9 +17,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the <see cref="Type"/> of object x.
         /// </returns>
-        public object Invoke(object x) =>
-            x == null
-                ? x
-                : x.GetType();
+        public object Invoke(object x) => x?.GetType();
     }
 }

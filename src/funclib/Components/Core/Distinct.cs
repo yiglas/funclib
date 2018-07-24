@@ -25,34 +25,24 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="LazySeq"/> of unique items from coll.
         /// </returns>
-        public object Invoke(object coll)
+        public object Invoke(object coll) => step(coll, hashSet());
+
+        static object step(object xs, object seen) => lazySeq(() => anonymous(xs, seen));
+        static object anonymous(object xs, object seen)
         {
-            return step(coll, hashSet());
-
-            object step(object xs, object seen) =>
-                lazySeq(() => new Function().Invoke(xs, seen));
-        }
-
-
-        class Function :
-            IFunction<object, object, object>
-        {
-            public object Invoke(object xs, object seen)
+            var f = first(xs);
+            var s = seq(xs);
+            if ((bool)truthy(s))
             {
-                var f = first(xs);
-                var s = seq(xs);
-                if ((bool)truthy(s))
+                if ((bool)contains(seen, f))
                 {
-                    if ((bool)contains(seen, f))
-                    {
-                        return Invoke(rest(s), seen);
-                    }
-
-                    return cons(f, Invoke(rest(s), conj(seen, f)));
+                    return step(rest(s), seen);
                 }
 
-                return null;
+                return cons(f, step(rest(s), conj(seen, f)));
             }
+
+            return null;
         }
 
         public class TransducerFunction :
@@ -75,7 +65,7 @@ namespace funclib.Components.Core
                 }
 
                 new VSwapǃ(this._seen, new Conj(), input).Invoke();
-                return ((IFunction<object, object, object>)this._rf).Invoke(result, input);
+                return invoke(this._rf, result, input);
             }
             #endregion
         }

@@ -25,20 +25,20 @@ namespace funclib.Components.Core
         class Walk :
             IFunction<object, object>
         {
-            IFunction<object, object> _branch;
-            IFunction<object, object> _children;
+            object _branch;
+            object _children;
             
             public Walk(object branch, object children)
             {
-                this._branch = (IFunction<object, object>)branch;
-                this._children = (IFunction<object, object>)children;
+                this._branch = branch;
+                this._children = children;
             }
 
             public object Invoke(object node) =>
                 lazySeq(() => 
                     cons(node,
-                        (bool)truthy(this._branch.Invoke(node))
-                            ? mapCat(this, this._children.Invoke(node))
+                        (bool)truthy(invoke(this._branch, node))
+                            ? mapCat(this, invoke(this._children, node))
                             : null));
         }
     }

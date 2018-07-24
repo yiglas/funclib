@@ -23,18 +23,15 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="LazySeq"/> with items starting from the first logically false item in coll.
         /// </returns>
-        public object Invoke(object pred, object coll)
+        public object Invoke(object pred, object coll) => lazySeq(() => step(pred, coll));
+
+        static object step(object pred, object coll)
         {
-            return lazySeq(() => step((IFunction<object, object>)pred, coll));
+            var s = seq(coll);
+            if ((bool)truthy(and(s, invoke(pred, first(s)))))
+                return step(pred, rest(s));
 
-            object step(IFunction<object, object> p, object c)
-            {
-                var s = (ISeq)seq(c);
-                if ((bool)truthy(and(s, p.Invoke(s?.First()))))
-                    return step(p, rest(s));
-
-                return s;
-            }
+            return s;
         }
 
 

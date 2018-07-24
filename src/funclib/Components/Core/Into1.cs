@@ -9,8 +9,8 @@ namespace funclib.Components.Core
         IFunction<object, object, object>
     {
         public object Invoke(object to, object from) =>
-            to is IEditableCollection e
-                ? persistentǃ(reduce1(new Conjǃ(), transient(to), from))
-                : reduce1(new Conj(), to, from);
+            to is IEditableCollection
+                ? persistentǃ(reduce1(funclib.Core.Conjǃ, transient(to), from))
+                : reduce1(funclib.Core.Conj, to, from);
     }
 }

@@ -42,15 +42,15 @@ namespace funclib.Components.Core
             {
                 if ((bool)truthy(this._started.Deref()))
                 {
-                    var sepr = ((IFunction<object, object, object>)this._rf).Invoke(result, this._sep);
+                    var sepr = invoke(this._rf, result, this._sep);
                     if ((bool)isReduced(sepr))
                         return sepr;
 
-                    return ((IFunction<object, object, object>)this._rf).Invoke(sepr, input);
+                    return invoke(this._rf, sepr, input);
                 }
 
                 vresetǃ(this._started, true);
-                return ((IFunction<object, object, object>)this._rf).Invoke(result, input);
+                return invoke(this._rf, result, input);
             }
             #endregion
         }

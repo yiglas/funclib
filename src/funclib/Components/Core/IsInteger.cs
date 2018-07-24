@@ -49,15 +49,6 @@ namespace funclib.Components.Core
         /// otherwise <see cref="false"/>.
         /// </returns>
         public object Invoke(object n) =>
-            or(
-                n is int,
-                n is long,
-                n is short,
-                n is uint,
-                n is ulong,
-                n is ushort,
-                n is char,
-                n is byte,
-                n is sbyte);
+            or(n is int, n is long, n is short, n is uint, n is ulong, n is ushort, n is char, n is byte, n is sbyte);
     }
 }

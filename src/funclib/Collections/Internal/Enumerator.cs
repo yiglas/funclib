@@ -35,7 +35,7 @@ namespace funclib.Collections.Internal
         {
             get
             {
-                if (this._next == null)
+                if (this._next is null)
                     throw new InvalidOperationException("No current value.");
 
                 if (this._curr == this._start)
@@ -47,7 +47,7 @@ namespace funclib.Collections.Internal
         
         public bool MoveNext()
         {
-            if (this._next == null) return false;
+            if (this._next is null) return false;
 
             this._curr = this._start;
             if (!this._realized)

@@ -3,6 +3,7 @@ using funclib.Components.Core;
 using System;
 using System.Text;
 using System.Threading;
+using static funclib.Core;
 
 namespace funclib.Collections
 {
@@ -175,8 +176,8 @@ namespace funclib.Collections
             var newRoot = PopTail(this.Shift, this.Root);
             int newShift = this.Shift;
 
-            if (newRoot == null) newRoot = EmptyNode;
-            if (this.Shift > 5 && newRoot.Array[1] == null)
+            if (newRoot is null) newRoot = EmptyNode;
+            if (this.Shift > 5 && newRoot.Array[1] is null)
             {
                 newRoot = (VectorNode)newRoot.Array[0];
                 newShift -= 5;
@@ -259,7 +260,7 @@ namespace funclib.Collections
             if (level > 5)
             {
                 var newChild = PopTail(level - 5, (VectorNode)node.Array[subIdx]);
-                if (newChild == null && subIdx == 0)
+                if (newChild is null && subIdx == 0)
                     return null;
                 else
                 {
@@ -277,12 +278,12 @@ namespace funclib.Collections
             }
         }
 
-        public object Reduce(IFunction f)
+        public object Reduce(object f)
         {
             object init;
             if (Count > 0) init = ToArray(0)[0];
             else
-                return ((IFunction<object>)f).Invoke();
+                return invoke(f);
 
             int step = 0;
             for (int i = 0; i < Count; i += step)
@@ -290,7 +291,7 @@ namespace funclib.Collections
                 var array = ToArray(i);
                 for (int j = (i == 0 ? 1 : 0); j < array.Length; ++j)
                 {
-                    init = ((IFunction<object, object, object>)f).Invoke(init, array[j]);
+                    init = invoke(f, init, array[j]);
                     if (init is Reduced r)
                         return r.Deref();
                 }
@@ -299,7 +300,7 @@ namespace funclib.Collections
 
             return init;
         }
-        public object Reduce(IFunction f, object init)
+        public object Reduce(object f, object init)
         {
             int step = 0;
             for (int i = 0; i < Count; i += step)
@@ -307,7 +308,7 @@ namespace funclib.Collections
                 var array = ToArray(i);
                 for (int j = 0; j < array.Length; ++j)
                 {
-                    init = ((IFunction<object, object, object>)f).Invoke(init, array[j]);
+                    init = invoke(f, init, array[j]);
                     if (init is Reduced r)
                         return r.Deref();
                 }
@@ -316,7 +317,7 @@ namespace funclib.Collections
 
             return init;
         }
-        public object ReduceKV(IFunction f, object init)
+        public object ReduceKV(object f, object init)
         {
             int step = 0;
             for (int i = 0; i < Count; i += step)
@@ -324,7 +325,7 @@ namespace funclib.Collections
                 var array = ToArray(i);
                 for (int j = 0; j < array.Length; j++)
                 {
-                    init = ((IFunction<object, object, object, object>)f).Invoke(init, j + 1, array[j]);
+                    init = invoke(f, init, j + 1, array[j]);
                     if (init is Reduced r)
                         return r.Deref();
                 }

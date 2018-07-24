@@ -30,12 +30,12 @@ namespace funclib.Components.Core
         public object Invoke(object pred, object coll) =>
             lazySeq(() =>
             {
-                var s = (ISeq)seq(coll);
+                var s = seq(coll);
                 if ((bool)truthy(s))
                 {
-                    var result = ((IFunction<object, object>)pred).Invoke(s.First());
+                    var result = invoke(pred, first(s));
                     if ((bool)truthy(result))
-                        return cons(s.First(), Invoke(pred, rest(s)));
+                        return cons(first(s), Invoke(pred, rest(s)));
                 }
                 return null;
             });
@@ -54,8 +54,8 @@ namespace funclib.Components.Core
 
             #region Overrides
             public override object Invoke(object result, object input) =>
-                (bool)truthy(((IFunction<object, object>)this._pred).Invoke(input))
-                    ? ((IFunction<object, object, object>)this._rf).Invoke(result, input)
+                (bool)truthy(invoke(this._pred, input))
+                    ? invoke(this._rf, result, input)
                     : reduced(result);
             #endregion
         }

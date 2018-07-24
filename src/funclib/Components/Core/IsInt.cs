@@ -18,11 +18,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if x is a <see cref="int"/>, <see cref="long"/>, <see cref="short"/> or <see cref="byte"/>, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object n) =>
-            or(
-                n is int,
-                n is long,
-                n is short,
-                n is byte);
+        public object Invoke(object n) => or(n is int, n is long, n is short, n is byte);
     }
 }

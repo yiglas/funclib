@@ -24,6 +24,6 @@ namespace funclib.Components.Core
         /// Returns the same collection type as the input, minus the last item in a <see cref="Collections.Vector"/>
         /// or first time in a <see cref="Collections.List"/> or <see cref="Collections.Queue"/>
         /// </returns>
-        public object Invoke(object coll) => coll == null ? null : ((IStack)coll).Pop();
+        public object Invoke(object coll) => coll is null ? null : ((IStack)coll).Pop();
     }
 }

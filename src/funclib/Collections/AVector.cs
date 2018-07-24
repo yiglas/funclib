@@ -54,7 +54,7 @@ namespace funclib.Collections
             {
                 for (int i = 0; i < Count; i++, e = e.Next())
                 {
-                    if (e == null || !(bool)isEqualTo(this[i], e.First()))
+                    if (e is null || !(bool)isEqualTo(this[i], e.First()))
                         return false;
                 }
                 if (e != null) return false;
@@ -74,7 +74,7 @@ namespace funclib.Collections
                 for (int i = 0; i < Count; i++)
                 {
                     var obj = this[i];
-                    hash = 31 * hash + (obj == null ? 0 : obj.GetHashCode());
+                    hash = 31 * hash + (obj is null ? 0 : obj.GetHashCode());
                 }
                 this._hash = hash;
             }
@@ -157,7 +157,7 @@ namespace funclib.Collections
         }
         public void CopyTo(System.Array array, int index)
         {
-            if (array == null) throw new ArgumentNullException(nameof(array));
+            if (array is null) throw new ArgumentNullException(nameof(array));
             if (array.Rank != 1) throw new ArgumentException("Array must be 1-dimensional.");
             if (index < 0) throw new ArgumentOutOfRangeException(nameof(index), "Must be no-negative.");
             if (array.Length - index < Count) throw new InvalidOperationException("The number of elements in source is greater than the available space in the array.");
@@ -169,7 +169,7 @@ namespace funclib.Collections
         }
         public void CopyTo(object[] array, int arrayIndex)
         {
-            if (array == null) throw new ArgumentNullException(nameof(array));
+            if (array is null) throw new ArgumentNullException(nameof(array));
             if (array.Rank != 1) throw new ArgumentException("Array must be 1-dimensional.");
             if (arrayIndex < 0) throw new ArgumentOutOfRangeException(nameof(arrayIndex), "Must be no-negative.");
             if (array.Length - arrayIndex < Count) throw new InvalidOperationException("The number of elements in source is greater than the available space in the array.");

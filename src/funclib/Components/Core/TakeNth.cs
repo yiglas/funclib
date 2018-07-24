@@ -24,10 +24,10 @@ namespace funclib.Components.Core
         public object Invoke(object n, object coll) =>
             lazySeq(() =>
             {
-                var s = (ISeq)seq(coll);
+                var s = seq(coll);
                 if ((bool)truthy(s))
                 {
-                    return cons(s.First(), Invoke(n, drop(n, s)));
+                    return cons(first(s), Invoke(n, drop(n, s)));
                 }
                 return null;
             });
@@ -49,10 +49,10 @@ namespace funclib.Components.Core
             #region Overrides
             public override object Invoke(object result, object input)
             {
-                var i = new VSwapǃ(this._iv, new Inc()).Invoke();
+                var i = new VSwapǃ(this._iv, funclib.Core.Inc).Invoke();
                 if ((bool)isZero(rem(i, this._n)))
                 {
-                    return ((IFunction<object, object, object>)this._rf).Invoke(result, input);
+                    return invoke(this._rf, result, input);
                 }
 
                 return result;

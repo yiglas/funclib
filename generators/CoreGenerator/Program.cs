@@ -223,6 +223,7 @@ namespace CoreGenerator
                 case "do": return "@do";
                 case "char": return "@char";
                 case "function": return "invoke";
+                case "invokeFunction": return "invoke";
                 case "uuID": return "uuid";
                 case "rSeq": return "rseq";
             }

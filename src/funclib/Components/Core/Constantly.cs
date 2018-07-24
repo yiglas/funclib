@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Components.Core
 {
@@ -19,6 +19,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="IFunctionParams{TRest, TResult}"/> when invoked returns x.
         /// </returns>
-        public object Invoke(object x) => new FunctionParams<object, object>(args => x);
+        public object Invoke(object x) => func((object[] args) => x);
     }
 }

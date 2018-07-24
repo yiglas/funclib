@@ -37,10 +37,10 @@ namespace funclib.Collections
 
             var ms = (ISeq)seq(obj);
             for (var e = Seq(); e != null; e = e.Next(), ms = ms.Next())
-                if (ms == null || !(bool)isEqualTo(e.First(), ms.First()))
+                if (ms is null || !(bool)isEqualTo(e.First(), ms.First()))
                     return false;
 
-            return ms == null;
+            return ms is null;
         }
 
         public override int GetHashCode()
@@ -49,7 +49,7 @@ namespace funclib.Collections
             if (hash == 0)
             {
                 for (var e = Seq(); e != null; e = e.Next())
-                    hash = 31 * hash + (e.First() == null ? 0 : e.First().GetHashCode());
+                    hash = 31 * hash + (e.First() is null ? 0 : e.First().GetHashCode());
 
                 this._hash = hash;
             }
@@ -60,11 +60,11 @@ namespace funclib.Collections
         public object Peek() => first(this._f);
         public IStack Pop()
         {
-            if (this._f == null) return this;
+            if (this._f is null) return this;
             var f1 = this._f.Next();
             var r1 = this._r;
 
-            if (f1 == null)
+            if (f1 is null)
             {
                 f1 = (ISeq)seq(this._r);
                 r1 = null;
@@ -73,10 +73,10 @@ namespace funclib.Collections
         }
         public ICollection Cons(object o) => throw new NotImplementedException();
         public ICollection Empty() => EMPTY;
-        public ISeq Seq() => this._f == null ? null : new QueueSeq(this._f, (ISeq)seq(this._r));
+        public ISeq Seq() => this._f is null ? null : new QueueSeq(this._f, (ISeq)seq(this._r));
         public void CopyTo(Array array, int index)
         {
-            if (array == null) throw new ArgumentNullException(nameof(array));
+            if (array is null) throw new ArgumentNullException(nameof(array));
             if (array.Rank != 1) throw new ArgumentException("Array must be 1-dimensional.");
             if (index < 0) throw new ArgumentOutOfRangeException(nameof(index), "Must be no-negative.");
             if (array.Length - index < Count) throw new InvalidOperationException("The number of elements in source is greater than the available space in the array.");

@@ -1,6 +1,7 @@
 ﻿using funclib.Components.Core;
 using System;
 using System.Text;
+using static funclib.Core;
 
 namespace funclib.Collections.Internal
 {
@@ -38,7 +39,7 @@ namespace funclib.Collections.Internal
 
         public override ITransientCollection ToTransient() => throw new InvalidOperationException();
 
-        public object Reduce(IFunction f, object init)
+        public object Reduce(object f, object init)
         {
             if (Left != null)
             {
@@ -46,7 +47,7 @@ namespace funclib.Collections.Internal
                 if (init is Reduced)
                     return init;
             }
-            init = ((IFunction<object, object, object, object>)f).Invoke(init, Key, Value);
+            init = invoke(f, init, Key, Value);
             if (init is Reduced)
                 return init;
             if (Right != null)

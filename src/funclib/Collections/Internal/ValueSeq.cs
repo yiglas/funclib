@@ -18,14 +18,14 @@ namespace funclib.Collections.Internal
 
         #region Creates
         public static ValueSeq Create(ISeq enumerative) =>
-            enumerative == null
+            enumerative is null
                 ? null
                 : new ValueSeq(enumerative, null);
 
         public static ValueSeq Create(IMap map)
         {
             var enumerative = map?.Seq();
-            if (enumerative == null) return null;
+            if (enumerative is null) return null;
 
             return new ValueSeq(enumerative, map);
         }
@@ -46,7 +46,7 @@ namespace funclib.Collections.Internal
         public override ISeq Next() => Create(this._enumerative.Next());
         public override System.Collections.IEnumerator GetEnumerator()
         {
-            if (this._enumerable == null) return base.GetEnumerator();
+            if (this._enumerable is null) return base.GetEnumerator();
 
             if (this._enumerable is IMapEnumerable m)
                 return m.GetValueEnumerator();

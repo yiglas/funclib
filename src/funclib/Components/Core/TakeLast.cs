@@ -25,12 +25,12 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object n, object coll)
         {
-            return loop((ISeq)seq(coll), (ISeq)seq(drop(n, coll)));
+            return loop(seq(coll), seq(drop(n, coll)));
 
-            object loop(ISeq s, ISeq lead)
+            object loop(object s, object lead)
             {
                 if ((bool)truthy(lead))
-                    return loop(s.Next(), lead.Next());
+                    return loop(next(s), next(lead));
 
                 return s;
             }

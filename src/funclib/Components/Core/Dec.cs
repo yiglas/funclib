@@ -20,5 +20,4 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object x) => Numbers.Dec(x);
     }
-
 }
