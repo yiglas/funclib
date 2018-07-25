@@ -7,5 +7,5 @@ install:
  - dotnet restore
 
 script:
- - dotnet build
+ - dotnet build src/funclib/funclib.csproj
  - dotnet test tests/funclib.tests/funclib.Tests.csproj
