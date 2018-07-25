@@ -1,8 +1,11 @@
 language: csharp
-solution: funclib.sln
+dist: trusty
+mono: none
+dotnet: 2.0
+
 install:
- - nuget restore funclib.sln
- - nuget install NUnit.Runners -Version 3.8.0 -OutputDirectory testrunner
+ - dotnet restore
+
 script:
- - xbuild /p:Configuration=Release funclib.sln
- - mono ./testrunner/NUnit.Runners.3.8.0/tools/nunit-console.exe ./tests/funclib.tests/bin/Debug/netcoreapp2.0
+ - dotnet build
+ - dotnet test tests/funclib.tests/funclib.Tests.csproj
