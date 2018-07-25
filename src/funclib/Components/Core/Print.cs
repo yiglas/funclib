@@ -45,12 +45,12 @@ namespace funclib.Components.Core
             Variables.Out.Write(' ');
             var nmore = next(more);
             if ((bool)truthy(nmore))
-                return Invoke(first(more), nmore);
+                return Invoke(first(more), (object[])toArray(nmore));
 
-            return apply(this, more);
+            return Invoke(first(more));
         }
 
-        void Pr(object x, TextWriter w)
+        static void Pr(object x, TextWriter w)
         {
             switch (x)
             {
@@ -89,7 +89,7 @@ namespace funclib.Components.Core
             }
         }
 
-        string FPStr(object x)
+        static string FPStr(object x)
         {
             var s = (string)str(x);
             if ((bool)truthy(or(s.Contains("."), s.Contains("E"))))
@@ -99,26 +99,26 @@ namespace funclib.Components.Core
         }
 
 
-        void PrintDefault(object o, TextWriter w) => w.Write(str(o));
-        void Pr(double o, TextWriter w)
+        static void PrintDefault(object o, TextWriter w) => w.Write(str(o));
+        static void Pr(double o, TextWriter w)
         {
             if (o == double.PositiveInfinity) Pr("##Inf", w);
             else if (o == double.NegativeInfinity) Pr("##-Inf", w);
             else if (double.IsNaN(o)) Pr("##NaN", w);
             else Pr(FPStr(o), w);
         }
-        void Pr(float o, TextWriter w)
+        static void Pr(float o, TextWriter w)
         {
             if (o == float.PositiveInfinity) Pr("##Inf", w);
             else if (o == float.NegativeInfinity) Pr("##-Inf", w);
             else if (float.IsNaN(o)) Pr("##NaN", w);
             else Pr(FPStr(o), w);
         }
-        void Pr(DateTime o, TextWriter w) => w.Write($"#inst \"{o.ToString("yyyy-MM-ddTHH:mm:ss.fff-00:00")}\"");
-        void Pr(DateTimeOffset o, TextWriter w) => w.Write($"#inst \"{o.ToString("yyyy-MM-ddTHH:mm:ss.fffzzzz")}\"");
-        void Pr(Guid o, TextWriter w) => w.Write($"#uuid \"{o}\"");
-        void Pr(TimeSpan o, TextWriter w) => w.Write(o.ToString());
-        void PrintObject(object o, TextWriter w)
+        static void Pr(DateTime o, TextWriter w) => w.Write($"#inst \"{o.ToString("yyyy-MM-ddTHH:mm:ss.fff-00:00")}\"");
+        static void Pr(DateTimeOffset o, TextWriter w) => w.Write($"#inst \"{o.ToString("yyyy-MM-ddTHH:mm:ss.fffzzzz")}\"");
+        static void Pr(Guid o, TextWriter w) => w.Write($"#uuid \"{o}\"");
+        static void Pr(TimeSpan o, TextWriter w) => w.Write(o.ToString());
+        static void PrintObject(object o, TextWriter w)
         {
             w.Write("#object[");
             var c = (Type)@class(o);
@@ -130,26 +130,62 @@ namespace funclib.Components.Core
 
             w.Write(" ");
             w.Write(o.GetHashCode());
+            w.Write(" ");
             Pr(o.ToString(), w);
             w.Write("]");
         }
-        void Pr(string o, TextWriter w) => w.Write(o);
-        void Pr(Type o, TextWriter w) => w.Write(o.FullName);
-        void Pr(char o, TextWriter w) => w.Write($"\\{o}");
-        void Pr(Regex o, TextWriter w)
+        static void Pr(string o, TextWriter w) => w.Write(o);
+        static void Pr(Type o, TextWriter w) => w.Write(o.FullName);
+        static void Pr(char o, TextWriter w) => w.Write($"\\{o}");
+        static void Pr(Regex o, TextWriter w)
         {
             w.Write("#\"");
             w.Write(o.ToString());
             w.Write("\"");
         }
-        void Pr(ISeq o, TextWriter w) => w.Write(o.ToString());
-        void Pr(IVector o, TextWriter w) => w.Write(o.ToString());
-        void Pr(IMap o, TextWriter w) => w.Write(o.ToString());
-        void Pr(ISet o, TextWriter w) => w.Write(o.ToString());
-        void Pr(IDeref o, TextWriter w) => throw new NotImplementedException();
-        void Pr(StackFrame o, TextWriter w) => throw new NotImplementedException();
-        void Pr(Exception o, TextWriter w) => throw new NotImplementedException();
-        void Pr(System.Collections.IDictionary o, TextWriter w) => w.Write(Util.Print(o));
-        void Pr(System.Collections.ICollection o, TextWriter w) => throw new NotImplementedException();
+        static void Pr(ISeq o, TextWriter w) => w.Write(o.ToString());
+        static void Pr(IVector o, TextWriter w) => w.Write(o.ToString());
+        static void Pr(IMap o, TextWriter w) => w.Write(o.ToString());
+        static void Pr(ISet o, TextWriter w) => w.Write(o.ToString());
+        static void Pr(IDeref o, TextWriter w)
+        {
+            w.Write("#object[");
+            var c = (Type)@class(o);
+            if (c.IsArray)
+            {
+                Pr(c.Name, w);
+            }
+            else w.Write(c.Name);
+
+            w.Write(" ");
+            w.Write(o.GetHashCode());
+            w.Write(" ");
+            Pr(DerefAsMap(o).ToString(), w);
+            w.Write("]");
+        }
+        static void Pr(StackFrame o, TextWriter w) => throw new NotImplementedException();
+        static void Pr(Exception o, TextWriter w) => throw new NotImplementedException();
+        static void Pr(System.Collections.IDictionary o, TextWriter w) => w.Write(Util.Print(o));
+        static void Pr(System.Collections.ICollection o, TextWriter w) => throw new NotImplementedException();
+
+
+        static IMap DerefAsMap(IDeref o)
+        {
+            var pending = o is IPending p ? p.IsRealized() : false;
+            bool ex = false;
+            object val;
+            try
+            {
+                val = deref(o);
+            }
+            catch (Exception e) { val = e; ex = true; }
+
+            // if Agent data structure exists check if there is an agent error.
+            ex = ((bool)truthy(or(ex)));
+
+            return (IMap)arrayMap(
+                ":status", ex ? ":failed" : pending ? ":pending" : ":ready",
+                ":val", val);
+        }
     }
 }

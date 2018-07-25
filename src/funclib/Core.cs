@@ -1,4 +1,4 @@
-// Generated on 7/23/2018 2:44:38 PM
+// Generated on 7/25/2018 12:06:51 PM
 using funclib.Collections;
 using funclib.Components.Core;
 using System;
@@ -8,6 +8,18 @@ namespace funclib
 	public static class Core
 	{
 		#region Properties
+		static funclib.Components.Core.AddWatch __addwatch;
+		/// <summary>
+		/// Adds a watch function to an <see cref="IRef"/> variable. The
+		/// watch function must implement the <see cref="IFunction"/> interface
+		/// and take 4 arguments. The key, the reference, its old-state and its new
+		/// state. Whenever the <see cref="IRef"/>'s state changes all registered
+		/// watches will be called. The functions will be synchronously called. Note:
+		/// an <see cref="IAtom"/>'s state may have changed prior to calling the
+		/// function so use th old/new state argument instead of deref'ing the
+		/// state again.
+		/// </summary>
+		public static funclib.Components.Core.AddWatch AddWatch => __addwatch ?? (__addwatch = new funclib.Components.Core.AddWatch());
 		static funclib.Components.Core.And __and;
 		/// <summary>
 		/// Evaluates objects one at a time, from left to right. If a object returns
@@ -50,6 +62,17 @@ namespace funclib
 		/// index must be less than or equal to the count of vector. Returns coll.
 		/// </summary>
 		public static funclib.Components.Core.Assocǃ Assocǃ => __assocǃ ?? (__assocǃ = new funclib.Components.Core.Assocǃ());
+		static funclib.Components.Core.Atom __atom;
+		/// <summary>
+		/// Creates and returns an <see cref="Atom"/> with an initial value or x
+		/// and zero or more options:
+		///     :validator = validate-fn
+		/// Validate-fn must be nil or a side effect free <see cref="IFunction"/>
+		/// of one argument. Which will be passed the intended new state on any
+		/// state change. If the new state is unacceptable, the validate-fn should
+		/// return false or throw an exception.
+		/// </summary>
+		public static funclib.Components.Core.Atom Atom => __atom ?? (__atom = new funclib.Components.Core.Atom());
 		static funclib.Components.Core.BitAnd __bitand;
 		/// <summary>
 		/// Unary "&" operator returns the address of its operand. Binary "&" operators are
@@ -135,6 +158,14 @@ namespace funclib
 		/// compares numbers and collections in a type-independent manner.
 		/// </summary>
 		public static funclib.Components.Core.Compare Compare => __compare ?? (__compare = new funclib.Components.Core.Compare());
+		static funclib.Components.Core.CompareAndSetǃ __compareandsetǃ;
+		/// <summary>
+		/// Atomically sets the value of the <see cref="IAtom"/>
+		/// to the new value if and only if the current value of
+		/// the <see cref="IAtom"/> is identical to the oldVal.
+		/// Returns <see cref="true"/> if set happened, otherwise <see cref="false"/>.
+		/// </summary>
+		public static funclib.Components.Core.CompareAndSetǃ CompareAndSetǃ => __compareandsetǃ ?? (__compareandsetǃ = new funclib.Components.Core.CompareAndSetǃ());
 		static funclib.Components.Core.Complement __complement;
 		/// <summary>
 		/// Takes a <see cref="IFunction"/> and returns the function that takes the same arguments
@@ -194,7 +225,7 @@ namespace funclib
 		public static funclib.Components.Core.Dec Dec => __dec ?? (__dec = new funclib.Components.Core.Dec());
 		static funclib.Components.Core.Deref __deref;
 		/// <summary>
-		/// Returns the current state of ref.
+		/// Returns the current state of <see cref="IDeref"/> variable.
 		/// </summary>
 		public static funclib.Components.Core.Deref Deref => __deref ?? (__deref = new funclib.Components.Core.Deref());
 		static funclib.Components.Core.Disj __disj;
@@ -357,6 +388,11 @@ namespace funclib
 		/// otherwise notFound value if supplied.
 		/// </summary>
 		public static funclib.Components.Core.GetIn GetIn => __getin ?? (__getin = new funclib.Components.Core.GetIn());
+		static funclib.Components.Core.GetValidator __getvalidator;
+		/// <summary>
+		/// Gets the validator function for a <see cref="IRef"/> variable.
+		/// </summary>
+		public static funclib.Components.Core.GetValidator GetValidator => __getvalidator ?? (__getvalidator = new funclib.Components.Core.GetValidator());
 		static funclib.Components.Core.GroupBy __groupby;
 		/// <summary>
 		/// Returns a <see cref="HashMap"/> of elements of coll keyed by the result of
@@ -409,6 +445,9 @@ namespace funclib
 		static funclib.Components.Core.IntoArray __intoarray;
 		public static funclib.Components.Core.IntoArray IntoArray => __intoarray ?? (__intoarray = new funclib.Components.Core.IntoArray());
 		static funclib.Components.Core.InvokeFunction __invokefunction;
+		/// <summary>
+		/// Invokes a <see cref="IFunction"/> function with supplied arguments.
+		/// </summary>
 		public static funclib.Components.Core.InvokeFunction InvokeFunction => __invokefunction ?? (__invokefunction = new funclib.Components.Core.InvokeFunction());
 		static funclib.Components.Core.IsAny __isany;
 		/// <summary>
@@ -968,6 +1007,11 @@ namespace funclib
 		/// Uses <see cref="ReGroups"/> to return the groups.
 		/// </summary>
 		public static funclib.Components.Core.ReMatches ReMatches => __rematches ?? (__rematches = new funclib.Components.Core.ReMatches());
+		static funclib.Components.Core.RemoveWatch __removewatch;
+		/// <summary>
+		///  Removes a watch from the <see cref="ARef"/>'s reference.
+		/// </summary>
+		public static funclib.Components.Core.RemoveWatch RemoveWatch => __removewatch ?? (__removewatch = new funclib.Components.Core.RemoveWatch());
 		static funclib.Components.Core.RePattern __repattern;
 		/// <summary>
 		/// Returns an instance of <see cref="Regex"/>, for use, e.g. in <see cref="ReMatcher"/>.
@@ -991,6 +1035,12 @@ namespace funclib
 		/// using <see cref="ReMatcher.Find"/>, each such match processed with <see cref="ReGroups"/>.
 		/// </summary>
 		public static funclib.Components.Core.ReSeq ReSeq => __reseq ?? (__reseq = new funclib.Components.Core.ReSeq());
+		static funclib.Components.Core.Resetǃ __resetǃ;
+		/// <summary>
+		/// Sets the value of <see cref="IAtom"/> to the new value without regard for
+		/// the current value. Returns newVal;
+		/// </summary>
+		public static funclib.Components.Core.Resetǃ Resetǃ => __resetǃ ?? (__resetǃ = new funclib.Components.Core.Resetǃ());
 		static funclib.Components.Core.Rest __rest;
 		/// <summary>
 		/// Returns a possible empty <see cref="Seq"/> of the items after the first.
@@ -1034,6 +1084,15 @@ namespace funclib
 		/// Returns a <see cref="Collections.HashSet"/> of the distinct elements of coll.
 		/// </summary>
 		public static funclib.Components.Core.Set Set => __set ?? (__set = new funclib.Components.Core.Set());
+		static funclib.Components.Core.SetValidatorǃ __setvalidatorǃ;
+		/// <summary>
+		/// Sets the validator function for <see cref="IRef"/> variables. Validator
+		/// function must be null or a side-effect-free <see cref="IFunction"/> of
+		/// one argument, which will be passed the intended new state of any state
+		/// change. If the new state is unacceptable, the function should either
+		/// return <see cref="false"/> or throw an exception.
+		/// </summary>
+		public static funclib.Components.Core.SetValidatorǃ SetValidatorǃ => __setvalidatorǃ ?? (__setvalidatorǃ = new funclib.Components.Core.SetValidatorǃ());
 		static funclib.Components.Core.Some __some;
 		/// <summary>
 		/// Returns the first logical <see cref="true"/> value of execute <see cref="IFunction{T1, TResult}"/> pred passing
@@ -1110,6 +1169,14 @@ namespace funclib
 		/// to end (exclusive). If end is not supplied, default to <see cref="Count"/> of <see cref="IVector"/>.
 		/// </summary>
 		public static funclib.Components.Core.SubVec SubVec => __subvec ?? (__subvec = new funclib.Components.Core.SubVec());
+		static funclib.Components.Core.Swapǃ __swapǃ;
+		/// <summary>
+		/// Atomically swaps the value of atom to be: invoke(f, current-value-of-atom, ...args).
+		/// Note: f may be called multiple times and thus should be free of side effects.
+		/// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after
+		/// the swap.
+		/// </summary>
+		public static funclib.Components.Core.Swapǃ Swapǃ => __swapǃ ?? (__swapǃ = new funclib.Components.Core.Swapǃ());
 		static funclib.Components.Core.Take __take;
 		/// <summary>
 		/// Returns a <see cref="LazySeq"/> of the first n items in the coll, or all items
@@ -1246,6 +1313,23 @@ namespace funclib
 		#endregion
 		#region Methods
 		/// <summary>
+		/// Adds a watch function to an <see cref="IRef"/> variable. The
+		/// watch function must implement the <see cref="IFunction"/> interface
+		/// and take 4 arguments. The key, the reference, its old-state and its new
+		/// state. Whenever the <see cref="IRef"/>'s state changes all registered
+		/// watches will be called. The functions will be synchronously called. Note:
+		/// an <see cref="IAtom"/>'s state may have changed prior to calling the
+		/// function so use th old/new state argument instead of deref'ing the
+		/// state again.
+		/// </summary>
+		/// <param name="ref">An object that implements the <see cref="IRef"/> interface.</param>
+		/// <param name="key">A unique key for the function.</param>
+		/// <param name="fn">An object that implements the <see cref="IFunction"/> interface and takes 4 arguments.</param>
+		/// <returns>
+		/// Returns this <see cref="ARef"/> object.
+		/// </returns>
+		public static object addWatch(object @ref, object key, object fn) => AddWatch.Invoke(@ref, key, fn);
+		/// <summary>
 		/// Evaluates objects one at a time, from left to right. If a object returns
 		/// a logical false (null or false) then it is returned and stops evaluating
 		/// all other expressions. Otherwise, it returns the value of the last object.
@@ -1284,7 +1368,7 @@ namespace funclib
 		/// </returns>
 		public static object and(object x, params object[] next) => And.Invoke(x, next);
 		/// <summary>
-		/// Applies <see cref="IFunction"/> f to the argument list formed prepending
+		/// Applies <see cref="IFunction"/> f to the argument list formed perpending
 		/// intervening arguments to args.
 		/// </summary>
 		/// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
@@ -1294,7 +1378,7 @@ namespace funclib
 		/// </returns>
 		public static object apply(object f, object args) => Apply.Invoke(f, args);
 		/// <summary>
-		/// Applies <see cref="IFunction"/> f to the argument list formed prepending
+		/// Applies <see cref="IFunction"/> f to the argument list formed perpending
 		/// intervening arguments to args.
 		/// </summary>
 		/// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
@@ -1305,7 +1389,7 @@ namespace funclib
 		/// </returns>
 		public static object apply(object f, object x, object args) => Apply.Invoke(f, x, args);
 		/// <summary>
-		/// Applies <see cref="IFunction"/> f to the argument list formed prepending
+		/// Applies <see cref="IFunction"/> f to the argument list formed perpending
 		/// intervening arguments to args.
 		/// </summary>
 		/// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
@@ -1317,7 +1401,7 @@ namespace funclib
 		/// </returns>
 		public static object apply(object f, object x, object y, object args) => Apply.Invoke(f, x, y, args);
 		/// <summary>
-		/// Applies <see cref="IFunction"/> f to the argument list formed prepending
+		/// Applies <see cref="IFunction"/> f to the argument list formed perpending
 		/// intervening arguments to args.
 		/// </summary>
 		/// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
@@ -1330,7 +1414,7 @@ namespace funclib
 		/// </returns>
 		public static object apply(object f, object x, object y, object z, object args) => Apply.Invoke(f, x, y, z, args);
 		/// <summary>
-		/// Applies <see cref="IFunction"/> f to the argument list formed prepending
+		/// Applies <see cref="IFunction"/> f to the argument list formed perpending
 		/// intervening arguments to args.
 		/// </summary>
 		/// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
@@ -1425,6 +1509,37 @@ namespace funclib
 		/// Returns the modified coll object.
 		/// </returns>
 		public static object assocǃ(object coll, object key, object val, params object[] kvs) => Assocǃ.Invoke(coll, key, val, kvs);
+		/// <summary>
+		/// Creates and returns an <see cref="Atom"/> with an initial value or x
+		/// and zero or more options:
+		///     :validator = validate-fn
+		/// Validate-fn must be nil or a side effect free <see cref="IFunction"/>
+		/// of one argument. Which will be passed the intended new state on any
+		/// state change. If the new state is unacceptable, the validate-fn should
+		/// return false or throw an exception.
+		/// </summary>
+		/// <param name="x">Initial value of the <see cref="Atom"/>.</param>
+		/// <returns>
+		/// Returns a new <see cref="Atom"/> with the initial value set.
+		/// </returns>
+		public static object atom(object x) => Atom.Invoke(x);
+		/// <summary>
+		/// Creates and returns an <see cref="Atom"/> with an initial value or x
+		/// and zero or more options:
+		///     :validator = validate-fn
+		/// Validate-fn must be nil or a side effect free <see cref="IFunction"/>
+		/// of one argument. Which will be passed the intended new state on any
+		/// state change. If the new state is unacceptable, the validate-fn should
+		/// return false or throw an exception.
+		/// </summary>
+		/// <param name="x">Initial value of the <see cref="Atom"/>.</param>
+		/// <param name="options">Key/Value pair of options. options are:
+		///     :validator = validate-fn
+		/// </param>
+		/// <returns>
+		/// Returns a new <see cref="Atom"/> with the initial value set.
+		/// </returns>
+		public static object atom(object x, params object[] options) => Atom.Invoke(x, options);
 		/// <summary>
 		/// Unary "&" operator returns the address of its operand. Binary "&" operators are
 		/// predefined for the integral types and <see cref="bool"/>.
@@ -1552,7 +1667,7 @@ namespace funclib
 		/// </summary>
 		/// <param name="pred">An object that implements the <see cref="IFunction{T1, T2, TResult}"/> interface.</param>
 		/// <returns>
-		/// Returns a <see cref="int"/> that will be: -1 if pred.Invoke(x, y) is truthy, or 1 if pred.Invoke(y, x) is truthy, otherwise 0
+		/// Returns a <see cref="IFunction{T1, T2, TResult}"/> that when invoked should return : -1 if pred.Invoke(x, y) is truthy, or 1 if pred.Invoke(y, x) is truthy, otherwise 0
 		/// </returns>
 		public static object comparator(object pred) => Comparator.Invoke(pred);
 		/// <summary>
@@ -1569,12 +1684,25 @@ namespace funclib
 		/// </returns>
 		public static object compare(object x, object y) => Compare.Invoke(x, y);
 		/// <summary>
+		/// Atomically sets the value of the <see cref="IAtom"/>
+		/// to the new value if and only if the current value of
+		/// the <see cref="IAtom"/> is identical to the oldVal.
+		/// Returns <see cref="true"/> if set happened, otherwise <see cref="false"/>.
+		/// </summary>
+		/// <param name="atom">An object that implements the <see cref="IAtom"/> interface.</param>
+		/// <param name="oldVal">Current state of the atom.</param>
+		/// <param name="newVal">New state of the atom after successful swap.</param>
+		/// <returns>
+		/// Returns <see cref="true"/> if set happened, otherwise <see cref="false"/>.
+		/// </returns>
+		public static object compareAndSetǃ(object atom, object oldVal, object newVal) => CompareAndSetǃ.Invoke(atom, oldVal, newVal);
+		/// <summary>
 		/// Takes a <see cref="IFunction"/> and returns the function that takes the same arguments
 		/// with the same effects, if any, and returns the opposite truthy value.
 		/// </summary>
 		/// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
 		/// <returns>
-		/// Returns a <see cref="bool"/> value which is the opposite truthy value.
+		/// Returns a <see cref="Function"/> that returns a <see cref="bool"/> value which is the opposite truthy value.
 		/// </returns>
 		public static object complement(object f) => Complement.Invoke(f);
 		public static object completing(object f) => Completing.Invoke(f);
@@ -1764,11 +1892,11 @@ namespace funclib
 		/// </returns>
 		public static object dec(object x) => Dec.Invoke(x);
 		/// <summary>
-		/// Returns the current state of ref.
+		/// Returns the current state of <see cref="IDeref"/> variable.
 		/// </summary>
 		/// <param name="ref">Object that implements the <see cref="IDeref"/> interface.</param>
 		/// <returns>
-		/// Returns the current state of ref.
+		/// Returns the current state of <see cref="IDeref"/> variable.
 		/// </returns>
 		public static object deref(object @ref) => Deref.Invoke(@ref);
 		/// <summary>
@@ -2408,6 +2536,14 @@ namespace funclib
 		/// </returns>
 		public static object getIn(object m, object ks, object notFound) => GetIn.Invoke(m, ks, notFound);
 		/// <summary>
+		/// Gets the validator function for a <see cref="IRef"/> variable.
+		/// </summary>
+		/// <param name="ref">An object that implements the <see cref="IRef"/> interface.</param>
+		/// <returns>
+		/// Returns a <see cref="IFunction"/> that takes one parameter.
+		/// </returns>
+		public static object getValidator(object @ref) => GetValidator.Invoke(@ref);
+		/// <summary>
 		/// Returns a <see cref="HashMap"/> of elements of coll keyed by the result of
 		/// <see cref="IFunction{T1, TResult}"/> f. The value at each key will be a
 		/// <see cref="Vector"/> of the corresponding elements, in the order they appeared
@@ -2553,10 +2689,55 @@ namespace funclib
 		internal static object into1(object to, object from) => Into1.Invoke(to, from);
 		public static object intoArray(object aseq) => IntoArray.Invoke(aseq);
 		public static object intoArray(object type, object aseq) => IntoArray.Invoke(type, aseq);
+		/// <summary>
+		/// Invokes a <see cref="IFunction"/> function with supplied arguments.
+		/// </summary>
+		/// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
+		/// <returns>
+		/// Returns the result of calling f with no parameters.
+		/// </returns>
 		public static object invoke(object f) => InvokeFunction.Invoke(f);
+		/// <summary>
+		/// Invokes a <see cref="IFunction"/> function with supplied arguments.
+		/// </summary>
+		/// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
+		/// <param name="x">First parameter for the function.</param>
+		/// <returns>
+		/// Returns the result of calling f with one parameters.
+		/// </returns>
 		public static object invoke(object f, object x) => InvokeFunction.Invoke(f, x);
+		/// <summary>
+		/// Invokes a <see cref="IFunction"/> function with supplied arguments.
+		/// </summary>
+		/// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
+		/// <param name="x">First parameter for the function.</param>
+		/// <param name="y">Second parameter for the function.</param>
+		/// <returns>
+		/// Returns the result of calling f with two parameters.
+		/// </returns>
 		public static object invoke(object f, object x, object y) => InvokeFunction.Invoke(f, x, y);
+		/// <summary>
+		/// Invokes a <see cref="IFunction"/> function with supplied arguments.
+		/// </summary>
+		/// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
+		/// <param name="x">First parameter for the function.</param>
+		/// <param name="y">Second parameter for the function.</param>
+		/// <param name="z">Third parameter for the function.</param>
+		/// <returns>
+		/// Returns the result of calling f with three parameters.
+		/// </returns>
 		public static object invoke(object f, object x, object y, object z) => InvokeFunction.Invoke(f, x, y, z);
+		/// <summary>
+		/// Invokes a <see cref="IFunction"/> function with supplied arguments.
+		/// </summary>
+		/// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
+		/// <param name="a">First parameter for the function.</param>
+		/// <param name="b">Second parameter for the function.</param>
+		/// <param name="c">Third parameter for the function.</param>
+		/// <param name="ds">Rest of the parameter for the function.</param>
+		/// <returns>
+		/// Returns the result of calling f with all parameters.
+		/// </returns>
 		public static object invoke(object f, object a, object b, object c, params object[] ds) => InvokeFunction.Invoke(f, a, b, c, ds);
 		/// <summary>
 		/// Returns <see cref="true"/> given any argument.
@@ -4149,6 +4330,15 @@ namespace funclib
 		/// </returns>
 		public static object reMatches(object re, object s) => ReMatches.Invoke(re, s);
 		/// <summary>
+		///  Removes a watch from the <see cref="ARef"/>'s reference.
+		/// </summary>
+		/// <param name="ref">An object that implements the <see cref="IRef"/> interface.</param>
+		/// <param name="key">A unique key for the function to be removed.</param>
+		/// <returns>
+		/// Returns this <see cref="ARef"/> object.
+		/// </returns>
+		public static object removeWatch(object @ref, object key) => RemoveWatch.Invoke(@ref, key);
+		/// <summary>
 		/// Returns an instance of <see cref="Regex"/>, for use, e.g. in <see cref="ReMatcher"/>.
 		/// </summary>
 		/// <param name="s">The string to search for a match(s).</param>
@@ -4209,6 +4399,16 @@ namespace funclib
 		/// using <see cref="ReMatcher.Find"/>, each such match processed with <see cref="ReGroups"/>.
 		/// </returns>
 		public static object reSeq(object re, object s) => ReSeq.Invoke(re, s);
+		/// <summary>
+		/// Sets the value of <see cref="IAtom"/> to the new value without regard for
+		/// the current value. Returns newVal;
+		/// </summary>
+		/// <param name="atom">An object that implements the <see cref="IAtom"/> interface.</param>
+		/// <param name="newVal">The new values for the <see cref="IAtom"/>.</param>
+		/// <returns>
+		/// Returns the newVal object.
+		/// </returns>
+		public static object resetǃ(object atom, object newVal) => Resetǃ.Invoke(atom, newVal);
 		/// <summary>
 		/// Returns a possible empty <see cref="Seq"/> of the items after the first.
 		/// </summary>
@@ -4282,6 +4482,19 @@ namespace funclib
 		/// Returns a <see cref="Collections.HashSet"/> of the distinct elements of coll.
 		/// </returns>
 		public static object set(object coll) => Set.Invoke(coll);
+		/// <summary>
+		/// Sets the validator function for <see cref="IRef"/> variables. Validator
+		/// function must be null or a side-effect-free <see cref="IFunction"/> of
+		/// one argument, which will be passed the intended new state of any state
+		/// change. If the new state is unacceptable, the function should either
+		/// return <see cref="false"/> or throw an exception.
+		/// </summary>
+		/// <param name="ref">An object that implements the <see cref="IRef"/> interface.</param>
+		/// <param name="validatorFn">An object that implements the <see cref="IFunction"/> interface, that takes one parameter.</param>
+		/// <returns>
+		/// Returns null.
+		/// </returns>
+		public static object setValidatorǃ(object @ref, object validatorFn) => SetValidatorǃ.Invoke(@ref, validatorFn);
 		/// <summary>
 		/// Returns the first logical <see cref="true"/> value of execute <see cref="IFunction{T1, TResult}"/> pred passing
 		/// x, where x is any x in coll, otherwise null.
@@ -4500,6 +4713,61 @@ namespace funclib
 		/// to end (exclusive). If end is not supplied, default to <see cref="Count"/> of <see cref="IVector"/>.
 		/// </returns>
 		public static object subVec(object v, object start, object end) => SubVec.Invoke(v, start, end);
+		/// <summary>
+		/// Atomically swaps the value of atom to be: invoke(f, current-value-of-atom, ...args).
+		/// Note: f may be called multiple times and thus should be free of side effects.
+		/// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after
+		/// the swap.
+		/// </summary>
+		/// <param name="atom">An object that implements the <see cref="IAtom"/> interface.</param>
+		/// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
+		/// <returns>
+		/// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after
+		/// the swap.
+		/// </returns>
+		public static object swapǃ(object atom, object f) => Swapǃ.Invoke(atom, f);
+		/// <summary>
+		/// Atomically swaps the value of atom to be: invoke(f, current-value-of-atom, ...args).
+		/// Note: f may be called multiple times and thus should be free of side effects.
+		/// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after
+		/// the swap.
+		/// </summary>
+		/// <param name="atom">An object that implements the <see cref="IAtom"/> interface.</param>
+		/// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
+		/// <param name="x">Second parameter of the function.</param>
+		/// <returns>
+		/// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after
+		/// the swap.
+		/// </returns>
+		public static object swapǃ(object atom, object f, object x) => Swapǃ.Invoke(atom, f, x);
+		/// <summary>
+		/// Atomically swaps the value of atom to be: invoke(f, current-value-of-atom, ...args).
+		/// Note: f may be called multiple times and thus should be free of side effects.
+		/// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after
+		/// the swap.
+		/// </summary>
+		/// <param name="atom">An object that implements the <see cref="IAtom"/> interface.</param>
+		/// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
+		/// <param name="x">Second parameter of the function.</param>
+		/// <param name="y">Third parameter of the function.</param>
+		/// <returns>
+		/// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after
+		/// the swap.
+		/// </returns>
+		public static object swapǃ(object atom, object f, object x, object y) => Swapǃ.Invoke(atom, f, x, y);
+		/// <summary>
+		/// Atomically swaps the value of atom to be: invoke(f, current-value-of-atom, ...args).
+		/// Note: f may be called multiple times and thus should be free of side effects.
+		/// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after
+		/// the swap.
+		/// </summary>
+		/// <param name="atom">An object that implements the <see cref="IAtom"/> interface.</param>
+		/// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
+		/// <param name="x">Second parameter of the function.</param>
+		/// <param name="y">Third parameter of the function.</param>
+		/// <param name="args"></param>
+		/// <returns></returns>
+		public static object swapǃ(object atom, object f, object x, object y, params object[] args) => Swapǃ.Invoke(atom, f, x, y, args);
 		public static object take(object n) => Take.Invoke(n);
 		/// <summary>
 		/// Returns a <see cref="LazySeq"/> of the first n items in the coll, or all items

@@ -185,7 +185,7 @@ namespace CoreGenerator
             syntaxTree.GetRoot()
                     .DescendantNodes()
                     .OfType<ClassDeclarationSyntax>()
-                    .Where(x => IsChildOfNamespace(x))
+                    .Where(x => IsChildOfNamespace(x) && IsNotAnAbstractClass(x))
                     .Aggregate(seed, aggregate);
 
         static IList<string> GetMethodDeclarations(ClassDeclarationSyntax classDeclaration, IList<string> seed, Func<IList<string>, MethodDeclarationSyntax, IList<string>> aggregate) =>
@@ -264,5 +264,6 @@ namespace CoreGenerator
         static bool IsChildOfNamespace(SyntaxNode node) => node.Parent.Kind() == SyntaxKind.NamespaceDeclaration;
         static bool IsChildOf(SyntaxNode parent, SyntaxNode child) => child.Parent == parent;
         static bool IsInvokeIdentifier(SyntaxToken identifier) => identifier.Text == "Invoke";
+        static bool IsNotAnAbstractClass(BaseTypeDeclarationSyntax node) => !node.Modifiers.Any(x => x.Text == "abstract");
     }
 }

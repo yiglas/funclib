@@ -17,7 +17,6 @@ Functional Library for C# that follows the Clojure idiom.
 	- case
 	- cond
 	- cond thread
-	- flatten
 	- if not 
 	- if some
 	- keep indexed

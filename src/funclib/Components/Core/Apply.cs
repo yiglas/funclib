@@ -139,9 +139,7 @@ namespace funclib.Components.Core
                 (args = args.Next()).First(),
                 (args = args.Next()).First(),
                 Ret((args = args.Next()).First(), args = null));
-        static object ApplyTo(IFunctionParams<object, object> f, ISeq args) =>
-            //f.Invoke((object[])toArray(Ret(args.First(), args = null)));
-            f.Invoke(Ret(args.First(), args = null));
+        static object ApplyTo(IFunctionParams<object, object> f, ISeq args) => f.Invoke((object[])toArray(Ret(args, args = null)));
         static object ApplyTo(IFunctionParams<object, object, object> f, ISeq args) =>
             f.Invoke(
                 args.First(), 
