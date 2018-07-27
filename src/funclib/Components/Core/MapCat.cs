@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -12,7 +12,7 @@ namespace funclib.Components.Core
         IFunction<object, object>,
         IFunctionParams<object, object, object>
     {
-        public object Invoke(object f) => comp(map(f), funclib.Core.Cat);
+        public object Invoke(object f) => comp(map(f), funclib.core.Cat);
         /// <summary>
         /// Returns the result of applying <see cref="Concat"/> to the result of applying 
         /// <see cref="Map"/> to f and colls. Thus function f should return a collections.
@@ -22,6 +22,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a collection.
         /// </returns>
-        public object Invoke(object f, params object[] colls) => apply(funclib.Core.Concat, apply(funclib.Core.Map, f, colls));
+        public object Invoke(object f, params object[] colls) => apply(funclib.core.Concat, apply(funclib.core.Map, f, colls));
     }
 }

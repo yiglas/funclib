@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Text;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -15,6 +15,17 @@ namespace funclib.Tests.Components.Core
             var actual = persistentǃ(assocǃ(transient(expected), ":x", 1, ":y", 2, ":z", 3));
 
             Assert.AreEqual(expected, actual);
+            Assert.IsFalse(expected == actual);
+        }
+
+        [Test]
+        public void Assocǃ_should_mutate_give_map()
+        {
+            var expected = transient(hashMap(":x", 1, ":y", 2, ":z", 3));
+            var actual = assocǃ(expected, ":x", 1, ":y", 2, ":z", 3);
+
+            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(expected == actual);
         }
     }
 }

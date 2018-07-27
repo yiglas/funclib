@@ -1,7 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -24,7 +24,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the key found otherwise null.
         /// </returns>
-        public object Invoke(object m, object ks) => reduce1(funclib.Core.Get, m, ks);
+        public object Invoke(object m, object ks) => reduce1(funclib.core.Get, m, ks);
         /// <summary>
         /// Returns the value in a nested associative structure, where ks
         /// is a sequence of keys. Returns null if the key is not present,

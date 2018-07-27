@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 using System.Text;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {

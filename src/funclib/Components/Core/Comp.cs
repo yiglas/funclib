@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -25,7 +25,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the <see cref="Identity"/> fucntion;
         /// </returns>
-        public object Invoke() => funclib.Core.Identity;
+        public object Invoke() => funclib.core.Identity;
         /// <summary>
         /// Takes a set of functions and returns a function that is the composition of
         /// those functions. The returned <see cref="Function"/> takes a variable number 

@@ -7,155 +7,347 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using static funclib.core;
+using funclib;
 
 namespace CoreGenerator
 {
     class Program
     {
+        const string MODIFIER = ":modifier";
+        const string NAME = ":name";
+        const string FULLNAME = ":full-name";
+        const string COMMENTS = ":comments";
+        const string PRIVATENAME = ":private-name";
+        const string TYPEDPARAMTERS = ":typed-parameters";
+        const string RETURNTYPE = ":return-type";
+        const string PARAMETERS = ":parameters";
+        const string PARAMETERLIST = ":parameter-list";
+
+
+
         static void Main(string[] args)
         {
             var sw = Stopwatch.StartNew();
             var dir = new DirectoryInfo(AppContext.BaseDirectory).Parent.Parent.Parent.Parent.Parent.FullName + @"\src\funclib";
             var files = GetClassFiles(dir + @"\Components\Core");
 
-            var lines = new List<string>();
-            lines.Add($"// Generated on {DateTime.Now}");
-            lines.Add("using funclib.Collections;");
-            lines.Add("using funclib.Components.Core;");
-            lines.Add("using System;");
-            lines.Add("");
-            lines.Add("namespace funclib");
-            lines.Add("{");
-            lines.Add("\tpublic static class Core");
-            lines.Add("\t{");
-            lines.Add("\t\t#region Properties");
-            lines.AddRange(GenerateProperties(files).Select(x => "\t\t" + x));
-            lines.Add("\t\t#endregion");
-            lines.Add("\t\t#region Methods");
-            lines.AddRange(GenerateMethods(files).Select(x => "\t\t" + x));
-            lines.Add("\t\t#endregion");
-            lines.Add("\t}");
-            lines.Add("}");
+            //var lines = new List<string>();
+            //lines.Add($"// Generated on {DateTime.Now}");
+            //lines.Add("using funclib.Collections;");
+            //lines.Add("using funclib.Components.Core;");
+            //lines.Add("using System;");
+            //lines.Add("");
+            //lines.Add("namespace funclib");
+            //lines.Add("{");
+            //lines.Add("\tpublic static class Core");
+            //lines.Add("\t{");
+            //lines.Add("\t\t#region Properties");
+            //lines.AddRange(GenerateProperties(files).Select(x => "\t\t" + x));
+            //lines.Add("\t\t#endregion");
+            //lines.Add("\t\t#region Methods");
+            //lines.AddRange(GenerateMethods(files).Select(x => "\t\t" + x));
+            //lines.Add("\t\t#endregion");
+            //lines.Add("\t}");
+            //lines.Add("}");
 
-            var source = dir + @"\Core.cs";
+            //var source = dir + @"\Core.cs";
 
-            File.WriteAllLines(source, lines);
-            sw.Stop();
+            //File.WriteAllLines(source, lines);
+            //sw.Stop();
 
             Console.WriteLine($"Time Elapsed: {sw.Elapsed}");
             Console.WriteLine("========== Finished ==========");
             Console.ReadLine();
         }
 
-        static IList<string> GenerateProperties(IList<CSharpSyntaxTree> files) =>
-            files.Aggregate(new List<string>() as IList<string>, (acc, node) => 
-                GetClassDeclarations(node, acc, (a, n) =>
-                {
-                    if (!FilterClasses(n)) return a;
+        
+        static object ConvertToSyntax(object files) => flatten(map(new GetClassDeclaration(), files));
 
-                    var modifier = GetModifier(n.Modifiers);
-                    var className = n.Identifier.Text;
-                    var fullName = GetFullyQualifiedName(n);
-                    var comments = GetComments(n);
-                    var privateName = "__" + className.ToLower();
+        class GetCSFiles :
+            funclib.Components.Core.IFunction<object, object>
+        {
+            public object Invoke(object dir) => filter(new CSExtensionPred(), Directory.GetFiles((string)dir));
+        }
 
-                    a.Add($"static {fullName} {privateName};");
 
-                    if (comments != null)
-                        comments.ForEach(x => a.Add(x));
+        class CSExtensionPred :
+            funclib.Components.Core.IFunction<object, object>
+        {
+            public object Invoke(object path) => Path.GetExtension((string)path) == ".cs";
+        }
 
-                    a.Add($"{modifier} static {fullName} {className} => {privateName} ?? ({privateName} = new {fullName}());");
-                    return a;
-                }));
+        /// <summary>
+        /// Given a CS file return all of the class syntax trees.
+        /// </summary>
+        class GetClassDeclarationSyntax :
+            funclib.Components.Core.IFunction<object, object>
+        {
+            public object Invoke(object file) =>
+                list(CSharpSyntaxTree
+                    .ParseText(File.ReadAllText((string)file))
+                    .GetRoot()
+                    .DescendantNodes()
+                    .OfType<ClassDeclarationSyntax>()
+                    .Where(x => IsChildOfNamespace(x) && IsNotAnAbstractClass(x))
+                    .ToArray());
+        }
 
-        static IList<string> GenerateMethods(IList<CSharpSyntaxTree> files) =>
-            files.Aggregate(new List<string>() as IList<string>, (accumulator, syntaxTree) =>
-                GetClassDeclarations(syntaxTree, accumulator, (acc, classDeclaration) =>
-                    GetMethodDeclarations(classDeclaration, acc, (a, n) =>
-                    {
-                        var className = classDeclaration.Identifier.Text;
-                        var modifier = GetModifier(classDeclaration.Modifiers);
-                        var methodName = n.Identifier.Text;
-                        var returnType = n.ReturnType.ToString();
-                        var typedParameters = classDeclaration.TypeParameterList?.ToString();
+        // given a CSharpSyntaxTree return a map of its class info.
+        class GetClassDeclaration :
+            funclib.Components.Core.IFunction<object, object>
+        {
+            public object Invoke(object node)
+            {
+                var declaration = (ClassDeclarationSyntax)node;
 
-                        if (className == "Function" || className == "FunctionParams")
-                        {
-                            string parameters = "";
-                            string parameterList = "";
-                            List<string> comments = null;
-                            string constructorParams = "";
+                return arrayMap(
+                    MODIFIER, GetModifier(declaration.Modifiers),
+                    NAME, declaration.Identifier.Text,
+                    FULLNAME, GetFullyQualifiedName(declaration),
+                    COMMENTS, GetComments(declaration),
+                    PRIVATENAME, str("__", declaration.Identifier.Text.ToLower()),
+                    TYPEDPARAMTERS, declaration.TypeParameterList?.ToString()
+                    );
+            }
+        }
 
-                            GetConstructorDeclarations(classDeclaration, acc, (a1, n1) =>
-                            {
-                                comments = GetComments(n1);
-                                parameters = n1.ParameterList.ToString();
-                                constructorParams = n1.ParameterList.ToString();
-                                parameterList = GetParameterList(n1.ParameterList);
+        class GetMethodDeclaration :
+            funclib.Components.Core.IFunction<object, object>
+        {
+            public object Invoke(object node)
+            {
+                var declaration = (MethodDeclarationSyntax)node;
 
-                                if (comments != null)
-                                    comments.ForEach(x => a.Add(x));
+                return arrayMap(
+                    MODIFIER, GetModifier(declaration.Modifiers),
+                    NAME, declaration.Identifier.Text,
+                    RETURNTYPE, declaration.ReturnType.ToString(),
+                    PARAMETERS, declaration.ParameterList.ToString(),
+                    PARAMETERLIST, GetParameterList(declaration.ParameterList),
+                    COMMENTS, GetComments(declaration)
+                    );
+            }
+        }
 
-                                a.Add($"{modifier} static {className}{typedParameters} func{typedParameters}{parameters} => new {className}{typedParameters}({string.Join(", ", parameterList)});");
-                                return a;
-                            });
+        class GetConstructorDeclaration :
+            funclib.Components.Core.IFunction<object, object>
+        {
+            public object Invoke(object node)
+            {
+                var declaration = (ConstructorDeclarationSyntax)node;
 
-                            constructorParams = constructorParams.Replace("x", "func").Replace("Func", "IFunction").TrimStart('(').TrimEnd(')');
-                            parameters = n.ParameterList.ToString().TrimStart('(').TrimEnd(')');
-                            parameterList = GetParameterList(n.ParameterList);
-                            comments = GetComments(n);
+                return arrayMap(
+                    COMMENTS, GetComments(declaration),
+                    PARAMETERS, declaration.ParameterList.ToString(),
+                    PARAMETERLIST, GetParameterList(declaration.ParameterList)
+                    );
+            }
+        }
 
-                            if (comments != null)
-                                comments.ForEach(x => a.Add(x));
+        class GetPropertyStatement :
+            funclib.Components.Core.IFunction<object, object>
+        {
+            public object Invoke(object map)
+            {
+                var modifier = get(map, MODIFIER);
+                var fullName = get(map, FULLNAME);
+                var name = FixClassName(get(map, NAME));
+                var privateName = get(map, PRIVATENAME);
 
-                            a.Add($"{modifier} static {returnType} invoke{typedParameters}({constructorParams}{(string.IsNullOrWhiteSpace(parameters) ? "" : ", " + parameters)}) => func.Invoke({string.Join(", ", parameterList)});");
-                        }
-                        else if (className == "LazySeq")
-                        {
-                            GetConstructorDeclarations(classDeclaration, acc, (a1, n1) =>
-                            {
-                                var comments = GetComments(n1);
-                                var parameters = n1.ParameterList.ToString();
-                                var constructorParams = n1.ParameterList.ToString();
-                                var parameterList = GetParameterList(n1.ParameterList);
+                return $"{modifier} static {fullName} {name} => {privateName} ?? ({privateName} = new {fullName}());";
+            }
+        }
 
-                                if (comments != null)
-                                    comments.ForEach(x => a.Add(x));
+        class GetPrivatePropertyStatement :
+            funclib.Components.Core.IFunction<object, object>
+        {
+            public object Invoke(object map)
+            {
+                var fullName = get(map, FULLNAME);
+                var privateName = get(map, PRIVATENAME);
 
-                                a.Add($"{modifier} static {className}{typedParameters} {FixClassName(className)}{typedParameters}{constructorParams} => new {className}{typedParameters}({string.Join(", ", parameterList)});");
-                                return a;
-                            });
-                        }
-                        else if (classDeclaration.DescendantNodes().OfType<BaseListSyntax>().FirstOrDefault().Types.ToString() == "IMacroFunction")
-                        {
-                            GetConstructorDeclarations(classDeclaration, acc, (a1, n1) =>
-                            {
-                                var comments = GetComments(n1);
-                                var parameters = n1.ParameterList.ToString();
-                                var constructorParams = n1.ParameterList.ToString();
-                                var parameterList = GetParameterList(n1.ParameterList);
+                return $"static {fullName} {privateName};";
+            }
+        }
 
-                                if (comments != null)
-                                    comments.ForEach(x => a.Add(x));
+        class GetMacroFunctionStatement :
+            funclib.Components.Core.IFunction<object, object, object, object>
+        {
+            public object Invoke(object classMap, object constructorMap, object methodMap)
+            {
+                var modifier = get(classMap, MODIFIER);
+                var returnType = get(methodMap, RETURNTYPE);
+                var className = get(classMap, NAME);
+                var typedParameters = get(classMap, TYPEDPARAMTERS);
+                var constructorParameters = get(constructorMap, PARAMETERS);
+                var parameterList = apply(Str, interpose(",", get(constructorMap, PARAMETERLIST)));
 
-                                a.Add($"{modifier} static {returnType} {FixClassName(className)}{typedParameters}{constructorParams} => new {className}{typedParameters}({string.Join(", ", parameterList)}).Invoke();");
-                                return a;
-                            });
-                        }
-                        else
-                        {
-                            var parameters = n.ParameterList.ToString();
-                            var parameterList = GetParameterList(n.ParameterList);
-                            var comments = GetComments(n);
+                return $"{modifier} static {returnType} {className}{typedParameters}{constructorParameters} => new {className}{typedParameters}({parameterList}).Invoke();";
+            }
+        }
 
-                            if (comments != null)
-                                comments.ForEach(x => a.Add(x));
+        class GetFunctionStatement :
+            funclib.Components.Core.IFunction<object, object, object, object>
+        {
+            public object Invoke(object classMap, object constructorMap, object methodMap)
+            {
+                var name = "Func";
+                var modifier = get(classMap, MODIFIER);
+                var returnType = get(methodMap, RETURNTYPE);
+                var className = get(classMap, NAME);
+                var typedParameters = get(classMap, TYPEDPARAMTERS);
+                var constructorParameters = get(constructorMap, PARAMETERS);
+                var parameterList = apply(Str, interpose(",", get(constructorMap, PARAMETERLIST)));
 
-                            a.Add($"{modifier} static {returnType} {FixClassName(className)}{typedParameters}{parameters} => {className}.{methodName}({string.Join(", ", parameterList)});");
-                        }
+                return $"{modifier} static {className}{typedParameters} {name}{typedParameters}{constructorParameters} => new {className}{typedParameters}({parameterList});";
+            }
+        }
 
-                        return a;
-                    })));
+        class GetLazySeqStatement :
+            funclib.Components.Core.IFunction<object, object, object, object>
+        {
+            public object Invoke(object classMap, object constructorMap, object methodMap)
+            {
+                var modifier = get(classMap, MODIFIER);
+                var returnType = get(methodMap, RETURNTYPE);
+                var className = get(classMap, NAME);
+                var typedParameters = get(classMap, TYPEDPARAMTERS);
+                var constructorParameters = get(constructorMap, PARAMETERS);
+                var parameterList = apply(Str, interpose(",", get(constructorMap, PARAMETERLIST)));
+
+                return $"{modifier} static {className}{typedParameters} {className}{typedParameters}{constructorParameters} => new {className}{typedParameters}({parameterList});";
+            }
+        }
+
+        class GetMethodStatement :
+            funclib.Components.Core.IFunction<object, object, object, object>
+        {
+            public object Invoke(object classMap, object constructorMap, object methodMap)
+            {
+                var modifier = get(classMap, MODIFIER);
+                var returnType = get(methodMap, RETURNTYPE);
+                var className = get(classMap, NAME);
+                var methodName = get(methodMap, NAME);
+                var typedParameters = get(classMap, TYPEDPARAMTERS);
+                var constructorParameters = get(constructorMap, PARAMETERS);
+                var parameterList = apply(Str, interpose(",", get(constructorMap, PARAMETERLIST)));
+                var parameters = get(methodMap, PARAMETERS);
+
+                return $"{modifier} static {returnType} {className}{typedParameters}{parameters} => {className}.{methodName}({parameterList});";
+            }
+        }
+
+
+        //static IList<string> GenerateProperties(IList<CSharpSyntaxTree> files) =>
+        //        files.Aggregate(new List<string>() as IList<string>, (acc, node) =>
+        //            GetClassDeclarations(node, acc, (a, n) =>
+        //            {
+        //                if (!FilterClasses(n)) return a;
+
+        //                var modifier = GetModifier(n.Modifiers);
+        //                var className = n.Identifier.Text;
+        //                var fullName = GetFullyQualifiedName(n);
+        //                var comments = GetComments(n);
+        //                var privateName = "__" + className.ToLower();
+
+        //                a.Add($"static {fullName} {privateName};");
+
+        //                if (comments != null)
+        //                    comments.ForEach(x => a.Add(x));
+
+        //                a.Add($"{modifier} static {fullName} {className} => {privateName} ?? ({privateName} = new {fullName}());");
+        //                return a;
+        //            }));
+
+        //static IList<string> GenerateMethods(IList<CSharpSyntaxTree> files) =>
+        //    files.Aggregate(new List<string>() as IList<string>, (accumulator, syntaxTree) =>
+        //        GetClassDeclarations(syntaxTree, accumulator, (acc, classDeclaration) =>
+        //            GetMethodDeclarations(classDeclaration, acc, (a, n) =>
+        //            {
+        //                var className = classDeclaration.Identifier.Text;
+        //                var modifier = GetModifier(classDeclaration.Modifiers);
+        //                var methodName = n.Identifier.Text;
+        //                var returnType = n.ReturnType.ToString();
+        //                var typedParameters = classDeclaration.TypeParameterList?.ToString();
+
+        //                if (className == "Function" || className == "FunctionParams")
+        //                {
+        //                    string parameters = "";
+        //                    string parameterList = "";
+        //                    List<string> comments = null;
+        //                    string constructorParams = "";
+
+        //                    GetConstructorDeclarations(classDeclaration, acc, (a1, n1) =>
+        //                    {
+        //                        comments = GetComments(n1);
+        //                        parameters = n1.ParameterList.ToString();
+        //                        constructorParams = n1.ParameterList.ToString();
+        //                        parameterList = GetParameterList(n1.ParameterList);
+
+        //                        if (comments != null)
+        //                            comments.ForEach(x => a.Add(x));
+
+        //                        a.Add($"{modifier} static {className}{typedParameters} Func{typedParameters}{parameters} => new {className}{typedParameters}({string.Join(", ", parameterList)});");
+        //                        return a;
+        //                    });
+
+        //                    constructorParams = constructorParams.Replace("x", "func").Replace("Func", "IFunction").TrimStart('(').TrimEnd(')');
+        //                    parameters = n.ParameterList.ToString().TrimStart('(').TrimEnd(')');
+        //                    parameterList = GetParameterList(n.ParameterList);
+        //                    comments = GetComments(n);
+
+        //                    if (comments != null)
+        //                        comments.ForEach(x => a.Add(x));
+
+        //                    a.Add($"{modifier} static {returnType} Invoke{typedParameters}({constructorParams}{(string.IsNullOrWhiteSpace(parameters) ? "" : ", " + parameters)}) => func.Invoke({string.Join(", ", parameterList)});");
+        //                }
+        //                else if (className == "LazySeq")
+        //                {
+        //                    GetConstructorDeclarations(classDeclaration, acc, (a1, n1) =>
+        //                    {
+        //                        var comments = GetComments(n1);
+        //                        var parameters = n1.ParameterList.ToString();
+        //                        var constructorParams = n1.ParameterList.ToString();
+        //                        var parameterList = GetParameterList(n1.ParameterList);
+
+        //                        if (comments != null)
+        //                            comments.ForEach(x => a.Add(x));
+
+        //                        a.Add($"{modifier} static {className}{typedParameters} {FixClassName(className)}{typedParameters}{constructorParams} => new {className}{typedParameters}({string.Join(", ", parameterList)});");
+        //                        return a;
+        //                    });
+        //                }
+        //                else if (classDeclaration.DescendantNodes().OfType<BaseListSyntax>().FirstOrDefault().Types.ToString() == "IMacroFunction")
+        //                {
+        //                    GetConstructorDeclarations(classDeclaration, acc, (a1, n1) =>
+        //                    {
+        //                        var comments = GetComments(n1);
+        //                        var parameters = n1.ParameterList.ToString();
+        //                        var constructorParams = n1.ParameterList.ToString();
+        //                        var parameterList = GetParameterList(n1.ParameterList);
+
+        //                        if (comments != null)
+        //                            comments.ForEach(x => a.Add(x));
+
+        //                        a.Add($"{modifier} static {returnType} {FixClassName(className)}{typedParameters}{constructorParams} => new {className}{typedParameters}({string.Join(", ", parameterList)}).Invoke();");
+        //                        return a;
+        //                    });
+        //                }
+        //                else
+        //                {
+        //                    var parameters = n.ParameterList.ToString();
+        //                    var parameterList = GetParameterList(n.ParameterList);
+        //                    var comments = GetComments(n);
+
+        //                    if (comments != null)
+        //                        comments.ForEach(x => a.Add(x));
+
+        //                    a.Add($"{modifier} static {returnType} {FixClassName(className)}{typedParameters}{parameters} => {className}.{methodName}({string.Join(", ", parameterList)});");
+        //                }
+
+        //                return a;
+        //            })));
 
         static List<string> GetComments(CSharpSyntaxNode node) =>
             node
@@ -180,13 +372,22 @@ namespace CoreGenerator
                 .Select(x => CSharpSyntaxTree.ParseText(File.ReadAllText(x)))
                 .Cast<CSharpSyntaxTree>()
                 .ToList();
-        
-        static IList<string> GetClassDeclarations(CSharpSyntaxTree syntaxTree, IList<string> seed, Func<IList<string>, ClassDeclarationSyntax, IList<string>> aggregate) =>
-            syntaxTree.GetRoot()
-                    .DescendantNodes()
-                    .OfType<ClassDeclarationSyntax>()
-                    .Where(x => IsChildOfNamespace(x) && IsNotAnAbstractClass(x))
-                    .Aggregate(seed, aggregate);
+
+
+        //static IList<string> GetClassDeclarations(CSharpSyntaxTree syntaxTree, IList<string> seed, Func<IList<string>, ClassDeclaration, IList<string>> aggregate) =>
+        //    syntaxTree.GetRoot()
+        //            .DescendantNodes()
+        //            .OfType<ClassDeclarationSyntax>()
+        //            .Where(x => IsChildOfNamespace(x) && IsNotAnAbstractClass(x))
+        //            .Select(x => new ClassDeclaration()
+        //            {
+        //                Modifier = GetModifier(x.Modifiers),
+        //                Name = x.Identifier.Text,
+        //                FullName = GetFullyQualifiedName(x),
+        //                Comments = GetComments(x),
+        //                PrivateName = $"__{x.Identifier.Text.ToLower()}"
+        //            })
+        //            .Aggregate(seed, aggregate)
 
         static IList<string> GetMethodDeclarations(ClassDeclarationSyntax classDeclaration, IList<string> seed, Func<IList<string>, MethodDeclarationSyntax, IList<string>> aggregate) =>
             classDeclaration
@@ -202,7 +403,7 @@ namespace CoreGenerator
                 .Aggregate(seed, aggregate);
 
         static string GetParameterList(ParameterListSyntax parameters) =>
-            string.Join(", ", 
+            string.Join(", ",
                 parameters.Parameters.Aggregate(new List<string>(), (a, c) =>
                 {
                     a.Add(c.Identifier.Text);
@@ -211,10 +412,12 @@ namespace CoreGenerator
 
 
 
-        static string FixClassName(string name)
+        static string FixClassName(object className)
         {
-            name = Char.ToLowerInvariant(name[0]).ToString()
-                + Char.ToLowerInvariant(name[1]).ToString()
+            var name = className.ToString();
+
+            name = System.Char.ToLowerInvariant(name[0]).ToString()
+                + System.Char.ToLowerInvariant(name[1]).ToString()
                 + name.Substring(2);
 
             switch (name)

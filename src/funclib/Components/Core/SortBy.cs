@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -26,7 +26,7 @@ namespace funclib.Components.Core
         /// order is determined by comparing <see cref="IFunction{T1, TResult}"/> key function.
         /// If no comparator is suppled, uses <see cref="Compare"/>.
         /// </returns>
-        public object Invoke(object keyfn, object coll) => Invoke(keyfn, funclib.Core.Compare, coll);
+        public object Invoke(object keyfn, object coll) => Invoke(keyfn, funclib.core.Compare, coll);
         /// <summary>
         /// Returns a sorted sequence of the items in coll, where the sort
         /// order is determined by comparing <see cref="IFunction{T1, TResult}"/> key function.

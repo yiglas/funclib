@@ -1,7 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -23,7 +23,7 @@ namespace funclib.Components.Core
         {
             if (seq is null) return new Collections.List(x);
             if (seq is ISeq e) return new Collections.Cons(x, e);
-            return new Collections.Cons(x, (ISeq)funclib.Core.seq(seq));
+            return new Collections.Cons(x, (ISeq)funclib.core.seq(seq));
         }
     }
 }

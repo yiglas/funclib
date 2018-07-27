@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Text.RegularExpressions;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Components.Core
 {

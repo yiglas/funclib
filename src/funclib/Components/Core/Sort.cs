@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -22,7 +22,7 @@ namespace funclib.Components.Core
         /// Returns a sorted collection of the items in coll. If no comparator is 
         /// supplied, use <see cref="Compare"/>.
         /// </returns>
-        public object Invoke(object coll) => Invoke(funclib.Core.Compare, coll);
+        public object Invoke(object coll) => Invoke(funclib.core.Compare, coll);
         /// <summary>
         /// Returns a sorted collection of the items in coll. If no comparator is 
         /// supplied, use <see cref="Compare"/>.

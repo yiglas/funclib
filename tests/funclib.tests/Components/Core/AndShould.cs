@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using funclib.Components.Core;
 using System.Collections;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {

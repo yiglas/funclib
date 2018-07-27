@@ -1,7 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -10,7 +10,7 @@ namespace funclib.Components.Core
     {
         public object Invoke(object to, object from) =>
             to is IEditableCollection
-                ? persistentǃ(reduce1(funclib.Core.Conjǃ, transient(to), from))
-                : reduce1(funclib.Core.Conj, to, from);
+                ? persistentǃ(reduce1(funclib.core.Conjǃ, transient(to), from))
+                : reduce1(funclib.core.Conj, to, from);
     }
 }

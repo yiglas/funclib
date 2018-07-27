@@ -1,7 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -39,8 +39,8 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object to, object from) =>
             (bool)isInstance(typeof(IEditableCollection), to)
-                ? persistentǃ(reduce(funclib.Core.Conjǃ, transient(to), from))
-                : reduce(funclib.Core.Conj, to, from);
+                ? persistentǃ(reduce(funclib.core.Conjǃ, transient(to), from))
+                : reduce(funclib.core.Conj, to, from);
         /// <summary>
         /// Returns a new collection consisting of to with all of the items of from conjoined. 
         /// </summary>
@@ -52,7 +52,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object to, object xform, object from) =>
             (bool)isInstance(typeof(IEditableCollection), to)
-                ? persistentǃ(transduce(xform, funclib.Core.Conjǃ, transient(to), from))
-                : transduce(xform, funclib.Core.Conj, to, from);
+                ? persistentǃ(transduce(xform, funclib.core.Conjǃ, transient(to), from))
+                : transduce(xform, funclib.core.Conj, to, from);
     }
 }

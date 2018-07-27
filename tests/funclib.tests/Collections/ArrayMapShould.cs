@@ -3,7 +3,7 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 using System.Text;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Tests.Collections
 {

@@ -1,7 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -18,6 +18,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="Seq"/> of the items in coll in reverse order.
         /// </returns>
-        public object Invoke(object coll) => reduce1(funclib.Core.Conj, list(), coll);
+        public object Invoke(object coll) => reduce1(funclib.core.Conj, list(), coll);
     }
 }

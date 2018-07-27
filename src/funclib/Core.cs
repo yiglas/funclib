@@ -5,7 +5,7 @@ using System;
 
 namespace funclib
 {
-	public static class Core
+	public static class core
 	{
 		#region Properties
 		static funclib.Components.Core.AddWatch __addwatch;

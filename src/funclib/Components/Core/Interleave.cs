@@ -1,7 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -61,10 +61,10 @@ namespace funclib.Components.Core
         public object Invoke(object c1, object c2, params object[] colls) =>
             lazySeq(() =>
             {
-                var ss = map(funclib.Core.Seq, conj(seq(colls), c2, c1));
-                if ((bool)isEvery(funclib.Core.Identity, ss))
+                var ss = map(funclib.core.Seq, conj(seq(colls), c2, c1));
+                if ((bool)isEvery(funclib.core.Identity, ss))
                 {
-                    return concat(map(funclib.Core.First, ss), apply(this, map(funclib.Core.Rest, ss)));
+                    return concat(map(funclib.core.First, ss), apply(this, map(funclib.core.Rest, ss)));
                 }
                 return null;
             });

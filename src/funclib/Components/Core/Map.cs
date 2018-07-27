@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -135,10 +135,10 @@ namespace funclib.Components.Core
             object step(object cs) =>
                 lazySeq(() =>
                 {
-                    var ss = Invoke(funclib.Core.Seq, cs);
-                    if ((bool)isEvery(funclib.Core.Identity, ss))
+                    var ss = Invoke(funclib.core.Seq, cs);
+                    if ((bool)isEvery(funclib.core.Identity, ss))
                     {
-                        return cons(Invoke(funclib.Core.First, ss), step(Invoke(funclib.Core.Rest, ss)));
+                        return cons(Invoke(funclib.core.First, ss), step(Invoke(funclib.core.Rest, ss)));
                     }
 
                     return null;

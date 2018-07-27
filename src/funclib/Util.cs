@@ -7,7 +7,7 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib
 {

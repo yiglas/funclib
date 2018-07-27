@@ -1,7 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -21,7 +21,7 @@ namespace funclib.Components.Core
         public object Invoke(object coll) =>
             (bool)isSet(coll)
                 ? coll
-                : coll is IReduce r ? persistentǃ(r.Reduce(funclib.Core.Conjǃ, transient(hashSet())))
-                : persistentǃ(reduce1(funclib.Core.Conjǃ, transient(hashSet()), coll));
+                : coll is IReduce r ? persistentǃ(r.Reduce(funclib.core.Conjǃ, transient(hashSet())))
+                : persistentǃ(reduce1(funclib.core.Conjǃ, transient(hashSet()), coll));
     }
 }

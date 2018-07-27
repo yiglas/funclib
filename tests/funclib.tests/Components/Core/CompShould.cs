@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Text;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -38,7 +38,7 @@ namespace funclib.Tests.Components.Core
         public void Comp_should_return_a_function_that_takes_no_parameters()
         {
             var expected = true;
-            var actual = comp(funclib.Core.Boolean, And);
+            var actual = comp(funclib.core.Boolean, And);
 
             Assert.AreEqual(expected, invoke(actual));
         }
@@ -47,7 +47,7 @@ namespace funclib.Tests.Components.Core
         public void Comp_should_return_a_function_that_take_one_parameter()
         {
             var expected = false;
-            var actual = comp(funclib.Core.Boolean, And);
+            var actual = comp(funclib.core.Boolean, And);
 
             Assert.AreEqual(expected, invoke(actual, false));
         }
@@ -66,7 +66,7 @@ namespace funclib.Tests.Components.Core
         public void Comp_should_return_a_function_that_take_three_parameter()
         {
             var expected = true;
-            var actual = comp(funclib.Core.Boolean, And);
+            var actual = comp(funclib.core.Boolean, And);
 
             Assert.AreEqual(expected, invoke(actual, true, true, true));
         }

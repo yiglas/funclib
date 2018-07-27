@@ -1,7 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -186,7 +186,7 @@ namespace funclib.Components.Core
         {
             var r = new Atom(x);
 
-            var opts = apply(funclib.Core.HashMap, options);
+            var opts = apply(funclib.core.HashMap, options);
             var validator = get(opts, ":validator", get(opts, "validator"));
             if (!(validator is null))
                 r.SetValidator((IFunction)validator);

@@ -1,7 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -49,7 +49,7 @@ namespace funclib.Components.Core
             #region Overrides
             public override object Invoke(object result, object input)
             {
-                var i = new VSwapǃ(this._iv, funclib.Core.Inc).Invoke();
+                var i = new VSwapǃ(this._iv, funclib.core.Inc).Invoke();
                 if ((bool)isZero(rem(i, this._n)))
                 {
                     return invoke(this._rf, result, input);

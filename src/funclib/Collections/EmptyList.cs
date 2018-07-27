@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 using System.Text;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Collections
 {

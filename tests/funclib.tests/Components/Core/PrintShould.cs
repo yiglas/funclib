@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {

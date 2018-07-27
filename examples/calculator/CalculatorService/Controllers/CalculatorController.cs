@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static funclib.Core;
+using static funclib.core;
 using Microsoft.AspNetCore.Mvc;
 using funclib.Components.Core;
 

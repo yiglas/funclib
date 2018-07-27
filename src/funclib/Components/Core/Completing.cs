@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -8,7 +8,7 @@ namespace funclib.Components.Core
         IFunction<object, object>,
         IFunction<object, object, object>
     {
-        public object Invoke(object f) => Invoke(f, funclib.Core.Identity);
+        public object Invoke(object f) => Invoke(f, funclib.core.Identity);
         public object Invoke(object f, object cf) => new TransducerFunction(f, cf);
 
         public class TransducerFunction :

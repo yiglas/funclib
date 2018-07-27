@@ -3,7 +3,7 @@ using funclib.Components.Core;
 using System;
 using System.Text;
 using System.Threading;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Collections
 {

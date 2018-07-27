@@ -1,7 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -27,7 +27,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object f, params object[] maps)
         {
-            if ((bool)truthy(some(funclib.Core.Identity, maps)))
+            if ((bool)truthy(some(funclib.core.Identity, maps)))
             {
                 return reduce1(func<object, object, object>(merge2), maps);
             }

@@ -1,7 +1,7 @@
 ﻿using funclib.Collections;
 using System;
 using System.Text;
-using static funclib.Core;
+using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -26,7 +26,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(params object[] maps)
         {
-            if ((bool)truthy(some(funclib.Core.Identity, maps)))
+            if ((bool)truthy(some(funclib.core.Identity, maps)))
             {
                 return reduce1(func((object _1, object _2) => conj(or(_1, hashMap()), _2)), maps);
             }
