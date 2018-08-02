@@ -1,8 +1,9 @@
-﻿[![Build Status](https://travis-ci.org/yiglas/funclib.svg?branch=master)](https://travis-ci.org/yiglas/funclib) [![License](https://img.shields.io/badge/License-EPL%201.0-red.svg)](https://opensource.org/licenses/EPL-1.0)
+﻿[![License](https://img.shields.io/badge/License-EPL%201.0-red.svg)](https://opensource.org/licenses/EPL-1.0)
 
 # funclib
 
 Functional Library for C# that follows the Clojure idiom.
+
 
 
 1. This style forces you to follow the Single Responsibility method.
@@ -12,12 +13,11 @@ Functional Library for C# that follows the Clojure idiom.
 5. how to add your own functions.
 
 
-
 # Funcitons
 
 Each function has two different access methods. 
 
-The first method is the standard c# naming style:
+The first method is the standard C# naming style:
 ```csharp
 using funclib.Compoents.Core;
 ...
@@ -32,9 +32,9 @@ using static funclib.Core;
 ...
 
 var mapVector = map(Inc, vector(1, 2, 3, 4, 5));
-var mapVector = Map(inc, Vector(1, 2, 3, 4, 5));
+// var mapVector = Map(inc, Vector(1, 2, 3, 4, 5));
 var b = isVector(vector(1, 2, 3));
-var b = IsVector(Vector(1, 2, 4));
+// var b = IsVector(Vector(1, 2, 4));
 // => [2, 3, 4, 5, 6]
 ```
 
@@ -42,14 +42,15 @@ From the example above there are a few things to note.
 
 1. Using a C# 6 feature: `using static`. This feature allows you to remove a explicit reference to the type when invoking a static method.
 
-2. The use of the lower case function name for `map`. To distinguish between the different functions and the instantiation of the function's class, I choose to use lower case function name.
+2. The use of the lower case function name for `map`. To distinguish between the different functions and the instantiation of the 
+function's class, I choose to use lower case function name. I am still trying to figure out if using lower case for methods or I should
+flip it to be upper case for methods and lower case for properties. If anyone has any suggests as to why please let me know.
 
-3. The use of the capital name of `Inc`. 
+3. The use of the capital name of `Inc`. Again this is to distinguish between a function and a property.
 
 
 
 # To Do:
-* Implement Atom data structure
 * Missing functions:
 	- read
 	- read line
