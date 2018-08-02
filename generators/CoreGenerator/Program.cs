@@ -146,7 +146,7 @@ namespace CoreGenerator
         {
             public object Invoke(object map)
             {
-
+                return null;
             }
         }
 
