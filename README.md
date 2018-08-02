@@ -1,5 +1,3 @@
-﻿[![Build Status](https://travis-ci.org/yiglas/funclib.svg?branch=master)](https://travis-ci.org/yiglas/funclib)
-
 # FunctionalLibrary
 
 Functional Library for C# that follows the Clojure idiom.
