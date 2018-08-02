@@ -1,4 +1,5 @@
 ﻿using funclib.Components.Core;
+using funclib.Components.Core.Generic;
 using funclib.Exceptions;
 using NUnit.Framework;
 using System;

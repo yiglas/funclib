@@ -1,4 +1,5 @@
-﻿using System;
+﻿using funclib.Components.Core.Generic;
+using System;
 using System.Diagnostics;
 using System.Text;
 using static funclib.core;

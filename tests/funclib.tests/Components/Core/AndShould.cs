@@ -6,6 +6,7 @@ using System.Text;
 using funclib.Components.Core;
 using System.Collections;
 using static funclib.core;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Tests.Components.Core
 {

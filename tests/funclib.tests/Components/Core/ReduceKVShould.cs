@@ -1,4 +1,5 @@
 ﻿using funclib.Components.Core;
+using funclib.Components.Core.Generic;
 using NUnit.Framework;
 using System;
 using System.Text;

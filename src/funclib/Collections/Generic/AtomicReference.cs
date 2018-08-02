@@ -3,7 +3,7 @@ using System.Text;
 using System.Threading;
 using static funclib.core;
 
-namespace funclib.Collections
+namespace funclib.Collections.Generic
 {
     public class AtomicReference<T>
         where T : class

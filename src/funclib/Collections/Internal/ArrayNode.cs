@@ -1,4 +1,5 @@
-﻿using System;
+﻿using funclib.Collections.Generic;
+using System;
 using System.Text;
 using System.Threading;
 using funclib.Components.Core;

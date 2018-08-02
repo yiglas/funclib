@@ -1,4 +1,5 @@
-﻿using funclib.Exceptions;
+﻿using funclib.Components.Core.Generic;
+using funclib.Exceptions;
 using System;
 using System.Text;
 using static funclib.core;

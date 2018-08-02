@@ -1,6 +1,7 @@
 // Generated on 7/25/2018 12:06:51 PM
 using funclib.Collections;
 using funclib.Components.Core;
+using funclib.Components.Core.Generic;
 using System;
 
 namespace funclib

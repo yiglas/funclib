@@ -1,18 +1,16 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using funclib.Components.Core.Generic;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using static funclib.core;
-using funclib;
 
 namespace CoreGenerator
 {
-    class Program
+    public class Program
     {
         const string MODIFIER = ":modifier";
         const string NAME = ":name";
@@ -28,74 +26,72 @@ namespace CoreGenerator
 
         static void Main(string[] args)
         {
-            var sw = Stopwatch.StartNew();
-            var dir = new DirectoryInfo(AppContext.BaseDirectory).Parent.Parent.Parent.Parent.Parent.FullName + @"\src\funclib";
-            var files = GetClassFiles(dir + @"\Components\Core");
+            //var sw = Stopwatch.StartNew();
+            //var dir = new DirectoryInfo(AppContext.BaseDirectory).Parent.Parent.Parent.Parent.Parent.FullName + @"\src\funclib";
+            //var files = GetClassFiles(dir + @"\Components\Core");
 
-            //var lines = new List<string>();
-            //lines.Add($"// Generated on {DateTime.Now}");
-            //lines.Add("using funclib.Collections;");
-            //lines.Add("using funclib.Components.Core;");
-            //lines.Add("using System;");
-            //lines.Add("");
-            //lines.Add("namespace funclib");
-            //lines.Add("{");
-            //lines.Add("\tpublic static class Core");
-            //lines.Add("\t{");
-            //lines.Add("\t\t#region Properties");
-            //lines.AddRange(GenerateProperties(files).Select(x => "\t\t" + x));
-            //lines.Add("\t\t#endregion");
-            //lines.Add("\t\t#region Methods");
-            //lines.AddRange(GenerateMethods(files).Select(x => "\t\t" + x));
-            //lines.Add("\t\t#endregion");
-            //lines.Add("\t}");
-            //lines.Add("}");
+            ////var lines = new List<string>();
+            ////lines.Add($"// Generated on {DateTime.Now}");
+            ////lines.Add("using funclib.Collections;");
+            ////lines.Add("using funclib.Components.Core;");
+            ////lines.Add("using System;");
+            ////lines.Add("");
+            ////lines.Add("namespace funclib");
+            ////lines.Add("{");
+            ////lines.Add("\tpublic static class Core");
+            ////lines.Add("\t{");
+            ////lines.Add("\t\t#region Properties");
+            ////lines.AddRange(GenerateProperties(files).Select(x => "\t\t" + x));
+            ////lines.Add("\t\t#endregion");
+            ////lines.Add("\t\t#region Methods");
+            ////lines.AddRange(GenerateMethods(files).Select(x => "\t\t" + x));
+            ////lines.Add("\t\t#endregion");
+            ////lines.Add("\t}");
+            ////lines.Add("}");
 
-            //var source = dir + @"\Core.cs";
+            ////var source = dir + @"\Core.cs";
 
-            //File.WriteAllLines(source, lines);
-            //sw.Stop();
+            ////File.WriteAllLines(source, lines);
+            ////sw.Stop();
 
-            Console.WriteLine($"Time Elapsed: {sw.Elapsed}");
-            Console.WriteLine("========== Finished ==========");
-            Console.ReadLine();
+            //Console.WriteLine($"Time Elapsed: {sw.Elapsed}");
+            //Console.WriteLine("========== Finished ==========");
+            //Console.ReadLine();
+
+
+            var path = @"C:\_source\DarkHouse\funclib\src\funclib\Components\Core";
+            var files = filter(ExtensionsPredicate, Directory.EnumerateFiles(path));
+            var syntax = map(ConvertToSyntaxNode, files);
+            
+            var classes = map(new GetClassDeclaration(), 
+                filter(ClassDeclarationsPredicate, 
+                    flatten(map(GetDescendantNodes<ClassDeclarationSyntax>(), syntax))));
+
+
+
         }
+
+
+        // remove this once this has been generated!
+        public static Function<object, object> Func(Func<object, object> x) => new Function<object, object>(x);
+
+
+
+
+
+
+        public static object ExtensionsPredicate => Func(file => Path.GetExtension((string)file) == ".cs");
+        public static object ConvertToSyntaxNode => Func(file => CSharpSyntaxTree.ParseText(File.ReadAllText((string)file)).GetRoot());
+        public static object GetDescendantNodes<T>() => Func(node => listS(((CSharpSyntaxNode)node).DescendantNodes().OfType<T>()));
+        public static object IsChildOfNamespace => Func(node => node != null && ((SyntaxNode)node).Parent.Kind() == SyntaxKind.NamespaceDeclaration);
+        public static object IsNotAnAbstractClass => Func(node => node != null && !((BaseTypeDeclarationSyntax)node).Modifiers.Any(x => x.Text == "abstract"));
+        public static object ClassDeclarationsPredicate => Func(node => and(identity(node), invoke(IsChildOfNamespace, node), invoke(IsNotAnAbstractClass, node)));
 
         
-        static object ConvertToSyntax(object files) => flatten(map(new GetClassDeclaration(), files));
-
-        class GetCSFiles :
-            funclib.Components.Core.IFunction<object, object>
-        {
-            public object Invoke(object dir) => filter(new CSExtensionPred(), Directory.GetFiles((string)dir));
-        }
-
-
-        class CSExtensionPred :
-            funclib.Components.Core.IFunction<object, object>
-        {
-            public object Invoke(object path) => Path.GetExtension((string)path) == ".cs";
-        }
-
-        /// <summary>
-        /// Given a CS file return all of the class syntax trees.
-        /// </summary>
-        class GetClassDeclarationSyntax :
-            funclib.Components.Core.IFunction<object, object>
-        {
-            public object Invoke(object file) =>
-                list(CSharpSyntaxTree
-                    .ParseText(File.ReadAllText((string)file))
-                    .GetRoot()
-                    .DescendantNodes()
-                    .OfType<ClassDeclarationSyntax>()
-                    .Where(x => IsChildOfNamespace(x) && IsNotAnAbstractClass(x))
-                    .ToArray());
-        }
 
         // given a CSharpSyntaxTree return a map of its class info.
-        class GetClassDeclaration :
-            funclib.Components.Core.IFunction<object, object>
+        public class GetClassDeclaration :
+            IFunction<object, object>
         {
             public object Invoke(object node)
             {
@@ -112,8 +108,8 @@ namespace CoreGenerator
             }
         }
 
-        class GetMethodDeclaration :
-            funclib.Components.Core.IFunction<object, object>
+        public class GetMethodDeclaration :
+            IFunction<object, object>
         {
             public object Invoke(object node)
             {
@@ -130,8 +126,8 @@ namespace CoreGenerator
             }
         }
 
-        class GetConstructorDeclaration :
-            funclib.Components.Core.IFunction<object, object>
+        public class GetConstructorDeclaration :
+            IFunction<object, object>
         {
             public object Invoke(object node)
             {
@@ -145,8 +141,17 @@ namespace CoreGenerator
             }
         }
 
-        class GetPropertyStatement :
-            funclib.Components.Core.IFunction<object, object>
+        public class BuildPropertyStatement :
+            IFunction<object, object>
+        {
+            public object Invoke(object map)
+            {
+
+            }
+        }
+
+        public class GetPropertyStatement :
+            IFunction<object, object>
         {
             public object Invoke(object map)
             {
@@ -159,8 +164,8 @@ namespace CoreGenerator
             }
         }
 
-        class GetPrivatePropertyStatement :
-            funclib.Components.Core.IFunction<object, object>
+        public class GetPrivatePropertyStatement :
+            IFunction<object, object>
         {
             public object Invoke(object map)
             {
@@ -171,8 +176,8 @@ namespace CoreGenerator
             }
         }
 
-        class GetMacroFunctionStatement :
-            funclib.Components.Core.IFunction<object, object, object, object>
+        public class GetMacroFunctionStatement :
+            IFunction<object, object, object, object>
         {
             public object Invoke(object classMap, object constructorMap, object methodMap)
             {
@@ -187,8 +192,8 @@ namespace CoreGenerator
             }
         }
 
-        class GetFunctionStatement :
-            funclib.Components.Core.IFunction<object, object, object, object>
+        public class GetFunctionStatement :
+           IFunction<object, object, object, object>
         {
             public object Invoke(object classMap, object constructorMap, object methodMap)
             {
@@ -204,8 +209,8 @@ namespace CoreGenerator
             }
         }
 
-        class GetLazySeqStatement :
-            funclib.Components.Core.IFunction<object, object, object, object>
+        public class GetLazySeqStatement :
+            IFunction<object, object, object, object>
         {
             public object Invoke(object classMap, object constructorMap, object methodMap)
             {
@@ -220,8 +225,8 @@ namespace CoreGenerator
             }
         }
 
-        class GetMethodStatement :
-            funclib.Components.Core.IFunction<object, object, object, object>
+        public class GetMethodStatement :
+            IFunction<object, object, object, object>
         {
             public object Invoke(object classMap, object constructorMap, object methodMap)
             {
@@ -366,41 +371,41 @@ namespace CoreGenerator
                 ? modifier[0].Text
                 : "internal";
 
-        static IList<CSharpSyntaxTree> GetClassFiles(string directory) =>
-            Directory.EnumerateFiles(directory)
-                .Where(x => Path.GetExtension(x) == ".cs")
-                .Select(x => CSharpSyntaxTree.ParseText(File.ReadAllText(x)))
-                .Cast<CSharpSyntaxTree>()
-                .ToList();
+        //static IList<CSharpSyntaxTree> GetClassFiles(string directory) =>
+        //    Directory.EnumerateFiles(directory)
+        //        .Where(x => Path.GetExtension(x) == ".cs")
+        //        .Select(x => CSharpSyntaxTree.ParseText(File.ReadAllText(x)))
+        //        .Cast<CSharpSyntaxTree>()
+        //        .ToList();
 
 
-        //static IList<string> GetClassDeclarations(CSharpSyntaxTree syntaxTree, IList<string> seed, Func<IList<string>, ClassDeclaration, IList<string>> aggregate) =>
-        //    syntaxTree.GetRoot()
-        //            .DescendantNodes()
-        //            .OfType<ClassDeclarationSyntax>()
-        //            .Where(x => IsChildOfNamespace(x) && IsNotAnAbstractClass(x))
-        //            .Select(x => new ClassDeclaration()
-        //            {
-        //                Modifier = GetModifier(x.Modifiers),
-        //                Name = x.Identifier.Text,
-        //                FullName = GetFullyQualifiedName(x),
-        //                Comments = GetComments(x),
-        //                PrivateName = $"__{x.Identifier.Text.ToLower()}"
-        //            })
-        //            .Aggregate(seed, aggregate)
+        ////static IList<string> GetClassDeclarations(CSharpSyntaxTree syntaxTree, IList<string> seed, Func<IList<string>, ClassDeclaration, IList<string>> aggregate) =>
+        ////    syntaxTree.GetRoot()
+        ////            .DescendantNodes()
+        ////            .OfType<ClassDeclarationSyntax>()
+        ////            .Where(x => IsChildOfNamespace(x) && IsNotAnAbstractClass(x))
+        ////            .Select(x => new ClassDeclaration()
+        ////            {
+        ////                Modifier = GetModifier(x.Modifiers),
+        ////                Name = x.Identifier.Text,
+        ////                FullName = GetFullyQualifiedName(x),
+        ////                Comments = GetComments(x),
+        ////                PrivateName = $"__{x.Identifier.Text.ToLower()}"
+        ////            })
+        ////            .Aggregate(seed, aggregate)
 
-        static IList<string> GetMethodDeclarations(ClassDeclarationSyntax classDeclaration, IList<string> seed, Func<IList<string>, MethodDeclarationSyntax, IList<string>> aggregate) =>
-            classDeclaration
-                .DescendantNodes()
-                .OfType<MethodDeclarationSyntax>()
-                .Where(x => IsInvokeIdentifier(x.Identifier) && IsPublic(x.Modifiers) && IsChildOf(classDeclaration, x))
-                .Aggregate(seed, aggregate);
+        //static IList<string> GetMethodDeclarations(ClassDeclarationSyntax classDeclaration, IList<string> seed, Func<IList<string>, MethodDeclarationSyntax, IList<string>> aggregate) =>
+        //    classDeclaration
+        //        .DescendantNodes()
+        //        .OfType<MethodDeclarationSyntax>()
+        //        .Where(x => IsInvokeIdentifier(x.Identifier) && IsPublic(x.Modifiers) && IsChildOf(classDeclaration, x))
+        //        .Aggregate(seed, aggregate);
 
-        static IList<string> GetConstructorDeclarations(ClassDeclarationSyntax classDeclaration, IList<string> seed, Func<IList<string>, ConstructorDeclarationSyntax, IList<string>> aggregate) =>
-            classDeclaration
-                .DescendantNodes()
-                .OfType<ConstructorDeclarationSyntax>()
-                .Aggregate(seed, aggregate);
+        //static IList<string> GetConstructorDeclarations(ClassDeclarationSyntax classDeclaration, IList<string> seed, Func<IList<string>, ConstructorDeclarationSyntax, IList<string>> aggregate) =>
+        //    classDeclaration
+        //        .DescendantNodes()
+        //        .OfType<ConstructorDeclarationSyntax>()
+        //        .Aggregate(seed, aggregate);
 
         static string GetParameterList(ParameterListSyntax parameters) =>
             string.Join(", ",
@@ -436,8 +441,7 @@ namespace CoreGenerator
 
         static string GetFullyQualifiedName(ClassDeclarationSyntax classDeclaration)
         {
-            NamespaceDeclarationSyntax ns = null;
-            if (!SyntaxNodeHelper.TryGetParentSyntax(classDeclaration, out ns)) return "";
+            if (!SyntaxNodeHelper.TryGetParentSyntax(classDeclaration, out NamespaceDeclarationSyntax ns)) return "";
 
             var nsName = ns.Name.ToString();
             return nsName + "." + classDeclaration.Identifier.ToString();
@@ -463,10 +467,10 @@ namespace CoreGenerator
             return true;
         }
 
-        static bool IsPublic(SyntaxTokenList modifier) => modifier.Count == 1 && modifier[0].Text == "public";
-        static bool IsChildOfNamespace(SyntaxNode node) => node.Parent.Kind() == SyntaxKind.NamespaceDeclaration;
-        static bool IsChildOf(SyntaxNode parent, SyntaxNode child) => child.Parent == parent;
-        static bool IsInvokeIdentifier(SyntaxToken identifier) => identifier.Text == "Invoke";
-        static bool IsNotAnAbstractClass(BaseTypeDeclarationSyntax node) => !node.Modifiers.Any(x => x.Text == "abstract");
+        //static bool IsPublic(SyntaxTokenList modifier) => modifier.Count == 1 && modifier[0].Text == "public";
+        //static bool IsChildOfNamespace(SyntaxNode node) => node.Parent.Kind() == SyntaxKind.NamespaceDeclaration;
+        //static bool IsChildOf(SyntaxNode parent, SyntaxNode child) => child.Parent == parent;
+        //static bool IsInvokeIdentifier(SyntaxToken identifier) => identifier.Text == "Invoke";
+        //static bool IsNotAnAbstractClass(BaseTypeDeclarationSyntax node) => !node.Modifiers.Any(x => x.Text == "abstract");
     }
 }
