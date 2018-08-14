@@ -7,7 +7,7 @@ namespace funclib
 {
     public static class Variables
     {
-        public static TextWriter _out = Console.Out;
+        static TextWriter _out = Console.Out;
         public static TextWriter Out
         {
             get => _out;
@@ -19,7 +19,7 @@ namespace funclib
         }
 
 
-        public static TextWriter _err = Console.Error;
+        static TextWriter _err = Console.Error;
         public static TextWriter Err
         {
             get => _err;
@@ -30,7 +30,7 @@ namespace funclib
             }
         }
 
-        public static TextReader _in = Console.In;
+        static TextReader _in = Console.In;
         public static TextReader In
         {
             get => _in;
@@ -41,6 +41,6 @@ namespace funclib
             }
         }
 
-        public static int _printLevel;
+        static int _printLevel;
     }
 }
