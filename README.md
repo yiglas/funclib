@@ -55,7 +55,6 @@ flip it to be upper case for methods and lower case for properties. If anyone ha
 	- read
 	- read line
 	- read stringmapv
-	- filterv
 	- map indexed
 	- some fn
 	- dedupe
