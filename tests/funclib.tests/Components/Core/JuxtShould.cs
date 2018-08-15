@@ -1,7 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -10,8 +7,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Juxt_should_extract_values_from_a_map()
         {
-            var expected = vector('T', 10);
-            var actual = invoke(juxt(First, Count), "This Rocks");
+            var expected = funclib.Core.Vector('T', 10);
+            var actual = funclib.Core.Invoke(funclib.Core.Juxt(funclib.Core.first, funclib.Core.count), "This Rocks");
 
             Assert.AreEqual(expected, actual);
         }

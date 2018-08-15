@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -39,7 +35,7 @@ namespace funclib.Components.Core
             internal Function(object f)
             {
                 this._f = f;
-                this._mem = atom(arrayMap());
+                this._mem = funclib.Core.Atom(funclib.Core.ArrayMap());
             }
 
             /// <summary>
@@ -51,14 +47,14 @@ namespace funclib.Components.Core
             /// </returns>
             public object Invoke(params object[] args)
             {
-                var e = find(deref(this._mem), args);
-                if ((bool)truthy(e))
+                var e = funclib.Core.Find(funclib.Core.Deref(this._mem), args);
+                if ((bool)funclib.Core.Truthy(e))
                 {
-                    return value(e);
+                    return funclib.Core.Value(e);
                 }
 
-                var ret = apply(this._f, args);
-                swapǃ(this._mem, funclib.core.Assoc, args, ret);
+                var ret = funclib.Core.Apply(this._f, args);
+                funclib.Core.Swapǃ(this._mem, funclib.Core.assoc, args, ret);
                 return ret;
             }
         }

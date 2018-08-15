@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -26,7 +23,7 @@ namespace funclib.Components.Core
         /// calls to it.
         /// </returns>
         public object Invoke(object f) =>
-            lazySeq(() => cons(invoke(f), Invoke(f)));
+            funclib.Core.LazySeq(() => funclib.Core.Cons(funclib.Core.Invoke(f), Invoke(f)));
         /// <summary>
         /// Takes a function of no args, presumably with side effects, and
         /// returns an infinite (or length n if supplied) <see cref="LazySeq"/> of
@@ -39,6 +36,6 @@ namespace funclib.Components.Core
         /// returns an infinite (or length n if supplied) <see cref="LazySeq"/> of
         /// calls to it.
         /// </returns>
-        public object Invoke(object n, object f) => take(n, Invoke(f));
+        public object Invoke(object n, object f) => funclib.Core.Take(n, Invoke(f));
     }
 }

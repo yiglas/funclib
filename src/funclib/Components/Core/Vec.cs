@@ -1,8 +1,5 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Components.Core
 {
@@ -24,7 +21,7 @@ namespace funclib.Components.Core
             if (coll is null) return Collections.Vector.EMPTY;
             else if (coll is ISeq s)
             {
-                var sq = (ISeq)seq(s);
+                var sq = (ISeq)funclib.Core.Seq(s);
                 if (sq is null)
                     return Collections.Vector.EMPTY;
 
@@ -32,7 +29,7 @@ namespace funclib.Components.Core
             }
             else if (coll is System.Collections.IEnumerable e) return Collections.Vector.Create(e);
             else
-                return Collections.Vector.Create((object[])toArray(coll));
+                return Collections.Vector.Create((object[])funclib.Core.ToArray(coll));
         }
     }
 }

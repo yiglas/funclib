@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,17 +7,17 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsSeqable_should_return_true_if_object_is_seqable()
         {
-            Assert.IsTrue((bool)isSeqable(null));
-            Assert.IsTrue((bool)isSeqable(""));
-            Assert.IsTrue((bool)isSeqable(new System.Collections.Generic.List<string>()));
-            Assert.IsTrue((bool)isSeqable(vector()));
-            Assert.IsTrue((bool)isSeqable(lazySeq()));
+            Assert.IsTrue((bool)funclib.Core.IsSeqable(null));
+            Assert.IsTrue((bool)funclib.Core.IsSeqable(""));
+            Assert.IsTrue((bool)funclib.Core.IsSeqable(new System.Collections.Generic.List<string>()));
+            Assert.IsTrue((bool)funclib.Core.IsSeqable(funclib.Core.Vector()));
+            Assert.IsTrue((bool)funclib.Core.IsSeqable(funclib.Core.LazySeq()));
         }
 
         [Test]
         public void IsSeqable_should_return_false_if_not_object_is_seqable()
         {
-            Assert.IsFalse((bool)isReduced(0));
+            Assert.IsFalse((bool)funclib.Core.IsSeqable(0));
         }
     }
 }

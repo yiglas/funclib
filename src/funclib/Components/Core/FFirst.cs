@@ -1,23 +1,20 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns the first item's first item. Same as <see cref="First.Invoke(First.Invoke(object))"/>.
+    /// Returns the funclib.Core.First( item's funclib.Core.First( item. Same as <see cref="First.Invoke(First.Invoke(object))"/>.
     /// </summary>
     public class FFirst :
         IFunction<object, object>
     {
         /// <summary>
-        /// Returns the first item's first item. Same as <see cref="First.Invoke(First.Invoke(object))"/>.
+        /// Returns the funclib.Core.First( item's funclib.Core.First( item. Same as <see cref="First.Invoke(First.Invoke(object))"/>.
         /// </summary>
-        /// <param name="x">Object to return the first item's first item.</param>
+        /// <param name="x">Object to return the funclib.Core.First( item's funclib.Core.First( item.</param>
         /// <returns>
-        /// Returns the first item's first item
+        /// Returns the funclib.Core.First( item's funclib.Core.First( item
         /// </returns>
-        public object Invoke(object x) => first(first(x));
+        public object Invoke(object x) => funclib.Core.First(funclib.Core.First(x));
     }
 }

@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -19,6 +15,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if x is a non-negative <see cref="int"/>, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object n) => and(isInt(n), not(isNeg(n)));
+        public object Invoke(object n) => funclib.Core.And(funclib.Core.IsInt(n), funclib.Core.Not(funclib.Core.IsNeg(n)));
     }
 }

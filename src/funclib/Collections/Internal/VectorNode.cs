@@ -1,6 +1,5 @@
 ﻿using funclib.Collections.Generic;
 using System;
-using System.Text;
 using System.Threading;
 
 namespace funclib.Collections.Internal

@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -25,10 +22,10 @@ namespace funclib.Components.Core
 
             object loop(object i, object xs)
             {
-                var holder = and(isPos(i), seq(xs));
+                var holder = funclib.Core.And(funclib.Core.IsPos(i), funclib.Core.Seq(xs));
 
-                if ((bool)truthy(holder))
-                    return loop(dec(i), rest(holder));
+                if ((bool)funclib.Core.Truthy(holder))
+                    return loop(funclib.Core.Dec(i), funclib.Core.Rest(holder));
 
                 return xs;
             }

@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -40,6 +37,6 @@ namespace funclib.Components.Core
         /// Returns the greatest of the numbers.
         /// </returns>
         public object Invoke(object x, object y, params object[] more) =>
-            reduce1(this, Invoke(x, y), more);
+            funclib.Core.Reduce1(this, Invoke(x, y), more);
     }
 }

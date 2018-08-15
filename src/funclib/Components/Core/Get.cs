@@ -1,9 +1,6 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
+﻿using funclib.Collections;
 using funclib.Collections.Internal;
-using System;
-using System.Text;
-using static funclib.core;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Components.Core
 {
@@ -54,13 +51,13 @@ namespace funclib.Components.Core
         static object GetFromArray(object map, object key)
         {
             int n = Numbers.ConvertToInt(key);
-            return n >= 0 && n < (int)count(map) ? nth(map, n) : null;
+            return n >= 0 && n < (int)funclib.Core.Count(map) ? funclib.Core.Nth(map, n) : null;
         }
 
         static object GetFromArray(object map, object key, object notFound)
         {
             int n = Numbers.ConvertToInt(key);
-            return n >= 0 && n < (int)count(map) ? nth(map, n) : notFound;
+            return n >= 0 && n < (int)funclib.Core.Count(map) ? funclib.Core.Nth(map, n) : notFound;
         }
     }
 }

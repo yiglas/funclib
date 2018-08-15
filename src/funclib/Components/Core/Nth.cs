@@ -1,7 +1,6 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 using System;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace funclib.Components.Core

@@ -1,30 +1,27 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns the first time in the collection. Calls <see cref="Seq"/> on the collection.
+    /// Returns the funclib.Core.First( time in the collection. Calls <see cref="Seq"/> on the collection.
     /// If coll is null, return null.
     /// </summary>
     public class First :
         IFunction<object, object>
     {
         /// <summary>
-        /// Returns the first time in the collection. Calls <see cref="Seq"/> on the collection.
+        /// Returns the funclib.Core.First( time in the collection. Calls <see cref="Seq"/> on the collection.
         /// If coll is null, return null.
         /// </summary>
         /// <param name="coll">An object that is <see cref="Seq"/>able.</param>
         /// <returns>
-        /// Returns the first time in the collection. Calls <see cref="Seq"/> on the collection.
+        /// Returns the funclib.Core.First( time in the collection. Calls <see cref="Seq"/> on the collection.
         /// If coll is null, return null.
         /// </returns>
         public object Invoke(object coll)
         {
-            var enumerate = coll as ISeq ?? (ISeq)seq(coll);
+            var enumerate = coll as ISeq ?? (ISeq)funclib.Core.Seq(coll);
             if (enumerate is null)
                 return null;
             return enumerate.First();

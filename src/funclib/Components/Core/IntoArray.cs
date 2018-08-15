@@ -1,8 +1,6 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -10,7 +8,7 @@ namespace funclib.Components.Core
         IFunction<object, object>,
         IFunction<object, object, object>
     {
-        public object Invoke(object aseq) => Invoke(@class(first(aseq)) ?? typeof(object), aseq);
+        public object Invoke(object aseq) => Invoke(funclib.Core.Class(funclib.Core.First(aseq)) ?? typeof(object), aseq);
         public object Invoke(object type, object aseq)
         {
             var t = (Type)type;

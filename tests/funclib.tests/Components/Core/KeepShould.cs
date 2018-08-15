@@ -1,9 +1,6 @@
 ﻿using funclib.Components.Core;
 using funclib.Components.Core.Generic;
 using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -12,8 +9,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Keep_should_return_return_return_list_with_results()
         {
-            var expected = list(false, true, false, true, false, true, false, true, false);
-            var actual = keep(new IsEven(), range(1, 10));
+            var expected = funclib.Core.List(false, true, false, true, false, true, false, true, false);
+            var actual = funclib.Core.Keep(new IsEven(), funclib.Core.Range(1, 10));
 
             Assert.AreEqual(expected, actual);
         }
@@ -21,8 +18,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Keep_should_return_values_from_function()
         {
-            var expected = list(1, 3, 5, 7, 9);
-            var actual = keep(new Function<object, object>(x => (bool)isOdd(x) ? x : null), range(10));
+            var expected = funclib.Core.List(1, 3, 5, 7, 9);
+            var actual = funclib.Core.Keep(new Function<object, object>(x => (bool)funclib.Core.IsOdd(x) ? x : null), funclib.Core.Range(10));
 
             Assert.AreEqual(expected, actual);
         }
@@ -30,8 +27,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Keep_should_be_able_to_be_used_with_maps()
         {
-            var expected = list(1, 2);
-            var actual = keep(arrayMap(":a", 1, ":b", 2, ":c", 3), vector(":a", ":b", ":d"));
+            var expected = funclib.Core.List(1, 2);
+            var actual = funclib.Core.Keep(funclib.Core.ArrayMap(":a", 1, ":b", 2, ":c", 3), funclib.Core.Vector(":a", ":b", ":d"));
 
             Assert.AreEqual(expected, actual);
         }
@@ -39,8 +36,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Keep_should_be_able_to_be_used_with_sets()
         {
-            var expected = list(2, 3);
-            var actual = toArray(keep(hashSet(0, 1, 2, 3), hashSet(2, 3, 4, 5)));
+            var expected = funclib.Core.List(2, 3);
+            var actual = funclib.Core.ToArray(funclib.Core.Keep(funclib.Core.HashSet(0, 1, 2, 3), funclib.Core.HashSet(2, 3, 4, 5)));
 
             Assert.AreEqual(expected, actual);
         }

@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -15,10 +11,10 @@ namespace funclib.Components.Core
         /// <summary>
         /// Same as <see cref="Next.Invoke(First.Invoke(object))"/>.
         /// </summary>
-        /// <param name="x">Object to return the first item's next item.</param>
+        /// <param name="x">Object to return the funclib.Core.First( item's next item.</param>
         /// <returns>
-        /// Returns the first item's next item
+        /// Returns the funclib.Core.First( item's next item
         /// </returns>
-        public object Invoke(object x) => next(first(x));
+        public object Invoke(object x) => funclib.Core.Next(funclib.Core.First(x));
     }
 }

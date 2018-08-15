@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -19,6 +15,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if x is not <see cref="null"/>, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object x) => not(isNull(x));
+        public object Invoke(object x) => funclib.Core.Not(funclib.Core.IsNull(x));
     }
 }

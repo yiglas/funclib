@@ -1,7 +1,5 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
 using System.Linq;
-using System.Text;
 
 namespace funclib.Components.Core
 {

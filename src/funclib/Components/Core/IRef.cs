@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using funclib.Collections;
 
 namespace funclib.Components.Core
 {

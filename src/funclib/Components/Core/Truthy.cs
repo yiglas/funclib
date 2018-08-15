@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -21,6 +18,6 @@ namespace funclib.Components.Core
         /// Returns <see cref="true"/> if source is a logical true. i.e.:
         /// source is not null or if source is boolean true.
         /// </returns>
-        public object Invoke(object source) => !(bool)falsy(source);
+        public object Invoke(object source) => !(bool)funclib.Core.Falsy(source);
     }
 }

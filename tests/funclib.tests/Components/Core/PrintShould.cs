@@ -1,10 +1,7 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
 using System.IO;
-using System.Text;
 using System.Text.RegularExpressions;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -27,7 +24,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Print_should_write_string()
         {
-            print("Foo");
+            funclib.Core.Print("Foo");
             Assert.AreEqual(this._writer.ToString(), "Foo");
         }
 
@@ -35,7 +32,7 @@ namespace funclib.Tests.Components.Core
         public void Print_should_write_double()
         {
             var expected = 10D;
-            print(expected);
+            funclib.Core.Print(expected);
             Assert.AreEqual(this._writer.ToString(), "10.0");
         }
 
@@ -43,7 +40,7 @@ namespace funclib.Tests.Components.Core
         public void Print_should_write_float()
         {
             float expected = 10.0F;
-            print(expected);
+            funclib.Core.Print(expected);
             Assert.AreEqual(this._writer.ToString(), "10.0");
         }
 
@@ -51,7 +48,7 @@ namespace funclib.Tests.Components.Core
         public void Print_should_write_short()
         {
             var expected = (short)10;
-            print(expected);
+            funclib.Core.Print(expected);
             Assert.AreEqual(this._writer.ToString(), "10");
         }
 
@@ -59,7 +56,7 @@ namespace funclib.Tests.Components.Core
         public void Print_should_write_int()
         {
             var expected = 10;
-            print(expected);
+            funclib.Core.Print(expected);
             Assert.AreEqual(this._writer.ToString(), "10");
         }
 
@@ -67,7 +64,7 @@ namespace funclib.Tests.Components.Core
         public void Print_should_write_long()
         {
             var expected = (long)10;
-            print(expected);
+            funclib.Core.Print(expected);
             Assert.AreEqual(this._writer.ToString(), "10");
         }
 
@@ -75,7 +72,7 @@ namespace funclib.Tests.Components.Core
         public void Print_should_write_ushort()
         {
             var expected = (ushort)10;
-            print(expected);
+            funclib.Core.Print(expected);
             Assert.AreEqual(this._writer.ToString(), "10");
         }
 
@@ -83,7 +80,7 @@ namespace funclib.Tests.Components.Core
         public void Print_should_write_uint()
         {
             var expected = (uint)10;
-            print(expected);
+            funclib.Core.Print(expected);
             Assert.AreEqual(this._writer.ToString(), "10");
         }
 
@@ -91,7 +88,7 @@ namespace funclib.Tests.Components.Core
         public void Print_should_write_ulong()
         {
             var expected = (ulong)10;
-            print(expected);
+            funclib.Core.Print(expected);
             Assert.AreEqual(this._writer.ToString(), "10");
         }
 
@@ -99,7 +96,7 @@ namespace funclib.Tests.Components.Core
         public void Print_should_write_byte()
         {
             var expected = (byte)10;
-            print(expected);
+            funclib.Core.Print(expected);
             Assert.AreEqual(this._writer.ToString(), "10");
         }
 
@@ -107,7 +104,7 @@ namespace funclib.Tests.Components.Core
         public void Print_should_write_sbyte()
         {
             var expected = (sbyte)10;
-            print(expected);
+            funclib.Core.Print(expected);
             Assert.AreEqual(this._writer.ToString(), "10");
         }
 
@@ -115,7 +112,7 @@ namespace funclib.Tests.Components.Core
         public void Print_should_write_bool()
         {
             var expected = true;
-            print(expected);
+            funclib.Core.Print(expected);
             Assert.AreEqual(this._writer.ToString(), "true");
         }
 
@@ -123,7 +120,7 @@ namespace funclib.Tests.Components.Core
         public void Print_should_write_char()
         {
             var expected = 'c';
-            print(expected);
+            funclib.Core.Print(expected);
             Assert.AreEqual(this._writer.ToString(), "\\c");
         }
 
@@ -131,7 +128,7 @@ namespace funclib.Tests.Components.Core
         public void Print_should_write_type()
         {
             var expected = 'c'.GetType();
-            print(expected);
+            funclib.Core.Print(expected);
             Assert.AreEqual(this._writer.ToString(), "System.Char");
         }
 
@@ -139,39 +136,39 @@ namespace funclib.Tests.Components.Core
         public void Print_should_write_regex()
         {
             var expected = new Regex("\\d+");
-            print(expected);
+            funclib.Core.Print(expected);
             Assert.AreEqual(this._writer.ToString(), "#\"\\d+\"");
         }
 
         [Test]
         public void Print_should_write_ISeq()
         {
-            var expected = seq(list(1, 2, 3));
-            print(expected);
+            var expected = funclib.Core.Seq(funclib.Core.List(1, 2, 3));
+            funclib.Core.Print(expected);
             Assert.AreEqual(this._writer.ToString(), "(1 2 3)");
         }
 
         [Test]
         public void Print_should_write_IVector()
         {
-            var expected = vector(1, 2, 3);
-            print(expected);
+            var expected = funclib.Core.Vector(1, 2, 3);
+            funclib.Core.Print(expected);
             Assert.AreEqual(this._writer.ToString(), "[1 2 3]");
         }
 
         [Test]
         public void Print_should_write_IMap()
         {
-            var expected = arrayMap(":a", 1, ":b", 2);
-            print(expected);
+            var expected = funclib.Core.ArrayMap(":a", 1, ":b", 2);
+            funclib.Core.Print(expected);
             Assert.AreEqual(this._writer.ToString(), "{\":a\" 1, \":b\" 2}");
         }
 
         [Test]
         public void Print_should_write_ISet()
         {
-            var expected = hashSet(1, 2, 3);
-            print(expected);
+            var expected = funclib.Core.HashSet(1, 2, 3);
+            funclib.Core.Print(expected);
             Assert.AreEqual(this._writer.ToString(), "#{1 2 3}");
         }
 
@@ -179,7 +176,7 @@ namespace funclib.Tests.Components.Core
         public void Print_should_write_DateTime()
         {
             var expected = DateTime.Now;
-            print(expected);
+            funclib.Core.Print(expected);
             Assert.AreEqual(this._writer.ToString(), $"#inst \"{expected.ToString("yyyy-MM-ddTHH:mm:ss.fff-00:00")}\"");
         }
 
@@ -187,7 +184,7 @@ namespace funclib.Tests.Components.Core
         public void Print_should_write_DateTimeOffset()
         {
             var expected = DateTimeOffset.Now;
-            print(expected);
+            funclib.Core.Print(expected);
             Assert.AreEqual(this._writer.ToString(), $"#inst \"{expected.ToString("yyyy-MM-ddTHH:mm:ss.fffzzzz")}\"");
         }
 
@@ -195,7 +192,7 @@ namespace funclib.Tests.Components.Core
         public void Print_should_write_guid()
         {
             var expected = Guid.NewGuid();
-            print(expected);
+            funclib.Core.Print(expected);
             Assert.AreEqual(this._writer.ToString(), $"#uuid \"{expected}\"");
         }
 
@@ -203,7 +200,7 @@ namespace funclib.Tests.Components.Core
         public void Print_should_write_Timespan()
         {
             var expected = TimeSpan.FromDays(1);
-            print(expected);
+            funclib.Core.Print(expected);
             Assert.AreEqual(this._writer.ToString(), $"1.00:00:00");
         }
     }

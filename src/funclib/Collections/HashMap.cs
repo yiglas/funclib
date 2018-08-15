@@ -1,8 +1,6 @@
 ﻿using funclib.Collections.Internal;
 using funclib.Components.Core;
 using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Collections
 {
@@ -179,7 +177,7 @@ namespace funclib.Collections
 
         public object ReduceKV(object f, object init)
         {
-            init = HasNull ? invoke(f, init, null, NullValue) : init;
+            init = HasNull ? funclib.Core.Invoke(f, init, null, NullValue) : init;
 
             if (init is Reduced r)
                 return r.Deref();

@@ -1,8 +1,5 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Components.Core
 {
@@ -22,7 +19,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="ITransientCollection"/> for an empty <see cref="Collections.Vector"/>.
         /// </returns>
-        public object Invoke() => transient(vector());
+        public object Invoke() => funclib.Core.Transient(funclib.Core.Vector());
         /// <summary>
         /// Adds x to the transient collection. and returns coll. The addition may happen 
         /// at different places depending on the concrete type of the collection.

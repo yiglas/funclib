@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
+﻿using System;
 
 namespace funclib.Collections.Internal
 {
@@ -19,7 +15,7 @@ namespace funclib.Collections.Internal
         }
 
         #region Overrides
-        public override int Count => (int)count(this._f) + (int)count(this._rseq);
+        public override int Count => (int)funclib.Core.Count(this._f) + (int)funclib.Core.Count(this._rseq);
         public override object First() => this._f.First();
         public override ISeq Next()
         {

@@ -1,8 +1,5 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Components.Core
 {
@@ -20,9 +17,9 @@ namespace funclib.Components.Core
         /// Returns a <see cref="Collections.HashSet"/> of the distinct elements of coll.
         /// </returns>
         public object Invoke(object coll) =>
-            (bool)isSet(coll)
+            (bool)funclib.Core.IsSet(coll)
                 ? coll
-                : coll is IReduce r ? persistentǃ(r.Reduce(funclib.core.Conjǃ, transient(hashSet())))
-                : persistentǃ(reduce1(funclib.core.Conjǃ, transient(hashSet()), coll));
+                : coll is IReduce r ? funclib.Core.Persistentǃ(r.Reduce(funclib.Core.conjǃ, funclib.Core.Transient(funclib.Core.HashSet())))
+                : funclib.Core.Persistentǃ(funclib.Core.Reduce1(funclib.Core.conjǃ, funclib.Core.Transient(funclib.Core.HashSet()), coll));
     }
 }

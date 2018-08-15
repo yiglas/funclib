@@ -1,13 +1,10 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
     /// <summary>
     /// Returns a <see cref="LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
-    /// to the set of first items of each coll, followed by applying <see cref="IFunction"/> to the set
+    /// to the set of funclib.Core.First( items of each coll, followed by applying <see cref="IFunction"/> to the set
     /// of second items in each coll, until any one of the colls are exhausted.  Any remaining items in 
     /// other colls are ignored. <see cref="IFunction"/> should accept number of colls arguments.
     /// </summary>
@@ -18,10 +15,10 @@ namespace funclib.Components.Core
         IFunction<object, object, object, object, object>,
         IFunctionParams<object, object, object, object, object, object>
     {
-        public object Invoke(object f) => func<object, object>(rf => new TransducerFunction(f, rf));
+        public object Invoke(object f) => funclib.Core.Func(rf => new TransducerFunction(f, rf));
         /// <summary>
         /// Returns a <see cref="LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
-        /// to the set of first items of each coll, followed by applying <see cref="IFunction"/> to the set
+        /// to the set of funclib.Core.First( items of each coll, followed by applying <see cref="IFunction"/> to the set
         /// of second items in each coll, until any one of the colls are exhausted.  Any remaining items in 
         /// other colls are ignored. <see cref="IFunction"/> should accept number of colls arguments.
         /// </summary>
@@ -29,36 +26,36 @@ namespace funclib.Components.Core
         /// <param name="coll">A collection of items.</param>
         /// <returns>
         /// Returns a <see cref="LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
-        /// to the set of first items of each coll, followed by applying <see cref="IFunction"/> to the set
+        /// to the set of funclib.Core.First( items of each coll, followed by applying <see cref="IFunction"/> to the set
         /// of second items in each coll, until any one of the colls are exhausted.  Any remaining items in 
         /// other colls are ignored. <see cref="IFunction"/> should accept number of colls arguments.
         /// </returns>
         public object Invoke(object f, object coll)=> 
-            lazySeq(() =>
+            funclib.Core.LazySeq(() =>
             {
-                var s = seq(coll);
-                if ((bool)truthy(s))
+                var s = funclib.Core.Seq(coll);
+                if ((bool)funclib.Core.Truthy(s))
                 {
-                    if ((bool)isChunkedSeq(s))
+                    if ((bool)funclib.Core.IsChunkedSeq(s))
                     {
-                        var c = chunkFirst(s);
-                        var size = (int)count(c);
-                        var b = (Collections.ChunkBuffer)chunkBuffer(size);
+                        var c = funclib.Core.ChunkFirst(s);
+                        var size = (int)funclib.Core.Count(c);
+                        var b = (Collections.ChunkBuffer)funclib.Core.ChunkBuffer(size);
 
-                        doTimes(size, 
-                            i => chunkAppend(b, invoke(f, nth(c, i))));
+                        funclib.Core.DoTimes(size, 
+                            i => funclib.Core.ChunkAppend(b, funclib.Core.Invoke(f, funclib.Core.Nth(c, i))));
 
-                        return chunkCons(b.Chunk(), Invoke(f, chunkRest(s)));
+                        return funclib.Core.ChunkCons(b.Chunk(), Invoke(f, funclib.Core.ChunkRest(s)));
                     }
                     else
-                        return cons(invoke(f, first(s)), Invoke(f, rest(s)));
+                        return funclib.Core.Cons(funclib.Core.Invoke(f, funclib.Core.First(s)), Invoke(f, funclib.Core.Rest(s)));
                 }
 
                 return null;
             });
         /// <summary>
         /// Returns a <see cref="LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
-        /// to the set of first items of each coll, followed by applying <see cref="IFunction"/> to the set
+        /// to the set of funclib.Core.First( items of each coll, followed by applying <see cref="IFunction"/> to the set
         /// of second items in each coll, until any one of the colls are exhausted.  Any remaining items in 
         /// other colls are ignored. <see cref="IFunction"/> should accept number of colls arguments.
         /// </summary>
@@ -67,25 +64,25 @@ namespace funclib.Components.Core
         /// <param name="c2">A collection of items.</param>
         /// <returns>
         /// Returns a <see cref="LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
-        /// to the set of first items of each coll, followed by applying <see cref="IFunction"/> to the set
+        /// to the set of funclib.Core.First( items of each coll, followed by applying <see cref="IFunction"/> to the set
         /// of second items in each coll, until any one of the colls are exhausted.  Any remaining items in 
         /// other colls are ignored. <see cref="IFunction"/> should accept number of colls arguments.
         /// </returns>
         public object Invoke(object f, object c1, object c2) =>
-            lazySeq(() =>
+            funclib.Core.LazySeq(() =>
             {
-                var s1 = seq(c1);
-                var s2 = seq(c2);
-                if ((bool)truthy(and(s1, s2)))
+                var s1 = funclib.Core.Seq(c1);
+                var s2 = funclib.Core.Seq(c2);
+                if ((bool)funclib.Core.Truthy(funclib.Core.And(s1, s2)))
                 {
-                    return cons(invoke(f, first(s1), first(s2)), Invoke(f, rest(s1), rest(s2)));
+                    return funclib.Core.Cons(funclib.Core.Invoke(f, funclib.Core.First(s1), funclib.Core.First(s2)), Invoke(f, funclib.Core.Rest(s1), funclib.Core.Rest(s2)));
                 }
 
                 return null;
             });
         /// <summary>
         /// Returns a <see cref="LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
-        /// to the set of first items of each coll, followed by applying <see cref="IFunction"/> to the set
+        /// to the set of funclib.Core.First( items of each coll, followed by applying <see cref="IFunction"/> to the set
         /// of second items in each coll, until any one of the colls are exhausted.  Any remaining items in 
         /// other colls are ignored. <see cref="IFunction"/> should accept number of colls arguments.
         /// </summary>
@@ -95,26 +92,26 @@ namespace funclib.Components.Core
         /// <param name="c3">A collection of items.</param>
         /// <returns>
         /// Returns a <see cref="LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
-        /// to the set of first items of each coll, followed by applying <see cref="IFunction"/> to the set
+        /// to the set of funclib.Core.First( items of each coll, followed by applying <see cref="IFunction"/> to the set
         /// of second items in each coll, until any one of the colls are exhausted.  Any remaining items in 
         /// other colls are ignored. <see cref="IFunction"/> should accept number of colls arguments.
         /// </returns>
         public object Invoke(object f, object c1, object c2, object c3) =>
-            lazySeq(() =>
+            funclib.Core.LazySeq(() =>
             {
-                var s1 = seq(c1);
-                var s2 = seq(c2);
-                var s3 = seq(c3);
-                if ((bool)truthy(and(s1, s2, s3)))
+                var s1 = funclib.Core.Seq(c1);
+                var s2 = funclib.Core.Seq(c2);
+                var s3 = funclib.Core.Seq(c3);
+                if ((bool)funclib.Core.Truthy(funclib.Core.And(s1, s2, s3)))
                 {
-                    return cons(invoke(f, first(s1), first(s2), first(s1)), Invoke(f, rest(s1), rest(s2), rest(s3)));
+                    return funclib.Core.Cons(funclib.Core.Invoke(f, funclib.Core.First(s1), funclib.Core.First(s2), funclib.Core.First(s1)), Invoke(f, funclib.Core.Rest(s1), funclib.Core.Rest(s2), funclib.Core.Rest(s3)));
                 }
 
                 return null;
             });
         /// <summary>
         /// Returns a <see cref="LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
-        /// to the set of first items of each coll, followed by applying <see cref="IFunction"/> to the set
+        /// to the set of funclib.Core.First( items of each coll, followed by applying <see cref="IFunction"/> to the set
         /// of second items in each coll, until any one of the colls are exhausted.  Any remaining items in 
         /// other colls are ignored. <see cref="IFunction"/> should accept number of colls arguments.
         /// </summary>
@@ -125,21 +122,21 @@ namespace funclib.Components.Core
         /// <param name="colls">Rest of the collections of items.</param>
         /// <returns>
         /// Returns a <see cref="LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
-        /// to the set of first items of each coll, followed by applying <see cref="IFunction"/> to the set
+        /// to the set of funclib.Core.First( items of each coll, followed by applying <see cref="IFunction"/> to the set
         /// of second items in each coll, until any one of the colls are exhausted.  Any remaining items in 
         /// other colls are ignored. <see cref="IFunction"/> should accept number of colls arguments.
         /// </returns>
         public object Invoke(object f, object c1, object c2, object c3, params object[] colls)
         {
-            return Invoke(func((object x) => apply(f, x)), step(conj(colls, c3, c2, c1)));
+            return Invoke(funclib.Core.Func((object x) => funclib.Core.Apply(f, x)), step(funclib.Core.Conj(colls, c3, c2, c1)));
 
             object step(object cs) =>
-                lazySeq(() =>
+                funclib.Core.LazySeq(() =>
                 {
-                    var ss = Invoke(funclib.core.Seq, cs);
-                    if ((bool)isEvery(funclib.core.Identity, ss))
+                    var ss = Invoke(funclib.Core.seq, cs);
+                    if ((bool)funclib.Core.IsEvery(funclib.Core.identity, ss))
                     {
-                        return cons(Invoke(funclib.core.First, ss), step(Invoke(funclib.core.Rest, ss)));
+                        return funclib.Core.Cons(Invoke(funclib.Core.first, ss), step(Invoke(funclib.Core.rest, ss)));
                     }
 
                     return null;
@@ -160,11 +157,11 @@ namespace funclib.Components.Core
             }
 
             #region Overrides
-            public override object Invoke(object result, object input) => invoke(this._rf, result, invoke(this._f, input));
+            public override object Invoke(object result, object input) => funclib.Core.Invoke(this._rf, result, funclib.Core.Invoke(this._f, input));
             #endregion
 
             public object Invoke(object result, object input, params object[] inputs) =>
-                invoke(this._rf, result, invoke(this._f, apply(this._f, input, inputs)));
+                funclib.Core.Invoke(this._rf, result, funclib.Core.Invoke(this._f, funclib.Core.Apply(this._f, input, inputs)));
         }
     }
 }

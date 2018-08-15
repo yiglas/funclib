@@ -1,16 +1,12 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Linq;
-using System.Text;
-using static funclib.core;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Components.Core
 {
     /// <summary>
     /// Conj[oin]. Returns a new collection with the x 'added'. If 
     /// coll is null, returns a new <see cref="Collections.List"/> with 
-    /// x as its first item. The addition may happen at different places
+    /// x as its funclib.Core.First( item. The addition may happen at different places
     /// depending on the concrete type of the collection.
     /// </summary>
     public class Conj :
@@ -22,7 +18,7 @@ namespace funclib.Components.Core
         /// <summary>
         /// Conj[oin]. Returns a new collection with the x 'added'. If 
         /// coll is null, returns a new <see cref="Collections.List"/> with 
-        /// x as its first item. The addition may happen at different places
+        /// x as its funclib.Core.First( item. The addition may happen at different places
         /// depending on the concrete type of the collection.
         /// </summary>
         /// <returns>
@@ -32,7 +28,7 @@ namespace funclib.Components.Core
         /// <summary>
         /// Conj[oin]. Returns a new collection with the x 'added'. If 
         /// coll is null, returns a new <see cref="Collections.List"/> with 
-        /// x as its first item. The addition may happen at different places
+        /// x as its funclib.Core.First( item. The addition may happen at different places
         /// depending on the concrete type of the collection.
         /// </summary>
         /// <param name="coll">Object that implements the <see cref="ICollection"/> interface.</param>
@@ -43,7 +39,7 @@ namespace funclib.Components.Core
         /// <summary>
         /// Conj[oin]. Returns a new collection with the x 'added'. If 
         /// coll is null, returns a new <see cref="Collections.List"/> with 
-        /// x as its first item. The addition may happen at different places
+        /// x as its funclib.Core.First( item. The addition may happen at different places
         /// depending on the concrete type of the collection.
         /// </summary>
         /// <param name="coll">Object that implements the <see cref="ICollection"/> interface.</param>
@@ -55,13 +51,13 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object coll, object x) =>
             coll is null
-                ? new Collections.List(x)
+                ? funclib.Core.List(x)
                 : ((ICollection)coll).Cons(x);
 
         /// <summary>
         /// Conj[oin]. Returns a new collection with the x 'added'. If 
         /// coll is null, returns a new <see cref="Collections.List"/> with 
-        /// x as its first item. The addition may happen at different places
+        /// x as its funclib.Core.First( item. The addition may happen at different places
         /// depending on the concrete type of the collection.
         /// </summary>
         /// <param name="coll">Object that implements the <see cref="ICollection"/> interface.</param>
@@ -75,11 +71,11 @@ namespace funclib.Components.Core
         {
             if (xs != null && xs.Length > 0)
             {
-                var n = next(xs);
-                if ((bool)truthy(n))
-                    return Invoke(Invoke(coll, x), first(xs), (object[])toArray(n));
+                var n = funclib.Core.Next(xs);
+                if ((bool)funclib.Core.Truthy(n))
+                    return Invoke(Invoke(coll, x), funclib.Core.First(xs), (object[])funclib.Core.ToArray(n));
 
-                return Invoke(Invoke(coll, x), first(xs));
+                return Invoke(Invoke(coll, x), funclib.Core.First(xs));
             }
             else
                 return Invoke(coll, x);

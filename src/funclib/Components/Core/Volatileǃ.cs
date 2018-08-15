@@ -1,12 +1,9 @@
 ﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
 
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Creates and returns a <see cref="Volatile"/> with an initial value of val.
+    /// Creates and returns a <see cref="Volatileǃ"/> with an initial value of val.
     /// </summary>
     public class Volatileǃ :
         IDeref,
@@ -40,11 +37,11 @@ namespace funclib.Components.Core
         public object Reset(object newVal) => this._val = newVal;
 
         /// <summary>
-        /// Creates and returns a <see cref="Volatile"/> with an initial value of val.
+        /// Creates and returns a <see cref="Volatileǃ"/> with an initial value of val.
         /// </summary>
         /// <param name="val">Initial value.</param>
         /// <returns>
-        /// Returns the <see cref="Volatile"/> set to val.
+        /// Returns the <see cref="Volatileǃ"/> set to val.
         /// </returns>
         public object Invoke(object val) => new Volatileǃ(val);
     }

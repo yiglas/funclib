@@ -1,14 +1,11 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections.Internal;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using funclib.Collections.Internal;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Components.Core
 {
     /// <summary>
     /// Returns a <see cref="ITransientSet"/> of the same concrete type that
-    /// does not contain key(s).
+    /// does not contain funclib.Core.Key(s).
     /// </summary>
     public class Disjǃ :
         IFunction<object, object>,
@@ -17,7 +14,7 @@ namespace funclib.Components.Core
     {
         /// <summary>
         /// Returns a <see cref="ITransientSet"/> of the same concrete type that
-        /// does not contain key(s).
+        /// does not contain funclib.Core.Key(s).
         /// </summary>
         /// <param name="set">Object that implements the <see cref="ITransientSet"/> interface.</param>
         /// <returns>
@@ -26,7 +23,7 @@ namespace funclib.Components.Core
         public object Invoke(object set) => set;
         /// <summary>
         /// Returns a <see cref="ITransientSet"/> of the same concrete type that
-        /// does not contain key(s).
+        /// does not contain funclib.Core.Key(s).
         /// </summary>
         /// <param name="set">Object that implements the <see cref="ITransientSet"/> interface.</param>
         /// <param name="key">Object to remove from the set.</param>
@@ -36,7 +33,7 @@ namespace funclib.Components.Core
         public object Invoke(object set, object key) => ((ITransientSet)set).Disjoin(key);
         /// <summary>
         /// Returns a <see cref="ITransientSet"/> of the same concrete type that
-        /// does not contain key(s).
+        /// does not contain funclib.Core.Key(s).
         /// </summary>
         /// <param name="set">Object that implements the <see cref="ITransientSet"/> interface.</param>
         /// <param name="key">Object to remove from the set.</param>
@@ -49,11 +46,11 @@ namespace funclib.Components.Core
             var ret = ((ITransientSet)set).Disjoin(key);
             if (ks != null && ks.Length > 0)
             {
-                var n = next(ks);
-                if ((bool)truthy(n))
-                    return Invoke(ret, first(ks), (object[])toArray(n));
+                var n = funclib.Core.Next(ks);
+                if ((bool)funclib.Core.Truthy(n))
+                    return Invoke(ret, funclib.Core.First(ks), (object[])funclib.Core.ToArray(n));
 
-                return Invoke(ret, first(ks));
+                return Invoke(ret, funclib.Core.First(ks));
             }
 
             return ret;

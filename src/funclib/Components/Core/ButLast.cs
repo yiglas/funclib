@@ -1,8 +1,5 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Components.Core
 {
@@ -19,14 +16,14 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="ISeq"/> of all items except for the last item.
         /// </returns>
-        public object Invoke(object coll) => anonymous(vector(), coll);
+        public object Invoke(object coll) => anonymous(funclib.Core.Vector(), coll);
 
         static object anonymous(object ret, object s)
         {
-            var n = next(s);
-            if ((bool)truthy(n))
-                return anonymous(conj(ret, first(s)), n);
-            return seq(ret);
+            var n = funclib.Core.Next(s);
+            if ((bool)funclib.Core.Truthy(n))
+                return anonymous(funclib.Core.Conj(ret, funclib.Core.First(s)), n);
+            return funclib.Core.Seq(ret);
         }
     }
 }

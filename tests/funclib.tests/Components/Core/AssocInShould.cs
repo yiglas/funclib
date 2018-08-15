@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,9 +7,9 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void AssocIn_should_update_item_in_vector()
         {
-            var expected = vector(hashMap("Name", "James", "Age", 26), hashMap("Name", "John", "Age", 44));
-            var map = vector(hashMap("Name", "James", "Age", 26), hashMap("Name", "John", "Age", 26));
-            var actual = assocIn(map, vector(1, "Age"), 44);
+            var expected = funclib.Core.Vector(funclib.Core.HashMap("Name", "James", "Age", 26), funclib.Core.HashMap("Name", "John", "Age", 44));
+            var map = funclib.Core.Vector(funclib.Core.HashMap("Name", "James", "Age", 26), funclib.Core.HashMap("Name", "John", "Age", 26));
+            var actual = funclib.Core.AssocIn(map, funclib.Core.Vector(1, "Age"), 44);
 
             Assert.AreEqual(expected, actual);
         }

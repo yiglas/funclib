@@ -1,7 +1,5 @@
 ﻿using funclib.Components.Core.Generic;
 using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -18,6 +16,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="Random"/> <see cref="int"/> between 0 (inclusive) and n (exclusive).
         /// </returns>
-        public object Invoke(object n) => (int)rand(n);
+        public object Invoke(object n) => (int)funclib.Core.Rand(n);
     }
 }

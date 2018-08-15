@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -25,7 +21,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the result of calling <see cref="Seq"/> with args.
         /// </returns>
-        public object Invoke(object args) => seq(args);
+        public object Invoke(object args) => funclib.Core.Seq(args);
         /// <summary>
         /// Creates a new <see cref="Seq"/> containing the items perpended to the rest, the
         /// last of which will be treated as a sequence.
@@ -35,7 +31,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the result of calling <see cref="Cons"/>.
         /// </returns>
-        public object Invoke(object a, object args) => cons(a, args);
+        public object Invoke(object a, object args) => funclib.Core.Cons(a, args);
         /// <summary>
         /// Creates a new <see cref="Seq"/> containing the items perpended to the rest, the
         /// last of which will be treated as a sequence.
@@ -46,7 +42,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the result of calling <see cref="Cons"/>.
         /// </returns>
-        public object Invoke(object a, object b, object args) => cons(a, cons(b, args));
+        public object Invoke(object a, object b, object args) => funclib.Core.Cons(a, funclib.Core.Cons(b, args));
         /// <summary>
         /// Creates a new <see cref="Seq"/> containing the items perpended to the rest, the
         /// last of which will be treated as a sequence.
@@ -58,7 +54,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the result of calling <see cref="Cons"/>.
         /// </returns>
-        public object Invoke(object a, object b, object c, object args) => cons(a, cons(b, cons(c, args)));
+        public object Invoke(object a, object b, object c, object args) => funclib.Core.Cons(a, funclib.Core.Cons(b, funclib.Core.Cons(c, args)));
         /// <summary>
         /// Creates a new <see cref="Seq"/> containing the items perpended to the rest, the
         /// last of which will be treated as a sequence.
@@ -67,11 +63,11 @@ namespace funclib.Components.Core
         /// <param name="b">Second item in the list.</param>
         /// <param name="c">Third item in the list.</param>
         /// <param name="d">Fourth item in the list.</param>
-        /// <param name="args">Rest of the times.</param>
+        /// <param name="more">Rest of the times.</param>
         /// <returns>
         /// Returns the result of calling <see cref="Cons"/>.
         /// </returns>
         public object Invoke(object a, object b, object c, object d, params object[] more) => 
-            cons(a, cons(b, cons(c, cons(d, spread(more)))));
+            funclib.Core.Cons(a, funclib.Core.Cons(b, funclib.Core.Cons(c, funclib.Core.Cons(d, funclib.Core.Spread(more)))));
     }
 }

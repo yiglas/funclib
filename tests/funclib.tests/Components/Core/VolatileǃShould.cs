@@ -1,8 +1,5 @@
 ﻿using funclib.Components.Core;
 using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,7 +8,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Volatileǃ_should_return_a_volatile_object()
         {
-            var actual = volatileǃ(0);
+            var actual = funclib.Core.Volatileǃ(0);
 
             Assert.IsInstanceOf<Volatileǃ>(actual);
         }
@@ -20,7 +17,7 @@ namespace funclib.Tests.Components.Core
         public void Volatileǃ_should_return_value_when_called_via_deref()
         {
             var expected = 0;
-            var actual = deref(volatileǃ(0));
+            var actual = funclib.Core.Deref(funclib.Core.Volatileǃ(0));
 
             Assert.AreEqual(expected, actual);
         }
@@ -28,25 +25,25 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Volatileǃ_should_swap_the_value_via_a_function()
         {
-            var val = volatileǃ(0);
+            var val = funclib.Core.Volatileǃ(0);
 
             var expected = 1;
             var actual = new VSwapǃ(val, new Inc()).Invoke();
 
             Assert.AreEqual(expected, actual);
-            Assert.AreEqual(expected, deref(val));
+            Assert.AreEqual(expected, funclib.Core.Deref(val));
         }
 
         [Test]
         public void Volatileǃ_should_swap_the_value_when_called_reset()
         {
-            var val = volatileǃ(0);
+            var val = funclib.Core.Volatileǃ(0);
 
             var expected = "nothing";
-            var actual = vresetǃ(val, "nothing");
+            var actual = funclib.Core.VResetǃ(val, "nothing");
 
             Assert.AreEqual(expected, actual);
-            Assert.AreEqual(expected, deref(val));
+            Assert.AreEqual(expected, funclib.Core.Deref(val));
         }
     }
 }

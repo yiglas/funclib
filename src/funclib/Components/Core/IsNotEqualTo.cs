@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -29,7 +26,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
         /// </returns>
-        public object Invoke(object x, object y) => not(isEqualTo(x, y));
+        public object Invoke(object x, object y) => funclib.Core.Not(funclib.Core.IsEqualTo(x, y));
         /// <summary>
         /// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
         /// </summary>
@@ -39,6 +36,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
         /// </returns>
-        public object Invoke(object x, object y, params object[] more) => not(apply(funclib.core.IsEqualTo, x, y, more));
+        public object Invoke(object x, object y, params object[] more) => funclib.Core.Not(funclib.Core.Apply(funclib.Core.isEqualTo, x, y, more));
     }
 }

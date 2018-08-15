@@ -1,8 +1,5 @@
 ﻿using funclib.Components.Core;
 using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -13,10 +10,10 @@ namespace funclib.Tests.Components.Core
         {
             var list = new funclib.Components.Core.List();
 
-            var expected = list.Invoke(":a", ":b", ":d", ":e", ":c", ":f");
+            var expected = funclib.Core.List(":a", ":b", ":d", ":e", ":c", ":f");
 
-            var tree = list.Invoke(":a", list.Invoke(":b", list.Invoke(":d"), list.Invoke(":e")), list.Invoke(":c", list.Invoke(":f")));
-            var actual = toArray(map(new First(), treeSeq(new Next(), new Rest(), tree)));
+            var tree = funclib.Core.List(":a", funclib.Core.List(":b", funclib.Core.List(":d"), funclib.Core.List(":e")), funclib.Core.List(":c", funclib.Core.List(":f")));
+            var actual = funclib.Core.ToArray(funclib.Core.Map(new First(), funclib.Core.TreeSeq(new Next(), new Rest(), tree)));
 
             Assert.AreEqual(expected, actual);
         }

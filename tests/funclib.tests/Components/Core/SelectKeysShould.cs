@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,8 +7,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void SelectKeys_should_pull_keys_that_exists_from_a_map()
         {
-            var expected = arrayMap(":a", 1);
-            var actual = selectKeys(arrayMap(":a", 1, ":b", 2), vector(":a"));
+            var expected = funclib.Core.ArrayMap(":a", 1);
+            var actual = funclib.Core.SelectKeys(funclib.Core.ArrayMap(":a", 1, ":b", 2), funclib.Core.Vector(":a"));
 
             Assert.AreEqual(expected, actual);
         }
@@ -20,8 +16,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void SelectKeys_should_pull_those_keys_that_exists_from_a_map()
         {
-            var expected = arrayMap(":a", 1);
-            var actual = selectKeys(arrayMap(":a", 1, ":b", 2), vector(":a", ":c"));
+            var expected = funclib.Core.ArrayMap(":a", 1);
+            var actual = funclib.Core.SelectKeys(funclib.Core.ArrayMap(":a", 1, ":b", 2), funclib.Core.Vector(":a", ":c"));
 
             Assert.AreEqual(expected, actual);
         }
@@ -29,7 +25,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void SelectedKeys_should_return_a_hashmap()
         {
-            var actual = selectKeys(arrayMap(":a", 1, ":b", 2), vector(":a", ":c"));
+            var actual = funclib.Core.SelectKeys(funclib.Core.ArrayMap(":a", 1, ":b", 2), funclib.Core.Vector(":a", ":c"));
 
             Assert.IsInstanceOf<funclib.Collections.HashMap>(actual);
         }
@@ -37,8 +33,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void SelectedKeys_should_work_with_passing_vectors_as_well()
         {
-            var expected = arrayMap(0, 1, 2, 3);
-            var actual = selectKeys(vector(1, 2, 3), vector(0, 0, 2));
+            var expected = funclib.Core.ArrayMap(0, 1, 2, 3);
+            var actual = funclib.Core.SelectKeys(funclib.Core.Vector(1, 2, 3), funclib.Core.Vector(0, 0, 2));
 
             Assert.AreEqual(expected, actual);
         }

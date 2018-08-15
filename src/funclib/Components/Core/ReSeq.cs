@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -24,14 +21,14 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object re, object s)
         {
-            var m = (ReMatcher)reMatcher(re, s);
+            var m = (ReMatcher)funclib.Core.ReMatcher(re, s);
 
             return step();
 
             object step()
             {
                 if (m.Find())
-                    return cons(reGroups(m), lazySeq(step));
+                    return funclib.Core.Cons(funclib.Core.ReGroups(m), funclib.Core.LazySeq(step));
 
                 return null;
             }

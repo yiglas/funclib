@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -19,6 +15,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// If x is already <see cref="IsReduced"/>, return it else return <see cref="Reduced"/> value.
         /// </returns>
-        public object Invoke(object x) => x is Reduced r ? x : reduced(x);
+        public object Invoke(object x) => x is Reduced r ? x : funclib.Core.Reduced(x);
     }
 }

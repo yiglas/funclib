@@ -1,7 +1,5 @@
-﻿using System;
-using System.Text;
-using funclib.Components.Core;
-using static funclib.core;
+﻿using funclib.Components.Core;
+using System;
 
 namespace funclib.Collections.Internal
 {
@@ -34,7 +32,7 @@ namespace funclib.Collections.Internal
             var ret = this._v[this._i];
             for (int x = this._i + 1; x < this._v.Count; x++)
             {
-                ret = invoke(f, ret, this._v[x]);
+                ret = funclib.Core.Invoke(f, ret, this._v[x]);
                 if (ret is Reduced r)
                     return r.Deref();
             }
@@ -43,12 +41,12 @@ namespace funclib.Collections.Internal
         }
         public object Reduce(object f, object init)
         {
-            var ret = invoke(f, init, this._v[this._i]);
+            var ret = funclib.Core.Invoke(f, init, this._v[this._i]);
             for (int x = this._i + 1; x < this._v.Count; x++)
             {
                 if (ret is Reduced r)
                     return r.Deref();
-                ret = invoke(f, ret, this._v[x]);
+                ret = funclib.Core.Invoke(f, ret, this._v[x]);
             }
             if (ret is Reduced r2)
                 return r2.Deref();

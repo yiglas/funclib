@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -15,7 +11,7 @@ namespace funclib.Components.Core
         IFunction<object, object>,
         IFunction<object, object, object>
     {
-        public object Invoke(object pred) => func<object, object>(rf => new TransducerFunction(pred, rf));
+        public object Invoke(object pred) => funclib.Core.Func(rf => new TransducerFunction(pred, rf));
         /// <summary>
         /// Returns a <see cref="LazySeq"/> of successive items from coll while 
         /// <see cref="IFunction{T1, T2, TResult}"/> pred returns a logical true. pred
@@ -29,14 +25,14 @@ namespace funclib.Components.Core
         /// must be free of side-effects.
         /// </returns>
         public object Invoke(object pred, object coll) =>
-            lazySeq(() =>
+            funclib.Core.LazySeq(() =>
             {
-                var s = seq(coll);
-                if ((bool)truthy(s))
+                var s = funclib.Core.Seq(coll);
+                if ((bool)funclib.Core.Truthy(s))
                 {
-                    var result = invoke(pred, first(s));
-                    if ((bool)truthy(result))
-                        return cons(first(s), Invoke(pred, rest(s)));
+                    var result = funclib.Core.Invoke(pred, funclib.Core.First(s));
+                    if ((bool)funclib.Core.Truthy(result))
+                        return funclib.Core.Cons(funclib.Core.First(s), Invoke(pred, funclib.Core.Rest(s)));
                 }
                 return null;
             });
@@ -55,9 +51,9 @@ namespace funclib.Components.Core
 
             #region Overrides
             public override object Invoke(object result, object input) =>
-                (bool)truthy(invoke(this._pred, input))
-                    ? invoke(this._rf, result, input)
-                    : reduced(result);
+                (bool)funclib.Core.Truthy(funclib.Core.Invoke(this._pred, input))
+                    ? funclib.Core.Invoke(this._rf, result, input)
+                    : funclib.Core.Reduced(result);
             #endregion
         }
     }

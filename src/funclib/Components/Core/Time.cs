@@ -1,8 +1,6 @@
 ﻿using funclib.Components.Core.Generic;
 using System;
 using System.Diagnostics;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -20,7 +18,7 @@ namespace funclib.Components.Core
         /// Returns the value of <see cref="IFunction{TResult}"/>.
         /// </summary>
         /// <param name="fn">Take a <see cref="Func{TResult}"/> and convert it to <see cref="IFunction{TResult}"/> to be executed.</param>
-        public Time(Func<object> fn) : this(func(fn)) { }
+        public Time(Func<object> fn) : this(funclib.Core.Func(fn)) { }
         /// <summary>
         /// Evaluates the <see cref="IFunction{TResult}"/> and prints the time it took. 
         /// Returns the value of <see cref="IFunction{TResult}"/>.
@@ -43,7 +41,7 @@ namespace funclib.Components.Core
             var sw = Stopwatch.StartNew();
             var ret = this._func.Invoke();
             sw.Stop();
-            printLn($"Elapsed time: {sw.Elapsed}");
+            funclib.Core.PrintLn($"Elapsed time: {sw.Elapsed}");
             return ret;
         }
     }

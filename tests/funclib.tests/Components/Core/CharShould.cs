@@ -1,7 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {

@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,17 +7,17 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsSeq_should_return_true_if_ISeq()
         {
-            Assert.IsTrue((bool)isSeq(seq(vector(1))));
-            Assert.IsTrue((bool)isSeq(list(1, 2, 3)));
-            Assert.IsTrue((bool)isSeq(seq(range(1, 5))));
+            Assert.IsTrue((bool)funclib.Core.IsSeq(funclib.Core.Seq(funclib.Core.Vector(1))));
+            Assert.IsTrue((bool)funclib.Core.IsSeq(funclib.Core.List(1, 2, 3)));
+            Assert.IsTrue((bool)funclib.Core.IsSeq(funclib.Core.Seq(funclib.Core.Range(1, 5))));
         }
 
         [Test]
         public void IsSeq_should_return_false_if_not_ISeq()
         {
-            Assert.IsFalse((bool)isSeq(1));
-            Assert.IsFalse((bool)isSeq(vector(1)));
-            Assert.IsFalse((bool)isSeq(hashMap(":a", 1, ":b", 2)));
+            Assert.IsFalse((bool)funclib.Core.IsSeq(1));
+            Assert.IsFalse((bool)funclib.Core.IsSeq(funclib.Core.Vector(1)));
+            Assert.IsFalse((bool)funclib.Core.IsSeq(funclib.Core.HashMap(":a", 1, ":b", 2)));
         }
     }
 }

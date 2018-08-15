@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,7 +7,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Set_should_return_a_hashset()
         {
-            var actual = set(vector(1, 1, 2, 3, 2, 4, 5, 5));
+            var actual = funclib.Core.Set(funclib.Core.Vector(1, 1, 2, 3, 2, 4, 5, 5));
 
             Assert.IsInstanceOf<funclib.Collections.HashSet>(actual);
         }
@@ -19,8 +15,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Set_should_return_a_distinct_list_of_items_from_a_list()
         {
-            var expected = hashSet(1, 2, 3, 4, 5);
-            var actual = set(list(1, 1, 2, 3, 2, 4, 5, 5));
+            var expected = funclib.Core.HashSet(1, 2, 3, 4, 5);
+            var actual = funclib.Core.Set(funclib.Core.List(1, 1, 2, 3, 2, 4, 5, 5));
 
             Assert.AreEqual(expected, actual);
         }
@@ -28,8 +24,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Set_should_return_an_empty_set_if_passed_null()
         {
-            var expected = hashSet();
-            var actual = set(null);
+            var expected = funclib.Core.HashSet();
+            var actual = funclib.Core.Set(null);
 
             Assert.AreEqual(expected, actual);
         }

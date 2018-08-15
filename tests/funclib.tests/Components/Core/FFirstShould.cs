@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,7 +7,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void FFirst_should_return_null_if_empty_empty()
         {
-            var actual = ffirst(list(vector()));
+            var actual = funclib.Core.FFirst(funclib.Core.List(funclib.Core.Vector()));
 
             Assert.IsNull(actual);
         }
@@ -20,7 +16,7 @@ namespace funclib.Tests.Components.Core
         public void FFirst_should_return_the_first_items_first_item()
         {
             var expected = "a";
-            var actual = ffirst(vector(list("a", "b", "c"), list("b", "c", "d")));
+            var actual = funclib.Core.FFirst(funclib.Core.Vector(funclib.Core.List("a", "b", "c"), funclib.Core.List("b", "c", "d")));
 
             Assert.AreEqual(expected, actual);
         }
@@ -29,7 +25,7 @@ namespace funclib.Tests.Components.Core
         public void FFirst_should_return_first_key_when_passed_array_map()
         {
             var expected = "a";
-            var actual = ffirst(arrayMap("a", 1, "b", 2, "c", 3));
+            var actual = funclib.Core.FFirst(funclib.Core.ArrayMap("a", 1, "b", 2, "c", 3));
 
             Assert.AreEqual(expected, actual);
         }

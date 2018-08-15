@@ -1,8 +1,5 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Components.Core
 {
@@ -10,7 +7,7 @@ namespace funclib.Components.Core
         IFunction<object, object, object>
     {
         public object Invoke(object chunk, object rest) =>
-            (bool)isZero(count(chunk))
+            (bool)funclib.Core.IsZero(funclib.Core.Count(chunk))
                 ? rest
                 : new ChunkedCons((IChunked)chunk, (ISeq)rest);
     }

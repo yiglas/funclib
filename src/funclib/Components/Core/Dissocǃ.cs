@@ -1,9 +1,6 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
+﻿using funclib.Collections;
 using funclib.Collections.Internal;
-using System;
-using System.Text;
-using static funclib.core;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Components.Core
 {
@@ -41,11 +38,11 @@ namespace funclib.Components.Core
 
             if (ks != null && ks.Length > 0)
             {
-                var n = next(ks);
-                if ((bool)truthy(n))
-                    return Invoke(ret, first(ks), (object[])toArray(n));
+                var n = funclib.Core.Next(ks);
+                if ((bool)funclib.Core.Truthy(n))
+                    return Invoke(ret, funclib.Core.First(ks), (object[])funclib.Core.ToArray(n));
 
-                return Invoke(ret, first(ks));
+                return Invoke(ret, funclib.Core.First(ks));
             }
 
             return ret;

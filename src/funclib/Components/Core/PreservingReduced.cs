@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -9,11 +6,11 @@ namespace funclib.Components.Core
         IFunction<object, object>
     {
         public object Invoke(object rf) =>
-            func((object _1, object _2) =>
+            funclib.Core.Func((_1, _2) =>
             {
-                var ret = invoke(rf, _1, _2);
-                if ((bool)isReduced(ret))
-                    return reduced(ret);
+                var ret = funclib.Core.Invoke(rf, _1, _2);
+                if ((bool)funclib.Core.IsReduced(ret))
+                    return funclib.Core.Reduced(ret);
                 return ret;
             });
     }

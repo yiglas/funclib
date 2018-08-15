@@ -1,15 +1,13 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
+﻿using funclib.Collections;
 using funclib.Collections.Internal;
+using funclib.Components.Core.Generic;
 using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
     /// <summary>
     /// Takes a body of expressions that returns an <see cref="ISeq"/> or <see cref="null"/>, and 
-    /// yields a <see cref="ISeqable"/> object that will invoke the body only the first time <see cref="LazySeq.Seq"/>
+    /// yields a <see cref="ISeqable"/> object that will invoke the body only the funclib.Core.First( time <see cref="LazySeq.Seq"/>
     /// is called, and will cache the result and return it on all subsequent <see cref="LazySeq.Seq"/> calls.
     /// </summary>
     public class LazySeq :
@@ -89,7 +87,7 @@ namespace funclib.Components.Core
         /// </summary>
         /// <param name="fn">A function to evaluate during each <see cref="LazySeq.Seq"/> call.</param>
         public LazySeq(Func<object> fn) :
-            this(func(fn))
+            this(funclib.Core.Func(fn))
         { }
 
         /// <summary>
@@ -144,7 +142,7 @@ namespace funclib.Components.Core
         {
             var e = Seq();
             if (e != null) return e.Equals(obj);
-            return obj is System.Collections.IList && seq(obj) is null;
+            return obj is System.Collections.IList && funclib.Core.Seq(obj) is null;
         }
         #endregion
 
@@ -172,7 +170,7 @@ namespace funclib.Components.Core
                 while (ls is LazySeq l)
                     ls = l.eval();
 
-                this._s = (ISeq)seq(ls);
+                this._s = (ISeq)funclib.Core.Seq(ls);
             }
             return this._s;
         }
@@ -196,12 +194,12 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the <see cref="ISeq"/> object calls.
         /// </returns>
-        public ISeq Cons(object o) => (ISeq)cons(o, Seq());
+        public ISeq Cons(object o) => (ISeq)funclib.Core.Cons(o, Seq());
         /// <summary>
-        /// Returns the first object in the <see cref="LazySeq"/>.
+        /// Returns the funclib.Core.First( object in the <see cref="LazySeq"/>.
         /// </summary>
         /// <returns>
-        /// Returns the first object in the <see cref="LazySeq"/>.
+        /// Returns the funclib.Core.First( object in the <see cref="LazySeq"/>.
         /// </returns>
         public object First()
         {
@@ -270,7 +268,7 @@ namespace funclib.Components.Core
         public bool Contains(object item)
         {
             for (var e = Seq(); e != null; e = e.Next())
-                if ((bool)isEqualTo(e.First(), item))
+                if ((bool)funclib.Core.IsEqualTo(e.First(), item))
                     return true;
             return false;
         }
@@ -280,7 +278,7 @@ namespace funclib.Components.Core
         {
             var e = Seq();
             for (int i = 0; e != null; e = e.Next(), i++)
-                if ((bool)isEqualTo(e.First(), value))
+                if ((bool)funclib.Core.IsEqualTo(e.First(), value))
                     return i;
             return -1;
         }

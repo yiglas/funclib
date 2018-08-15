@@ -1,8 +1,7 @@
 ﻿using funclib.Collections.Generic;
-using System;
-using System.Text;
-using System.Threading;
 using funclib.Components.Core;
+using System;
+using System.Threading;
 using static funclib.Util;
 
 namespace funclib.Collections.Internal

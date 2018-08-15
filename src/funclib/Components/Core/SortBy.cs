@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -27,7 +23,7 @@ namespace funclib.Components.Core
         /// order is determined by comparing <see cref="IFunction{T1, TResult}"/> key function.
         /// If no comparator is suppled, uses <see cref="Compare"/>.
         /// </returns>
-        public object Invoke(object keyfn, object coll) => Invoke(keyfn, funclib.core.Compare, coll);
+        public object Invoke(object keyfn, object coll) => Invoke(keyfn, funclib.Core.compare, coll);
         /// <summary>
         /// Returns a sorted sequence of the items in coll, where the sort
         /// order is determined by comparing <see cref="IFunction{T1, TResult}"/> key function.
@@ -42,6 +38,6 @@ namespace funclib.Components.Core
         /// If no comparator is suppled, uses <see cref="Compare"/>.
         /// </returns>
         public object Invoke(object keyfn, object comp, object coll) =>
-            sort(func((object x, object y) => invoke(comp, invoke(keyfn, x), invoke(keyfn, y))), coll);
+            funclib.Core.Sort(funclib.Core.Func((object x, object y) => funclib.Core.Invoke(comp, funclib.Core.Invoke(keyfn, x), funclib.Core.Invoke(keyfn, y))), coll);
     }
 }

@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -21,11 +17,11 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object s)
         {
-            var n = next(s);
-            if ((bool)truthy(n))
+            var n = funclib.Core.Next(s);
+            if ((bool)funclib.Core.Truthy(n))
                 return Invoke(n);
 
-            return first(s);
+            return funclib.Core.First(s);
         }
             
     }

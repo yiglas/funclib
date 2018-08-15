@@ -1,8 +1,5 @@
 ﻿using funclib.Components.Core;
 using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -12,7 +9,7 @@ namespace funclib.Tests.Components.Core
         public void Identity_should_return_its_argument()
         {
             var expected = 4;
-            var actual = identity(4);
+            var actual = funclib.Core.Identity(4);
 
             Assert.AreEqual(expected, actual);
         }
@@ -20,8 +17,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Identity_should_filter_out_falsy_values()
         {
-            var expected = list(1, 2, 3, 4, true, 1234);
-            var actual = toArray(filter(new Identity(), vector(1, 2, 3, null, 4, false, true, 1234)));
+            var expected = funclib.Core.List(1, 2, 3, 4, true, 1234);
+            var actual = funclib.Core.ToArray(funclib.Core.Filter(new Identity(), funclib.Core.Vector(1, 2, 3, null, 4, false, true, 1234)));
 
             Assert.AreEqual(expected, actual);
         }

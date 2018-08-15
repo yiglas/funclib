@@ -1,9 +1,5 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
+﻿using funclib.Collections;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -12,7 +8,7 @@ namespace funclib.Components.Core
     {
         protected volatile IFunction _validator = null;
 
-        volatile IMap _watches = (IMap)hashMap();
+        volatile IMap _watches = (IMap)funclib.Core.HashMap();
 
         #region Abstract Methods
         /// <summary>
@@ -104,7 +100,7 @@ namespace funclib.Components.Core
                 {
                     var kvp = (KeyValuePair)s.First();
                     if (!(kvp.Value is null))
-                        invoke(kvp.Value, kvp.Key, this, oldVal, newVal);
+                        funclib.Core.Invoke(kvp.Value, kvp.Key, this, oldVal, newVal);
                 }
             }
         }
@@ -116,7 +112,7 @@ namespace funclib.Components.Core
 
             try
             {
-                ret = (bool)boolean(invoke(vf, val));
+                ret = (bool)funclib.Core.Boolean(funclib.Core.Invoke(vf, val));
             }
             catch (Exception ex)
             {

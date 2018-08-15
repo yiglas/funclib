@@ -1,15 +1,11 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Linq;
-using System.Text;
-using static funclib.core;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Components.Core
 {
     /// <summary>
     /// Dissoc[iate]. Returns a new map of the same concrete type,
-    /// that does not contain a mapping for the key(s).
+    /// that does not contain a mapping for the funclib.Core.Key(s).
     /// </summary>
     public class Dissoc :
         IFunction<object, object>,
@@ -18,7 +14,7 @@ namespace funclib.Components.Core
     {
         /// <summary>
         /// Dissoc[iate]. Returns a new map of the same concrete type,
-        /// that does not contain a mapping for the key(s).
+        /// that does not contain a mapping for the funclib.Core.Key(s).
         /// </summary>
         /// <param name="map">Object that implements the <see cref="IMap"/> interface.</param>
         /// <returns>
@@ -27,7 +23,7 @@ namespace funclib.Components.Core
         public object Invoke(object map) => map;
         /// <summary>
         /// Dissoc[iate]. Returns a new map of the same concrete type,
-        /// that does not contain a mapping for the key(s).
+        /// that does not contain a mapping for the funclib.Core.Key(s).
         /// </summary>
         /// <param name="map">Object that implements the <see cref="IMap"/> interface.</param>
         /// <param name="key">Key to be removed from the map.</param>
@@ -37,7 +33,7 @@ namespace funclib.Components.Core
         public object Invoke(object map, object key) => ((IMap)map).Without(key);
         /// <summary>
         /// Dissoc[iate]. Returns a new map of the same concrete type,
-        /// that does not contain a mapping for the key(s).
+        /// that does not contain a mapping for the funclib.Core.Key(s).
         /// </summary>
         /// <param name="map">Object that implements the <see cref="IMap"/> interface.</param>
         /// <param name="key">Key to be removed from the map.</param>
@@ -53,11 +49,11 @@ namespace funclib.Components.Core
             var ret = Invoke(map, key);
             if (ks != null && ks.Length > 0)
             {
-                var n = next(ks);
-                if ((bool)truthy(n))
-                    return Invoke(ret, first(ks), (object[])toArray(n));
+                var n = funclib.Core.Next(ks);
+                if ((bool)funclib.Core.Truthy(n))
+                    return Invoke(ret, funclib.Core.First(ks), (object[])funclib.Core.ToArray(n));
 
-                return Invoke(ret, first(ks));
+                return Invoke(ret, funclib.Core.First(ks));
             }
 
             return ret;

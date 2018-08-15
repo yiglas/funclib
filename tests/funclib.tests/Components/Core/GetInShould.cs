@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -12,7 +8,7 @@ namespace funclib.Tests.Components.Core
         public void GetIn_should_return_the_value_from_a_deep_structure()
         {
             var expected = "Sally Functional";
-            var actual = getIn(new System.Collections.Generic.Dictionary<string, object>()
+            var actual = funclib.Core.GetIn(new System.Collections.Generic.Dictionary<string, object>()
             {
                 ["username"] = "sally",
                 ["profile"] = new System.Collections.Generic.Dictionary<string, object>()
@@ -24,7 +20,7 @@ namespace funclib.Tests.Components.Core
                         ["state"] = "CA"
                     }
                 }
-            }, vector("profile", "name"));
+            }, funclib.Core.Vector("profile", "name"));
 
             Assert.AreEqual(expected, actual);
         }
@@ -33,7 +29,7 @@ namespace funclib.Tests.Components.Core
         public void GetIn_should_return_the_notFound_if_key_doesnot_exist()
         {
             var expected = "Unknown";
-            var actual = getIn(null, vector("profile", "name"), "Unknown");
+            var actual = funclib.Core.GetIn(null, funclib.Core.Vector("profile", "name"), "Unknown");
 
             Assert.AreEqual(expected, actual);
         }
@@ -42,7 +38,7 @@ namespace funclib.Tests.Components.Core
         public void GetIn_should_return_value_if_exists_even_when_given_notFound()
         {
             var expected = "Sally Functional";
-            var actual = getIn(new System.Collections.Generic.Dictionary<string, object>()
+            var actual = funclib.Core.GetIn(new System.Collections.Generic.Dictionary<string, object>()
             {
                 ["username"] = "sally",
                 ["profile"] = new System.Collections.Generic.Dictionary<string, object>()
@@ -54,7 +50,7 @@ namespace funclib.Tests.Components.Core
                         ["state"] = "CA"
                     }
                 }
-            }, vector("profile", "name"), "Unknown");
+            }, funclib.Core.Vector("profile", "name"), "Unknown");
 
             Assert.AreEqual(expected, actual);
         }
@@ -62,7 +58,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void GetIn_should_return_null_if_not_exists()
         {
-            Assert.IsNull(getIn(null, vector("profile", "name")));
+            Assert.IsNull(funclib.Core.GetIn(null, funclib.Core.Vector("profile", "name")));
         }
     }
 }

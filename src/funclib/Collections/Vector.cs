@@ -2,9 +2,7 @@
 using funclib.Collections.Internal;
 using funclib.Components.Core;
 using System;
-using System.Text;
 using System.Threading;
-using static funclib.core;
 
 namespace funclib.Collections
 {
@@ -284,7 +282,7 @@ namespace funclib.Collections
             object init;
             if (Count > 0) init = ToArray(0)[0];
             else
-                return invoke(f);
+                return funclib.Core.Invoke(f);
 
             int step = 0;
             for (int i = 0; i < Count; i += step)
@@ -292,7 +290,7 @@ namespace funclib.Collections
                 var array = ToArray(i);
                 for (int j = (i == 0 ? 1 : 0); j < array.Length; ++j)
                 {
-                    init = invoke(f, init, array[j]);
+                    init = funclib.Core.Invoke(f, init, array[j]);
                     if (init is Reduced r)
                         return r.Deref();
                 }
@@ -309,7 +307,7 @@ namespace funclib.Collections
                 var array = ToArray(i);
                 for (int j = 0; j < array.Length; ++j)
                 {
-                    init = invoke(f, init, array[j]);
+                    init = funclib.Core.Invoke(f, init, array[j]);
                     if (init is Reduced r)
                         return r.Deref();
                 }
@@ -326,7 +324,7 @@ namespace funclib.Collections
                 var array = ToArray(i);
                 for (int j = 0; j < array.Length; j++)
                 {
-                    init = invoke(f, init, j + 1, array[j]);
+                    init = funclib.Core.Invoke(f, init, j + 1, array[j]);
                     if (init is Reduced r)
                         return r.Deref();
                 }

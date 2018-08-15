@@ -1,8 +1,5 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Components.Core
 {
@@ -103,6 +100,6 @@ namespace funclib.Components.Core
         /// Returns a <see cref="Collections.Vector"/> containing the args.
         /// </returns>
         public object Invoke(object a, object b, object c, object d, object e, object f, params object[] args) =>
-            Collections.Vector.Create((ISeq)cons(a, cons(b, cons(c, cons(d, cons(e, cons(f, args)))))));
+            Collections.Vector.Create((ISeq)funclib.Core.Cons(a, funclib.Core.Cons(b, funclib.Core.Cons(c, funclib.Core.Cons(d, funclib.Core.Cons(e, funclib.Core.Cons(f, args)))))));
     }
 }

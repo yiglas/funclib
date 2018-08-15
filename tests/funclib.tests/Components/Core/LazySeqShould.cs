@@ -15,11 +15,11 @@ namespace funclib.Tests.Components.Core
         public void LazySeq_should_()
         {
             //var expected = list.Create(1, 2, 3, 4, 5);
-            //var actual = toArray(take(5, positive_numbers(1)));
+            //var actual = funclib.Core.ToArray(funclib.Core.Take(5, positive_numbers(1)));
 
             //Assert.AreEqual(expected, actual);
 
-            //object positive_numbers(object n) => new funclib.Components.Core.LazySeq(() => (ISeq)new funclib.Components.Core.Cons().Invoke(n, positive_numbers(inc(n))));
+            //object positive_numbers(object n) => new funclib.Components.Core.LazySeq(() => (ISeq)new funclib.Components.Core.Cons().Invoke(n, positive_numbers(funclib.Core.Inc(n))));
         }
 
     //    [Test]
@@ -32,9 +32,9 @@ namespace funclib.Tests.Components.Core
         //public void LazySeq_should_lazy_seq_a_function()
         //{
         //    Func<int, IEnumerable<int>> positiveNumbers = null;
-        //    positiveNumbers = n => lazyseq(() => cons(n, positiveNumbers(inc(n))));
+        //    positiveNumbers = n => lazyseq(() => funclib.Core.Cons(n, positiveNumbers(funclib.Core.Inc(n))));
 
-        //    var actual = toarray(take(5, positiveNumbers(1)));
+        //    var actual = toarray(funclib.Core.Take(5, positiveNumbers(1)));
 
         //    Assert.AreEqual(5, actual.Length);
         //}
@@ -43,9 +43,9 @@ namespace funclib.Tests.Components.Core
         //public void LazySeq_should_play_fibonacci()
         //{
         //    Func<int, int, IEnumerable<int>> fib = null;
-        //    fib = (a, b) => lazyseq(() => cons(a, fib(b, a + b)));
+        //    fib = (a, b) => lazyseq(() => funclib.Core.Cons(a, fib(b, a + b)));
 
-        //    var actual = toarray(take(5, fib(1, 1)));
+        //    var actual = toarray(funclib.Core.Take(5, fib(1, 1)));
 
         //    Assert.AreEqual(1, actual[0]);
         //    Assert.AreEqual(1, actual[1]);
@@ -70,7 +70,7 @@ namespace funclib.Tests.Components.Core
         //    fib = (a, b) =>
         //        new LazySeq<int>(new Function<IEnumerable<int>>(() => new Cons<int>().Invoke(a, fib(b, a + b))));
 
-        //    var actual = take(5, fib(1, 1)).ToArray();
+        //    var actual = funclib.Core.Take(5, fib(1, 1)).ToArray();
 
         //    Assert.AreEqual(5, actual.Length);
         //}
@@ -82,7 +82,7 @@ namespace funclib.Tests.Components.Core
         //    sumLast2 = (n, m) =>
         //        new Cons<int>().Invoke(n, new LazySeq<int>(new Function<IEnumerable<int>>(() => sumLast2(m, n + m))));
 
-        //    var actual = take(6, sumLast2(1, 2)).ToList();
+        //    var actual = funclib.Core.Take(6, sumLast2(1, 2)).ToList();
 
 
         //}

@@ -1,8 +1,5 @@
 ﻿using funclib.Components.Core;
 using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,8 +8,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void SortBy_should_sort_vector_by_comparor()
         {
-            var expected = list("c", "bb", "aaa");
-            var actual = sortBy(new Count(), vector("aaa", "c", "bb"));
+            var expected = funclib.Core.List("c", "bb", "aaa");
+            var actual = funclib.Core.SortBy(new Count(), funclib.Core.Vector("aaa", "c", "bb"));
 
             Assert.AreEqual(expected, actual);
         }
@@ -20,8 +17,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void SortBy_should_sort_by_keyfn_and_comparor()
         {
-            var expected = list(vector(2, 3), vector(2, 2), vector(1, 2));
-            var actual = sortBy(new First(), new IsGreaterThan(), vector(vector(1, 2), vector(2, 2), vector(2, 3)));
+            var expected = funclib.Core.List(funclib.Core.Vector(2, 3), funclib.Core.Vector(2, 2), funclib.Core.Vector(1, 2));
+            var actual = funclib.Core.SortBy(new First(), new IsGreaterThan(), funclib.Core.Vector(funclib.Core.Vector(1, 2), funclib.Core.Vector(2, 2), funclib.Core.Vector(2, 3)));
             
             Assert.AreEqual(expected, actual);
         }

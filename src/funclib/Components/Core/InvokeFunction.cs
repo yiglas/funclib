@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -32,7 +28,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the result of calling f with one parameters.
         /// </returns>
-        public object Invoke(object f, object x) => Apply.ApplyTo(f, list(x));
+        public object Invoke(object f, object x) => Apply.ApplyTo(f, funclib.Core.List(x));
         /// <summary>
         /// Invokes a <see cref="IFunction"/> function with supplied arguments.
         /// </summary>
@@ -42,7 +38,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the result of calling f with two parameters.
         /// </returns>
-        public object Invoke(object f, object x, object y) => Apply.ApplyTo(f, list(x, y));
+        public object Invoke(object f, object x, object y) => Apply.ApplyTo(f, funclib.Core.List(x, y));
         /// <summary>
         /// Invokes a <see cref="IFunction"/> function with supplied arguments.
         /// </summary>
@@ -53,7 +49,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the result of calling f with three parameters.
         /// </returns>
-        public object Invoke(object f, object x, object y, object z) => Apply.ApplyTo(f, list(x, y, z));
+        public object Invoke(object f, object x, object y, object z) => Apply.ApplyTo(f, funclib.Core.List(x, y, z));
         /// <summary>
         /// Invokes a <see cref="IFunction"/> function with supplied arguments.
         /// </summary>
@@ -65,6 +61,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the result of calling f with all parameters.
         /// </returns>
-        public object Invoke(object f, object a, object b, object c, params object[] ds) => Apply.ApplyTo(f, listS(a, b, c, ds));
+        public object Invoke(object f, object a, object b, object c, params object[] ds) => Apply.ApplyTo(f, funclib.Core.ListS(a, b, c, ds));
     }
 }

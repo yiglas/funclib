@@ -1,7 +1,4 @@
 ﻿using funclib.Collections;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace funclib.Components.Core
 {
@@ -11,7 +8,7 @@ namespace funclib.Components.Core
     public interface IAtom
     {
         /// <summary>
-        /// Atomically swaps the value of atom to be: invoke(f, current-value-of-atom, ...args).
+        /// Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
         /// Note: f may be called multiple times and thus should be free of side effects.
         /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
         /// the swap.
@@ -23,7 +20,7 @@ namespace funclib.Components.Core
         /// </returns>
         IVector Swap(object f);
         /// <summary>
-        /// Atomically swaps the value of atom to be: invoke(f, current-value-of-atom, ...args).
+        /// Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
         /// Note: f may be called multiple times and thus should be free of side effects.
         /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
         /// the swap.
@@ -36,7 +33,7 @@ namespace funclib.Components.Core
         /// </returns>
         IVector Swap(object f, object x);
         /// <summary>
-        /// Atomically swaps the value of atom to be: invoke(f, current-value-of-atom, ...args).
+        /// Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
         /// Note: f may be called multiple times and thus should be free of side effects.
         /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
         /// the swap.
@@ -50,7 +47,7 @@ namespace funclib.Components.Core
         /// </returns>
         IVector Swap(object f, object x, object y);
         /// <summary>
-        /// Atomically swaps the value of atom to be: invoke(f, current-value-of-atom, ...args).
+        /// Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
         /// Note: f may be called multiple times and thus should be free of side effects.
         /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
         /// the swap.

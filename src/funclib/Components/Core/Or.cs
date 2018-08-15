@@ -1,9 +1,5 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -56,7 +52,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object x, params object[] next)
         {
-            if ((bool)truthy(x))
+            if ((bool)funclib.Core.Truthy(x))
                 return x;
 
             if ((next?.Length ?? 0) <= 0)

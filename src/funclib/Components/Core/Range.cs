@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -26,7 +23,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="Collections.Iterate"/> collection starting at 0 continues infinitly.
         /// </returns>
-        public object Invoke() => iterate(funclib.core.Inc, 0);
+        public object Invoke() => funclib.Core.Iterate(funclib.Core.inc, 0);
         /// <summary>
         /// Returns a <see cref="LazySeq"/> of numbers from start (inclusive) to end
         /// (Exclusive), by step, where start defaults to 0, step to 1, and end to

@@ -1,8 +1,5 @@
 ﻿using funclib.Components.Core;
 using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,10 +8,10 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void MapCat_should_reverse_a_vector_with_vectors_inside()
         {
-            var expected = list(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+            var expected = funclib.Core.List(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 
-            var coll = vector(vector(3, 2, 1, 0), vector(6, 5, 4), vector(9, 8, 7));
-            var actual = toArray(mapCat(new Reverse(), coll));
+            var coll = funclib.Core.Vector(funclib.Core.Vector(3, 2, 1, 0), funclib.Core.Vector(6, 5, 4), funclib.Core.Vector(9, 8, 7));
+            var actual = funclib.Core.ToArray(funclib.Core.MapCat(new Reverse(), coll));
 
             Assert.AreEqual(expected, actual);
         }

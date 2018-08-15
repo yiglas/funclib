@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -26,7 +23,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the <see cref="Identity"/> fucntion;
         /// </returns>
-        public object Invoke() => funclib.core.Identity;
+        public object Invoke() => funclib.Core.identity;
         /// <summary>
         /// Takes a set of functions and returns a function that is the composition of
         /// those functions. The returned <see cref="Function"/> takes a variable number 
@@ -63,7 +60,7 @@ namespace funclib.Components.Core
         /// Returns <see cref="Function"/> with f, g and fs composed together.
         /// </returns>
         public object Invoke(object f, object g, params object[] fs) =>
-            reduce1(this, listS(f, g, fs));
+            funclib.Core.Reduce1(this, funclib.Core.ListS(f, g, fs));
 
         /// <summary>
         /// Internal function that does the <see cref="Comp"/>.
@@ -95,7 +92,7 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns the results of calling f.
             /// </returns>
-            public object Invoke() => invoke(this._f, invoke(this._g));
+            public object Invoke() => funclib.Core.Invoke(this._f, funclib.Core.Invoke(this._g));
             /// <summary>
             /// Invoke g with parameter x, then passing the results to f.
             /// </summary>
@@ -103,38 +100,38 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns the results of calling f.
             /// </returns>
-            public object Invoke(object x) => invoke(this._f, invoke(this._g, x));
+            public object Invoke(object x) => funclib.Core.Invoke(this._f, funclib.Core.Invoke(this._g, x));
             /// <summary>
             /// <summary>
             /// Invoke g with parameter x and y, then passing the results to f.
             /// </summary>
-            /// <param name="x">Function g's first argument.</param>
+            /// <param name="x">Function g's funclib.Core.First( argument.</param>
             /// <param name="y">Function g's second argument.</param>
             /// <returns>
             /// Returns the results of calling f.
             /// </returns>
-            public object Invoke(object x, object y) => invoke(this._f, invoke(this._g, x, y));
+            public object Invoke(object x, object y) => funclib.Core.Invoke(this._f, funclib.Core.Invoke(this._g, x, y));
             /// <summary>
             /// Invoke g with parameter x, y and z, then passing the results to f.
             /// </summary>
-            /// <param name="x">Function g's first argument.</param>
+            /// <param name="x">Function g's funclib.Core.First( argument.</param>
             /// <param name="y">Function g's second argument.</param>
             /// <param name="z">Function g's third argument.</param>
             /// <returns>
             /// Returns the results of calling f.
             /// </returns>
-            public object Invoke(object x, object y, object z) => invoke(this._f, invoke(this._g, x, y, z));
+            public object Invoke(object x, object y, object z) => funclib.Core.Invoke(this._f, funclib.Core.Invoke(this._g, x, y, z));
             /// <summary>
             /// Invoke g with parameter x, y, z and args, then passing the results to f.
             /// </summary>
-            /// <param name="x">Function g's first argument.</param>
+            /// <param name="x">Function g's funclib.Core.First( argument.</param>
             /// <param name="y">Function g's second argument.</param>
             /// <param name="z">Function g's third argument.</param>
             /// <param name="args">Function g's rest of the arguments.</param>
             /// <returns>
             /// Returns the results of calling f.
             /// </returns>
-            public object Invoke(object x, object y, object z, params object[] args) => invoke(this._f, invoke(this._g, x, y, z, args));
+            public object Invoke(object x, object y, object z, params object[] args) => funclib.Core.Invoke(this._f, funclib.Core.Invoke(this._g, x, y, z, args));
         }
     }
 }

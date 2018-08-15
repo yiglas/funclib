@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,13 +7,13 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsSorted_should_return_true_if_implements_sorted()
         {
-            Assert.IsTrue((bool)isSorted(sortedSet(1, 2, 3)));
+            Assert.IsTrue((bool)funclib.Core.IsSorted(funclib.Core.SortedSet(1, 2, 3)));
         }
 
         [Test]
         public void IsSorted_should_return_false_if_doesnot_implements_sorted()
         {
-            Assert.IsFalse((bool)isSorted(vector(1, 2, 3)));
+            Assert.IsFalse((bool)funclib.Core.IsSorted(funclib.Core.Vector(1, 2, 3)));
         }
     }
 }

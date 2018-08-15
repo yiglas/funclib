@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -24,9 +21,9 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object re, object s)
         {
-            var m = (ReMatcher)reMatcher(re, s);
+            var m = (ReMatcher)funclib.Core.ReMatcher(re, s);
             if (m.Matches())
-                return reGroups(m);
+                return funclib.Core.ReGroups(m);
 
             return null;
         }

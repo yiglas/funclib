@@ -1,8 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
 using System.IO;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -14,9 +12,9 @@ namespace funclib.Tests.Components.Core
             StringWriter writer;
             Variables.Out = writer = new StringWriter();
 
-            var atm = atom(1);
-            addWatch(atm, "print-change", PrintLn);
-            swapǃ(atm, Inc);
+            var atm = funclib.Core.Atom(1);
+            funclib.Core.AddWatch(atm, "print-change", funclib.Core.printLn);
+            funclib.Core.Swapǃ(atm, funclib.Core.inc);
 
             Variables.Out = Console.Out;
 

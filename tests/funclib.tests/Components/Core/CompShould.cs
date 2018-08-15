@@ -1,7 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -10,10 +7,10 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Comp_should_compose_multiple_functions_into_one()
         {
-            var negativeQuotient = comp(Minus, Divide);
+            var negativeQuotient = funclib.Core.Comp(funclib.Core.minus, funclib.Core.divide);
 
             var expected = -2;
-            var actual = invoke(negativeQuotient, 8, 4);
+            var actual = funclib.Core.Invoke(negativeQuotient, 8, 4);
 
             Assert.AreEqual(expected, actual);
         }
@@ -21,7 +18,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Comp_should_return_identity_when_no_function_passed()
         {
-            var actual = comp();
+            var actual = funclib.Core.Comp();
 
             Assert.IsInstanceOf<funclib.Components.Core.Identity>(actual);
         }
@@ -29,7 +26,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Comp_should_return_the_object_passed_to_it()
         {
-            var actual = comp(And);
+            var actual = funclib.Core.Comp(funclib.Core.and);
 
             Assert.IsInstanceOf<funclib.Components.Core.And>(actual);
         }
@@ -38,26 +35,26 @@ namespace funclib.Tests.Components.Core
         public void Comp_should_return_a_function_that_takes_no_parameters()
         {
             var expected = true;
-            var actual = comp(funclib.core.Boolean, And);
+            var actual = funclib.Core.Comp(funclib.Core.boolean, funclib.Core.and);
 
-            Assert.AreEqual(expected, invoke(actual));
+            Assert.AreEqual(expected, funclib.Core.Invoke(actual));
         }
 
         [Test]
         public void Comp_should_return_a_function_that_take_one_parameter()
         {
             var expected = false;
-            var actual = comp(funclib.core.Boolean, And);
+            var actual = funclib.Core.Comp(funclib.Core.boolean, funclib.Core.and);
 
-            Assert.AreEqual(expected, invoke(actual, false));
+            Assert.AreEqual(expected, funclib.Core.Invoke(actual, false));
         }
 
         [Test]
         public void Comp_should_allow_more_than_two_functions_as_parameters()
         {
-            var expected = list(-5, -7, -9, -11);
+            var expected = funclib.Core.List(-5, -7, -9, -11);
 
-            var actual = map(comp(Minus, partial(Plus, 3), partial(Multiply, 2)), vector(1, 2, 3, 4));
+            var actual = funclib.Core.Map(funclib.Core.Comp(funclib.Core.minus, funclib.Core.Partial(funclib.Core.plus, 3), funclib.Core.Partial(funclib.Core.multiply, 2)), funclib.Core.Vector(1, 2, 3, 4));
             
             Assert.AreEqual(expected, actual);
         }
@@ -66,9 +63,9 @@ namespace funclib.Tests.Components.Core
         public void Comp_should_return_a_function_that_take_three_parameter()
         {
             var expected = true;
-            var actual = comp(funclib.core.Boolean, And);
+            var actual = funclib.Core.Comp(funclib.Core.boolean, funclib.Core.and);
 
-            Assert.AreEqual(expected, invoke(actual, true, true, true));
+            Assert.AreEqual(expected, funclib.Core.Invoke(actual, true, true, true));
         }
     }
 }

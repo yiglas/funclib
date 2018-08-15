@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -19,6 +15,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if coll has no items. Same as <see cref="Not.Invoke(Seq.Invoke(object))"/>.
         /// </returns>
-        public object Invoke(object coll) => not(seq(coll));
+        public object Invoke(object coll) => funclib.Core.Not(funclib.Core.Seq(coll));
     }
 }

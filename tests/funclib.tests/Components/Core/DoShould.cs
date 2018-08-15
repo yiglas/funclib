@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -12,9 +8,9 @@ namespace funclib.Tests.Components.Core
         public void Do_should_run_each_express_and_return_last()
         {
             var expected = 2;
-            var actual = @do(
-                printLn("LOG: Computing..."),
-                plus(1, 1));
+            var actual = funclib.Core.Do(
+                funclib.Core.PrintLn("LOG: Computing..."),
+                funclib.Core.Plus(1, 1));
 
             Assert.AreEqual(expected, actual);
         }

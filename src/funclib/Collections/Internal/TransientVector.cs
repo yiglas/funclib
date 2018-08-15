@@ -1,6 +1,5 @@
 ﻿using funclib.Collections.Generic;
 using System;
-using System.Text;
 using System.Threading;
 
 namespace funclib.Collections.Internal
@@ -67,7 +66,7 @@ namespace funclib.Collections.Internal
                 else
                 {
                     int subIdx = (idx >> level) & 0x01f;
-                    ret.Array[subIdx] = assoc(level - 5, (VectorNode)node.Array[subIdx], idx, value);
+                    ret.Array[subIdx] = funclib.Core.Assoc(level - 5, (VectorNode)node.Array[subIdx], idx, value);
                 }
 
                 return ret;

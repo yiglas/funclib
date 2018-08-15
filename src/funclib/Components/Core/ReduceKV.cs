@@ -1,8 +1,6 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -26,12 +24,12 @@ namespace funclib.Components.Core
             coll is null
                 ? init
                 : coll is IReduceKV r ? r.ReduceKV(f, init)
-                : coll is IMap m ? reduce(func((object ret, object kv) =>
+                : coll is IMap m ? funclib.Core.Reduce(funclib.Core.Func((ret, kv) =>
                 {
-                    var k = key(kv);
-                    var v = value(kv);
+                    var k = funclib.Core.Key(kv);
+                    var v = funclib.Core.Value(kv);
 
-                    return invoke(f, ret, k, v);
+                    return funclib.Core.Invoke(f, ret, k, v);
                 }), init, coll)
                 : throw new InvalidCastException($"Unable to cast object of type '{coll.GetType().FullName}' to type '{typeof(IReduceKV).FullName}'.");
     }

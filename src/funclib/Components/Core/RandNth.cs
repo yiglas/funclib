@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -18,6 +15,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Return a random element of the <see cref="Collections.ISequential"/> collection.
         /// </returns>
-        public object Invoke(object coll) => nth(coll, randInt(count(coll)));
+        public object Invoke(object coll) => funclib.Core.Nth(coll, funclib.Core.RandInt(funclib.Core.Count(coll)));
     }
 }

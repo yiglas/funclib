@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,17 +7,17 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsChar_should_return_true_if_an_object_is_a_char()
         {
-            Assert.IsTrue((bool)isChar('c'));
+            Assert.IsTrue((bool)funclib.Core.IsChar('c'));
 
             object b = 'c';
-            Assert.IsTrue((bool)isChar(b));
+            Assert.IsTrue((bool)funclib.Core.IsChar(b));
         }
 
         [Test]
         public void IsChar_should_return_false_if_an_object_is_not_a_char()
         {
-            Assert.IsFalse((bool)isChar(1));
-            Assert.IsFalse((bool)isChar(null));
+            Assert.IsFalse((bool)funclib.Core.IsChar(1));
+            Assert.IsFalse((bool)funclib.Core.IsChar(null));
         }
     }
 }

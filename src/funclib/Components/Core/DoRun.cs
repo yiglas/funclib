@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -27,10 +24,10 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object coll)
         {
-            var s = seq(coll);
-            if ((bool)truthy(s))
+            var s = funclib.Core.Seq(coll);
+            if ((bool)funclib.Core.Truthy(s))
             {
-                return Invoke(next(s));
+                return Invoke(funclib.Core.Next(s));
             }
             return null;
         }
@@ -47,10 +44,10 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object n, object coll)
         {
-            var s = seq(coll);   
-            if ((bool)truthy(and(s, isPos(n))))
+            var s = funclib.Core.Seq(coll);   
+            if ((bool)funclib.Core.Truthy(funclib.Core.And(s, funclib.Core.IsPos(n))))
             {
-                return Invoke(dec(n), next(s));
+                return Invoke(funclib.Core.Dec(n), funclib.Core.Next(s));
             }
             return null;
         }

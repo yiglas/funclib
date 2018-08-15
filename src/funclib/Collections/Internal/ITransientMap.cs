@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text;
-
-namespace funclib.Collections.Internal
+﻿namespace funclib.Collections.Internal
 {
     interface ITransientMap :
         ITransientAssociative,

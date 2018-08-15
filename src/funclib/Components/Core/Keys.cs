@@ -1,9 +1,6 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
+﻿using funclib.Collections;
 using funclib.Collections.Internal;
-using System;
-using System.Text;
-using static funclib.core;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Components.Core
 {
@@ -25,7 +22,7 @@ namespace funclib.Components.Core
             if (map is IMap m)
                 return KeySeq.Create(m);
 
-            return KeySeq.Create((ISeq)seq(map));
+            return KeySeq.Create((ISeq)funclib.Core.Seq(map));
         }
     }
 }

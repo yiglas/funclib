@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,8 +7,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Keys_should_return_only_the_keys_of_a_map()
         {
-            var expected = list(":keys", ":some");
-            var actual = keys(arrayMap(":keys", "and", ":some", "values"));
+            var expected = funclib.Core.List(":keys", ":some");
+            var actual = funclib.Core.Keys(funclib.Core.ArrayMap(":keys", "and", ":some", "values"));
 
             Assert.AreEqual(expected, actual);
         }
@@ -20,13 +16,13 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Keys_should_return_null_if_empty_map()
         {
-            Assert.IsNull(keys(arrayMap()));
+            Assert.IsNull(funclib.Core.Keys(funclib.Core.ArrayMap()));
         }
 
         [Test]
         public void Keys_should_return_null_if_passed_null()
         {
-            Assert.IsNull(keys(null));
+            Assert.IsNull(funclib.Core.Keys(null));
         }
     }
 }

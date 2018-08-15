@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -12,7 +9,7 @@ namespace funclib.Components.Core
         IFunction<object, object>,
         IFunction<object, object, object>
     {
-        public object Invoke(object pred) => func<object, object>(rf => new TransducerFunction(pred, rf));
+        public object Invoke(object pred) => funclib.Core.Func(rf => new TransducerFunction(pred, rf));
         /// <summary>
         /// Returns a <see cref="LazySeq"/> of items in coll for which predicate returns a logical true.
         /// </summary>
@@ -22,37 +19,37 @@ namespace funclib.Components.Core
         /// Returns a <see cref="LazySeq"/> of items in coll for which predicate returns a logical true.
         /// </returns>
         public object Invoke(object pred, object coll) =>
-            lazySeq(() =>
+            funclib.Core.LazySeq(() =>
             {
-                var s = seq(coll);
-                if ((bool)truthy(s))
+                var s = funclib.Core.Seq(coll);
+                if ((bool)funclib.Core.Truthy(s))
                 {
-                    if ((bool)isChunkedSeq(s))
+                    if ((bool)funclib.Core.IsChunkedSeq(s))
                     {
-                        var c = chunkFirst(s);
-                        var size = (int)count(c);
-                        var b = (Collections.ChunkBuffer)chunkBuffer(size);
+                        var c = funclib.Core.ChunkFirst(s);
+                        var size = (int)funclib.Core.Count(c);
+                        var b = (Collections.ChunkBuffer)funclib.Core.ChunkBuffer(size);
 
-                        doTimes(size, i =>
+                        funclib.Core.DoTimes(size, i =>
                         {
-                            var v = nth(c, i);
-                            if ((bool)truthy(invoke(pred, v)))
+                            var v = funclib.Core.Nth(c, i);
+                            if ((bool)funclib.Core.Truthy(funclib.Core.Invoke(pred, v)))
                             {
-                                return chunkAppend(b, v);
+                                return funclib.Core.ChunkAppend(b, v);
                             }
                             return null;
                         });
 
-                        return chunkCons(b.Chunk(), Invoke(pred, chunkRest(s)));
+                        return funclib.Core.ChunkCons(b.Chunk(), Invoke(pred, funclib.Core.ChunkRest(s)));
                     }
                     else
                     {
-                        var f = first(s);
-                        var r = rest(s);
+                        var f = funclib.Core.First(s);
+                        var r = funclib.Core.Rest(s);
 
-                        if ((bool)truthy(invoke(pred, f)))
+                        if ((bool)funclib.Core.Truthy(funclib.Core.Invoke(pred, f)))
                         {
-                            return cons(f, Invoke(pred, r));
+                            return funclib.Core.Cons(f, Invoke(pred, r));
                         }
                         else
                         {
@@ -78,8 +75,8 @@ namespace funclib.Components.Core
 
             #region Overrides
             public override object Invoke(object result, object input) =>
-                (bool)truthy(invoke(this._pred, input))
-                    ? invoke(this._rf, result, input)
+                (bool)funclib.Core.Truthy(funclib.Core.Invoke(this._pred, input))
+                    ? funclib.Core.Invoke(this._rf, result, input)
                     : result;
             #endregion
         }

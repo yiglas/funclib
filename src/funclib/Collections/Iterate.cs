@@ -1,7 +1,5 @@
 ﻿using funclib.Components.Core;
 using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Collections
 {
@@ -32,7 +30,7 @@ namespace funclib.Collections
         public override object First()
         {
             if (this._seed == UNREALIZED_SEED)
-                this._seed = invoke(this._f, this._prevSeed);
+                this._seed = funclib.Core.Invoke(this._f, this._prevSeed);
 
             return this._seed;
         }
@@ -51,14 +49,14 @@ namespace funclib.Collections
         {
             object ff = First();
             object ret = ff;
-            object v = invoke(this._f, ff);
+            object v = funclib.Core.Invoke(this._f, ff);
 
             while (true)
             {
-                ret = invoke(f, ret, v);
+                ret = funclib.Core.Invoke(f, ret, v);
                 if (ret is Reduced r)
                     return r.Deref();
-                v = invoke(this._f, v);
+                v = funclib.Core.Invoke(this._f, v);
             }
         }
 
@@ -69,10 +67,10 @@ namespace funclib.Collections
 
             while (true)
             {
-                ret = invoke(f, ret, v);
+                ret = funclib.Core.Invoke(f, ret, v);
                 if (ret is Reduced r)
                     return r.Deref();
-                v = invoke(this._f, v);
+                v = funclib.Core.Invoke(this._f, v);
             }
         }
     }

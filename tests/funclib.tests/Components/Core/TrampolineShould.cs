@@ -1,9 +1,5 @@
-﻿using funclib.Components.Core;
-using funclib.Components.Core.Generic;
+﻿using funclib.Components.Core.Generic;
 using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -15,16 +11,16 @@ namespace funclib.Tests.Components.Core
             IFunction<object, object> foo = null;
             foo = new Function<object, object>(x =>
             {
-                if ((bool)isLessThan(x, 0))
-                    return printLn("done");
+                if ((bool)funclib.Core.IsLessThan(x, 0))
+                    return funclib.Core.PrintLn("done");
 
                 return new Function<object>(() => foo.Invoke(
-                    @do(
-                        printLn(":x", x),
-                        dec(x))));
+                    funclib.Core.Do(
+                        funclib.Core.PrintLn(":x", x),
+                        funclib.Core.Dec(x))));
             });
 
-            var actual = trampoline(foo, 10);
+            var actual = funclib.Core.Trampoline(foo, 10);
 
             Assert.IsNull(actual);
         }

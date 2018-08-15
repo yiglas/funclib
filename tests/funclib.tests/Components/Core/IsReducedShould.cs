@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,13 +7,13 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsReduced_should_return_true_if_reduced()
         {
-            Assert.IsTrue((bool)isReduced(reduced("foo")));
+            Assert.IsTrue((bool)funclib.Core.IsReduced(funclib.Core.Reduced("foo")));
         }
 
         [Test]
         public void IsReduced_should_return_false_if_not_reduced()
         {
-            Assert.IsFalse((bool)isReduced(0));
+            Assert.IsFalse((bool)funclib.Core.IsReduced(0));
         }
     }
 }

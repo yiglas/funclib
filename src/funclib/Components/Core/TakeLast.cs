@@ -1,9 +1,5 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Components.Core
 {
@@ -19,19 +15,19 @@ namespace funclib.Components.Core
         /// type of coll may be no better than linear time.
         /// </summary>
         /// <param name="n">An <see cref="int"/> of the items to take from the end of the collection.</param>
-        /// <param name="coll">The collection to drop the first x items from.</param>
+        /// <param name="coll">The collection to drop the funclib.Core.First( x items from.</param>
         /// <returns>
         /// Returns a <see cref="ISeq"/> of the last n items in coll. Depending on the 
         /// type of coll may be no better than linear time.
         /// </returns>
         public object Invoke(object n, object coll)
         {
-            return loop(seq(coll), seq(drop(n, coll)));
+            return loop(funclib.Core.Seq(coll), funclib.Core.Seq(funclib.Core.Drop(n, coll)));
 
             object loop(object s, object lead)
             {
-                if ((bool)truthy(lead))
-                    return loop(next(s), next(lead));
+                if ((bool)funclib.Core.Truthy(lead))
+                    return loop(funclib.Core.Next(s), funclib.Core.Next(lead));
 
                 return s;
             }

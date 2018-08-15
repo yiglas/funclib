@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -8,8 +7,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Flatten_should_flatten_nested_vectors()
         {
-            var expected = list(1, 2, 3);
-            var actual = toArray(flatten(vector(1, vector(2, 3))));
+            var expected = funclib.Core.List(1, 2, 3);
+            var actual = funclib.Core.ToArray(funclib.Core.Flatten(funclib.Core.Vector(1, funclib.Core.Vector(2, 3))));
 
             Assert.AreEqual(expected, actual);
         }
@@ -17,20 +16,20 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Flatten_should_flatten_a_list_of_iterators()
         {
-            var v1 = list(take(10, range()), take(2, range()), take(5, range()));
-            var actual = flatten(v1);
+            var v1 = funclib.Core.List(funclib.Core.Take(10, funclib.Core.Range()), funclib.Core.Take(2, funclib.Core.Range()), funclib.Core.Take(5, funclib.Core.Range()));
+            var actual = funclib.Core.Flatten(v1);
 
-            Assert.AreEqual(17, count(actual));
+            Assert.AreEqual(17, funclib.Core.Count(actual));
         }
 
         [Test]
         public void Flatten_should_flatten_a_list_of_arrays()
         {
-            //var v1 = new object[] { seq(new object[] { 1, 2 }), seq(new object[] { 1 }), seq(new object[] { 1 }), seq(new object[] { 1, 2 }) };
-            var v1 = list(list(1, 2), list(1), list(1), list(1, 2));
-            var actual = flatten(v1);
+            //var v1 = new object[] { funclib.Core.Seq(new object[] { 1, 2 }), funclib.Core.Seq(new object[] { 1 }), funclib.Core.Seq(new object[] { 1 }), funclib.Core.Seq(new object[] { 1, 2 }) };
+            var v1 = funclib.Core.List(funclib.Core.List(1, 2), funclib.Core.List(1), funclib.Core.List(1), funclib.Core.List(1, 2));
+            var actual = funclib.Core.Flatten(v1);
 
-            Assert.AreEqual(6, count(actual));
+            Assert.AreEqual(6, funclib.Core.Count(actual));
         }
     }
 }

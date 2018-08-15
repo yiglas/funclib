@@ -1,8 +1,5 @@
 ﻿using funclib.Components.Core.Generic;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -15,7 +12,7 @@ namespace funclib.Components.Core
         IFunction<object, object>,
         IFunction<object, object, object>
     {
-        public object Invoke(object smap) => map(func(Transducer(smap)));
+        public object Invoke(object smap) => funclib.Core.Map(funclib.Core.Func(Transducer(smap)));
         /// <summary>
         /// Given a map of replacement pairs and a <see cref="Collections.Vector"/>/collection, returns a
         /// <see cref="Collections.Vector"/>/seq with any elements = a key in smap replaced with the 
@@ -29,19 +26,19 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object smap, object coll)
         {
-            if ((bool)isVector(coll))
+            if ((bool)funclib.Core.IsVector(coll))
             {
-                return reduce1(func<object, object, object>(ReduceInnerInvoke), coll, range(count(coll)));
+                return funclib.Core.Reduce1(funclib.Core.Func(ReduceInnerInvoke), coll, funclib.Core.Range(funclib.Core.Count(coll)));
             }
 
-            return map(func(Transducer(smap)), coll);
+            return funclib.Core.Map(funclib.Core.Func(Transducer(smap)), coll);
 
             object ReduceInnerInvoke(object v, object i)
             {
-                var e = find(smap, nth(v, i));
-                if ((bool)truthy(e))
+                var e = funclib.Core.Find(smap, funclib.Core.Nth(v, i));
+                if ((bool)funclib.Core.Truthy(e))
                 {
-                    return assoc(v, i, value(e));
+                    return funclib.Core.Assoc(v, i, funclib.Core.Value(e));
                 }
 
                 return v;
@@ -51,10 +48,10 @@ namespace funclib.Components.Core
         Func<object, object> Transducer(object smap) =>
             (object item) =>
             {
-                var e = find(smap, item);
-                if ((bool)truthy(e))
+                var e = funclib.Core.Find(smap, item);
+                if ((bool)funclib.Core.Truthy(e))
                 {
-                    return value(e);
+                    return funclib.Core.Value(e);
                 }
 
                 return item;

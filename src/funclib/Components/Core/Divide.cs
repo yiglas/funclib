@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -40,6 +36,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns either <see cref="double"/> or <see cref="long"/> depending on the input for the equation: x/y/more...
         /// </returns>
-        public object Invoke(object x, object y, params object[] more) => reduce1(this, Invoke(x, y), more);
+        public object Invoke(object x, object y, params object[] more) => funclib.Core.Reduce1(this, Invoke(x, y), more);
     }
 }

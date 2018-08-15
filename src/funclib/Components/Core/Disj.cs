@@ -1,15 +1,11 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Linq;
-using System.Text;
-using static funclib.core;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Components.Core
 {
     /// <summary>
     /// Disj[oin]. Returns a new set of the same concrete type, that 
-    /// does not contain they key(s).
+    /// does not contain they funclib.Core.Key(s).
     /// </summary>
     public class Disj :
         IFunction<object, object>,
@@ -18,7 +14,7 @@ namespace funclib.Components.Core
     {
         /// <summary>
         /// Disj[oin]. Returns a new set of the same concrete type, that 
-        /// does not contain they key(s).
+        /// does not contain they funclib.Core.Key(s).
         /// </summary>
         /// <param name="set">Object that implements the <see cref="ISet"/> interface.</param>
         /// <returns>
@@ -27,7 +23,7 @@ namespace funclib.Components.Core
         public object Invoke(object set) => set;
         /// <summary>
         /// Disj[oin]. Returns a new set of the same concrete type, that 
-        /// does not contain they key(s).
+        /// does not contain they funclib.Core.Key(s).
         /// </summary>
         /// <param name="set">Object the implements the <see cref="ISet"/> interface.</param>
         /// <param name="key">Object to remove from the set.</param>
@@ -37,7 +33,7 @@ namespace funclib.Components.Core
         public object Invoke(object set, object key) => ((ISet)set).Disj(key);
         /// <summary>
         /// Disj[oin]. Returns a new set of the same concrete type, that 
-        /// does not contain they key(s).
+        /// does not contain they funclib.Core.Key(s).
         /// </summary>
         /// <param name="set">Object the implements the <see cref="ISet"/> interface.</param>
         /// <param name="key">Object to remove from the set.</param>
@@ -53,11 +49,11 @@ namespace funclib.Components.Core
             var ret = Invoke(set, key);
             if (ks != null && ks.Length > 0)
             {
-                var n = next(ks);
-                if ((bool)truthy(n))
-                    return Invoke(ret, first(ks), (object[])toArray(n));
+                var n = funclib.Core.Next(ks);
+                if ((bool)funclib.Core.Truthy(n))
+                    return Invoke(ret, funclib.Core.First(ks), (object[])funclib.Core.ToArray(n));
 
-                return Invoke(ret, first(ks));
+                return Invoke(ret, funclib.Core.First(ks));
             }
 
             return ret;

@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,7 +7,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void ReSeq_should_return_a_lazyseq()
         {
-            var actual = reSeq(rePattern(@"\d"), ".NET 1.1.1");
+            var actual = funclib.Core.ReSeq(funclib.Core.RePattern(@"\d"), ".NET 1.1.1");
 
             Assert.IsInstanceOf<funclib.Collections.Cons>(actual);
         }

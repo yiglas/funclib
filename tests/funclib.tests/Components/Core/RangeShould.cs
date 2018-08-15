@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,8 +7,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Range_should_step_when_supplied()
         {
-            var expected = list(0, 2, 4, 6);
-            var actual = range(0, 7, 2);
+            var expected = funclib.Core.List(0, 2, 4, 6);
+            var actual = funclib.Core.Range(0, 7, 2);
 
             Assert.AreEqual(expected, actual);
         }

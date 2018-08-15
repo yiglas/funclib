@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -14,7 +10,7 @@ namespace funclib.Components.Core
         IFunction<object, object>,
         IFunction<object, object, object>
     {
-        public object Invoke(object f) => func<object, object>(rf => new TransducerFunction(f, rf));
+        public object Invoke(object f) => funclib.Core.Func(rf => new TransducerFunction(f, rf));
         /// <summary>
         /// Returns a <see cref="LazySeq"/> of the non-null results of <see cref="IFunction{T1, TResult}"/>.
         /// Note: this means false return values will be included. F must be free of side-effects.
@@ -26,37 +22,37 @@ namespace funclib.Components.Core
         /// Note: this means false return values will be included. F must be free of side-effects.
         /// </returns>
         public object Invoke(object f, object coll) =>
-            lazySeq(() =>
+            funclib.Core.LazySeq(() =>
             {
-                var s = seq(coll);
-                if ((bool)truthy(s))
+                var s = funclib.Core.Seq(coll);
+                if ((bool)funclib.Core.Truthy(s))
                 {
-                    if ((bool)isChunkedSeq(s))
+                    if ((bool)funclib.Core.IsChunkedSeq(s))
                     {
-                        var c = chunkFirst(s);
-                        var size = (int)count(c);
-                        var b = chunkBuffer(size);
+                        var c = funclib.Core.ChunkFirst(s);
+                        var size = (int)funclib.Core.Count(c);
+                        var b = funclib.Core.ChunkBuffer(size);
 
-                        doTimes(size, i =>
+                        funclib.Core.DoTimes(size, i =>
                         {
-                            var y = invoke(f, nth(c, i));
-                            if (!(bool)isNull(y))
+                            var y = funclib.Core.Invoke(f, funclib.Core.Nth(c, i));
+                            if (!(bool)funclib.Core.IsNull(y))
                             {
-                                chunkAppend(b, y);
+                                funclib.Core.ChunkAppend(b, y);
                             }
                             return null;
                         });
 
-                        return chunkCons(chunk(b), Invoke(f, chunkRest(s)));
+                        return funclib.Core.ChunkCons(funclib.Core.Chunk(b), Invoke(f, funclib.Core.ChunkRest(s)));
                     }
 
-                    var x = invoke(f, first(s));
-                    if ((bool)isNull(x))
+                    var x = funclib.Core.Invoke(f, funclib.Core.First(s));
+                    if ((bool)funclib.Core.IsNull(x))
                     {
-                        return Invoke(f, rest(s));
+                        return Invoke(f, funclib.Core.Rest(s));
                     }
 
-                    return cons(x, Invoke(f, rest(s)));
+                    return funclib.Core.Cons(x, Invoke(f, funclib.Core.Rest(s)));
                 }
 
                 return null;
@@ -76,11 +72,11 @@ namespace funclib.Components.Core
             #region Overrides
             public override object Invoke(object result, object input)
             {
-                var v = invoke(this._f, input);
-                if ((bool)isNull(v))
+                var v = funclib.Core.Invoke(this._f, input);
+                if ((bool)funclib.Core.IsNull(v))
                     return result;
 
-                return invoke(this._rf, result, v);
+                return funclib.Core.Invoke(this._rf, result, v);
             }
             #endregion
         }

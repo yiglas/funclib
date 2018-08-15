@@ -1,9 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -12,7 +7,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void BitAnd_should_allow_radix_notation()
         {
-            var actual = bitAnd(0b1100, 0b1001);
+            var actual = funclib.Core.BitAnd(0b1100, 0b1001);
 
             Assert.AreEqual(8, actual);
         }
@@ -20,7 +15,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void BitAnd_should_allow_numbers_to_be_passed()
         {
-            var actual = bitAnd(12, 9);
+            var actual = funclib.Core.BitAnd(12, 9);
 
             Assert.AreEqual(8, actual);
         }
@@ -28,7 +23,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void BitAnd_should_allow_hexidecimal_to_be_passed()
         {
-            var actual = bitAnd(0x08, 0xFF);
+            var actual = funclib.Core.BitAnd(0x08, 0xFF);
 
             Assert.AreEqual(8, actual);
         }
@@ -36,7 +31,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void BitAnd_should_allow_params()
         {
-            var actual = bitAnd(12, 9, 12);
+            var actual = funclib.Core.BitAnd(12, 9, 12);
 
             Assert.AreEqual(8, actual);
         }

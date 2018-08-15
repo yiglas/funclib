@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,7 +7,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void ReMatches_should_match_entire_string_and_return_null_if_not_matched()
         {
-            var actual = reMatches(rePattern(@"hello"), "hello, world");
+            var actual = funclib.Core.ReMatches(funclib.Core.RePattern(@"hello"), "hello, world");
 
             Assert.IsNull(actual);
         }
@@ -20,7 +16,7 @@ namespace funclib.Tests.Components.Core
         public void ReMatches_should_match_entire_string()
         {
             var expected = "hello, world";
-            var actual = reMatches(rePattern(@"hello.*"), "hello, world");
+            var actual = funclib.Core.ReMatches(funclib.Core.RePattern(@"hello.*"), "hello, world");
 
             Assert.AreEqual(expected, actual);
         }
@@ -28,8 +24,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Rematches_should_return_a_vector_when_groups_are_uses()
         {
-            var expected = vector("hello, world", "world");
-            var actual = reMatches(rePattern(@"hello, (.*)"), "hello, world");
+            var expected = funclib.Core.Vector("hello, world", "world");
+            var actual = funclib.Core.ReMatches(funclib.Core.RePattern(@"hello, (.*)"), "hello, world");
 
             Assert.AreEqual(expected, actual);
         }

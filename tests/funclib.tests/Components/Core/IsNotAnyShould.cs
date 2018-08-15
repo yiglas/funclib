@@ -1,8 +1,5 @@
 ﻿using funclib.Components.Core;
 using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,14 +8,14 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsNotAny_should_return_true_if_a_collection_does_not_contain_odd()
         {
-            Assert.IsTrue((bool)isNotAny(new IsOdd(), list(2, 4, 6)));
+            Assert.IsTrue((bool)funclib.Core.IsNotAny(new IsOdd(), funclib.Core.List(2, 4, 6)));
         }
 
         [Test]
         public void IsCounted_should_return_false_if_a_collection_does_contain_odd()
         {
-            Assert.IsFalse((bool)isNotAny(new IsOdd(), list(1, 2, 3)));
-            Assert.IsFalse((bool)isNotAny(new IsOdd(), list(1, 2, 4)));
+            Assert.IsFalse((bool)funclib.Core.IsNotAny(new IsOdd(), funclib.Core.List(1, 2, 3)));
+            Assert.IsFalse((bool)funclib.Core.IsNotAny(new IsOdd(), funclib.Core.List(1, 2, 4)));
         }
     }
 }

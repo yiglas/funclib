@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -18,11 +15,11 @@ namespace funclib.Components.Core
             public TransducerFunction(object rf) : 
                 base(rf)
             {
-                this._rrf = preservingReduced(rf);
+                this._rrf = funclib.Core.PreservingReduced(rf);
             }
 
             #region Override
-            public override object Invoke(object result, object input) => reduce(this._rrf, result, input);
+            public override object Invoke(object result, object input) => funclib.Core.Reduce(this._rrf, result, input);
             #endregion
         }
     }

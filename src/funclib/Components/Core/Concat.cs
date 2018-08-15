@@ -1,7 +1,5 @@
 ﻿using funclib.Components.Core.Generic;
 using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -22,7 +20,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="LazySeq"/>, when invoked returns null.
         /// </returns>
-        public object Invoke() => lazySeq(func(() => (object)null));
+        public object Invoke() => funclib.Core.LazySeq(funclib.Core.Func(() => null));
         /// <summary>
         /// Returns a <see cref="LazySeq"/> representing the concatenation of the elements
         /// in the supplied colls.
@@ -31,7 +29,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returna a <see cref="LazySeq"/>, when invoked returns x.
         /// </returns>
-        public object Invoke(object x) => lazySeq(func(() => x));
+        public object Invoke(object x) => funclib.Core.LazySeq(funclib.Core.Func(() => x));
         /// <summary>
         /// Returns a <see cref="LazySeq"/> representing the concatenation of the elements
         /// in the supplied colls.
@@ -42,15 +40,15 @@ namespace funclib.Components.Core
         /// Returns a <see cref="LazySeq"/> that will concatenate y to x.
         /// </returns>
         public object Invoke(object x, object y) =>
-            lazySeq(() =>
+            funclib.Core.LazySeq(() =>
             {
-                var s = seq(x);
-                if ((bool)truthy(s))
+                var s = funclib.Core.Seq(x);
+                if ((bool)funclib.Core.Truthy(s))
                 {
-                    if ((bool)isChunkedSeq(s))
-                        return chunkCons(chunkFirst(s), Invoke(chunkRest(s), y));
+                    if ((bool)funclib.Core.IsChunkedSeq(s))
+                        return funclib.Core.ChunkCons(funclib.Core.ChunkFirst(s), Invoke(funclib.Core.ChunkRest(s), y));
                     else
-                        return cons(first(s), Invoke(rest(s), y));
+                        return funclib.Core.Cons(funclib.Core.First(s), Invoke(funclib.Core.Rest(s), y));
                 }
                 else
                     return y;
@@ -69,19 +67,19 @@ namespace funclib.Components.Core
         {
             Func<object, object, object> cat = null;
             cat = (xys, zss) =>
-                lazySeq(() =>
+                funclib.Core.LazySeq(() =>
                 {
-                    xys = seq(xys);
-                    if ((bool)truthy(xys))
+                    xys = funclib.Core.Seq(xys);
+                    if ((bool)funclib.Core.Truthy(xys))
                     {
-                        if ((bool)isChunkedSeq(xys))
-                            return chunkCons(chunkFirst(xys), cat(chunkRest(xys), zss));
+                        if ((bool)funclib.Core.IsChunkedSeq(xys))
+                            return funclib.Core.ChunkCons(funclib.Core.ChunkFirst(xys), cat(funclib.Core.ChunkRest(xys), zss));
                         else
-                            return cons(first(xys), cat(rest(xys), zss));
+                            return funclib.Core.Cons(funclib.Core.First(xys), cat(funclib.Core.Rest(xys), zss));
                     }
-                    else if ((bool)truthy(zss))
+                    else if ((bool)funclib.Core.Truthy(zss))
                     {
-                        return cat(first(zss), next(zss));
+                        return cat(funclib.Core.First(zss), funclib.Core.Next(zss));
                     }
                     else
                         return null;

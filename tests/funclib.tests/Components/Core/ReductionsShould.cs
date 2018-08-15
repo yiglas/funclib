@@ -1,8 +1,5 @@
 ﻿using funclib.Components.Core;
 using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,8 +8,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Reductions_should_sum_each_item_with_its_prediceser()
         {
-            var expected = list(1, 2, 3, 4);
-            var actual = reductions(new Plus(), vector(1, 1, 1, 1));
+            var expected = funclib.Core.List(1, 2, 3, 4);
+            var actual = funclib.Core.Reductions(new Plus(), funclib.Core.Vector(1, 1, 1, 1));
 
             Assert.AreEqual(expected, actual);
         }
@@ -20,8 +17,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Reductions_should_conj_vectors()
         {
-            var expected = vector(vector(), vector(1), vector(1, 2), vector(1, 2, 3));
-            var actual = reductions(new Conj(), vector(), list(1, 2, 3));
+            var expected = funclib.Core.Vector(funclib.Core.Vector(), funclib.Core.Vector(1), funclib.Core.Vector(1, 2), funclib.Core.Vector(1, 2, 3));
+            var actual = funclib.Core.Reductions(new Conj(), funclib.Core.Vector(), funclib.Core.List(1, 2, 3));
 
             Assert.AreEqual(expected, actual);
         }

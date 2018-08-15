@@ -1,8 +1,5 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Components.Core
 {
@@ -22,14 +19,14 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object map, object keyseq)
         {
-            return loop(hashMap(), seq(keyseq));
+            return loop(funclib.Core.HashMap(), funclib.Core.Seq(keyseq));
 
             object loop(object ret, object keys)
             {
-                if ((bool)truthy(keys))
+                if ((bool)funclib.Core.Truthy(keys))
                 {
-                    var entry = find(map, first(keys));
-                    return loop((bool)truthy(entry) ? conj(ret, entry) : ret, next(keys));
+                    var entry = funclib.Core.Find(map, funclib.Core.First(keys));
+                    return loop((bool)funclib.Core.Truthy(entry) ? funclib.Core.Conj(ret, entry) : ret, funclib.Core.Next(keys));
                 }
 
                 return ret;

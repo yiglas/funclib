@@ -1,8 +1,5 @@
 ﻿using funclib.Components.Core;
 using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,8 +8,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Drop_should_work_with_arrays()
         {
-            var expected = list(2, 3);
-            var actual = drop(1, new object[] { 1, 2, 3 });
+            var expected = funclib.Core.List(2, 3);
+            var actual = funclib.Core.Drop(1, new object[] { 1, 2, 3 });
 
             Assert.AreEqual(expected, actual);
         }
@@ -20,7 +17,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Drop_should_return_a_lazy_seq()
         {
-            var actual = drop(1, vector(1, 2, 3, 4, 5));
+            var actual = funclib.Core.Drop(1, funclib.Core.Vector(1, 2, 3, 4, 5));
 
             Assert.IsInstanceOf<LazySeq>(actual);
         }
@@ -28,8 +25,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Drop_should_return_all_times_execute_first_n_items()
         {
-            var expected = list(3, 4, 5);
-            var actual = toArray(drop(2, list(1, 2, 3, 4, 5)));
+            var expected = funclib.Core.List(3, 4, 5);
+            var actual = funclib.Core.ToArray(funclib.Core.Drop(2, funclib.Core.List(1, 2, 3, 4, 5)));
 
             Assert.AreEqual(expected, actual);
         }

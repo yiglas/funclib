@@ -1,8 +1,6 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -48,7 +46,7 @@ namespace funclib.Components.Core
 
         static int CountCollection(object o)
         {
-            var s = (ISeq)seq(o);
+            var s = (ISeq)funclib.Core.Seq(o);
             o = null;
             int i = 0;
             for(; s != null; s = s.Next())

@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,8 +7,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Empty_should_return_an_emtpy_collection()
         {
-            var expected = vector();
-            var actual = empty(vector(1, 2, 3));
+            var expected = funclib.Core.Vector();
+            var actual = funclib.Core.Empty(funclib.Core.Vector(1, 2, 3));
 
             Assert.IsInstanceOf<funclib.Collections.Vector>(actual);
             Assert.AreEqual(expected, actual);

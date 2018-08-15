@@ -1,8 +1,5 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Components.Core
 {
@@ -12,22 +9,22 @@ namespace funclib.Components.Core
     {
         public object Invoke(object f, object coll)
         {
-            var s = seq(coll);
-            if ((bool)truthy(s))
-                return Invoke(f, first(s), next(s));
+            var s = funclib.Core.Seq(coll);
+            if ((bool)funclib.Core.Truthy(s))
+                return Invoke(f, funclib.Core.First(s), funclib.Core.Next(s));
             else
-                return invoke(f);
+                return funclib.Core.Invoke(f);
         }
         public object Invoke(object f, object val, object coll)
         {
-            var s = seq(coll);
+            var s = funclib.Core.Seq(coll);
 
-            if ((bool)truthy(s))
+            if ((bool)funclib.Core.Truthy(s))
             {
-                if ((bool)isChunkedSeq(s))
-                    return Invoke(f, ((IChunked)chunkFirst(s)).Reduce(f, val), chunkNext(s));
+                if ((bool)funclib.Core.IsChunkedSeq(s))
+                    return Invoke(f, ((IChunked)funclib.Core.ChunkFirst(s)).Reduce(f, val), funclib.Core.ChunkNext(s));
                 else
-                    return Invoke(f, invoke(f, val, first(s)), next(s));
+                    return Invoke(f, funclib.Core.Invoke(f, val, funclib.Core.First(s)), funclib.Core.Next(s));
             }
 
             return val;

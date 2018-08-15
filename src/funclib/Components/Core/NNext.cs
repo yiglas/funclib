@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -19,6 +15,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the next item's next item
         /// </returns>
-        public object Invoke(object x) => next(next(x));
+        public object Invoke(object x) => funclib.Core.Next(funclib.Core.Next(x));
     }
 }

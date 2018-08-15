@@ -1,9 +1,6 @@
 ﻿using funclib.Components.Core;
 using funclib.Components.Core.Generic;
 using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -12,9 +9,9 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Update_should_update_value_for_given_key_but_not_update_the_source_stucture()
         {
-            var p = arrayMap(":name", "James", ":age", 26);
+            var p = funclib.Core.ArrayMap(":name", "James", ":age", 26);
 
-            var actual = update(p, ":age", new Inc());
+            var actual = funclib.Core.Update(p, ":age", new Inc());
 
             Assert.AreNotEqual(p, actual);
         }
@@ -22,10 +19,10 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Update_should_update_value_for_given_key()
         {
-            var p = arrayMap(":name", "James", ":age", 26);
+            var p = funclib.Core.ArrayMap(":name", "James", ":age", 26);
 
-            var expected = arrayMap(":name", "James", ":age", 27);
-            var actual = update(p, ":age", new Inc());
+            var expected = funclib.Core.ArrayMap(":name", "James", ":age", 27);
+            var actual = funclib.Core.Update(p, ":age", new Inc());
 
             Assert.AreEqual(expected, actual);
         }
@@ -33,10 +30,10 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Update_should_update_value_for_give_key_with_paramerters()
         {
-            var p = arrayMap(":name", "James", ":age", 26);
+            var p = funclib.Core.ArrayMap(":name", "James", ":age", 26);
 
-            var expected = arrayMap(":name", "James", ":age", 36);
-            var actual = update(p, ":age", new Plus(), 10);
+            var expected = funclib.Core.ArrayMap(":name", "James", ":age", 36);
+            var actual = funclib.Core.Update(p, ":age", new Plus(), 10);
 
             Assert.AreEqual(expected, actual);
         }
@@ -44,10 +41,10 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Update_should_add_key_value_if_key_doesnot_exist()
         {
-            var p = arrayMap();
+            var p = funclib.Core.ArrayMap();
 
-            var expected = arrayMap(":some-key", "foo");
-            var actual = update(p, ":some-key", new Function<object, object>(x => str("foo", x)));
+            var expected = funclib.Core.ArrayMap(":some-key", "foo");
+            var actual = funclib.Core.Update(p, ":some-key", new Function<object, object>(x => funclib.Core.Str("foo", x)));
 
             Assert.AreEqual(expected, actual);
         }
@@ -55,8 +52,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Update_should_also_work_with_vectors()
         {
-            var expected = vector(2, 2, 3);
-            var actual = update(vector(1, 2, 3), 0, new Inc());
+            var expected = funclib.Core.Vector(2, 2, 3);
+            var actual = funclib.Core.Update(funclib.Core.Vector(1, 2, 3), 0, new Inc());
 
             Assert.AreEqual(expected, actual);
         }

@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -18,6 +15,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if x is an odd number, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object n) => not(isEven(n));
+        public object Invoke(object n) => funclib.Core.Not(funclib.Core.IsEven(n));
     }
 }

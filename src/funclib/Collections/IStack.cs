@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text;
-
-namespace funclib.Collections
+﻿namespace funclib.Collections
 {
     public interface IStack :
         ICollection

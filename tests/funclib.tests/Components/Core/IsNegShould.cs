@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,14 +7,14 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsNeg_should_return_true_if_an_object_is_less_than_zero()
         {
-            Assert.IsTrue((bool)isNeg(-1));
+            Assert.IsTrue((bool)funclib.Core.IsNeg(-1));
         }
 
         [Test]
         public void IsNeg_should_return_false_if_an_object_is_not_less_than_zero()
         {
-            Assert.IsFalse((bool)isNeg(1));
-            Assert.IsFalse((bool)isNeg(0));
+            Assert.IsFalse((bool)funclib.Core.IsNeg(1));
+            Assert.IsFalse((bool)funclib.Core.IsNeg(0));
         }
     }
 }

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Text;
-using funclib.Components.Core;
-using static funclib.core;
+﻿using funclib.Components.Core;
+using System;
 
 namespace funclib.Collections
 {
@@ -45,7 +43,7 @@ namespace funclib.Collections
             {
                 while (true)
                 {
-                    ret = invoke(f, ret, this._val);
+                    ret = funclib.Core.Invoke(f, ret, this._val);
                     if (ret is Reduced r)
                         return r.Deref();
                 }
@@ -54,7 +52,7 @@ namespace funclib.Collections
             {
                 for (long i = 1;  i < this._count; i++)
                 {
-                    ret = invoke(f, ret, this._val);
+                    ret = funclib.Core.Invoke(f, ret, this._val);
                     if (ret is Reduced r)
                         return r.Deref();
                 }
@@ -69,7 +67,7 @@ namespace funclib.Collections
             {
                 while (true)
                 {
-                    ret = invoke(f, ret, this._val);
+                    ret = funclib.Core.Invoke(f, ret, this._val);
                     if (ret is Reduced r)
                         return r.Deref();
                 }
@@ -78,7 +76,7 @@ namespace funclib.Collections
             {
                 for (long i = 0; i < this._count; i++)
                 {
-                    ret = invoke(f, ret, this._val);
+                    ret = funclib.Core.Invoke(f, ret, this._val);
                     if (ret is Reduced r)
                         return r.Deref();
                 }

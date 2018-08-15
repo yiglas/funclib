@@ -1,8 +1,5 @@
 ﻿using funclib.Components.Core.Generic;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -13,15 +10,15 @@ namespace funclib.Components.Core
         IMacroFunction
     {
         readonly int _n;
-        readonly IFunction<int, object> _func;
+        readonly IFunction<object, object> _func;
 
         /// <summary>
         /// Constructor for the <see cref="DoTimes"/> class.
         /// </summary>
         /// <param name="n">Number of times to execute the fn.</param>
         /// <param name="fn">The function to execute.</param>
-        public DoTimes(int n, Func<int, object> fn) :
-            this(n, func(fn))
+        public DoTimes(int n, Func<object, object> fn) :
+            this(n, funclib.Core.Func(fn))
         {
         }
 
@@ -30,7 +27,7 @@ namespace funclib.Components.Core
         /// </summary>
         /// <param name="n">Number of times to execute the fn.</param>
         /// <param name="fn">The function to execute.</param>
-        public DoTimes(int n, IFunction<int, object> fn)
+        public DoTimes(int n, IFunction<object, object> fn)
         {
             this._func = fn;
             this._n = Numbers.ConvertToInt(n);

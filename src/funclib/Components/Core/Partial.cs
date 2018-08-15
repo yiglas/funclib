@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -115,10 +111,10 @@ namespace funclib.Components.Core
             /// </returns>
             public object Invoke() =>
                 this._argCount == 4
-                    ? apply(this._func, this._arg1, this._arg2, this._arg3, seq(this._more))
-                    : this._argCount == 3 ? invoke(this._func, this._arg1, this._arg2, this._arg3)
-                    : this._argCount == 2 ? invoke(this._func, this._arg1, this._arg2)
-                    : invoke(this._func, this._arg1);
+                    ? funclib.Core.Apply(this._func, this._arg1, this._arg2, this._arg3, funclib.Core.Seq(this._more))
+                    : this._argCount == 3 ? funclib.Core.Invoke(this._func, this._arg1, this._arg2, this._arg3)
+                    : this._argCount == 2 ? funclib.Core.Invoke(this._func, this._arg1, this._arg2)
+                    : funclib.Core.Invoke(this._func, this._arg1);
             /// <summary>
             /// Executes the function with the initial arguments.
             /// </summary>
@@ -128,10 +124,10 @@ namespace funclib.Components.Core
             /// </returns>
             public object Invoke(object x) =>
                 this._argCount == 4
-                    ? apply(this._func, this._arg1, this._arg2, this._arg3, concat(this._more, new object[] { x }))
-                    : this._argCount == 3 ? invoke(this._func, this._arg1, this._arg2, this._arg3, x)
-                    : this._argCount == 2 ? invoke(this._func, this._arg1, this._arg2, x)
-                    : invoke(this._func, this._arg1, x);
+                    ? funclib.Core.Apply(this._func, this._arg1, this._arg2, this._arg3, funclib.Core.Concat(this._more, new object[] { x }))
+                    : this._argCount == 3 ? funclib.Core.Invoke(this._func, this._arg1, this._arg2, this._arg3, x)
+                    : this._argCount == 2 ? funclib.Core.Invoke(this._func, this._arg1, this._arg2, x)
+                    : funclib.Core.Invoke(this._func, this._arg1, x);
             /// <summary>
             /// Executes the function with the initial arguments.
             /// </summary>
@@ -142,10 +138,10 @@ namespace funclib.Components.Core
             /// </returns>
             public object Invoke(object x, object y) =>
                 this._argCount == 4
-                    ? apply(this._func, this._arg1, this._arg2, this._arg3, concat(this._more, new object[] { x, y }))
-                    : this._argCount == 3 ? invoke(this._func, this._arg1, this._arg2, this._arg3, x, y)
-                    : this._argCount == 2 ? invoke(this._func, this._arg1, this._arg2, x, y)
-                    : invoke(this._func, this._arg1, x, y);
+                    ? funclib.Core.Apply(this._func, this._arg1, this._arg2, this._arg3, funclib.Core.Concat(this._more, new object[] { x, y }))
+                    : this._argCount == 3 ? funclib.Core.Invoke(this._func, this._arg1, this._arg2, this._arg3, x, y)
+                    : this._argCount == 2 ? funclib.Core.Invoke(this._func, this._arg1, this._arg2, x, y)
+                    : funclib.Core.Invoke(this._func, this._arg1, x, y);
             /// <summary>
             /// Executes the function with the initial arguments.
             /// </summary>
@@ -157,10 +153,10 @@ namespace funclib.Components.Core
             /// </returns>
             public object Invoke(object x, object y, object z) =>
                 this._argCount == 4
-                    ? apply(this._func, this._arg1, this._arg2, this._arg3, concat(this._more, new object[] { x, y, z }))
-                    : this._argCount == 3 ? invoke(this._func, this._arg1, this._arg2, this._arg3, x, y, z)
-                    : this._argCount == 2 ? invoke(this._func, this._arg1, this._arg2, x, y, z)
-                    : invoke(this._func, this._arg1, x, y, z);
+                    ? funclib.Core.Apply(this._func, this._arg1, this._arg2, this._arg3, funclib.Core.Concat(this._more, new object[] { x, y, z }))
+                    : this._argCount == 3 ? funclib.Core.Invoke(this._func, this._arg1, this._arg2, this._arg3, x, y, z)
+                    : this._argCount == 2 ? funclib.Core.Invoke(this._func, this._arg1, this._arg2, x, y, z)
+                    : funclib.Core.Invoke(this._func, this._arg1, x, y, z);
             /// <summary>
             /// Executes the function with the initial arguments.
             /// </summary>
@@ -173,10 +169,10 @@ namespace funclib.Components.Core
             /// </returns>
             public object Invoke(object x, object y, object z, params object[] args) =>
                this._argCount == 4
-                    ? apply(this._func, this._arg1, this._arg2, this._arg3, concat(this._more, new object[] { x, y, z }, args))
-                    : this._argCount == 3 ? apply(this._func, this._arg1, this._arg2, this._arg3, x, y, z, seq(args))
-                    : this._argCount == 2 ? apply(this._func, this._arg1, this._arg2, x, y, z, seq(args))
-                    : apply(this._func, this._arg1, x, y, z, seq(args));
+                    ? funclib.Core.Apply(this._func, this._arg1, this._arg2, this._arg3, funclib.Core.Concat(this._more, new object[] { x, y, z }, args))
+                    : this._argCount == 3 ? funclib.Core.Apply(this._func, this._arg1, this._arg2, this._arg3, x, y, z, funclib.Core.Seq(args))
+                    : this._argCount == 2 ? funclib.Core.Apply(this._func, this._arg1, this._arg2, x, y, z, funclib.Core.Seq(args))
+                    : funclib.Core.Apply(this._func, this._arg1, x, y, z, funclib.Core.Seq(args));
         }
     }
 }

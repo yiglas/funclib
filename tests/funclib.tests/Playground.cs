@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using static funclib.core;
 
 namespace FunctionalLibrary.Tests
 {
@@ -9,27 +8,27 @@ namespace FunctionalLibrary.Tests
         [Test]
         public void Testing()
         {
-            var list = map(Inc, vector(1, 2, 3));
+            var list = funclib.Core.Map(funclib.Core.inc, funclib.Core.Vector(1, 2, 3));
         }
 
 
         [Test]
         public void Trying_to_figure_out_where_items_are_placed_with_array()
         {
-            var actual = cons(5, new object[] { 1, 2, 3, 4 });
-            var actual4 = cons(5, list(1, 2, 3, 4));
-            var actual2 = conj(listS(new object[] { 1, 2, 3, 4 }), 5);
-            var actual5 = conj(list(1, 2, 3, 4), 5);
-            var actual3 = concat(new object[] { 1, 2, 3, 4 }, new object[] { 5 });
+            var actual = funclib.Core.Cons(5, new object[] { 1, 2, 3, 4 });
+            var actual4 = funclib.Core.Cons(5, funclib.Core.List(1, 2, 3, 4));
+            var actual2 = funclib.Core.Conj(funclib.Core.ListS(new object[] { 1, 2, 3, 4 }), 5);
+            var actual5 = funclib.Core.Conj(funclib.Core.List(1, 2, 3, 4), 5);
+            var actual3 = funclib.Core.Concat(new object[] { 1, 2, 3, 4 }, new object[] { 5 });
         }
 
         [Test]
         public void Trying_invoke_function()
         {
-            var notEmpty = complement(IsEmpty);
+            var notEmpty = funclib.Core.Complement(funclib.Core.isEmpty);
 
-            //Assert.IsFalse((bool)invoke(notEmpty, vector()));
-            //Assert.IsTrue((bool)invoke(notEmpty, vector(1, 2)));
+            //Assert.IsFalse((bool)funclib.Core.Invoke(notEmpty, funclib.Core.Vector()));
+            //Assert.IsTrue((bool)funclib.Core.Invoke(notEmpty, funclib.Core.Vector(1, 2)));
         }
     }
 }

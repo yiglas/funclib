@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -103,7 +100,7 @@ namespace funclib.Components.Core
             internal Function(object f, object g, object h, object[] fs) :
                 this(null, null, null)
             {
-                this._fs = (object[])toArray(listS(f, g, h, fs));
+                this._fs = (object[])funclib.Core.ToArray(funclib.Core.ListS(f, g, h, fs));
             }
 
             /// <summary>
@@ -115,9 +112,9 @@ namespace funclib.Components.Core
             public object Invoke() =>
                 this._fs != null
                     ? Reduce(this._fs)
-                    : this._h != null ? vector(Exec(this._f), Exec(this._g), Exec(this._h))
-                    : this._g != null ? vector(Exec(this._f), Exec(this._g))
-                    : vector(Exec(this._f));
+                    : this._h != null ? funclib.Core.Vector(Exec(this._f), Exec(this._g), Exec(this._h))
+                    : this._g != null ? funclib.Core.Vector(Exec(this._f), Exec(this._g))
+                    : funclib.Core.Vector(Exec(this._f));
             /// <summary>
             /// Invoke the functions with a single parameter
             /// </summary>
@@ -129,9 +126,9 @@ namespace funclib.Components.Core
                 this._fs != null
                     ? Reduce(this._fs, x)
                     : this._h != null
-                    ? vector(Exec(this._f, x), Exec(this._g, x), Exec(this._h, x))
-                    : this._g != null ? vector(Exec(this._f, x), Exec(this._g, x))
-                    : vector(Exec(this._f, x));
+                    ? funclib.Core.Vector(Exec(this._f, x), Exec(this._g, x), Exec(this._h, x))
+                    : this._g != null ? funclib.Core.Vector(Exec(this._f, x), Exec(this._g, x))
+                    : funclib.Core.Vector(Exec(this._f, x));
             /// <summary>
             /// Invoke the functions with a multiple parameter
             /// </summary>
@@ -144,9 +141,9 @@ namespace funclib.Components.Core
                 this._fs != null
                     ? Reduce(this._fs, x, y)
                     : this._h != null
-                    ? vector(Exec(this._f, x, y), Exec(this._g, x, y), Exec(this._h, x, y))
-                    : this._g != null ? vector(Exec(this._f, x, y), Exec(this._g, x, y))
-                    : vector(Exec(this._f, x, y));
+                    ? funclib.Core.Vector(Exec(this._f, x, y), Exec(this._g, x, y), Exec(this._h, x, y))
+                    : this._g != null ? funclib.Core.Vector(Exec(this._f, x, y), Exec(this._g, x, y))
+                    : funclib.Core.Vector(Exec(this._f, x, y));
             /// <summary>
             /// Invoke the functions with a multiple parameter
             /// </summary>
@@ -160,9 +157,9 @@ namespace funclib.Components.Core
                 this._fs != null
                     ? Reduce(this._fs, x, y, z)
                     : this._h != null
-                    ? vector(Exec(this._f, x, y, z), Exec(this._g, x, y, z), Exec(this._h, x, y, z))
-                    : this._g != null ? vector(Exec(this._f, x, y, z), Exec(this._g, x, y, z))
-                    : vector(Exec(this._f, x, y, z));
+                    ? funclib.Core.Vector(Exec(this._f, x, y, z), Exec(this._g, x, y, z), Exec(this._h, x, y, z))
+                    : this._g != null ? funclib.Core.Vector(Exec(this._f, x, y, z), Exec(this._g, x, y, z))
+                    : funclib.Core.Vector(Exec(this._f, x, y, z));
             /// <summary>
             /// Invoke the functions with a multiple parameter
             /// </summary>
@@ -177,21 +174,21 @@ namespace funclib.Components.Core
                 this._fs != null
                     ? Reduce(this._fs, x, y, z, args)
                     : this._h != null
-                    ? vector(Exec(this._f, x, y, z, args), Exec(this._g, x, y, z, args), Exec(this._h, x, y, z, args))
-                    : this._g != null ? vector(Exec(this._f, x, y, z, args), Exec(this._g, x, y, z, args))
-                    : vector(Exec(this._f, x, y, z, args));
+                    ? funclib.Core.Vector(Exec(this._f, x, y, z, args), Exec(this._g, x, y, z, args), Exec(this._h, x, y, z, args))
+                    : this._g != null ? funclib.Core.Vector(Exec(this._f, x, y, z, args), Exec(this._g, x, y, z, args))
+                    : funclib.Core.Vector(Exec(this._f, x, y, z, args));
 
-            static object Exec(object f) => invoke(f);
-            static object Exec(object f, object x) => invoke(f, x);
-            static object Exec(object f, object x, object y) => invoke(f, x, y);
-            static object Exec(object f, object x, object y, object z) => invoke(f, x, y, z);
-            static object Exec(object f, object x, object y, object z, params object[] args) => apply(f, x, y, z, args);
+            static object Exec(object f) => funclib.Core.Invoke(f);
+            static object Exec(object f, object x) => funclib.Core.Invoke(f, x);
+            static object Exec(object f, object x, object y) => funclib.Core.Invoke(f, x, y);
+            static object Exec(object f, object x, object y, object z) => funclib.Core.Invoke(f, x, y, z);
+            static object Exec(object f, object x, object y, object z, params object[] args) => funclib.Core.Apply(f, x, y, z, args);
 
-            static object Reduce(object fs) => reduce1(func((object _1, object _2) => conj(_1, Exec(_2))), vector(), fs);
-            static object Reduce(object fs, object x) => reduce1(func((object _1, object _2) => conj(_1, Exec(_2, x))), vector(), fs);
-            static object Reduce(object fs, object x, object y) => reduce1(func((object _1, object _2) => conj(_1, Exec(_2, x, y))), vector(), fs);
-            static object Reduce(object fs, object x, object y, object z) => reduce1(func((object _1, object _2) => conj(_1, Exec(_2, x, y, z))), vector(), fs);
-            static object Reduce(object fs, object x, object y, object z, params object[] args) => reduce1(func((object _1, object _2) => conj(_1, Exec(_2, x, y, z, args))), vector(), fs);
+            static object Reduce(object fs) => funclib.Core.Reduce1(funclib.Core.Func((_1, _2) => funclib.Core.Conj(_1, Exec(_2))), funclib.Core.Vector(), fs);
+            static object Reduce(object fs, object x) => funclib.Core.Reduce1(funclib.Core.Func((_1, _2) => funclib.Core.Conj(_1, Exec(_2, x))), funclib.Core.Vector(), fs);
+            static object Reduce(object fs, object x, object y) => funclib.Core.Reduce1(funclib.Core.Func((_1, _2) => funclib.Core.Conj(_1, Exec(_2, x, y))), funclib.Core.Vector(), fs);
+            static object Reduce(object fs, object x, object y, object z) => funclib.Core.Reduce1(funclib.Core.Func((_1, _2) => funclib.Core.Conj(_1, Exec(_2, x, y, z))), funclib.Core.Vector(), fs);
+            static object Reduce(object fs, object x, object y, object z, params object[] args) => funclib.Core.Reduce1(funclib.Core.Func((_1, _2) => funclib.Core.Conj(_1, Exec(_2, x, y, z, args))), funclib.Core.Vector(), fs);
         }
     }
 }

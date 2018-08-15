@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -20,6 +17,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="IFunctionParams{TRest, TResult}"/> when invoked returns x.
         /// </returns>
-        public object Invoke(object x) => func((object[] args) => x);
+        public object Invoke(object x) => funclib.Core.Func((object[] args) => x);
     }
 }

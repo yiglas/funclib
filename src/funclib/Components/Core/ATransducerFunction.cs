@@ -1,9 +1,4 @@
-﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
-
-namespace funclib.Components.Core
+﻿namespace funclib.Components.Core
 {
     public abstract class ATransducerFunction :
         ITransducerFunction
@@ -16,8 +11,8 @@ namespace funclib.Components.Core
         }
 
         #region Virtual Methods
-        public virtual object Invoke() => invoke(this._rf);
-        public virtual object Invoke(object result) => invoke(this._rf, result);
+        public virtual object Invoke() => funclib.Core.Invoke(this._rf);
+        public virtual object Invoke(object result) => funclib.Core.Invoke(this._rf, result);
         #endregion
 
         #region Abstract Methods

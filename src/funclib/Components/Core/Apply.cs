@@ -1,10 +1,8 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 using funclib.Exceptions;
 using System;
 using System.Linq;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -28,7 +26,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the results of executing f with the given arguments.
         /// </returns>
-        public object Invoke(object f, object args) => ApplyTo(f, seq(args));
+        public object Invoke(object f, object args) => ApplyTo(f, funclib.Core.Seq(args));
         /// <summary>
         /// Applies <see cref="IFunction"/> f to the argument list formed perpending 
         /// intervening arguments to args.
@@ -39,7 +37,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the results of executing f with the given arguments.
         /// </returns>
-        public object Invoke(object f, object x, object args) => ApplyTo(f, listS(x, args));
+        public object Invoke(object f, object x, object args) => ApplyTo(f, funclib.Core.ListS(x, args));
         /// <summary>
         /// Applies <see cref="IFunction"/> f to the argument list formed perpending 
         /// intervening arguments to args.
@@ -51,7 +49,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the results of executing f with the given arguments.
         /// </returns>
-        public object Invoke(object f, object x, object y, object args) => ApplyTo(f, listS(x, y, args));
+        public object Invoke(object f, object x, object y, object args) => ApplyTo(f, funclib.Core.ListS(x, y, args));
         /// <summary>
         /// Applies <see cref="IFunction"/> f to the argument list formed perpending 
         /// intervening arguments to args.
@@ -64,7 +62,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the results of executing f with the given arguments.
         /// </returns>
-        public object Invoke(object f, object x, object y, object z, object args) => ApplyTo(f, listS(x, y, z, args));
+        public object Invoke(object f, object x, object y, object z, object args) => ApplyTo(f, funclib.Core.ListS(x, y, z, args));
         /// <summary>
         /// Applies <see cref="IFunction"/> f to the argument list formed perpending 
         /// intervening arguments to args.
@@ -79,11 +77,11 @@ namespace funclib.Components.Core
         /// Returns the results of executing f with the given arguments.
         /// </returns>
         public object Invoke(object f, object a, object b, object c, object d, params object[] args) =>
-            ApplyTo(f, cons(a, cons(b, cons(c, cons(d, spread(args))))));
+            ApplyTo(f, funclib.Core.Cons(a, funclib.Core.Cons(b, funclib.Core.Cons(c, funclib.Core.Cons(d, funclib.Core.Spread(args))))));
 
         internal static object ApplyTo(object f, object args)
         {
-            var cnt = (int)count(args);
+            var cnt = (int)funclib.Core.Count(args);
 
             var fn = f.GetType()
                 .GetInterfaces()
@@ -140,29 +138,29 @@ namespace funclib.Components.Core
                 (args = args.Next()).First(),
                 (args = args.Next()).First(),
                 Ret((args = args.Next()).First(), args = null));
-        static object ApplyTo(IFunctionParams<object, object> f, ISeq args) => f.Invoke((object[])toArray(Ret(args, args = null)));
+        static object ApplyTo(IFunctionParams<object, object> f, ISeq args) => f.Invoke((object[])funclib.Core.ToArray(Ret(args, args = null)));
         static object ApplyTo(IFunctionParams<object, object, object> f, ISeq args) =>
             f.Invoke(
                 args.First(), 
-                (object[])toArray(Ret((args = args.Next()), args = null)));
+                (object[])funclib.Core.ToArray(Ret((args = args.Next()), args = null)));
         static object ApplyTo(IFunctionParams<object, object, object, object> f, ISeq args) =>
             f.Invoke(
                 args.First(),
                 (args = args.Next()).First(),
-                (object[])toArray(Ret((args = args.Next()), args = null)));
+                (object[])funclib.Core.ToArray(Ret((args = args.Next()), args = null)));
         static object ApplyTo(IFunctionParams<object, object, object, object, object> f, ISeq args) =>
             f.Invoke(
                 args.First(),
                 (args = args.Next()).First(),
                 (args = args.Next()).First(),
-                (object[])toArray(Ret((args = args.Next()), args = null)));
+                (object[])funclib.Core.ToArray(Ret((args = args.Next()), args = null)));
         static object ApplyTo(IFunctionParams<object, object, object, object, object, object> f, ISeq args) =>
             f.Invoke(
                 args.First(),
                 (args = args.Next()).First(),
                 (args = args.Next()).First(),
                 (args = args.Next()).First(),
-                (object[])toArray(Ret((args = args.Next()), args = null)));
+                (object[])funclib.Core.ToArray(Ret((args = args.Next()), args = null)));
         static object ApplyTo(IFunctionParams<object, object, object, object, object, object, object> f, ISeq args) =>
             f.Invoke(
                 args.First(),
@@ -170,8 +168,8 @@ namespace funclib.Components.Core
                 (args = args.Next()).First(),
                 (args = args.Next()).First(),
                 (args = args.Next()).First(),
-                (object[])toArray(Ret((args = args.Next()), args = null)));
+                (object[])funclib.Core.ToArray(Ret((args = args.Next()), args = null)));
 
-        public static object Ret(object ret, object nullable) => ret;
+        static object Ret(object ret, object nullable) => ret;
     }
 }

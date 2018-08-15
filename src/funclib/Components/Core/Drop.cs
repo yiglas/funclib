@@ -1,35 +1,31 @@
 ﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns a <see cref="LazySeq"/> of all but the first n items in coll.
+    /// Returns a <see cref="LazySeq"/> of all but the funclib.Core.First( n items in coll.
     /// </summary>
     public class Drop :
         IFunction<object, object>,
         IFunction<object, object, object>
     {
-        public object Invoke(object n) => func<object, object>(rf => new TransducerFunction(n, rf));
+        public object Invoke(object n) => funclib.Core.Func(rf => new TransducerFunction(n, rf));
         /// <summary>
-        /// Returns a <see cref="LazySeq"/> of all but the first n items in coll.
+        /// Returns a <see cref="LazySeq"/> of all but the funclib.Core.First( n items in coll.
         /// </summary>
         /// <param name="n">An <see cref="int"/> of the items to drop from the collection.</param>
-        /// <param name="coll">The collection to drop the first x items from.</param>
+        /// <param name="coll">The collection to drop the funclib.Core.First( x items from.</param>
         /// <returns>
-        /// Returns a <see cref="LazySeq"/> of items without the first x items.
+        /// Returns a <see cref="LazySeq"/> of items without the funclib.Core.First( x items.
         /// </returns>
-        public object Invoke(object n, object coll) => lazySeq(() => step(n, coll));
+        public object Invoke(object n, object coll) => funclib.Core.LazySeq(() => step(n, coll));
 
         static object step(object n, object coll)
         {
-            var s = seq(coll);
-            if ((bool)truthy(and(isPos(n), s)))
+            var s = funclib.Core.Seq(coll);
+            if ((bool)funclib.Core.Truthy(funclib.Core.And(funclib.Core.IsPos(n), s)))
             {
-                return step(dec(n), rest(s));
+                return step(funclib.Core.Dec(n), funclib.Core.Rest(s));
             }
             return s;
         }
@@ -42,7 +38,7 @@ namespace funclib.Components.Core
             public TransducerFunction(object n, object rf) :
                 base(rf)
             {
-                this._nv = (Volatileǃ)volatileǃ(n);
+                this._nv = (Volatileǃ)funclib.Core.Volatileǃ(n);
             }
 
             #region Overrides
@@ -50,10 +46,10 @@ namespace funclib.Components.Core
             {
                 var n = this._nv.Deref();
                 new VSwapǃ(this._nv, new Dec());
-                if ((bool)isPos(n))
+                if ((bool)funclib.Core.IsPos(n))
                     return result;
 
-                return invoke(this._rf, result, input);
+                return funclib.Core.Invoke(this._rf, result, input);
             }
             #endregion
         }

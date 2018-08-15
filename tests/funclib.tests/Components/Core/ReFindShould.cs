@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -12,10 +8,10 @@ namespace funclib.Tests.Components.Core
         public void ReFind_should_return_first_match_when_called_once()
         {
             var phoneNumber = "123-456-789-1234";
-            var matcher = reMatcher(rePattern(@"\d+"), phoneNumber);
+            var matcher = funclib.Core.ReMatcher(funclib.Core.RePattern(@"\d+"), phoneNumber);
 
             var expected = "123";
-            var actual = reFind(matcher);
+            var actual = funclib.Core.ReFind(matcher);
 
             Assert.AreEqual(expected, actual);
         }
@@ -24,11 +20,11 @@ namespace funclib.Tests.Components.Core
         public void Refind_should_return_second_match_when_called_twice()
         {
             var phoneNumber = "123-456-789-1234";
-            var matcher = reMatcher(rePattern(@"\d+"), phoneNumber);
+            var matcher = funclib.Core.ReMatcher(funclib.Core.RePattern(@"\d+"), phoneNumber);
 
             var expected = "456";
-            reFind(matcher);
-            var actual = reFind(matcher);
+            funclib.Core.ReFind(matcher);
+            var actual = funclib.Core.ReFind(matcher);
 
             Assert.AreEqual(expected, actual);
         }
@@ -37,13 +33,13 @@ namespace funclib.Tests.Components.Core
         public void Refind_should_return_null_when_matches_have_been_exausted()
         {
             var phoneNumber = "123-456-789-1234";
-            var matcher = reMatcher(rePattern(@"\d+"), phoneNumber);
+            var matcher = funclib.Core.ReMatcher(funclib.Core.RePattern(@"\d+"), phoneNumber);
 
-            reFind(matcher);
-            reFind(matcher);
-            reFind(matcher);
-            reFind(matcher);
-            var actual = reFind(matcher);
+            funclib.Core.ReFind(matcher);
+            funclib.Core.ReFind(matcher);
+            funclib.Core.ReFind(matcher);
+            funclib.Core.ReFind(matcher);
+            var actual = funclib.Core.ReFind(matcher);
 
             Assert.IsNull(actual);
         }
@@ -54,7 +50,7 @@ namespace funclib.Tests.Components.Core
             var phoneNumber = "123-456-789-1234";
             
             var expected = "123";
-            var actual = reFind(rePattern(@"\d+"), phoneNumber);
+            var actual = funclib.Core.ReFind(funclib.Core.RePattern(@"\d+"), phoneNumber);
 
             Assert.AreEqual(expected, actual);
         }

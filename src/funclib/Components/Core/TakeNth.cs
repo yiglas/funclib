@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -13,22 +9,22 @@ namespace funclib.Components.Core
         IFunction<object, object>,
         IFunction<object, object, object>
     {
-        public object Invoke(object n) => func<object, object>(rf => new TransducerFunction(n, rf));
+        public object Invoke(object n) => funclib.Core.Func(rf => new TransducerFunction(n, rf));
         /// <summary>
         /// Returns a <see cref="LazySeq"/> of every nth item in coll.
         /// </summary>
         /// <param name="n">An <see cref="int"/> of the items to take every nth from collection.</param>
-        /// <param name="coll">The collection to drop the first x items from.</param>
+        /// <param name="coll">The collection to drop the funclib.Core.First( x items from.</param>
         /// <returns>
         /// Returns a <see cref="LazySeq"/> of every nth item in coll.
         /// </returns>
         public object Invoke(object n, object coll) =>
-            lazySeq(() =>
+            funclib.Core.LazySeq(() =>
             {
-                var s = seq(coll);
-                if ((bool)truthy(s))
+                var s = funclib.Core.Seq(coll);
+                if ((bool)funclib.Core.Truthy(s))
                 {
-                    return cons(first(s), Invoke(n, drop(n, s)));
+                    return funclib.Core.Cons(funclib.Core.First(s), Invoke(n, funclib.Core.Drop(n, s)));
                 }
                 return null;
             });
@@ -44,16 +40,16 @@ namespace funclib.Components.Core
                 base(rf)
             {
                 this._n = n;
-                this._iv = (Volatileǃ)volatileǃ(-1);
+                this._iv = (Volatileǃ)funclib.Core.Volatileǃ(-1);
             }
 
             #region Overrides
             public override object Invoke(object result, object input)
             {
-                var i = new VSwapǃ(this._iv, funclib.core.Inc).Invoke();
-                if ((bool)isZero(rem(i, this._n)))
+                var i = new VSwapǃ(this._iv, funclib.Core.inc).Invoke();
+                if ((bool)funclib.Core.IsZero(funclib.Core.Rem(i, this._n)))
                 {
-                    return invoke(this._rf, result, input);
+                    return funclib.Core.Invoke(this._rf, result, input);
                 }
 
                 return result;

@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -25,7 +21,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the key found otherwise null.
         /// </returns>
-        public object Invoke(object m, object ks) => reduce1(funclib.core.Get, m, ks);
+        public object Invoke(object m, object ks) => funclib.Core.Reduce1(funclib.Core.get, m, ks);
         /// <summary>
         /// Returns the value in a nested associative structure, where ks
         /// is a sequence of keys. Returns null if the key is not present,
@@ -38,17 +34,17 @@ namespace funclib.Components.Core
         /// Returns the key found otherwise notFound.
         /// </returns>
         public object Invoke(object m, object ks, object notFound) =>
-            loop(new object(), m, seq(ks), notFound);
+            loop(new object(), m, funclib.Core.Seq(ks), notFound);
 
         static object loop(object sentinel, object m, object ks, object notFound)
         {
-            if ((bool)truthy(ks))
+            if ((bool)funclib.Core.Truthy(ks))
             {
-                m = get(m, first(ks), sentinel);
-                if ((bool)isIdentical(m, sentinel))
+                m = funclib.Core.Get(m, funclib.Core.First(ks), sentinel);
+                if ((bool)funclib.Core.IsIdentical(m, sentinel))
                     return notFound;
 
-                return loop(sentinel, m, next(ks), notFound);
+                return loop(sentinel, m, funclib.Core.Next(ks), notFound);
             }
 
             return m;

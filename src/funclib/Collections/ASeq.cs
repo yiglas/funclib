@@ -1,8 +1,5 @@
 ﻿using funclib.Collections.Internal;
-using funclib.Components.Core;
 using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Collections
 {
@@ -27,11 +24,11 @@ namespace funclib.Collections
             if (this == obj) return true;
             if (!(obj is System.Collections.IList)) return false;
 
-            var me = (ISeq)seq(obj);
+            var me = (ISeq)funclib.Core.Seq(obj);
 
             for (var e = Seq(); e != null; e = e.Next(), me = me.Next())
             {
-                if (me is null || !(bool)isEqualTo(e.First(), me.First()))
+                if (me is null || !(bool)funclib.Core.IsEqualTo(e.First(), me.First()))
                     return false;
             }
 
@@ -93,7 +90,7 @@ namespace funclib.Collections
         {
             int i = 0;
             for (var e = Seq(); e != null; e = e.Next(), i++)
-                if ((bool)isEqualTo(e.First(), value))
+                if ((bool)funclib.Core.IsEqualTo(e.First(), value))
                     return i;
             return -1;
         }
@@ -120,7 +117,7 @@ namespace funclib.Collections
         public bool Contains(object value)
         {
             for (var e = Seq(); e != null; e = e.Next())
-                if ((bool)isEqualTo(e.First(), value))
+                if ((bool)funclib.Core.IsEqualTo(e.First(), value))
                     return true;
 
             return false;

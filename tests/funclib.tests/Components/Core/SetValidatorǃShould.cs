@@ -1,7 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -10,8 +7,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void SetValidatorǃ_should_return_null()
         {
-            var atm = atom(vector(2));
-            var actual = setValidatorǃ(atm, func((object _1) => (object)true));
+            var atm = funclib.Core.Atom(funclib.Core.Vector(2));
+            var actual = funclib.Core.SetValidatorǃ(atm, funclib.Core.Func((object _1) => (object)true));
 
             Assert.IsNull(actual);
         }
@@ -19,9 +16,9 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void SetValidatorǃ_should_set_the_validator_function()
         {
-            var atm = atom(vector(2));
-            var actual = setValidatorǃ(atm, func((object _1) => (object)true));
-            var validator = getValidator(atm);
+            var atm = funclib.Core.Atom(funclib.Core.Vector(2));
+            var actual = funclib.Core.SetValidatorǃ(atm, funclib.Core.Func((object _1) => (object)true));
+            var validator = funclib.Core.GetValidator(atm);
 
             Assert.IsNotNull(validator);
             Assert.IsInstanceOf<funclib.Components.Core.IFunction>(validator);

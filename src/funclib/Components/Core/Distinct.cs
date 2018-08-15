@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -18,7 +15,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="IFunction{T1, TResult}"/> that returns a <see cref="TransducerFunction"/>.
         /// </returns>
-        public object Invoke() => func<object, object>(rf => new TransducerFunction(rf));
+        public object Invoke() => funclib.Core.Func(rf => new TransducerFunction(rf));
         /// <summary>
         /// Returns a <see cref="LazySeq"/> of elements of coll without duplicate values.
         /// </summary>
@@ -26,21 +23,21 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="LazySeq"/> of unique items from coll.
         /// </returns>
-        public object Invoke(object coll) => step(coll, hashSet());
+        public object Invoke(object coll) => step(coll, funclib.Core.HashSet());
 
-        static object step(object xs, object seen) => lazySeq(() => anonymous(xs, seen));
+        static object step(object xs, object seen) => funclib.Core.LazySeq(() => anonymous(xs, seen));
         static object anonymous(object xs, object seen)
         {
-            var f = first(xs);
-            var s = seq(xs);
-            if ((bool)truthy(s))
+            var f = funclib.Core.First(xs);
+            var s = funclib.Core.Seq(xs);
+            if ((bool)funclib.Core.Truthy(s))
             {
-                if ((bool)contains(seen, f))
+                if ((bool)funclib.Core.Contains(seen, f))
                 {
-                    return step(rest(s), seen);
+                    return step(funclib.Core.Rest(s), seen);
                 }
 
-                return cons(f, step(rest(s), conj(seen, f)));
+                return funclib.Core.Cons(f, step(funclib.Core.Rest(s), funclib.Core.Conj(seen, f)));
             }
 
             return null;
@@ -54,19 +51,19 @@ namespace funclib.Components.Core
             public TransducerFunction(object rf) :
                 base(rf)
             {
-                this._seen = (Volatileǃ)volatileǃ(hashSet());
+                this._seen = (Volatileǃ)funclib.Core.Volatileǃ(funclib.Core.HashSet());
             }
 
             #region Overrides
             public override object Invoke(object result, object input)
             {
-                if ((bool)contains(this._seen, input))
+                if ((bool)funclib.Core.Contains(this._seen, input))
                 {
                     return result;
                 }
 
                 new VSwapǃ(this._seen, new Conj(), input).Invoke();
-                return invoke(this._rf, result, input);
+                return funclib.Core.Invoke(this._rf, result, input);
             }
             #endregion
         }

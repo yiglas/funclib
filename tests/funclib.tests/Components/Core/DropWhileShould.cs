@@ -1,8 +1,5 @@
 ﻿using funclib.Components.Core;
 using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,8 +8,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void DropWhile_should_return_a_list_with_item_after_first_false()
         {
-            var expected = list(1, 2, 4, -5, -6, 0, 1);
-            var actual = toArray(dropWhile(new IsNeg(), vector(-1, -2, -6, -7, 1, 2, 4, -5, -6, 0, 1)));
+            var expected = funclib.Core.List(1, 2, 4, -5, -6, 0, 1);
+            var actual = funclib.Core.ToArray(funclib.Core.DropWhile(new IsNeg(), funclib.Core.Vector(-1, -2, -6, -7, 1, 2, 4, -5, -6, 0, 1)));
 
             Assert.AreEqual(expected, actual);
         }
@@ -20,8 +17,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void DropWhile_should_return_empty_list_if_pred_always_returns_false()
         {
-            var expected = list();
-            var actual = toArray(dropWhile(partial(new IsGreaterThan(), 10), vector(1, 2, 3, 2, 1)));
+            var expected = funclib.Core.List();
+            var actual = funclib.Core.ToArray(funclib.Core.DropWhile(funclib.Core.Partial(new IsGreaterThan(), 10), funclib.Core.Vector(1, 2, 3, 2, 1)));
 
             Assert.AreEqual(expected, actual);
         }

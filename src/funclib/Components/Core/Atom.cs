@@ -1,9 +1,7 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
+﻿using funclib.Collections;
 using funclib.Collections.Generic;
+using funclib.Components.Core.Generic;
 using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -88,7 +86,7 @@ namespace funclib.Components.Core
         }
 
         /// <summary>
-        /// Atomically swaps the value of atom to be: invoke(f, current-value-of-atom, ...args).
+        /// Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
         /// Note: f may be called multiple times and thus should be free of side effects.
         /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
         /// the swap.
@@ -98,9 +96,9 @@ namespace funclib.Components.Core
         /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
         /// the swap.
         /// </returns>
-        public IVector Swap(object f) => swap(oldVal => invoke(f, oldVal));
+        public IVector Swap(object f) => swap(oldVal => funclib.Core.Invoke(f, oldVal));
         /// <summary>
-        /// Atomically swaps the value of atom to be: invoke(f, current-value-of-atom, ...args).
+        /// Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
         /// Note: f may be called multiple times and thus should be free of side effects.
         /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
         /// the swap.
@@ -111,9 +109,9 @@ namespace funclib.Components.Core
         /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
         /// the swap.
         /// </returns>
-        public IVector Swap(object f, object x) => swap(oldVal => invoke(f, oldVal, x));
+        public IVector Swap(object f, object x) => swap(oldVal => funclib.Core.Invoke(f, oldVal, x));
         /// <summary>
-        /// Atomically swaps the value of atom to be: invoke(f, current-value-of-atom, ...args).
+        /// Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
         /// Note: f may be called multiple times and thus should be free of side effects.
         /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
         /// the swap.
@@ -125,9 +123,9 @@ namespace funclib.Components.Core
         /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
         /// the swap.
         /// </returns>
-        public IVector Swap(object f, object x, object y) => swap(oldVal => invoke(f, oldVal, x, y));
+        public IVector Swap(object f, object x, object y) => swap(oldVal => funclib.Core.Invoke(f, oldVal, x, y));
         /// <summary>
-        /// Atomically swaps the value of atom to be: invoke(f, current-value-of-atom, ...args).
+        /// Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
         /// Note: f may be called multiple times and thus should be free of side effects.
         /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
         /// the swap.
@@ -137,7 +135,7 @@ namespace funclib.Components.Core
         /// <param name="y">Third parameter of the function.</param>
         /// <param name="args"></param>
         /// <returns></returns>
-        public IVector Swap(object f, object x, object y, params object[] args) => swap(oldVal => invoke(f, oldVal, x, y, args));
+        public IVector Swap(object f, object x, object y, params object[] args) => swap(oldVal => funclib.Core.Invoke(f, oldVal, x, y, args));
 
         IVector swap(Func<object, object> func)
         {
@@ -188,8 +186,8 @@ namespace funclib.Components.Core
         {
             var r = new Atom(x);
 
-            var opts = apply(funclib.core.HashMap, options);
-            var validator = get(opts, ":validator", get(opts, "validator"));
+            var opts = funclib.Core.Apply(funclib.Core.hashMap, options);
+            var validator = funclib.Core.Get(opts, ":validator", funclib.Core.Get(opts, "validator"));
             if (!(validator is null))
                 r.SetValidator((IFunction)validator);
 

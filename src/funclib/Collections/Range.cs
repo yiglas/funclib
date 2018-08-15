@@ -2,9 +2,6 @@
 using funclib.Components.Core;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Collections
 {
@@ -92,7 +89,7 @@ namespace funclib.Collections
             var i = Numbers.Add(this._start, this._step);
             while (!this._boundsCheck.ExceededBounds(i))
             {
-                acc = invoke(f, acc, i);
+                acc = funclib.Core.Invoke(f, acc, i);
                 if (acc is Reduced r)
                     return r.Deref();
                 i = Numbers.Add(i, this._step);
@@ -105,7 +102,7 @@ namespace funclib.Collections
             var i = this._start;
             while (!this._boundsCheck.ExceededBounds(i))
             {
-                acc = invoke(f, acc, i);
+                acc = funclib.Core.Invoke(f, acc, i);
                 if (acc is Reduced r)
                     return r.Deref();
                 i = Numbers.Add(i, this._step);
@@ -134,7 +131,7 @@ namespace funclib.Collections
                 val = Numbers.Add(val, this._step);
                 if (this._boundsCheck.ExceededBounds(val))
                 {
-                    this._chunk = new ArrayChunked(arr, 0, n); // partial last chunk
+                    this._chunk = new ArrayChunked(arr, 0, n); // funclib.Core.Partial( last chunk
                     return;
                 }
             }

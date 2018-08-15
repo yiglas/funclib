@@ -1,8 +1,5 @@
 ﻿using funclib.Components.Core.Generic;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -23,7 +20,7 @@ namespace funclib.Components.Core
         /// Returns a sorted collection of the items in coll. If no comparator is 
         /// supplied, use <see cref="Compare"/>.
         /// </returns>
-        public object Invoke(object coll) => Invoke(funclib.core.Compare, coll);
+        public object Invoke(object coll) => Invoke(funclib.Core.compare, coll);
         /// <summary>
         /// Returns a sorted collection of the items in coll. If no comparator is 
         /// supplied, use <see cref="Compare"/>.
@@ -36,13 +33,13 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object comp, object coll)
         {
-            if ((bool)truthy(seq(coll)))
+            if ((bool)funclib.Core.Truthy(funclib.Core.Seq(coll)))
             {
-                var a = (object[])toArray(coll);
+                var a = (object[])funclib.Core.ToArray(coll);
                 Array.Sort(a, new FunctionComparer(comp));
-                return seq(a);
+                return funclib.Core.Seq(a);
             }
-            return list();
+            return funclib.Core.List();
         }
             
     }

@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -52,14 +49,14 @@ namespace funclib.Components.Core
         /// padding elements, return a partition with  less than n items.
         /// </returns>
         public object Invoke(object n, object step, object coll) =>
-            lazySeq(() =>
+            funclib.Core.LazySeq(() =>
             {
-                var s = seq(coll);
-                if ((bool)truthy(s))
+                var s = funclib.Core.Seq(coll);
+                if ((bool)funclib.Core.Truthy(s))
                 {
-                    var p = doAll(take(n, s));
-                    if (n.Equals(count(p)))
-                        return cons(p, Invoke(n, step, nthRest(s, step)));
+                    var p = funclib.Core.DoAll(funclib.Core.Take(n, s));
+                    if (n.Equals(funclib.Core.Count(p)))
+                        return funclib.Core.Cons(p, Invoke(n, step, funclib.Core.NthRest(s, step)));
                 }
                 return null;
             });
@@ -82,16 +79,16 @@ namespace funclib.Components.Core
         /// padding elements, return a partition with  less than n items.
         /// </returns>
         public object Invoke(object n, object step, object pad, object coll) =>
-            lazySeq(() =>
+            funclib.Core.LazySeq(() =>
             {
-                var s = seq(coll);
-                if ((bool)truthy(s))
+                var s = funclib.Core.Seq(coll);
+                if ((bool)funclib.Core.Truthy(s))
                 {
-                    var p = doAll(take(n, s));
-                    if (n.Equals(count(p)))
-                        return cons(p, Invoke(n, step, pad, nthRest(s, step)));
+                    var p = funclib.Core.DoAll(funclib.Core.Take(n, s));
+                    if (n.Equals(funclib.Core.Count(p)))
+                        return funclib.Core.Cons(p, Invoke(n, step, pad, funclib.Core.NthRest(s, step)));
 
-                    return list(take(n, concat(p, pad)));
+                    return funclib.Core.List(funclib.Core.Take(n, funclib.Core.Concat(p, pad)));
                 }
                 return null;
             });

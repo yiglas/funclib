@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,8 +7,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsAny_should_return_true_given_any_argument()
         {
-            Assert.IsTrue((bool)isAny(1));
-            Assert.IsTrue((bool)isAny(null));
+            Assert.IsTrue((bool)funclib.Core.IsAny(1));
+            Assert.IsTrue((bool)funclib.Core.IsAny(null));
         }
     }
 }

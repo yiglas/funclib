@@ -1,9 +1,5 @@
 ﻿using funclib.Collections;
-using funclib.Components.Core;
 using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -12,7 +8,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Conjǃ_should_return_an_emtpy_transient_vector()
         {
-            var actual = conjǃ();
+            var actual = funclib.Core.Conjǃ();
 
             Assert.IsInstanceOf<ITransientCollection>(actual);
         }
@@ -21,7 +17,7 @@ namespace funclib.Tests.Components.Core
         public void Conjǃ_should_return_the_passed_in_object_if_nothing_passed()
         {
             var expected = new funclib.Components.Core.Vector().Invoke(1);
-            var actual = conjǃ(expected);
+            var actual = funclib.Core.Conjǃ(expected);
 
             Assert.IsTrue(expected == actual);
         }
@@ -29,8 +25,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Conjǃ_should_add_item_to_collection()
         {
-            var expected = conjǃ();
-            var actual = conjǃ(expected, 1);
+            var expected = funclib.Core.Conjǃ();
+            var actual = funclib.Core.Conjǃ(expected, 1);
 
             Assert.IsTrue(expected == actual);
         }

@@ -1,9 +1,6 @@
 ﻿using funclib.Collections.Internal;
-using funclib.Components.Core;
 using funclib.Components.Core.Generic;
 using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Collections
 {
@@ -36,7 +33,7 @@ namespace funclib.Collections
                 {
                     var de = (KeyValuePair)e.First();
                     bool found = d.Contains(de.Key);
-                    if (!found || !(bool)isEqualTo(de.Value, d[de.Key]))
+                    if (!found || !(bool)funclib.Core.IsEqualTo(de.Value, d[de.Key]))
                         return false;
                 }
             }

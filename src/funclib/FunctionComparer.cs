@@ -1,22 +1,17 @@
-﻿using funclib.Components.Core;
-using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-
-namespace funclib
+﻿namespace funclib
 {
     class FunctionComparer : System.Collections.IComparer
     {
-        IFunction<object, object, object> _comparator;
+        object _comparator;
 
         public FunctionComparer(object comparator)
         {
-            this._comparator = (IFunction<object, object, object>)comparator;
+            this._comparator = comparator;
         }
 
         public int Compare(object x, object y)
         {
-            var result = this._comparator.Invoke(x, y);
+            var result = funclib.Core.Invoke(this._comparator, x, y);
             if (result is bool b)
                 result = b ? -1 : 1;
 

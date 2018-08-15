@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Threading;
-using static funclib.core;
+﻿using System.Threading;
 
 namespace funclib.Collections.Generic
 {
@@ -19,7 +16,7 @@ namespace funclib.Collections.Generic
         public bool CompareAndSet(T expected, T update)
         {
             var old = Interlocked.CompareExchange(ref this._ref, update, expected);
-            return (bool)isEqualTo(old, expected);
+            return (bool)funclib.Core.IsEqualTo(old, expected);
         }
 
         public T Get() => this._ref;

@@ -1,8 +1,5 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Components.Core
 {
@@ -39,9 +36,9 @@ namespace funclib.Components.Core
         /// Returns a new collection with the same data type of to consisting of to with all of the items of from conjoined.
         /// </returns>
         public object Invoke(object to, object from) =>
-            (bool)isInstance(typeof(IEditableCollection), to)
-                ? persistentǃ(reduce(funclib.core.Conjǃ, transient(to), from))
-                : reduce(funclib.core.Conj, to, from);
+            to is IEditableCollection
+                ? funclib.Core.Persistentǃ(funclib.Core.Reduce(funclib.Core.conjǃ, funclib.Core.Transient(to), from))
+                : funclib.Core.Reduce(funclib.Core.conj, to, from);
         /// <summary>
         /// Returns a new collection consisting of to with all of the items of from conjoined. 
         /// </summary>
@@ -52,8 +49,8 @@ namespace funclib.Components.Core
         /// Returns a new collection with the same data type of to consisting of to with all of the items of from conjoined.
         /// </returns>
         public object Invoke(object to, object xform, object from) =>
-            (bool)isInstance(typeof(IEditableCollection), to)
-                ? persistentǃ(transduce(xform, funclib.core.Conjǃ, transient(to), from))
-                : transduce(xform, funclib.core.Conj, to, from);
+            to is IEditableCollection
+                ? funclib.Core.Persistentǃ(funclib.Core.Transduce(xform, funclib.Core.conjǃ, funclib.Core.Transient(to), from))
+                : funclib.Core.Transduce(xform, funclib.Core.conj, to, from);
     }
 }

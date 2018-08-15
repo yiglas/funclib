@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -28,13 +25,13 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object m, object ks, object v)
         {
-            var k = first(ks);
-            ks = next(ks);
+            var k = funclib.Core.First(ks);
+            ks = funclib.Core.Next(ks);
 
-            if ((bool)truthy(ks))
-                return assoc(m, k, Invoke(get(m, k), ks, v));
+            if ((bool)funclib.Core.Truthy(ks))
+                return funclib.Core.Assoc(m, k, Invoke(funclib.Core.Get(m, k), ks, v));
 
-            return assoc(m, k, v);
+            return funclib.Core.Assoc(m, k, v);
         }
     }
 }

@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -10,7 +7,7 @@ namespace funclib.Components.Core
         IFunction<object, object, object>
     {
         public object Invoke(object pred) => Invoke(pred, null);
-        public object Invoke(object pred, object retf) => func<object, object>(rf => new TransducerFunction(pred, retf, rf));
+        public object Invoke(object pred, object retf) => funclib.Core.Func(rf => new TransducerFunction(pred, retf, rf));
 
 
         public class TransducerFunction :
@@ -29,22 +26,22 @@ namespace funclib.Components.Core
             #region Overrides
             public override object Invoke(object result)
             {
-                if ((bool)truthy(and(isMap(result), contains(result, "::halt"))))
+                if ((bool)funclib.Core.Truthy(funclib.Core.And(funclib.Core.IsMap(result), funclib.Core.Contains(result, "::halt"))))
                 {
-                    return get(result, "::halt");
+                    return funclib.Core.Get(result, "::halt");
                 }
 
-                return invoke(this._rf, result);
+                return funclib.Core.Invoke(this._rf, result);
             }
             public override object Invoke(object result, object input)
             {
-                if ((bool)truthy(invoke(this._pred, input)))
+                if ((bool)funclib.Core.Truthy(funclib.Core.Invoke(this._pred, input)))
                 {
-                    var haltVal = (bool)truthy(this._retf) ? invoke(this._retf, invoke(this._rf, result), input) : input;
-                    return reduced(hashMap("::halt", haltVal));
+                    var haltVal = (bool)funclib.Core.Truthy(this._retf) ? funclib.Core.Invoke(this._retf, funclib.Core.Invoke(this._rf, result), input) : input;
+                    return funclib.Core.Reduced(funclib.Core.HashMap("::halt", haltVal));
                 }
 
-                return invoke(this._rf, result, input);
+                return funclib.Core.Invoke(this._rf, result, input);
             }
             #endregion
         }

@@ -1,8 +1,6 @@
 ﻿using funclib.Collections.Internal;
 using funclib.Components.Core;
 using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Collections
 {
@@ -55,7 +53,7 @@ namespace funclib.Collections
             {
                 if (init.Next() is null)
                     throw new ArgumentException($"No value supplied for key: {init.First()}");
-                ret = ret.Assoc(init.First(), second(init));
+                ret = ret.Assoc(init.First(), funclib.Core.Second(init));
             }
             return ret as SortedMap;
         }

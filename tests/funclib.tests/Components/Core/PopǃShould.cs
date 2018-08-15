@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,8 +7,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Popǃ_should_return_itself()
         {
-            var expected = transient(vector(1, 2, 3));
-            var actual = popǃ(expected);
+            var expected = funclib.Core.Transient(funclib.Core.Vector(1, 2, 3));
+            var actual = funclib.Core.Popǃ(expected);
 
             Assert.IsTrue(expected == actual);
         }
@@ -20,10 +16,10 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Popǃ_should_modify_the_original_structure()
         {
-            var expected = transient(vector(1, 2, 3));
-            var actual = popǃ(expected);
+            var expected = funclib.Core.Transient(funclib.Core.Vector(1, 2, 3));
+            var actual = funclib.Core.Popǃ(expected);
 
-            Assert.AreEqual(2, count(expected));
+            Assert.AreEqual(2, funclib.Core.Count(expected));
         }
     }
 }

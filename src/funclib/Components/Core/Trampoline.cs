@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -27,12 +24,12 @@ namespace funclib.Components.Core
         /// </summary>
         /// <param name="f">An object that implements the <see cref="IFunction{TResult}"/> interface.</param>
         /// <returns>
-        /// Returns the first non-fn value.
+        /// Returns the funclib.Core.First( non-fn value.
         /// </returns>
         public object Invoke(object f)
         {
-            var ret = invoke(f);
-            if ((bool)isFunction(ret))
+            var ret = funclib.Core.Invoke(f);
+            if ((bool)funclib.Core.IsFunction(ret))
                 return Invoke(ret);
 
             return ret;
@@ -48,8 +45,8 @@ namespace funclib.Components.Core
         /// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
         /// <param name="args">A list of parameters</param>
         /// <returns>
-        /// Returns the first non-fn value.
+        /// Returns the funclib.Core.First( non-fn value.
         /// </returns>
-        public object Invoke(object f, params object[] args) => Invoke(func(() => apply(f, args)));
+        public object Invoke(object f, params object[] args) => Invoke(funclib.Core.Func(() => funclib.Core.Apply(f, args)));
     }
 }

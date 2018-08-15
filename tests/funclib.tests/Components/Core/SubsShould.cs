@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -12,7 +8,7 @@ namespace funclib.Tests.Components.Core
         public void Subs_should_return_string_after_start()
         {
             var expected = "net core";
-            var actual = subs(".net core", 1);
+            var actual = funclib.Core.Subs(".net core", 1);
 
             Assert.AreEqual(expected, actual);
         }
@@ -21,7 +17,7 @@ namespace funclib.Tests.Components.Core
         public void Subs_should_return_string_before_start_end()
         {
             var expected = "ne";
-            var actual = subs(".net core", 1, 3);
+            var actual = funclib.Core.Subs(".net core", 1, 3);
 
             Assert.AreEqual(expected, actual);
         }

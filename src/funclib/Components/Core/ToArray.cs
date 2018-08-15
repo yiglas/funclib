@@ -1,8 +1,6 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -49,8 +47,8 @@ namespace funclib.Components.Core
 
         static object[] ObjectToArray(object coll)
         {
-            var s = (ISeq)seq(coll);
-            var ret = new object[(int)count(s)];
+            var s = (ISeq)funclib.Core.Seq(coll);
+            var ret = new object[(int)funclib.Core.Count(s)];
             for (int i = 0; i < ret.Length; i++, s = s.Next())
                 ret[i] = s.First();
             return ret;

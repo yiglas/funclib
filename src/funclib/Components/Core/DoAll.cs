@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -27,7 +24,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object coll)
         {
-            doRun(coll);
+            funclib.Core.DoRun(coll);
             return coll;
         }
         /// <summary>
@@ -43,7 +40,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object n, object coll)
         {
-            doRun(n, coll);
+            funclib.Core.DoRun(n, coll);
             return coll;
         }
     }

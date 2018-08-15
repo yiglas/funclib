@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -49,34 +45,34 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns a <see cref="bool"/> that the opposite truthy value when calling the function.
             /// </returns>
-            public object Invoke() => not(invoke(this._func));
+            public object Invoke() => funclib.Core.Not(funclib.Core.Invoke(this._func));
             /// <summary>
             /// Returns the opposite truthy value when calling the function with one parameters.
             /// </summary>
-            /// <param name="x">The first parameter in the function.</param>
+            /// <param name="x">The funclib.Core.First( parameter in the function.</param>
             /// <returns>
             /// Returns a <see cref="bool"/> that the opposite truthy value when calling the function.
             /// </returns>
-            public object Invoke(object x) => not(invoke(this._func, x));
+            public object Invoke(object x) => funclib.Core.Not(funclib.Core.Invoke(this._func, x));
             /// <summary>
             /// Returns the opposite truthy value when calling the function with two parameters.
             /// </summary>
-            /// <param name="x">The first parameter in the function.</param>
+            /// <param name="x">The funclib.Core.First( parameter in the function.</param>
             /// <param name="y">The second parameter in the function.</param>
             /// <returns>
             /// Returns a <see cref="bool"/> that the opposite truthy value when calling the function.
             /// </returns>
-            public object Invoke(object x, object y) => not(invoke(this._func, x, y));
+            public object Invoke(object x, object y) => funclib.Core.Not(funclib.Core.Invoke(this._func, x, y));
             /// <summary>
             /// Returns the opposite truthy value when calling the function with more than two parameters.
             /// </summary>
-            /// <param name="x">The first parameter in the function.</param>
+            /// <param name="x">The funclib.Core.First( parameter in the function.</param>
             /// <param name="y">The second parameter in the function.</param>
             /// <param name="zs">The rest of the parameters in the function.</param>
             /// <returns>
             /// Returns a <see cref="bool"/> that the opposite truthy value when calling the function.
             /// </returns>
-            public object Invoke(object x, object y, params object[] zs) => not(apply(this._func, x, y, zs));
+            public object Invoke(object x, object y, params object[] zs) => funclib.Core.Not(funclib.Core.Apply(this._func, x, y, zs));
         }
     }
 }

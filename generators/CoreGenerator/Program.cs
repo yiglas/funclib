@@ -1,5 +1,4 @@
-﻿using funclib.Components.Core.Generic;
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
@@ -7,7 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using static funclib.core;
+using static funclib.Core;
 
 namespace CoreGenerator
 {
@@ -30,8 +29,8 @@ namespace CoreGenerator
         {
             var sw = Stopwatch.StartNew();
             var dir = new DirectoryInfo(AppContext.BaseDirectory).Parent.Parent.Parent.Parent.Parent.FullName + @"\src\funclib";
-            var files = filter(ExtensionsPredicate, Directory.GetFiles(dir + @"\Components\Core", "*", SearchOption.AllDirectories));
-            var syntax = filter(ClassDeclarationsPredicate, flatten(map(GetDescendantNodes<ClassDeclarationSyntax>(), map(ConvertToSyntaxNode, files))));
+            var files = Filter(ExtensionsPredicate, Directory.GetFiles(dir + @"\Components\Core", "*", SearchOption.AllDirectories));
+            var syntax = Filter(ClassDeclarationsPredicate, Flatten(Map(GetDescendantNodes<ClassDeclarationSyntax>(), Map(ConvertToSyntaxNode, files))));
 
             var lines = new List<string>();
 
@@ -53,86 +52,79 @@ namespace CoreGenerator
             lines.Add("\tpublic static class Core");
             lines.Add("\t{");
 
-            var l = ((object[])toArray(flatten(map(Build, syntax)))).Select(x => $"\t\t{x}");
+            var l = ((object[])ToArray(Flatten(Map(Build, syntax)))).Select(x => $"\t\t{x}");
 
             lines.AddRange(l);
             lines.Add("\t}");
             lines.Add("}");
 
-            var source = dir + @"\Core2.cs";
+            var source = dir + @"\Core.cs";
             File.WriteAllLines(source, lines);
 
             Console.WriteLine($"Time Elapsed: {sw.Elapsed}");
             Console.WriteLine("========== Finished ==========");
             Console.ReadLine();
         }
-
-        // remove this once this has been generated!
-        public static Function<object, object> Func(Func<object, object> x) => new Function<object, object>(x);
-        public static Function<object, object, object> Func(Func<object, object, object> x) => new Function<object, object, object>(x);
-        public static Function<object, object, object, object> Func(Func<object, object, object, object> x) => new Function<object, object, object, object>(x);
-        public static Function<object, object, object, object, object> Func(Func<object, object, object, object, object> x) => new Function<object, object, object, object, object>(x);
-
-
+        
         public static object ExtensionsPredicate => Func(file => Path.GetExtension((string)file) == ".cs");
         public static object ConvertToSyntaxNode => Func(file => CSharpSyntaxTree.ParseText(File.ReadAllText((string)file)).GetRoot());
-        public static object GetDescendantNodes<T>() => Func(node => listS(((CSharpSyntaxNode)node).DescendantNodes().OfType<T>()));
+        public static object GetDescendantNodes<T>() => Func(node => ListS(((CSharpSyntaxNode)node).DescendantNodes().OfType<T>()));
         public static object IsChildOfNamespace => Func(node => node != null && ((SyntaxNode)node).Parent.Kind() == SyntaxKind.NamespaceDeclaration);
         public static object IsNotAnAbstractClass => Func(node => node != null && !((BaseTypeDeclarationSyntax)node).Modifiers.Any(x => x.Text == "abstract"));
-        public static object ClassDeclarationsPredicate => Func(node => and(identity(node), invoke(IsChildOfNamespace, node), invoke(IsNotAnAbstractClass, node)));
-        public static object IsInvokeIdentitifer => Func(map => get(map, NAME).Equals("Invoke"));
-        public static object IsPublic => Func(map => get(map, MODIFIER).Equals("public"));
-        public static object MethodDeclarationPredicate(object node) => Func(map => and(invoke(IsInvokeIdentitifer, map), invoke(IsPublic, map), invoke(IsChildOf(node), map)));
-        public static object IsChildOf(object node) => Func(map => get(map, PARENT) == node);
+        public static object ClassDeclarationsPredicate => Func(node => And(Identity(node), Invoke(IsChildOfNamespace, node), Invoke(IsNotAnAbstractClass, node)));
+        public static object IsInvokeIdentitifer => Func(map => Get(map, NAME).Equals("Invoke"));
+        public static object IsPublic => Func(map => Get(map, MODIFIER).Equals("public"));
+        public static object MethodDeclarationPredicate(object node) => Func(map => And(Invoke(IsInvokeIdentitifer, map), Invoke(IsPublic, map), Invoke(IsChildOf(node), map)));
+        public static object IsChildOf(object node) => Func(map => Get(map, PARENT) == node);
 
         public static object Build => Func(node =>
         {
-            var @class = invoke(GetClassDeclaration, node);
-            var constructors = filter(IsPublic, map(GetConstructorDeclaration(@class), invoke(GetDescendantNodes<ConstructorDeclarationSyntax>(), node)));
-            var methods = filter(MethodDeclarationPredicate(node), map(GetMethodDeclaration(@class), invoke(GetDescendantNodes<MethodDeclarationSyntax>(), node)));
+            var @class = Invoke(GetClassDeclaration, node);
+            var constructors = Filter(IsPublic, Map(GetConstructorDeclaration(@class), Invoke(GetDescendantNodes<ConstructorDeclarationSyntax>(), node)));
+            var methods = Filter(MethodDeclarationPredicate(node), Map(GetMethodDeclaration(@class), Invoke(GetDescendantNodes<MethodDeclarationSyntax>(), node)));
 
-            var className = get(@class, NAME);
-            var isMacroFunction = get(@class, ISMACROFUNCTION);
-            var typedParameters = get(@class, TYPEDPARAMTERS);
+            var className = Get(@class, NAME);
+            var isMacroFunction = Get(@class, ISMACROFUNCTION);
+            var typedParameters = Get(@class, TYPEDPARAMTERS);
 
-            var v = conj(vector(), $"#region {className}{typedParameters}");
+            var v = Conj(Vector(), $"#region {className}{typedParameters}");
 
             if (className.Equals("Function") || className.Equals("FunctionParams"))
             {
-                v = reduce(Conj, v, flatten(map(BuildStatement(GetFunctionStatement), constructors)));
+                v = Reduce(conj, v, Flatten(Map(BuildStatement(GetFunctionStatement), constructors)));
             }
             else if (className.Equals("LazySeq"))
             {
-                v = reduce(Conj, v, flatten(map(BuildStatement(GetLazySeqStatement), constructors)));
+                v = Reduce(conj, v, Flatten(Map(BuildStatement(GetLazySeqStatement), constructors)));
             }
-            else if ((bool)truthy(isMacroFunction))
+            else if ((bool)Truthy(isMacroFunction))
             {
-                v = reduce(Conj, v, flatten(map(BuildStatement(GetMacroFunctionStatement), constructors)));
+                v = Reduce(conj, v, Flatten(Map(BuildStatement(GetMacroFunctionStatement), constructors)));
             }
             else
             {
-                v = apply(Conj, v, invoke(BuildClassStatement, @class));
-                v = reduce(Conj, v, flatten(map(BuildStatement(GetMethodStatement), methods)));
+                v = Apply(conj, v, Invoke(BuildClassStatement, @class));
+                v = Reduce(conj, v, Flatten(Map(BuildStatement(GetMethodStatement), methods)));
             }
 
-            v = conj(v, "#endregion");
+            v = Conj(v, "#endregion");
 
             return v;
         });
 
         public static object BuildClassStatement => Func(map =>
         {
-            var v = conj(vector(), invoke(GetPrivatePropertyStatement, map));
-            v = apply(Conj, v, get(map, COMMENTS));
-            v = conj(v, invoke(GetPropertyStatement, map));
+            var v = Conj(Vector(), Invoke(GetPrivatePropertyStatement, map));
+            v = Apply(conj, v, Get(map, COMMENTS));
+            v = Conj(v, Invoke(GetPropertyStatement, map));
             return v;
         });
 
         public static object BuildStatement(object f) => Func(map =>
         {
-            var v = vector();
-            v = apply(Conj, v, get(map, COMMENTS));
-            v = conj(v, invoke(f, map));
+            var v = Vector();
+            v = Apply(conj, v, Get(map, COMMENTS));
+            v = Conj(v, Invoke(f, map));
             return v;
         });
 
@@ -140,12 +132,12 @@ namespace CoreGenerator
         {
             var declaration = (ClassDeclarationSyntax)node;
 
-            return arrayMap(
+            return ArrayMap(
                 MODIFIER, GetModifier(declaration.Modifiers),
                 NAME, declaration.Identifier.Text,
                 FULLNAME, GetFullyQualifiedName(declaration),
                 COMMENTS, GetComments(declaration),
-                PRIVATENAME, str("__", declaration.Identifier.Text.ToLower()),
+                PRIVATENAME, Str("__", declaration.Identifier.Text.ToLower()),
                 TYPEDPARAMTERS, declaration.TypeParameterList?.ToString(),
                 ISMACROFUNCTION, declaration.DescendantNodes().OfType<BaseListSyntax>().FirstOrDefault().Types.ToString() == "IMacroFunction"
                 );
@@ -155,8 +147,8 @@ namespace CoreGenerator
         {
             var declaration = (MethodDeclarationSyntax)node;
 
-            return arrayMap(
-                CLASSNAME, get(classMap, NAME),
+            return ArrayMap(
+                CLASSNAME, Get(classMap, NAME),
                 MODIFIER, GetModifier(declaration.Modifiers),
                 NAME, declaration.Identifier.Text,
                 RETURNTYPE, declaration.ReturnType.ToString(),
@@ -171,44 +163,44 @@ namespace CoreGenerator
         {
             var declaration = (ConstructorDeclarationSyntax)node;
 
-            return arrayMap(
-                CLASSNAME, get(@class, NAME),
-                FULLNAME, get(@class, FULLNAME),
-                MODIFIER, get(@class, MODIFIER),
+            return ArrayMap(
+                CLASSNAME, Get(@class, NAME),
+                FULLNAME, Get(@class, FULLNAME),
+                MODIFIER, Get(@class, MODIFIER),
                 COMMENTS, GetComments(declaration),
                 PARAMETERS, declaration.ParameterList.ToString(),
                 PARAMETERLIST, GetParameterList(declaration.ParameterList),
-                TYPEDPARAMTERS, get(@class, TYPEDPARAMTERS)
+                TYPEDPARAMTERS, Get(@class, TYPEDPARAMTERS)
                 );
         });
 
         public static object GetPropertyStatement => Func(map =>
         {
-            var modifier = get(map, MODIFIER);
-            var fullName = get(map, FULLNAME);
-            var name = FixClassName(get(map, NAME));
-            var privateName = get(map, PRIVATENAME);
+            var modifier = Get(map, MODIFIER);
+            var fullName = Get(map, FULLNAME);
+            var name = FixClassName(Get(map, NAME));
+            var privateName = Get(map, PRIVATENAME);
 
             return $"{modifier} static {fullName} {name} => {privateName} ?? ({privateName} = new {fullName}());";
         });
 
         public static object GetPrivatePropertyStatement => Func(map =>
         {
-            var fullName = get(map, FULLNAME);
-            var privateName = get(map, PRIVATENAME);
+            var fullName = Get(map, FULLNAME);
+            var privateName = Get(map, PRIVATENAME);
 
             return $"static {fullName} {privateName};";
         });
 
         public static object GetMacroFunctionStatement => Func(constructorMap =>
         {
-            var modifier = get(constructorMap, MODIFIER);
+            var modifier = Get(constructorMap, MODIFIER);
             var returnType = "object";
-            var className = get(constructorMap, CLASSNAME);
-            var fullName = get(constructorMap, FULLNAME);
-            var typedParameters = get(constructorMap, TYPEDPARAMTERS);
-            var constructorParameters = get(constructorMap, PARAMETERS);
-            var parameterList = get(constructorMap, PARAMETERLIST);
+            var className = Get(constructorMap, CLASSNAME);
+            var fullName = Get(constructorMap, FULLNAME);
+            var typedParameters = Get(constructorMap, TYPEDPARAMTERS);
+            var constructorParameters = Get(constructorMap, PARAMETERS);
+            var parameterList = Get(constructorMap, PARAMETERLIST);
 
             return $"{modifier} static {returnType} {className}{typedParameters}{constructorParameters} => new {fullName}{typedParameters}({parameterList}).Invoke();";
         });
@@ -216,37 +208,37 @@ namespace CoreGenerator
         public static object GetFunctionStatement => Func(constructorMap =>
         {
             var name = "Func";
-            var modifier = get(constructorMap, MODIFIER);
-            var fullName = get(constructorMap, FULLNAME);
-            var typedParameters = ReplaceObjectTypes(get(constructorMap, TYPEDPARAMTERS));
-            var constructorParameters = ReplaceObjectTypes(get(constructorMap, PARAMETERS));
-            var parameterList = get(constructorMap, PARAMETERLIST);
+            var modifier = Get(constructorMap, MODIFIER);
+            var fullName = Get(constructorMap, FULLNAME);
+            var typedParameters = ReplaceObjectTypes(Get(constructorMap, TYPEDPARAMTERS));
+            var constructorParameters = ReplaceObjectTypes(Get(constructorMap, PARAMETERS));
+            var parameterList = Get(constructorMap, PARAMETERLIST);
 
             return $"{modifier} static {fullName}{typedParameters} {name}{constructorParameters} => new {fullName}{typedParameters}({parameterList});";
         });
 
         public static object GetLazySeqStatement => Func((constructorMap) =>
         {
-            var modifier = get(constructorMap, MODIFIER);
-            var className = get(constructorMap, CLASSNAME);
-            var fullName = get(constructorMap, FULLNAME);
-            var typedParameters = get(constructorMap, TYPEDPARAMTERS);
-            var constructorParameters = get(constructorMap, PARAMETERS);
-            var parameterList = get(constructorMap, PARAMETERLIST);
+            var modifier = Get(constructorMap, MODIFIER);
+            var className = Get(constructorMap, CLASSNAME);
+            var fullName = Get(constructorMap, FULLNAME);
+            var typedParameters = Get(constructorMap, TYPEDPARAMTERS);
+            var constructorParameters = Get(constructorMap, PARAMETERS);
+            var parameterList = Get(constructorMap, PARAMETERLIST);
 
             return $"{modifier} static {fullName}{typedParameters} {className}{typedParameters}{constructorParameters} => new {fullName}{typedParameters}({parameterList});";
         });
 
         public static object GetMethodStatement => Func((methodMap) =>
         {
-            var modifier = get(methodMap, MODIFIER);
-            var returnType = get(methodMap, RETURNTYPE);
-            var className = get(methodMap, CLASSNAME);
-            var methodName = get(methodMap, NAME);
-            var parameterList = get(methodMap, PARAMETERLIST);
-            var parameters = get(methodMap, PARAMETERS);
+            var modifier = Get(methodMap, MODIFIER);
+            var returnType = Get(methodMap, RETURNTYPE);
+            var className = Get(methodMap, CLASSNAME);
+            var methodName = Get(methodMap, NAME);
+            var parameterList = Get(methodMap, PARAMETERLIST);
+            var parameters = Get(methodMap, PARAMETERS);
 
-            return $"{modifier} static {returnType} {className}{parameters} => {FixClassName(className)}.{methodName}({parameterList});";
+            return $"{modifier} static {returnType} {FixMethodName(className)}{parameters} => {FixClassName(className)}.{methodName}({parameterList});";
         });
 
         static List<string> GetComments(CSharpSyntaxNode node) =>
@@ -313,6 +305,18 @@ namespace CoreGenerator
                 case "invokeFunction": return "invoke";
                 case "uuID": return "uuid";
                 case "rSeq": return "rseq";
+            }
+
+            return name;
+        }
+
+        static string FixMethodName(object methodName)
+        {
+            var name = methodName.ToString();
+
+            switch (name)
+            {
+                case "InvokeFunction": return "Invoke";
             }
 
             return name;

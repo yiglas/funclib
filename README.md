@@ -17,7 +17,7 @@ Functional Library for C# that follows the Clojure idiom.
 
 Each function has two different access methods. 
 
-The first method is the standard C# naming style:
+The funclib.Core.First( method is the standard C# naming style:
 ```csharp
 using funclib.Compoents.Core;
 ...
@@ -31,10 +31,7 @@ The second and cleaner method is:
 using static funclib.Core;
 ...
 
-var mapVector = map(Inc, vector(1, 2, 3, 4, 5));
-// var mapVector = Map(inc, Vector(1, 2, 3, 4, 5));
-var b = isVector(vector(1, 2, 3));
-// var b = IsVector(Vector(1, 2, 4));
+var mapVector = Map(inc, Vector(1, 2, 3, 4, 5));
 // => [2, 3, 4, 5, 6]
 ```
 
@@ -66,8 +63,6 @@ flip it to be upper case for methods and lower case for properties. If anyone ha
 	- if not 
 	- if some
 	- keep indexed
-	- memoize
-	- replace
 	- slurp
 	- spit
 	- while

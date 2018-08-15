@@ -1,9 +1,6 @@
 ﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
 using System.Globalization;
 using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -48,13 +45,13 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object x, params object[] ys)
         {
-            return inner(new StringBuilder((string)Invoke(x)), seq(ys)).ToString();
+            return inner(new StringBuilder((string)Invoke(x)), funclib.Core.Seq(ys)).ToString();
 
             StringBuilder inner(StringBuilder sb, object more)
             {
                 if (more != null)
                 {
-                    return inner(sb.Append(Invoke(first(more))), next(more));
+                    return inner(sb.Append(Invoke(funclib.Core.First(more))), funclib.Core.Next(more));
                 }
                 return sb;
             }

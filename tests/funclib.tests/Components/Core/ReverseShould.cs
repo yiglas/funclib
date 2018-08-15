@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,8 +7,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Reverse_should_reverse_a_sequence_of_items()
         {
-            var expected = list(3, 2, 1);
-            var actual = reverse(list(1, 2, 3));
+            var expected = funclib.Core.List(3, 2, 1);
+            var actual = funclib.Core.Reverse(funclib.Core.List(1, 2, 3));
 
             Assert.AreEqual(expected, actual);
         }

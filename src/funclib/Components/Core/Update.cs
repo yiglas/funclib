@@ -1,8 +1,5 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Components.Core
 {
@@ -34,7 +31,7 @@ namespace funclib.Components.Core
         /// a new value, and returns a new structure. If the key does not exists, null is passed as 
         /// the old value. 
         /// </returns>
-        public object Invoke(object m, object k, object f) => assoc(m, k, invoke(f, get(m, k)));
+        public object Invoke(object m, object k, object f) => funclib.Core.Assoc(m, k, funclib.Core.Invoke(f, funclib.Core.Get(m, k)));
         /// <summary>
         /// 'Updates' a value in an <see cref="IAssociative"/> structure. where k is a key and f is
         /// a <see cref="IFunction"/> that will take the old value and any supplied args and return 
@@ -52,7 +49,7 @@ namespace funclib.Components.Core
         /// the old value.  
         /// </returns>
         public object Invoke(object m, object k, object f, object x) => 
-            assoc(m, k, invoke(f, get(m, k), x));
+            funclib.Core.Assoc(m, k, funclib.Core.Invoke(f, funclib.Core.Get(m, k), x));
         /// <summary>
         /// 'Updates' a value in an <see cref="IAssociative"/> structure. where k is a key and f is
         /// a <see cref="IFunction"/> that will take the old value and any supplied args and return 
@@ -71,7 +68,7 @@ namespace funclib.Components.Core
         /// the old value.   
         /// </returns>
         public object Invoke(object m, object k, object f, object x, object y) =>
-            assoc(m, k, invoke(f, get(m, k), x, y));
+            funclib.Core.Assoc(m, k, funclib.Core.Invoke(f, funclib.Core.Get(m, k), x, y));
         /// <summary>
         /// 'Updates' a value in an <see cref="IAssociative"/> structure. where k is a key and f is
         /// a <see cref="IFunction"/> that will take the old value and any supplied args and return 
@@ -91,7 +88,7 @@ namespace funclib.Components.Core
         /// the old value.  
         /// </returns>
         public object Invoke(object m, object k, object f, object x, object y, object z) =>
-            assoc(m, k, invoke(f, get(m, k), x, y, z));
+            funclib.Core.Assoc(m, k, funclib.Core.Invoke(f, funclib.Core.Get(m, k), x, y, z));
         /// <summary>
         /// 'Updates' a value in an <see cref="IAssociative"/> structure. where k is a key and f is
         /// a <see cref="IFunction"/> that will take the old value and any supplied args and return 
@@ -112,6 +109,6 @@ namespace funclib.Components.Core
         /// the old value. 
         /// </returns>
         public object Invoke(object m, object k, object f, object x, object y, object z, params object[] more) =>
-            assoc(m, k, apply(f, get(m, k), x, y, z, more));
+            funclib.Core.Assoc(m, k, funclib.Core.Apply(f, funclib.Core.Get(m, k), x, y, z, more));
     }
 }

@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,13 +7,13 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsVolatile_should_return_true_if_volatile()
         {
-            Assert.IsTrue((bool)isVolatile(volatileǃ("foo")));
+            Assert.IsTrue((bool)funclib.Core.IsVolatile(funclib.Core.Volatileǃ("foo")));
         }
 
         [Test]
         public void IsVolatile_should_return_false_if_not_volatile()
         {
-            Assert.IsFalse((bool)isVolatile(0));
+            Assert.IsFalse((bool)funclib.Core.IsVolatile(0));
         }
     }
 }

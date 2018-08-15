@@ -1,7 +1,4 @@
-﻿using funclib.Components.Core;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using System;
 
 namespace funclib.Collections
 {
@@ -19,7 +16,7 @@ namespace funclib.Collections
         }
 
         #region Overrides
-        public override int Count => 1 + (int)count(this._more);
+        public override int Count => 1 + (int)funclib.Core.Count(this._more);
         public override object First() => this._first;
         public override ISeq Next() => More().Seq();
         public override ISeq More() => this._more is null ? List.EMPTY : this._more;

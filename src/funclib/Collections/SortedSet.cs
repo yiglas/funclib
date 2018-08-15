@@ -1,9 +1,4 @@
-﻿using funclib.Components.Core;
-using System;
-using System.Text;
-using static funclib.core;
-
-namespace funclib.Collections
+﻿namespace funclib.Collections
 {
     public class SortedSet :
         ASet,
@@ -47,7 +42,7 @@ namespace funclib.Collections
         #endregion
 
         public System.Collections.IComparer GetComparator() => (this._impl as ISorted)?.GetComparator();
-        public ISeq Seq(bool ascending) => (ISeq)keys((this._impl as SortedMap).Seq(ascending));
-        public ISeq Seq(object key, bool ascending) => (ISeq)keys((this._impl as SortedMap).Seq(key, ascending));
+        public ISeq Seq(bool ascending) => (ISeq)funclib.Core.Keys((this._impl as SortedMap).Seq(ascending));
+        public ISeq Seq(object key, bool ascending) => (ISeq)funclib.Core.Keys((this._impl as SortedMap).Seq(key, ascending));
     }
 }

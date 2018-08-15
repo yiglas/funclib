@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -28,13 +24,13 @@ namespace funclib.Components.Core
         /// <see cref="IFunction{T1, TResult}"/> f.
         /// </returns>
         public object Invoke(object f, object coll) =>
-            persistentǃ(
-                reduce(
-                    func((object ret, object x) =>
+            funclib.Core.Persistentǃ(
+                funclib.Core.Reduce(
+                    funclib.Core.Func((ret, x) =>
                     {
-                        var k = invoke(f, x);
-                        return assocǃ(ret, k, conj(get(ret, k, vector()), x));
-                    }), transient(hashMap()), coll));
+                        var k = funclib.Core.Invoke(f, x);
+                        return funclib.Core.Assocǃ(ret, k, funclib.Core.Conj(funclib.Core.Get(ret, k, funclib.Core.Vector()), x));
+                    }), funclib.Core.Transient(funclib.Core.HashMap()), coll));
     }
 
 }

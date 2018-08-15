@@ -1,7 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,16 +8,16 @@ namespace funclib.Tests.Components.Core
         public void Swapǃ_should_update_the_atoms_value_based_on_the_function()
         {
             var expected = 1;
-            var a = atom(0);
-            var actual = swapǃ(a, Inc);
+            var a = funclib.Core.Atom(0);
+            var actual = funclib.Core.Swapǃ(a, funclib.Core.inc);
 
-            Assert.AreEqual(expected, deref(a));
+            Assert.AreEqual(expected, funclib.Core.Deref(a));
         }
 
         [Test]
         public void Swapǃ_should_return_a_vector()
         {
-            var actaul = swapǃ(atom(0), Inc);
+            var actaul = funclib.Core.Swapǃ(funclib.Core.Atom(0), funclib.Core.inc);
 
             Assert.IsInstanceOf<funclib.Collections.Vector>(actaul);
         }
@@ -28,43 +25,43 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Swapǃ_should_return_and_update_previous()
         {
-            var queue = atom(list(1, 2, 3));
-            var head = ffirst(swapǃ(queue, Pop));
+            var queue = funclib.Core.Atom(funclib.Core.List(1, 2, 3));
+            var head = funclib.Core.FFirst(funclib.Core.Swapǃ(queue, funclib.Core.pop));
 
             Assert.AreEqual(1, head);
-            Assert.AreEqual(list(2, 3), deref(queue));
+            Assert.AreEqual(funclib.Core.List(2, 3), funclib.Core.Deref(queue));
         }
 
         [Test]
         public void Swapǃ_should_update_atom_with_one_paramter()
         {
-            var players = atom(list());
+            var players = funclib.Core.Atom(funclib.Core.List());
 
-            swapǃ(players, Conj, ":player1");
+            funclib.Core.Swapǃ(players, funclib.Core.conj, ":player1");
 
-            Assert.AreEqual(list(":player1"), deref(players));
+            Assert.AreEqual(funclib.Core.List(":player1"), funclib.Core.Deref(players));
         }
 
         [Test]
         public void Swapǃ_should_update_atom_with_two_paramter()
         {
-            var m1 = atom(arrayMap(":a", "A", ":b", "B"));
+            var m1 = funclib.Core.Atom(funclib.Core.ArrayMap(":a", "A", ":b", "B"));
 
-            swapǃ(m1, Assoc, ":a", "Aaay");
+            funclib.Core.Swapǃ(m1, funclib.Core.assoc, ":a", "Aaay");
 
-            Assert.AreEqual("Aaay", get(deref(m1), ":a"));
+            Assert.AreEqual("Aaay", funclib.Core.Get(funclib.Core.Deref(m1), ":a"));
         }
 
         [Test]
         public void Swapǃ_should_update_atom_with_more_paramter()
         {
-            var car = atom(arrayMap(":make", "Audi", ":model", "Q3"));
+            var car = funclib.Core.Atom(funclib.Core.ArrayMap(":make", "Audi", ":model", "Q3"));
 
-            swapǃ(car, Assoc, ":make", "Q5", ":engine", "V8");
+            funclib.Core.Swapǃ(car, funclib.Core.assoc, ":make", "Q5", ":engine", "V8");
 
 
-            Assert.AreEqual("Q5", get(deref(car), ":make"));
-            Assert.AreEqual("V8", get(deref(car), ":engine"));
+            Assert.AreEqual("Q5", funclib.Core.Get(funclib.Core.Deref(car), ":make"));
+            Assert.AreEqual("V8", funclib.Core.Get(funclib.Core.Deref(car), ":engine"));
         }
     }
 }

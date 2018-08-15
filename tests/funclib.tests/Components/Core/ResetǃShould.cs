@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,9 +7,9 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Resetǃ_should_rest_the_atom_value()
         {
-            var x = atom(10);
-            var expected = vector(10, 20);
-            var actual = resetǃ(x, 20);
+            var x = funclib.Core.Atom(10);
+            var expected = funclib.Core.Vector(10, 20);
+            var actual = funclib.Core.Resetǃ(x, 20);
 
             Assert.AreEqual(expected, actual);
         }

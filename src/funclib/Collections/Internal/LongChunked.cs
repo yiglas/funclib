@@ -1,8 +1,5 @@
 ﻿using funclib.Components.Core;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Collections.Internal
 {
@@ -40,7 +37,7 @@ namespace funclib.Collections.Internal
             var ret = init;
             for (int i = 0; i < Count; i++)
             {
-                ret = invoke(f, ret, x);
+                ret = funclib.Core.Invoke(f, ret, x);
                 if (ret is Reduced r)
                     return r.Deref();
                 x += this._step;

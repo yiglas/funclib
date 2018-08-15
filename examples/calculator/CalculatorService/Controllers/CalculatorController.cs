@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using static funclib.core;
-using Microsoft.AspNetCore.Mvc;
-using funclib.Components.Core;
+﻿using Microsoft.AspNetCore.Mvc;
+using static funclib.Core;
 
 namespace CalculatorService.Controllers
 {
@@ -12,28 +7,28 @@ namespace CalculatorService.Controllers
     public class CalculatorController : Controller
     {
         [HttpGet("add/{a}/{b}")]
-        public long Add(int a, int b) => (long)time(() => plus(a, b)); //(long)new Time(() => plus(a, b)).Invoke();
+        public long Add(int a, int b) => (long)Time(() => Plus(a, b));
 
         [HttpGet("add/{a}/{b}/{c}")]
-        public long Add(int a, int b, int c) => (long)time(() => plus(a, b, c));  //(long)new Time(() => plus(a, b, c)).Invoke();
+        public long Add(int a, int b, int c) => (long)Time(() => Plus(a, b, c));
 
         [HttpGet("subtract/{a}/{b}")]
-        public long Subtract(int a, int b) => (long)new Time(() => minus(a, b)).Invoke();
+        public long Subtract(int a, int b) => (long)Time(() => Minus(a, b));
 
         [HttpGet("subtract/{a}/{b}/{c}")]
-        public long Subtract(int a, int b, int c) => (long)new Time(() => minus(a, b, c)).Invoke();
+        public long Subtract(int a, int b, int c) => (long)Time(() => Minus(a, b, c));
 
         [HttpGet("multiply/{a}/{b}")]
-        public long Multiply(int a, int b) => (long)new Time(() => multiply(a, b)).Invoke();
+        public long Multiply(int a, int b) => (long)Time(() => Multiply(a, b));
 
         [HttpGet("multiply/{a}/{b}/{c}")]
-        public long Multiply(int a, int b, int c) => (long)new Time(() => multiply(a, b, c)).Invoke();
+        public long Multiply(int a, int b, int c) => (long)Time(() => Multiply(a, b, c));
 
         [HttpGet("divide/{a}/{b}")]
-        public double Divide(double a, double b) => (double)new Time(() => divide(a, b)).Invoke();
+        public double Divide(double a, double b) => (double)Time(() => Divide(a, b));
 
         [HttpGet("divide/{a}/{b}/{c}")]
-        public double Divide(double a, double b, double c) => (double)new Time(() => divide(a, b, c)).Invoke();
+        public double Divide(double a, double b, double c) => (double)Time(() => Divide(a, b, c));
 
     }
 }

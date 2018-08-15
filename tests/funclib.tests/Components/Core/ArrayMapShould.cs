@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -12,9 +8,9 @@ namespace funclib.Tests.Components.Core
         public void ArrayMap_should_return_empty_map_when_no_parameters_passed()
         {
             var expected = 0;
-            var actual = arrayMap();
+            var actual = funclib.Core.ArrayMap();
 
-            Assert.AreEqual(expected, count(actual));
+            Assert.AreEqual(expected, funclib.Core.Count(actual));
         }
     }
 }

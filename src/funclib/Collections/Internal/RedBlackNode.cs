@@ -1,7 +1,5 @@
 ﻿using funclib.Components.Core;
 using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Collections.Internal
 {
@@ -47,7 +45,7 @@ namespace funclib.Collections.Internal
                 if (init is Reduced)
                     return init;
             }
-            init = invoke(f, init, Key, Value);
+            init = funclib.Core.Invoke(f, init, Key, Value);
             if (init is Reduced)
                 return init;
             if (Right != null)

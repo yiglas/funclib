@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,14 +7,14 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsMap_should_return_true_if_an_object_is_IMap()
         {
-            Assert.IsTrue((bool)isCounted(hashMap()));
+            Assert.IsTrue((bool)funclib.Core.IsMap(funclib.Core.HashMap()));
         }
 
         [Test]
         public void IsMap_should_return_false_if_an_object_is_not_IMap()
         {
-            Assert.IsFalse((bool)isCounted(1));
-            Assert.IsFalse((bool)isCounted(null));
+            Assert.IsFalse((bool)funclib.Core.IsMap(1));
+            Assert.IsFalse((bool)funclib.Core.IsMap(null));
         }
     }
 }

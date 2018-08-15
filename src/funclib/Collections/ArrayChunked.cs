@@ -1,7 +1,5 @@
 ﻿using funclib.Components.Core;
 using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Collections
 {
@@ -36,13 +34,13 @@ namespace funclib.Collections
 
         public object Reduce(object f, object init)
         {
-            var ret = invoke(f, init, this._array[this._off]);
+            var ret = funclib.Core.Invoke(f, init, this._array[this._off]);
             if (ret is Reduced r)
                 return r.Deref();
 
             for (int x = this._off + 1; x < this._end; x++)
             {
-                ret = invoke(f, ret, this._array[x]);
+                ret = funclib.Core.Invoke(f, ret, this._array[x]);
                 if (ret is Reduced r2)
                     return r2.Deref();
             }

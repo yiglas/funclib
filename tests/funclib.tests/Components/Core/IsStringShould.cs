@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,17 +7,17 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsString_should_return_true_if_x_is_string()
         {
-            Assert.IsTrue((bool)isString("abc"));
-            Assert.IsTrue((bool)isString(""));
+            Assert.IsTrue((bool)funclib.Core.IsString("abc"));
+            Assert.IsTrue((bool)funclib.Core.IsString(""));
         }
 
         [Test]
         public void IsString_should_return_false_if_x_is_not_string()
         {
-            Assert.IsFalse((bool)isString(vector("1", "2", "3")));
-            Assert.IsFalse((bool)isString('a'));
-            Assert.IsFalse((bool)isString(null));
-            Assert.IsFalse((bool)isString(1));
+            Assert.IsFalse((bool)funclib.Core.IsString(funclib.Core.Vector("1", "2", "3")));
+            Assert.IsFalse((bool)funclib.Core.IsString('a'));
+            Assert.IsFalse((bool)funclib.Core.IsString(null));
+            Assert.IsFalse((bool)funclib.Core.IsString(1));
         }
     }
 }

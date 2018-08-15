@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,31 +7,31 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void IsLessThan_should_return_true_if_passed_one_value()
         {
-            Assert.IsTrue((bool)isLessThan(1));
+            Assert.IsTrue((bool)funclib.Core.IsLessThan(1));
         }
 
         [Test]
         public void IsLessThan_should_return_true_if_nums_are_lesser()
         {
-            Assert.IsTrue((bool)isLessThan(1, 2));
+            Assert.IsTrue((bool)funclib.Core.IsLessThan(1, 2));
         }
 
         [Test]
         public void IsLessThan_should_return_false_if_nums_are_equal()
         {
-            Assert.IsFalse((bool)isLessThan(2, 2));
+            Assert.IsFalse((bool)funclib.Core.IsLessThan(2, 2));
         }
 
         [Test]
         public void IsLessThan_should_return_false_if_nums_are_not_lesser()
         {
-            Assert.IsFalse((bool)isLessThan(2, 1));
+            Assert.IsFalse((bool)funclib.Core.IsLessThan(2, 1));
         }
 
         [Test]
         public void IsLessThan_should_return_true_if_all_nums_are_lesser()
         {
-            Assert.IsTrue((bool)isLessThan(-1, 0, 1, 2));
+            Assert.IsTrue((bool)funclib.Core.IsLessThan(-1, 0, 1, 2));
         }
     }
 }

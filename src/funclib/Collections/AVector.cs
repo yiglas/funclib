@@ -1,9 +1,6 @@
 ﻿using funclib.Collections.Internal;
-using funclib.Components.Core;
 using funclib.Components.Core.Generic;
 using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Collections
 {
@@ -31,7 +28,7 @@ namespace funclib.Collections
 
                 for (int i = 0; i < Count; i++)
                 {
-                    if (!(bool)isEqualTo(this[i], v[i]))
+                    if (!(bool)funclib.Core.IsEqualTo(this[i], v[i]))
                         return false;
                 }
 
@@ -44,7 +41,7 @@ namespace funclib.Collections
 
                 for (int i = 0; i < Count; i++)
                 {
-                    if (!(bool)isEqualTo(this[i], l[i]))
+                    if (!(bool)funclib.Core.IsEqualTo(this[i], l[i]))
                         return false;
                 }
 
@@ -55,7 +52,7 @@ namespace funclib.Collections
             {
                 for (int i = 0; i < Count; i++, e = e.Next())
                 {
-                    if (e is null || !(bool)isEqualTo(this[i], e.First()))
+                    if (e is null || !(bool)funclib.Core.IsEqualTo(this[i], e.First()))
                         return false;
                 }
                 if (e != null) return false;
@@ -151,7 +148,7 @@ namespace funclib.Collections
         public bool Contains(object value)
         {
             for (var e = Seq(); e != null; e = e.Next())
-                if ((bool)isEqualTo(e.First(), value))
+                if ((bool)funclib.Core.IsEqualTo(e.First(), value))
                     return true;
 
             return false;
@@ -183,7 +180,7 @@ namespace funclib.Collections
         public int IndexOf(object value)
         {
             for (int i = 0; i < Count; i++)
-                if ((bool)isEqualTo(this[i], value))
+                if ((bool)funclib.Core.IsEqualTo(this[i], value))
                     return i;
 
             return -1;
@@ -198,7 +195,7 @@ namespace funclib.Collections
 
                 for (int i = 0; i < Count; i++)
                 {
-                    var c = (int)compare(this[i], v[i]);
+                    var c = (int)funclib.Core.Compare(this[i], v[i]);
                     if (c != 0)
                         return c;
                 }

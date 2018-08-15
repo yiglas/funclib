@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -23,13 +20,13 @@ namespace funclib.Components.Core
         /// Returns a <see cref="IFunction{T1, T2, TResult}"/> that when invoked should return : -1 if pred.Invoke(x, y) is truthy, or 1 if pred.Invoke(y, x) is truthy, otherwise 0
         /// </returns>
         public object Invoke(object pred) =>
-            func((object x, object y) =>
+            funclib.Core.Func((x, y) =>
             {
                 object ret = 0;
 
-                if ((bool)truthy(invoke(pred, x, y)))
+                if ((bool)funclib.Core.Truthy(funclib.Core.Invoke(pred, x, y)))
                     ret = -1;
-                else if ((bool)truthy(invoke(pred, y, x)))
+                else if ((bool)funclib.Core.Truthy(funclib.Core.Invoke(pred, y, x)))
                     ret = 1;
 
                 return ret;

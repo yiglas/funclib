@@ -1,8 +1,6 @@
 ﻿using funclib.Collections.Internal;
-using funclib.Components.Core;
 using funclib.Components.Core.Generic;
 using System;
-using System.Text;
 
 namespace funclib.Collections
 {

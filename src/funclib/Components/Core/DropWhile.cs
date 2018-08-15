@@ -1,36 +1,32 @@
 ﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns a <see cref="LazySeq"/> of the items in coll starting from the first item 
+    /// Returns a <see cref="LazySeq"/> of the items in coll starting from the funclib.Core.First( item 
     /// for which the predicate returns a logical false.
     /// </summary>
     public class DropWhile :
         IFunction<object, object>,
         IFunction<object, object, object>
     {
-        public object Invoke(object pred) => func<object, object>(rf => new TransducerFunction(pred, rf));
+        public object Invoke(object pred) => funclib.Core.Func(rf => new TransducerFunction(pred, rf));
         /// <summary>
-        /// Returns a <see cref="LazySeq"/> of the items in coll starting from the first item 
+        /// Returns a <see cref="LazySeq"/> of the items in coll starting from the funclib.Core.First( item 
         /// for which the predicate returns a logical false.
         /// </summary>
         /// <param name="pred">An object that implements the <see cref="IFunction{T1, T2, TResult}"/> interface.</param>
         /// <param name="coll">List of times to process.</param>
         /// <returns>
-        /// Returns a <see cref="LazySeq"/> with items starting from the first logically false item in coll.
+        /// Returns a <see cref="LazySeq"/> with items starting from the funclib.Core.First( logically false item in coll.
         /// </returns>
-        public object Invoke(object pred, object coll) => lazySeq(() => step(pred, coll));
+        public object Invoke(object pred, object coll) => funclib.Core.LazySeq(() => step(pred, coll));
 
         static object step(object pred, object coll)
         {
-            var s = seq(coll);
-            if ((bool)truthy(and(s, invoke(pred, first(s)))))
-                return step(pred, rest(s));
+            var s = funclib.Core.Seq(coll);
+            if ((bool)funclib.Core.Truthy(funclib.Core.And(s, funclib.Core.Invoke(pred, funclib.Core.First(s)))))
+                return step(pred, funclib.Core.Rest(s));
 
             return s;
         }
@@ -46,20 +42,20 @@ namespace funclib.Components.Core
                 base(rf)
             {
                 this._pred = pred;
-                this._dv = (Volatileǃ)volatileǃ(true);
+                this._dv = (Volatileǃ)funclib.Core.Volatileǃ(true);
             }
 
             #region Overrides
             public override object Invoke(object result, object input)
             {
                 var drop = this._dv.Deref();
-                if ((bool)truthy(and(drop, ((IFunction<object, object>)this._pred).Invoke(input))))
+                if ((bool)funclib.Core.Truthy(funclib.Core.And(drop, funclib.Core.Invoke(this._pred, input))))
                 {
                     return result;
                 }
 
-                vresetǃ(this._dv, null);
-                return ((IFunction<object, object, object>)this._rf).Invoke(result, input);
+                funclib.Core.VResetǃ(this._dv, null);
+                return funclib.Core.Invoke(this._rf, result, input);
             }
             #endregion
         }

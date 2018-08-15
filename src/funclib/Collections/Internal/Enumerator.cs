@@ -1,7 +1,4 @@
-﻿using funclib.Components.Core;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using System;
 
 namespace funclib.Collections.Internal
 {
@@ -39,7 +36,7 @@ namespace funclib.Collections.Internal
                     throw new InvalidOperationException("No current value.");
 
                 if (this._curr == this._start)
-                    this._curr = first(this._next);
+                    this._curr = funclib.Core.First(this._next);
 
                 return this._curr;
             }
@@ -53,10 +50,10 @@ namespace funclib.Collections.Internal
             if (!this._realized)
             {
                 this._realized = true;
-                this._next = seq(this._next);
+                this._next = funclib.Core.Seq(this._next);
             }
             else
-                this._next = next(this._next);
+                this._next = funclib.Core.Next(this._next);
 
             return this._next != null;
         }

@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -14,7 +10,7 @@ namespace funclib.Components.Core
         IFunction<object, object>,
         IFunction<object, object, object>
     {
-        public object Invoke(object f) => func<object, object>(rf => new TransducerFunction(f, rf));
+        public object Invoke(object f) => funclib.Core.Func(rf => new TransducerFunction(f, rf));
         /// <summary>
         /// Applies <see cref="IFunction{T1, TResult}"/> to each value in coll, splitting it each 
         /// time f returns a new value. Returns a <see cref="LazySeq"/> of partitions.
@@ -25,16 +21,16 @@ namespace funclib.Components.Core
         /// Returns a <see cref="LazySeq"/> of partitions.
         /// </returns>
         public object Invoke(object f, object coll) =>
-            lazySeq(() =>
+            funclib.Core.LazySeq(() =>
             {
-                var s = seq(coll);
-                if ((bool)truthy(s))
+                var s = funclib.Core.Seq(coll);
+                if ((bool)funclib.Core.Truthy(s))
                 {
-                    var fst = first(s);
-                    var fv = invoke(f, fst);
-                    var run = cons(fst, takeWhile(func<object, object>(x => isEqualTo(fv, invoke(f, x))), next(s)));
+                    var fst = funclib.Core.First(s);
+                    var fv = funclib.Core.Invoke(f, fst);
+                    var run = funclib.Core.Cons(fst, funclib.Core.TakeWhile(funclib.Core.Func(x => funclib.Core.IsEqualTo(fv, funclib.Core.Invoke(f, x))), funclib.Core.Next(s)));
 
-                    return cons(run, Invoke(f, seq(drop(count(run), s))));
+                    return funclib.Core.Cons(run, Invoke(f, funclib.Core.Seq(funclib.Core.Drop(funclib.Core.Count(run), s))));
                 }
                 return null;
             });
@@ -51,37 +47,37 @@ namespace funclib.Components.Core
             {
                 this._f = f;
                 this._a = new System.Collections.ArrayList();
-                this._pv = (Volatileǃ)volatileǃ("::none");
+                this._pv = (Volatileǃ)funclib.Core.Volatileǃ("::none");
             }
 
             #region Overrides
             public override object Invoke(object result)
             {
-                if (!(bool)isZero(this._a.Count))
+                if (!(bool)funclib.Core.IsZero(this._a.Count))
                 {
-                    var v = vec(this._a.ToArray());
+                    var v = funclib.Core.Vec(this._a.ToArray());
                     this._a.Clear();
-                    result = unreduce(invoke(this._rf, result, v));
+                    result = funclib.Core.Unreduce(funclib.Core.Invoke(this._rf, result, v));
                 }
 
-                return invoke(this._rf, result);
+                return funclib.Core.Invoke(this._rf, result);
             }
             public override object Invoke(object result, object input)
             {
                 var pval = this._pv.Deref();
-                var val = invoke(this._f, input);
-                vresetǃ(this._pv, val);
-                if ((bool)truthy(or(isIdentical(pval, "::none"), isEqualTo(val, pval))))
+                var val = funclib.Core.Invoke(this._f, input);
+                funclib.Core.VResetǃ(this._pv, val);
+                if ((bool)funclib.Core.Truthy(funclib.Core.Or(funclib.Core.IsIdentical(pval, "::none"), funclib.Core.IsEqualTo(val, pval))))
                 {
                     this._a.Add(input);
                     return result;
                 }
 
-                var v = vec(this._a.ToArray());
+                var v = funclib.Core.Vec(this._a.ToArray());
                 this._a.Clear();
-                var ret = invoke(this._rf, result, v);
+                var ret = funclib.Core.Invoke(this._rf, result, v);
 
-                if (!(bool)reduced(ret))
+                if (!(bool)funclib.Core.Reduced(ret))
                     this._a.Add(input);
 
                 return ret;

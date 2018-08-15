@@ -1,9 +1,6 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
 using System.IO;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -26,7 +23,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Print_should_write_string()
         {
-            printLn("Foo");
+            funclib.Core.PrintLn("Foo");
             Assert.AreEqual(this._writer.ToString(), "Foo" + Environment.NewLine);
         }
     }

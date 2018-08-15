@@ -1,8 +1,5 @@
 ﻿using funclib.Components.Core;
 using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,7 +8,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void EnsureReduced_should_return_the_value_wrapped()
         {
-            var actual = ensureReduced(1);
+            var actual = funclib.Core.EnsureReduced(1);
 
             Assert.IsInstanceOf<Reduced>(actual);
         }
@@ -19,8 +16,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void EnsureReduced_should_return_the_deref_value_if_its_reduced()
         {
-            var expected = reduced(1);
-            var actual = ensureReduced(expected);
+            var expected = funclib.Core.Reduced(1);
+            var actual = funclib.Core.EnsureReduced(expected);
 
             Assert.IsTrue(expected == actual);
         }

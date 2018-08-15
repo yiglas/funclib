@@ -1,8 +1,5 @@
 ﻿using funclib.Components.Core;
 using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,11 +8,11 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void SortedMapBy_should_create_new_map_sorted_by_the_function()
         {
-            var actual = sortedMapBy(new IsGreaterThan(), 1, "a", 2, "b", 3, "c");
+            var actual = funclib.Core.SortedMapBy(new IsGreaterThan(), 1, "a", 2, "b", 3, "c");
 
-            Assert.AreEqual(vector(3, "c"), first(actual));
-            Assert.AreEqual(vector(2, "b"), second(actual));
-            Assert.AreEqual(vector(1, "a"), last(actual));
+            Assert.AreEqual(funclib.Core.Vector(3, "c"), funclib.Core.First(actual));
+            Assert.AreEqual(funclib.Core.Vector(2, "b"), funclib.Core.Second(actual));
+            Assert.AreEqual(funclib.Core.Vector(1, "a"), funclib.Core.Last(actual));
         }
     }
 }

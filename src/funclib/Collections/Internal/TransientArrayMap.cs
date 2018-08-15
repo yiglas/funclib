@@ -1,8 +1,5 @@
-﻿using funclib.Components.Core;
-using System;
-using System.Text;
+﻿using System;
 using System.Threading;
-using static funclib.core;
 
 namespace funclib.Collections.Internal
 {
@@ -81,7 +78,7 @@ namespace funclib.Collections.Internal
                 : true;
         #endregion
 
-        bool IsEqual(object a, object b) => (bool)isEqualTo(a, b);
+        bool IsEqual(object a, object b) => (bool)funclib.Core.IsEqualTo(a, b);
 
         int IndexOf(object key)
         {

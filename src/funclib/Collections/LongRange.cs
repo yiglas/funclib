@@ -1,10 +1,6 @@
 ﻿using funclib.Collections.Internal;
 using funclib.Components.Core;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Collections
 {
@@ -114,7 +110,7 @@ namespace funclib.Collections
             return ChunkedNext();
         }
         public override IStack Pop() => throw new NotImplementedException();
-        public override IEnumerator GetEnumerator()
+        public override System.Collections.IEnumerator GetEnumerator()
         {
             object next = this._start;
             while (!_boundsCheck.ExceededBounds(next))
@@ -148,7 +144,7 @@ namespace funclib.Collections
             long i = this._start + this._step;
             while (!this._boundsCheck.ExceededBounds(i))
             {
-                acc = invoke(f, acc, i);
+                acc = funclib.Core.Invoke(f, acc, i);
                 if (acc is Reduced r)
                     return r.Deref();
                 i += this._step;
@@ -161,7 +157,7 @@ namespace funclib.Collections
             long i = this._start;
             do
             {
-                acc = invoke(f, acc, i);
+                acc = funclib.Core.Invoke(f, acc, i);
                 if (acc is Reduced r)
                     return r.Deref();
                 i += this._step;

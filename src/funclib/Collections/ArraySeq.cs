@@ -1,8 +1,6 @@
 ﻿using funclib.Collections.Internal;
 using funclib.Components.Core;
 using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Collections
 {
@@ -57,7 +55,7 @@ namespace funclib.Collections
             var ret = this._array[this._index];
             for (var x = this._index + 1; x < this._array.Length; x++)
             {
-                ret = invoke(f, ret, this._array[x]);
+                ret = funclib.Core.Invoke(f, ret, this._array[x]);
                 if (ret is Reduced r)
                     return r.Deref();
             }
@@ -68,12 +66,12 @@ namespace funclib.Collections
         {
             if (this._array is null) return null;
 
-            var ret = invoke(f, init, this._array[this._index]);
+            var ret = funclib.Core.Invoke(f, init, this._array[this._index]);
             for (var x = this._index + 1; x < this._array.Length; x++)
             {
                 if (ret is Reduced r)
                     return r.Deref();
-                ret = invoke(f, ret, this._array[x]);
+                ret = funclib.Core.Invoke(f, ret, this._array[x]);
             }
             if (ret is Reduced r2)
                 return r2.Deref();

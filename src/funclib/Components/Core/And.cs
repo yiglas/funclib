@@ -1,8 +1,5 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
 using System.Linq;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -51,11 +48,11 @@ namespace funclib.Components.Core
         /// Invoke() method is executed and sets its results to x.
         /// </remarks>
         /// <returns>
-        /// Returns the first logical false, otherwise the last object evaluated.
+        /// Returns the funclib.Core.First( logical false, otherwise the last object evaluated.
         /// </returns>
         public object Invoke(object x, params object[] next)
         {
-            if ((bool)truthy(x) && (next?.Length ?? 0) > 0)
+            if ((bool)funclib.Core.Truthy(x) && (next?.Length ?? 0) > 0)
                 return Invoke(next[0], next.Skip(1).ToArray());
 
             return x;

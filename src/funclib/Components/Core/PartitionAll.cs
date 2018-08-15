@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -14,7 +11,7 @@ namespace funclib.Components.Core
         IFunction<object, object, object>,
         IFunction<object, object, object, object>
     {
-        public object Invoke(object n) => func<object, object>(rf => new TransducerFunction(n, rf));
+        public object Invoke(object n) => funclib.Core.Func(rf => new TransducerFunction(n, rf));
         /// <summary>
         /// Returns a <see cref="LazySeq"/> of lists like <see cref="Partition"/>, but my include
         /// partitions with fewer then n items at the end.
@@ -38,13 +35,13 @@ namespace funclib.Components.Core
         /// partitions with fewer then n items at the end.
         /// </returns>
         public object Invoke(object n, object step, object coll) =>
-            lazySeq(() =>
+            funclib.Core.LazySeq(() =>
             {
-                var s = seq(coll);
-                if ((bool)truthy(s))
+                var s = funclib.Core.Seq(coll);
+                if ((bool)funclib.Core.Truthy(s))
                 {
-                    var seq = doAll(take(n, s));
-                    return cons(seq, Invoke(n, step, nthRest(s, step)));
+                    var seq = funclib.Core.DoAll(funclib.Core.Take(n, s));
+                    return funclib.Core.Cons(seq, Invoke(n, step, funclib.Core.NthRest(s, step)));
                 }
                 return null;
             });
@@ -65,23 +62,23 @@ namespace funclib.Components.Core
             #region Overrides
             public override object Invoke(object result)
             {
-                if (!(bool)isZero(this._a.Count))
+                if (!(bool)funclib.Core.IsZero(this._a.Count))
                 {
-                    var v = vec(this._a.ToArray());
+                    var v = funclib.Core.Vec(this._a.ToArray());
                     this._a.Clear();
-                    result = unreduce(invoke(this._rf, result, v));
+                    result = funclib.Core.Unreduce(funclib.Core.Invoke(this._rf, result, v));
                 }
 
-                return invoke(this._rf, result);
+                return funclib.Core.Invoke(this._rf, result);
             }
             public override object Invoke(object result, object input)
             {
                 this._a.Add(input);
                 if (this._n == this._a.Count)
                 {
-                    var v = vec(this._a.ToArray());
+                    var v = funclib.Core.Vec(this._a.ToArray());
                     this._a.Clear();
-                    return invoke(this._rf, result, v);
+                    return funclib.Core.Invoke(this._rf, result, v);
                 }
 
                 return result;

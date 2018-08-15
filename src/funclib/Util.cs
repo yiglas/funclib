@@ -1,14 +1,10 @@
 ﻿using funclib.Collections;
 using funclib.Collections.Generic;
 using funclib.Collections.Internal;
-using funclib.Components.Core;
 using System;
-using System.Globalization;
 using System.IO;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using static funclib.core;
 
 namespace funclib
 {
@@ -101,7 +97,7 @@ namespace funclib
             else if (x is ISeq || x is IList)
             {
                 w.Write('(');
-                PrintInnerSeq((ISeq)seq(x), w);
+                PrintInnerSeq((ISeq)funclib.Core.Seq(x), w);
                 w.Write(')');
             }
             else if (x is string s)

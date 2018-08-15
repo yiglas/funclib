@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -19,6 +15,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the 2nd item in the collection.
         /// </returns>
-        public object Invoke(object x) => first(next(x));
+        public object Invoke(object x) => funclib.Core.First(funclib.Core.Next(x));
     }
 }

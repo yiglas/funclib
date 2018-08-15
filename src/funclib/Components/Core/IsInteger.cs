@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -50,6 +46,6 @@ namespace funclib.Components.Core
         /// otherwise <see cref="false"/>.
         /// </returns>
         public object Invoke(object n) =>
-            or(n is int, n is long, n is short, n is uint, n is ulong, n is ushort, n is char, n is byte, n is sbyte);
+            funclib.Core.Or(n is int, n is long, n is short, n is uint, n is ulong, n is ushort, n is char, n is byte, n is sbyte);
     }
 }

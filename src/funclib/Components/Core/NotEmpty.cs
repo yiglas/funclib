@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -18,6 +15,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="null"/> if coll is empty, otherwise coll
         /// </returns>
-        public object Invoke(object coll) => (bool)truthy(seq(coll)) ? coll : null;
+        public object Invoke(object coll) => (bool)funclib.Core.Truthy(funclib.Core.Seq(coll)) ? coll : null;
     }
 }

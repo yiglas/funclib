@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -25,15 +21,15 @@ namespace funclib.Components.Core
         /// (as per reduce) of coll by f, starting with init.
         /// </returns>
         public object Invoke(object f, object coll) =>
-            lazySeq(() =>
+            funclib.Core.LazySeq(() =>
             {
-                var s = seq(coll);
-                if ((bool)truthy(s))
+                var s = funclib.Core.Seq(coll);
+                if ((bool)funclib.Core.Truthy(s))
                 {
-                    return Invoke(f, first(s), rest(s));
+                    return Invoke(f, funclib.Core.First(s), funclib.Core.Rest(s));
                 }
 
-                return list(invoke(f));
+                return funclib.Core.List(funclib.Core.Invoke(f));
             });
 
         /// <summary>
@@ -50,13 +46,13 @@ namespace funclib.Components.Core
         public object Invoke(object f, object init, object coll)
         {
             if (init is Reduced r)
-                return list(r.Deref());
+                return funclib.Core.List(r.Deref());
 
-            return cons(init, lazySeq(() =>
+            return funclib.Core.Cons(init, funclib.Core.LazySeq(() =>
             {
-                var s = seq(coll);
-                if ((bool)truthy(s))
-                    return Invoke(f, invoke(f, init, first(s)), rest(s));
+                var s = funclib.Core.Seq(coll);
+                if ((bool)funclib.Core.Truthy(s))
+                    return Invoke(f, funclib.Core.Invoke(f, init, funclib.Core.First(s)), funclib.Core.Rest(s));
 
                 return null;
             }));

@@ -1,8 +1,5 @@
 ﻿using funclib.Collections.Internal;
-using funclib.Components.Core;
 using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Collections
 {
@@ -35,9 +32,9 @@ namespace funclib.Collections
         {
             if (!(obj is ISequential)) return false;
 
-            var ms = (ISeq)seq(obj);
+            var ms = (ISeq)funclib.Core.Seq(obj);
             for (var e = Seq(); e != null; e = e.Next(), ms = ms.Next())
-                if (ms is null || !(bool)isEqualTo(e.First(), ms.First()))
+                if (ms is null || !(bool)funclib.Core.IsEqualTo(e.First(), ms.First()))
                     return false;
 
             return ms is null;
@@ -57,7 +54,7 @@ namespace funclib.Collections
         }
         #endregion
 
-        public object Peek() => first(this._f);
+        public object Peek() => funclib.Core.First(this._f);
         public IStack Pop()
         {
             if (this._f is null) return this;
@@ -66,14 +63,14 @@ namespace funclib.Collections
 
             if (f1 is null)
             {
-                f1 = (ISeq)seq(this._r);
+                f1 = (ISeq)funclib.Core.Seq(this._r);
                 r1 = null;
             }
             return new Queue(Count - 1, f1, r1);
         }
         public ICollection Cons(object o) => throw new NotImplementedException();
         public ICollection Empty() => EMPTY;
-        public ISeq Seq() => this._f is null ? null : new QueueSeq(this._f, (ISeq)seq(this._r));
+        public ISeq Seq() => this._f is null ? null : new QueueSeq(this._f, (ISeq)funclib.Core.Seq(this._r));
         public void CopyTo(Array array, int index)
         {
             if (array is null) throw new ArgumentNullException(nameof(array));

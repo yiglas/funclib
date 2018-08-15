@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -29,7 +26,7 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if no two arguments are equal, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object x, object y) => not(isEqualTo(x, y));
+        public object Invoke(object x, object y) => funclib.Core.Not(funclib.Core.IsEqualTo(x, y));
         /// <summary>
         /// Returns <see cref="true"/> if no two arguments are equal, otherwise <see cref="false"/>.
         /// </summary>
@@ -39,19 +36,19 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if no two arguments are equal, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object x, object y, params object[] more) => (bool)isNotEqualTo(x, y) ? loop(hashSet(x, y), more) : false;
+        public object Invoke(object x, object y, params object[] more) => (bool)funclib.Core.IsNotEqualTo(x, y) ? loop(funclib.Core.HashSet(x, y), more) : false;
 
         static object loop(object s, object xs)
         {
-            var f = first(xs);
-            var etc = seq(rest(xs));
+            var f = funclib.Core.First(xs);
+            var etc = funclib.Core.Seq(funclib.Core.Rest(xs));
 
-            if ((bool)truthy(xs))
+            if ((bool)funclib.Core.Truthy(xs))
             {
-                if ((bool)contains(s, f))
+                if ((bool)funclib.Core.Contains(s, f))
                     return false;
 
-                return loop(conj(s, f), etc);
+                return loop(funclib.Core.Conj(s, f), etc);
             }
             else return true;
         }

@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -20,6 +16,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns <see cref="true"/> if x is logical true for any item in coll, otherwise <see cref="false"/>.
         /// </returns>
-        public object Invoke(object pred, object coll) => invoke(comp(funclib.core.Not, funclib.core.Some), pred, coll);
+        public object Invoke(object pred, object coll) => funclib.Core.Invoke(funclib.Core.Comp(funclib.Core.not, funclib.Core.some), pred, coll);
     }
 }

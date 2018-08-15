@@ -1,7 +1,5 @@
 ﻿using funclib.Components.Core;
 using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Collections.Internal
 {
@@ -64,7 +62,7 @@ namespace funclib.Collections.Internal
             for (int i = 0; i < array.Length; i += 2)
             {
                 if (array[i] != null)
-                    init = invoke(f, init, array[i], array[i + 1]);
+                    init = funclib.Core.Invoke(f, init, array[i], array[i + 1]);
                 else
                 {
                     var node = (INode)array[i + 1];

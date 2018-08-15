@@ -1,8 +1,6 @@
 ﻿using funclib.Collections.Internal;
 using funclib.Components.Core;
 using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Collections
 {
@@ -32,7 +30,7 @@ namespace funclib.Collections
                 bool duplicateKey = false;
                 for (int j = 0; j < i; j += 2)
                 {
-                    if ((bool)isEqualTo(init[i], init[j]))
+                    if ((bool)funclib.Core.IsEqualTo(init[i], init[j]))
                     {
                         duplicateKey = true;
                         break;
@@ -50,7 +48,7 @@ namespace funclib.Collections
                     bool duplicateKey = false;
                     for (int j = 0; j < m; j += 2)
                     {
-                        if ((bool)isEqualTo(init[i], nodups[j]))
+                        if ((bool)funclib.Core.IsEqualTo(init[i], nodups[j]))
                         {
                             duplicateKey = true;
                             break;
@@ -62,7 +60,7 @@ namespace funclib.Collections
                         int j;
                         for (j = init.Length -2; j >= i; j -= 2)
                         {
-                            if ((bool)isEqualTo(init[i], init[j]))
+                            if ((bool)funclib.Core.IsEqualTo(init[i], init[j]))
                             {
                                 break;
                             }
@@ -167,7 +165,7 @@ namespace funclib.Collections
         {
             for (int i = 0; i < this._array.Length; i += 2)
             {
-                init = invoke(f, init, this._array[i], this._array[i + 1]);
+                init = funclib.Core.Invoke(f, init, this._array[i], this._array[i + 1]);
                 if (init is Reduced r)
                     return r.Deref();
             }

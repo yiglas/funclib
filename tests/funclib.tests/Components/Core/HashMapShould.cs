@@ -1,8 +1,4 @@
-﻿using funclib.Components.Core;
-using NUnit.Framework;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -11,7 +7,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void HashMap_should_create_in_correct_order()
         {
-            var actual = hashMap(":a", 1, ":b", 2, ":c", 3, ":d", 4, ":e", 5);
+            var actual = funclib.Core.HashMap(":a", 1, ":b", 2, ":c", 3, ":d", 4, ":e", 5);
         }
     }
 }

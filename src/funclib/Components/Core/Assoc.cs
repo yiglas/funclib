@@ -1,16 +1,13 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using funclib.Collections.Internal;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 using System;
 using System.Linq;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
     /// <summary>
     /// Assoc[iate]. When applied to a map, returns a new map of the same (hash/sort) type.
-    /// that contains the mapping of key(s) to val(s). When applied to a vector, returns
+    /// that contains the mapping of funclib.Core.Key(s) to val(s). When applied to a vector, returns
     /// a new vector that contains val at index. Note -> index must be less than or equal to
     /// count of vector.
     /// </summary>
@@ -20,7 +17,7 @@ namespace funclib.Components.Core
     {
         /// <summary>
         /// Assoc[iate]. When applied to a map, returns a new map of the same (hash/sort) type.
-        /// that contains the mapping of key(s) to val(s). When applied to a vector, returns
+        /// that contains the mapping of funclib.Core.Key(s) to val(s). When applied to a vector, returns
         /// a new vector that contains val at index. Note -> index must be less than or equal to
         /// count of vector.
         /// </summary>
@@ -33,14 +30,14 @@ namespace funclib.Components.Core
         public object Invoke(object map, object key, object val)
         {
             if (map is null)
-                return arrayMap(key, val);
+                return funclib.Core.ArrayMap(key, val);
 
             return ((IAssociative)map).Assoc(key, val);
         }
 
         /// <summary>
         /// Assoc[iate]. When applied to a map, returns a new map of the same (hash/sort) type.
-        /// that contains the mapping of key(s) to val(s). When applied to a vector, returns
+        /// that contains the mapping of funclib.Core.Key(s) to val(s). When applied to a vector, returns
         /// a new vector that contains val at index. Note -> index must be less than or equal to
         /// count of vector.
         /// </summary>
@@ -56,11 +53,11 @@ namespace funclib.Components.Core
             var ret = Invoke(map, key, val);
             if (kvs.Count() % 2 == 0)
             {
-                var n = nnext(kvs);
+                var n = funclib.Core.NNext(kvs);
                 if (n is null)
-                    return Invoke(ret, first(kvs), second(kvs));
+                    return Invoke(ret, funclib.Core.First(kvs), funclib.Core.Second(kvs));
                 else
-                    return Invoke(ret, first(kvs), second(kvs), (object[])toArray(n));
+                    return Invoke(ret, funclib.Core.First(kvs), funclib.Core.Second(kvs), (object[])funclib.Core.ToArray(n));
             }
             else
                 throw new ArgumentException($"{nameof(Assoc)} expects an even number of arguments.");

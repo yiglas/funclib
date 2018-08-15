@@ -1,10 +1,5 @@
-﻿using funclib.Components.Core;
-using funclib.Components.Core.Generic;
+﻿using funclib.Components.Core.Generic;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Tests.Components.Core
 {
@@ -13,8 +8,8 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void PartitionBy_should_when_result_changes()
         {
-            var expected = list(list(1, 2), list(3), list(4, 5));
-            var actual = partitionBy(new Function<object, object>(x => x.Equals(3)), vector(1, 2, 3, 4, 5));
+            var expected = funclib.Core.List(funclib.Core.List(1, 2), funclib.Core.List(3), funclib.Core.List(4, 5));
+            var actual = funclib.Core.PartitionBy(new Function<object, object>(x => x.Equals(3)), funclib.Core.Vector(1, 2, 3, 4, 5));
 
             Assert.AreEqual(expected, actual);
         }

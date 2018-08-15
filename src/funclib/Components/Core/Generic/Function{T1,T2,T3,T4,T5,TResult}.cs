@@ -7,7 +7,7 @@ namespace funclib.Components.Core.Generic
     /// <summary>
     /// Creates a <see cref="Function{T1, T2, T3, T4, T5, TResult}"/> from a <see cref="Func{T1, T2, T3, T4, T5, TResult}"/>.
     /// </summary>
-    /// <typeparam name="T1">Generic type of the first input object.</typeparam>
+    /// <typeparam name="T1">Generic type of the funclib.Core.First( input object.</typeparam>
     /// <typeparam name="T2">Generic type of the second input object.</typeparam>
     /// <typeparam name="T3">Generic type of the third input object.</typeparam>
     /// <typeparam name="T4">Generic type of the fourth input object.</typeparam>

@@ -1,14 +1,11 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections.Internal;
-using System;
+﻿using funclib.Collections.Internal;
+using funclib.Components.Core.Generic;
 using System.Linq;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// When applied to a transient map, addes mapping of key(s) to vals(s). 
+    /// When applied to a transient map, addes mapping of funclib.Core.Key(s) to vals(s). 
     /// When applied to a transient vector, sets the val at index. Note -> 
     /// index must be less than or equal to the count of vector. Returns coll.
     /// </summary>
@@ -17,7 +14,7 @@ namespace funclib.Components.Core
         IFunctionParams<object, object, object, object, object>
     {
         /// <summary>
-        /// When applied to a transient map, addes mapping of key(s) to vals(s). 
+        /// When applied to a transient map, addes mapping of funclib.Core.Key(s) to vals(s). 
         /// When applied to a transient vector, sets the val at index. Note -> 
         /// index must be less than or equal to the count of vector. Returns coll.
         /// </summary>
@@ -29,7 +26,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object coll, object key, object val) => ((ITransientAssociative)coll).Assoc(key, val);
         /// <summary>
-        /// When applied to a transient map, addes mapping of key(s) to vals(s). 
+        /// When applied to a transient map, addes mapping of funclib.Core.Key(s) to vals(s). 
         /// When applied to a transient vector, sets the val at index. Note -> 
         /// index must be less than or equal to the count of vector. Returns coll.
         /// </summary>
@@ -44,7 +41,7 @@ namespace funclib.Components.Core
         {
             var ret = ((ITransientAssociative)coll).Assoc(key, val);
 
-            if ((bool)truthy(kvs))
+            if ((bool)funclib.Core.Truthy(kvs))
             {
                 if (kvs.Length == 2)
                     return Invoke(ret, kvs[0], kvs[1]);

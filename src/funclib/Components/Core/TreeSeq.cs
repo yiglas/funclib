@@ -1,18 +1,15 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns a <see cref="LazySeq"/> of the nodes in a tree, via a depth-first walk.
+    /// Returns a <see cref="LazySeq"/> of the nodes in a tree, via a depth-funclib.Core.First( walk.
     /// </summary>
     public class TreeSeq :
         IFunction<object, object, object, object>
     {
         /// <summary>
-        /// Returns a <see cref="LazySeq"/> of the nodes in a tree, via a depth-first walk.
+        /// Returns a <see cref="LazySeq"/> of the nodes in a tree, via a depth-funclib.Core.First( walk.
         /// </summary>
         /// <param name="branch">An object that implements <see cref="IFunction{T1, TResult}"/> interface that returns true if passed a node
         /// that can have children, otherwise false.</param>
@@ -36,10 +33,10 @@ namespace funclib.Components.Core
             }
 
             public object Invoke(object node) =>
-                lazySeq(() => 
-                    cons(node,
-                        (bool)truthy(invoke(this._branch, node))
-                            ? mapCat(this, invoke(this._children, node))
+                funclib.Core.LazySeq(() => 
+                    funclib.Core.Cons(node,
+                        (bool)funclib.Core.Truthy(funclib.Core.Invoke(this._branch, node))
+                            ? funclib.Core.MapCat(this, funclib.Core.Invoke(this._children, node))
                             : null));
         }
     }

@@ -1,11 +1,9 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Text;
 using System.Text.RegularExpressions;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -44,11 +42,11 @@ namespace funclib.Components.Core
         {
             Invoke(x);
             Variables.Out.Write(' ');
-            var nmore = next(more);
-            if ((bool)truthy(nmore))
-                return Invoke(first(more), (object[])toArray(nmore));
+            var nmore = funclib.Core.Next(more);
+            if ((bool)funclib.Core.Truthy(nmore))
+                return Invoke(funclib.Core.First(more), (object[])funclib.Core.ToArray(nmore));
 
-            return Invoke(first(more));
+            return Invoke(funclib.Core.First(more));
         }
 
         static void Pr(object x, TextWriter w)
@@ -92,15 +90,15 @@ namespace funclib.Components.Core
 
         static string FPStr(object x)
         {
-            var s = (string)str(x);
-            if ((bool)truthy(or(s.Contains("."), s.Contains("E"))))
+            var s = (string)funclib.Core.Str(x);
+            if ((bool)funclib.Core.Truthy(funclib.Core.Or(s.Contains("."), s.Contains("E"))))
                 return s;
 
             return $"{s}.0";
         }
 
 
-        static void PrintDefault(object o, TextWriter w) => w.Write(str(o));
+        static void PrintDefault(object o, TextWriter w) => w.Write(funclib.Core.Str(o));
         static void Pr(double o, TextWriter w)
         {
             if (o == double.PositiveInfinity) Pr("##Inf", w);
@@ -122,7 +120,7 @@ namespace funclib.Components.Core
         static void PrintObject(object o, TextWriter w)
         {
             w.Write("#object[");
-            var c = (Type)@class(o);
+            var c = (Type)funclib.Core.Class(o);
             if (c.IsArray)
             {
                 Pr(c.Name, w);
@@ -151,7 +149,7 @@ namespace funclib.Components.Core
         static void Pr(IDeref o, TextWriter w)
         {
             w.Write("#object[");
-            var c = (Type)@class(o);
+            var c = (Type)funclib.Core.Class(o);
             if (c.IsArray)
             {
                 Pr(c.Name, w);
@@ -177,14 +175,14 @@ namespace funclib.Components.Core
             object val;
             try
             {
-                val = deref(o);
+                val = funclib.Core.Deref(o);
             }
             catch (Exception e) { val = e; ex = true; }
 
             // if Agent data structure exists check if there is an agent error.
-            ex = ((bool)truthy(or(ex)));
+            ex = ((bool)funclib.Core.Truthy(funclib.Core.Or(ex)));
 
-            return (IMap)arrayMap(
+            return (IMap)funclib.Core.ArrayMap(
                 ":status", ex ? ":failed" : pending ? ":pending" : ":ready",
                 ":val", val);
         }

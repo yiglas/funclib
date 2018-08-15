@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -19,6 +16,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a <see cref="Collections.Vector"/> of [<see cref="Take.Invoke(object, object)"/>, <see cref="Drop.Invoke(object, object)"/>].
         /// </returns>
-        public object Invoke(object n, object coll) => vector(take(n, coll), drop(n, coll));
+        public object Invoke(object n, object coll) => funclib.Core.Vector(funclib.Core.Take(n, coll), funclib.Core.Drop(n, coll));
     }
 }

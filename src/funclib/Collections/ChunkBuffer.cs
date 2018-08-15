@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace funclib.Collections
+﻿namespace funclib.Collections
 {
     public sealed class ChunkBuffer :
         ICounted

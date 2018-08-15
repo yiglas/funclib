@@ -1,8 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -20,6 +16,6 @@ namespace funclib.Components.Core
         /// Returns a <see cref="Collections.HashMap"/> from distinct items in coll to the number of times they appear.
         /// </returns>
         public object Invoke(object coll) =>
-            persistentǃ(reduce(func((object counts, object x) => assocǃ(counts, x, inc(get(counts, x, 0)))), transient(hashMap()), coll));
+            funclib.Core.Persistentǃ(funclib.Core.Reduce(funclib.Core.Func((counts, x) => funclib.Core.Assocǃ(counts, x, funclib.Core.Inc(funclib.Core.Get(counts, x, 0)))), funclib.Core.Transient(funclib.Core.HashMap()), coll));
     }
 }

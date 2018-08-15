@@ -1,10 +1,4 @@
-﻿using funclib.Components.Core.Generic;
-using funclib.Collections;
-using System;
-using System.Text;
-using static funclib.core;
-
-namespace funclib.Components.Core
+﻿namespace funclib.Components.Core
 {
     /// <summary>
     /// Non-atomically swaps the value of volatile.
@@ -19,7 +13,7 @@ namespace funclib.Components.Core
         /// <summary>
         /// Non-atomically swaps the value of volatile.
         /// </summary>
-        /// <param name="vol">A <see cref="Volatile"/> object.</param>
+        /// <param name="vol">A <see cref="Volatileǃ"/> object.</param>
         /// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
         /// <param name="args">Any additional arguments passed to f</param>
         public VSwapǃ(object vol, object f, params object[] args)
@@ -33,8 +27,8 @@ namespace funclib.Components.Core
         /// Non-atomically swaps the value of volatile.
         /// </summary>
         /// <returns>
-        /// Returns the reseted <see cref="Volatile"/> object.
+        /// Returns the reseted <see cref="Volatileǃ"/> object.
         /// </returns>
-        public object Invoke() => this._v.Reset(apply(this._f, this._v.Deref(), this._args));
+        public object Invoke() => this._v.Reset(funclib.Core.Apply(this._f, this._v.Deref(), this._args));
     }
 }

@@ -1,6 +1,5 @@
 ﻿using funclib.Components.Core.Generic;
 using System;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace funclib.Components.Core
@@ -144,7 +143,7 @@ namespace funclib.Components.Core
         }
 
         /// <summary>
-        /// Gets the position in the original string where the first character of the captured substring is found.
+        /// Gets the position in the original string where the funclib.Core.First( character of the captured substring is found.
         /// </summary>
         /// <returns>
         /// The zero-based starting position in the original string where the captured substring is found.

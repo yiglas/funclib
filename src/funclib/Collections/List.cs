@@ -1,8 +1,4 @@
-﻿using funclib.Collections.Internal;
-using funclib.Components.Core;
-using System;
-using System.Text;
-using static funclib.core;
+﻿using funclib.Components.Core;
 
 namespace funclib.Collections
 {
@@ -58,7 +54,7 @@ namespace funclib.Collections
             object ret = First();
             for (var s = Next(); s != null; s = s.Next())
             {
-                ret = invoke(f, ret, s.First());
+                ret = funclib.Core.Invoke(f, ret, s.First());
                 if (ret is Reduced r)
                     return r.Deref();
             }
@@ -67,12 +63,12 @@ namespace funclib.Collections
         }
         public object Reduce(object f, object init)
         {
-            object ret = invoke(f, init, First());
+            object ret = funclib.Core.Invoke(f, init, First());
             for (var s = Next(); s != null; s = s.Next())
             {
                 if (ret is Reduced r)
                     return r.Deref();
-                ret = invoke(f, ret, s.First());
+                ret = funclib.Core.Invoke(f, ret, s.First());
             }
 
             if (ret is Reduced r2)

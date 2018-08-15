@@ -1,7 +1,4 @@
 ﻿using funclib.Components.Core.Generic;
-using System;
-using System.Text;
-using static funclib.core;
 
 namespace funclib.Components.Core
 {
@@ -33,13 +30,13 @@ namespace funclib.Components.Core
 
         object up(object m, object ks, object f, object args)
         {
-            var k = first(ks);
-            ks = more(ks);
+            var k = funclib.Core.First(ks);
+            ks = funclib.Core.More(ks);
 
-            if ((bool)truthy(ks))
-                return assoc(m, k, up(get(m, k), ks, f, args));
+            if ((bool)funclib.Core.Truthy(ks))
+                return funclib.Core.Assoc(m, k, up(funclib.Core.Get(m, k), ks, f, args));
 
-            return assoc(m, k, apply(f, get(m, k), args));
+            return funclib.Core.Assoc(m, k, funclib.Core.Apply(f, funclib.Core.Get(m, k), args));
         }
     }
 }
