@@ -29,6 +29,8 @@ namespace FunctionalLibrary.Tests
 
             //Assert.IsFalse((bool)funclib.Core.Invoke(notEmpty, funclib.Core.Vector()));
             //Assert.IsTrue((bool)funclib.Core.Invoke(notEmpty, funclib.Core.Vector(1, 2)));
+
+            var l = new System.Collections.Generic.List<string>();
         }
     }
 }

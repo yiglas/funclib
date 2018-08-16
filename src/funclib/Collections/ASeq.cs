@@ -65,12 +65,7 @@ namespace funclib.Collections
 
         #region Virtual Methods
         public virtual ISeq Cons(object o) => new Cons(o, this);
-        public virtual ISeq More()
-        {
-            var s = Next();
-            if (s is null) return List.EMPTY;
-            return s;
-        }
+        public virtual ISeq More() => Next() ?? List.EMPTY;
         public virtual int Count
         {
             get
