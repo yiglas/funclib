@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace FunctionalLibrary.Tests
+namespace funclib.Tests
 {
     public class Playground
     {

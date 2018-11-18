@@ -3,17 +3,17 @@
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns <see cref="true"/> if x is zero, otherwise <see cref="false"/>.
+    /// Returns true if x is zero, otherwise false.
     /// </summary>
     public class IsZero :
         IFunction<object, object>
     {
         /// <summary>
-        /// Returns <see cref="true"/> if x is zero, otherwise <see cref="false"/>.
+        /// Returns true if x is zero, otherwise false.
         /// </summary>
         /// <param name="n">Object to test.</param>
         /// <returns>
-        /// Returns <see cref="true"/> if x is zero, otherwise <see cref="false"/>.
+        /// Returns true if x is zero, otherwise false.
         /// </returns>
         public object Invoke(object n) => Numbers.IsZero(n);
     }

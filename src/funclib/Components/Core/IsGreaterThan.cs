@@ -3,7 +3,7 @@
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns a <see cref="true"/>, numbers are monotonically decreasing order, otherwise <see cref="false"/>.
+    /// Returns a true, numbers are monotonically decreasing order, otherwise false.
     /// </summary>
     public class IsGreaterThan :
         IFunction<object, object>,
@@ -11,7 +11,7 @@ namespace funclib.Components.Core
         IFunctionParams<object, object, object, object>
     {
         /// <summary>
-        /// Returns a <see cref="true"/>, numbers are monotonically decreasing order, otherwise <see cref="false"/>.
+        /// Returns a true, numbers are monotonically decreasing order, otherwise false.
         /// </summary>
         /// <param name="x">First element to test.</param>
         /// <returns>
@@ -19,22 +19,22 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object x) => true;
         /// <summary>
-        /// Returns a <see cref="true"/>, numbers are monotonically decreasing order, otherwise <see cref="false"/>.
+        /// Returns a true, numbers are monotonically decreasing order, otherwise false.
         /// </summary>
         /// <param name="x">First element to test.</param>
         /// <param name="y">Second element to test.</param>
         /// <returns>
-        /// Returns a <see cref="true"/>, numbers are monotonically decreasing order, otherwise <see cref="false"/>.
+        /// Returns a true, numbers are monotonically decreasing order, otherwise false.
         /// </returns>
         public object Invoke(object x, object y) => Numbers.IsGT(x, y);
         /// <summary>
-        /// Returns a <see cref="true"/>, numbers are monotonically decreasing order, otherwise <see cref="false"/>.
+        /// Returns a true, numbers are monotonically decreasing order, otherwise false.
         /// </summary>
         /// <param name="x">First element to test.</param>
         /// <param name="y">Second element to test.</param>
         /// <param name="more">Rest of the elements to test.</param>
         /// <returns>
-        /// Returns a <see cref="true"/>, numbers are monotonically decreasing order, otherwise <see cref="false"/>.
+        /// Returns a true, numbers are monotonically decreasing order, otherwise false.
         /// </returns>
         public object Invoke(object x, object y, params object[] more)
         {

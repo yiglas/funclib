@@ -72,7 +72,7 @@ namespace funclib.Tests.Components.Core
         [Test]
         public void Reduce_should_loop_over_a_string()
         {
-            var expected = 502;
+            var expected = 488;
             var actual = funclib.Core.Reduce(new Plus(), "David");
 
             Assert.AreEqual(expected, actual);

@@ -4,17 +4,17 @@ using funclib.Components.Core.Generic;
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns <see cref="true"/> if x is a <see cref="IList"/>, otherwise <see cref="false"/>.
+    /// Returns true if x is a <see cref="IList"/>, otherwise false.
     /// </summary>
     public class IsList :
         IFunction<object, object>
     {
         /// <summary>
-        /// Returns <see cref="true"/> if x is a <see cref="IList"/>, otherwise <see cref="false"/>.
+        /// Returns true if x is a <see cref="IList"/>, otherwise false.
         /// </summary>
         /// <param name="x">Object to test.</param>
         /// <returns>
-        /// Returns <see cref="true"/> if x is a <see cref="IList"/>, otherwise <see cref="false"/>.
+        /// Returns true if x is a <see cref="IList"/>, otherwise false.
         /// </returns>
         public object Invoke(object x) => x is IList;
     }

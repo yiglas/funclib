@@ -136,7 +136,7 @@ namespace funclib.Components.Core
         /// </summary>
         /// <param name="obj">An object to test its equality against.</param>
         /// <returns>
-        /// Returns <see cref="true"/> of objects are equal, otherwise <see cref="false"/>.
+        /// Returns true of objects are equal, otherwise false.
         /// </returns>
         public override bool Equals(object obj)
         {
