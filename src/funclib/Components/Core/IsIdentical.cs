@@ -4,18 +4,18 @@ using System;
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns <see cref="true"/> if x is identical to y, otherwise <see cref="false"/>.
+    /// Returns true if x is identical to y, otherwise false.
     /// </summary>
     public class IsIdentical :
         IFunction<object, object, object>
     {
         /// <summary>
-        /// Returns <see cref="true"/> if x is identical to y, otherwise <see cref="false"/>.
+        /// Returns true if x is identical to y, otherwise false.
         /// </summary>
         /// <param name="x">First object.</param>
         /// <param name="y">Object to test against.</param>
         /// <returns>
-        /// Returns <see cref="true"/> if x is identical to y, otherwise <see cref="false"/>.
+        /// Returns true if x is identical to y, otherwise false.
         /// </returns>
         public object Invoke(object x, object y) =>
             x is ValueType

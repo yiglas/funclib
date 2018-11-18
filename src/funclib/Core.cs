@@ -611,20 +611,20 @@ namespace funclib
 		/// Atomically sets the value of the <see cref="IAtom"/>
 		/// to the new value if and only if the current value of
 		/// the <see cref="IAtom"/> is identical to the oldVal.
-		/// Returns <see cref="true"/> if set happened, otherwise <see cref="false"/>.
+		/// Returns true if set happened, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.CompareAndSetǃ compareAndSetǃ => __compareandsetǃ ?? (__compareandsetǃ = new funclib.Components.Core.CompareAndSetǃ());
 		/// <summary>
 		/// Atomically sets the value of the <see cref="IAtom"/>
 		/// to the new value if and only if the current value of
 		/// the <see cref="IAtom"/> is identical to the oldVal.
-		/// Returns <see cref="true"/> if set happened, otherwise <see cref="false"/>.
+		/// Returns true if set happened, otherwise false.
 		/// </summary>
 		/// <param name="atom">An object that implements the <see cref="IAtom"/> interface.</param>
 		/// <param name="oldVal">Current state of the atom.</param>
 		/// <param name="newVal">New state of the atom after successful swap.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if set happened, otherwise <see cref="false"/>.
+		/// Returns true if set happened, otherwise false.
 		/// </returns>
 		public static object CompareAndSetǃ(object atom, object oldVal, object newVal) => compareAndSetǃ.Invoke(atom, oldVal, newVal);
 		#endregion
@@ -1321,7 +1321,7 @@ namespace funclib
 		/// </summary>
 		/// <param name="p">An object that implements <see cref="IFunction{T1, TResult}"/> interface.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if p returns a logical true, otherwise <see cref="false"/>.
+		/// Returns true if p returns a logical true, otherwise false.
 		/// </returns>
 		public static object EveryPred(object p) => everyPred.Invoke(p);
 		/// <summary>
@@ -1333,7 +1333,7 @@ namespace funclib
 		/// <param name="p1">An object that implements <see cref="IFunction{T1, TResult}"/> interface.</param>
 		/// <param name="p2">An object that implements <see cref="IFunction{T1, TResult}"/> interface.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if p returns a logical true, otherwise <see cref="false"/>.
+		/// Returns true if p returns a logical true, otherwise false.
 		/// </returns>
 		public static object EveryPred(object p1, object p2) => everyPred.Invoke(p1, p2);
 		/// <summary>
@@ -1346,7 +1346,7 @@ namespace funclib
 		/// <param name="p2">An object that implements <see cref="IFunction{T1, TResult}"/> interface.</param>
 		/// <param name="p3">An object that implements <see cref="IFunction{T1, TResult}"/> interface.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if p returns a logical true, otherwise <see cref="false"/>.
+		/// Returns true if p returns a logical true, otherwise false.
 		/// </returns>
 		public static object EveryPred(object p1, object p2, object p3) => everyPred.Invoke(p1, p2, p3);
 		/// <summary>
@@ -1360,24 +1360,24 @@ namespace funclib
 		/// <param name="p3">An object that implements <see cref="IFunction{T1, TResult}"/> interface.</param>
 		/// <param name="ps">Rest of objects that implement <see cref="IFunction{T1, TResult}"/> interface.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if p returns a logical true, otherwise <see cref="false"/>.
+		/// Returns true if p returns a logical true, otherwise false.
 		/// </returns>
 		public static object EveryPred(object p1, object p2, object p3, params object[] ps) => everyPred.Invoke(p1, p2, p3, ps);
 		#endregion
 		#region Falsy
 		static funclib.Components.Core.Falsy __falsy;
 		/// <summary>
-		/// Returns <see cref="true"/> if the object is a logical false. i.e.
+		/// Returns true if the object is a logical false. i.e.
 		/// If source is null or source is bool and that value is false.
 		/// </summary>
 		public static funclib.Components.Core.Falsy falsy => __falsy ?? (__falsy = new funclib.Components.Core.Falsy());
 		/// <summary>
-		/// Returns <see cref="true"/> if the object is a logical false. i.e.
+		/// Returns true if the object is a logical false. i.e.
 		/// If source is null or source is bool and that value is false.
 		/// </summary>
 		/// <param name="source">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if the object is a logical false. i.e.
+		/// Returns true if the object is a logical false. i.e.
 		/// If source is null or source is bool and that value is false.
 		/// </returns>
 		public static object Falsy(object source) => falsy.Invoke(source);
@@ -1916,165 +1916,165 @@ namespace funclib
 		#region IsAny
 		static funclib.Components.Core.IsAny __isany;
 		/// <summary>
-		/// Returns <see cref="true"/> given any argument.
+		/// Returns true given any argument.
 		/// </summary>
 		public static funclib.Components.Core.IsAny isAny => __isany ?? (__isany = new funclib.Components.Core.IsAny());
 		/// <summary>
-		/// Returns <see cref="true"/> given any argument.
+		/// Returns true given any argument.
 		/// </summary>
 		/// <param name="x">Given argument.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> given any argument.
+		/// Returns true given any argument.
 		/// </returns>
 		public static object IsAny(object x) => isAny.Invoke(x);
 		#endregion
 		#region IsAssociative
 		static funclib.Components.Core.IsAssociative __isassociative;
 		/// <summary>
-		/// Returns <see cref="true"/> if coll implements <see cref="IAssociative"/> interface, otherwise <see cref="false"/>.
+		/// Returns true if coll implements <see cref="IAssociative"/> interface, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsAssociative isAssociative => __isassociative ?? (__isassociative = new funclib.Components.Core.IsAssociative());
 		/// <summary>
-		/// Returns <see cref="true"/> if coll implements <see cref="IAssociative"/> interface, otherwise <see cref="false"/>.
+		/// Returns true if coll implements <see cref="IAssociative"/> interface, otherwise false.
 		/// </summary>
 		/// <param name="coll">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if coll implements <see cref="IAssociative"/> interface, otherwise <see cref="false"/>.
+		/// Returns true if coll implements <see cref="IAssociative"/> interface, otherwise false.
 		/// </returns>
 		public static object IsAssociative(object coll) => isAssociative.Invoke(coll);
 		#endregion
 		#region IsBoolean
 		static funclib.Components.Core.IsBoolean __isboolean;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a <see cref="bool"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="bool"/>, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsBoolean isBoolean => __isboolean ?? (__isboolean = new funclib.Components.Core.IsBoolean());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a <see cref="bool"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="bool"/>, otherwise false.
 		/// </summary>
 		/// <param name="x">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is a <see cref="bool"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="bool"/>, otherwise false.
 		/// </returns>
 		public static object IsBoolean(object x) => isBoolean.Invoke(x);
 		#endregion
 		#region IsChar
 		static funclib.Components.Core.IsChar __ischar;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a <see cref="char"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="char"/>, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsChar isChar => __ischar ?? (__ischar = new funclib.Components.Core.IsChar());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a <see cref="char"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="char"/>, otherwise false.
 		/// </summary>
 		/// <param name="x">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is a <see cref="char"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="char"/>, otherwise false.
 		/// </returns>
 		public static object IsChar(object x) => isChar.Invoke(x);
 		#endregion
 		#region IsChunkedSeq
 		static funclib.Components.Core.IsChunkedSeq __ischunkedseq;
 		/// <summary>
-		/// Returns <see cref="true"/> if s is a <see cref="IChunkedSeq"/>, otherwise <see cref="false"/>.
+		/// Returns true if s is a <see cref="IChunkedSeq"/>, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsChunkedSeq isChunkedSeq => __ischunkedseq ?? (__ischunkedseq = new funclib.Components.Core.IsChunkedSeq());
 		/// <summary>
-		/// Returns <see cref="true"/> if s is a <see cref="IChunkedSeq"/>, otherwise <see cref="false"/>.
+		/// Returns true if s is a <see cref="IChunkedSeq"/>, otherwise false.
 		/// </summary>
 		/// <param name="s">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if s is a <see cref="IChunkedSeq"/>, otherwise <see cref="false"/>.
+		/// Returns true if s is a <see cref="IChunkedSeq"/>, otherwise false.
 		/// </returns>
 		public static object IsChunkedSeq(object s) => isChunkedSeq.Invoke(s);
 		#endregion
 		#region IsCounted
 		static funclib.Components.Core.IsCounted __iscounted;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a <see cref="ICounted"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="ICounted"/>, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsCounted isCounted => __iscounted ?? (__iscounted = new funclib.Components.Core.IsCounted());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a <see cref="ICounted"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="ICounted"/>, otherwise false.
 		/// </summary>
 		/// <param name="x">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is a <see cref="ICounted"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="ICounted"/>, otherwise false.
 		/// </returns>
 		public static object IsCounted(object x) => isCounted.Invoke(x);
 		#endregion
 		#region IsDistinct
 		static funclib.Components.Core.IsDistinct __isdistinct;
 		/// <summary>
-		/// Returns <see cref="true"/> if no two arguments are equal, otherwise <see cref="false"/>.
+		/// Returns true if no two arguments are equal, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsDistinct isDistinct => __isdistinct ?? (__isdistinct = new funclib.Components.Core.IsDistinct());
 		/// <summary>
-		/// Returns <see cref="true"/> if no two arguments are equal, otherwise <see cref="false"/>.
+		/// Returns true if no two arguments are equal, otherwise false.
 		/// </summary>
 		/// <param name="x">Other to test.</param>
 		/// <returns>
-		/// Always returns <see cref="true"/>.
+		/// Always returns true.
 		/// </returns>
 		public static object IsDistinct(object x) => isDistinct.Invoke(x);
 		/// <summary>
-		/// Returns <see cref="true"/> if no two arguments are equal, otherwise <see cref="false"/>.
+		/// Returns true if no two arguments are equal, otherwise false.
 		/// </summary>
 		/// <param name="x">First object to test.</param>
 		/// <param name="y">Second object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if no two arguments are equal, otherwise <see cref="false"/>.
+		/// Returns true if no two arguments are equal, otherwise false.
 		/// </returns>
 		public static object IsDistinct(object x, object y) => isDistinct.Invoke(x, y);
 		/// <summary>
-		/// Returns <see cref="true"/> if no two arguments are equal, otherwise <see cref="false"/>.
+		/// Returns true if no two arguments are equal, otherwise false.
 		/// </summary>
 		/// <param name="x">First object to test.</param>
 		/// <param name="y">Second object to test.</param>
 		/// <param name="more">Rest of the objects to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if no two arguments are equal, otherwise <see cref="false"/>.
+		/// Returns true if no two arguments are equal, otherwise false.
 		/// </returns>
 		public static object IsDistinct(object x, object y, params object[] more) => isDistinct.Invoke(x, y, more);
 		#endregion
 		#region IsDouble
 		static funclib.Components.Core.IsDouble __isdouble;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a <see cref="double"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="double"/>, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsDouble isDouble => __isdouble ?? (__isdouble = new funclib.Components.Core.IsDouble());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a <see cref="double"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="double"/>, otherwise false.
 		/// </summary>
 		/// <param name="x">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is a <see cref="double"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="double"/>, otherwise false.
 		/// </returns>
 		public static object IsDouble(object x) => isDouble.Invoke(x);
 		#endregion
 		#region IsEmpty
 		static funclib.Components.Core.IsEmpty __isempty;
 		/// <summary>
-		/// Returns <see cref="true"/> if coll has no items. Same as <see cref="Not.Invoke(Seq.Invoke(object))"/>.
+		/// Returns true if coll has no items. Same as <see cref="Not.Invoke(Seq.Invoke(object))"/>.
 		/// </summary>
 		public static funclib.Components.Core.IsEmpty isEmpty => __isempty ?? (__isempty = new funclib.Components.Core.IsEmpty());
 		/// <summary>
-		/// Returns <see cref="true"/> if coll has no items. Same as <see cref="Not.Invoke(Seq.Invoke(object))"/>.
+		/// Returns true if coll has no items. Same as <see cref="Not.Invoke(Seq.Invoke(object))"/>.
 		/// </summary>
 		/// <param name="coll">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if coll has no items. Same as <see cref="Not.Invoke(Seq.Invoke(object))"/>.
+		/// Returns true if coll has no items. Same as <see cref="Not.Invoke(Seq.Invoke(object))"/>.
 		/// </returns>
 		public static object IsEmpty(object coll) => isEmpty.Invoke(coll);
 		#endregion
 		#region IsEqualTo
 		static funclib.Components.Core.IsEqualTo __isequalto;
 		/// <summary>
-		/// Returns <see cref="true"/> if values are equal, otherwise <see cref="false"/>.
+		/// Returns true if values are equal, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsEqualTo isEqualTo => __isequalto ?? (__isequalto = new funclib.Components.Core.IsEqualTo());
 		/// <summary>
-		/// Returns <see cref="true"/> if values are equal, otherwise <see cref="false"/>.
+		/// Returns true if values are equal, otherwise false.
 		/// </summary>
 		/// <param name="x">First element to test.</param>
 		/// <returns>
@@ -2082,97 +2082,97 @@ namespace funclib
 		/// </returns>
 		public static object IsEqualTo(object x) => isEqualTo.Invoke(x);
 		/// <summary>
-		/// Returns <see cref="true"/> if values are equal, otherwise <see cref="false"/>.
+		/// Returns true if values are equal, otherwise false.
 		/// </summary>
 		/// <param name="x">First element to test.</param>
 		/// <param name="y">Second element to test against.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is equal to y, otherwise <see cref="false"/>.
+		/// Returns true if x is equal to y, otherwise false.
 		/// </returns>
 		public static object IsEqualTo(object x, object y) => isEqualTo.Invoke(x, y);
 		/// <summary>
-		/// Returns <see cref="true"/> if values are equal, otherwise <see cref="false"/>.
+		/// Returns true if values are equal, otherwise false.
 		/// </summary>
 		/// <param name="x">First element to test.</param>
 		/// <param name="y">Second element to test against.</param>
 		/// <param name="more">All other elements to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if values are equal, otherwise <see cref="false"/>.
+		/// Returns true if values are equal, otherwise false.
 		/// </returns>
 		public static object IsEqualTo(object x, object y, params object[] more) => isEqualTo.Invoke(x, y, more);
 		#endregion
 		#region IsEven
 		static funclib.Components.Core.IsEven __iseven;
 		/// <summary>
-		/// Returns <see cref="true"/> if n is an even number.
+		/// Returns true if n is an even number.
 		/// </summary>
 		public static funclib.Components.Core.IsEven isEven => __iseven ?? (__iseven = new funclib.Components.Core.IsEven());
 		/// <summary>
-		/// Returns <see cref="true"/> if n is an even number.
+		/// Returns true if n is an even number.
 		/// </summary>
 		/// <param name="n">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if n is an even number.
+		/// Returns true if n is an even number.
 		/// </returns>
 		public static object IsEven(object n) => isEven.Invoke(n);
 		#endregion
 		#region IsEvery
 		static funclib.Components.Core.IsEvery __isevery;
 		/// <summary>
-		/// Returns <see cref="true"/> if <see cref="IFunction{T1, TResult}"/> pred is a logical
-		/// true for every item in the coll, otherwise <see cref="false"/>
+		/// Returns true if <see cref="IFunction{T1, TResult}"/> pred is a logical
+		/// true for every item in the coll, otherwise false
 		/// </summary>
 		public static funclib.Components.Core.IsEvery isEvery => __isevery ?? (__isevery = new funclib.Components.Core.IsEvery());
 		/// <summary>
-		/// Returns <see cref="true"/> if <see cref="IFunction{T1, TResult}"/> pred is a logical
-		/// true for every item in the coll, otherwise <see cref="false"/>
+		/// Returns true if <see cref="IFunction{T1, TResult}"/> pred is a logical
+		/// true for every item in the coll, otherwise false
 		/// </summary>
 		/// <param name="pred">An object that implements the <see cref="IFunction{T1, TResult}"/> interface.</param>
 		/// <param name="coll">The collection to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if <see cref="IFunction{T1, TResult}"/> pred is a logical
-		/// true for every item in the coll, otherwise <see cref="false"/>
+		/// Returns true if <see cref="IFunction{T1, TResult}"/> pred is a logical
+		/// true for every item in the coll, otherwise false
 		/// </returns>
 		public static object IsEvery(object pred, object coll) => isEvery.Invoke(pred, coll);
 		#endregion
 		#region IsFalse
 		static funclib.Components.Core.IsFalse __isfalse;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is <see cref="false"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is false, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsFalse isFalse => __isfalse ?? (__isfalse = new funclib.Components.Core.IsFalse());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a <see cref="false"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a false, otherwise false.
 		/// </summary>
 		/// <param name="x">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is a <see cref="false"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a false, otherwise false.
 		/// </returns>
 		public static object IsFalse(object x) => isFalse.Invoke(x);
 		#endregion
 		#region IsFunction
 		static funclib.Components.Core.IsFunction __isfunction;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a <see cref="IFunction"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="IFunction"/>, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsFunction isFunction => __isfunction ?? (__isfunction = new funclib.Components.Core.IsFunction());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a <see cref="IFunction"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="IFunction"/>, otherwise false.
 		/// </summary>
 		/// <param name="x">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is a <see cref="IFunction"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="IFunction"/>, otherwise false.
 		/// </returns>
 		public static object IsFunction(object x) => isFunction.Invoke(x);
 		#endregion
 		#region IsGreaterThan
 		static funclib.Components.Core.IsGreaterThan __isgreaterthan;
 		/// <summary>
-		/// Returns a <see cref="true"/>, numbers are monotonically decreasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically decreasing order, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsGreaterThan isGreaterThan => __isgreaterthan ?? (__isgreaterthan = new funclib.Components.Core.IsGreaterThan());
 		/// <summary>
-		/// Returns a <see cref="true"/>, numbers are monotonically decreasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically decreasing order, otherwise false.
 		/// </summary>
 		/// <param name="x">First element to test.</param>
 		/// <returns>
@@ -2180,33 +2180,33 @@ namespace funclib
 		/// </returns>
 		public static object IsGreaterThan(object x) => isGreaterThan.Invoke(x);
 		/// <summary>
-		/// Returns a <see cref="true"/>, numbers are monotonically decreasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically decreasing order, otherwise false.
 		/// </summary>
 		/// <param name="x">First element to test.</param>
 		/// <param name="y">Second element to test.</param>
 		/// <returns>
-		/// Returns a <see cref="true"/>, numbers are monotonically decreasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically decreasing order, otherwise false.
 		/// </returns>
 		public static object IsGreaterThan(object x, object y) => isGreaterThan.Invoke(x, y);
 		/// <summary>
-		/// Returns a <see cref="true"/>, numbers are monotonically decreasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically decreasing order, otherwise false.
 		/// </summary>
 		/// <param name="x">First element to test.</param>
 		/// <param name="y">Second element to test.</param>
 		/// <param name="more">Rest of the elements to test.</param>
 		/// <returns>
-		/// Returns a <see cref="true"/>, numbers are monotonically decreasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically decreasing order, otherwise false.
 		/// </returns>
 		public static object IsGreaterThan(object x, object y, params object[] more) => isGreaterThan.Invoke(x, y, more);
 		#endregion
 		#region IsGreaterThanOrEqualTo
 		static funclib.Components.Core.IsGreaterThanOrEqualTo __isgreaterthanorequalto;
 		/// <summary>
-		/// Returns a <see cref="true"/>, numbers are monotonically non-increasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically non-increasing order, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsGreaterThanOrEqualTo isGreaterThanOrEqualTo => __isgreaterthanorequalto ?? (__isgreaterthanorequalto = new funclib.Components.Core.IsGreaterThanOrEqualTo());
 		/// <summary>
-		/// Returns a <see cref="true"/>, numbers are monotonically non-increasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically non-increasing order, otherwise false.
 		/// </summary>
 		/// <param name="x">First element to test.</param>
 		/// <returns>
@@ -2214,76 +2214,76 @@ namespace funclib
 		/// </returns>
 		public static object IsGreaterThanOrEqualTo(object x) => isGreaterThanOrEqualTo.Invoke(x);
 		/// <summary>
-		/// Returns a <see cref="true"/>, numbers are monotonically non-increasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically non-increasing order, otherwise false.
 		/// </summary>
 		/// <param name="x">First element to test.</param>
 		/// <param name="y">Second element to test.</param>
 		/// <returns>
-		/// Returns a <see cref="true"/>, numbers are monotonically non-increasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically non-increasing order, otherwise false.
 		/// </returns>
 		public static object IsGreaterThanOrEqualTo(object x, object y) => isGreaterThanOrEqualTo.Invoke(x, y);
 		/// <summary>
-		/// Returns a <see cref="true"/>, numbers are monotonically non-increasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically non-increasing order, otherwise false.
 		/// </summary>
 		/// <param name="x">First element to test.</param>
 		/// <param name="y">Second element to test.</param>
 		/// <param name="more">Rest of the elements to test.</param>
 		/// <returns>
-		/// Returns a <see cref="true"/>, numbers are monotonically non-increasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically non-increasing order, otherwise false.
 		/// </returns>
 		public static object IsGreaterThanOrEqualTo(object x, object y, params object[] more) => isGreaterThanOrEqualTo.Invoke(x, y, more);
 		#endregion
 		#region IsIdentical
 		static funclib.Components.Core.IsIdentical __isidentical;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is identical to y, otherwise <see cref="false"/>.
+		/// Returns true if x is identical to y, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsIdentical isIdentical => __isidentical ?? (__isidentical = new funclib.Components.Core.IsIdentical());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is identical to y, otherwise <see cref="false"/>.
+		/// Returns true if x is identical to y, otherwise false.
 		/// </summary>
 		/// <param name="x">First object.</param>
 		/// <param name="y">Object to test against.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is identical to y, otherwise <see cref="false"/>.
+		/// Returns true if x is identical to y, otherwise false.
 		/// </returns>
 		public static object IsIdentical(object x, object y) => isIdentical.Invoke(x, y);
 		#endregion
 		#region IsInstance
 		static funclib.Components.Core.IsInstance __isinstance;
 		/// <summary>
-		/// Returns <see cref="true"/> if c <see cref="Type"/> is an instance of x, otherwise <see cref="false"/>.
+		/// Returns true if c <see cref="Type"/> is an instance of x, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsInstance isInstance => __isinstance ?? (__isinstance = new funclib.Components.Core.IsInstance());
 		/// <summary>
-		/// Returns <see cref="true"/> if c <see cref="Type"/> is an instance of x, otherwise <see cref="false"/>.
+		/// Returns true if c <see cref="Type"/> is an instance of x, otherwise false.
 		/// </summary>
 		/// <param name="c">An <see cref="Type"/> object.</param>
 		/// <param name="x">An object to check type of.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if c <see cref="Type"/> is an instance of x, otherwise <see cref="false"/>.
+		/// Returns true if c <see cref="Type"/> is an instance of x, otherwise false.
 		/// </returns>
 		public static object IsInstance(object c, object x) => isInstance.Invoke(c, x);
 		#endregion
 		#region IsInt
 		static funclib.Components.Core.IsInt __isint;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a <see cref="int"/>, <see cref="long"/>, <see cref="short"/> or <see cref="byte"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="int"/>, <see cref="long"/>, <see cref="short"/> or <see cref="byte"/>, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsInt isInt => __isint ?? (__isint = new funclib.Components.Core.IsInt());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a <see cref="int"/>, <see cref="long"/>, <see cref="short"/> or <see cref="byte"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="int"/>, <see cref="long"/>, <see cref="short"/> or <see cref="byte"/>, otherwise false.
 		/// </summary>
 		/// <param name="n">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is a <see cref="int"/>, <see cref="long"/>, <see cref="short"/> or <see cref="byte"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="int"/>, <see cref="long"/>, <see cref="short"/> or <see cref="byte"/>, otherwise false.
 		/// </returns>
 		public static object IsInt(object n) => isInt.Invoke(n);
 		#endregion
 		#region IsInteger
 		static funclib.Components.Core.IsInteger __isinteger;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a
+		/// Returns true if x is a
 		/// <see cref="int"/>,
 		/// <see cref="long"/>,
 		/// <see cref="short"/>
@@ -2293,11 +2293,11 @@ namespace funclib
 		/// <see cref="char"/>
 		/// <see cref="byte"/>,
 		/// or <see cref="sbyte"/>,
-		/// otherwise <see cref="false"/>.
+		/// otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsInteger isInteger => __isinteger ?? (__isinteger = new funclib.Components.Core.IsInteger());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a
+		/// Returns true if x is a
 		/// <see cref="int"/>,
 		/// <see cref="long"/>,
 		/// <see cref="short"/>
@@ -2307,11 +2307,11 @@ namespace funclib
 		/// <see cref="char"/>
 		/// <see cref="byte"/>,
 		/// or <see cref="sbyte"/>,
-		/// otherwise <see cref="false"/>.
+		/// otherwise false.
 		/// </summary>
 		/// <param name="n">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is a
+		/// Returns true if x is a
 		/// <see cref="int"/>,
 		/// <see cref="long"/>,
 		/// <see cref="short"/>
@@ -2321,18 +2321,18 @@ namespace funclib
 		/// <see cref="char"/>
 		/// <see cref="byte"/>,
 		/// or <see cref="sbyte"/>,
-		/// otherwise <see cref="false"/>.
+		/// otherwise false.
 		/// </returns>
 		public static object IsInteger(object n) => isInteger.Invoke(n);
 		#endregion
 		#region IsLessThan
 		static funclib.Components.Core.IsLessThan __islessthan;
 		/// <summary>
-		/// Returns a <see cref="true"/>, numbers are monotonically increasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically increasing order, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsLessThan isLessThan => __islessthan ?? (__islessthan = new funclib.Components.Core.IsLessThan());
 		/// <summary>
-		/// Returns a <see cref="true"/>, numbers are monotonically increasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically increasing order, otherwise false.
 		/// </summary>
 		/// <param name="x">First element to test.</param>
 		/// <returns>
@@ -2340,33 +2340,33 @@ namespace funclib
 		/// </returns>
 		public static object IsLessThan(object x) => isLessThan.Invoke(x);
 		/// <summary>
-		/// Returns a <see cref="true"/>, numbers are monotonically increasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically increasing order, otherwise false.
 		/// </summary>
 		/// <param name="x">First element to test.</param>
 		/// <param name="y">Second element to test.</param>
 		/// <returns>
-		/// Returns a <see cref="true"/>, numbers are monotonically increasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically increasing order, otherwise false.
 		/// </returns>
 		public static object IsLessThan(object x, object y) => isLessThan.Invoke(x, y);
 		/// <summary>
-		/// Returns a <see cref="true"/>, numbers are monotonically increasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically increasing order, otherwise false.
 		/// </summary>
 		/// <param name="x">First element to test.</param>
 		/// <param name="y">Second element to test.</param>
 		/// <param name="more">Rest of the elements to test.</param>
 		/// <returns>
-		/// Returns a <see cref="true"/>, numbers are monotonically increasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically increasing order, otherwise false.
 		/// </returns>
 		public static object IsLessThan(object x, object y, params object[] more) => isLessThan.Invoke(x, y, more);
 		#endregion
 		#region IsLessThanOrEqualTo
 		static funclib.Components.Core.IsLessThanOrEqualTo __islessthanorequalto;
 		/// <summary>
-		/// Returns a <see cref="true"/>, numbers are monotonically non-decreasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically non-decreasing order, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsLessThanOrEqualTo isLessThanOrEqualTo => __islessthanorequalto ?? (__islessthanorequalto = new funclib.Components.Core.IsLessThanOrEqualTo());
 		/// <summary>
-		/// Returns a <see cref="true"/>, numbers are monotonically non-decreasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically non-decreasing order, otherwise false.
 		/// </summary>
 		/// <param name="x">First element to test.</param>
 		/// <returns>
@@ -2374,124 +2374,124 @@ namespace funclib
 		/// </returns>
 		public static object IsLessThanOrEqualTo(object x) => isLessThanOrEqualTo.Invoke(x);
 		/// <summary>
-		/// Returns a <see cref="true"/>, numbers are monotonically non-decreasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically non-decreasing order, otherwise false.
 		/// </summary>
 		/// <param name="x">First element to test.</param>
 		/// <param name="y">Second element to test.</param>
 		/// <returns>
-		/// Returns a <see cref="true"/>, numbers are monotonically non-decreasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically non-decreasing order, otherwise false.
 		/// </returns>
 		public static object IsLessThanOrEqualTo(object x, object y) => isLessThanOrEqualTo.Invoke(x, y);
 		/// <summary>
-		/// Returns a <see cref="true"/>, numbers are monotonically non-decreasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically non-decreasing order, otherwise false.
 		/// </summary>
 		/// <param name="x">First element to test.</param>
 		/// <param name="y">Second element to test.</param>
 		/// <param name="more">Rest of the elements to test.</param>
 		/// <returns>
-		/// Returns a <see cref="true"/>, numbers are monotonically non-decreasing order, otherwise <see cref="false"/>.
+		/// Returns a true, numbers are monotonically non-decreasing order, otherwise false.
 		/// </returns>
 		public static object IsLessThanOrEqualTo(object x, object y, params object[] more) => isLessThanOrEqualTo.Invoke(x, y, more);
 		#endregion
 		#region IsList
 		static funclib.Components.Core.IsList __islist;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a <see cref="IList"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="IList"/>, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsList isList => __islist ?? (__islist = new funclib.Components.Core.IsList());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a <see cref="IList"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="IList"/>, otherwise false.
 		/// </summary>
 		/// <param name="x">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is a <see cref="IList"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="IList"/>, otherwise false.
 		/// </returns>
 		public static object IsList(object x) => isList.Invoke(x);
 		#endregion
 		#region IsMap
 		static funclib.Components.Core.IsMap __ismap;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a <see cref="IMap"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="IMap"/>, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsMap isMap => __ismap ?? (__ismap = new funclib.Components.Core.IsMap());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a <see cref="IMap"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="IMap"/>, otherwise false.
 		/// </summary>
 		/// <param name="x">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is a <see cref="IMap"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="IMap"/>, otherwise false.
 		/// </returns>
 		public static object IsMap(object x) => isMap.Invoke(x);
 		#endregion
 		#region IsNatInt
 		static funclib.Components.Core.IsNatInt __isnatint;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a non-negative <see cref="int"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a non-negative <see cref="int"/>, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsNatInt isNatInt => __isnatint ?? (__isnatint = new funclib.Components.Core.IsNatInt());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a non-negative <see cref="int"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a non-negative <see cref="int"/>, otherwise false.
 		/// </summary>
 		/// <param name="n">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is a non-negative <see cref="int"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a non-negative <see cref="int"/>, otherwise false.
 		/// </returns>
 		public static object IsNatInt(object n) => isNatInt.Invoke(n);
 		#endregion
 		#region IsNeg
 		static funclib.Components.Core.IsNeg __isneg;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is less than zero, otherwise <see cref="false"/>.
+		/// Returns true if x is less than zero, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsNeg isNeg => __isneg ?? (__isneg = new funclib.Components.Core.IsNeg());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is less than zero, otherwise <see cref="false"/>.
+		/// Returns true if x is less than zero, otherwise false.
 		/// </summary>
 		/// <param name="num">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is less than zero, otherwise <see cref="false"/>.
+		/// Returns true if x is less than zero, otherwise false.
 		/// </returns>
 		public static object IsNeg(object num) => isNeg.Invoke(num);
 		#endregion
 		#region IsNegInt
 		static funclib.Components.Core.IsNegInt __isnegint;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a a negative <see cref="int"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a a negative <see cref="int"/>, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsNegInt isNegInt => __isnegint ?? (__isnegint = new funclib.Components.Core.IsNegInt());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a a negative <see cref="int"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a a negative <see cref="int"/>, otherwise false.
 		/// </summary>
 		/// <param name="n">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is a a negative <see cref="int"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a a negative <see cref="int"/>, otherwise false.
 		/// </returns>
 		public static object IsNegInt(object n) => isNegInt.Invoke(n);
 		#endregion
 		#region IsNotAny
 		static funclib.Components.Core.IsNotAny __isnotany;
 		/// <summary>
-		/// Returns <see cref="false"/> if x is logical true for any item in coll, otherwise <see cref="true"/>.
+		/// Returns false if x is logical true for any item in coll, otherwise true.
 		/// </summary>
 		public static funclib.Components.Core.IsNotAny isNotAny => __isnotany ?? (__isnotany = new funclib.Components.Core.IsNotAny());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is logical true for any item in coll, otherwise <see cref="false"/>.
+		/// Returns true if x is logical true for any item in coll, otherwise false.
 		/// </summary>
 		/// <param name="pred">An object that implements the <see cref="IFunction{T1, TResult}"/> interface.</param>
 		/// <param name="coll">A collection of items to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is logical true for any item in coll, otherwise <see cref="false"/>.
+		/// Returns true if x is logical true for any item in coll, otherwise false.
 		/// </returns>
 		public static object IsNotAny(object pred, object coll) => isNotAny.Invoke(pred, coll);
 		#endregion
 		#region IsNotEqualTo
 		static funclib.Components.Core.IsNotEqualTo __isnotequalto;
 		/// <summary>
-		/// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
+		/// Returns true if values are not equal, otherwise false
 		/// </summary>
 		public static funclib.Components.Core.IsNotEqualTo isNotEqualTo => __isnotequalto ?? (__isnotequalto = new funclib.Components.Core.IsNotEqualTo());
 		/// <summary>
-		/// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
+		/// Returns true if values are not equal, otherwise false
 		/// </summary>
 		/// <param name="x">First element to test.</param>
 		/// <returns>
@@ -2499,308 +2499,308 @@ namespace funclib
 		/// </returns>
 		public static object IsNotEqualTo(object x) => isNotEqualTo.Invoke(x);
 		/// <summary>
-		/// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
+		/// Returns true if values are not equal, otherwise false
 		/// </summary>
 		/// <param name="x">First element to test.</param>
 		/// <param name="y">Second element to test</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
+		/// Returns true if values are not equal, otherwise false
 		/// </returns>
 		public static object IsNotEqualTo(object x, object y) => isNotEqualTo.Invoke(x, y);
 		/// <summary>
-		/// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
+		/// Returns true if values are not equal, otherwise false
 		/// </summary>
 		/// <param name="x">First element to test.</param>
 		/// <param name="y">Second element to test against.</param>
 		/// <param name="more">All other elements to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
+		/// Returns true if values are not equal, otherwise false
 		/// </returns>
 		public static object IsNotEqualTo(object x, object y, params object[] more) => isNotEqualTo.Invoke(x, y, more);
 		#endregion
 		#region IsNotEvery
 		static funclib.Components.Core.IsNotEvery __isnotevery;
 		/// <summary>
-		/// Returns <see cref="false"/> if x is logical true for every item in coll, otherwise <see cref="true"/>.
+		/// Returns false if x is logical true for every item in coll, otherwise true.
 		/// </summary>
 		public static funclib.Components.Core.IsNotEvery isNotEvery => __isnotevery ?? (__isnotevery = new funclib.Components.Core.IsNotEvery());
 		/// <summary>
-		/// Returns <see cref="false"/> if x is logical true for every item in coll, otherwise <see cref="true"/>.
+		/// Returns false if x is logical true for every item in coll, otherwise true.
 		/// </summary>
 		/// <param name="pred">An object that implements the <see cref="IFunction{T1, TResult}"/> interface.</param>
 		/// <param name="coll">A collection of items to test.</param>
 		/// <returns>
-		/// Returns <see cref="false"/> if x is logical true for every item in coll, otherwise <see cref="true"/>.
+		/// Returns false if x is logical true for every item in coll, otherwise true.
 		/// </returns>
 		public static object IsNotEvery(object pred, object coll) => isNotEvery.Invoke(pred, coll);
 		#endregion
 		#region IsNull
 		static funclib.Components.Core.IsNull __isnull;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is <see cref="null"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is <see cref="null"/>, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsNull isNull => __isnull ?? (__isnull = new funclib.Components.Core.IsNull());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is <see cref="null"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is <see cref="null"/>, otherwise false.
 		/// </summary>
 		/// <param name="x">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is <see cref="null"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is <see cref="null"/>, otherwise false.
 		/// </returns>
 		public static object IsNull(object x) => isNull.Invoke(x);
 		#endregion
 		#region IsNumber
 		static funclib.Components.Core.IsNumber __isnumber;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a number, otherwise <see cref="false"/>.
+		/// Returns true if x is a number, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsNumber isNumber => __isnumber ?? (__isnumber = new funclib.Components.Core.IsNumber());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a number, otherwise <see cref="false"/>.
+		/// Returns true if x is a number, otherwise false.
 		/// </summary>
 		/// <param name="x">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is a number, otherwise <see cref="false"/>.
+		/// Returns true if x is a number, otherwise false.
 		/// </returns>
 		public static object IsNumber(object x) => isNumber.Invoke(x);
 		#endregion
 		#region IsOdd
 		static funclib.Components.Core.IsOdd __isodd;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is an odd number, otherwise <see cref="false"/>.
+		/// Returns true if x is an odd number, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsOdd isOdd => __isodd ?? (__isodd = new funclib.Components.Core.IsOdd());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is an odd number, otherwise <see cref="false"/>.
+		/// Returns true if x is an odd number, otherwise false.
 		/// </summary>
 		/// <param name="n">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is an odd number, otherwise <see cref="false"/>.
+		/// Returns true if x is an odd number, otherwise false.
 		/// </returns>
 		public static object IsOdd(object n) => isOdd.Invoke(n);
 		#endregion
 		#region IsPos
 		static funclib.Components.Core.IsPos __ispos;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is an greater than zero, otherwise <see cref="false"/>.
+		/// Returns true if x is an greater than zero, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsPos isPos => __ispos ?? (__ispos = new funclib.Components.Core.IsPos());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is an greater than zero, otherwise <see cref="false"/>.
+		/// Returns true if x is an greater than zero, otherwise false.
 		/// </summary>
 		/// <param name="num">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is an greater than zero, otherwise <see cref="false"/>.
+		/// Returns true if x is an greater than zero, otherwise false.
 		/// </returns>
 		public static object IsPos(object num) => isPos.Invoke(num);
 		#endregion
 		#region IsPosInt
 		static funclib.Components.Core.IsPosInt __isposint;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a positive <see cref="IsInt"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a positive <see cref="IsInt"/>, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsPosInt isPosInt => __isposint ?? (__isposint = new funclib.Components.Core.IsPosInt());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a positive <see cref="IsInt"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a positive <see cref="IsInt"/>, otherwise false.
 		/// </summary>
 		/// <param name="n">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is a positive <see cref="IsInt"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a positive <see cref="IsInt"/>, otherwise false.
 		/// </returns>
 		public static object IsPosInt(object n) => isPosInt.Invoke(n);
 		#endregion
 		#region IsReduced
 		static funclib.Components.Core.IsReduced __isreduced;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is of type <see cref="Reduced"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is of type <see cref="Reduced"/>, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsReduced isReduced => __isreduced ?? (__isreduced = new funclib.Components.Core.IsReduced());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is of type <see cref="Reduced"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is of type <see cref="Reduced"/>, otherwise false.
 		/// </summary>
 		/// <param name="x">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is of type <see cref="Reduced"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is of type <see cref="Reduced"/>, otherwise false.
 		/// </returns>
 		public static object IsReduced(object x) => isReduced.Invoke(x);
 		#endregion
 		#region IsSeq
 		static funclib.Components.Core.IsSeq __isseq;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a <see cref="ISeq"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="ISeq"/>, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsSeq isSeq => __isseq ?? (__isseq = new funclib.Components.Core.IsSeq());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a <see cref="ISeq"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="ISeq"/>, otherwise false.
 		/// </summary>
 		/// <param name="x">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is a <see cref="ISeq"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="ISeq"/>, otherwise false.
 		/// </returns>
 		public static object IsSeq(object x) => isSeq.Invoke(x);
 		#endregion
 		#region IsSeqable
 		static funclib.Components.Core.IsSeqable __isseqable;
 		/// <summary>
-		/// Returns <see cref="true"/> if x can be supported by the <see cref="Seq"/> function, otherwise <see cref="false"/>.
+		/// Returns true if x can be supported by the <see cref="Seq"/> function, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsSeqable isSeqable => __isseqable ?? (__isseqable = new funclib.Components.Core.IsSeqable());
 		/// <summary>
-		/// Returns <see cref="true"/> if x can be supported by the <see cref="Seq"/> function, otherwise <see cref="false"/>.
+		/// Returns true if x can be supported by the <see cref="Seq"/> function, otherwise false.
 		/// </summary>
 		/// <param name="x">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x can be supported by the <see cref="Seq"/> function, otherwise <see cref="false"/>.
+		/// Returns true if x can be supported by the <see cref="Seq"/> function, otherwise false.
 		/// </returns>
 		public static object IsSeqable(object x) => isSeqable.Invoke(x);
 		#endregion
 		#region IsSequential
 		static funclib.Components.Core.IsSequential __issequential;
 		/// <summary>
-		/// Returns <see cref="true"/> if coll implements <see cref="ISequential"/> interface, otherwise <see cref="false"/>.
+		/// Returns true if coll implements <see cref="ISequential"/> interface, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsSequential isSequential => __issequential ?? (__issequential = new funclib.Components.Core.IsSequential());
 		/// <summary>
-		/// Returns <see cref="true"/> if coll implements <see cref="ISequential"/> interface, otherwise <see cref="false"/>.
+		/// Returns true if coll implements <see cref="ISequential"/> interface, otherwise false.
 		/// </summary>
 		/// <param name="coll">An object to test against.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if coll implements <see cref="ISequential"/> interface, otherwise <see cref="false"/>.
+		/// Returns true if coll implements <see cref="ISequential"/> interface, otherwise false.
 		/// </returns>
 		public static object IsSequential(object coll) => isSequential.Invoke(coll);
 		#endregion
 		#region IsSet
 		static funclib.Components.Core.IsSet __isset;
 		/// <summary>
-		/// Returns <see cref="true"/> if coll implements <see cref="ISet"/> interface, otherwise <see cref="false"/>.
+		/// Returns true if coll implements <see cref="ISet"/> interface, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsSet isSet => __isset ?? (__isset = new funclib.Components.Core.IsSet());
 		/// <summary>
-		/// Returns <see cref="true"/> if coll implements <see cref="ISequential"/> interface, otherwise <see cref="false"/>.
+		/// Returns true if coll implements <see cref="ISequential"/> interface, otherwise false.
 		/// </summary>
 		/// <param name="x">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if coll implements <see cref="ISequential"/> interface, otherwise <see cref="false"/>.
+		/// Returns true if coll implements <see cref="ISequential"/> interface, otherwise false.
 		/// </returns>
 		public static object IsSet(object x) => isSet.Invoke(x);
 		#endregion
 		#region IsSome
 		static funclib.Components.Core.IsSome __issome;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is not <see cref="null"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is not <see cref="null"/>, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsSome isSome => __issome ?? (__issome = new funclib.Components.Core.IsSome());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is not <see cref="null"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is not <see cref="null"/>, otherwise false.
 		/// </summary>
 		/// <param name="x">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is not <see cref="null"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is not <see cref="null"/>, otherwise false.
 		/// </returns>
 		public static object IsSome(object x) => isSome.Invoke(x);
 		#endregion
 		#region IsSorted
 		static funclib.Components.Core.IsSorted __issorted;
 		/// <summary>
-		/// Returns <see cref="true"/> if coll implements <see cref="ISorted"/> interface, otherwise <see cref="false"/>.
+		/// Returns true if coll implements <see cref="ISorted"/> interface, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsSorted isSorted => __issorted ?? (__issorted = new funclib.Components.Core.IsSorted());
 		/// <summary>
-		/// Returns <see cref="true"/> if coll implements <see cref="ISorted"/> interface, otherwise <see cref="false"/>.
+		/// Returns true if coll implements <see cref="ISorted"/> interface, otherwise false.
 		/// </summary>
 		/// <param name="coll">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if coll implements <see cref="ISorted"/> interface, otherwise <see cref="false"/>.
+		/// Returns true if coll implements <see cref="ISorted"/> interface, otherwise false.
 		/// </returns>
 		public static object IsSorted(object coll) => isSorted.Invoke(coll);
 		#endregion
 		#region IsString
 		static funclib.Components.Core.IsString __isstring;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a <see cref="string"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="string"/>, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsString isString => __isstring ?? (__isstring = new funclib.Components.Core.IsString());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a <see cref="string"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="string"/>, otherwise false.
 		/// </summary>
 		/// <param name="x">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is a <see cref="string"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="string"/>, otherwise false.
 		/// </returns>
 		public static object IsString(object x) => isString.Invoke(x);
 		#endregion
 		#region IsTrue
 		static funclib.Components.Core.IsTrue __istrue;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is <see cref="true"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is true, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsTrue isTrue => __istrue ?? (__istrue = new funclib.Components.Core.IsTrue());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is <see cref="true"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is true, otherwise false.
 		/// </summary>
 		/// <param name="x">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is <see cref="true"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is true, otherwise false.
 		/// </returns>
 		public static object IsTrue(object x) => isTrue.Invoke(x);
 		#endregion
 		#region IsUUID
 		static funclib.Components.Core.IsUUID __isuuid;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a <see cref="Guid"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="Guid"/>, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsUUID isUUID => __isuuid ?? (__isuuid = new funclib.Components.Core.IsUUID());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is a <see cref="Guid"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="Guid"/>, otherwise false.
 		/// </summary>
 		/// <param name="x">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is a <see cref="Guid"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is a <see cref="Guid"/>, otherwise false.
 		/// </returns>
 		public static object IsUUID(object x) => isUUID.Invoke(x);
 		#endregion
 		#region IsVector
 		static funclib.Components.Core.IsVector __isvector;
 		/// <summary>
-		/// Returns <see cref="true"/> if coll implements <see cref="IVector"/> interface, otherwise <see cref="false"/>.
+		/// Returns true if coll implements <see cref="IVector"/> interface, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsVector isVector => __isvector ?? (__isvector = new funclib.Components.Core.IsVector());
 		/// <summary>
-		/// Returns <see cref="true"/> if coll implements <see cref="IVector"/> interface, otherwise <see cref="false"/>.
+		/// Returns true if coll implements <see cref="IVector"/> interface, otherwise false.
 		/// </summary>
 		/// <param name="x">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if coll implements <see cref="IVector"/> interface, otherwise <see cref="false"/>.
+		/// Returns true if coll implements <see cref="IVector"/> interface, otherwise false.
 		/// </returns>
 		public static object IsVector(object x) => isVector.Invoke(x);
 		#endregion
 		#region IsVolatile
 		static funclib.Components.Core.IsVolatile __isvolatile;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is of type <see cref="Volatileǃ"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is of type <see cref="Volatileǃ"/>, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsVolatile isVolatile => __isvolatile ?? (__isvolatile = new funclib.Components.Core.IsVolatile());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is of type <see cref="Volatileǃ"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is of type <see cref="Volatileǃ"/>, otherwise false.
 		/// </summary>
 		/// <param name="x">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is of type <see cref="Volatileǃ"/>, otherwise <see cref="false"/>.
+		/// Returns true if x is of type <see cref="Volatileǃ"/>, otherwise false.
 		/// </returns>
 		public static object IsVolatile(object x) => isVolatile.Invoke(x);
 		#endregion
 		#region IsZero
 		static funclib.Components.Core.IsZero __iszero;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is zero, otherwise <see cref="false"/>.
+		/// Returns true if x is zero, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.IsZero isZero => __iszero ?? (__iszero = new funclib.Components.Core.IsZero());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is zero, otherwise <see cref="false"/>.
+		/// Returns true if x is zero, otherwise false.
 		/// </summary>
 		/// <param name="n">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is zero, otherwise <see cref="false"/>.
+		/// Returns true if x is zero, otherwise false.
 		/// </returns>
 		public static object IsZero(object n) => isZero.Invoke(n);
 		#endregion
@@ -3465,15 +3465,15 @@ namespace funclib
 		#region Not
 		static funclib.Components.Core.Not __not;
 		/// <summary>
-		/// Returns <see cref="true"/> if x is logical false, otherwise <see cref="false"/>.
+		/// Returns true if x is logical false, otherwise false.
 		/// </summary>
 		public static funclib.Components.Core.Not not => __not ?? (__not = new funclib.Components.Core.Not());
 		/// <summary>
-		/// Returns <see cref="true"/> if x is logical false, otherwise <see cref="false"/>.
+		/// Returns true if x is logical false, otherwise false.
 		/// </summary>
 		/// <param name="x">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if x is logical false, otherwise <see cref="false"/>.
+		/// Returns true if x is logical false, otherwise false.
 		/// </returns>
 		public static object Not(object x) => not.Invoke(x);
 		#endregion
@@ -4571,7 +4571,7 @@ namespace funclib
 		/// function must be null or a side-effect-free <see cref="IFunction"/> of
 		/// one argument, which will be passed the intended new state of any state
 		/// change. If the new state is unacceptable, the function should either
-		/// return <see cref="false"/> or throw an exception.
+		/// return false or throw an exception.
 		/// </summary>
 		public static funclib.Components.Core.SetValidatorǃ setValidatorǃ => __setvalidatorǃ ?? (__setvalidatorǃ = new funclib.Components.Core.SetValidatorǃ());
 		/// <summary>
@@ -4579,7 +4579,7 @@ namespace funclib
 		/// function must be null or a side-effect-free <see cref="IFunction"/> of
 		/// one argument, which will be passed the intended new state of any state
 		/// change. If the new state is unacceptable, the function should either
-		/// return <see cref="false"/> or throw an exception.
+		/// return false or throw an exception.
 		/// </summary>
 		/// <param name="ref">An object that implements the <see cref="IRef"/> interface.</param>
 		/// <param name="validatorFn">An object that implements the <see cref="IFunction"/> interface, that takes one parameter.</param>
@@ -4591,18 +4591,18 @@ namespace funclib
 		#region Some
 		static funclib.Components.Core.Some __some;
 		/// <summary>
-		/// Returns the funclib.Core.First( logical <see cref="true"/> value of execute <see cref="IFunction{T1, TResult}"/> pred passing
+		/// Returns the funclib.Core.First( logical true value of execute <see cref="IFunction{T1, TResult}"/> pred passing
 		/// x, where x is any x in coll, otherwise null.
 		/// </summary>
 		public static funclib.Components.Core.Some some => __some ?? (__some = new funclib.Components.Core.Some());
 		/// <summary>
-		/// Returns the funclib.Core.First( logical <see cref="true"/> value of execute <see cref="IFunction{T1, TResult}"/> pred passing
+		/// Returns the funclib.Core.First( logical true value of execute <see cref="IFunction{T1, TResult}"/> pred passing
 		/// x, where x is any x in coll, otherwise null.
 		/// </summary>
 		/// <param name="pred">An object that implements the <see cref="IFunction{T1, TResult}"/> interface.</param>
 		/// <param name="coll">A collection to be <see cref="Seq"/> over.</param>
 		/// <returns>
-		/// Returns the funclib.Core.First( logical <see cref="true"/> value of execute <see cref="IFunction{T1, TResult}"/> pred passing
+		/// Returns the funclib.Core.First( logical true value of execute <see cref="IFunction{T1, TResult}"/> pred passing
 		/// x, where x is any x in coll, otherwise null.
 		/// </returns>
 		public static object Some(object pred, object coll) => some.Invoke(pred, coll);
@@ -5207,17 +5207,17 @@ namespace funclib
 		#region Truthy
 		static funclib.Components.Core.Truthy __truthy;
 		/// <summary>
-		/// Returns <see cref="true"/> if source is a logical true. i.e.:
+		/// Returns true if source is a logical true. i.e.:
 		/// source is not null or if source is boolean true.
 		/// </summary>
 		public static funclib.Components.Core.Truthy truthy => __truthy ?? (__truthy = new funclib.Components.Core.Truthy());
 		/// <summary>
-		/// Returns <see cref="true"/> if source is a logical true. i.e.:
+		/// Returns true if source is a logical true. i.e.:
 		/// source is not null or if source is boolean true.
 		/// </summary>
 		/// <param name="source">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="true"/> if source is a logical true. i.e.:
+		/// Returns true if source is a logical true. i.e.:
 		/// source is not null or if source is boolean true.
 		/// </returns>
 		public static object Truthy(object source) => truthy.Invoke(source);
@@ -5581,44 +5581,44 @@ namespace funclib
 		#endregion
 		#region FunctionParams<T1, T2, T3, T4, T5, T6, TRest, TResult>
 		/// <summary>
-		/// Creates a <see cref="FunctionParams{T1, T2, T3, T4, T5, T6, TRest, TResult}"/> from a <see cref="Func{T1, T2, T3, T4, T5, T6, TRest[], TResult}"/>.
+		/// Creates a <see cref="FunctionParams{T1, T2, T3, T4, T5, T6, TRest, TResult}"/> from a <see cref="Func{T1, T2, T3, T4, T5, T6, TRest, TResult}"/>.
 		/// </summary>
-		/// <param name="x">A <see cref="Func{T1, T2, T3, T4, T5, T6, TRest[], TResult}"/> to execute.</param>
+		/// <param name="x">A <see cref="Func{T1, T2, T3, T4, T5, T6, TRest, TResult}"/> to execute.</param>
 		public static funclib.Components.Core.Generic.FunctionParams<object, object, object, object, object, object, object, object> Func(Func<object, object, object, object, object, object, object[], object> x) => new funclib.Components.Core.Generic.FunctionParams<object, object, object, object, object, object, object, object>(x);
 		#endregion
 		#region FunctionParams<T1, T2, T3, T4, T5, TRest, TResult>
 		/// <summary>
-		/// Creates a <see cref="FunctionParams{T1, T2, T3, T4, T5, TRest, TResult}"/> from a <see cref="Func{T1, T2, T3, T4, T5, TRest[], TResult}"/>.
+		/// Creates a <see cref="FunctionParams{T1, T2, T3, T4, T5, TRest, TResult}"/> from a <see cref="Func{T1, T2, T3, T4, T5, TRest, TResult}"/>.
 		/// </summary>
-		/// <param name="x">A <see cref="Func{T1, T2, T3, T4, T5, TRest[], TResult}"/> to execute.</param>
+		/// <param name="x">A <see cref="Func{T1, T2, T3, T4, T5, TRest, TResult}"/> to execute.</param>
 		public static funclib.Components.Core.Generic.FunctionParams<object, object, object, object, object, object, object> Func(Func<object, object, object, object, object, object[], object> x) => new funclib.Components.Core.Generic.FunctionParams<object, object, object, object, object, object, object>(x);
 		#endregion
 		#region FunctionParams<T1, T2, T3, T4, TRest, TResult>
 		/// <summary>
-		/// Creates a <see cref="FunctionParams{T1, T2, T3, T4, TRest, TResult}"/> from a <see cref="Func{T1, T2, T3, T4, TRest[], TResult}"/>.
+		/// Creates a <see cref="FunctionParams{T1, T2, T3, T4, TRest, TResult}"/> from a <see cref="Func{T1, T2, T3, T4, TRest, TResult}"/>.
 		/// </summary>
-		/// <param name="x">A <see cref="Func{T1, T2, T3, T4, TRest[], TResult}"/> to execute.</param>
+		/// <param name="x">A <see cref="Func{T1, T2, T3, T4, TRest, TResult}"/> to execute.</param>
 		public static funclib.Components.Core.Generic.FunctionParams<object, object, object, object, object, object> Func(Func<object, object, object, object, object[], object> x) => new funclib.Components.Core.Generic.FunctionParams<object, object, object, object, object, object>(x);
 		#endregion
 		#region FunctionParams<T1, T2, T3, TRest, TResult>
 		/// <summary>
-		/// Creates a <see cref="FunctionParams{T1, T2, T3, TRest, TResult}"/> from a <see cref="Func{T1, T2, T3, TRest[], TResult}"/>.
+		/// Creates a <see cref="FunctionParams{T1, T2, T3, TRest, TResult}"/> from a <see cref="Func{T1, T2, T3, TRest, TResult}"/>.
 		/// </summary>
-		/// <param name="x">A <see cref="Func{T1, T2, T3, TRest[], TResult}"/> to execute.</param>
+		/// <param name="x">A <see cref="Func{T1, T2, T3, TRest, TResult}"/> to execute.</param>
 		public static funclib.Components.Core.Generic.FunctionParams<object, object, object, object, object> Func(Func<object, object, object, object[], object> x) => new funclib.Components.Core.Generic.FunctionParams<object, object, object, object, object>(x);
 		#endregion
 		#region FunctionParams<T1, T2, TRest, TResult>
 		/// <summary>
-		/// Creates a <see cref="FunctionParams{T1, T2, TRest, TResult}"/> from a <see cref="Func{T1, T2, TRest[], TResult}"/>.
+		/// Creates a <see cref="FunctionParams{T1, T2, TRest, TResult}"/> from a <see cref="Func{T1, T2, TRest, TResult}"/>.
 		/// </summary>
-		/// <param name="x">A <see cref="Func{T1, T2, TRest[], TResult}"/> to execute.</param>
+		/// <param name="x">A <see cref="Func{T1, T2, TRest, TResult}"/> to execute.</param>
 		public static funclib.Components.Core.Generic.FunctionParams<object, object, object, object> Func(Func<object, object, object[], object> x) => new funclib.Components.Core.Generic.FunctionParams<object, object, object, object>(x);
 		#endregion
 		#region FunctionParams<T1, TRest, TResult>
 		/// <summary>
-		/// Creates a <see cref="FunctionParams{T1, TRest, TResult}"/> from a <see cref="Func{T1, TRest[], TResult}"/>.
+		/// Creates a <see cref="FunctionParams{T1, TRest, TResult}"/> from a <see cref="Func{T1, TRest, TResult}"/>.
 		/// </summary>
-		/// <param name="x">A <see cref="Func{T1, TRest[], TResult}"/> to execute.</param>
+		/// <param name="x">A <see cref="Func{T1, TRest, TResult}"/> to execute.</param>
 		public static funclib.Components.Core.Generic.FunctionParams<object, object, object> Func(Func<object, object[], object> x) => new funclib.Components.Core.Generic.FunctionParams<object, object, object>(x);
 		#endregion
 		#region FunctionParams<TRest, TResult>

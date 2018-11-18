@@ -3,7 +3,7 @@
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns <see cref="true"/> if no two arguments are equal, otherwise <see cref="false"/>.
+    /// Returns true if no two arguments are equal, otherwise false.
     /// </summary>
     public class IsDistinct :
         IFunction<object, object>,
@@ -11,30 +11,30 @@ namespace funclib.Components.Core
         IFunctionParams<object, object, object, object>
     {
         /// <summary>
-        /// Returns <see cref="true"/> if no two arguments are equal, otherwise <see cref="false"/>.
+        /// Returns true if no two arguments are equal, otherwise false.
         /// </summary>
         /// <param name="x">Other to test.</param>
         /// <returns>
-        /// Always returns <see cref="true"/>.
+        /// Always returns true.
         /// </returns>
         public object Invoke(object x) => true;
         /// <summary>
-        /// Returns <see cref="true"/> if no two arguments are equal, otherwise <see cref="false"/>.
+        /// Returns true if no two arguments are equal, otherwise false.
         /// </summary>
         /// <param name="x">First object to test.</param>
         /// <param name="y">Second object to test.</param>
         /// <returns>
-        /// Returns <see cref="true"/> if no two arguments are equal, otherwise <see cref="false"/>.
+        /// Returns true if no two arguments are equal, otherwise false.
         /// </returns>
         public object Invoke(object x, object y) => funclib.Core.Not(funclib.Core.IsEqualTo(x, y));
         /// <summary>
-        /// Returns <see cref="true"/> if no two arguments are equal, otherwise <see cref="false"/>.
+        /// Returns true if no two arguments are equal, otherwise false.
         /// </summary>
         /// <param name="x">First object to test.</param>
         /// <param name="y">Second object to test.</param>
         /// <param name="more">Rest of the objects to test.</param>
         /// <returns>
-        /// Returns <see cref="true"/> if no two arguments are equal, otherwise <see cref="false"/>.
+        /// Returns true if no two arguments are equal, otherwise false.
         /// </returns>
         public object Invoke(object x, object y, params object[] more) => (bool)funclib.Core.IsNotEqualTo(x, y) ? loop(funclib.Core.HashSet(x, y), more) : false;
 

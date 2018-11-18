@@ -3,7 +3,7 @@
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
+    /// Returns true if values are not equal, otherwise false
     /// </summary>
     public class IsNotEqualTo :
         IFunction<object, object>,
@@ -11,7 +11,7 @@ namespace funclib.Components.Core
         IFunctionParams<object, object, object, object>
     {
         /// <summary>
-        /// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
+        /// Returns true if values are not equal, otherwise false
         /// </summary>
         /// <param name="x">First element to test.</param>
         /// <returns>
@@ -19,22 +19,22 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object x) => false;
         /// <summary>
-        /// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
+        /// Returns true if values are not equal, otherwise false
         /// </summary>
         /// <param name="x">First element to test.</param>
         /// <param name="y">Second element to test</param>
         /// <returns>
-        /// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
+        /// Returns true if values are not equal, otherwise false
         /// </returns>
         public object Invoke(object x, object y) => funclib.Core.Not(funclib.Core.IsEqualTo(x, y));
         /// <summary>
-        /// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
+        /// Returns true if values are not equal, otherwise false
         /// </summary>
         /// <param name="x">First element to test.</param>
         /// <param name="y">Second element to test against.</param>
         /// <param name="more">All other elements to test.</param>
         /// <returns>
-        /// Returns <see cref="true"/> if values are not equal, otherwise <see cref="false"/>
+        /// Returns true if values are not equal, otherwise false
         /// </returns>
         public object Invoke(object x, object y, params object[] more) => funclib.Core.Not(funclib.Core.Apply(funclib.Core.isEqualTo, x, y, more));
     }

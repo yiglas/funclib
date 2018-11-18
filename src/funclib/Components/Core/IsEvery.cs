@@ -3,21 +3,21 @@
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns <see cref="true"/> if <see cref="IFunction{T1, TResult}"/> pred is a logical 
-    /// true for every item in the coll, otherwise <see cref="false"/>
+    /// Returns true if <see cref="IFunction{T1, TResult}"/> pred is a logical 
+    /// true for every item in the coll, otherwise false
     /// </summary>
     public class IsEvery :
         IFunction<object, object, object>
     {
         /// <summary>
-        /// Returns <see cref="true"/> if <see cref="IFunction{T1, TResult}"/> pred is a logical 
-        /// true for every item in the coll, otherwise <see cref="false"/>
+        /// Returns true if <see cref="IFunction{T1, TResult}"/> pred is a logical 
+        /// true for every item in the coll, otherwise false
         /// </summary>
         /// <param name="pred">An object that implements the <see cref="IFunction{T1, TResult}"/> interface.</param>
         /// <param name="coll">The collection to test.</param>
         /// <returns>
-        /// Returns <see cref="true"/> if <see cref="IFunction{T1, TResult}"/> pred is a logical 
-        /// true for every item in the coll, otherwise <see cref="false"/>
+        /// Returns true if <see cref="IFunction{T1, TResult}"/> pred is a logical 
+        /// true for every item in the coll, otherwise false
         /// </returns>
         public object Invoke(object pred, object coll)
         {

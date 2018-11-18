@@ -3,17 +3,17 @@
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns <see cref="true"/> if x is an greater than zero, otherwise <see cref="false"/>.
+    /// Returns true if x is an greater than zero, otherwise false.
     /// </summary>
     public class IsPos :
         IFunction<object, object>
     {
         /// <summary>
-        /// Returns <see cref="true"/> if x is an greater than zero, otherwise <see cref="false"/>.
+        /// Returns true if x is an greater than zero, otherwise false.
         /// </summary>
         /// <param name="num">Object to test.</param>
         /// <returns>
-        /// Returns <see cref="true"/> if x is an greater than zero, otherwise <see cref="false"/>.
+        /// Returns true if x is an greater than zero, otherwise false.
         /// </returns>
         public object Invoke(object num) => Numbers.IsPos(num);
     }

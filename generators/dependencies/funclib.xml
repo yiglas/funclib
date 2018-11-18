@@ -1792,7 +1792,7 @@
         </member>
         <member name="T:funclib.Components.Core.Generic.FunctionParams`8">
             <summary>
-            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`8"/> from a <see cref="!:Func&lt;T1, T2, T3, T4, T5, T6, TRest[], TResult&gt;"/>.
+            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`8"/> from a <see cref="!:Func&lt;T1, T2, T3, T4, T5, T6, TRest, TResult&gt;"/>.
             </summary>
             <typeparam name="T1">First parameter of the function.</typeparam>
             <typeparam name="T2">Second parameter of the function.</typeparam>
@@ -1805,13 +1805,13 @@
         </member>
         <member name="M:funclib.Components.Core.Generic.FunctionParams`8.#ctor(System.Func{`0,`1,`2,`3,`4,`5,`6[],`7})">
             <summary>
-            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`8"/> from a <see cref="!:Func&lt;T1, T2, T3, T4, T5, T6, TRest[], TResult&gt;"/>.
+            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`8"/> from a <see cref="!:Func&lt;T1, T2, T3, T4, T5, T6, TRest, TResult&gt;"/>.
             </summary>
-            <param name="x">A <see cref="!:Func&lt;T1, T2, T3, T4, T5, T6, TRest[], TResult&gt;"/> to execute.</param>
+            <param name="x">A <see cref="!:Func&lt;T1, T2, T3, T4, T5, T6, TRest, TResult&gt;"/> to execute.</param>
         </member>
         <member name="M:funclib.Components.Core.Generic.FunctionParams`8.Invoke(`0,`1,`2,`3,`4,`5,`6[])">
             <summary>
-            Invokes the <see cref="!:Func&lt;T1, T2, T3, T4, T5, T6, TRest[], TResult&gt;"/>.
+            Invokes the <see cref="!:Func&lt;T1, T2, T3, T4, T5, T6, TRest, TResult&gt;"/>.
             </summary>
             <param name="a">First parameter of the function.</param>
             <param name="b">Second parameter of the function.</param>
@@ -1821,12 +1821,12 @@
             <param name="f">Sixth parameter of the function.</param>
             <param name="args">Array of parameters.</param>
             <returns>
-            Returns the results of the <see cref="!:Func&lt;T1, T2, T3, T4, T5, T6, TRest[], TResult&gt;"/> function.
+            Returns the results of the <see cref="!:Func&lt;T1, T2, T3, T4, T5, T6, TRest, TResult&gt;"/> function.
             </returns>
         </member>
         <member name="T:funclib.Components.Core.Generic.FunctionParams`7">
             <summary>
-            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`7"/> from a <see cref="!:Func&lt;T1, T2, T3, T4, T5, TRest[], TResult&gt;"/>.
+            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`7"/> from a <see cref="!:Func&lt;T1, T2, T3, T4, T5, TRest, TResult&gt;"/>.
             </summary>
             <typeparam name="T1">First parameter of the function.</typeparam>
             <typeparam name="T2">Second parameter of the function.</typeparam>
@@ -1838,13 +1838,13 @@
         </member>
         <member name="M:funclib.Components.Core.Generic.FunctionParams`7.#ctor(System.Func{`0,`1,`2,`3,`4,`5[],`6})">
             <summary>
-            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`7"/> from a <see cref="!:Func&lt;T1, T2, T3, T4, T5, TRest[], TResult&gt;"/>.
+            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`7"/> from a <see cref="!:Func&lt;T1, T2, T3, T4, T5, TRest, TResult&gt;"/>.
             </summary>
-            <param name="x">A <see cref="!:Func&lt;T1, T2, T3, T4, T5, TRest[], TResult&gt;"/> to execute.</param>
+            <param name="x">A <see cref="!:Func&lt;T1, T2, T3, T4, T5, TRest, TResult&gt;"/> to execute.</param>
         </member>
         <member name="M:funclib.Components.Core.Generic.FunctionParams`7.Invoke(`0,`1,`2,`3,`4,`5[])">
             <summary>
-            Invokes the <see cref="!:Func&lt;T1, T2, T3, T4, T5, TRest[], TResult&gt;"/>.
+            Invokes the <see cref="!:Func&lt;T1, T2, T3, T4, T5, TRest, TResult&gt;"/>.
             </summary>
             <param name="a">First parameter of the function.</param>
             <param name="b">Second parameter of the function.</param>
@@ -1853,12 +1853,12 @@
             <param name="e">Fifth parameter of the function.</param>
             <param name="args">Array of parameters.</param>
             <returns>
-            Returns the results of the <see cref="!:Func&lt;T1, T2, T3, T4, T5, TRest[], TResult&gt;"/> function.
+            Returns the results of the <see cref="!:Func&lt;T1, T2, T3, T4, T5, TRest, TResult&gt;"/> function.
             </returns>
         </member>
         <member name="T:funclib.Components.Core.Generic.FunctionParams`6">
             <summary>
-            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`6"/> from a <see cref="!:Func&lt;T1, T2, T3, T4, TRest[], TResult&gt;"/>.
+            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`6"/> from a <see cref="!:Func&lt;T1, T2, T3, T4, TRest, TResult&gt;"/>.
             </summary>
             <typeparam name="T1">First parameter of the function.</typeparam>
             <typeparam name="T2">Second parameter of the function.</typeparam>
@@ -1869,13 +1869,13 @@
         </member>
         <member name="M:funclib.Components.Core.Generic.FunctionParams`6.#ctor(System.Func{`0,`1,`2,`3,`4[],`5})">
             <summary>
-            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`6"/> from a <see cref="!:Func&lt;T1, T2, T3, T4, TRest[], TResult&gt;"/>.
+            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`6"/> from a <see cref="!:Func&lt;T1, T2, T3, T4, TRest, TResult&gt;"/>.
             </summary>
-            <param name="x">A <see cref="!:Func&lt;T1, T2, T3, T4, TRest[], TResult&gt;"/> to execute.</param>
+            <param name="x">A <see cref="!:Func&lt;T1, T2, T3, T4, TRest, TResult&gt;"/> to execute.</param>
         </member>
         <member name="M:funclib.Components.Core.Generic.FunctionParams`6.Invoke(`0,`1,`2,`3,`4[])">
             <summary>
-            Invokes the <see cref="!:Func&lt;T1, T2, T3, T4, TRest[], TResult&gt;"/>.
+            Invokes the <see cref="!:Func&lt;T1, T2, T3, T4, TRest, TResult&gt;"/>.
             </summary>
             <param name="a">First parameter of the function.</param>
             <param name="b">Second parameter of the function.</param>
@@ -1883,12 +1883,12 @@
             <param name="d">Fourth parameter of the function.</param>
             <param name="args">Array of parameters.</param>
             <returns>
-            Returns the results of the <see cref="!:Func&lt;T1, T2, T3, T4, TRest[], TResult&gt;"/> function.
+            Returns the results of the <see cref="!:Func&lt;T1, T2, T3, T4, TRest, TResult&gt;"/> function.
             </returns>
         </member>
         <member name="T:funclib.Components.Core.Generic.FunctionParams`5">
             <summary>
-            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`5"/> from a <see cref="!:Func&lt;T1, T2, T3, TRest[], TResult&gt;"/>.
+            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`5"/> from a <see cref="!:Func&lt;T1, T2, T3, TRest, TResult&gt;"/>.
             </summary>
             <typeparam name="T1">First parameter of the function.</typeparam>
             <typeparam name="T2">Second parameter of the function.</typeparam>
@@ -1898,25 +1898,25 @@
         </member>
         <member name="M:funclib.Components.Core.Generic.FunctionParams`5.#ctor(System.Func{`0,`1,`2,`3[],`4})">
             <summary>
-            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`5"/> from a <see cref="!:Func&lt;T1, T2, T3, TRest[], TResult&gt;"/>.
+            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`5"/> from a <see cref="!:Func&lt;T1, T2, T3, TRest, TResult&gt;"/>.
             </summary>
-            <param name="x">A <see cref="!:Func&lt;T1, T2, T3, TRest[], TResult&gt;"/> to execute.</param>
+            <param name="x">A <see cref="!:Func&lt;T1, T2, T3, TRest, TResult&gt;"/> to execute.</param>
         </member>
         <member name="M:funclib.Components.Core.Generic.FunctionParams`5.Invoke(`0,`1,`2,`3[])">
             <summary>
-            Invokes the <see cref="!:Func&lt;T1, T2, T3, TRest[], TResult&gt;"/>.
+            Invokes the <see cref="!:Func&lt;T1, T2, T3, TRest, TResult&gt;"/>.
             </summary>
             <param name="x">First parameter of the function.</param>
             <param name="y">Second parameter of the function.</param>
             <param name="z">Third parameter of the function.</param>
             <param name="args">Array of parameters.</param>
             <returns>
-            Returns the results of the <see cref="!:Func&lt;T1, T2, T3, TRest[], TResult&gt;"/> function.
+            Returns the results of the <see cref="!:Func&lt;T1, T2, T3, TRest, TResult&gt;"/> function.
             </returns>
         </member>
         <member name="T:funclib.Components.Core.Generic.FunctionParams`4">
             <summary>
-            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`4"/> from a <see cref="!:Func&lt;T1, T2, TRest[], TResult&gt;"/>.
+            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`4"/> from a <see cref="!:Func&lt;T1, T2, TRest, TResult&gt;"/>.
             </summary>
             <typeparam name="T1">First parameter of the function.</typeparam>
             <typeparam name="T2">Second parameter of the function.</typeparam>
@@ -1925,24 +1925,24 @@
         </member>
         <member name="M:funclib.Components.Core.Generic.FunctionParams`4.#ctor(System.Func{`0,`1,`2[],`3})">
             <summary>
-            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`4"/> from a <see cref="!:Func&lt;T1, T2, TRest[], TResult&gt;"/>.
+            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`4"/> from a <see cref="!:Func&lt;T1, T2, TRest, TResult&gt;"/>.
             </summary>
-            <param name="x">A <see cref="!:Func&lt;T1, T2, TRest[], TResult&gt;"/> to execute.</param>
+            <param name="x">A <see cref="!:Func&lt;T1, T2, TRest, TResult&gt;"/> to execute.</param>
         </member>
         <member name="M:funclib.Components.Core.Generic.FunctionParams`4.Invoke(`0,`1,`2[])">
             <summary>
-            Invokes the <see cref="!:Func&lt;T1, T2, TRest[], TResult&gt;"/>.
+            Invokes the <see cref="!:Func&lt;T1, T2, TRest, TResult&gt;"/>.
             </summary>
             <param name="x">First parameter of the function.</param>
             <param name="y">Second parameter of the function.</param>
             <param name="args">Array of parameters.</param>
             <returns>
-            Returns the results of the <see cref="!:Func&lt;T1, T2, TRest[], TResult&gt;"/> function.
+            Returns the results of the <see cref="!:Func&lt;T1, T2, TRest, TResult&gt;"/> function.
             </returns>
         </member>
         <member name="T:funclib.Components.Core.Generic.FunctionParams`3">
             <summary>
-            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`3"/> from a <see cref="!:Func&lt;T1, TRest[], TResult&gt;"/>.
+            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`3"/> from a <see cref="!:Func&lt;T1, TRest, TResult&gt;"/>.
             </summary>
             <typeparam name="T1">First parameter of the function.</typeparam>
             <typeparam name="TRest">Generic type of the rest of the parameters.</typeparam>
@@ -1950,18 +1950,18 @@
         </member>
         <member name="M:funclib.Components.Core.Generic.FunctionParams`3.#ctor(System.Func{`0,`1[],`2})">
             <summary>
-            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`3"/> from a <see cref="!:Func&lt;T1, TRest[], TResult&gt;"/>.
+            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`3"/> from a <see cref="!:Func&lt;T1, TRest, TResult&gt;"/>.
             </summary>
-            <param name="x">A <see cref="!:Func&lt;T1, TRest[], TResult&gt;"/> to execute.</param>
+            <param name="x">A <see cref="!:Func&lt;T1, TRest, TResult&gt;"/> to execute.</param>
         </member>
         <member name="M:funclib.Components.Core.Generic.FunctionParams`3.Invoke(`0,`1[])">
             <summary>
-            Invokes the <see cref="!:Func&lt;T1, TRest[], TResult&gt;"/>.
+            Invokes the <see cref="!:Func&lt;T1, TRest, TResult&gt;"/>.
             </summary>
             <param name="x">First parameter of the function.</param>
             <param name="args">Array of parameters.</param>
             <returns>
-            Returns the results of the <see cref="!:Func&lt;T1, TRest[], TResult&gt;"/> function.
+            Returns the results of the <see cref="!:Func&lt;T1, TRest, TResult&gt;"/> function.
             </returns>
         </member>
         <member name="T:funclib.Components.Core.Generic.FunctionParams`2">
@@ -11948,39 +11948,39 @@
         </member>
         <member name="M:funclib.Core.Func(System.Func{System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object[],System.Object})">
             <summary>
-            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`8"/> from a <see cref="!:Func&lt;T1, T2, T3, T4, T5, T6, TRest[], TResult&gt;"/>.
+            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`8"/> from a <see cref="!:Func&lt;T1, T2, T3, T4, T5, T6, TRest, TResult&gt;"/>.
             </summary>
-            <param name="x">A <see cref="!:Func&lt;T1, T2, T3, T4, T5, T6, TRest[], TResult&gt;"/> to execute.</param>
+            <param name="x">A <see cref="!:Func&lt;T1, T2, T3, T4, T5, T6, TRest, TResult&gt;"/> to execute.</param>
         </member>
         <member name="M:funclib.Core.Func(System.Func{System.Object,System.Object,System.Object,System.Object,System.Object,System.Object[],System.Object})">
             <summary>
-            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`7"/> from a <see cref="!:Func&lt;T1, T2, T3, T4, T5, TRest[], TResult&gt;"/>.
+            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`7"/> from a <see cref="!:Func&lt;T1, T2, T3, T4, T5, TRest, TResult&gt;"/>.
             </summary>
-            <param name="x">A <see cref="!:Func&lt;T1, T2, T3, T4, T5, TRest[], TResult&gt;"/> to execute.</param>
+            <param name="x">A <see cref="!:Func&lt;T1, T2, T3, T4, T5, TRest, TResult&gt;"/> to execute.</param>
         </member>
         <member name="M:funclib.Core.Func(System.Func{System.Object,System.Object,System.Object,System.Object,System.Object[],System.Object})">
             <summary>
-            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`6"/> from a <see cref="!:Func&lt;T1, T2, T3, T4, TRest[], TResult&gt;"/>.
+            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`6"/> from a <see cref="!:Func&lt;T1, T2, T3, T4, TRest, TResult&gt;"/>.
             </summary>
-            <param name="x">A <see cref="!:Func&lt;T1, T2, T3, T4, TRest[], TResult&gt;"/> to execute.</param>
+            <param name="x">A <see cref="!:Func&lt;T1, T2, T3, T4, TRest, TResult&gt;"/> to execute.</param>
         </member>
         <member name="M:funclib.Core.Func(System.Func{System.Object,System.Object,System.Object,System.Object[],System.Object})">
             <summary>
-            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`5"/> from a <see cref="!:Func&lt;T1, T2, T3, TRest[], TResult&gt;"/>.
+            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`5"/> from a <see cref="!:Func&lt;T1, T2, T3, TRest, TResult&gt;"/>.
             </summary>
-            <param name="x">A <see cref="!:Func&lt;T1, T2, T3, TRest[], TResult&gt;"/> to execute.</param>
+            <param name="x">A <see cref="!:Func&lt;T1, T2, T3, TRest, TResult&gt;"/> to execute.</param>
         </member>
         <member name="M:funclib.Core.Func(System.Func{System.Object,System.Object,System.Object[],System.Object})">
             <summary>
-            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`4"/> from a <see cref="!:Func&lt;T1, T2, TRest[], TResult&gt;"/>.
+            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`4"/> from a <see cref="!:Func&lt;T1, T2, TRest, TResult&gt;"/>.
             </summary>
-            <param name="x">A <see cref="!:Func&lt;T1, T2, TRest[], TResult&gt;"/> to execute.</param>
+            <param name="x">A <see cref="!:Func&lt;T1, T2, TRest, TResult&gt;"/> to execute.</param>
         </member>
         <member name="M:funclib.Core.Func(System.Func{System.Object,System.Object[],System.Object})">
             <summary>
-            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`3"/> from a <see cref="!:Func&lt;T1, TRest[], TResult&gt;"/>.
+            Creates a <see cref="T:funclib.Components.Core.Generic.FunctionParams`3"/> from a <see cref="!:Func&lt;T1, TRest, TResult&gt;"/>.
             </summary>
-            <param name="x">A <see cref="!:Func&lt;T1, TRest[], TResult&gt;"/> to execute.</param>
+            <param name="x">A <see cref="!:Func&lt;T1, TRest, TResult&gt;"/> to execute.</param>
         </member>
         <member name="M:funclib.Core.Func(System.Func{System.Object[],System.Object})">
             <summary>

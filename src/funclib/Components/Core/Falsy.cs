@@ -3,19 +3,19 @@
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns <see cref="true"/> if the object is a logical false. i.e. 
+    /// Returns true if the object is a logical false. i.e. 
     /// If source is null or source is bool and that value is false.
     /// </summary>
     public class Falsy :
         IFunction<object, object>
     {
         /// <summary>
-        /// Returns <see cref="true"/> if the object is a logical false. i.e. 
+        /// Returns true if the object is a logical false. i.e. 
         /// If source is null or source is bool and that value is false.
         /// </summary>
         /// <param name="source">Object to test.</param>
         /// <returns>
-        /// Returns <see cref="true"/> if the object is a logical false. i.e. 
+        /// Returns true if the object is a logical false. i.e. 
         /// If source is null or source is bool and that value is false.
         /// </returns>
         public object Invoke(object source)

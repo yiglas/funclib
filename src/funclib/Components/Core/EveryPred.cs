@@ -22,7 +22,7 @@ namespace funclib.Components.Core
         /// </summary>
         /// <param name="p">An object that implements <see cref="IFunction{T1, TResult}"/> interface.</param>
         /// <returns>
-        /// Returns <see cref="true"/> if p returns a logical true, otherwise <see cref="false"/>.
+        /// Returns true if p returns a logical true, otherwise false.
         /// </returns>
         public object Invoke(object p) => new Function(p);
         /// <summary>
@@ -34,7 +34,7 @@ namespace funclib.Components.Core
         /// <param name="p1">An object that implements <see cref="IFunction{T1, TResult}"/> interface.</param>
         /// <param name="p2">An object that implements <see cref="IFunction{T1, TResult}"/> interface.</param>
         /// <returns>
-        /// Returns <see cref="true"/> if p returns a logical true, otherwise <see cref="false"/>.
+        /// Returns true if p returns a logical true, otherwise false.
         /// </returns>
         public object Invoke(object p1, object p2) => new Function(p1, p2);
         /// <summary>
@@ -47,7 +47,7 @@ namespace funclib.Components.Core
         /// <param name="p2">An object that implements <see cref="IFunction{T1, TResult}"/> interface.</param>
         /// <param name="p3">An object that implements <see cref="IFunction{T1, TResult}"/> interface.</param>
         /// <returns>
-        /// Returns <see cref="true"/> if p returns a logical true, otherwise <see cref="false"/>.
+        /// Returns true if p returns a logical true, otherwise false.
         /// </returns>
         public object Invoke(object p1, object p2, object p3) => new Function(p1, p2, p3);
         /// <summary>
@@ -61,7 +61,7 @@ namespace funclib.Components.Core
         /// <param name="p3">An object that implements <see cref="IFunction{T1, TResult}"/> interface.</param>
         /// <param name="ps">Rest of objects that implement <see cref="IFunction{T1, TResult}"/> interface.</param>
         /// <returns>
-        /// Returns <see cref="true"/> if p returns a logical true, otherwise <see cref="false"/>.
+        /// Returns true if p returns a logical true, otherwise false.
         /// </returns>
         public object Invoke(object p1, object p2, object p3, params object[] ps) => new Function(p1, p2, p3, ps);
 
@@ -94,10 +94,10 @@ namespace funclib.Components.Core
             }
 
             /// <summary>
-            /// Returns <see cref="true"/>.
+            /// Returns true.
             /// </summary>
             /// <returns>
-            /// Always returns <see cref="true"/>.
+            /// Always returns true.
             /// </returns>
             public object Invoke() => true;
             /// <summary>
@@ -105,7 +105,7 @@ namespace funclib.Components.Core
             /// </summary>
             /// <param name="x">The object to test the predicates with.</param>
             /// <returns>
-            /// Returns <see cref="true"/> if p returns a logical true, otherwise <see cref="false"/>.
+            /// Returns true if p returns a logical true, otherwise false.
             /// </returns>
             public object Invoke(object x) =>
                 this._ps != null
@@ -119,7 +119,7 @@ namespace funclib.Components.Core
             /// <param name="x">First object to test the predicates with.</param>
             /// <param name="y">Second object to test the predicates with.</param>
             /// <returns>
-            /// Returns <see cref="true"/> if p returns a logical true, otherwise <see cref="false"/>.
+            /// Returns true if p returns a logical true, otherwise false.
             /// </returns>
             public object Invoke(object x, object y) =>
                 this._ps != null
@@ -134,7 +134,7 @@ namespace funclib.Components.Core
             /// <param name="y">Second object to test the predicates with.</param>
             /// <param name="z">Third object to test the predicates with.</param>
             /// <returns>
-            /// Returns <see cref="true"/> if p returns a logical true, otherwise <see cref="false"/>.
+            /// Returns true if p returns a logical true, otherwise false.
             /// </returns>
             public object Invoke(object x, object y, object z) =>
                 this._ps != null
@@ -150,7 +150,7 @@ namespace funclib.Components.Core
             /// <param name="z">Third object to test the predicates with.</param>
             /// <param name="args">Rest of the objects being tested.</param>
             /// <returns>
-            /// Returns <see cref="true"/> if p returns a logical true, otherwise <see cref="false"/>.
+            /// Returns true if p returns a logical true, otherwise false.
             /// </returns>
             public object Invoke(object x, object y, object z, params object[] args) =>
                 this._ps != null

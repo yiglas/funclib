@@ -4,17 +4,17 @@ using funclib.Components.Core.Generic;
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns <see cref="true"/> if coll implements <see cref="IVector"/> interface, otherwise <see cref="false"/>.
+    /// Returns true if coll implements <see cref="IVector"/> interface, otherwise false.
     /// </summary>
     public class IsVector :
         IFunction<object, object>
     {
         /// <summary>
-        /// Returns <see cref="true"/> if coll implements <see cref="IVector"/> interface, otherwise <see cref="false"/>.
+        /// Returns true if coll implements <see cref="IVector"/> interface, otherwise false.
         /// </summary>
         /// <param name="x">Object to test.</param>
         /// <returns>
-        /// Returns <see cref="true"/> if coll implements <see cref="IVector"/> interface, otherwise <see cref="false"/>.
+        /// Returns true if coll implements <see cref="IVector"/> interface, otherwise false.
         /// </returns>
         public object Invoke(object x) => x is IVector;
     }
