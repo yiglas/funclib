@@ -21,7 +21,7 @@ namespace funclib.Components.Core
         /// (right-to-left) to the result, ect.
         /// </summary>
         /// <returns>
-        /// Returns the <see cref="Identity"/> fucntion;
+        /// Returns the <see cref="Identity"/> function;
         /// </returns>
         public object Invoke() => funclib.Core.identity;
         /// <summary>

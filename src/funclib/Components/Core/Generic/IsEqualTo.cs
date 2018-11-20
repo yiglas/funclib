@@ -7,6 +7,12 @@ namespace funclib.Components.Core.Generic
         IFunction<T, T, bool>
     {
         public bool Invoke(T x) => true;
-        public bool Invoke(T x, T y) => throw new NotImplementedException();
+        public bool Invoke(T x, T y)
+        {
+            if (x != null)
+                x.Equals(y);
+            
+            return false;
+        }
     }
 }

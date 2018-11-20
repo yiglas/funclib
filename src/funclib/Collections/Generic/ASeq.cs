@@ -1,20 +1,16 @@
-﻿using System;
+﻿using funclib.Collections.Generic.Internal;
+using System;
 
 namespace funclib.Collections.Generic
 {
     public abstract class ASeq<T> :
         IList<T>,
-        ISeqable<T>,
-        IList,
-        ISeqable
+        ISeqable<T>
     {
         [NonSerialized]
         protected int _hash = 0;
 
         public bool IsReadOnly => true;
-        public bool IsFixedSize => true;
-        public bool IsSynchronized => true;
-        public object SyncRoot => this;
 
         #region Overrides
         public override string ToString() => Util.Print(this);
@@ -22,9 +18,9 @@ namespace funclib.Collections.Generic
         public override bool Equals(object obj)
         {
             if (this == obj) return true;
-            if (!(obj is System.Collections.Generic.IList<T>)) return false;
+            if (!(obj is System.Collections.Generic.IList<T> list)) return false;
 
-            var me = funclib.Generic.Core.Seq<T>(obj);
+            var me = funclib.Generic.Core.Seq<T>(list);
 
             for (var e = Seq(); e != null; e = e.Next(), me = me.Next())
             {
@@ -51,12 +47,9 @@ namespace funclib.Collections.Generic
 
         #region Invalid Operations
         public void Add(T item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(ASeq<T>)}.");
-        public int Add(object value) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(ASeq<T>)}.");
         public void Clear() => throw new InvalidOperationException($"Cannot modify an immutable {nameof(ASeq<T>)}.");
         public void Insert(int index, T item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(ASeq<T>)}.");
-        public void Insert(int index, object value) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(ASeq<T>)}.");
         public bool Remove(T item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(ASeq<T>)}.");
-        public void Remove(object value) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(ASeq<T>)}.");
         public void RemoveAt(int index) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(ASeq<T>)}.");
         #endregion
 
@@ -84,37 +77,72 @@ namespace funclib.Collections.Generic
             }
         }
         public virtual ICollection<T> Empty() => List<T>.EMPTY;
+        public virtual int IndexOf(T item)
+        {
+            int i = 0;
+            for (var e = Seq(); e != null; e = e.Next(), i++)
+                if (funclib.Generic.Core.IsEqualTo(e.First(), item))
+                    return i;
+            return -1;
+        }
+        public virtual System.Collections.Generic.IEnumerator<T> GetEnumerator() => new Enumerator<T>(this);
+        public virtual T Peek() => First();
+        public virtual ISeq<T> Seq() 
+        {
+            if (Count == 0)
+                return null;
+            
+            return this;
+        }
         #endregion
 
-        public T this[int index] { get => throw new NotImplementedException(); set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(ASeq<T>)}."); }
-        object IList.this[int index] { get => throw new NotImplementedException(); set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(ASeq<T>)}."); }
-        object System.Collections.IList.this[int index] { get => throw new NotImplementedException(); set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(ASeq<T>)}."); }
+        public T this[int index] 
+        { 
+            get
+            {
+                ISeq<T> e = this;
+                for (int i = 0; i <= index && e != null; ++i, e = e.Next())
+                {
+                    if (i == index)
+                        return e.First();
+                }
+                throw new IndexOutOfRangeException(nameof(index));
+            }
+            set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(ASeq<T>)}."); 
+        }
 
+        public bool Contains(T item)
+        {
+           for (var e = Seq(); e != null; e = e.Next())
+                if ((bool)funclib.Core.IsEqualTo(e.First(), item))
+                    return true;
 
+            return false; 
+        }
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            if (array is null) throw new ArgumentNullException(nameof(array));
+            if (array.Rank != 1) throw new ArgumentException("Array must be 1-dimensional.");
+            if (arrayIndex < 0) throw new ArgumentOutOfRangeException(nameof(arrayIndex), "Must be no-negative.");
+            if (array.Length - arrayIndex < Count) throw new InvalidOperationException("The number of elements in source is greater than the available space in the array.");
 
-        public ISeq Cons(object o) => throw new NotImplementedException();
-        public bool Contains(T item) => throw new NotImplementedException();
-        public bool Contains(object value) => throw new NotImplementedException();
-        public void CopyTo(T[] array, int arrayIndex) => throw new NotImplementedException();
-        public void CopyTo(Array array, int index) => throw new NotImplementedException();
+            var e = Seq();
+            for (int i = arrayIndex; i < array.Length && e != null; ++i, e = e.Next())
+                array[i] = e.First();
+        }
+        public void CopyTo(Array array, int index) 
+        {
+            if (array is null) throw new ArgumentNullException(nameof(array));
+            if (array.Rank != 1) throw new ArgumentException("Array must be 1-dimensional.");
+            if (index < 0) throw new ArgumentOutOfRangeException(nameof(index), "Must be no-negative.");
+            if (array.Length - index < Count) throw new InvalidOperationException("The number of elements in source is greater than the available space in the array.");
+
+            var e = Seq();
+            for (int i = index; i < array.Length && e != null; ++i, e = e.Next())
+                array.SetValue(e.First(), i);
+        }
         
-        public System.Collections.Generic.IEnumerator<T> GetEnumerator() => throw new NotImplementedException();
-        public int IndexOf(T item) => throw new NotImplementedException();
-        public int IndexOf(object value) => throw new NotImplementedException();
-        
-        public T Peek() => throw new NotImplementedException();
-        public ISeq<T> Seq() => throw new NotImplementedException();
-
         ICollection<T> ICollection<T>.Cons(T o) => Cons(o);
-        ICollection ICollection.Cons(object o) => Cons(o);
-        int ICollection<T>.Count() => Count;
-        ICollection ICollection.Empty() => throw new NotImplementedException();
-        object ISeq.First() => First;
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => throw new NotImplementedException();
-        ISeq ISeq.More() => throw new NotImplementedException();
-        ISeq ISeq.Next() => throw new NotImplementedException();
-        object IStack.Peek() => Peek();
-        IStack IStack.Pop() => throw new NotImplementedException();
-        ISeq ISeqable.Seq() => throw new NotImplementedException();
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => new Enumerator<T>(this);
     }
 }
