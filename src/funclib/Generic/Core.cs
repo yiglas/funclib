@@ -5,6 +5,13 @@ namespace funclib.Generic
 {
     public static class Core
     {
+        public static bool And() => new And().Invoke();
+        public static T And<T>(T x) => new And<T>().Invoke(x);
+        public static T And<T>(T x, params T[] next) => new And<T>().Invoke(x, next);
+
+        public static bool Falsy<T>(T source) => new Falsy<T>().Invoke(source);
+        public static bool Truthy<T>(T source) => new Truthy<T>().Invoke(source);
+
         public static ISeq<T> Seq<T>(ISeq<T> coll) => new Seq<T>().Invoke(coll);
         public static ISeq<T> Seq<T>(ASeq<T> coll) => new Seq<T>().Invoke(coll);
         public static ISeq<T> Seq<T>(ISeqable<T> coll) => new Seq<T>().Invoke(coll);
@@ -29,5 +36,6 @@ namespace funclib.Generic
 
         public static int Count<T>(T coll) => new Count<T>().Invoke(coll);
 
+        public static bool Falsy<T>(T source) => new Falsy<T>().Invoke(source);
     }
 }

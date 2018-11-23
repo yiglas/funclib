@@ -1,8 +1,10 @@
-﻿namespace funclib.Collections.Generic
+﻿using funclib.Components.Core.Generic;
+
+namespace funclib.Collections.Generic
 {
     public class List<T> :
-        ASeq<T>
-        //IReduce
+        ASeq<T>,
+        IReduce<T>
     {
         public static readonly IList<T> EMPTY = new EmptyList<T>();
 
@@ -58,5 +60,15 @@
             return this._rest;
         }
         #endregion
+
+        public T Reduce(IFunction f)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public T Reduce(IFunction f, T init)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

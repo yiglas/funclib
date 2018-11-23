@@ -5,7 +5,7 @@ using System.Linq;
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// When applied to a transient map, addes mapping of funclib.Core.Key(s) to vals(s). 
+    /// When applied to a transient map, adds mapping of funclib.Core.Key(s) to vals(s). 
     /// When applied to a transient vector, sets the val at index. Note -> 
     /// index must be less than or equal to the count of vector. Returns coll.
     /// </summary>
@@ -14,7 +14,7 @@ namespace funclib.Components.Core
         IFunctionParams<object, object, object, object, object>
     {
         /// <summary>
-        /// When applied to a transient map, addes mapping of funclib.Core.Key(s) to vals(s). 
+        /// When applied to a transient map, adds mapping of funclib.Core.Key(s) to vals(s). 
         /// When applied to a transient vector, sets the val at index. Note -> 
         /// index must be less than or equal to the count of vector. Returns coll.
         /// </summary>
@@ -26,7 +26,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object coll, object key, object val) => ((ITransientAssociative)coll).Assoc(key, val);
         /// <summary>
-        /// When applied to a transient map, addes mapping of funclib.Core.Key(s) to vals(s). 
+        /// When applied to a transient map, adds mapping of funclib.Core.Key(s) to vals(s). 
         /// When applied to a transient vector, sets the val at index. Note -> 
         /// index must be less than or equal to the count of vector. Returns coll.
         /// </summary>

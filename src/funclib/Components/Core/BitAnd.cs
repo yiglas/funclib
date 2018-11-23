@@ -3,7 +3,7 @@
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Unary "&" operator returns the address of its operand. Binary "&" operators are 
+    /// Unary "&nbsp;" operator returns the address of its operand. Binary "&nbsp;" operators are 
     /// predefined for the integral types and <see cref="bool"/>.
     /// </summary>
     public class BitAnd :
@@ -11,7 +11,7 @@ namespace funclib.Components.Core
         IFunctionParams<object, object, object, object>
     {
         /// <summary>
-        /// Unary "&" operator returns the address of its operand. Binary "&" operators are 
+        /// Unary "&nbsp;" operator returns the address of its operand. Binary "&nbsp;" operators are 
         /// predefined for the integral types and <see cref="bool"/>.
         /// </summary>
         /// <param name="x">Left hand side of the operand.</param>
@@ -21,7 +21,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object x, object y) => Numbers.And(x, y);
         /// <summary>
-        /// Unary "&" operator returns the address of its operand. Binary "&" operators are 
+        /// Unary "&nbsp;" operator returns the address of its operand. Binary "&nbsp;" operators are 
         /// predefined for the integral types and <see cref="bool"/>.
         /// </summary>
         /// <param name="x">Left hand side of the operand.</param>
