@@ -1,8 +1,33 @@
 {
   "cSpell.words": [
     "Arity",
+    "Assocǃ",
+    "Conjǃ",
+    "Disjǃ",
+    "Dissocǃ",
+    "Persistentǃ",
     "Pred",
+    "Setǃ",
+    "Swapǃ",
     "Truthy",
-    "funclib"
-  ]
+    "Volatileǃ",
+    "aseq",
+    "colls",
+    "funclib",
+    "iate",
+    "keyvals",
+    "nbsp",
+    "retf",
+    "vals",
+    "xform"
+  ],
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/bin": true,
+    "**/obj": true,
+  }
 }

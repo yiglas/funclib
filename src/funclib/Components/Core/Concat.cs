@@ -27,7 +27,7 @@ namespace funclib.Components.Core
         /// </summary>
         /// <param name="x">Object to return via a lazy implementation.</param>
         /// <returns>
-        /// Returna a <see cref="LazySeq"/>, when invoked returns x.
+        /// Returns a <see cref="LazySeq"/>, when invoked returns x.
         /// </returns>
         public object Invoke(object x) => funclib.Core.LazySeq(funclib.Core.Func(() => x));
         /// <summary>
@@ -61,12 +61,13 @@ namespace funclib.Components.Core
         /// <param name="y">Second collection to be concatenated.</param>
         /// <param name="zs">Other collections to be concatenated with.</param>
         /// <returns>
-        /// Returns a <see cref="LazySeq"/> that will concatentat zs, y to x.
+        /// Returns a <see cref="LazySeq"/> that will concatenate zs, y to x.
         /// </returns>
         public object Invoke(object x, object y, params object[] zs)
         {
-            Func<object, object, object> cat = null;
-            cat = (xys, zss) =>
+            return cat(Invoke(x, y), zs);
+
+            object cat(object xys, object zss) =>
                 funclib.Core.LazySeq(() =>
                 {
                     xys = funclib.Core.Seq(xys);
@@ -84,8 +85,6 @@ namespace funclib.Components.Core
                     else
                         return null;
                 });
-
-            return cat(Invoke(x, y), zs);
         }
     }
 }

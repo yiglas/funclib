@@ -74,10 +74,13 @@ namespace funclib.Components.Core
             }
 
             #region Overrides
-            public override object Invoke(object result, object input) =>
-                (bool)funclib.Core.Truthy(funclib.Core.Invoke(this._pred, input))
-                    ? funclib.Core.Invoke(this._rf, result, input)
-                    : result;
+            public override object Invoke(object result, object input)
+            {
+                if ((bool)funclib.Core.Truthy(funclib.Core.Invoke(this._pred, input)))
+                    return funclib.Core.Invoke(this._rf, result, input);
+                
+                return result;
+            }
             #endregion
         }
     }

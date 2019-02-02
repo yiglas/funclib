@@ -19,8 +19,11 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object x, object seq)
         {
-            if (seq is null) return funclib.Core.List(x);
-            if (seq is ISeq e) return new Collections.Cons(x, e);
+            if (seq is null) 
+                return funclib.Core.List(x);
+            if (seq is ISeq e) 
+                return new Collections.Cons(x, e);
+                
             return new Collections.Cons(x, (ISeq)funclib.Core.Seq(seq));
         }
     }

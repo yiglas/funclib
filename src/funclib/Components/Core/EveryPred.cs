@@ -107,12 +107,28 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns true if p returns a logical true, otherwise false.
             /// </returns>
-            public object Invoke(object x) =>
-                this._ps != null
-                    ? funclib.Core.IsEvery(funclib.Core.Func((_1) => Pred(_1, x)), this._ps)
-                    : this._p3 != null ? funclib.Core.Boolean(funclib.Core.And(Pred(this._p1, x), Pred(this._p2, x), Pred(this._p3, x)))
-                    : this._p2 != null ? funclib.Core.Boolean(funclib.Core.And(Pred(this._p1, x), Pred(this._p2, x)))
-                    : funclib.Core.Boolean(funclib.Core.And(Pred(this._p1, x)));
+            public object Invoke(object x)
+            {
+                if (!(this._ps is null))
+                    return funclib.Core.IsEvery(
+                        funclib.Core.Func((_1) => Pred(_1, x)), 
+                        this._ps);
+                
+                if (!(this._p3 is null))
+                    return funclib.Core.Boolean(
+                        funclib.Core.And(
+                            Pred(this._p1, x), 
+                            Pred(this._p2, x), 
+                            Pred(this._p3, x)));
+                
+                if (!(this._p2 is null))
+                    return funclib.Core.Boolean(
+                        funclib.Core.And(
+                            Pred(this._p1, x), 
+                            Pred(this._p2, x)));
+
+                return funclib.Core.Boolean(funclib.Core.And(Pred(this._p1, x)));
+            }
             /// <summary>
             /// Returns the result of executing the supplied predicates.
             /// </summary>
@@ -121,12 +137,36 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns true if p returns a logical true, otherwise false.
             /// </returns>
-            public object Invoke(object x, object y) =>
-                this._ps != null
-                    ? funclib.Core.IsEvery(funclib.Core.Func((object _1) => funclib.Core.And(Pred(_1, x), Pred(_1, y))), this._ps)
-                    : this._p3 != null ? funclib.Core.Boolean(funclib.Core.And(Pred(this._p1, x), Pred(this._p2, x), Pred(this._p3, x), Pred(this._p1, y), Pred(this._p2, y), Pred(this._p3, y)))
-                    : this._p2 != null ? funclib.Core.Boolean(funclib.Core.And(Pred(this._p1, x), Pred(this._p2, x), Pred(this._p1, y), Pred(this._p2, y)))
-                    : funclib.Core.Boolean(funclib.Core.And(Pred(this._p1, x), Pred(this._p1, y)));
+            public object Invoke(object x, object y)
+            {
+                if (!(this._ps is null))
+                    return funclib.Core.IsEvery(
+                        funclib.Core.Func((_1) => funclib.Core.And(Pred(_1, x), Pred(_1, y))), 
+                        this._ps);
+
+                if (!(this._p3 is null))
+                    return funclib.Core.Boolean(
+                        funclib.Core.And(
+                            Pred(this._p1, x), 
+                            Pred(this._p2, x), 
+                            Pred(this._p3, x), 
+                            Pred(this._p1, y), 
+                            Pred(this._p2, y), 
+                            Pred(this._p3, y)));
+
+                if (!(this._p2 is null))
+                    return funclib.Core.Boolean(
+                        funclib.Core.And(
+                            Pred(this._p1, x), 
+                            Pred(this._p2, x), 
+                            Pred(this._p1, y), 
+                            Pred(this._p2, y)));
+
+                return funclib.Core.Boolean(
+                    funclib.Core.And(
+                        Pred(this._p1, x), 
+                        Pred(this._p1, y)));
+            }
             /// <summary>
             /// Returns the result of executing the supplied predicates.
             /// </summary>
@@ -136,12 +176,42 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns true if p returns a logical true, otherwise false.
             /// </returns>
-            public object Invoke(object x, object y, object z) =>
-                this._ps != null
-                    ? funclib.Core.IsEvery(funclib.Core.Func((object _1) => funclib.Core.And(Pred(_1, x), Pred(_1, y), Pred(_1, z))), this._ps)
-                    : this._p3 != null ? funclib.Core.Boolean(funclib.Core.And(Pred(this._p1, x), Pred(this._p2, x), Pred(this._p3, x), Pred(this._p1, y), Pred(this._p2, y), Pred(this._p3, y), Pred(this._p1, z), Pred(this._p2, z), Pred(this._p3, z)))
-                    : this._p2 != null ? funclib.Core.Boolean(funclib.Core.And(Pred(this._p1, x), Pred(this._p2, x), Pred(this._p1, y), Pred(this._p2, y), Pred(this._p1, z), Pred(this._p2, z)))
-                    : funclib.Core.Boolean(funclib.Core.And(Pred(this._p1, x), Pred(this._p1, y), Pred(this._p1, z)));
+            public object Invoke(object x, object y, object z)
+            {
+                if (!(this._ps is null))
+                    return funclib.Core.IsEvery(
+                        funclib.Core.Func((_1) => funclib.Core.And(Pred(_1, x), Pred(_1, y), Pred(_1, z))), 
+                        this._ps);
+
+                if (!(this._p3 is null))
+                    return funclib.Core.Boolean(
+                        funclib.Core.And(
+                            Pred(this._p1, x), 
+                            Pred(this._p2, x), 
+                            Pred(this._p3, x), 
+                            Pred(this._p1, y), 
+                            Pred(this._p2, y), 
+                            Pred(this._p3, y), 
+                            Pred(this._p1, z), 
+                            Pred(this._p2, z), 
+                            Pred(this._p3, z)));
+                
+                if (!(this._p2 is null))
+                    return funclib.Core.Boolean(
+                        funclib.Core.And(
+                            Pred(this._p1, x), 
+                            Pred(this._p2, x), 
+                            Pred(this._p1, y), 
+                            Pred(this._p2, y), 
+                            Pred(this._p1, z), 
+                            Pred(this._p2, z)));
+                
+                return funclib.Core.Boolean(
+                    funclib.Core.And(
+                        Pred(this._p1, x), 
+                        Pred(this._p1, y), 
+                        Pred(this._p1, z)));
+            }
             /// <summary>
             /// Returns the result of executing the supplied predicates.
             /// </summary>
@@ -152,13 +222,40 @@ namespace funclib.Components.Core
             /// <returns>
             /// Returns true if p returns a logical true, otherwise false.
             /// </returns>
-            public object Invoke(object x, object y, object z, params object[] args) =>
-                this._ps != null
-                    ? funclib.Core.Boolean(funclib.Core.And(new Function(this._p1, this._p2, this._p3, this._ps).Invoke(x, y, z), funclib.Core.IsEvery(funclib.Core.Func((object _1) => funclib.Core.IsEvery(_1, args)), this._ps)))
-                    : this._p3 != null ? funclib.Core.Boolean(funclib.Core.And(new Function(this._p1, this._p2, this._p3, this._ps).Invoke(x, y, z), funclib.Core.IsEvery(funclib.Core.Func((object _1) => funclib.Core.And(Pred(this._p1, _1), Pred(this._p2, _1), Pred(this._p3, _1))), args)))
-                    : this._p2 != null ? funclib.Core.Boolean(funclib.Core.And(new Function(this._p1, this._p2, this._p3, this._ps).Invoke(x, y, z), funclib.Core.IsEvery(funclib.Core.Func((object _1) => funclib.Core.And(Pred(this._p1, _1), Pred(this._p2, _1))), args)))
-                    : funclib.Core.Boolean(funclib.Core.And(new Function(this._p1).Invoke(x, y, z), funclib.Core.IsEvery(this._p1, args)));
+            public object Invoke(object x, object y, object z, params object[] args)
+            {
+                if (!(this._ps is null))
+                    return funclib.Core.Boolean(
+                        funclib.Core.And(
+                            new Function(this._p1, this._p2, this._p3, this._ps).Invoke(x, y, z), 
+                            funclib.Core.IsEvery(
+                                funclib.Core.Func((_1) => funclib.Core.IsEvery(_1, args)), this._ps)));
 
+                if (!(this._p3 is null))
+                    return funclib.Core.Boolean(
+                        funclib.Core.And(
+                            new Function(this._p1, this._p2, this._p3, this._ps).Invoke(x, y, z), 
+                            funclib.Core.IsEvery(
+                                funclib.Core.Func((_1) => funclib.Core.And(
+                                    Pred(this._p1, _1), 
+                                    Pred(this._p2, _1), 
+                                    Pred(this._p3, _1))), args)));
+
+                if (!(this._p2 is null))
+                    return funclib.Core.Boolean(
+                        funclib.Core.And(
+                            new Function(this._p1, this._p2, this._p3, this._ps).Invoke(x, y, z), 
+                            funclib.Core.IsEvery(
+                                funclib.Core.Func((_1) => funclib.Core.And(
+                                    Pred(this._p1, _1), 
+                                    Pred(this._p2, _1))), args)));
+
+                return funclib.Core.Boolean(
+                    funclib.Core.And(
+                        new Function(this._p1).Invoke(x, y, z), 
+                        funclib.Core.IsEvery(this._p1, args)));
+            }
+            
             static object Pred(object p, object x) => funclib.Core.Invoke(p, x);
         }
     }

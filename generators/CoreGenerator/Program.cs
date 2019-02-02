@@ -17,19 +17,19 @@ namespace CoreGenerator
         const string FULLNAME = ":full-name";
         const string COMMENTS = ":comments";
         const string PRIVATENAME = ":private-name";
-        const string TYPEDPARAMTERS = ":typed-parameters";
+        const string TYPED_PARAMETERS = ":typed-parameters";
         const string RETURNTYPE = ":return-type";
         const string PARAMETERS = ":parameters";
         const string PARAMETERLIST = ":parameter-list";
-        const string ISMACROFUNCTION = ":macro-function?";
+        const string IS_MACRO_FUNCTION = ":macro-function?";
         const string CLASSNAME = ":class-name";
         const string PARENT = ":parent";
 
         static void Main(string[] args)
         {
             var sw = Stopwatch.StartNew();
-            var dir = new DirectoryInfo(AppContext.BaseDirectory).Parent.Parent.Parent.Parent.Parent.FullName + @"\src\funclib";
-            var files = Filter(ExtensionsPredicate, Directory.GetFiles(dir + @"\Components\Core", "*", SearchOption.AllDirectories));
+            var dir = new DirectoryInfo(AppContext.BaseDirectory).Parent.Parent.Parent.Parent.Parent.FullName + @"/src/funclib";
+            var files = Filter(ExtensionsPredicate, Directory.GetFiles(dir + @"/Components/Core", "*", SearchOption.AllDirectories));
             var syntax = Filter(ClassDeclarationsPredicate, Flatten(Map(GetDescendantNodes<ClassDeclarationSyntax>(), Map(ConvertToSyntaxNode, files))));
 
             var lines = new List<string>();
@@ -58,23 +58,23 @@ namespace CoreGenerator
             lines.Add("\t}");
             lines.Add("}");
 
-            var source = dir + @"\Core.cs";
+            var source = dir + @"/Core.cs";
             File.WriteAllLines(source, lines);
 
             Console.WriteLine($"Time Elapsed: {sw.Elapsed}");
             Console.WriteLine("========== Finished ==========");
             Console.ReadLine();
         }
-        
+
         public static object ExtensionsPredicate => Func(file => Path.GetExtension((string)file) == ".cs");
         public static object ConvertToSyntaxNode => Func(file => CSharpSyntaxTree.ParseText(File.ReadAllText((string)file)).GetRoot());
         public static object GetDescendantNodes<T>() => Func(node => ListS(((CSharpSyntaxNode)node).DescendantNodes().OfType<T>()));
         public static object IsChildOfNamespace => Func(node => node != null && ((SyntaxNode)node).Parent.Kind() == SyntaxKind.NamespaceDeclaration);
         public static object IsNotAnAbstractClass => Func(node => node != null && !((BaseTypeDeclarationSyntax)node).Modifiers.Any(x => x.Text == "abstract"));
         public static object ClassDeclarationsPredicate => Func(node => And(Identity(node), Invoke(IsChildOfNamespace, node), Invoke(IsNotAnAbstractClass, node)));
-        public static object IsInvokeIdentitifer => Func(map => Get(map, NAME).Equals("Invoke"));
+        public static object IsInvokeIdentifier => Func(map => Get(map, NAME).Equals("Invoke"));
         public static object IsPublic => Func(map => Get(map, MODIFIER).Equals("public"));
-        public static object MethodDeclarationPredicate(object node) => Func(map => And(Invoke(IsInvokeIdentitifer, map), Invoke(IsPublic, map), Invoke(IsChildOf(node), map)));
+        public static object MethodDeclarationPredicate(object node) => Func(map => And(Invoke(IsInvokeIdentifier, map), Invoke(IsPublic, map), Invoke(IsChildOf(node), map)));
         public static object IsChildOf(object node) => Func(map => Get(map, PARENT) == node);
 
         public static object Build => Func(node =>
@@ -84,8 +84,8 @@ namespace CoreGenerator
             var methods = Filter(MethodDeclarationPredicate(node), Map(GetMethodDeclaration(@class), Invoke(GetDescendantNodes<MethodDeclarationSyntax>(), node)));
 
             var className = Get(@class, NAME);
-            var isMacroFunction = Get(@class, ISMACROFUNCTION);
-            var typedParameters = Get(@class, TYPEDPARAMTERS);
+            var isMacroFunction = Get(@class, IS_MACRO_FUNCTION);
+            var typedParameters = Get(@class, TYPED_PARAMETERS);
 
             var v = Conj(Vector(), $"#region {className}{typedParameters}");
 
@@ -138,8 +138,8 @@ namespace CoreGenerator
                 FULLNAME, GetFullyQualifiedName(declaration),
                 COMMENTS, GetComments(declaration),
                 PRIVATENAME, Str("__", declaration.Identifier.Text.ToLower()),
-                TYPEDPARAMTERS, declaration.TypeParameterList?.ToString(),
-                ISMACROFUNCTION, declaration.DescendantNodes().OfType<BaseListSyntax>().FirstOrDefault().Types.ToString() == "IMacroFunction"
+                TYPED_PARAMETERS, declaration.TypeParameterList?.ToString(),
+                IS_MACRO_FUNCTION, declaration.DescendantNodes().OfType<BaseListSyntax>().FirstOrDefault().Types.ToString() == "IMacroFunction"
                 );
         });
 
@@ -170,7 +170,7 @@ namespace CoreGenerator
                 COMMENTS, GetComments(declaration),
                 PARAMETERS, declaration.ParameterList.ToString(),
                 PARAMETERLIST, GetParameterList(declaration.ParameterList),
-                TYPEDPARAMTERS, Get(@class, TYPEDPARAMTERS)
+                TYPED_PARAMETERS, Get(@class, TYPED_PARAMETERS)
                 );
         });
 
@@ -198,7 +198,7 @@ namespace CoreGenerator
             var returnType = "object";
             var className = Get(constructorMap, CLASSNAME);
             var fullName = Get(constructorMap, FULLNAME);
-            var typedParameters = Get(constructorMap, TYPEDPARAMTERS);
+            var typedParameters = Get(constructorMap, TYPED_PARAMETERS);
             var constructorParameters = Get(constructorMap, PARAMETERS);
             var parameterList = Get(constructorMap, PARAMETERLIST);
 
@@ -210,7 +210,7 @@ namespace CoreGenerator
             var name = "Func";
             var modifier = Get(constructorMap, MODIFIER);
             var fullName = Get(constructorMap, FULLNAME);
-            var typedParameters = ReplaceObjectTypes(Get(constructorMap, TYPEDPARAMTERS));
+            var typedParameters = ReplaceObjectTypes(Get(constructorMap, TYPED_PARAMETERS));
             var constructorParameters = ReplaceObjectTypes(Get(constructorMap, PARAMETERS));
             var parameterList = Get(constructorMap, PARAMETERLIST);
 
@@ -222,7 +222,7 @@ namespace CoreGenerator
             var modifier = Get(constructorMap, MODIFIER);
             var className = Get(constructorMap, CLASSNAME);
             var fullName = Get(constructorMap, FULLNAME);
-            var typedParameters = Get(constructorMap, TYPEDPARAMTERS);
+            var typedParameters = Get(constructorMap, TYPED_PARAMETERS);
             var constructorParameters = Get(constructorMap, PARAMETERS);
             var parameterList = Get(constructorMap, PARAMETERLIST);
 
@@ -292,9 +292,10 @@ namespace CoreGenerator
         {
             var name = className.ToString();
 
-            name = System.Char.ToLowerInvariant(name[0]).ToString()
-                + System.Char.ToLowerInvariant(name[1]).ToString()
-                + name.Substring(2);
+            if (name.Length > 1)
+                name = System.Char.ToLowerInvariant(name[0]).ToString()
+                    + System.Char.ToLowerInvariant(name[1]).ToString()
+                    + name.Substring(2);
 
             switch (name)
             {

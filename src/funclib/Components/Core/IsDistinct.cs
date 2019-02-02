@@ -36,7 +36,10 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns true if no two arguments are equal, otherwise false.
         /// </returns>
-        public object Invoke(object x, object y, params object[] more) => (bool)funclib.Core.IsNotEqualTo(x, y) ? loop(funclib.Core.HashSet(x, y), more) : false;
+        public object Invoke(object x, object y, params object[] more) => 
+            (bool)funclib.Core.IsNotEqualTo(x, y) 
+                ? loop(funclib.Core.HashSet(x, y), more) 
+                : false;
 
         static object loop(object s, object xs)
         {

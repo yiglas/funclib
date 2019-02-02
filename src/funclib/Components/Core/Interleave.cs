@@ -41,7 +41,13 @@ namespace funclib.Components.Core
                 var s2 = funclib.Core.Seq(c2);
                 if ((bool)funclib.Core.Truthy(funclib.Core.And(s1, s2)))
                 {
-                    return funclib.Core.Cons(funclib.Core.First(s1), funclib.Core.Cons(funclib.Core.First(s2), Invoke(funclib.Core.Rest(s1), funclib.Core.Rest(s2))));
+                    return funclib.Core.Cons(
+                        funclib.Core.First(s1), 
+                        funclib.Core.Cons(
+                            funclib.Core.First(s2), 
+                            Invoke(
+                                funclib.Core.Rest(s1), 
+                                funclib.Core.Rest(s2))));
                 }
 
                 return null;
@@ -58,10 +64,18 @@ namespace funclib.Components.Core
         public object Invoke(object c1, object c2, params object[] colls) =>
             funclib.Core.LazySeq(() =>
             {
-                var ss = funclib.Core.Map(funclib.Core.seq, funclib.Core.Conj(funclib.Core.Seq(colls), c2, c1));
+                var ss = funclib.Core.Map(
+                    funclib.Core.seq, 
+                    funclib.Core.Conj(funclib.Core.Seq(colls), c2, c1));
                 if ((bool)funclib.Core.IsEvery(funclib.Core.identity, ss))
                 {
-                    return funclib.Core.Concat(funclib.Core.Map(funclib.Core.first, ss), funclib.Core.Apply(this, funclib.Core.Map(funclib.Core.rest, ss)));
+                    return funclib.Core.Concat(
+                        funclib.Core.Map(
+                            funclib.Core.first, 
+                            ss), 
+                        funclib.Core.Apply(
+                            this, 
+                            funclib.Core.Map(funclib.Core.rest, ss)));
                 }
                 return null;
             });

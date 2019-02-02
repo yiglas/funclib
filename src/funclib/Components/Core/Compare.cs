@@ -19,7 +19,7 @@ namespace funclib.Components.Core
         /// compares numbers and collections in a type-independent manner.
         /// </summary>
         /// <param name="x">Object that is either null, number or implements the <see cref="IComparable"/> interface.</param>
-        /// <param name="y">Other that is eitehr null, number or an object to test.</param>
+        /// <param name="y">Other that is either null, number or an object to test.</param>
         /// <returns>
         /// Returns a <see cref="int"/> thats a negative number when  x 'less than' y, zero when x 'equal to' y or positive number
         /// x 'greater than' y.

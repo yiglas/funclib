@@ -19,15 +19,27 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the value mapped to the key, notFound or null if key is not present.
         /// </returns>
-        public object Invoke(object map, object key) =>
-            map is null
-                ? null
-                : map is IGetValue g ? g.GetValue(key)
-                : map is System.Collections.IDictionary d ? d[key]
-                : map is ISet s ? s.Get(key)
-                : map is ITransientSet t ? t.Get(key)
-                : (map is string || map.GetType().IsArray) && Numbers.IsNumber(key) ? GetFromArray(map, key)
-                : null;
+        public object Invoke(object map, object key)
+        {
+            switch (map)
+            {
+                case null:
+                    return null;
+                case IGetValue g:
+                    return g.GetValue(key);
+                case System.Collections.IDictionary d:
+                    return d[key];
+                case ISet s:
+                    return s.Get(key);
+                case ITransientSet t:
+                    return t.Get(key);
+            }
+
+            if ((map is string || map.GetType().IsArray) && Numbers.IsNumber(key))
+                return GetFromArray(map, key);
+            
+            return null;
+        }
 
         /// <summary>
         /// Returns the value mapped to the key, notFound or null if key is not present.
@@ -38,15 +50,36 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the value mapped to the key, notFound or null if key is not present.
         /// </returns>
-        public object Invoke(object map, object key, object notFound) =>
-            map is null
-                ? notFound
-                : map is IGetValue g ? g.GetValue(key, notFound)
-                : map is System.Collections.IDictionary d ? d.Contains(key) ? d[key] : notFound
-                : map is ISet s ? s.Contains(key) ? s.Get(key) : notFound
-                : map is ITransientSet t ? t.Contains(key) ? t.Get(key) : notFound
-                : (map is string || map.GetType().IsArray) && Numbers.IsNumber(key) ? GetFromArray(map, key, notFound)
-                : notFound;
+        public object Invoke(object map, object key, object notFound)
+        {
+            switch (map)
+            {
+                case null:
+                    return notFound;
+                case IGetValue g:
+                    return g.GetValue(key, notFound);
+                case System.Collections.IDictionary d:
+                    if (d.Contains(key))
+                        return d[key];
+                    
+                    return notFound;
+                case ISet s:
+                    if (s.Contains(key))
+                        return s.Get(key);
+                    
+                    return notFound;
+                case ITransientSet t:
+                    if (t.Contains(key))
+                        return t.Get(key);
+                    
+                    return notFound;
+            }
+
+            if ((map is string || map.GetType().IsArray) && Numbers.IsNumber(key))
+                return GetFromArray(map, key, notFound);
+            
+            return notFound;
+        }
 
         static object GetFromArray(object map, object key)
         {

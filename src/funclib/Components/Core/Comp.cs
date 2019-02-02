@@ -21,7 +21,7 @@ namespace funclib.Components.Core
         /// (right-to-left) to the result, ect.
         /// </summary>
         /// <returns>
-        /// Returns the <see cref="Identity"/> fucntion;
+        /// Returns the <see cref="Identity"/> function;
         /// </returns>
         public object Invoke() => funclib.Core.identity;
         /// <summary>
@@ -101,7 +101,6 @@ namespace funclib.Components.Core
             /// Returns the results of calling f.
             /// </returns>
             public object Invoke(object x) => funclib.Core.Invoke(this._f, funclib.Core.Invoke(this._g, x));
-            /// <summary>
             /// <summary>
             /// Invoke g with parameter x and y, then passing the results to f.
             /// </summary>

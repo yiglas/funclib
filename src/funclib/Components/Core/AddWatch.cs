@@ -32,7 +32,7 @@ namespace funclib.Components.Core
         /// <param name="key">A unique key for the function.</param>
         /// <param name="fn">An object that implements the <see cref="IFunction"/> interface and takes 4 arguments.</param>
         /// <returns>
-        /// Returns this <see cref="ARef"/> object.
+        /// Returns the <see cref="ARef"/> object.
         /// </returns>
         public object Invoke(object @ref, object key, object fn) => ((IRef)@ref).AddWatch(key, (IFunction)fn);
     }

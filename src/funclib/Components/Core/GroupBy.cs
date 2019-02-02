@@ -29,7 +29,15 @@ namespace funclib.Components.Core
                     funclib.Core.Func((ret, x) =>
                     {
                         var k = funclib.Core.Invoke(f, x);
-                        return funclib.Core.Assocǃ(ret, k, funclib.Core.Conj(funclib.Core.Get(ret, k, funclib.Core.Vector()), x));
+                        return funclib.Core.Assocǃ(
+                            ret, 
+                            k, 
+                            funclib.Core.Conj(
+                                funclib.Core.Get(
+                                    ret, 
+                                    k, 
+                                    funclib.Core.Vector()), 
+                                x));
                     }), funclib.Core.Transient(funclib.Core.HashMap()), coll));
     }
 

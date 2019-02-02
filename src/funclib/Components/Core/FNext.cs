@@ -3,17 +3,17 @@
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns the funclib.Core.First( item's next list. Same as <see cref="First.Invoke(Next.Invoke(object))"/>.
+    /// Returns the first item's next list. Same as First(Next(x)).
     /// </summary>
     public class FNext :
         IFunction<object, object>
     {
         /// <summary>
-        /// Returns the funclib.Core.First( item's next list. Same as <see cref="First.Invoke(Next.Invoke(object))"/>.
+        /// Returns the first item's next list. Same as First(Next(x)).
         /// </summary>
-        /// <param name="x">Object to return the funclib.Core.First( item's next list.</param>
+        /// <param name="x">Object to return the first item's next list.</param>
         /// <returns>
-        /// Returns the funclib.Core.First( item's next list.
+        /// Returns the first item's next list.
         /// </returns>
         public object Invoke(object x) => funclib.Core.First(funclib.Core.Next(x));
     }

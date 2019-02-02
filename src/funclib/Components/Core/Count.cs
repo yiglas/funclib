@@ -28,21 +28,31 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns an <see cref="int"/> of the number of items in the collection.
         /// </returns>
-        public object Invoke(object coll) =>
-            coll is ICounted c
-                ? c.Count
-                : CountFrom(Ret(coll, coll is null));
+        public object Invoke(object coll) 
+        {
+            if (coll is ICounted c)
+                return c.Count;
+            
+            return CountFrom(Ret(coll, coll is null));
+        }
 
-        static int CountFrom(object coll) =>
-            coll is null
-                ? 0
-                : coll is ICollection ? CountCollection(coll)
-                : coll is string s ? s.Length
-                : coll is System.Collections.ICollection c ? c.Count
-                : coll is System.Collections.IDictionary d ? d.Count
-                : coll is System.Collections.DictionaryEntry || coll is KeyValuePair ? 2
-                : coll is Array a ? a.GetLength(0)
-                : throw new InvalidOperationException($"Count not supported on this type: {coll.GetType().FullName}");
+        static int CountFrom(object coll)
+        {
+            switch (coll)
+            {
+                case null: 
+                    return 0;
+                case System.Collections.DictionaryEntry d:
+                case KeyValuePair kvp:
+                    return 2;
+                case ICollection c1:
+                    return CountCollection(coll);
+                case System.Collections.ICollection c:
+                    return c.Count;
+            }
+
+            throw new InvalidOperationException($"Count not supported on this type: {coll.GetType().FullName}");
+        }
 
         static int CountCollection(object o)
         {

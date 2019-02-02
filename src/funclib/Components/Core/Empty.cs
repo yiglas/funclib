@@ -17,9 +17,12 @@ namespace funclib.Components.Core
         /// Returns an empty <see cref="ICollection"/> of the same category as coll. If coll
         /// doesn't implement the <see cref="ICollection"/> interface returns null.
         /// </returns>
-        public object Invoke(object coll) =>
-            coll != null && coll is ICollection c
-                ? c.Empty()
-                : null;
+        public object Invoke(object coll)
+        {
+            if (coll != null && coll is ICollection c)
+                return c.Empty();
+            
+            return null;
+        }
     }
 }
