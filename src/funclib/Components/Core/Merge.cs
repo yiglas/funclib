@@ -24,7 +24,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(params object[] maps)
         {
-            if ((bool)funclib.Core.Truthy(funclib.Core.Some(funclib.Core.identity, maps)))
+            if (funclib.Core.T(funclib.Core.Some(funclib.Core.identity, maps)))
             {
                 return funclib.Core.Reduce1(funclib.Core.Func((_1, _2) => funclib.Core.Conj(funclib.Core.Or(_1, funclib.Core.HashMap()), _2)), maps);
             }

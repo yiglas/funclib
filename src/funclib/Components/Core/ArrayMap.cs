@@ -6,7 +6,7 @@ namespace funclib.Components.Core
 {
     /// <summary>
     /// Constructs an <see cref="Collections.ArrayMap"/>. If any keys are equal,
-    /// they are handled as if by repeated uses of <see cref="Assoc"/>.
+    /// they are handled as if by repeated uses of <see cref="funclib.Components.Core.Assoc"/>.
     /// </summary>
     public class ArrayMap :
         IFunction<object>,
@@ -14,7 +14,7 @@ namespace funclib.Components.Core
     {
         /// <summary>
         /// Constructs an <see cref="Collections.ArrayMap"/>. If any keys are equal,
-        /// they are handled as if by repeated uses of <see cref="Assoc"/>.
+        /// they are handled as if by repeated uses of <see cref="funclib.Components.Core.Assoc"/>.
         /// </summary>
         /// <returns>
         /// Returns <see cref="Collections.ArrayMap.EMPTY"/>.
@@ -22,7 +22,7 @@ namespace funclib.Components.Core
         public object Invoke() => Collections.ArrayMap.EMPTY;
         /// <summary>
         /// Constructs an <see cref="Collections.ArrayMap"/>. If any keys are equal,
-        /// they are handled as if by repeated uses of <see cref="Assoc"/>.
+        /// they are handled as if by repeated uses of <see cref="funclib.Components.Core.Assoc"/>.
         /// </summary>
         /// <param name="keyvals">List of Key, Value pairs.</param>
         /// <returns>

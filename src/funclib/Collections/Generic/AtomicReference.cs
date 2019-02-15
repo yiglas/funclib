@@ -16,7 +16,7 @@ namespace funclib.Collections.Generic
         public bool CompareAndSet(T expected, T update)
         {
             var old = Interlocked.CompareExchange(ref this._ref, update, expected);
-            return (bool)funclib.Core.IsEqualTo(old, expected);
+            return funclib.Core.E(old, expected);
         }
 
         public T Get() => this._ref;

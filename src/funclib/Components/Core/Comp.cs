@@ -4,7 +4,7 @@ namespace funclib.Components.Core
 {
     /// <summary>
     /// Takes a set of functions and returns a function that is the composition of
-    /// those functions. The returned <see cref="Function"/> takes a variable number 
+    /// those functions. The returned <see cref="IFunction"/> takes a variable number
     /// of args, applies the right-most of functions to the args, the next function
     /// (right-to-left) to the result, ect.
     /// </summary>
@@ -16,7 +16,7 @@ namespace funclib.Components.Core
     {
         /// <summary>
         /// Takes a set of functions and returns a function that is the composition of
-        /// those functions. The returned <see cref="Function"/> takes a variable number 
+        /// those functions. The returned <see cref="IFunction"/> takes a variable number
         /// of args, applies the right-most of functions to the args, the next function
         /// (right-to-left) to the result, ect.
         /// </summary>
@@ -26,7 +26,7 @@ namespace funclib.Components.Core
         public object Invoke() => funclib.Core.identity;
         /// <summary>
         /// Takes a set of functions and returns a function that is the composition of
-        /// those functions. The returned <see cref="Function"/> takes a variable number 
+        /// those functions. The returned <see cref="IFunction"/> takes a variable number
         /// of args, applies the right-most of functions to the args, the next function
         /// (right-to-left) to the result, ect.
         /// </summary>
@@ -37,19 +37,19 @@ namespace funclib.Components.Core
         public object Invoke(object f) => f;
         /// <summary>
         /// Takes a set of functions and returns a function that is the composition of
-        /// those functions. The returned <see cref="Function"/> takes a variable number 
+        /// those functions. The returned <see cref="IFunction"/> takes a variable number
         /// of args, applies the right-most of functions to the args, the next function
         /// (right-to-left) to the result, ect.
         /// </summary>
         /// <param name="f">Object that implements the <see cref="IFunction{T1, TResult}"/> interface.</param>
         /// <param name="g">Object that implements the <see cref="IFunction"/> interface.</param>
         /// <returns>
-        /// Returns <see cref="Function"/> with f and g composed together.
+        /// Returns <see cref="IFunction"/> with f and g composed together.
         /// </returns>
         public object Invoke(object f, object g) => new Function(f, g);
         /// <summary>
         /// Takes a set of functions and returns a function that is the composition of
-        /// those functions. The returned <see cref="Function"/> takes a variable number 
+        /// those functions. The returned <see cref="IFunction"/> takes a variable number
         /// of args, applies the right-most of functions to the args, the next function
         /// (right-to-left) to the result, ect.
         /// </summary>
@@ -57,7 +57,7 @@ namespace funclib.Components.Core
         /// <param name="g">Object that implements the <see cref="IFunction"/> interface.</param>
         /// <param name="fs">Array of objects that implement the <see cref="IFunction"/> interface.</param>
         /// <returns>
-        /// Returns <see cref="Function"/> with f, g and fs composed together.
+        /// Returns <see cref="IFunction"/> with f, g and fs composed together.
         /// </returns>
         public object Invoke(object f, object g, params object[] fs) =>
             funclib.Core.Reduce1(this, funclib.Core.ListS(f, g, fs));
@@ -76,7 +76,7 @@ namespace funclib.Components.Core
             object _g;
 
             /// <summary>
-            /// Creates a new <see cref="Function"/> object.
+            /// Creates a new <see cref="IFunction"/> object.
             /// </summary>
             /// <param name="f">Object that implements the <see cref="IFunction{T1, TResult}"/> interface.</param>
             /// <param name="g">Object that implements the <see cref="IFunction"/> interface.</param>

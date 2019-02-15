@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns the next <see cref="Regex"/> match, if any, of string to pattern, using <see cref="funclib.ReMatcher.Find"/>.
+    /// Returns the next <see cref="Regex"/> match, if any, of string to pattern, using <see cref="ReMatcher.Find"/>.
     /// Uses <see cref="ReGroups"/> to return the group.
     /// </summary>
     public class ReFind :

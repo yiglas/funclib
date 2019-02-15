@@ -6,7 +6,7 @@ namespace funclib.Components.Core
     /// 'Updates' a value in a nested <see cref="Collections.IAssociative"/> structure,
     /// where ks is a <see cref="Collections.ISeq"/> of keys and f is a <see cref="IFunction"/>
     /// that will take the old value and any supplied args and return the new value, and
-    /// returns a new nested structure. If any levels do not exists, a <see cref="HashMap"/>
+    /// returns a new nested structure. If any levels do not exists, a <see cref="Collections.HashMap"/>
     /// will be created.
     /// </summary>
     public class UpdateIn :
@@ -33,7 +33,7 @@ namespace funclib.Components.Core
             var k = funclib.Core.First(ks);
             ks = funclib.Core.More(ks);
 
-            if ((bool)funclib.Core.Truthy(ks))
+            if (funclib.Core.T(ks))
                 return funclib.Core.Assoc(m, k, up(funclib.Core.Get(m, k), ks, f, args));
 
             return funclib.Core.Assoc(m, k, funclib.Core.Apply(f, funclib.Core.Get(m, k), args));

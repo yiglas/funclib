@@ -6,11 +6,11 @@ namespace funclib.Components.Core
 {
     /// <summary>
     /// f should implement the <see cref="IFunction{T1, T2, TResult}"/> interface. If val is not supplied,
-    /// returns the result of applying f to the funclib.Core.First( 2 items in coll, then applying f to the result and 
-    /// the 3rd item, etc. If coll contains no items, f must implement <see cref="IFunction{TResult}"/> 
+    /// returns the result of applying f to the funclib.Core.First( 2 items in coll, then applying f to the result and
+    /// the 3rd item, etc. If coll contains no items, f must implement <see cref="IFunction{TResult}"/>
     /// interface and reduce returns the result of calling f with no arguments. If coll has only 1 item,
     /// it is returned and f is not called. If val is supplied, returns the result of applying f to val
-    /// and the funclib.Core.First( item in coll, then applying f to the result and the 2nd item, etc. If coll contains 
+    /// and the funclib.Core.First( item in coll, then applying f to the result and the 2nd item, etc. If coll contains
     /// no items, val is returned and f is not called.
     /// </summary>
     public class Reduce :
@@ -19,11 +19,11 @@ namespace funclib.Components.Core
     {
         /// <summary>
         /// f should implement the <see cref="IFunction{T1, T2, TResult}"/> interface. If val is not supplied,
-        /// returns the result of applying f to the funclib.Core.First( 2 items in coll, then applying f to the result and 
-        /// the 3rd item, etc. If coll contains no items, f must implement <see cref="IFunction{TResult}"/> 
+        /// returns the result of applying f to the funclib.Core.First( 2 items in coll, then applying f to the result and
+        /// the 3rd item, etc. If coll contains no items, f must implement <see cref="IFunction{TResult}"/>
         /// interface and reduce returns the result of calling f with no arguments. If coll has only 1 item,
         /// it is returned and f is not called. If val is supplied, returns the result of applying f to val
-        /// and the funclib.Core.First( item in coll, then applying f to the result and the 2nd item, etc. If coll contains 
+        /// and the funclib.Core.First( item in coll, then applying f to the result and the 2nd item, etc. If coll contains
         /// no items, val is returned and f is not called.
         /// </summary>
         /// <param name="f">An object that implements <see cref="IFunction{T1, T2, TResult}"/> interface unless coll has not items, then it needs to implement the <see cref="IFunction{TResult}"/> interface.</param>
@@ -45,11 +45,11 @@ namespace funclib.Components.Core
 
         /// <summary>
         /// f should implement the <see cref="IFunction{T1, T2, TResult}"/> interface. If val is not supplied,
-        /// returns the result of applying f to the funclib.Core.First( 2 items in coll, then applying f to the result and 
-        /// the 3rd item, etc. If coll contains no items, f must implement <see cref="IFunction{TResult}"/> 
+        /// returns the result of applying f to the funclib.Core.First( 2 items in coll, then applying f to the result and
+        /// the 3rd item, etc. If coll contains no items, f must implement <see cref="IFunction{TResult}"/>
         /// interface and reduce returns the result of calling f with no arguments. If coll has only 1 item,
         /// it is returned and f is not called. If val is supplied, returns the result of applying f to val
-        /// and the funclib.Core.First( item in coll, then applying f to the result and the 2nd item, etc. If coll contains 
+        /// and the funclib.Core.First( item in coll, then applying f to the result and the 2nd item, etc. If coll contains
         /// no items, val is returned and f is not called.
         /// </summary>
         /// <param name="f">An object that implements <see cref="IFunction{T1, T2, TResult}"/> interface.</param>
@@ -74,7 +74,7 @@ namespace funclib.Components.Core
         static object SeqReduce(object coll, object f)
         {
             var s = funclib.Core.Seq(coll);
-            if ((bool)funclib.Core.Truthy(s))
+            if (funclib.Core.T(s))
             {
                 return InternalReduce(funclib.Core.Next(s), f, funclib.Core.First(s));
             }
@@ -135,7 +135,7 @@ namespace funclib.Components.Core
         static object IChunkedSeqReduce(object s, object f, object val)
         {
             s = funclib.Core.Seq(s);
-            if ((bool)funclib.Core.Truthy(s))
+            if (funclib.Core.T(s))
             {
                 if ((bool)funclib.Core.IsChunkedSeq(s))
                 {
@@ -177,7 +177,7 @@ namespace funclib.Components.Core
             object loop(object cls, object c, object v)
             {
                 var sq = funclib.Core.Seq(c);
-                if ((bool)funclib.Core.Truthy(sq))
+                if (funclib.Core.T(sq))
                 {
                     if ((bool)funclib.Core.IsIdentical(funclib.Core.Class(sq), cls))
                     {
@@ -208,7 +208,7 @@ namespace funclib.Components.Core
             object loop(object s, object v)
             {
                 var sq = funclib.Core.Seq(s);
-                if ((bool)funclib.Core.Truthy(sq))
+                if (funclib.Core.T(sq))
                 {
                     var ret = funclib.Core.Invoke(f, v, funclib.Core.First(sq));
                     if (ret is Reduced r)

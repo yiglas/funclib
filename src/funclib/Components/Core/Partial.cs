@@ -3,8 +3,8 @@
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Takes a <see cref="IFunction"/> f and fewer than the normal arguments, and returns a 
-    /// <see cref="Function"/> that take the rest of the arguments.
+    /// Takes a <see cref="IFunction"/> f and fewer than the normal arguments, and returns a
+    /// <see cref="IFunction"/> that take the rest of the arguments.
     /// </summary>
     public class Partial :
         IFunction<object, object, object>,
@@ -13,41 +13,41 @@ namespace funclib.Components.Core
         IFunctionParams<object, object, object, object, object, object>
     {
         /// <summary>
-        /// Takes a <see cref="IFunction"/> f and fewer than the normal arguments, and returns a 
-        /// <see cref="Function"/> that take the rest of the arguments.
+        /// Takes a <see cref="IFunction"/> f and fewer than the normal arguments, and returns a
+        /// <see cref="IFunction"/> that take the rest of the arguments.
         /// </summary>
         /// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
         /// <param name="arg1">First argument to the function.</param>
         /// <returns>
-        /// Returns <see cref="Function"/> that when executed will take args + additional args.
+        /// Returns <see cref="IFunction"/> that when executed will take args + additional args.
         /// </returns>
         public object Invoke(object f, object arg1) => new Function(f, arg1);
         /// <summary>
-        /// Takes a <see cref="IFunction"/> f and fewer than the normal arguments, and returns a 
-        /// <see cref="Function"/> that take the rest of the arguments.
+        /// Takes a <see cref="IFunction"/> f and fewer than the normal arguments, and returns a
+        /// <see cref="IFunction"/> that take the rest of the arguments.
         /// </summary>
         /// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
         /// <param name="arg1">First argument to the function.</param>
         /// <param name="arg2">Second argument to the function.</param>
         /// <returns>
-        /// Returns <see cref="Function"/> that when executed will take args + additional args.
+        /// Returns <see cref="IFunction"/> that when executed will take args + additional args.
         /// </returns>
         public object Invoke(object f, object arg1, object arg2) => new Function(f, arg1, arg2);
         /// <summary>
-        /// Takes a <see cref="IFunction"/> f and fewer than the normal arguments, and returns a 
-        /// <see cref="Function"/> that take the rest of the arguments.
+        /// Takes a <see cref="IFunction"/> f and fewer than the normal arguments, and returns a
+        /// <see cref="IFunction"/> that take the rest of the arguments.
         /// </summary>
         /// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
         /// <param name="arg1">First argument to the function.</param>
         /// <param name="arg2">Second argument to the function.</param>
         /// <param name="arg3">Third argument to the function.</param>
         /// <returns>
-        /// Returns <see cref="Function"/> that when executed will take args + additional args.
+        /// Returns <see cref="IFunction"/> that when executed will take args + additional args.
         /// </returns>
         public object Invoke(object f, object arg1, object arg2, object arg3) => new Function(f, arg1, arg2, arg3);
         /// <summary>
-        /// Takes a <see cref="IFunction"/> f and fewer than the normal arguments, and returns a 
-        /// <see cref="Function"/> that take the rest of the arguments.
+        /// Takes a <see cref="IFunction"/> f and fewer than the normal arguments, and returns a
+        /// <see cref="IFunction"/> that take the rest of the arguments.
         /// </summary>
         /// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
         /// <param name="arg1">First argument to the function.</param>
@@ -55,7 +55,7 @@ namespace funclib.Components.Core
         /// <param name="arg3">Third argument to the function.</param>
         /// <param name="more">Rest of the arguments to the function.</param>
         /// <returns>
-        /// Returns <see cref="Function"/> that when executed will take args + additional args.
+        /// Returns <see cref="IFunction"/> that when executed will take args + additional args.
         /// </returns>
         public object Invoke(object f, object arg1, object arg2, object arg3, params object[] more) =>
             new Function(f, arg1, arg2, arg3, more);

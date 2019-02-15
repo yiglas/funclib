@@ -30,7 +30,7 @@ namespace funclib.Collections
                 bool duplicateKey = false;
                 for (int j = 0; j < i; j += 2)
                 {
-                    if ((bool)funclib.Core.IsEqualTo(init[i], init[j]))
+                    if (funclib.Core.E(init[i], init[j]))
                     {
                         duplicateKey = true;
                         break;
@@ -48,7 +48,7 @@ namespace funclib.Collections
                     bool duplicateKey = false;
                     for (int j = 0; j < m; j += 2)
                     {
-                        if ((bool)funclib.Core.IsEqualTo(init[i], nodups[j]))
+                        if (funclib.Core.E(init[i], nodups[j]))
                         {
                             duplicateKey = true;
                             break;
@@ -60,7 +60,7 @@ namespace funclib.Collections
                         int j;
                         for (j = init.Length -2; j >= i; j -= 2)
                         {
-                            if ((bool)funclib.Core.IsEqualTo(init[i], init[j]))
+                            if (funclib.Core.E(init[i], init[j]))
                             {
                                 break;
                             }

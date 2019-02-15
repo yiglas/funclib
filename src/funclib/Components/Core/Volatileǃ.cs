@@ -28,11 +28,11 @@ namespace funclib.Components.Core
         /// </returns>
         public object Deref() => this._val;
         /// <summary>
-        /// Resets the <see cref="volatile"/> object, and returns it.
+        /// Resets the volatile object, and returns it.
         /// </summary>
-        /// <param name="newVal">New value of the <see cref="volatile"/> object.</param>
+        /// <param name="newVal">New value of the volatile object.</param>
         /// <returns>
-        /// Returns the new <see cref="volatile"/> object.
+        /// Returns the new volatile object.
         /// </returns>
         public object Reset(object newVal) => this._val = newVal;
 

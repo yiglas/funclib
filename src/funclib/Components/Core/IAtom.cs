@@ -1,4 +1,5 @@
 ﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Components.Core
 {
@@ -10,46 +11,46 @@ namespace funclib.Components.Core
         /// <summary>
         /// Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
         /// Note: f may be called multiple times and thus should be free of side effects.
-        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
+        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after
         /// the swap.
         /// </summary>
         /// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
         /// <returns>
-        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
+        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after
         /// the swap.
         /// </returns>
         IVector Swap(object f);
         /// <summary>
         /// Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
         /// Note: f may be called multiple times and thus should be free of side effects.
-        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
+        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after
         /// the swap.
         /// </summary>
         /// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
         /// <param name="x">Second parameter of the function.</param>
         /// <returns>
-        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
+        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after
         /// the swap.
         /// </returns>
         IVector Swap(object f, object x);
         /// <summary>
         /// Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
         /// Note: f may be called multiple times and thus should be free of side effects.
-        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
+        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after
         /// the swap.
         /// </summary>
         /// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
         /// <param name="x">Second parameter of the function.</param>
         /// <param name="y">Third parameter of the function.</param>
         /// <returns>
-        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
+        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after
         /// the swap.
         /// </returns>
         IVector Swap(object f, object x, object y);
         /// <summary>
         /// Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
         /// Note: f may be called multiple times and thus should be free of side effects.
-        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
+        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after
         /// the swap.
         /// </summary>
         /// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
@@ -60,7 +61,7 @@ namespace funclib.Components.Core
         IVector Swap(object f, object x, object y, params object[] args);
         /// <summary>
         /// Atomically sets the value of the <see cref="IAtom"/>
-        /// to the new value if and only if the current value of 
+        /// to the new value if and only if the current value of
         /// the <see cref="IAtom"/> is identical to the oldVal.
         /// Returns true if set happened, otherwise false.
         /// </summary>

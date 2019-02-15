@@ -18,11 +18,11 @@ namespace funclib.Components.Core
         public object Invoke(object s)
         {
             var n = funclib.Core.Next(s);
-            if ((bool)funclib.Core.Truthy(n))
+            if (funclib.Core.T(n))
                 return Invoke(n);
 
             return funclib.Core.First(s);
         }
-            
+
     }
 }

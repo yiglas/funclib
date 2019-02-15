@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns an instance of <see cref="ReMatcher"/> for use in <see cref="ReFind"/>.
+    /// Returns an instance of <see cref="ReMatcher"/> for use in <see cref="funclib.Components.Core.ReFind"/>.
     /// </summary>
     public class ReMatcher :
         IFunction<object, object, object>
@@ -20,7 +20,7 @@ namespace funclib.Components.Core
             this._s = s;
             this._match = null;
         }
-        
+
         /// <summary>
         /// Creates a new <see cref="ReMatcher"/> object.
         /// </summary>
@@ -38,7 +38,7 @@ namespace funclib.Components.Core
         public bool IsFailed => this._regex is null && this._match is null;
 
         /// <summary>
-        /// Gets a flag indicating if the <see cref="ReMatcher"/> is in a Unrealized or Failed state. 
+        /// Gets a flag indicating if the <see cref="ReMatcher"/> is in a Unrealized or Failed state.
         /// </summary>
         public bool IsUnrealizedOrFailed => this._regex != null && this._match is null;
 
@@ -76,7 +76,7 @@ namespace funclib.Components.Core
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public bool Matches()
@@ -167,7 +167,7 @@ namespace funclib.Components.Core
         public string Value() => this._match.Value;
 
         /// <summary>
-        /// Returns an instance of <see cref="ReMatcher"/> to be used in <see cref="ReFind"/>.
+        /// Returns an instance of <see cref="ReMatcher"/> to be used in <see cref="funclib.Components.Core.ReFind"/>.
         /// </summary>
         /// <param name="re">An object that is already a <see cref="Regex"/> instance.</param>
         /// <param name="s">The string to search for a match(s).</param>

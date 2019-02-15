@@ -44,7 +44,7 @@ namespace funclib.Collections.Internal
                     return new BitmapIndexedNode(null, this._bitmap, CloneAndSet(this._array, 2 * idx + 1, n));
                 }
 
-                if ((bool)funclib.Core.IsEqualTo(key, keyOrNull))
+                if (funclib.Core.E(key, keyOrNull))
                 {
                     if (val == valOrNode)
                         return this;
@@ -106,14 +106,14 @@ namespace funclib.Collections.Internal
             {
                 var keyOrNull = this._array[2 * idx];
                 var valOrNode = this._array[2 * idx + 1];
-                
+
                 if (keyOrNull is null)
                 {
                     var n = ((INode)valOrNode).Assoc(edit, shift + 5, hash, key, val, addedLeaf);
                     if (n == valOrNode) return this;
                     return EditAndSet(edit, 2 * idx + 1, n);
                 }
-                if ((bool)funclib.Core.IsEqualTo(key, keyOrNull))
+                if (funclib.Core.E(key, keyOrNull))
                 {
                     if (val == valOrNode) return this;
                     return EditAndSet(edit, 2 * idx + 1, val);
@@ -197,7 +197,7 @@ namespace funclib.Collections.Internal
                 return new BitmapIndexedNode(null, this._bitmap ^ bit, RemovePair(this._array, idx));
             }
 
-            if ((bool)funclib.Core.IsEqualTo(key, keyOrNull))
+            if (funclib.Core.E(key, keyOrNull))
             {
                 return new BitmapIndexedNode(null, this._bitmap ^ bit, RemovePair(this._array, idx));
             }
@@ -224,7 +224,7 @@ namespace funclib.Collections.Internal
                 return EditAndRemovePair(edit, bit, idx);
             }
 
-            if ((bool)funclib.Core.IsEqualTo(key, keyOrNull))
+            if (funclib.Core.E(key, keyOrNull))
             {
                 removedLeaf.Value = removedLeaf;
                 return EditAndRemovePair(edit, bit, idx);
@@ -244,7 +244,7 @@ namespace funclib.Collections.Internal
 
             if (keyOrNull is null)
                 return ((INode)valOrNode).Get(shift + 5, hash, key);
-            if ((bool)funclib.Core.IsEqualTo(key, keyOrNull))
+            if (funclib.Core.E(key, keyOrNull))
                 return new KeyValuePair(keyOrNull, valOrNode);
 
             return null;
@@ -261,7 +261,7 @@ namespace funclib.Collections.Internal
 
             if (keyOrNull is null)
                 return ((INode)valOrNode).Get(shift + 5, hash, key, notFound);
-            if ((bool)funclib.Core.IsEqualTo(key, keyOrNull))
+            if (funclib.Core.E(key, keyOrNull))
                 return valOrNode;
 
             return notFound;

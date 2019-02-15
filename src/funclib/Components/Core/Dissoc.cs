@@ -50,7 +50,7 @@ namespace funclib.Components.Core
             if (ks != null && ks.Length > 0)
             {
                 var n = funclib.Core.Next(ks);
-                if ((bool)funclib.Core.Truthy(n))
+                if (funclib.Core.T(n))
                     return Invoke(ret, funclib.Core.First(ks), (object[])funclib.Core.ToArray(n));
 
                 return Invoke(ret, funclib.Core.First(ks));

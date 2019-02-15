@@ -1,20 +1,21 @@
-﻿using funclib.Components.Core.Generic;
+﻿using funclib.Collections;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Associates a value n a nested associative structure, where ks is a 
+    /// Associates a value n a nested associative structure, where ks is a
     /// sequence of keys and v is the new value. Returns a new nested structure.
-    /// If any levels do not exists, a new <see cref="Collections.HashMap"/> 
+    /// If any levels do not exists, a new <see cref="Collections.HashMap"/>
     /// will be created.
     /// </summary>
     public class AssocIn :
         IFunction<object, object, object, object>
     {
         /// <summary>
-        /// Associates a value n a nested associative structure, where ks is a 
+        /// Associates a value n a nested associative structure, where ks is a
         /// sequence of keys and v is the new value. Returns a new nested structure.
-        /// If any levels do not exists, a new <see cref="Collections.HashMap"/> 
+        /// If any levels do not exists, a new <see cref="Collections.HashMap"/>
         /// will be created.
         /// </summary>
         /// <param name="m">Object that implements the <see cref="IAssociative"/> interface.</param>
@@ -28,7 +29,7 @@ namespace funclib.Components.Core
             var k = funclib.Core.First(ks);
             ks = funclib.Core.Next(ks);
 
-            if ((bool)funclib.Core.Truthy(ks))
+            if (funclib.Core.T(ks))
                 return funclib.Core.Assoc(m, k, Invoke(funclib.Core.Get(m, k), ks, v));
 
             return funclib.Core.Assoc(m, k, v);

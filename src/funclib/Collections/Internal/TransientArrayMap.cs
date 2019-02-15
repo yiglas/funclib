@@ -78,7 +78,7 @@ namespace funclib.Collections.Internal
                 : true;
         #endregion
 
-        bool IsEqual(object a, object b) => (bool)funclib.Core.IsEqualTo(a, b);
+        bool IsEqual(object a, object b) => funclib.Core.E(a, b);
 
         int IndexOf(object key)
         {

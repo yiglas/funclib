@@ -9,7 +9,7 @@ namespace funclib.Collections
         IFunction<object, object>
     {
         int _hash;
-        
+
         public bool IsFixedSize => true;
         public bool IsReadOnly => true;
         public bool IsSynchronized => true;
@@ -28,7 +28,7 @@ namespace funclib.Collections
 
                 for (int i = 0; i < Count; i++)
                 {
-                    if (!(bool)funclib.Core.IsEqualTo(this[i], v[i]))
+                    if (!funclib.Core.E(this[i], v[i]))
                         return false;
                 }
 
@@ -41,7 +41,7 @@ namespace funclib.Collections
 
                 for (int i = 0; i < Count; i++)
                 {
-                    if (!(bool)funclib.Core.IsEqualTo(this[i], l[i]))
+                    if (!funclib.Core.E(this[i], l[i]))
                         return false;
                 }
 
@@ -52,7 +52,7 @@ namespace funclib.Collections
             {
                 for (int i = 0; i < Count; i++, e = e.Next())
                 {
-                    if (e is null || !(bool)funclib.Core.IsEqualTo(this[i], e.First()))
+                    if (e is null || !funclib.Core.E(this[i], e.First()))
                         return false;
                 }
                 if (e != null) return false;
@@ -148,7 +148,7 @@ namespace funclib.Collections
         public bool Contains(object value)
         {
             for (var e = Seq(); e != null; e = e.Next())
-                if ((bool)funclib.Core.IsEqualTo(e.First(), value))
+                if (funclib.Core.E(e.First(), value))
                     return true;
 
             return false;
@@ -180,7 +180,7 @@ namespace funclib.Collections
         public int IndexOf(object value)
         {
             for (int i = 0; i < Count; i++)
-                if ((bool)funclib.Core.IsEqualTo(this[i], value))
+                if (funclib.Core.E(this[i], value))
                     return i;
 
             return -1;

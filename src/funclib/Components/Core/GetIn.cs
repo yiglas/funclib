@@ -38,7 +38,7 @@ namespace funclib.Components.Core
 
         static object loop(object sentinel, object m, object ks, object notFound)
         {
-            if ((bool)funclib.Core.Truthy(ks))
+            if (funclib.Core.T(ks))
             {
                 m = funclib.Core.Get(m, funclib.Core.First(ks), sentinel);
                 if ((bool)funclib.Core.IsIdentical(m, sentinel))

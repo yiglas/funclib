@@ -15,6 +15,6 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns true if x is logical false, otherwise false.
         /// </returns>
-        public object Invoke(object x) => !(bool)funclib.Core.Truthy(x);
+        public object Invoke(object x) => !funclib.Core.T(x);
     }
 }

@@ -9,6 +9,7 @@
 using funclib.Collections;
 using funclib.Components.Core;
 using funclib.Components.Core.Generic;
+using System.Text.RegularExpressions;
 using System;
 
 
@@ -16,16 +17,16 @@ namespace funclib
 {
 	public static class Core
 	{
-		#region UpdateIn
-		static funclib.Components.Core.UpdateIn __updatein;
+		#region public - UpdateIn
+		static funclib.Components.Core.UpdateIn __updateIn;
 		/// <summary>
 		/// 'Updates' a value in a nested <see cref="Collections.IAssociative"/> structure,
 		/// where ks is a <see cref="Collections.ISeq"/> of keys and f is a <see cref="IFunction"/>
 		/// that will take the old value and any supplied args and return the new value, and
-		/// returns a new nested structure. If any levels do not exists, a <see cref="HashMap"/>
+		/// returns a new nested structure. If any levels do not exists, a <see cref="Collections.HashMap"/>
 		/// will be created.
 		/// </summary>
-		public static funclib.Components.Core.UpdateIn updateIn => __updatein ?? (__updatein = new funclib.Components.Core.UpdateIn());
+		public static funclib.Components.Core.UpdateIn updateIn => __updateIn ?? (__updateIn = new funclib.Components.Core.UpdateIn());
 		/// <summary>
 		/// 'Updates' a value in a nested <see cref="Collections.IAssociative"/> structure,
 		/// where ks is a <see cref="Collections.ISeq"/> of keys and f is a <see cref="IFunction"/>
@@ -42,12 +43,12 @@ namespace funclib
 		/// </returns>
 		public static object UpdateIn(object m, object ks, object f, params object[] args) => updateIn.Invoke(m, ks, f, args);
 		#endregion
-		#region IsNegInt
-		static funclib.Components.Core.IsNegInt __isnegint;
+		#region public - IsNegInt
+		static funclib.Components.Core.IsNegInt __isNegInt;
 		/// <summary>
 		/// Returns true if x is a a negative <see cref="int"/>, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsNegInt isNegInt => __isnegint ?? (__isnegint = new funclib.Components.Core.IsNegInt());
+		public static funclib.Components.Core.IsNegInt isNegInt => __isNegInt ?? (__isNegInt = new funclib.Components.Core.IsNegInt());
 		/// <summary>
 		/// Returns true if x is a a negative <see cref="int"/>, otherwise false.
 		/// </summary>
@@ -57,7 +58,7 @@ namespace funclib
 		/// </returns>
 		public static object IsNegInt(object n) => isNegInt.Invoke(n);
 		#endregion
-		#region Reverse
+		#region public - Reverse
 		static funclib.Components.Core.Reverse __reverse;
 		/// <summary>
 		/// Returns a <see cref="Seq"/> of the items in coll in reverse order.
@@ -72,12 +73,12 @@ namespace funclib
 		/// </returns>
 		public static object Reverse(object coll) => reverse.Invoke(coll);
 		#endregion
-		#region RePattern
-		static funclib.Components.Core.RePattern __repattern;
+		#region public - RePattern
+		static funclib.Components.Core.RePattern __rePattern;
 		/// <summary>
 		/// Returns an instance of <see cref="Regex"/>, for use, e.g. in <see cref="ReMatcher"/>.
 		/// </summary>
-		public static funclib.Components.Core.RePattern rePattern => __repattern ?? (__repattern = new funclib.Components.Core.RePattern());
+		public static funclib.Components.Core.RePattern rePattern => __rePattern ?? (__rePattern = new funclib.Components.Core.RePattern());
 		/// <summary>
 		/// Returns an instance of <see cref="Regex"/>, for use, e.g. in <see cref="ReMatcher"/>.
 		/// </summary>
@@ -87,8 +88,8 @@ namespace funclib
 		/// </returns>
 		public static object RePattern(object s) => rePattern.Invoke(s);
 		#endregion
-		#region SetValidatorǃ
-		static funclib.Components.Core.SetValidatorǃ __setvalidatorǃ;
+		#region public - SetValidatorǃ
+		static funclib.Components.Core.SetValidatorǃ __setValidatorǃ;
 		/// <summary>
 		/// Sets the validator function for <see cref="IRef"/> variables. Validator
 		/// function must be null or a side-effect-free <see cref="IFunction"/> of
@@ -96,7 +97,7 @@ namespace funclib
 		/// change. If the new state is unacceptable, the function should either
 		/// return false or throw an exception.
 		/// </summary>
-		public static funclib.Components.Core.SetValidatorǃ setValidatorǃ => __setvalidatorǃ ?? (__setvalidatorǃ = new funclib.Components.Core.SetValidatorǃ());
+		public static funclib.Components.Core.SetValidatorǃ setValidatorǃ => __setValidatorǃ ?? (__setValidatorǃ = new funclib.Components.Core.SetValidatorǃ());
 		/// <summary>
 		/// Sets the validator function for <see cref="IRef"/> variables. Validator
 		/// function must be null or a side-effect-free <see cref="IFunction"/> of
@@ -111,17 +112,17 @@ namespace funclib
 		/// </returns>
 		public static object SetValidatorǃ(object @ref, object validatorFn) => setValidatorǃ.Invoke(@ref, validatorFn);
 		#endregion
-		#region FNull
+		#region public - FNull
 		static funclib.Components.Core.FNull __fnull;
 		/// <summary>
-		/// Takes a <see cref="IFunction"/> f, and returns a <see cref="Function"/> that calls f, replacing
+		/// Takes a <see cref="IFunction"/> f, and returns a <see cref="IFunction"/> that calls f, replacing
 		/// a null funclib.Core.First( argument with the supplied value x. Higher arity versions can replace arguments in
 		/// the second and third positions.  Note: that the function f can take any number of arguments,
 		/// not just the one(s) being null-patched.
 		/// </summary>
 		public static funclib.Components.Core.FNull fnull => __fnull ?? (__fnull = new funclib.Components.Core.FNull());
 		/// <summary>
-		/// Takes a <see cref="IFunction"/> f, and returns a <see cref="Function"/> that calls f, replacing
+		/// Takes a <see cref="IFunction"/> f, and returns a <see cref="IFunction"/> that calls f, replacing
 		/// a null funclib.Core.First( argument with the supplied value x. Higher arity versions can replace arguments in
 		/// the second and third positions.  Note: that the function f can take any number of arguments,
 		/// not just the one(s) being null-patched.
@@ -129,11 +130,11 @@ namespace funclib
 		/// <param name="f">An object that implements <see cref="IFunction"/> interface.</param>
 		/// <param name="x">Object to replace a funclib.Core.First( parameter passed thats null.</param>
 		/// <returns>
-		/// Returns a <see cref="Function"/> that is null-patched.
+		/// Returns a <see cref="IFunction"/> that is null-patched.
 		/// </returns>
 		public static object FNull(object f, object x) => fnull.Invoke(f, x);
 		/// <summary>
-		/// Takes a <see cref="IFunction"/> f, and returns a <see cref="Function"/> that calls f, replacing
+		/// Takes a <see cref="IFunction"/> f, and returns a <see cref="IFunction"/> that calls f, replacing
 		/// a null funclib.Core.First( argument with the supplied value x. Higher arity versions can replace arguments in
 		/// the second and third positions.  Note: that the function f can take any number of arguments,
 		/// not just the one(s) being null-patched.
@@ -142,11 +143,11 @@ namespace funclib
 		/// <param name="x">Object to replace a funclib.Core.First( parameter passed thats null.</param>
 		/// <param name="y">Object to replace a second parameter passed thats null.</param>
 		/// <returns>
-		/// Returns a <see cref="Function"/> that is null-patched.
+		/// Returns a <see cref="IFunction"/> that is null-patched.
 		/// </returns>
 		public static object FNull(object f, object x, object y) => fnull.Invoke(f, x, y);
 		/// <summary>
-		/// Takes a <see cref="IFunction"/> f, and returns a <see cref="Function"/> that calls f, replacing
+		/// Takes a <see cref="IFunction"/> f, and returns a <see cref="IFunction"/> that calls f, replacing
 		/// a null funclib.Core.First( argument with the supplied value x. Higher arity versions can replace arguments in
 		/// the second and third positions.  Note: that the function f can take any number of arguments,
 		/// not just the one(s) being null-patched.
@@ -156,16 +157,16 @@ namespace funclib
 		/// <param name="y">Object to replace a second parameter passed thats null.</param>
 		/// <param name="z">Object to replace a third parameter passed thats null.</param>
 		/// <returns>
-		/// Returns a <see cref="Function"/> that is null-patched.
+		/// Returns a <see cref="IFunction"/> that is null-patched.
 		/// </returns>
 		public static object FNull(object f, object x, object y, object z) => fnull.Invoke(f, x, y, z);
 		#endregion
-		#region IsNotEqualTo
-		static funclib.Components.Core.IsNotEqualTo __isnotequalto;
+		#region public - IsNotEqualTo
+		static funclib.Components.Core.IsNotEqualTo __isNotEqualTo;
 		/// <summary>
 		/// Returns true if values are not equal, otherwise false
 		/// </summary>
-		public static funclib.Components.Core.IsNotEqualTo isNotEqualTo => __isnotequalto ?? (__isnotequalto = new funclib.Components.Core.IsNotEqualTo());
+		public static funclib.Components.Core.IsNotEqualTo isNotEqualTo => __isNotEqualTo ?? (__isNotEqualTo = new funclib.Components.Core.IsNotEqualTo());
 		/// <summary>
 		/// Returns true if values are not equal, otherwise false
 		/// </summary>
@@ -194,7 +195,7 @@ namespace funclib
 		/// </returns>
 		public static object IsNotEqualTo(object x, object y, params object[] more) => isNotEqualTo.Invoke(x, y, more);
 		#endregion
-		#region Key
+		#region public - Key
 		static funclib.Components.Core.Key __key;
 		/// <summary>
 		/// Returns the key of the <see cref="KeyValuePair"/>.
@@ -209,12 +210,12 @@ namespace funclib
 		/// </returns>
 		public static object Key(object e) => key.Invoke(e);
 		#endregion
-		#region SplitAt
-		static funclib.Components.Core.SplitAt __splitat;
+		#region public - SplitAt
+		static funclib.Components.Core.SplitAt __splitAt;
 		/// <summary>
 		/// Returns a <see cref="Collections.Vector"/> of [<see cref="Take.Invoke(object, object)"/>, <see cref="Drop.Invoke(object, object)"/>].
 		/// </summary>
-		public static funclib.Components.Core.SplitAt splitAt => __splitat ?? (__splitat = new funclib.Components.Core.SplitAt());
+		public static funclib.Components.Core.SplitAt splitAt => __splitAt ?? (__splitAt = new funclib.Components.Core.SplitAt());
 		/// <summary>
 		/// Returns a <see cref="Collections.Vector"/> of [<see cref="Take.Invoke(object, object)"/>, <see cref="Drop.Invoke(object, object)"/>].
 		/// </summary>
@@ -225,12 +226,12 @@ namespace funclib
 		/// </returns>
 		public static object SplitAt(object n, object coll) => splitAt.Invoke(n, coll);
 		#endregion
-		#region PreservingReduced
-		static funclib.Components.Core.PreservingReduced __preservingreduced;
-		internal static funclib.Components.Core.PreservingReduced preservingReduced => __preservingreduced ?? (__preservingreduced = new funclib.Components.Core.PreservingReduced());
-		public static object PreservingReduced(object rf) => preservingReduced.Invoke(rf);
+		#region internal - PreservingReduced
+		static funclib.Components.Core.PreservingReduced __preservingReduced;
+		internal static funclib.Components.Core.PreservingReduced preservingReduced => __preservingReduced ?? (__preservingReduced = new funclib.Components.Core.PreservingReduced());
+		internal static object PreservingReduced(object rf) => preservingReduced.Invoke(rf);
 		#endregion
-		#region Multiply
+		#region public - Multiply
 		static funclib.Components.Core.Multiply __multiply;
 		/// <summary>
 		/// Returns the product of numbers. No parameters past returns 1. Single parameter there is an
@@ -279,15 +280,15 @@ namespace funclib
 		/// </returns>
 		public static object Multiply(object x, object y, params object[] more) => multiply.Invoke(x, y, more);
 		#endregion
-		#region EveryPred
-		static funclib.Components.Core.EveryPred __everypred;
+		#region public - EveryPred
+		static funclib.Components.Core.EveryPred __everyPred;
 		/// <summary>
 		/// Takes a set of predicates, <see cref="IFunction{T1, TResult}"/>, and returns a <see cref="IFunction"/>. This
 		/// function composes all the predicates that returns a logical true value against all of its arguments, else
 		/// it returns false. Note: f is short-circuiting in that it will stop execution on the funclib.Core.First(
 		/// argument that triggers a logical false result against the original predicates.
 		/// </summary>
-		public static funclib.Components.Core.EveryPred everyPred => __everypred ?? (__everypred = new funclib.Components.Core.EveryPred());
+		public static funclib.Components.Core.EveryPred everyPred => __everyPred ?? (__everyPred = new funclib.Components.Core.EveryPred());
 		/// <summary>
 		/// Takes a set of predicates, <see cref="IFunction{T1, TResult}"/>, and returns a <see cref="IFunction"/>. This
 		/// function composes all the predicates that returns a logical true value against all of its arguments, else
@@ -339,7 +340,7 @@ namespace funclib
 		/// </returns>
 		public static object EveryPred(object p1, object p2, object p3, params object[] ps) => everyPred.Invoke(p1, p2, p3, ps);
 		#endregion
-		#region Sort
+		#region public - Sort
 		static funclib.Components.Core.Sort __sort;
 		/// <summary>
 		/// Returns a sorted collection of the items in coll. If no comparator is
@@ -368,26 +369,26 @@ namespace funclib
 		/// </returns>
 		public static object Sort(object comp, object coll) => sort.Invoke(comp, coll);
 		#endregion
-		#region DoTimes
+		#region public - DoTimes
 		/// <summary>
-		/// Constructor for the <see cref="DoTimes"/> class.
+		/// Constructor for the <see cref="funclib.Components.Core.DoTimes"/> class.
 		/// </summary>
 		/// <param name="n">Number of times to execute the fn.</param>
 		/// <param name="fn">The function to execute.</param>
 		public static object DoTimes(int n, Func<object, object> fn) => new funclib.Components.Core.DoTimes(n, fn).Invoke();
 		/// <summary>
-		/// Constructor for the <see cref="DoTimes"/> class.
+		/// Constructor for the <see cref="funclib.Components.Core.DoTimes"/> class.
 		/// </summary>
 		/// <param name="n">Number of times to execute the fn.</param>
 		/// <param name="fn">The function to execute.</param>
 		public static object DoTimes(int n, IFunction<object, object> fn) => new funclib.Components.Core.DoTimes(n, fn).Invoke();
 		#endregion
-		#region Cat
+		#region public - Cat
 		static funclib.Components.Core.Cat __cat;
 		public static funclib.Components.Core.Cat cat => __cat ?? (__cat = new funclib.Components.Core.Cat());
 		public static object Cat(object rf) => cat.Invoke(rf);
 		#endregion
-		#region Char
+		#region public - Char
 		static funclib.Components.Core.Char __char;
 		/// <summary>
 		/// Coerce to char
@@ -402,32 +403,32 @@ namespace funclib
 		/// </returns>
 		public static object Char(object x) => @char.Invoke(x);
 		#endregion
-		#region ChunkRest
-		static funclib.Components.Core.ChunkRest __chunkrest;
-		public static funclib.Components.Core.ChunkRest chunkRest => __chunkrest ?? (__chunkrest = new funclib.Components.Core.ChunkRest());
+		#region public - ChunkRest
+		static funclib.Components.Core.ChunkRest __chunkRest;
+		public static funclib.Components.Core.ChunkRest chunkRest => __chunkRest ?? (__chunkRest = new funclib.Components.Core.ChunkRest());
 		public static object ChunkRest(object s) => chunkRest.Invoke(s);
 		#endregion
-		#region Range
+		#region public - Range
 		static funclib.Components.Core.Range __range;
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of numbers from start (inclusive) to end
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of numbers from start (inclusive) to end
 		/// (Exclusive), by step, where start defaults to 0, step to 1, and end to
 		/// infinity. When step is equal to 0, returns an infinite sequence of
 		/// start. When start is equal to end, returns empty list.
 		/// </summary>
 		public static funclib.Components.Core.Range range => __range ?? (__range = new funclib.Components.Core.Range());
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of numbers from start (inclusive) to end
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of numbers from start (inclusive) to end
 		/// (Exclusive), by step, where start defaults to 0, step to 1, and end to
 		/// infinity. When step is equal to 0, returns an infinite sequence of
 		/// start. When start is equal to end, returns empty list.
 		/// </summary>
 		/// <returns>
-		/// Returns a <see cref="Collections.Iterate"/> collection starting at 0 continues infinitly.
+		/// Returns a <see cref="Collections.Iterate"/> collection starting at 0 continues infinitely.
 		/// </returns>
 		public static object Range() => range.Invoke();
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of numbers from start (inclusive) to end
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of numbers from start (inclusive) to end
 		/// (Exclusive), by step, where start defaults to 0, step to 1, and end to
 		/// infinity. When step is equal to 0, returns an infinite sequence of
 		/// start. When start is equal to end, returns empty list.
@@ -439,7 +440,7 @@ namespace funclib
 		/// </returns>
 		public static object Range(object end) => range.Invoke(end);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of numbers from start (inclusive) to end
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of numbers from start (inclusive) to end
 		/// (Exclusive), by step, where start defaults to 0, step to 1, and end to
 		/// infinity. When step is equal to 0, returns an infinite sequence of
 		/// start. When start is equal to end, returns empty list.
@@ -452,7 +453,7 @@ namespace funclib
 		/// </returns>
 		public static object Range(object start, object end) => range.Invoke(start, end);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of numbers from start (inclusive) to end
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of numbers from start (inclusive) to end
 		/// (Exclusive), by step, where start defaults to 0, step to 1, and end to
 		/// infinity. When step is equal to 0, returns an infinite sequence of
 		/// start. When start is equal to end, returns empty list.
@@ -466,7 +467,7 @@ namespace funclib
 		/// </returns>
 		public static object Range(object start, object end, object step) => range.Invoke(start, end, step);
 		#endregion
-		#region Or
+		#region public - Or
 		static funclib.Components.Core.Or __or;
 		/// <summary>
 		/// Evaluates objects one at a time, from left to right. If a object returns
@@ -513,12 +514,12 @@ namespace funclib
 		/// </returns>
 		public static object Or(object x, params object[] next) => or.Invoke(x, next);
 		#endregion
-		#region IsSet
-		static funclib.Components.Core.IsSet __isset;
+		#region public - IsSet
+		static funclib.Components.Core.IsSet __isSet;
 		/// <summary>
 		/// Returns true if coll implements <see cref="ISet"/> interface, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsSet isSet => __isset ?? (__isset = new funclib.Components.Core.IsSet());
+		public static funclib.Components.Core.IsSet isSet => __isSet ?? (__isSet = new funclib.Components.Core.IsSet());
 		/// <summary>
 		/// Returns true if coll implements <see cref="ISequential"/> interface, otherwise false.
 		/// </summary>
@@ -528,7 +529,7 @@ namespace funclib
 		/// </returns>
 		public static object IsSet(object x) => isSet.Invoke(x);
 		#endregion
-		#region Rest
+		#region public - Rest
 		static funclib.Components.Core.Rest __rest;
 		/// <summary>
 		/// Returns a possible empty <see cref="Seq"/> of the items after the funclib.Core.First(.
@@ -543,13 +544,13 @@ namespace funclib
 		/// </returns>
 		public static object Rest(object coll) => rest.Invoke(coll);
 		#endregion
-		#region ReFind
-		static funclib.Components.Core.ReFind __refind;
+		#region public - ReFind
+		static funclib.Components.Core.ReFind __reFind;
 		/// <summary>
-		/// Returns the next <see cref="Regex"/> match, if any, of string to pattern, using <see cref="funclib.ReMatcher.Find"/>.
+		/// Returns the next <see cref="Regex"/> match, if any, of string to pattern, using <see cref="ReMatcher.Find"/>.
 		/// Uses <see cref="ReGroups"/> to return the group.
 		/// </summary>
-		public static funclib.Components.Core.ReFind reFind => __refind ?? (__refind = new funclib.Components.Core.ReFind());
+		public static funclib.Components.Core.ReFind reFind => __reFind ?? (__reFind = new funclib.Components.Core.ReFind());
 		/// <summary>
 		/// Returns the next <see cref="Regex"/> match, if any, of string to pattern, using <see cref="ReMatcher.Find"/>.
 		/// Uses <see cref="ReGroups"/> to return the group.
@@ -572,8 +573,8 @@ namespace funclib
 		/// </returns>
 		public static object ReFind(object re, object s) => reFind.Invoke(re, s);
 		#endregion
-		#region IsInteger
-		static funclib.Components.Core.IsInteger __isinteger;
+		#region public - IsInteger
+		static funclib.Components.Core.IsInteger __isInteger;
 		/// <summary>
 		/// Returns true if x is a
 		/// <see cref="int"/>,
@@ -587,7 +588,7 @@ namespace funclib
 		/// or <see cref="sbyte"/>,
 		/// otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsInteger isInteger => __isinteger ?? (__isinteger = new funclib.Components.Core.IsInteger());
+		public static funclib.Components.Core.IsInteger isInteger => __isInteger ?? (__isInteger = new funclib.Components.Core.IsInteger());
 		/// <summary>
 		/// Returns true if x is a
 		/// <see cref="int"/>,
@@ -617,7 +618,7 @@ namespace funclib
 		/// </returns>
 		public static object IsInteger(object n) => isInteger.Invoke(n);
 		#endregion
-		#region Constantly
+		#region public - Constantly
 		static funclib.Components.Core.Constantly __constantly;
 		/// <summary>
 		/// Returns a <see cref="IFunctionParams{TRest, TResult}"/> that takes any number of
@@ -634,33 +635,33 @@ namespace funclib
 		/// </returns>
 		public static object Constantly(object x) => constantly.Invoke(x);
 		#endregion
-		#region Keep
+		#region public - Keep
 		static funclib.Components.Core.Keep __keep;
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of the non-null results of <see cref="IFunction{T1, TResult}"/>.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the non-null results of <see cref="IFunction{T1, TResult}"/>.
 		/// Note: this means false return values will be included. F must be free of side-effects.
 		/// </summary>
 		public static funclib.Components.Core.Keep keep => __keep ?? (__keep = new funclib.Components.Core.Keep());
 		public static object Keep(object f) => keep.Invoke(f);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of the non-null results of <see cref="IFunction{T1, TResult}"/>.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the non-null results of <see cref="IFunction{T1, TResult}"/>.
 		/// Note: this means false return values will be included. F must be free of side-effects.
 		/// </summary>
 		/// <param name="f">An object that implements the <see cref="IFunction{T1, TResult}"/> implements.</param>
 		/// <param name="coll">A collection of items.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> of the non-null results of <see cref="IFunction{T1, TResult}"/>.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the non-null results of <see cref="IFunction{T1, TResult}"/>.
 		/// Note: this means false return values will be included. F must be free of side-effects.
 		/// </returns>
 		public static object Keep(object f, object coll) => keep.Invoke(f, coll);
 		#endregion
-		#region SubVec
-		static funclib.Components.Core.SubVec __subvec;
+		#region public - SubVec
+		static funclib.Components.Core.SubVec __subVec;
 		/// <summary>
 		/// Returns a <see cref="IVector"/> of the items in <see cref="IVector"/> from start (inclusive)
 		/// to end (exclusive). If end is not supplied, default to <see cref="Count"/> of <see cref="IVector"/>.
 		/// </summary>
-		public static funclib.Components.Core.SubVec subVec => __subvec ?? (__subvec = new funclib.Components.Core.SubVec());
+		public static funclib.Components.Core.SubVec subVec => __subVec ?? (__subVec = new funclib.Components.Core.SubVec());
 		/// <summary>
 		/// Returns a <see cref="IVector"/> of the items in <see cref="IVector"/> from start (inclusive)
 		/// to end (exclusive). If end is not supplied, default to <see cref="Count"/> of <see cref="IVector"/>.
@@ -685,7 +686,7 @@ namespace funclib
 		/// </returns>
 		public static object SubVec(object v, object start, object end) => subVec.Invoke(v, start, end);
 		#endregion
-		#region Empty
+		#region public - Empty
 		static funclib.Components.Core.Empty __empty;
 		/// <summary>
 		/// Returns an empty <see cref="ICollection"/> of the same category as coll or null.
@@ -701,14 +702,14 @@ namespace funclib
 		/// </returns>
 		public static object Empty(object coll) => empty.Invoke(coll);
 		#endregion
-		#region Second
+		#region public - Second
 		static funclib.Components.Core.Second __second;
 		/// <summary>
-		/// Same as <see cref="First.Invoke(Next.Invoke(object))"/>.
+		/// Same as new First().Invoke(new Next().Invoke(object)).
 		/// </summary>
 		public static funclib.Components.Core.Second second => __second ?? (__second = new funclib.Components.Core.Second());
 		/// <summary>
-		/// Same as <see cref="First.Invoke(Next.Invoke(object))"/>.
+		/// Same as new First().Invoke(new Next().Invoke(object)).
 		/// </summary>
 		/// <param name="x">Should be a <see cref="Collections.ISeqable"/> collection.</param>
 		/// <returns>
@@ -716,12 +717,12 @@ namespace funclib
 		/// </returns>
 		public static object Second(object x) => second.Invoke(x);
 		#endregion
-		#region IsAny
-		static funclib.Components.Core.IsAny __isany;
+		#region public - IsAny
+		static funclib.Components.Core.IsAny __isAny;
 		/// <summary>
 		/// Returns true given any argument.
 		/// </summary>
-		public static funclib.Components.Core.IsAny isAny => __isany ?? (__isany = new funclib.Components.Core.IsAny());
+		public static funclib.Components.Core.IsAny isAny => __isAny ?? (__isAny = new funclib.Components.Core.IsAny());
 		/// <summary>
 		/// Returns true given any argument.
 		/// </summary>
@@ -731,12 +732,12 @@ namespace funclib
 		/// </returns>
 		public static object IsAny(object x) => isAny.Invoke(x);
 		#endregion
-		#region IsGreaterThanOrEqualTo
-		static funclib.Components.Core.IsGreaterThanOrEqualTo __isgreaterthanorequalto;
+		#region public - IsGreaterThanOrEqualTo
+		static funclib.Components.Core.IsGreaterThanOrEqualTo __isGreaterThanOrEqualTo;
 		/// <summary>
 		/// Returns a true, numbers are monotonically non-increasing order, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsGreaterThanOrEqualTo isGreaterThanOrEqualTo => __isgreaterthanorequalto ?? (__isgreaterthanorequalto = new funclib.Components.Core.IsGreaterThanOrEqualTo());
+		public static funclib.Components.Core.IsGreaterThanOrEqualTo isGreaterThanOrEqualTo => __isGreaterThanOrEqualTo ?? (__isGreaterThanOrEqualTo = new funclib.Components.Core.IsGreaterThanOrEqualTo());
 		/// <summary>
 		/// Returns a true, numbers are monotonically non-increasing order, otherwise false.
 		/// </summary>
@@ -765,12 +766,12 @@ namespace funclib
 		/// </returns>
 		public static object IsGreaterThanOrEqualTo(object x, object y, params object[] more) => isGreaterThanOrEqualTo.Invoke(x, y, more);
 		#endregion
-		#region IsCounted
-		static funclib.Components.Core.IsCounted __iscounted;
+		#region public - IsCounted
+		static funclib.Components.Core.IsCounted __isCounted;
 		/// <summary>
 		/// Returns true if x is a <see cref="ICounted"/>, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsCounted isCounted => __iscounted ?? (__iscounted = new funclib.Components.Core.IsCounted());
+		public static funclib.Components.Core.IsCounted isCounted => __isCounted ?? (__isCounted = new funclib.Components.Core.IsCounted());
 		/// <summary>
 		/// Returns true if x is a <see cref="ICounted"/>, otherwise false.
 		/// </summary>
@@ -780,91 +781,91 @@ namespace funclib
 		/// </returns>
 		public static object IsCounted(object x) => isCounted.Invoke(x);
 		#endregion
-		#region Nth
+		#region public - Nth
 		static funclib.Components.Core.Nth __nth;
 		/// <summary>
-		/// Returns the value at the index. <see cref="Nth"/> throws an exception if index
-		/// is out of bounds or unless notFound is supplied. <see cref="Nth"/> works on
+		/// Returns the value at the index. <see cref="funclib.Components.Core.Nth"/> throws an exception if index
+		/// is out of bounds or unless notFound is supplied. <see cref="funclib.Components.Core.Nth"/> works on
 		/// strings, arrays, Regex matcher, lists and O(n) time for sequences.
 		/// </summary>
 		public static funclib.Components.Core.Nth nth => __nth ?? (__nth = new funclib.Components.Core.Nth());
 		/// <summary>
-		/// Returns the value at the index. <see cref="Nth"/> throws an exception if index
-		/// is out of bounds or unless notFound is supplied. <see cref="Nth"/> works on
+		/// Returns the value at the index. <see cref="funclib.Components.Core.Nth"/> throws an exception if index
+		/// is out of bounds or unless notFound is supplied. <see cref="funclib.Components.Core.Nth"/> works on
 		/// strings, arrays, Regex matcher, lists and O(n) time for sequences.
 		/// </summary>
 		/// <param name="coll">Collection to search for index.</param>
 		/// <param name="index">Index to find.</param>
 		/// <returns>
-		/// Returns the value at the index. <see cref="Nth"/> throws an exception if index
-		/// is out of bounds or unless notFound is supplied. <see cref="Nth"/> works on
+		/// Returns the value at the index. <see cref="funclib.Components.Core.Nth"/> throws an exception if index
+		/// is out of bounds or unless notFound is supplied. <see cref="funclib.Components.Core.Nth"/> works on
 		/// strings, arrays, Regex matcher, lists and O(n) time for sequences.
 		/// </returns>
 		public static object Nth(object coll, object index) => nth.Invoke(coll, index);
 		/// <summary>
-		/// Returns the value at the index. <see cref="Nth"/> throws an exception if index
-		/// is out of bounds or unless notFound is supplied. <see cref="Nth"/> works on
+		/// Returns the value at the index. <see cref="funclib.Components.Core.Nth"/> throws an exception if index
+		/// is out of bounds or unless notFound is supplied. <see cref="funclib.Components.Core.Nth"/> works on
 		/// strings, arrays, Regex matcher, lists and O(n) time for sequences.
 		/// </summary>
 		/// <param name="coll">Collection to search for index.</param>
 		/// <param name="index">Index to find.</param>
 		/// <param name="notFound">Value to return if index is not found.</param>
 		/// <returns>
-		/// Returns the value at the index. <see cref="Nth"/> throws an exception if index
-		/// is out of bounds or unless notFound is supplied. <see cref="Nth"/> works on
+		/// Returns the value at the index. <see cref="funclib.Components.Core.Nth"/> throws an exception if index
+		/// is out of bounds or unless notFound is supplied. <see cref="funclib.Components.Core.Nth"/> works on
 		/// strings, arrays, Regex matcher, lists and O(n) time for sequences.
 		/// </returns>
 		public static object Nth(object coll, object index, object notFound) => nth.Invoke(coll, index, notFound);
 		#endregion
-		#region HaltWhen
-		static funclib.Components.Core.HaltWhen __haltwhen;
-		public static funclib.Components.Core.HaltWhen haltWhen => __haltwhen ?? (__haltwhen = new funclib.Components.Core.HaltWhen());
+		#region public - HaltWhen
+		static funclib.Components.Core.HaltWhen __haltWhen;
+		public static funclib.Components.Core.HaltWhen haltWhen => __haltWhen ?? (__haltWhen = new funclib.Components.Core.HaltWhen());
 		public static object HaltWhen(object pred) => haltWhen.Invoke(pred);
 		public static object HaltWhen(object pred, object retf) => haltWhen.Invoke(pred, retf);
 		#endregion
-		#region DropWhile
-		static funclib.Components.Core.DropWhile __dropwhile;
+		#region public - DropWhile
+		static funclib.Components.Core.DropWhile __dropWhile;
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of the items in coll starting from the funclib.Core.First( item
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the items in coll starting from the funclib.Core.First( item
 		/// for which the predicate returns a logical false.
 		/// </summary>
-		public static funclib.Components.Core.DropWhile dropWhile => __dropwhile ?? (__dropwhile = new funclib.Components.Core.DropWhile());
+		public static funclib.Components.Core.DropWhile dropWhile => __dropWhile ?? (__dropWhile = new funclib.Components.Core.DropWhile());
 		public static object DropWhile(object pred) => dropWhile.Invoke(pred);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of the items in coll starting from the funclib.Core.First( item
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the items in coll starting from the funclib.Core.First( item
 		/// for which the predicate returns a logical false.
 		/// </summary>
 		/// <param name="pred">An object that implements the <see cref="IFunction{T1, T2, TResult}"/> interface.</param>
 		/// <param name="coll">List of times to process.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> with items starting from the funclib.Core.First( logically false item in coll.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> with items starting from the funclib.Core.First( logically false item in coll.
 		/// </returns>
 		public static object DropWhile(object pred, object coll) => dropWhile.Invoke(pred, coll);
 		#endregion
-		#region TakeWhile
-		static funclib.Components.Core.TakeWhile __takewhile;
+		#region public - TakeWhile
+		static funclib.Components.Core.TakeWhile __takeWhile;
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of successive items from coll while
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of successive items from coll while
 		/// <see cref="IFunction{T1, T2, TResult}"/> pred returns a logical true. pred
 		/// must be free of side-effects.
 		/// </summary>
-		public static funclib.Components.Core.TakeWhile takeWhile => __takewhile ?? (__takewhile = new funclib.Components.Core.TakeWhile());
+		public static funclib.Components.Core.TakeWhile takeWhile => __takeWhile ?? (__takeWhile = new funclib.Components.Core.TakeWhile());
 		public static object TakeWhile(object pred) => takeWhile.Invoke(pred);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of successive items from coll while
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of successive items from coll while
 		/// <see cref="IFunction{T1, T2, TResult}"/> pred returns a logical true. pred
 		/// must be free of side-effects.
 		/// </summary>
 		/// <param name="pred">An object that implements the <see cref="IFunction{T1, T2, TResult}"/> interface.</param>
 		/// <param name="coll">List of times to process.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> of successive items from coll while
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of successive items from coll while
 		/// <see cref="IFunction{T1, T2, TResult}"/> pred returns a logical true. pred
 		/// must be free of side-effects.
 		/// </returns>
 		public static object TakeWhile(object pred, object coll) => takeWhile.Invoke(pred, coll);
 		#endregion
-		#region Resetǃ
+		#region public - Resetǃ
 		static funclib.Components.Core.Resetǃ __resetǃ;
 		/// <summary>
 		/// Sets the value of <see cref="IAtom"/> to the new value without regard for
@@ -882,12 +883,12 @@ namespace funclib
 		/// </returns>
 		public static object Resetǃ(object atom, object newVal) => resetǃ.Invoke(atom, newVal);
 		#endregion
-		#region IsTrue
-		static funclib.Components.Core.IsTrue __istrue;
+		#region public - IsTrue
+		static funclib.Components.Core.IsTrue __isTrue;
 		/// <summary>
 		/// Returns true if x is true, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsTrue isTrue => __istrue ?? (__istrue = new funclib.Components.Core.IsTrue());
+		public static funclib.Components.Core.IsTrue isTrue => __isTrue ?? (__isTrue = new funclib.Components.Core.IsTrue());
 		/// <summary>
 		/// Returns true if x is true, otherwise false.
 		/// </summary>
@@ -897,12 +898,12 @@ namespace funclib
 		/// </returns>
 		public static object IsTrue(object x) => isTrue.Invoke(x);
 		#endregion
-		#region IsInt
-		static funclib.Components.Core.IsInt __isint;
+		#region public - IsInt
+		static funclib.Components.Core.IsInt __isInt;
 		/// <summary>
 		/// Returns true if x is a <see cref="int"/>, <see cref="long"/>, <see cref="short"/> or <see cref="byte"/>, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsInt isInt => __isint ?? (__isint = new funclib.Components.Core.IsInt());
+		public static funclib.Components.Core.IsInt isInt => __isInt ?? (__isInt = new funclib.Components.Core.IsInt());
 		/// <summary>
 		/// Returns true if x is a <see cref="int"/>, <see cref="long"/>, <see cref="short"/> or <see cref="byte"/>, otherwise false.
 		/// </summary>
@@ -912,12 +913,12 @@ namespace funclib
 		/// </returns>
 		public static object IsInt(object n) => isInt.Invoke(n);
 		#endregion
-		#region NthNext
-		static funclib.Components.Core.NthNext __nthnext;
+		#region public - NthNext
+		static funclib.Components.Core.NthNext __nthNext;
 		/// <summary>
 		/// Returns the nth next of colls. <see cref="Seq"/> is called when n is zero.
 		/// </summary>
-		public static funclib.Components.Core.NthNext nthNext => __nthnext ?? (__nthnext = new funclib.Components.Core.NthNext());
+		public static funclib.Components.Core.NthNext nthNext => __nthNext ?? (__nthNext = new funclib.Components.Core.NthNext());
 		/// <summary>
 		/// Returns the nth next of colls. <see cref="Seq"/> is called when n is zero.
 		/// </summary>
@@ -928,7 +929,7 @@ namespace funclib
 		/// </returns>
 		public static object NthNext(object coll, object n) => nthNext.Invoke(coll, n);
 		#endregion
-		#region Keys
+		#region public - Keys
 		static funclib.Components.Core.Keys __keys;
 		/// <summary>
 		/// Returns a <see cref="Seq"/> of the <see cref="IMap"/>'s keys.
@@ -943,34 +944,34 @@ namespace funclib
 		/// </returns>
 		public static object Keys(object map) => keys.Invoke(map);
 		#endregion
-		#region PartitionBy
-		static funclib.Components.Core.PartitionBy __partitionby;
+		#region public - PartitionBy
+		static funclib.Components.Core.PartitionBy __partitionBy;
 		/// <summary>
 		/// Applies <see cref="IFunction{T1, TResult}"/> to each value in coll, splitting it each
-		/// time f returns a new value. Returns a <see cref="LazySeq"/> of partitions.
+		/// time f returns a new value. Returns a <see cref="funclib.Components.Core.LazySeq"/> of partitions.
 		/// </summary>
-		public static funclib.Components.Core.PartitionBy partitionBy => __partitionby ?? (__partitionby = new funclib.Components.Core.PartitionBy());
+		public static funclib.Components.Core.PartitionBy partitionBy => __partitionBy ?? (__partitionBy = new funclib.Components.Core.PartitionBy());
 		public static object PartitionBy(object f) => partitionBy.Invoke(f);
 		/// <summary>
 		/// Applies <see cref="IFunction{T1, TResult}"/> to each value in coll, splitting it each
-		/// time f returns a new value. Returns a <see cref="LazySeq"/> of partitions.
+		/// time f returns a new value. Returns a <see cref="funclib.Components.Core.LazySeq"/> of partitions.
 		/// </summary>
 		/// <param name="f">An object that implements the <see cref="IFunction{T1, TResult}"/> interface.</param>
 		/// <param name="coll">A collection that can be <see cref="Seq"/> over.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> of partitions.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of partitions.
 		/// </returns>
 		public static object PartitionBy(object f, object coll) => partitionBy.Invoke(f, coll);
 		#endregion
-		#region AssocIn
-		static funclib.Components.Core.AssocIn __associn;
+		#region public - AssocIn
+		static funclib.Components.Core.AssocIn __assocIn;
 		/// <summary>
 		/// Associates a value n a nested associative structure, where ks is a
 		/// sequence of keys and v is the new value. Returns a new nested structure.
 		/// If any levels do not exists, a new <see cref="Collections.HashMap"/>
 		/// will be created.
 		/// </summary>
-		public static funclib.Components.Core.AssocIn assocIn => __associn ?? (__associn = new funclib.Components.Core.AssocIn());
+		public static funclib.Components.Core.AssocIn assocIn => __assocIn ?? (__assocIn = new funclib.Components.Core.AssocIn());
 		/// <summary>
 		/// Associates a value n a nested associative structure, where ks is a
 		/// sequence of keys and v is the new value. Returns a new nested structure.
@@ -985,12 +986,12 @@ namespace funclib
 		/// </returns>
 		public static object AssocIn(object m, object ks, object v) => assocIn.Invoke(m, ks, v);
 		#endregion
-		#region ChunkAppend
-		static funclib.Components.Core.ChunkAppend __chunkappend;
-		public static funclib.Components.Core.ChunkAppend chunkAppend => __chunkappend ?? (__chunkappend = new funclib.Components.Core.ChunkAppend());
+		#region public - ChunkAppend
+		static funclib.Components.Core.ChunkAppend __chunkAppend;
+		public static funclib.Components.Core.ChunkAppend chunkAppend => __chunkAppend ?? (__chunkAppend = new funclib.Components.Core.ChunkAppend());
 		public static object ChunkAppend(object b, object x) => chunkAppend.Invoke(b, x);
 		#endregion
-		#region Format
+		#region public - Format
 		static funclib.Components.Core.Format __format;
 		/// <summary>
 		/// Formats a string using <see cref="string.Format(string, object[])"/> format syntax.
@@ -1006,76 +1007,76 @@ namespace funclib
 		/// </returns>
 		public static object Format(object fmt, params object[] args) => format.Invoke(fmt, args);
 		#endregion
-		#region Juxt
+		#region public - Juxt
 		static funclib.Components.Core.Juxt __juxt;
 		/// <summary>
-		/// Takes a set of <see cref="IFunction"/> and returns <see cref="Function"/> that is the juxtaposition
-		/// of those <see cref="IFunction"/>. The returned <see cref="Function"/> takes a variable number or
-		/// args, and returns a <see cref="Vector"/> containing the result of applying each <see cref="IFunction"/>
+		/// Takes a set of <see cref="IFunction"/> and returns <see cref="IFunction"/> that is the juxtaposition
+		/// of those <see cref="IFunction"/>. The returned <see cref="IFunction"/> takes a variable number or
+		/// args, and returns a <see cref="funclib.Components.Core.Vector"/> containing the result of applying each <see cref="IFunction"/>
 		/// to the args (left-to-right).
 		/// </summary>
 		public static funclib.Components.Core.Juxt juxt => __juxt ?? (__juxt = new funclib.Components.Core.Juxt());
 		/// <summary>
-		/// Takes a set of <see cref="IFunction"/> and returns <see cref="Function"/> that is the juxtaposition
-		/// of those <see cref="IFunction"/>. The returned <see cref="Function"/> takes a variable number or
-		/// args, and returns a <see cref="Vector"/> containing the result of applying each <see cref="IFunction"/>
+		/// Takes a set of <see cref="IFunction"/> and returns <see cref="IFunction"/> that is the juxtaposition
+		/// of those <see cref="IFunction"/>. The returned <see cref="IFunction"/> takes a variable number or
+		/// args, and returns a <see cref="funclib.Components.Core.Vector"/> containing the result of applying each <see cref="IFunction"/>
 		/// to the args (left-to-right).
 		/// </summary>
 		/// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
 		/// <returns>
-		/// Takes a set of <see cref="IFunction"/> and returns <see cref="Function"/> that is the juxtaposition
-		/// of those <see cref="IFunction"/>. The returned <see cref="Function"/> takes a variable number or
-		/// args, and returns a <see cref="Vector"/> containing the result of applying each <see cref="IFunction"/>
+		/// Takes a set of <see cref="IFunction"/> and returns <see cref="IFunction"/> that is the juxtaposition
+		/// of those <see cref="IFunction"/>. The returned <see cref="IFunction"/> takes a variable number or
+		/// args, and returns a <see cref="funclib.Components.Core.Vector"/> containing the result of applying each <see cref="IFunction"/>
 		/// to the args (left-to-right).
 		/// </returns>
 		public static object Juxt(object f) => juxt.Invoke(f);
 		/// <summary>
-		/// Takes a set of <see cref="IFunction"/> and returns <see cref="Function"/> that is the juxtaposition
-		/// of those <see cref="IFunction"/>. The returned <see cref="Function"/> takes a variable number or
-		/// args, and returns a <see cref="Vector"/> containing the result of applying each <see cref="IFunction"/>
+		/// Takes a set of <see cref="IFunction"/> and returns <see cref="IFunction"/> that is the juxtaposition
+		/// of those <see cref="IFunction"/>. The returned <see cref="IFunction"/> takes a variable number or
+		/// args, and returns a <see cref="funclib.Components.Core.Vector"/> containing the result of applying each <see cref="IFunction"/>
 		/// to the args (left-to-right).</summary>
 		/// <param name="f">First object that implements the <see cref="IFunction"/> interface.</param>
 		/// <param name="g">Second object that implements the <see cref="IFunction"/> interface.</param>
 		/// <returns>
-		/// Takes a set of <see cref="IFunction"/> and returns <see cref="Function"/> that is the juxtaposition
-		/// of those <see cref="IFunction"/>. The returned <see cref="Function"/> takes a variable number or
-		/// args, and returns a <see cref="Vector"/> containing the result of applying each <see cref="IFunction"/>
+		/// Takes a set of <see cref="IFunction"/> and returns <see cref="IFunction"/> that is the juxtaposition
+		/// of those <see cref="IFunction"/>. The returned <see cref="IFunction"/> takes a variable number or
+		/// args, and returns a <see cref="funclib.Components.Core.Vector"/> containing the result of applying each <see cref="IFunction"/>
 		/// to the args (left-to-right).
 		/// </returns>
 		public static object Juxt(object f, object g) => juxt.Invoke(f, g);
 		/// <summary>
-		/// Takes a set of <see cref="IFunction"/> and returns <see cref="Function"/> that is the juxtaposition
-		/// of those <see cref="IFunction"/>. The returned <see cref="Function"/> takes a variable number or
-		/// args, and returns a <see cref="Vector"/> containing the result of applying each <see cref="IFunction"/>
+		/// Takes a set of <see cref="IFunction"/> and returns <see cref="IFunction"/> that is the juxtaposition
+		/// of those <see cref="IFunction"/>. The returned <see cref="IFunction"/> takes a variable number or
+		/// args, and returns a <see cref="funclib.Components.Core.Vector"/> containing the result of applying each <see cref="IFunction"/>
 		/// to the args (left-to-right).</summary>
 		/// <param name="f">First object that implements the <see cref="IFunction"/> interface.</param>
 		/// <param name="g">Second object that implements the <see cref="IFunction"/> interface.</param>
 		/// <param name="h">Third object that implements the <see cref="IFunction"/> interface.</param>
 		/// <returns>
-		/// Takes a set of <see cref="IFunction"/> and returns <see cref="Function"/> that is the juxtaposition
-		/// of those <see cref="IFunction"/>. The returned <see cref="Function"/> takes a variable number or
-		/// args, and returns a <see cref="Vector"/> containing the result of applying each <see cref="IFunction"/>
+		/// Takes a set of <see cref="IFunction"/> and returns <see cref="IFunction"/> that is the juxtaposition
+		/// of those <see cref="IFunction"/>. The returned <see cref="IFunction"/> takes a variable number or
+		/// args, and returns a <see cref="funclib.Components.Core.Vector"/> containing the result of applying each <see cref="IFunction"/>
 		/// to the args (left-to-right).
 		/// </returns>
 		public static object Juxt(object f, object g, object h) => juxt.Invoke(f, g, h);
 		/// <summary>
-		/// Takes a set of <see cref="IFunction"/> and returns <see cref="Function"/> that is the juxtaposition
-		/// of those <see cref="IFunction"/>. The returned <see cref="Function"/> takes a variable number or
-		/// args, and returns a <see cref="Vector"/> containing the result of applying each <see cref="IFunction"/>
+		/// Takes a set of <see cref="IFunction"/> and returns <see cref="IFunction"/> that is the juxtaposition
+		/// of those <see cref="IFunction"/>. The returned <see cref="IFunction"/> takes a variable number or
+		/// args, and returns a <see cref="funclib.Components.Core.Vector"/> containing the result of applying each <see cref="IFunction"/>
 		/// to the args (left-to-right).</summary>
 		/// <param name="f">First object that implements the <see cref="IFunction"/> interface.</param>
 		/// <param name="g">Second object that implements the <see cref="IFunction"/> interface.</param>
 		/// <param name="h">Third object that implements the <see cref="IFunction"/> interface.</param>
 		/// <param name="fs">Rest of the object that implements the <see cref="IFunction"/> interface.</param>
 		/// <returns>
-		/// Takes a set of <see cref="IFunction"/> and returns <see cref="Function"/> that is the juxtaposition
-		/// of those <see cref="IFunction"/>. The returned <see cref="Function"/> takes a variable number or
-		/// args, and returns a <see cref="Vector"/> containing the result of applying each <see cref="IFunction"/>
+		/// Takes a set of <see cref="IFunction"/> and returns <see cref="IFunction"/> that is the juxtaposition
+		/// of those <see cref="IFunction"/>. The returned <see cref="IFunction"/> takes a variable number or
+		/// args, and returns a <see cref="funclib.Components.Core.Vector"/> containing the result of applying each <see cref="IFunction"/>
 		/// to the args (left-to-right).
 		/// </returns>
 		public static object Juxt(object f, object g, object h, params object[] fs) => juxt.Invoke(f, g, h, fs);
 		#endregion
-		#region Divide
+		#region public - Divide
 		static funclib.Components.Core.Divide __divide;
 		/// <summary>
 		/// Divides number(s).
@@ -1109,7 +1110,7 @@ namespace funclib
 		/// </returns>
 		public static object Divide(object x, object y, params object[] more) => divide.Invoke(x, y, more);
 		#endregion
-		#region VResetǃ
+		#region public - VResetǃ
 		static funclib.Components.Core.VResetǃ __vresetǃ;
 		/// <summary>
 		/// Sets the value of <see cref="Volatileǃ"/> to a new value without
@@ -1127,7 +1128,7 @@ namespace funclib
 		/// </returns>
 		public static object VResetǃ(object vol, object newVal) => vresetǃ.Invoke(vol, newVal);
 		#endregion
-		#region Dec
+		#region public - Dec
 		static funclib.Components.Core.Dec __dec;
 		/// <summary>
 		/// Returns a number one less than num.
@@ -1143,12 +1144,12 @@ namespace funclib
 		/// </returns>
 		public static object Dec(object x) => dec.Invoke(x);
 		#endregion
-		#region RemoveWatch
-		static funclib.Components.Core.RemoveWatch __removewatch;
+		#region public - RemoveWatch
+		static funclib.Components.Core.RemoveWatch __removeWatch;
 		/// <summary>
 		///  Removes a watch from the <see cref="ARef"/>'s reference.
 		/// </summary>
-		public static funclib.Components.Core.RemoveWatch removeWatch => __removewatch ?? (__removewatch = new funclib.Components.Core.RemoveWatch());
+		public static funclib.Components.Core.RemoveWatch removeWatch => __removeWatch ?? (__removeWatch = new funclib.Components.Core.RemoveWatch());
 		/// <summary>
 		///  Removes a watch from the <see cref="ARef"/>'s reference.
 		/// </summary>
@@ -1159,27 +1160,27 @@ namespace funclib
 		/// </returns>
 		public static object RemoveWatch(object @ref, object key) => removeWatch.Invoke(@ref, key);
 		#endregion
-		#region IsSome
-		static funclib.Components.Core.IsSome __issome;
+		#region public - IsSome
+		static funclib.Components.Core.IsSome __isSome;
 		/// <summary>
-		/// Returns true if x is not <see cref="null"/>, otherwise false.
+		/// Returns true if x is not null, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsSome isSome => __issome ?? (__issome = new funclib.Components.Core.IsSome());
+		public static funclib.Components.Core.IsSome isSome => __isSome ?? (__isSome = new funclib.Components.Core.IsSome());
 		/// <summary>
-		/// Returns true if x is not <see cref="null"/>, otherwise false.
+		/// Returns true if x is not null, otherwise false.
 		/// </summary>
 		/// <param name="x">Object to test.</param>
 		/// <returns>
-		/// Returns true if x is not <see cref="null"/>, otherwise false.
+		/// Returns true if x is not null, otherwise false.
 		/// </returns>
 		public static object IsSome(object x) => isSome.Invoke(x);
 		#endregion
-		#region IsList
-		static funclib.Components.Core.IsList __islist;
+		#region public - IsList
+		static funclib.Components.Core.IsList __isList;
 		/// <summary>
 		/// Returns true if x is a <see cref="IList"/>, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsList isList => __islist ?? (__islist = new funclib.Components.Core.IsList());
+		public static funclib.Components.Core.IsList isList => __isList ?? (__isList = new funclib.Components.Core.IsList());
 		/// <summary>
 		/// Returns true if x is a <see cref="IList"/>, otherwise false.
 		/// </summary>
@@ -1189,12 +1190,12 @@ namespace funclib
 		/// </returns>
 		public static object IsList(object x) => isList.Invoke(x);
 		#endregion
-		#region IsSeq
-		static funclib.Components.Core.IsSeq __isseq;
+		#region public - IsSeq
+		static funclib.Components.Core.IsSeq __isSeq;
 		/// <summary>
 		/// Returns true if x is a <see cref="ISeq"/>, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsSeq isSeq => __isseq ?? (__isseq = new funclib.Components.Core.IsSeq());
+		public static funclib.Components.Core.IsSeq isSeq => __isSeq ?? (__isSeq = new funclib.Components.Core.IsSeq());
 		/// <summary>
 		/// Returns true if x is a <see cref="ISeq"/>, otherwise false.
 		/// </summary>
@@ -1204,45 +1205,45 @@ namespace funclib
 		/// </returns>
 		public static object IsSeq(object x) => isSeq.Invoke(x);
 		#endregion
-		#region DoRun
-		static funclib.Components.Core.DoRun __dorun;
+		#region public - DoRun
+		static funclib.Components.Core.DoRun __doRun;
 		/// <summary>
-		/// For <see cref="LazySeq"/> that are produced via other functions and have side effects.
-		/// The side effects are not produces until the sequence is consumed. <see cref="DoAll"/>
+		/// For <see cref="funclib.Components.Core.LazySeq"/> that are produced via other functions and have side effects.
+		/// The side effects are not produces until the sequence is consumed. <see cref="funclib.Components.Core.DoAll"/>
 		/// walks though successive next, retains the head and returns it, thus causing the
 		/// entire seq to reside in memory at one time.
 		/// </summary>
-		public static funclib.Components.Core.DoRun doRun => __dorun ?? (__dorun = new funclib.Components.Core.DoRun());
+		public static funclib.Components.Core.DoRun doRun => __doRun ?? (__doRun = new funclib.Components.Core.DoRun());
 		/// <summary>
-		/// For <see cref="LazySeq"/> that are produced via other functions and have side effects.
-		/// The side effects are not produces until the sequence is consumed. <see cref="DoAll"/>
+		/// For <see cref="funclib.Components.Core.LazySeq"/> that are produced via other functions and have side effects.
+		/// The side effects are not produces until the sequence is consumed. <see cref="funclib.Components.Core.DoAll"/>
 		/// walks though successive next, retains the head and returns it, thus causing the
 		/// entire seq to reside in memory at one time.
 		/// </summary>
-		/// <param name="coll">A <see cref="LazySeq"/> to consume.</param>
+		/// <param name="coll">A <see cref="funclib.Components.Core.LazySeq"/> to consume.</param>
 		/// <returns>
 		/// Returns null.
 		/// </returns>
 		public static object DoRun(object coll) => doRun.Invoke(coll);
 		/// <summary>
-		/// For <see cref="LazySeq"/> that are produced via other functions and have side effects.
-		/// The side effects are not produces until the sequence is consumed. <see cref="DoAll"/>
+		/// For <see cref="funclib.Components.Core.LazySeq"/> that are produced via other functions and have side effects.
+		/// The side effects are not produces until the sequence is consumed. <see cref="funclib.Components.Core.DoAll"/>
 		/// walks though successive next, retains the head and returns it, thus causing the
 		/// entire seq to reside in memory at one time.
 		/// </summary>
 		/// <param name="n">The <see cref="int"/> times to walk the sequence.</param>
-		/// <param name="coll"><see cref="LazySeq"/> to consume.</param>
+		/// <param name="coll"><see cref="funclib.Components.Core.LazySeq"/> to consume.</param>
 		/// <returns>
 		/// Returns null.
 		/// </returns>
 		public static object DoRun(object n, object coll) => doRun.Invoke(n, coll);
 		#endregion
-		#region IsEven
-		static funclib.Components.Core.IsEven __iseven;
+		#region public - IsEven
+		static funclib.Components.Core.IsEven __isEven;
 		/// <summary>
 		/// Returns true if n is an even number.
 		/// </summary>
-		public static funclib.Components.Core.IsEven isEven => __iseven ?? (__iseven = new funclib.Components.Core.IsEven());
+		public static funclib.Components.Core.IsEven isEven => __isEven ?? (__isEven = new funclib.Components.Core.IsEven());
 		/// <summary>
 		/// Returns true if n is an even number.
 		/// </summary>
@@ -1252,17 +1253,17 @@ namespace funclib
 		/// </returns>
 		public static object IsEven(object n) => isEven.Invoke(n);
 		#endregion
-		#region Chunk
+		#region public - Chunk
 		static funclib.Components.Core.Chunk __chunk;
 		public static funclib.Components.Core.Chunk chunk => __chunk ?? (__chunk = new funclib.Components.Core.Chunk());
 		public static object Chunk(object b) => chunk.Invoke(b);
 		#endregion
-		#region RandInt
-		static funclib.Components.Core.RandInt __randint;
+		#region public - RandInt
+		static funclib.Components.Core.RandInt __randInt;
 		/// <summary>
 		/// Returns a <see cref="Random"/> <see cref="int"/> between 0 (inclusive) and n (exclusive).
 		/// </summary>
-		public static funclib.Components.Core.RandInt randInt => __randint ?? (__randint = new funclib.Components.Core.RandInt());
+		public static funclib.Components.Core.RandInt randInt => __randInt ?? (__randInt = new funclib.Components.Core.RandInt());
 		/// <summary>
 		/// Returns a <see cref="Random"/> <see cref="int"/> between 0 (inclusive) and n (exclusive).
 		/// </summary>
@@ -1272,33 +1273,33 @@ namespace funclib
 		/// </returns>
 		public static object RandInt(object n) => randInt.Invoke(n);
 		#endregion
-		#region LazySeq
+		#region public - LazySeq
 		/// <summary>
-		/// Creates an empty <see cref="LazySeq"/> that yields null.
+		/// Creates an empty <see cref="funclib.Components.Core.LazySeq"/> that yields null.
 		/// </summary>
 		public static funclib.Components.Core.LazySeq LazySeq() => new funclib.Components.Core.LazySeq();
 		/// <summary>
-		/// Creates a <see cref="LazySeq"/> with the fn as its body.
+		/// Creates a <see cref="funclib.Components.Core.LazySeq"/> with the fn as its body.
 		/// </summary>
 		/// <param name="fn">A function to evaluate during each <see cref="LazySeq.Seq"/> call.</param>
 		public static funclib.Components.Core.LazySeq LazySeq(Func<object> fn) => new funclib.Components.Core.LazySeq(fn);
 		/// <summary>
-		/// Creates a <see cref="LazySeq"/> with the fn as its body.
+		/// Creates a <see cref="funclib.Components.Core.LazySeq"/> with the fn as its body.
 		/// </summary>
 		/// <param name="fn">A function to evaluate during each <see cref="LazySeq.Seq"/> call.</param>
 		public static funclib.Components.Core.LazySeq LazySeq(IFunction<object> fn) => new funclib.Components.Core.LazySeq(fn);
 		/// <summary>
-		/// Creates a <see cref="LazySeq"/> with the fn returning the object as its body.
+		/// Creates a <see cref="funclib.Components.Core.LazySeq"/> with the fn returning the object as its body.
 		/// </summary>
 		/// <param name="body">The object to return when <see cref="LazySeq.Seq"/> is called.</param>
 		public static funclib.Components.Core.LazySeq LazySeq(object body) => new funclib.Components.Core.LazySeq(body);
 		/// <summary>
-		/// Creates a <see cref="LazySeq"/> with the items of the sequence.
+		/// Creates a <see cref="funclib.Components.Core.LazySeq"/> with the items of the sequence.
 		/// </summary>
 		/// <param name="e">The sequence of items.</param>
 		public static funclib.Components.Core.LazySeq LazySeq(ISeq e) => new funclib.Components.Core.LazySeq(e);
 		#endregion
-		#region Subs
+		#region public - Subs
 		static funclib.Components.Core.Subs __subs;
 		/// <summary>
 		/// Returns the <see cref="string.Substring(int, int)"/> of s beginning at start inclusive, and ending
@@ -1331,16 +1332,16 @@ namespace funclib
 		/// </returns>
 		public static object Subs(object s, object start, object end) => subs.Invoke(s, start, end);
 		#endregion
-		#region SortedSet
-		static funclib.Components.Core.SortedSet __sortedset;
+		#region public - SortedSet
+		static funclib.Components.Core.SortedSet __sortedSet;
 		/// <summary>
 		/// Returns a new <see cref="Collections.SortedSet"/> with the supplied keys. Any
-		/// equal keys are handled as if by repeated uses of <see cref="Conj"/>.
+		/// equal keys are handled as if by repeated uses of <see cref="funclib.Components.Core.Conj"/>.
 		/// </summary>
-		public static funclib.Components.Core.SortedSet sortedSet => __sortedset ?? (__sortedset = new funclib.Components.Core.SortedSet());
+		public static funclib.Components.Core.SortedSet sortedSet => __sortedSet ?? (__sortedSet = new funclib.Components.Core.SortedSet());
 		/// <summary>
 		/// Returns a new <see cref="Collections.SortedSet"/> with the supplied keys. Any
-		/// equal keys are handled as if by repeated uses of <see cref="Conj"/>.
+		/// equal keys are handled as if by repeated uses of <see cref="funclib.Components.Core.Conj"/>.
 		/// </summary>
 		/// <returns>
 		/// Returns <see cref="Collections.SortedSet.EMPTY"/>.
@@ -1348,21 +1349,21 @@ namespace funclib
 		public static object SortedSet() => sortedSet.Invoke();
 		/// <summary>
 		/// Returns a new <see cref="Collections.SortedSet"/> with the supplied keys. Any
-		/// equal keys are handled as if by repeated uses of <see cref="Conj"/>.
+		/// equal keys are handled as if by repeated uses of <see cref="funclib.Components.Core.Conj"/>.
 		/// </summary>
 		/// <param name="keys">Keys to add to <see cref="Collections.SortedSet"/> data structure.</param>
 		/// <returns>
 		/// Returns a new <see cref="Collections.SortedSet"/> with the supplied keys. Any
-		/// equal keys are handled as if by repeated uses of <see cref="Conj"/>.
+		/// equal keys are handled as if by repeated uses of <see cref="funclib.Components.Core.Conj"/>.
 		/// </returns>
 		public static object SortedSet(params object[] keys) => sortedSet.Invoke(keys);
 		#endregion
-		#region IsOdd
-		static funclib.Components.Core.IsOdd __isodd;
+		#region public - IsOdd
+		static funclib.Components.Core.IsOdd __isOdd;
 		/// <summary>
 		/// Returns true if x is an odd number, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsOdd isOdd => __isodd ?? (__isodd = new funclib.Components.Core.IsOdd());
+		public static funclib.Components.Core.IsOdd isOdd => __isOdd ?? (__isOdd = new funclib.Components.Core.IsOdd());
 		/// <summary>
 		/// Returns true if x is an odd number, otherwise false.
 		/// </summary>
@@ -1372,7 +1373,7 @@ namespace funclib
 		/// </returns>
 		public static object IsOdd(object n) => isOdd.Invoke(n);
 		#endregion
-		#region Boolean
+		#region public - Boolean
 		static funclib.Components.Core.Boolean __boolean;
 		/// <summary>
 		/// If x is a <see cref="bool"/> return x, otherwise return x != null.
@@ -1387,27 +1388,27 @@ namespace funclib
 		/// </returns>
 		public static object Boolean(object x) => boolean.Invoke(x);
 		#endregion
-		#region ReSeq
-		static funclib.Components.Core.ReSeq __reseq;
+		#region public - ReSeq
+		static funclib.Components.Core.ReSeq __reSeq;
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of successive matches of pattern in string,
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of successive matches of pattern in string,
 		/// using <see cref="ReMatcher.Find"/>, each such match processed with <see cref="ReGroups"/>.
 		/// </summary>
-		public static funclib.Components.Core.ReSeq reSeq => __reseq ?? (__reseq = new funclib.Components.Core.ReSeq());
+		public static funclib.Components.Core.ReSeq reSeq => __reSeq ?? (__reSeq = new funclib.Components.Core.ReSeq());
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of successive matches of pattern in string,
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of successive matches of pattern in string,
 		/// using <see cref="ReMatcher.Find"/>, each such match processed with <see cref="ReGroups"/>.
 		/// </summary>
 		/// <param name="re">An object that is already a <see cref="Regex"/> instance.</param>
 		/// <param name="s">The string to search for a match(s).</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> of successive matches of pattern in string,
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of successive matches of pattern in string,
 		/// using <see cref="ReMatcher.Find"/>, each such match processed with <see cref="ReGroups"/>.
 		/// </returns>
 		public static object ReSeq(object re, object s) => reSeq.Invoke(re, s);
 		#endregion
-		#region AddWatch
-		static funclib.Components.Core.AddWatch __addwatch;
+		#region public - AddWatch
+		static funclib.Components.Core.AddWatch __addWatch;
 		/// <summary>
 		/// Adds a watch function to an <see cref="IRef"/> variable. The
 		/// watch function must implement the <see cref="IFunction"/> interface
@@ -1415,10 +1416,10 @@ namespace funclib
 		/// state. Whenever the <see cref="IRef"/>'s state changes all registered
 		/// watches will be called. The functions will be synchronously called. Note:
 		/// an <see cref="IAtom"/>'s state may have changed prior to calling the
-		/// function so use th old/new state argument instead of deref'ing the
+		/// function so use th old/new state argument instead of de-refing the
 		/// state again.
 		/// </summary>
-		public static funclib.Components.Core.AddWatch addWatch => __addwatch ?? (__addwatch = new funclib.Components.Core.AddWatch());
+		public static funclib.Components.Core.AddWatch addWatch => __addWatch ?? (__addWatch = new funclib.Components.Core.AddWatch());
 		/// <summary>
 		/// Adds a watch function to an <see cref="IRef"/> variable. The
 		/// watch function must implement the <see cref="IFunction"/> interface
@@ -1426,7 +1427,7 @@ namespace funclib
 		/// state. Whenever the <see cref="IRef"/>'s state changes all registered
 		/// watches will be called. The functions will be synchronously called. Note:
 		/// an <see cref="IAtom"/>'s state may have changed prior to calling the
-		/// function so use th old/new state argument instead of deref'ing the
+		/// function so use th old/new state argument instead of de-refing the
 		/// state again.
 		/// </summary>
 		/// <param name="ref">An object that implements the <see cref="IRef"/> interface.</param>
@@ -1437,24 +1438,24 @@ namespace funclib
 		/// </returns>
 		public static object AddWatch(object @ref, object key, object fn) => addWatch.Invoke(@ref, key, fn);
 		#endregion
-		#region Interpose
+		#region public - Interpose
 		static funclib.Components.Core.Interpose __interpose;
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of elements separated by sep.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of elements separated by sep.
 		/// </summary>
 		public static funclib.Components.Core.Interpose interpose => __interpose ?? (__interpose = new funclib.Components.Core.Interpose());
 		public static object Interpose(object sep) => interpose.Invoke(sep);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of elements separated by sep.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of elements separated by sep.
 		/// </summary>
 		/// <param name="sep">Separator object.</param>
-		/// <param name="coll">Collection to insert the separtor with.</param>
+		/// <param name="coll">Collection to insert the separator with.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> of elements separated by sep.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of elements separated by sep.
 		/// </returns>
 		public static object Interpose(object sep, object coll) => interpose.Invoke(sep, coll);
 		#endregion
-		#region Update
+		#region public - Update
 		static funclib.Components.Core.Update __update;
 		/// <summary>
 		/// 'Updates' a value in an <see cref="IAssociative"/> structure. where k is a key and f is
@@ -1554,12 +1555,12 @@ namespace funclib
 		/// </returns>
 		public static object Update(object m, object k, object f, object x, object y, object z, params object[] more) => update.Invoke(m, k, f, x, y, z, more);
 		#endregion
-		#region IsDouble
-		static funclib.Components.Core.IsDouble __isdouble;
+		#region public - IsDouble
+		static funclib.Components.Core.IsDouble __isDouble;
 		/// <summary>
 		/// Returns true if x is a <see cref="double"/>, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsDouble isDouble => __isdouble ?? (__isdouble = new funclib.Components.Core.IsDouble());
+		public static funclib.Components.Core.IsDouble isDouble => __isDouble ?? (__isDouble = new funclib.Components.Core.IsDouble());
 		/// <summary>
 		/// Returns true if x is a <see cref="double"/>, otherwise false.
 		/// </summary>
@@ -1569,12 +1570,12 @@ namespace funclib
 		/// </returns>
 		public static object IsDouble(object x) => isDouble.Invoke(x);
 		#endregion
-		#region IsString
-		static funclib.Components.Core.IsString __isstring;
+		#region public - IsString
+		static funclib.Components.Core.IsString __isString;
 		/// <summary>
 		/// Returns true if x is a <see cref="string"/>, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsString isString => __isstring ?? (__isstring = new funclib.Components.Core.IsString());
+		public static funclib.Components.Core.IsString isString => __isString ?? (__isString = new funclib.Components.Core.IsString());
 		/// <summary>
 		/// Returns true if x is a <see cref="string"/>, otherwise false.
 		/// </summary>
@@ -1584,14 +1585,14 @@ namespace funclib
 		/// </returns>
 		public static object IsString(object x) => isString.Invoke(x);
 		#endregion
-		#region ReMatcher
-		static funclib.Components.Core.ReMatcher __rematcher;
+		#region public - ReMatcher
+		static funclib.Components.Core.ReMatcher __reMatcher;
 		/// <summary>
-		/// Returns an instance of <see cref="ReMatcher"/> for use in <see cref="ReFind"/>.
+		/// Returns an instance of <see cref="ReMatcher"/> for use in <see cref="funclib.Components.Core.ReFind"/>.
 		/// </summary>
-		public static funclib.Components.Core.ReMatcher reMatcher => __rematcher ?? (__rematcher = new funclib.Components.Core.ReMatcher());
+		public static funclib.Components.Core.ReMatcher reMatcher => __reMatcher ?? (__reMatcher = new funclib.Components.Core.ReMatcher());
 		/// <summary>
-		/// Returns an instance of <see cref="ReMatcher"/> to be used in <see cref="ReFind"/>.
+		/// Returns an instance of <see cref="ReMatcher"/> to be used in <see cref="funclib.Components.Core.ReFind"/>.
 		/// </summary>
 		/// <param name="re">An object that is already a <see cref="Regex"/> instance.</param>
 		/// <param name="s">The string to search for a match(s).</param>
@@ -1600,12 +1601,12 @@ namespace funclib
 		/// </returns>
 		public static object ReMatcher(object re, object s) => reMatcher.Invoke(re, s);
 		#endregion
-		#region IsSeqable
-		static funclib.Components.Core.IsSeqable __isseqable;
+		#region public - IsSeqable
+		static funclib.Components.Core.IsSeqable __isSeqable;
 		/// <summary>
 		/// Returns true if x can be supported by the <see cref="Seq"/> function, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsSeqable isSeqable => __isseqable ?? (__isseqable = new funclib.Components.Core.IsSeqable());
+		public static funclib.Components.Core.IsSeqable isSeqable => __isSeqable ?? (__isSeqable = new funclib.Components.Core.IsSeqable());
 		/// <summary>
 		/// Returns true if x can be supported by the <see cref="Seq"/> function, otherwise false.
 		/// </summary>
@@ -1615,7 +1616,7 @@ namespace funclib
 		/// </returns>
 		public static object IsSeqable(object x) => isSeqable.Invoke(x);
 		#endregion
-		#region VSwapǃ
+		#region public - VSwapǃ
 		/// <summary>
 		/// Non-atomically swaps the value of volatile.
 		/// </summary>
@@ -1624,12 +1625,12 @@ namespace funclib
 		/// <param name="args">Any additional arguments passed to f</param>
 		public static object VSwapǃ(object vol, object f, params object[] args) => new funclib.Components.Core.VSwapǃ(vol, f, args).Invoke();
 		#endregion
-		#region IsMap
-		static funclib.Components.Core.IsMap __ismap;
+		#region public - IsMap
+		static funclib.Components.Core.IsMap __isMap;
 		/// <summary>
 		/// Returns true if x is a <see cref="IMap"/>, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsMap isMap => __ismap ?? (__ismap = new funclib.Components.Core.IsMap());
+		public static funclib.Components.Core.IsMap isMap => __isMap ?? (__isMap = new funclib.Components.Core.IsMap());
 		/// <summary>
 		/// Returns true if x is a <see cref="IMap"/>, otherwise false.
 		/// </summary>
@@ -1639,12 +1640,12 @@ namespace funclib
 		/// </returns>
 		public static object IsMap(object x) => isMap.Invoke(x);
 		#endregion
-		#region IsEmpty
-		static funclib.Components.Core.IsEmpty __isempty;
+		#region public - IsEmpty
+		static funclib.Components.Core.IsEmpty __isEmpty;
 		/// <summary>
 		/// Returns true if coll has no items. Same as Not(Seq(coll)).
 		/// </summary>
-		public static funclib.Components.Core.IsEmpty isEmpty => __isempty ?? (__isempty = new funclib.Components.Core.IsEmpty());
+		public static funclib.Components.Core.IsEmpty isEmpty => __isEmpty ?? (__isEmpty = new funclib.Components.Core.IsEmpty());
 		/// <summary>
 		/// Returns true if coll has no items. Same as Not(Seq(coll)).
 		/// </summary>
@@ -1654,7 +1655,7 @@ namespace funclib
 		/// </returns>
 		public static object IsEmpty(object coll) => isEmpty.Invoke(coll);
 		#endregion
-		#region Time
+		#region public - Time
 		/// <summary>
 		/// Evaluates the <see cref="IFunction{TResult}"/> and prints the time it took.
 		/// Returns the value of <see cref="IFunction{TResult}"/>.
@@ -1668,12 +1669,12 @@ namespace funclib
 		/// <param name="fn">A function to be executed.</param>
 		public static object Time(IFunction<object> fn) => new funclib.Components.Core.Time(fn).Invoke();
 		#endregion
-		#region IsChar
-		static funclib.Components.Core.IsChar __ischar;
+		#region public - IsChar
+		static funclib.Components.Core.IsChar __isChar;
 		/// <summary>
 		/// Returns true if x is a <see cref="char"/>, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsChar isChar => __ischar ?? (__ischar = new funclib.Components.Core.IsChar());
+		public static funclib.Components.Core.IsChar isChar => __isChar ?? (__isChar = new funclib.Components.Core.IsChar());
 		/// <summary>
 		/// Returns true if x is a <see cref="char"/>, otherwise false.
 		/// </summary>
@@ -1683,7 +1684,7 @@ namespace funclib
 		/// </returns>
 		public static object IsChar(object x) => isChar.Invoke(x);
 		#endregion
-		#region Memoize
+		#region public - Memoize
 		static funclib.Components.Core.Memoize __memoize;
 		/// <summary>
 		/// Returns a memoized version of the referentially transparent function. The
@@ -1700,16 +1701,16 @@ namespace funclib
 		/// </summary>
 		/// <param name="f">An object that implements <see cref="IFunction"/> interface.</param>
 		/// <returns>
-		/// Returns a <see cref="Function"/> object that is a memoized version of the function.
+		/// Returns a <see cref="IFunction"/> object that is a memoized version of the function.
 		/// </returns>
 		public static object Memoize(object f) => memoize.Invoke(f);
 		#endregion
-		#region ButLast
-		static funclib.Components.Core.ButLast __butlast;
+		#region public - ButLast
+		static funclib.Components.Core.ButLast __butLast;
 		/// <summary>
 		/// Returns a <see cref="Seq"/> of all but the last item. In linear time.
 		/// </summary>
-		public static funclib.Components.Core.ButLast butLast => __butlast ?? (__butlast = new funclib.Components.Core.ButLast());
+		public static funclib.Components.Core.ButLast butLast => __butLast ?? (__butLast = new funclib.Components.Core.ButLast());
 		/// <summary>
 		/// Returns a <see cref="Seq"/> of all but the last item. In linear time.
 		/// </summary>
@@ -1719,15 +1720,15 @@ namespace funclib
 		/// </returns>
 		public static object ButLast(object coll) => butLast.Invoke(coll);
 		#endregion
-		#region CompareAndSetǃ
-		static funclib.Components.Core.CompareAndSetǃ __compareandsetǃ;
+		#region public - CompareAndSetǃ
+		static funclib.Components.Core.CompareAndSetǃ __compareAndSetǃ;
 		/// <summary>
 		/// Atomically sets the value of the <see cref="IAtom"/>
 		/// to the new value if and only if the current value of
 		/// the <see cref="IAtom"/> is identical to the oldVal.
 		/// Returns true if set happened, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.CompareAndSetǃ compareAndSetǃ => __compareandsetǃ ?? (__compareandsetǃ = new funclib.Components.Core.CompareAndSetǃ());
+		public static funclib.Components.Core.CompareAndSetǃ compareAndSetǃ => __compareAndSetǃ ?? (__compareAndSetǃ = new funclib.Components.Core.CompareAndSetǃ());
 		/// <summary>
 		/// Atomically sets the value of the <see cref="IAtom"/>
 		/// to the new value if and only if the current value of
@@ -1742,7 +1743,7 @@ namespace funclib
 		/// </returns>
 		public static object CompareAndSetǃ(object atom, object oldVal, object newVal) => compareAndSetǃ.Invoke(atom, oldVal, newVal);
 		#endregion
-		#region Truthy
+		#region public - Truthy
 		static funclib.Components.Core.Truthy __truthy;
 		/// <summary>
 		/// Returns true if source is a logical true. i.e.:
@@ -1760,77 +1761,77 @@ namespace funclib
 		/// </returns>
 		public static object Truthy(object source) => truthy.Invoke(source);
 		#endregion
-		#region Distinct
+		#region public - Distinct
 		static funclib.Components.Core.Distinct __distinct;
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of elements of coll without duplicate values.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of elements of coll without duplicate values.
 		/// </summary>
 		public static funclib.Components.Core.Distinct distinct => __distinct ?? (__distinct = new funclib.Components.Core.Distinct());
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of elements of coll without duplicate values.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of elements of coll without duplicate values.
 		/// </summary>
 		/// <returns>
-		/// Returns a <see cref="IFunction{T1, TResult}"/> that returns a <see cref="TransducerFunction"/>.
+		/// Returns a <see cref="IFunction{T1, TResult}"/> that returns a <see cref="funclib.Components.Core.Distinct.TransducerFunction"/>.
 		/// </returns>
 		public static object Distinct() => distinct.Invoke();
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of elements of coll without duplicate values.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of elements of coll without duplicate values.
 		/// </summary>
 		/// <param name="coll">A collection of items to return distinct with.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> of unique items from coll.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of unique items from coll.
 		/// </returns>
 		public static object Distinct(object coll) => distinct.Invoke(coll);
 		#endregion
-		#region IsNull
-		static funclib.Components.Core.IsNull __isnull;
+		#region public - IsNull
+		static funclib.Components.Core.IsNull __isNull;
 		/// <summary>
-		/// Returns true if x is <see cref="null"/>, otherwise false.
+		/// Returns true if x is null, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsNull isNull => __isnull ?? (__isnull = new funclib.Components.Core.IsNull());
+		public static funclib.Components.Core.IsNull isNull => __isNull ?? (__isNull = new funclib.Components.Core.IsNull());
 		/// <summary>
-		/// Returns true if x is <see cref="null"/>, otherwise false.
+		/// Returns true if x is null, otherwise false.
 		/// </summary>
 		/// <param name="x">Object to test.</param>
 		/// <returns>
-		/// Returns true if x is <see cref="null"/>, otherwise false.
+		/// Returns true if x is null, otherwise false.
 		/// </returns>
 		public static object IsNull(object x) => isNull.Invoke(x);
 		#endregion
-		#region DoAll
-		static funclib.Components.Core.DoAll __doall;
+		#region public - DoAll
+		static funclib.Components.Core.DoAll __doAll;
 		/// <summary>
-		/// For <see cref="LazySeq"/> that are produced via other functions and have side effects.
-		/// The side effects are not produces until the sequence is consumed. <see cref="DoAll"/>
+		/// For <see cref="funclib.Components.Core.LazySeq"/> that are produced via other functions and have side effects.
+		/// The side effects are not produces until the sequence is consumed. <see cref="funclib.Components.Core.DoAll"/>
 		/// walks though successive next, retains the head and returns it, thus causing the
 		/// entire seq to reside in memory at one time.
 		/// </summary>
-		public static funclib.Components.Core.DoAll doAll => __doall ?? (__doall = new funclib.Components.Core.DoAll());
+		public static funclib.Components.Core.DoAll doAll => __doAll ?? (__doAll = new funclib.Components.Core.DoAll());
 		/// <summary>
-		/// For <see cref="LazySeq"/> that are produced via other functions and have side effects.
-		/// The side effects are not produces until the sequence is consumed. <see cref="DoAll"/>
+		/// For <see cref="funclib.Components.Core.LazySeq"/> that are produced via other functions and have side effects.
+		/// The side effects are not produces until the sequence is consumed. <see cref="funclib.Components.Core.DoAll"/>
 		/// walks though successive next, retains the head and returns it, thus causing the
 		/// entire seq to reside in memory at one time.
 		/// </summary>
-		/// <param name="coll"><see cref="LazySeq"/> to consume.</param>
+		/// <param name="coll"><see cref="funclib.Components.Core.LazySeq"/> to consume.</param>
 		/// <returns>
-		/// Returns the <see cref="LazySeq"/> already consumed.
+		/// Returns the <see cref="funclib.Components.Core.LazySeq"/> already consumed.
 		/// </returns>
 		public static object DoAll(object coll) => doAll.Invoke(coll);
 		/// <summary>
-		/// For <see cref="LazySeq"/> that are produced via other functions and have side effects.
-		/// The side effects are not produces until the sequence is consumed. <see cref="DoAll"/>
+		/// For <see cref="funclib.Components.Core.LazySeq"/> that are produced via other functions and have side effects.
+		/// The side effects are not produces until the sequence is consumed. <see cref="funclib.Components.Core.DoAll"/>
 		/// walks though successive next, retains the head and returns it, thus causing the
 		/// entire seq to reside in memory at one time.
 		/// </summary>
 		/// <param name="n">The <see cref="int"/> times to walk the sequence.</param>
-		/// <param name="coll"><see cref="LazySeq"/> to consume.</param>
+		/// <param name="coll"><see cref="funclib.Components.Core.LazySeq"/> to consume.</param>
 		/// <returns>
-		/// Returns the <see cref="LazySeq"/> already consumed.
+		/// Returns the <see cref="funclib.Components.Core.LazySeq"/> already consumed.
 		/// </returns>
 		public static object DoAll(object n, object coll) => doAll.Invoke(n, coll);
 		#endregion
-		#region Deref
+		#region public - Deref
 		static funclib.Components.Core.Deref __deref;
 		/// <summary>
 		/// Returns the current state of <see cref="IDeref"/> variable.
@@ -1845,12 +1846,12 @@ namespace funclib
 		/// </returns>
 		public static object Deref(object @ref) => deref.Invoke(@ref);
 		#endregion
-		#region ChunkBuffer
-		static funclib.Components.Core.ChunkBuffer __chunkbuffer;
-		public static funclib.Components.Core.ChunkBuffer chunkBuffer => __chunkbuffer ?? (__chunkbuffer = new funclib.Components.Core.ChunkBuffer());
+		#region public - ChunkBuffer
+		static funclib.Components.Core.ChunkBuffer __chunkBuffer;
+		public static funclib.Components.Core.ChunkBuffer chunkBuffer => __chunkBuffer ?? (__chunkBuffer = new funclib.Components.Core.ChunkBuffer());
 		public static object ChunkBuffer(object capacity) => chunkBuffer.Invoke(capacity);
 		#endregion
-		#region Vec
+		#region public - Vec
 		static funclib.Components.Core.Vec __vec;
 		/// <summary>
 		/// Creates a new <see cref="Collections.Vector"/> containing the items from coll.
@@ -1865,25 +1866,25 @@ namespace funclib
 		/// </returns>
 		public static object Vec(object coll) => vec.Invoke(coll);
 		#endregion
-		#region ToArray
-		static funclib.Components.Core.ToArray __toarray;
+		#region public - ToArray
+		static funclib.Components.Core.ToArray __toArray;
 		/// <summary>
-		/// Returns an <see cref="object[]"/> containing the contents of coll, which
+		/// Returns an <see cref="object"/>[] containing the contents of coll, which
 		/// can be any collection.
 		/// </summary>
-		public static funclib.Components.Core.ToArray toArray => __toarray ?? (__toarray = new funclib.Components.Core.ToArray());
+		public static funclib.Components.Core.ToArray toArray => __toArray ?? (__toArray = new funclib.Components.Core.ToArray());
 		/// <summary>
-		/// Returns an <see cref="object[]"/> containing the contents of coll, which
+		/// Returns an <see cref="object"/>[] containing the contents of coll, which
 		/// can be any collection.
 		/// </summary>
 		/// <param name="coll">A collection of items to convert into an object.</param>
 		/// <returns>
-		/// Returns an <see cref="object[]"/> containing the contents of coll, which
-		/// can be any collection. Returns empty <see cref="object[]"/> if coll is null.
+		/// Returns an <see cref="object"/>[] containing the contents of coll, which
+		/// can be any collection. Returns empty <see cref="object"/>[] if coll is null.
 		/// </returns>
 		public static object ToArray(object coll) => toArray.Invoke(coll);
 		#endregion
-		#region Max
+		#region public - Max
 		static funclib.Components.Core.Max __max;
 		/// <summary>
 		/// Returns the greatest of the numbers.
@@ -1917,7 +1918,7 @@ namespace funclib
 		/// </returns>
 		public static object Max(object x, object y, params object[] more) => max.Invoke(x, y, more);
 		#endregion
-		#region Merge
+		#region public - Merge
 		static funclib.Components.Core.Merge __merge;
 		/// <summary>
 		/// Returns a <see cref="IMap"/> that consists of the rest of the <see cref="IMap"/> conj-ed onto
@@ -1938,12 +1939,12 @@ namespace funclib
 		/// </returns>
 		public static object Merge(params object[] maps) => merge.Invoke(maps);
 		#endregion
-		#region IsSorted
-		static funclib.Components.Core.IsSorted __issorted;
+		#region public - IsSorted
+		static funclib.Components.Core.IsSorted __isSorted;
 		/// <summary>
 		/// Returns true if coll implements <see cref="ISorted"/> interface, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsSorted isSorted => __issorted ?? (__issorted = new funclib.Components.Core.IsSorted());
+		public static funclib.Components.Core.IsSorted isSorted => __isSorted ?? (__isSorted = new funclib.Components.Core.IsSorted());
 		/// <summary>
 		/// Returns true if coll implements <see cref="ISorted"/> interface, otherwise false.
 		/// </summary>
@@ -1953,23 +1954,23 @@ namespace funclib
 		/// </returns>
 		public static object IsSorted(object coll) => isSorted.Invoke(coll);
 		#endregion
-		#region BitFlip
-		static funclib.Components.Core.BitFlip __bitflip;
-		public static funclib.Components.Core.BitFlip bitFlip => __bitflip ?? (__bitflip = new funclib.Components.Core.BitFlip());
+		#region public - BitFlip
+		static funclib.Components.Core.BitFlip __bitFlip;
+		public static funclib.Components.Core.BitFlip bitFlip => __bitFlip ?? (__bitFlip = new funclib.Components.Core.BitFlip());
 		public static object BitFlip(object x, object n) => bitFlip.Invoke(x, n);
 		#endregion
-		#region Comp
+		#region public - Comp
 		static funclib.Components.Core.Comp __comp;
 		/// <summary>
 		/// Takes a set of functions and returns a function that is the composition of
-		/// those functions. The returned <see cref="Function"/> takes a variable number
+		/// those functions. The returned <see cref="IFunction"/> takes a variable number
 		/// of args, applies the right-most of functions to the args, the next function
 		/// (right-to-left) to the result, ect.
 		/// </summary>
 		public static funclib.Components.Core.Comp comp => __comp ?? (__comp = new funclib.Components.Core.Comp());
 		/// <summary>
 		/// Takes a set of functions and returns a function that is the composition of
-		/// those functions. The returned <see cref="Function"/> takes a variable number
+		/// those functions. The returned <see cref="IFunction"/> takes a variable number
 		/// of args, applies the right-most of functions to the args, the next function
 		/// (right-to-left) to the result, ect.
 		/// </summary>
@@ -1979,7 +1980,7 @@ namespace funclib
 		public static object Comp() => comp.Invoke();
 		/// <summary>
 		/// Takes a set of functions and returns a function that is the composition of
-		/// those functions. The returned <see cref="Function"/> takes a variable number
+		/// those functions. The returned <see cref="IFunction"/> takes a variable number
 		/// of args, applies the right-most of functions to the args, the next function
 		/// (right-to-left) to the result, ect.
 		/// </summary>
@@ -1990,19 +1991,19 @@ namespace funclib
 		public static object Comp(object f) => comp.Invoke(f);
 		/// <summary>
 		/// Takes a set of functions and returns a function that is the composition of
-		/// those functions. The returned <see cref="Function"/> takes a variable number
+		/// those functions. The returned <see cref="IFunction"/> takes a variable number
 		/// of args, applies the right-most of functions to the args, the next function
 		/// (right-to-left) to the result, ect.
 		/// </summary>
 		/// <param name="f">Object that implements the <see cref="IFunction{T1, TResult}"/> interface.</param>
 		/// <param name="g">Object that implements the <see cref="IFunction"/> interface.</param>
 		/// <returns>
-		/// Returns <see cref="Function"/> with f and g composed together.
+		/// Returns <see cref="IFunction"/> with f and g composed together.
 		/// </returns>
 		public static object Comp(object f, object g) => comp.Invoke(f, g);
 		/// <summary>
 		/// Takes a set of functions and returns a function that is the composition of
-		/// those functions. The returned <see cref="Function"/> takes a variable number
+		/// those functions. The returned <see cref="IFunction"/> takes a variable number
 		/// of args, applies the right-most of functions to the args, the next function
 		/// (right-to-left) to the result, ect.
 		/// </summary>
@@ -2010,17 +2011,17 @@ namespace funclib
 		/// <param name="g">Object that implements the <see cref="IFunction"/> interface.</param>
 		/// <param name="fs">Array of objects that implement the <see cref="IFunction"/> interface.</param>
 		/// <returns>
-		/// Returns <see cref="Function"/> with f, g and fs composed together.
+		/// Returns <see cref="IFunction"/> with f, g and fs composed together.
 		/// </returns>
 		public static object Comp(object f, object g, params object[] fs) => comp.Invoke(f, g, fs);
 		#endregion
-		#region SortedMap
-		static funclib.Components.Core.SortedMap __sortedmap;
+		#region public - SortedMap
+		static funclib.Components.Core.SortedMap __sortedMap;
 		/// <summary>
 		/// Returns a new <see cref="Collections.SortedMap"/> with supplied mappings. If any keys are
 		/// equal, they are handled as if by repeated uses of assoc.
 		/// </summary>
-		public static funclib.Components.Core.SortedMap sortedMap => __sortedmap ?? (__sortedmap = new funclib.Components.Core.SortedMap());
+		public static funclib.Components.Core.SortedMap sortedMap => __sortedMap ?? (__sortedMap = new funclib.Components.Core.SortedMap());
 		/// <summary>
 		/// Returns a new <see cref="Collections.SortedMap"/> with supplied mappings. If any keys are
 		/// equal, they are handled as if by repeated uses of assoc.
@@ -2040,31 +2041,31 @@ namespace funclib
 		/// </returns>
 		public static object SortedMap(params object[] keyvals) => sortedMap.Invoke(keyvals);
 		#endregion
-		#region DropLast
-		static funclib.Components.Core.DropLast __droplast;
+		#region public - DropLast
+		static funclib.Components.Core.DropLast __dropLast;
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of all but the last n items. Default is 1.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of all but the last n items. Default is 1.
 		/// </summary>
-		public static funclib.Components.Core.DropLast dropLast => __droplast ?? (__droplast = new funclib.Components.Core.DropLast());
+		public static funclib.Components.Core.DropLast dropLast => __dropLast ?? (__dropLast = new funclib.Components.Core.DropLast());
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of all but the last n items. Default is 1.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of all but the last n items. Default is 1.
 		/// </summary>
 		/// <param name="coll">Collection of items to remove the last one from.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> with all but the last item.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> with all but the last item.
 		/// </returns>
 		public static object DropLast(object coll) => dropLast.Invoke(coll);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of all but the last n items. Default is 1.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of all but the last n items. Default is 1.
 		/// </summary>
 		/// <param name="n">An <see cref="int"/> of the last times from the collection.</param>
 		/// <param name="coll">The collection to remove from.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> of items without the last n items.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of items without the last n items.
 		/// </returns>
 		public static object DropLast(object n, object coll) => dropLast.Invoke(n, coll);
 		#endregion
-		#region Values
+		#region public - Values
 		static funclib.Components.Core.Values __values;
 		/// <summary>
 		/// Returns a <see cref="Seq"/> of the <see cref="IMap"/>'s values.
@@ -2079,26 +2080,26 @@ namespace funclib
 		/// </returns>
 		public static object Values(object map) => values.Invoke(map);
 		#endregion
-		#region Iterate
+		#region public - Iterate
 		static funclib.Components.Core.Iterate __iterate;
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of x, f.Invoke(x), f.Invoke(f.Inovke(x))...
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of x, f.Invoke(x), f.Invoke(f.Invoke(x))...
 		/// f must be free of side-effects.
 		/// </summary>
 		public static funclib.Components.Core.Iterate iterate => __iterate ?? (__iterate = new funclib.Components.Core.Iterate());
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of x, f.Invoke(x), f.Invoke(f.Inovke(x))...
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of x, f.Invoke(x), f.Invoke(f.Invoke(x))...
 		/// f must be free of side-effects.
 		/// </summary>
 		/// <param name="f">An object that implements <see cref="IFunction{T1, TResult}"/> interface.</param>
 		/// <param name="x">First object of sequence.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> of x, f.Invoke(x), f.Invoke(f.Inovke(x))...
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of x, f.Invoke(x), f.Invoke(f.Invoke(x))...
 		/// f must be free of side-effects.
 		/// </returns>
 		public static object Iterate(object f, object x) => iterate.Invoke(f, x);
 		#endregion
-		#region Disj
+		#region public - Disj
 		static funclib.Components.Core.Disj __disj;
 		/// <summary>
 		/// Disj[oin]. Returns a new set of the same concrete type, that
@@ -2137,7 +2138,7 @@ namespace funclib
 		/// </returns>
 		public static object Disj(object set, object key, params object[] ks) => disj.Invoke(set, key, ks);
 		#endregion
-		#region Vector
+		#region public - Vector
 		static funclib.Components.Core.Vector __vector;
 		/// <summary>
 		/// Creates a new <see cref="Collections.Vector"/> containing the args.
@@ -2228,13 +2229,13 @@ namespace funclib
 		/// </returns>
 		public static object Vector(object a, object b, object c, object d, object e, object f, params object[] args) => vector.Invoke(a, b, c, d, e, f, args);
 		#endregion
-		#region IsEvery
-		static funclib.Components.Core.IsEvery __isevery;
+		#region public - IsEvery
+		static funclib.Components.Core.IsEvery __isEvery;
 		/// <summary>
 		/// Returns true if <see cref="IFunction{T1, TResult}"/> pred is a logical
 		/// true for every item in the coll, otherwise false
 		/// </summary>
-		public static funclib.Components.Core.IsEvery isEvery => __isevery ?? (__isevery = new funclib.Components.Core.IsEvery());
+		public static funclib.Components.Core.IsEvery isEvery => __isEvery ?? (__isEvery = new funclib.Components.Core.IsEvery());
 		/// <summary>
 		/// Returns true if <see cref="IFunction{T1, TResult}"/> pred is a logical
 		/// true for every item in the coll, otherwise false
@@ -2247,13 +2248,13 @@ namespace funclib
 		/// </returns>
 		public static object IsEvery(object pred, object coll) => isEvery.Invoke(pred, coll);
 		#endregion
-		#region ListS
-		static funclib.Components.Core.ListS __lists;
+		#region public - ListS
+		static funclib.Components.Core.ListS __listS;
 		/// <summary>
 		/// Creates a new <see cref="Seq"/> containing the items perpended to the rest, the
 		/// last of which will be treated as a sequence.
 		/// </summary>
-		public static funclib.Components.Core.ListS listS => __lists ?? (__lists = new funclib.Components.Core.ListS());
+		public static funclib.Components.Core.ListS listS => __listS ?? (__listS = new funclib.Components.Core.ListS());
 		/// <summary>
 		/// Creates a new <see cref="Seq"/> containing the items perpended to the rest, the
 		/// last of which will be treated as a sequence.
@@ -2310,10 +2311,10 @@ namespace funclib
 		/// </returns>
 		public static object ListS(object a, object b, object c, object d, params object[] more) => listS.Invoke(a, b, c, d, more);
 		#endregion
-		#region Partition
+		#region public - Partition
 		static funclib.Components.Core.Partition __partition;
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of lists of n items each, at offsets step
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of lists of n items each, at offsets step
 		/// apart. If step is not supplied, defaults to n, i.e. the partitions do not
 		/// overlap. If a pad collections is supplied, use its elements a necessary
 		/// to complete last partition up to n items. In case there are not enough
@@ -2321,7 +2322,7 @@ namespace funclib
 		/// </summary>
 		public static funclib.Components.Core.Partition partition => __partition ?? (__partition = new funclib.Components.Core.Partition());
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of lists of n items each, at offsets step
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of lists of n items each, at offsets step
 		/// apart. If step is not supplied, defaults to n, i.e. the partitions do not
 		/// overlap. If a pad collections is supplied, use its elements a necessary
 		/// to complete last partition up to n items. In case there are not enough
@@ -2330,7 +2331,7 @@ namespace funclib
 		/// <param name="n">A <see cref="int"/> specifying the size of each group.</param>
 		/// <param name="coll">A collection that can be <see cref="Seq"/> over.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> of lists of n items each, at offsets step
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of lists of n items each, at offsets step
 		/// apart. If step is not supplied, defaults to n, i.e. the partitions do not
 		/// overlap. If a pad collections is supplied, use its elements a necessary
 		/// to complete last partition up to n items. In case there are not enough
@@ -2338,7 +2339,7 @@ namespace funclib
 		/// </returns>
 		public static object Partition(object n, object coll) => partition.Invoke(n, coll);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of lists of n items each, at offsets step
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of lists of n items each, at offsets step
 		/// apart. If step is not supplied, defaults to n, i.e. the partitions do not
 		/// overlap. If a pad collections is supplied, use its elements a necessary
 		/// to complete last partition up to n items. In case there are not enough
@@ -2348,7 +2349,7 @@ namespace funclib
 		/// <param name="step">A <see cref="int"/> specifying the starting point for each group.</param>
 		/// <param name="coll">A collection that can be <see cref="Seq"/> over.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> of lists of n items each, at offsets step
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of lists of n items each, at offsets step
 		/// apart. If step is not supplied, defaults to n, i.e. the partitions do not
 		/// overlap. If a pad collections is supplied, use its elements a necessary
 		/// to complete last partition up to n items. In case there are not enough
@@ -2356,7 +2357,7 @@ namespace funclib
 		/// </returns>
 		public static object Partition(object n, object step, object coll) => partition.Invoke(n, step, coll);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of lists of n items each, at offsets step
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of lists of n items each, at offsets step
 		/// apart. If step is not supplied, defaults to n, i.e. the partitions do not
 		/// overlap. If a pad collections is supplied, use its elements a necessary
 		/// to complete last partition up to n items. In case there are not enough
@@ -2367,7 +2368,7 @@ namespace funclib
 		/// <param name="pad">A collection to pad results with.</param>
 		/// <param name="coll">A collection that can be <see cref="Seq"/> over.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> of lists of n items each, at offsets step
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of lists of n items each, at offsets step
 		/// apart. If step is not supplied, defaults to n, i.e. the partitions do not
 		/// overlap. If a pad collections is supplied, use its elements a necessary
 		/// to complete last partition up to n items. In case there are not enough
@@ -2375,28 +2376,28 @@ namespace funclib
 		/// </returns>
 		public static object Partition(object n, object step, object pad, object coll) => partition.Invoke(n, step, pad, coll);
 		#endregion
-		#region ZipMap
-		static funclib.Components.Core.ZipMap __zipmap;
+		#region public - ZipMap
+		static funclib.Components.Core.ZipMap __zipMap;
 		/// <summary>
-		/// Returns a <see cref="HashMap"/> with the keys mapped to the corresponding values
+		/// Returns a <see cref="funclib.Components.Core.HashMap"/> with the keys mapped to the corresponding values
 		/// </summary>
-		public static funclib.Components.Core.ZipMap zipMap => __zipmap ?? (__zipmap = new funclib.Components.Core.ZipMap());
+		public static funclib.Components.Core.ZipMap zipMap => __zipMap ?? (__zipMap = new funclib.Components.Core.ZipMap());
 		/// <summary>
-		/// Returns a <see cref="HashMap"/> with the keys mapped to the corresponding values
+		/// Returns a <see cref="funclib.Components.Core.HashMap"/> with the keys mapped to the corresponding values
 		/// </summary>
 		/// <param name="keys">A <see cref="Seq"/> collection for keys.</param>
 		/// <param name="vals">A <see cref="Seq"/> collection for values.</param>
 		/// <returns>
-		/// Returns a <see cref="HashMap"/> with the keys mapped to the corresponding values
+		/// Returns a <see cref="funclib.Components.Core.HashMap"/> with the keys mapped to the corresponding values
 		/// </returns>
 		public static object ZipMap(object keys, object vals) => zipMap.Invoke(keys, vals);
 		#endregion
-		#region BitShiftRight
-		static funclib.Components.Core.BitShiftRight __bitshiftright;
-		public static funclib.Components.Core.BitShiftRight bitShiftRight => __bitshiftright ?? (__bitshiftright = new funclib.Components.Core.BitShiftRight());
+		#region public - BitShiftRight
+		static funclib.Components.Core.BitShiftRight __bitShiftRight;
+		public static funclib.Components.Core.BitShiftRight bitShiftRight => __bitShiftRight ?? (__bitShiftRight = new funclib.Components.Core.BitShiftRight());
 		public static object BitShiftRight(object x, object n) => bitShiftRight.Invoke(x, n);
 		#endregion
-		#region Persistentǃ
+		#region public - Persistentǃ
 		static funclib.Components.Core.Persistentǃ __persistentǃ;
 		/// <summary>
 		/// Returns a new, persistent version of the <see cref="ITransientCollection"/>, in
@@ -2416,7 +2417,7 @@ namespace funclib
 		/// </returns>
 		public static object Persistentǃ(object coll) => persistentǃ.Invoke(coll);
 		#endregion
-		#region Some
+		#region public - Some
 		static funclib.Components.Core.Some __some;
 		/// <summary>
 		/// Returns the funclib.Core.First( logical true value of execute <see cref="IFunction{T1, TResult}"/> pred passing
@@ -2435,7 +2436,7 @@ namespace funclib
 		/// </returns>
 		public static object Some(object pred, object coll) => some.Invoke(pred, coll);
 		#endregion
-		#region Plus
+		#region public - Plus
 		static funclib.Components.Core.Plus __plus;
 		/// <summary>
 		/// Returns the sum of numbers. No parameters past returns 0.
@@ -2476,7 +2477,7 @@ namespace funclib
 		/// </returns>
 		public static object Plus(object x, object y, params object[] more) => plus.Invoke(x, y, more);
 		#endregion
-		#region List
+		#region public - List
 		static funclib.Components.Core.List __list;
 		/// <summary>
 		/// Creates a new <see cref="Collections.List"/> containing the times.
@@ -2491,12 +2492,12 @@ namespace funclib
 		/// </returns>
 		public static object List(params object[] items) => list.Invoke(items);
 		#endregion
-		#region IsZero
-		static funclib.Components.Core.IsZero __iszero;
+		#region public - IsZero
+		static funclib.Components.Core.IsZero __isZero;
 		/// <summary>
 		/// Returns true if x is zero, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsZero isZero => __iszero ?? (__iszero = new funclib.Components.Core.IsZero());
+		public static funclib.Components.Core.IsZero isZero => __isZero ?? (__isZero = new funclib.Components.Core.IsZero());
 		/// <summary>
 		/// Returns true if x is zero, otherwise false.
 		/// </summary>
@@ -2506,23 +2507,23 @@ namespace funclib
 		/// </returns>
 		public static object IsZero(object n) => isZero.Invoke(n);
 		#endregion
-		#region SelectKeys
-		static funclib.Components.Core.SelectKeys __selectkeys;
+		#region public - SelectKeys
+		static funclib.Components.Core.SelectKeys __selectKeys;
 		/// <summary>
 		/// Returns a <see cref="Collections.HashMap"/> containing only those entries in map who's key is in keys.
 		/// </summary>
-		public static funclib.Components.Core.SelectKeys selectKeys => __selectkeys ?? (__selectkeys = new funclib.Components.Core.SelectKeys());
+		public static funclib.Components.Core.SelectKeys selectKeys => __selectKeys ?? (__selectKeys = new funclib.Components.Core.SelectKeys());
 		/// <summary>
 		/// Returns a <see cref="Collections.HashMap"/> containing only those entries in map who's key is in keys.
 		/// </summary>
-		/// <param name="map">An object that implements either <see cref="IAssociative"/>, <see cref="System.Collections.IDictionary"/> or <see cref="ITransientAssociative"/> interface.</param>
+		/// <param name="map">An object that implements either <see cref="IAssociative"/>, <see cref="System.Collections.IDictionary"/> or <see cref="funclib.Collections.Internal.ITransientAssociative"/> interface.</param>
 		/// <param name="keyseq">An object containing the keys, that can be <see cref="Seq"/>ed over, </param>
 		/// <returns>
 		/// Returns a <see cref="Collections.HashMap"/> containing only those entries in map who's key is in keys.
 		/// </returns>
 		public static object SelectKeys(object map, object keyseq) => selectKeys.Invoke(map, keyseq);
 		#endregion
-		#region Flatten
+		#region public - Flatten
 		static funclib.Components.Core.Flatten __flatten;
 		/// <summary>
 		/// Takes any nested combination of <see cref="funclib.Collections.ISequential"/>
@@ -2539,16 +2540,16 @@ namespace funclib
 		/// </summary>
 		/// <param name="x">Object to flatten.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> that when invoked flattens the sequence.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> that when invoked flattens the sequence.
 		/// </returns>
 		public static object Flatten(object x) => flatten.Invoke(x);
 		#endregion
-		#region IsDistinct
-		static funclib.Components.Core.IsDistinct __isdistinct;
+		#region public - IsDistinct
+		static funclib.Components.Core.IsDistinct __isDistinct;
 		/// <summary>
 		/// Returns true if no two arguments are equal, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsDistinct isDistinct => __isdistinct ?? (__isdistinct = new funclib.Components.Core.IsDistinct());
+		public static funclib.Components.Core.IsDistinct isDistinct => __isDistinct ?? (__isDistinct = new funclib.Components.Core.IsDistinct());
 		/// <summary>
 		/// Returns true if no two arguments are equal, otherwise false.
 		/// </summary>
@@ -2577,47 +2578,47 @@ namespace funclib
 		/// </returns>
 		public static object IsDistinct(object x, object y, params object[] more) => isDistinct.Invoke(x, y, more);
 		#endregion
-		#region SortedMapBy
-		static funclib.Components.Core.SortedMapBy __sortedmapby;
+		#region public - SortedMapBy
+		static funclib.Components.Core.SortedMapBy __sortedMapBy;
 		/// <summary>
 		/// Returns a <see cref="Collections.SortedMap"/> with supplied mappings, using the supplied
 		/// <see cref="IFunction{T1, T2, TResult}"/> comparator. If any keys are equal, they are handled as
-		/// if by repeated uses of <see cref="Assoc"/>.
+		/// if by repeated uses of <see cref="funclib.Components.Core.Assoc"/>.
 		/// </summary>
-		public static funclib.Components.Core.SortedMapBy sortedMapBy => __sortedmapby ?? (__sortedmapby = new funclib.Components.Core.SortedMapBy());
+		public static funclib.Components.Core.SortedMapBy sortedMapBy => __sortedMapBy ?? (__sortedMapBy = new funclib.Components.Core.SortedMapBy());
 		/// <summary>
 		/// Returns a <see cref="Collections.SortedMap"/> with supplied mappings, using the supplied
 		/// <see cref="IFunction{T1, T2, TResult}"/> comparator. If any keys are equal, they are handled as
-		/// if by repeated uses of <see cref="Assoc"/>.
+		/// if by repeated uses of <see cref="funclib.Components.Core.Assoc"/>.
 		/// </summary>
 		/// <param name="comparator">An object that implements the <see cref="IFunction{T1, T2, TResult}"/> interface.</param>
 		/// <param name="keyvals">Key/value pairs adding to the <see cref="Collections.SortedMap"/> data structure.</param>
 		/// <returns>
 		/// Returns a <see cref="Collections.SortedMap"/> with supplied mappings, using the supplied
 		/// <see cref="IFunction{T1, T2, TResult}"/> comparator. If any keys are equal, they are handled as
-		/// if by repeated uses of <see cref="Assoc"/>.
+		/// if by repeated uses of <see cref="funclib.Components.Core.Assoc"/>.
 		/// </returns>
 		public static object SortedMapBy(object comparator, params object[] keyvals) => sortedMapBy.Invoke(comparator, keyvals);
 		#endregion
-		#region TreeSeq
-		static funclib.Components.Core.TreeSeq __treeseq;
+		#region public - TreeSeq
+		static funclib.Components.Core.TreeSeq __treeSeq;
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of the nodes in a tree, via a depth-funclib.Core.First( walk.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the nodes in a tree, via a depth-funclib.Core.First( walk.
 		/// </summary>
-		public static funclib.Components.Core.TreeSeq treeSeq => __treeseq ?? (__treeseq = new funclib.Components.Core.TreeSeq());
+		public static funclib.Components.Core.TreeSeq treeSeq => __treeSeq ?? (__treeSeq = new funclib.Components.Core.TreeSeq());
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of the nodes in a tree, via a depth-funclib.Core.First( walk.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the nodes in a tree, via a depth-funclib.Core.First( walk.
 		/// </summary>
 		/// <param name="branch">An object that implements <see cref="IFunction{T1, TResult}"/> interface that returns true if passed a node
 		/// that can have children, otherwise false.</param>
 		/// <param name="children">An object that implements <see cref="IFunction{T1, TResult}"/> interface that returns a sequence of the children.</param>
 		/// <param name="root">An object for the root node of the tree.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> of the nodes in a tree.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the nodes in a tree.
 		/// </returns>
 		public static object TreeSeq(object branch, object children, object root) => treeSeq.Invoke(branch, children, root);
 		#endregion
-		#region Minus
+		#region public - Minus
 		static funclib.Components.Core.Minus __minus;
 		/// <summary>
 		/// If y is not suppled return <see cref="Numbers.Negate(object)"/> of x, else subtract
@@ -2655,14 +2656,14 @@ namespace funclib
 		/// </returns>
 		public static object Minus(object x, object y, params object[] more) => minus.Invoke(x, y, more);
 		#endregion
-		#region Reduced
+		#region public - Reduced
 		static funclib.Components.Core.Reduced __reduced;
 		/// <summary>
-		/// Wraps x in a way such that a <see cref="Reduce"/> will terminate with the value x.
+		/// Wraps x in a way such that a <see cref="funclib.Components.Core.Reduce"/> will terminate with the value x.
 		/// </summary>
 		public static funclib.Components.Core.Reduced reduced => __reduced ?? (__reduced = new funclib.Components.Core.Reduced());
 		/// <summary>
-		/// Wraps x in a way such that a <see cref="Reduce"/> will terminate with the value x.
+		/// Wraps x in a way such that a <see cref="funclib.Components.Core.Reduce"/> will terminate with the value x.
 		/// </summary>
 		/// <param name="x">Object to wrap.</param>
 		/// <returns>
@@ -2670,12 +2671,12 @@ namespace funclib
 		/// </returns>
 		public static object Reduced(object x) => reduced.Invoke(x);
 		#endregion
-		#region IsInstance
-		static funclib.Components.Core.IsInstance __isinstance;
+		#region public - IsInstance
+		static funclib.Components.Core.IsInstance __isInstance;
 		/// <summary>
 		/// Returns true if c <see cref="Type"/> is an instance of x, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsInstance isInstance => __isinstance ?? (__isinstance = new funclib.Components.Core.IsInstance());
+		public static funclib.Components.Core.IsInstance isInstance => __isInstance ?? (__isInstance = new funclib.Components.Core.IsInstance());
 		/// <summary>
 		/// Returns true if c <see cref="Type"/> is an instance of x, otherwise false.
 		/// </summary>
@@ -2686,13 +2687,13 @@ namespace funclib
 		/// </returns>
 		public static object IsInstance(object c, object x) => isInstance.Invoke(c, x);
 		#endregion
-		#region ReMatches
-		static funclib.Components.Core.ReMatches __rematches;
+		#region public - ReMatches
+		static funclib.Components.Core.ReMatches __reMatches;
 		/// <summary>
 		/// Returns the match, if any, of string to pattern, using <see cref="ReMatcher.Matches"/>.
 		/// Uses <see cref="ReGroups"/> to return the groups.
 		/// </summary>
-		public static funclib.Components.Core.ReMatches reMatches => __rematches ?? (__rematches = new funclib.Components.Core.ReMatches());
+		public static funclib.Components.Core.ReMatches reMatches => __reMatches ?? (__reMatches = new funclib.Components.Core.ReMatches());
 		/// <summary>
 		/// Returns the match, if any, of string to pattern, using <see cref="ReMatcher.Matches"/>.
 		/// Uses <see cref="ReGroups"/> to return the groups.
@@ -2705,7 +2706,7 @@ namespace funclib
 		/// </returns>
 		public static object ReMatches(object re, object s) => reMatches.Invoke(re, s);
 		#endregion
-		#region Comparator
+		#region public - Comparator
 		static funclib.Components.Core.Comparator __comparator;
 		/// <summary>
 		/// Returns a <see cref="IFunction{T1, T2, TResult}"/> function that can be coerced into
@@ -2724,81 +2725,81 @@ namespace funclib
 		/// </returns>
 		public static object Comparator(object pred) => comparator.Invoke(pred);
 		#endregion
-		#region TakeNth
-		static funclib.Components.Core.TakeNth __takenth;
+		#region public - TakeNth
+		static funclib.Components.Core.TakeNth __takeNth;
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of every nth item in coll.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of every nth item in coll.
 		/// </summary>
-		public static funclib.Components.Core.TakeNth takeNth => __takenth ?? (__takenth = new funclib.Components.Core.TakeNth());
+		public static funclib.Components.Core.TakeNth takeNth => __takeNth ?? (__takeNth = new funclib.Components.Core.TakeNth());
 		public static object TakeNth(object n) => takeNth.Invoke(n);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of every nth item in coll.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of every nth item in coll.
 		/// </summary>
 		/// <param name="n">An <see cref="int"/> of the items to take every nth from collection.</param>
 		/// <param name="coll">The collection to drop the funclib.Core.First( x items from.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> of every nth item in coll.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of every nth item in coll.
 		/// </returns>
 		public static object TakeNth(object n, object coll) => takeNth.Invoke(n, coll);
 		#endregion
-		#region Concat
+		#region public - Concat
 		static funclib.Components.Core.Concat __concat;
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> representing the concatenation of the elements
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> representing the concatenation of the elements
 		/// in the supplied colls.
 		/// </summary>
 		public static funclib.Components.Core.Concat concat => __concat ?? (__concat = new funclib.Components.Core.Concat());
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> representing the concatenation of the elements
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> representing the concatenation of the elements
 		/// in the supplied colls.
 		/// </summary>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/>, when invoked returns null.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/>, when invoked returns null.
 		/// </returns>
 		public static object Concat() => concat.Invoke();
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> representing the concatenation of the elements
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> representing the concatenation of the elements
 		/// in the supplied colls.
 		/// </summary>
 		/// <param name="x">Object to return via a lazy implementation.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/>, when invoked returns x.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/>, when invoked returns x.
 		/// </returns>
 		public static object Concat(object x) => concat.Invoke(x);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> representing the concatenation of the elements
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> representing the concatenation of the elements
 		/// in the supplied colls.
 		/// </summary>
 		/// <param name="x">First collection in the concatenation.</param>
 		/// <param name="y">Second collection to be concatenated.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> that will concatenate y to x.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> that will concatenate y to x.
 		/// </returns>
 		public static object Concat(object x, object y) => concat.Invoke(x, y);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> representing the concatenation of the elements
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> representing the concatenation of the elements
 		/// in the supplied colls.
 		/// </summary>
 		/// <param name="x">First collection in the concatenation.</param>
 		/// <param name="y">Second collection to be concatenated.</param>
 		/// <param name="zs">Other collections to be concatenated with.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> that will concatenate zs, y to x.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> that will concatenate zs, y to x.
 		/// </returns>
 		public static object Concat(object x, object y, params object[] zs) => concat.Invoke(x, y, zs);
 		#endregion
-		#region IntoArray
-		static funclib.Components.Core.IntoArray __intoarray;
-		public static funclib.Components.Core.IntoArray intoArray => __intoarray ?? (__intoarray = new funclib.Components.Core.IntoArray());
+		#region public - IntoArray
+		static funclib.Components.Core.IntoArray __intoArray;
+		public static funclib.Components.Core.IntoArray intoArray => __intoArray ?? (__intoArray = new funclib.Components.Core.IntoArray());
 		public static object IntoArray(object aseq) => intoArray.Invoke(aseq);
 		public static object IntoArray(object type, object aseq) => intoArray.Invoke(type, aseq);
 		#endregion
-		#region IsAssociative
-		static funclib.Components.Core.IsAssociative __isassociative;
+		#region public - IsAssociative
+		static funclib.Components.Core.IsAssociative __isAssociative;
 		/// <summary>
 		/// Returns true if coll implements <see cref="IAssociative"/> interface, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsAssociative isAssociative => __isassociative ?? (__isassociative = new funclib.Components.Core.IsAssociative());
+		public static funclib.Components.Core.IsAssociative isAssociative => __isAssociative ?? (__isAssociative = new funclib.Components.Core.IsAssociative());
 		/// <summary>
 		/// Returns true if coll implements <see cref="IAssociative"/> interface, otherwise false.
 		/// </summary>
@@ -2808,14 +2809,14 @@ namespace funclib
 		/// </returns>
 		public static object IsAssociative(object coll) => isAssociative.Invoke(coll);
 		#endregion
-		#region PrintLn
-		static funclib.Components.Core.PrintLn __println;
+		#region public - PrintLn
+		static funclib.Components.Core.PrintLn __printLn;
 		/// <summary>
-		/// The same as <see cref="Print"/> but followed by a <see cref="Environment.NewLine"/>.
+		/// The same as <see cref="funclib.Components.Core.Print"/> but followed by a <see cref="Environment.NewLine"/>.
 		/// </summary>
-		public static funclib.Components.Core.PrintLn printLn => __println ?? (__println = new funclib.Components.Core.PrintLn());
+		public static funclib.Components.Core.PrintLn printLn => __printLn ?? (__printLn = new funclib.Components.Core.PrintLn());
 		/// <summary>
-		/// The same as <see cref="Print"/> but followed by a <see cref="Environment.NewLine"/>.
+		/// The same as <see cref="funclib.Components.Core.Print"/> but followed by a <see cref="Environment.NewLine"/>.
 		/// </summary>
 		/// <param name="more">Any objects you want to print.</param>
 		/// <returns>
@@ -2823,7 +2824,7 @@ namespace funclib
 		/// </returns>
 		public static object PrintLn(params object[] more) => printLn.Invoke(more);
 		#endregion
-		#region Reduce
+		#region public - Reduce
 		static funclib.Components.Core.Reduce __reduce;
 		/// <summary>
 		/// f should implement the <see cref="IFunction{T1, T2, TResult}"/> interface. If val is not supplied,
@@ -2867,7 +2868,7 @@ namespace funclib
 		/// </returns>
 		public static object Reduce(object f, object val, object coll) => reduce.Invoke(f, val, coll);
 		#endregion
-		#region Str
+		#region public - Str
 		static funclib.Components.Core.Str __str;
 		/// <summary>
 		/// With no args, returns empty string. With one arg, returns arg.ToString(). If
@@ -2906,7 +2907,7 @@ namespace funclib
 		/// </returns>
 		public static object Str(object x, params object[] ys) => str.Invoke(x, ys);
 		#endregion
-		#region Unreduce
+		#region public - Unreduce
 		static funclib.Components.Core.Unreduce __unreduce;
 		/// <summary>
 		/// If x is <see cref="IsReduced"/> returns true, return <see cref="Reduced.Deref"/>,
@@ -2924,7 +2925,7 @@ namespace funclib
 		/// </returns>
 		public static object Unreduce(object x) => unreduce.Invoke(x);
 		#endregion
-		#region Value
+		#region public - Value
 		static funclib.Components.Core.Value __value;
 		/// <summary>
 		/// Returns the value in the <see cref="KeyValuePair"/> object.
@@ -2939,126 +2940,126 @@ namespace funclib
 		/// </returns>
 		public static object Value(object e) => value.Invoke(e);
 		#endregion
-		#region Interleave
+		#region public - Interleave
 		static funclib.Components.Core.Interleave __interleave;
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of the funclib.Core.First( item in each coll, then the second, etc.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the funclib.Core.First( item in each coll, then the second, etc.
 		/// </summary>
 		public static funclib.Components.Core.Interleave interleave => __interleave ?? (__interleave = new funclib.Components.Core.Interleave());
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of the funclib.Core.First( item in each coll, then the second, etc.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the funclib.Core.First( item in each coll, then the second, etc.
 		/// </summary>
 		/// <returns>
 		/// Returns <see cref="Collections.List.EMPTY"/>.
 		/// </returns>
 		public static object Interleave() => interleave.Invoke();
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of the funclib.Core.First( item in each coll, then the second, etc.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the funclib.Core.First( item in each coll, then the second, etc.
 		/// </summary>
 		/// <param name="c1">The collection returned lazily.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> of c1.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of c1.
 		/// </returns>
 		public static object Interleave(object c1) => interleave.Invoke(c1);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of the funclib.Core.First( item in each coll, then the second, etc.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the funclib.Core.First( item in each coll, then the second, etc.
 		/// </summary>
 		/// <param name="c1">First collection to interleave.</param>
 		/// <param name="c2">Second collection to interleave.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> of the funclib.Core.First( item in each coll, then the second, etc.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the funclib.Core.First( item in each coll, then the second, etc.
 		/// </returns>
 		public static object Interleave(object c1, object c2) => interleave.Invoke(c1, c2);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of the funclib.Core.First( item in each coll, then the second, etc.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the funclib.Core.First( item in each coll, then the second, etc.
 		/// </summary>
 		/// <param name="c1">First collection to interleave.</param>
 		/// <param name="c2">Second collection to interleave.</param>
 		/// <param name="colls">Rest of the collections to interleave.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> of the funclib.Core.First( item in each coll, then the second, etc.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the funclib.Core.First( item in each coll, then the second, etc.
 		/// </returns>
 		public static object Interleave(object c1, object c2, params object[] colls) => interleave.Invoke(c1, c2, colls);
 		#endregion
-		#region SortedSetBy
-		static funclib.Components.Core.SortedSetBy __sortedsetby;
+		#region public - SortedSetBy
+		static funclib.Components.Core.SortedSetBy __sortedSetBy;
 		/// <summary>
 		/// Returns a <see cref="Collections.SortedSet"/> with supplied keys, using the supplied
 		/// <see cref="IFunction{T1, T2, TResult}"/> comparator. If any keys are equal, they are handled as
-		/// if by repeated uses of <see cref="Conj"/>.
+		/// if by repeated uses of <see cref="funclib.Components.Core.Conj"/>.
 		/// </summary>
-		public static funclib.Components.Core.SortedSetBy sortedSetBy => __sortedsetby ?? (__sortedsetby = new funclib.Components.Core.SortedSetBy());
+		public static funclib.Components.Core.SortedSetBy sortedSetBy => __sortedSetBy ?? (__sortedSetBy = new funclib.Components.Core.SortedSetBy());
 		/// <summary>
 		/// Returns a <see cref="Collections.SortedSet"/> with supplied keys, using the supplied
 		/// <see cref="IFunction{T1, T2, TResult}"/> comparator. If any keys are equal, they are handled as
-		/// if by repeated uses of <see cref="Conj"/>.
+		/// if by repeated uses of <see cref="funclib.Components.Core.Conj"/>.
 		/// </summary>
 		/// <param name="comparator">An object that implements the <see cref="IFunction{T1, T2, TResult}"/> interface.</param>
 		/// <param name="keys">Keys to add to <see cref="Collections.SortedSet"/> data structure.</param>
 		/// <returns>
 		/// Returns a <see cref="Collections.SortedSet"/> with supplied keys, using the supplied
 		/// <see cref="IFunction{T1, T2, TResult}"/> comparator. If any keys are equal, they are handled as
-		/// if by repeated uses of <see cref="Conj"/>.
+		/// if by repeated uses of <see cref="funclib.Components.Core.Conj"/>.
 		/// </returns>
 		public static object SortedSetBy(object comparator, params object[] keys) => sortedSetBy.Invoke(comparator, keys);
 		#endregion
-		#region Reductions
+		#region public - Reductions
 		static funclib.Components.Core.Reductions __reductions;
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of the intermediate values of the reductions
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the intermediate values of the reductions
 		/// (as per reduce) of coll by f, starting with init.
 		/// </summary>
 		public static funclib.Components.Core.Reductions reductions => __reductions ?? (__reductions = new funclib.Components.Core.Reductions());
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of the intermediate values of the reductions
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the intermediate values of the reductions
 		/// (as per reduce) of coll by f, starting with init.
 		/// </summary>
 		/// <param name="f">An object that implements the <see cref="IFunction{TResult}"/> if coll contains no items, otherwise <see cref="IFunction{T1, T2, TResult}"/> interface.</param>
 		/// <param name="coll">A object that can be <see cref="Seq"/> over.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> of the intermediate values of the reductions
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the intermediate values of the reductions
 		/// (as per reduce) of coll by f, starting with init.
 		/// </returns>
 		public static object Reductions(object f, object coll) => reductions.Invoke(f, coll);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of the intermediate values of the reductions
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the intermediate values of the reductions
 		/// (as per reduce) of coll by f, starting with init.
 		/// </summary>
 		/// <param name="f">An object that implements the <see cref="IFunction{T1, T2, TResult}"/> interface.</param>
 		/// <param name="init">The initial starting value.</param>
 		/// <param name="coll">A object that can be <see cref="Seq"/> over.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> of the intermediate values of the reductions
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the intermediate values of the reductions
 		/// (as per reduce) of coll by f, starting with init.
 		/// </returns>
 		public static object Reductions(object f, object init, object coll) => reductions.Invoke(f, init, coll);
 		#endregion
-		#region BitNot
-		static funclib.Components.Core.BitNot __bitnot;
-		public static funclib.Components.Core.BitNot bitNot => __bitnot ?? (__bitnot = new funclib.Components.Core.BitNot());
+		#region public - BitNot
+		static funclib.Components.Core.BitNot __bitNot;
+		public static funclib.Components.Core.BitNot bitNot => __bitNot ?? (__bitNot = new funclib.Components.Core.BitNot());
 		public static object BitNot(object x) => bitNot.Invoke(x);
 		#endregion
-		#region NFirst
+		#region public - NFirst
 		static funclib.Components.Core.NFirst __nfirst;
 		/// <summary>
-		/// Same as <see cref="Next.Invoke(First.Invoke(object))"/>.
+		/// Same as new Next().Invoke(new First().Invoke(object)).
 		/// </summary>
 		public static funclib.Components.Core.NFirst nfirst => __nfirst ?? (__nfirst = new funclib.Components.Core.NFirst());
 		/// <summary>
-		/// Same as <see cref="Next.Invoke(First.Invoke(object))"/>.
+		/// Same as new Next().Invoke(new First().Invoke(object)).
 		/// </summary>
-		/// <param name="x">Object to return the funclib.Core.First( item's next item.</param>
+		/// <param name="x">Object to return the first item's next item.</param>
 		/// <returns>
-		/// Returns the funclib.Core.First( item's next item
+		/// Returns the first item's next item
 		/// </returns>
 		public static object NFirst(object x) => nfirst.Invoke(x);
 		#endregion
-		#region NthRest
-		static funclib.Components.Core.NthRest __nthrest;
+		#region public - NthRest
+		static funclib.Components.Core.NthRest __nthRest;
 		/// <summary>
 		/// Returns the nth rest of coll, coll when n is 0.
 		/// </summary>
-		public static funclib.Components.Core.NthRest nthRest => __nthrest ?? (__nthrest = new funclib.Components.Core.NthRest());
+		public static funclib.Components.Core.NthRest nthRest => __nthRest ?? (__nthRest = new funclib.Components.Core.NthRest());
 		/// <summary>
 		/// Returns the nth rest of coll, coll when n is 0.
 		/// </summary>
@@ -3069,7 +3070,7 @@ namespace funclib
 		/// </returns>
 		public static object NthRest(object coll, object n) => nthRest.Invoke(coll, n);
 		#endregion
-		#region Volatileǃ
+		#region public - Volatileǃ
 		static funclib.Components.Core.Volatileǃ __volatileǃ;
 		/// <summary>
 		/// Creates and returns a <see cref="Volatileǃ"/> with an initial value of val.
@@ -3084,49 +3085,49 @@ namespace funclib
 		/// </returns>
 		public static object Volatileǃ(object val) => volatileǃ.Invoke(val);
 		#endregion
-		#region Partial
+		#region public - Partial
 		static funclib.Components.Core.Partial __partial;
 		/// <summary>
 		/// Takes a <see cref="IFunction"/> f and fewer than the normal arguments, and returns a
-		/// <see cref="Function"/> that take the rest of the arguments.
+		/// <see cref="IFunction"/> that take the rest of the arguments.
 		/// </summary>
 		public static funclib.Components.Core.Partial partial => __partial ?? (__partial = new funclib.Components.Core.Partial());
 		/// <summary>
 		/// Takes a <see cref="IFunction"/> f and fewer than the normal arguments, and returns a
-		/// <see cref="Function"/> that take the rest of the arguments.
+		/// <see cref="IFunction"/> that take the rest of the arguments.
 		/// </summary>
 		/// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
 		/// <param name="arg1">First argument to the function.</param>
 		/// <returns>
-		/// Returns <see cref="Function"/> that when executed will take args + additional args.
+		/// Returns <see cref="IFunction"/> that when executed will take args + additional args.
 		/// </returns>
 		public static object Partial(object f, object arg1) => partial.Invoke(f, arg1);
 		/// <summary>
 		/// Takes a <see cref="IFunction"/> f and fewer than the normal arguments, and returns a
-		/// <see cref="Function"/> that take the rest of the arguments.
+		/// <see cref="IFunction"/> that take the rest of the arguments.
 		/// </summary>
 		/// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
 		/// <param name="arg1">First argument to the function.</param>
 		/// <param name="arg2">Second argument to the function.</param>
 		/// <returns>
-		/// Returns <see cref="Function"/> that when executed will take args + additional args.
+		/// Returns <see cref="IFunction"/> that when executed will take args + additional args.
 		/// </returns>
 		public static object Partial(object f, object arg1, object arg2) => partial.Invoke(f, arg1, arg2);
 		/// <summary>
 		/// Takes a <see cref="IFunction"/> f and fewer than the normal arguments, and returns a
-		/// <see cref="Function"/> that take the rest of the arguments.
+		/// <see cref="IFunction"/> that take the rest of the arguments.
 		/// </summary>
 		/// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
 		/// <param name="arg1">First argument to the function.</param>
 		/// <param name="arg2">Second argument to the function.</param>
 		/// <param name="arg3">Third argument to the function.</param>
 		/// <returns>
-		/// Returns <see cref="Function"/> that when executed will take args + additional args.
+		/// Returns <see cref="IFunction"/> that when executed will take args + additional args.
 		/// </returns>
 		public static object Partial(object f, object arg1, object arg2, object arg3) => partial.Invoke(f, arg1, arg2, arg3);
 		/// <summary>
 		/// Takes a <see cref="IFunction"/> f and fewer than the normal arguments, and returns a
-		/// <see cref="Function"/> that take the rest of the arguments.
+		/// <see cref="IFunction"/> that take the rest of the arguments.
 		/// </summary>
 		/// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
 		/// <param name="arg1">First argument to the function.</param>
@@ -3134,20 +3135,20 @@ namespace funclib
 		/// <param name="arg3">Third argument to the function.</param>
 		/// <param name="more">Rest of the arguments to the function.</param>
 		/// <returns>
-		/// Returns <see cref="Function"/> that when executed will take args + additional args.
+		/// Returns <see cref="IFunction"/> that when executed will take args + additional args.
 		/// </returns>
 		public static object Partial(object f, object arg1, object arg2, object arg3, params object[] more) => partial.Invoke(f, arg1, arg2, arg3, more);
 		#endregion
-		#region ArrayMap
-		static funclib.Components.Core.ArrayMap __arraymap;
+		#region public - ArrayMap
+		static funclib.Components.Core.ArrayMap __arrayMap;
 		/// <summary>
 		/// Constructs an <see cref="Collections.ArrayMap"/>. If any keys are equal,
-		/// they are handled as if by repeated uses of <see cref="Assoc"/>.
+		/// they are handled as if by repeated uses of <see cref="funclib.Components.Core.Assoc"/>.
 		/// </summary>
-		public static funclib.Components.Core.ArrayMap arrayMap => __arraymap ?? (__arraymap = new funclib.Components.Core.ArrayMap());
+		public static funclib.Components.Core.ArrayMap arrayMap => __arrayMap ?? (__arrayMap = new funclib.Components.Core.ArrayMap());
 		/// <summary>
 		/// Constructs an <see cref="Collections.ArrayMap"/>. If any keys are equal,
-		/// they are handled as if by repeated uses of <see cref="Assoc"/>.
+		/// they are handled as if by repeated uses of <see cref="funclib.Components.Core.Assoc"/>.
 		/// </summary>
 		/// <returns>
 		/// Returns <see cref="Collections.ArrayMap.EMPTY"/>.
@@ -3155,7 +3156,7 @@ namespace funclib
 		public static object ArrayMap() => arrayMap.Invoke();
 		/// <summary>
 		/// Constructs an <see cref="Collections.ArrayMap"/>. If any keys are equal,
-		/// they are handled as if by repeated uses of <see cref="Assoc"/>.
+		/// they are handled as if by repeated uses of <see cref="funclib.Components.Core.Assoc"/>.
 		/// </summary>
 		/// <param name="keyvals">List of Key, Value pairs.</param>
 		/// <returns>
@@ -3163,51 +3164,51 @@ namespace funclib
 		/// </returns>
 		public static object ArrayMap(params object[] keyvals) => arrayMap.Invoke(keyvals);
 		#endregion
-		#region BitClear
-		static funclib.Components.Core.BitClear __bitclear;
-		public static funclib.Components.Core.BitClear bitClear => __bitclear ?? (__bitclear = new funclib.Components.Core.BitClear());
+		#region public - BitClear
+		static funclib.Components.Core.BitClear __bitClear;
+		public static funclib.Components.Core.BitClear bitClear => __bitClear ?? (__bitClear = new funclib.Components.Core.BitClear());
 		public static object BitClear(object x, object n) => bitClear.Invoke(x, n);
 		#endregion
-		#region Repeatedly
+		#region public - Repeatedly
 		static funclib.Components.Core.Repeatedly __repeatedly;
 		/// <summary>
 		/// Takes a function of no args, presumably with side effects, and
-		/// returns an infinite (or length n if supplied) <see cref="LazySeq"/> of
+		/// returns an infinite (or length n if supplied) <see cref="funclib.Components.Core.LazySeq"/> of
 		/// calls to it.
 		/// </summary>
 		public static funclib.Components.Core.Repeatedly repeatedly => __repeatedly ?? (__repeatedly = new funclib.Components.Core.Repeatedly());
 		/// <summary>
 		/// Takes a function of no args, presumably with side effects, and
-		/// returns an infinite (or length n if supplied) <see cref="LazySeq"/> of
+		/// returns an infinite (or length n if supplied) <see cref="funclib.Components.Core.LazySeq"/> of
 		/// calls to it.
 		/// </summary>
 		/// <param name="f">An object that implements the <see cref="IFunction{TResult}"/> interface.</param>
 		/// <returns>
 		/// Takes a function of no args, presumably with side effects, and
-		/// returns an infinite (or length n if supplied) <see cref="LazySeq"/> of
+		/// returns an infinite (or length n if supplied) <see cref="funclib.Components.Core.LazySeq"/> of
 		/// calls to it.
 		/// </returns>
 		public static object Repeatedly(object f) => repeatedly.Invoke(f);
 		/// <summary>
 		/// Takes a function of no args, presumably with side effects, and
-		/// returns an infinite (or length n if supplied) <see cref="LazySeq"/> of
+		/// returns an infinite (or length n if supplied) <see cref="funclib.Components.Core.LazySeq"/> of
 		/// calls to it.
 		/// </summary>
 		/// <param name="n">The length of the sequence.</param>
 		/// <param name="f">An object that implements the <see cref="IFunction{TResult}"/> interface.</param>
 		/// <returns>
 		/// Takes a function of no args, presumably with side effects, and
-		/// returns an infinite (or length n if supplied) <see cref="LazySeq"/> of
+		/// returns an infinite (or length n if supplied) <see cref="funclib.Components.Core.LazySeq"/> of
 		/// calls to it.
 		/// </returns>
 		public static object Repeatedly(object n, object f) => repeatedly.Invoke(n, f);
 		#endregion
-		#region IsFunction
-		static funclib.Components.Core.IsFunction __isfunction;
+		#region public - IsFunction
+		static funclib.Components.Core.IsFunction __isFunction;
 		/// <summary>
 		/// Returns true if x is a <see cref="IFunction"/>, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsFunction isFunction => __isfunction ?? (__isfunction = new funclib.Components.Core.IsFunction());
+		public static funclib.Components.Core.IsFunction isFunction => __isFunction ?? (__isFunction = new funclib.Components.Core.IsFunction());
 		/// <summary>
 		/// Returns true if x is a <see cref="IFunction"/>, otherwise false.
 		/// </summary>
@@ -3217,39 +3218,39 @@ namespace funclib
 		/// </returns>
 		public static object IsFunction(object x) => isFunction.Invoke(x);
 		#endregion
-		#region Dissocǃ
+		#region public - Dissocǃ
 		static funclib.Components.Core.Dissocǃ __dissocǃ;
 		/// <summary>
-		/// Returns a <see cref="ITransientMap"/> of the same concrete type that
+		/// Returns a <see cref="funclib.Collections.Internal.ITransientMap"/> of the same concrete type that
 		/// doesn't contain the same <see cref="KeyValuePair"/>
 		/// </summary>
 		public static funclib.Components.Core.Dissocǃ dissocǃ => __dissocǃ ?? (__dissocǃ = new funclib.Components.Core.Dissocǃ());
 		/// <summary>
-		/// Returns a <see cref="ITransientMap"/> of the same concrete type that
+		/// Returns a <see cref="funclib.Collections.Internal.ITransientMap"/> of the same concrete type that
 		/// doesn't contain the same <see cref="KeyValuePair"/>
 		/// </summary>
-		/// <param name="map">Object that implements the <see cref="ITransientMap"/> interface.</param>
+		/// <param name="map">Object that implements the <see cref="funclib.Collections.Internal.ITransientMap"/> interface.</param>
 		/// <param name="key">Key for the <see cref="KeyValuePair"/> to remove from the map.</param>
 		/// <returns>
-		/// Returns a <see cref="ITransientMap"/> collection without the given key.
+		/// Returns a <see cref="funclib.Collections.Internal.ITransientMap"/> collection without the given key.
 		/// </returns>
 		public static object Dissocǃ(object map, object key) => dissocǃ.Invoke(map, key);
 		/// <summary>
-		/// Returns a <see cref="ITransientMap"/> of the same concrete type that
+		/// Returns a <see cref="funclib.Collections.Internal.ITransientMap"/> of the same concrete type that
 		/// doesn't contain the same <see cref="KeyValuePair"/>
 		/// </summary>
-		/// <param name="map">Object that implements the <see cref="ITransientMap"/> interface.</param>
+		/// <param name="map">Object that implements the <see cref="funclib.Collections.Internal.ITransientMap"/> interface.</param>
 		/// <param name="key">Key for the <see cref="KeyValuePair"/> to remove from the map.</param>
 		/// <param name="ks">An array of keys for the <see cref="KeyValuePair"/> to remove from the map.</param>
 		/// <returns>
-		/// Returns a <see cref="ITransientMap"/> collection without all the given keys.
+		/// Returns a <see cref="funclib.Collections.Internal.ITransientMap"/> collection without all the given keys.
 		/// </returns>
 		public static object Dissocǃ(object map, object key, params object[] ks) => dissocǃ.Invoke(map, key, ks);
 		#endregion
-		#region Trampoline
+		#region public - Trampoline
 		static funclib.Components.Core.Trampoline __trampoline;
 		/// <summary>
-		/// <see cref="Trampoline"/> can be used to convert algorithms requiring mutual
+		/// <see cref="funclib.Components.Core.Trampoline"/> can be used to convert algorithms requiring mutual
 		/// recursion without stake consumption. Calls f with supplied args, if any. If
 		/// f returns a fn, calls the fn with no arguments and continues to repeat, until
 		/// the return value is not a fn. then returns the non-fn value. Note: that if you
@@ -3258,7 +3259,7 @@ namespace funclib
 		/// </summary>
 		public static funclib.Components.Core.Trampoline trampoline => __trampoline ?? (__trampoline = new funclib.Components.Core.Trampoline());
 		/// <summary>
-		/// <see cref="Trampoline"/> can be used to convert algorithms requiring mutual
+		/// <see cref="funclib.Components.Core.Trampoline"/> can be used to convert algorithms requiring mutual
 		/// recursion without stake consumption. Calls f with supplied args, if any. If
 		/// f returns a fn, calls the fn with no arguments and continues to repeat, until
 		/// the return value is not a fn. then returns the non-fn value. Note: that if you
@@ -3271,7 +3272,7 @@ namespace funclib
 		/// </returns>
 		public static object Trampoline(object f) => trampoline.Invoke(f);
 		/// <summary>
-		/// <see cref="Trampoline"/> can be used to convert algorithms requiring mutual
+		/// <see cref="funclib.Components.Core.Trampoline"/> can be used to convert algorithms requiring mutual
 		/// recursion without stake consumption. Calls f with supplied args, if any. If
 		/// f returns a fn, calls the fn with no arguments and continues to repeat, until
 		/// the return value is not a fn. then returns the non-fn value. Note: that if you
@@ -3285,14 +3286,14 @@ namespace funclib
 		/// </returns>
 		public static object Trampoline(object f, params object[] args) => trampoline.Invoke(f, args);
 		#endregion
-		#region SortBy
-		static funclib.Components.Core.SortBy __sortby;
+		#region public - SortBy
+		static funclib.Components.Core.SortBy __sortBy;
 		/// <summary>
 		/// Returns a sorted sequence of the items in coll, where the sort
 		/// order is determined by comparing <see cref="IFunction{T1, TResult}"/> key function.
 		/// If no comparator is suppled, uses <see cref="Compare"/>.
 		/// </summary>
-		public static funclib.Components.Core.SortBy sortBy => __sortby ?? (__sortby = new funclib.Components.Core.SortBy());
+		public static funclib.Components.Core.SortBy sortBy => __sortBy ?? (__sortBy = new funclib.Components.Core.SortBy());
 		/// <summary>
 		/// Returns a sorted sequence of the items in coll, where the sort
 		/// order is determined by comparing <see cref="IFunction{T1, TResult}"/> key function.
@@ -3321,7 +3322,7 @@ namespace funclib
 		/// </returns>
 		public static object SortBy(object keyfn, object comp, object coll) => sortBy.Invoke(keyfn, comp, coll);
 		#endregion
-		#region Conj
+		#region public - Conj
 		static funclib.Components.Core.Conj __conj;
 		/// <summary>
 		/// Conj[oin]. Returns a new collection with the x 'added'. If
@@ -3380,12 +3381,12 @@ namespace funclib
 		/// </returns>
 		public static object Conj(object coll, object x, params object[] xs) => conj.Invoke(coll, x, xs);
 		#endregion
-		#region EnsureReduced
-		static funclib.Components.Core.EnsureReduced __ensurereduced;
+		#region public - EnsureReduced
+		static funclib.Components.Core.EnsureReduced __ensureReduced;
 		/// <summary>
 		/// If x is already <see cref="IsReduced"/>, return it else return <see cref="Reduced"/> value.
 		/// </summary>
-		public static funclib.Components.Core.EnsureReduced ensureReduced => __ensurereduced ?? (__ensurereduced = new funclib.Components.Core.EnsureReduced());
+		public static funclib.Components.Core.EnsureReduced ensureReduced => __ensureReduced ?? (__ensureReduced = new funclib.Components.Core.EnsureReduced());
 		/// <summary>
 		/// If x is already <see cref="IsReduced"/>, return it else return <see cref="Reduced"/> value.
 		/// </summary>
@@ -3395,17 +3396,17 @@ namespace funclib
 		/// </returns>
 		public static object EnsureReduced(object x) => ensureReduced.Invoke(x);
 		#endregion
-		#region BitTest
-		static funclib.Components.Core.BitTest __bittest;
-		public static funclib.Components.Core.BitTest bitTest => __bittest ?? (__bittest = new funclib.Components.Core.BitTest());
+		#region public - BitTest
+		static funclib.Components.Core.BitTest __bitTest;
+		public static funclib.Components.Core.BitTest bitTest => __bitTest ?? (__bitTest = new funclib.Components.Core.BitTest());
 		public static object BitTest(object x, object n) => bitTest.Invoke(x, n);
 		#endregion
-		#region IsFalse
-		static funclib.Components.Core.IsFalse __isfalse;
+		#region public - IsFalse
+		static funclib.Components.Core.IsFalse __isFalse;
 		/// <summary>
 		/// Returns true if x is false, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsFalse isFalse => __isfalse ?? (__isfalse = new funclib.Components.Core.IsFalse());
+		public static funclib.Components.Core.IsFalse isFalse => __isFalse ?? (__isFalse = new funclib.Components.Core.IsFalse());
 		/// <summary>
 		/// Returns true if x is a false, otherwise false.
 		/// </summary>
@@ -3415,55 +3416,55 @@ namespace funclib
 		/// </returns>
 		public static object IsFalse(object x) => isFalse.Invoke(x);
 		#endregion
-		#region Disjǃ
+		#region public - Disjǃ
 		static funclib.Components.Core.Disjǃ __disjǃ;
 		/// <summary>
-		/// Returns a <see cref="ITransientSet"/> of the same concrete type that
+		/// Returns a <see cref="funclib.Collections.Internal.ITransientSet"/> of the same concrete type that
 		/// does not contain funclib.Core.Key(s).
 		/// </summary>
 		public static funclib.Components.Core.Disjǃ disjǃ => __disjǃ ?? (__disjǃ = new funclib.Components.Core.Disjǃ());
 		/// <summary>
-		/// Returns a <see cref="ITransientSet"/> of the same concrete type that
+		/// Returns a <see cref="funclib.Collections.Internal.ITransientSet"/> of the same concrete type that
 		/// does not contain funclib.Core.Key(s).
 		/// </summary>
-		/// <param name="set">Object that implements the <see cref="ITransientSet"/> interface.</param>
+		/// <param name="set">Object that implements the <see cref="funclib.Collections.Internal.ITransientSet"/> interface.</param>
 		/// <returns>
 		/// Returns the set object.
 		/// </returns>
 		public static object Disjǃ(object set) => disjǃ.Invoke(set);
 		/// <summary>
-		/// Returns a <see cref="ITransientSet"/> of the same concrete type that
+		/// Returns a <see cref="funclib.Collections.Internal.ITransientSet"/> of the same concrete type that
 		/// does not contain funclib.Core.Key(s).
 		/// </summary>
-		/// <param name="set">Object that implements the <see cref="ITransientSet"/> interface.</param>
+		/// <param name="set">Object that implements the <see cref="funclib.Collections.Internal.ITransientSet"/> interface.</param>
 		/// <param name="key">Object to remove from the set.</param>
 		/// <returns>
-		/// Returns a <see cref="ITransientSet"/> without the key.
+		/// Returns a <see cref="funclib.Collections.Internal.ITransientSet"/> without the key.
 		/// </returns>
 		public static object Disjǃ(object set, object key) => disjǃ.Invoke(set, key);
 		/// <summary>
-		/// Returns a <see cref="ITransientSet"/> of the same concrete type that
+		/// Returns a <see cref="funclib.Collections.Internal.ITransientSet"/> of the same concrete type that
 		/// does not contain funclib.Core.Key(s).
 		/// </summary>
-		/// <param name="set">Object that implements the <see cref="ITransientSet"/> interface.</param>
+		/// <param name="set">Object that implements the <see cref="funclib.Collections.Internal.ITransientSet"/> interface.</param>
 		/// <param name="key">Object to remove from the set.</param>
 		/// <param name="ks">An array of other object to remove from the set.</param>
 		/// <returns>
-		/// Returns a <see cref="ITransientSet"/> without all of the items.
+		/// Returns a <see cref="funclib.Collections.Internal.ITransientSet"/> without all of the items.
 		/// </returns>
 		public static object Disjǃ(object set, object key, params object[] ks) => disjǃ.Invoke(set, key, ks);
 		#endregion
-		#region UnsignedBitShiftRigth
-		static funclib.Components.Core.UnsignedBitShiftRigth __unsignedbitshiftrigth;
-		public static funclib.Components.Core.UnsignedBitShiftRigth unsignedBitShiftRigth => __unsignedbitshiftrigth ?? (__unsignedbitshiftrigth = new funclib.Components.Core.UnsignedBitShiftRigth());
-		public static object UnsignedBitShiftRigth(object x, object n) => unsignedBitShiftRigth.Invoke(x, n);
+		#region public - UnsignedBitShiftRight
+		static funclib.Components.Core.UnsignedBitShiftRight __unsignedBitShiftRight;
+		public static funclib.Components.Core.UnsignedBitShiftRight unsignedBitShiftRight => __unsignedBitShiftRight ?? (__unsignedBitShiftRight = new funclib.Components.Core.UnsignedBitShiftRight());
+		public static object UnsignedBitShiftRight(object x, object n) => unsignedBitShiftRight.Invoke(x, n);
 		#endregion
-		#region IsLessThan
-		static funclib.Components.Core.IsLessThan __islessthan;
+		#region public - IsLessThan
+		static funclib.Components.Core.IsLessThan __isLessThan;
 		/// <summary>
 		/// Returns a true, numbers are monotonically increasing order, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsLessThan isLessThan => __islessthan ?? (__islessthan = new funclib.Components.Core.IsLessThan());
+		public static funclib.Components.Core.IsLessThan isLessThan => __isLessThan ?? (__isLessThan = new funclib.Components.Core.IsLessThan());
 		/// <summary>
 		/// Returns a true, numbers are monotonically increasing order, otherwise false.
 		/// </summary>
@@ -3492,13 +3493,13 @@ namespace funclib
 		/// </returns>
 		public static object IsLessThan(object x, object y, params object[] more) => isLessThan.Invoke(x, y, more);
 		#endregion
-		#region TakeLast
-		static funclib.Components.Core.TakeLast __takelast;
+		#region public - TakeLast
+		static funclib.Components.Core.TakeLast __takeLast;
 		/// <summary>
 		/// Returns a <see cref="ISeq"/> of the last n items in coll. Depending on the
 		/// type of coll may be no better than linear time.
 		/// </summary>
-		public static funclib.Components.Core.TakeLast takeLast => __takelast ?? (__takelast = new funclib.Components.Core.TakeLast());
+		public static funclib.Components.Core.TakeLast takeLast => __takeLast ?? (__takeLast = new funclib.Components.Core.TakeLast());
 		/// <summary>
 		/// Returns a <see cref="ISeq"/> of the last n items in coll. Depending on the
 		/// type of coll may be no better than linear time.
@@ -3511,7 +3512,7 @@ namespace funclib
 		/// </returns>
 		public static object TakeLast(object n, object coll) => takeLast.Invoke(n, coll);
 		#endregion
-		#region Set
+		#region public - Set
 		static funclib.Components.Core.Set __set;
 		/// <summary>
 		/// Returns a <see cref="Collections.HashSet"/> of the distinct elements of coll.
@@ -3526,12 +3527,12 @@ namespace funclib
 		/// </returns>
 		public static object Set(object coll) => set.Invoke(coll);
 		#endregion
-		#region IsPosInt
-		static funclib.Components.Core.IsPosInt __isposint;
+		#region public - IsPosInt
+		static funclib.Components.Core.IsPosInt __isPosInt;
 		/// <summary>
 		/// Returns true if x is a positive <see cref="IsInt"/>, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsPosInt isPosInt => __isposint ?? (__isposint = new funclib.Components.Core.IsPosInt());
+		public static funclib.Components.Core.IsPosInt isPosInt => __isPosInt ?? (__isPosInt = new funclib.Components.Core.IsPosInt());
 		/// <summary>
 		/// Returns true if x is a positive <see cref="IsInt"/>, otherwise false.
 		/// </summary>
@@ -3541,12 +3542,12 @@ namespace funclib
 		/// </returns>
 		public static object IsPosInt(object n) => isPosInt.Invoke(n);
 		#endregion
-		#region IsSequential
-		static funclib.Components.Core.IsSequential __issequential;
+		#region public - IsSequential
+		static funclib.Components.Core.IsSequential __isSequential;
 		/// <summary>
 		/// Returns true if coll implements <see cref="ISequential"/> interface, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsSequential isSequential => __issequential ?? (__issequential = new funclib.Components.Core.IsSequential());
+		public static funclib.Components.Core.IsSequential isSequential => __isSequential ?? (__isSequential = new funclib.Components.Core.IsSequential());
 		/// <summary>
 		/// Returns true if coll implements <see cref="ISequential"/> interface, otherwise false.
 		/// </summary>
@@ -3556,7 +3557,7 @@ namespace funclib
 		/// </returns>
 		public static object IsSequential(object coll) => isSequential.Invoke(coll);
 		#endregion
-		#region Rem
+		#region public - Rem
 		static funclib.Components.Core.Rem __rem;
 		/// <summary>
 		/// Returns the remainder of dividing the numerator by the denominator.
@@ -3572,10 +3573,10 @@ namespace funclib
 		/// </returns>
 		public static object Rem(object num, object div) => rem.Invoke(num, div);
 		#endregion
-		#region Atom
+		#region public - Atom
 		static funclib.Components.Core.Atom __atom;
 		/// <summary>
-		/// Creates and returns an <see cref="Atom"/> with an initial value or x
+		/// Creates and returns an <see cref="funclib.Components.Core.Atom"/> with an initial value or x
 		/// and zero or more options:
 		///     :validator = validate-fn
 		/// Validate-fn must be nil or a side effect free <see cref="IFunction"/>
@@ -3585,7 +3586,7 @@ namespace funclib
 		/// </summary>
 		public static funclib.Components.Core.Atom atom => __atom ?? (__atom = new funclib.Components.Core.Atom());
 		/// <summary>
-		/// Creates and returns an <see cref="Atom"/> with an initial value or x
+		/// Creates and returns an <see cref="funclib.Components.Core.Atom"/> with an initial value or x
 		/// and zero or more options:
 		///     :validator = validate-fn
 		/// Validate-fn must be nil or a side effect free <see cref="IFunction"/>
@@ -3593,13 +3594,13 @@ namespace funclib
 		/// state change. If the new state is unacceptable, the validate-fn should
 		/// return false or throw an exception.
 		/// </summary>
-		/// <param name="x">Initial value of the <see cref="Atom"/>.</param>
+		/// <param name="x">Initial value of the <see cref="funclib.Components.Core.Atom"/>.</param>
 		/// <returns>
-		/// Returns a new <see cref="Atom"/> with the initial value set.
+		/// Returns a new <see cref="funclib.Components.Core.Atom"/> with the initial value set.
 		/// </returns>
 		public static object Atom(object x) => atom.Invoke(x);
 		/// <summary>
-		/// Creates and returns an <see cref="Atom"/> with an initial value or x
+		/// Creates and returns an <see cref="funclib.Components.Core.Atom"/> with an initial value or x
 		/// and zero or more options:
 		///     :validator = validate-fn
 		/// Validate-fn must be nil or a side effect free <see cref="IFunction"/>
@@ -3607,21 +3608,21 @@ namespace funclib
 		/// state change. If the new state is unacceptable, the validate-fn should
 		/// return false or throw an exception.
 		/// </summary>
-		/// <param name="x">Initial value of the <see cref="Atom"/>.</param>
+		/// <param name="x">Initial value of the <see cref="funclib.Components.Core.Atom"/>.</param>
 		/// <param name="options">Key/Value pair of options. options are:
 		///     :validator = validate-fn
 		/// </param>
 		/// <returns>
-		/// Returns a new <see cref="Atom"/> with the initial value set.
+		/// Returns a new <see cref="funclib.Components.Core.Atom"/> with the initial value set.
 		/// </returns>
 		public static object Atom(object x, params object[] options) => atom.Invoke(x, options);
 		#endregion
-		#region IsNotAny
-		static funclib.Components.Core.IsNotAny __isnotany;
+		#region public - IsNotAny
+		static funclib.Components.Core.IsNotAny __isNotAny;
 		/// <summary>
 		/// Returns false if x is logical true for any item in coll, otherwise true.
 		/// </summary>
-		public static funclib.Components.Core.IsNotAny isNotAny => __isnotany ?? (__isnotany = new funclib.Components.Core.IsNotAny());
+		public static funclib.Components.Core.IsNotAny isNotAny => __isNotAny ?? (__isNotAny = new funclib.Components.Core.IsNotAny());
 		/// <summary>
 		/// Returns true if x is logical true for any item in coll, otherwise false.
 		/// </summary>
@@ -3632,12 +3633,12 @@ namespace funclib
 		/// </returns>
 		public static object IsNotAny(object pred, object coll) => isNotAny.Invoke(pred, coll);
 		#endregion
-		#region IsReduced
-		static funclib.Components.Core.IsReduced __isreduced;
+		#region public - IsReduced
+		static funclib.Components.Core.IsReduced __isReduced;
 		/// <summary>
 		/// Returns true if x is of type <see cref="Reduced"/>, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsReduced isReduced => __isreduced ?? (__isreduced = new funclib.Components.Core.IsReduced());
+		public static funclib.Components.Core.IsReduced isReduced => __isReduced ?? (__isReduced = new funclib.Components.Core.IsReduced());
 		/// <summary>
 		/// Returns true if x is of type <see cref="Reduced"/>, otherwise false.
 		/// </summary>
@@ -3647,7 +3648,7 @@ namespace funclib
 		/// </returns>
 		public static object IsReduced(object x) => isReduced.Invoke(x);
 		#endregion
-		#region FFirst
+		#region public - FFirst
 		static funclib.Components.Core.FFirst __ffirst;
 		/// <summary>
 		/// Returns the first item's first item. Same as First(First(x)).
@@ -3662,7 +3663,7 @@ namespace funclib
 		/// </returns>
 		public static object FFirst(object x) => ffirst.Invoke(x);
 		#endregion
-		#region Identity
+		#region public - Identity
 		static funclib.Components.Core.Identity __identity;
 		/// <summary>
 		/// Returns its argument.
@@ -3677,32 +3678,32 @@ namespace funclib
 		/// </returns>
 		public static object Identity(object x) => identity.Invoke(x);
 		#endregion
-		#region GroupBy
-		static funclib.Components.Core.GroupBy __groupby;
+		#region public - GroupBy
+		static funclib.Components.Core.GroupBy __groupBy;
 		/// <summary>
-		/// Returns a <see cref="HashMap"/> of elements of coll keyed by the result of
+		/// Returns a <see cref="funclib.Components.Core.HashMap"/> of elements of coll keyed by the result of
 		/// <see cref="IFunction{T1, TResult}"/> f. The value at each key will be a
-		/// <see cref="Vector"/> of the corresponding elements, in the order they appeared
+		/// <see cref="funclib.Components.Core.Vector"/> of the corresponding elements, in the order they appeared
 		/// in coll.
 		/// </summary>
-		public static funclib.Components.Core.GroupBy groupBy => __groupby ?? (__groupby = new funclib.Components.Core.GroupBy());
+		public static funclib.Components.Core.GroupBy groupBy => __groupBy ?? (__groupBy = new funclib.Components.Core.GroupBy());
 		/// <summary>
-		/// Returns a <see cref="HashMap"/> of elements of coll keyed by the result of
+		/// Returns a <see cref="funclib.Components.Core.HashMap"/> of elements of coll keyed by the result of
 		/// <see cref="IFunction{T1, TResult}"/> f. The value at each key will be a
-		/// <see cref="Vector"/> of the corresponding elements, in the order they appeared
+		/// <see cref="funclib.Components.Core.Vector"/> of the corresponding elements, in the order they appeared
 		/// in coll.
 		/// </summary>
 		/// <param name="f">An object that implements the <see cref="IFunction{T1, TResult}"/> interface.</param>
 		/// <param name="coll">A collection of items to group by.</param>
 		/// <returns>
-		/// Returns a <see cref="HashMap"/> of elements of coll keyed by the result of
+		/// Returns a <see cref="funclib.Components.Core.HashMap"/> of elements of coll keyed by the result of
 		/// <see cref="IFunction{T1, TResult}"/> f.
 		/// </returns>
 		public static object GroupBy(object f, object coll) => groupBy.Invoke(f, coll);
 		#endregion
-		#region ReduceKV
-		static funclib.Components.Core.ReduceKV __reducekv;
-		public static funclib.Components.Core.ReduceKV reduceKV => __reducekv ?? (__reducekv = new funclib.Components.Core.ReduceKV());
+		#region public - ReduceKV
+		static funclib.Components.Core.ReduceKV __reduceKV;
+		public static funclib.Components.Core.ReduceKV reduceKV => __reduceKV ?? (__reduceKV = new funclib.Components.Core.ReduceKV());
 		/// <summary>
 		/// Reduces a <see cref="IAssociative"/> collection. f should implement <see cref="IFunction{T1, T2, T3, TResult}"/> interface.
 		/// Returns the result of applying f to init, the 1st key and value in coll. Then applying f to that result and the
@@ -3718,14 +3719,14 @@ namespace funclib
 		/// </returns>
 		public static object ReduceKV(object f, object init, object coll) => reduceKV.Invoke(f, init, coll);
 		#endregion
-		#region Transduce
+		#region public - Transduce
 		static funclib.Components.Core.Transduce __transduce;
 		/// <summary>
 		/// This is still experimental!
 		/// Reduce with a transformation of f (xf). If init is not supplied <see cref="IFunction{TResult}"/> is
 		/// called to produce it. f should be a reducing step function that accepts both 1 and 2 arguments, if
-		/// it accepts only 2 you can add the arity-1 with <see cref="Completing"/>. Returns the result of
-		/// applying (thre transformed) xf to init and the funclib.Core.First( item in coll, then applying xf to the result
+		/// it accepts only 2 you can add the arity-1 with <see cref="funclib.Components.Core.Completing"/>. Returns the result of
+		/// applying (the transformed) xf to init and the funclib.Core.First( item in coll, then applying xf to the result
 		/// of the 2nd item, etc. If coll contains no items, returns init and f is not called. Note: that
 		/// certain transforms my inject or skip items.
 		/// </summary>
@@ -3734,8 +3735,8 @@ namespace funclib
 		/// This is still experimental!
 		/// Reduce with a transformation of f (xf). If init is not supplied <see cref="IFunction{TResult}"/> is
 		/// called to produce it. f should be a reducing step function that accepts both 1 and 2 arguments, if
-		/// it accepts only 2 you can add the arity-1 with <see cref="Completing"/>. Returns the result of
-		/// applying (thre transformed) xf to init and the funclib.Core.First( item in coll, then applying xf to the result
+		/// it accepts only 2 you can add the arity-1 with <see cref="funclib.Components.Core.Completing"/>. Returns the result of
+		/// applying (the transformed) xf to init and the funclib.Core.First( item in coll, then applying xf to the result
 		/// of the 2nd item, etc. If coll contains no items, returns init and f is not called. Note: that
 		/// certain transforms my inject or skip items.
 		/// </summary>
@@ -3743,7 +3744,7 @@ namespace funclib
 		/// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
 		/// <param name="coll">A collection of items to reduce.</param>
 		/// <returns>
-		/// Returns the result of applying (thre transformed) xf to init and the funclib.Core.First( item in coll, then applying
+		/// Returns the result of applying (the transformed) xf to init and the funclib.Core.First( item in coll, then applying
 		/// xf to the result of the 2nd item, etc. If coll contains no items, returns init and f is not called.
 		/// </returns>
 		public static object Transduce(object xform, object f, object coll) => transduce.Invoke(xform, f, coll);
@@ -3751,8 +3752,8 @@ namespace funclib
 		/// This is still experimental!
 		/// Reduce with a transformation of f (xf). If init is not supplied <see cref="IFunction{TResult}"/> is
 		/// called to produce it. f should be a reducing step function that accepts both 1 and 2 arguments, if
-		/// it accepts only 2 you can add the arity-1 with <see cref="Completing"/>. Returns the result of
-		/// applying (thre transformed) xf to init and the funclib.Core.First( item in coll, then applying xf to the result
+		/// it accepts only 2 you can add the arity-1 with <see cref="funclib.Components.Core.Completing"/>. Returns the result of
+		/// applying (the transformed) xf to init and the funclib.Core.First( item in coll, then applying xf to the result
 		/// of the 2nd item, etc. If coll contains no items, returns init and f is not called. Note: that
 		/// certain transforms my inject or skip items.
 		/// </summary>
@@ -3761,17 +3762,17 @@ namespace funclib
 		/// <param name="init">The initial seed value.</param>
 		/// <param name="coll">A collection of items to reduce.</param>
 		/// <returns>
-		/// Returns the result of applying (thre transformed) xf to init and the funclib.Core.First( item in coll, then applying
+		/// Returns the result of applying (the transformed) xf to init and the funclib.Core.First( item in coll, then applying
 		/// xf to the result of the 2nd item, etc. If coll contains no items, returns init and f is not called.
 		/// </returns>
 		public static object Transduce(object xform, object f, object init, object coll) => transduce.Invoke(xform, f, init, coll);
 		#endregion
-		#region IsNatInt
-		static funclib.Components.Core.IsNatInt __isnatint;
+		#region public - IsNatInt
+		static funclib.Components.Core.IsNatInt __isNatInt;
 		/// <summary>
 		/// Returns true if x is a non-negative <see cref="int"/>, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsNatInt isNatInt => __isnatint ?? (__isnatint = new funclib.Components.Core.IsNatInt());
+		public static funclib.Components.Core.IsNatInt isNatInt => __isNatInt ?? (__isNatInt = new funclib.Components.Core.IsNatInt());
 		/// <summary>
 		/// Returns true if x is a non-negative <see cref="int"/>, otherwise false.
 		/// </summary>
@@ -3781,18 +3782,18 @@ namespace funclib
 		/// </returns>
 		public static object IsNatInt(object n) => isNatInt.Invoke(n);
 		#endregion
-		#region Reduce1
+		#region internal - Reduce1
 		static funclib.Components.Core.Reduce1 __reduce1;
 		internal static funclib.Components.Core.Reduce1 reduce1 => __reduce1 ?? (__reduce1 = new funclib.Components.Core.Reduce1());
-		public static object Reduce1(object f, object coll) => reduce1.Invoke(f, coll);
-		public static object Reduce1(object f, object val, object coll) => reduce1.Invoke(f, val, coll);
+		internal static object Reduce1(object f, object coll) => reduce1.Invoke(f, coll);
+		internal static object Reduce1(object f, object val, object coll) => reduce1.Invoke(f, val, coll);
 		#endregion
-		#region ChunkCons
-		static funclib.Components.Core.ChunkCons __chunkcons;
-		public static funclib.Components.Core.ChunkCons chunkCons => __chunkcons ?? (__chunkcons = new funclib.Components.Core.ChunkCons());
+		#region public - ChunkCons
+		static funclib.Components.Core.ChunkCons __chunkCons;
+		public static funclib.Components.Core.ChunkCons chunkCons => __chunkCons ?? (__chunkCons = new funclib.Components.Core.ChunkCons());
 		public static object ChunkCons(object chunk, object rest) => chunkCons.Invoke(chunk, rest);
 		#endregion
-		#region Into
+		#region public - Into
 		static funclib.Components.Core.Into __into;
 		/// <summary>
 		/// Returns a new collection consisting of to with all of the items of from conjoined.
@@ -3833,7 +3834,7 @@ namespace funclib
 		/// </returns>
 		public static object Into(object to, object xform, object from) => into.Invoke(to, xform, from);
 		#endregion
-		#region Complement
+		#region public - Complement
 		static funclib.Components.Core.Complement __complement;
 		/// <summary>
 		/// Takes a <see cref="IFunction"/> and returns the function that takes the same arguments
@@ -3846,11 +3847,11 @@ namespace funclib
 		/// </summary>
 		/// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
 		/// <returns>
-		/// Returns a <see cref="Function"/> that returns a <see cref="bool"/> value which is the opposite truthy value.
+		/// Returns a <see cref="IFunction"/> that returns a <see cref="bool"/> value which is the opposite truthy value.
 		/// </returns>
 		public static object Complement(object f) => complement.Invoke(f);
 		#endregion
-		#region Compare
+		#region public - Compare
 		static funclib.Components.Core.Compare __compare;
 		/// <summary>
 		/// Comparator, that returns a negative number, zero, or positive number when x
@@ -3873,7 +3874,7 @@ namespace funclib
 		/// </returns>
 		public static object Compare(object x, object y) => compare.Invoke(x, y);
 		#endregion
-		#region Pop
+		#region public - Pop
 		static funclib.Components.Core.Pop __pop;
 		/// <summary>
 		/// For <see cref="Collections.List"/> or <see cref="Collections.Queue"/> returns a
@@ -3895,7 +3896,7 @@ namespace funclib
 		/// </returns>
 		public static object Pop(object coll) => pop.Invoke(coll);
 		#endregion
-		#region UUID
+		#region public - UUID
 		static funclib.Components.Core.UUID __uuid;
 		/// <summary>
 		/// Generates a new <see cref="System.Guid"/> object.
@@ -3909,7 +3910,7 @@ namespace funclib
 		/// </returns>
 		public static object UUID() => uuid.Invoke();
 		#endregion
-		#region Get
+		#region public - Get
 		static funclib.Components.Core.Get __get;
 		/// <summary>
 		/// Returns the value mapped to the key, notFound or null if key is not present.
@@ -3935,17 +3936,17 @@ namespace funclib
 		/// </returns>
 		public static object Get(object map, object key, object notFound) => get.Invoke(map, key, notFound);
 		#endregion
-		#region MapCat
-		static funclib.Components.Core.MapCat __mapcat;
+		#region public - MapCat
+		static funclib.Components.Core.MapCat __mapCat;
 		/// <summary>
-		/// Returns the result of applying <see cref="Concat"/> to the result of applying
-		/// <see cref="Map"/> to f and colls. Thus function f should return a collections.
+		/// Returns the result of applying <see cref="funclib.Components.Core.Concat"/> to the result of applying
+		/// <see cref="funclib.Components.Core.Map"/> to f and colls. Thus function f should return a collections.
 		/// </summary>
-		public static funclib.Components.Core.MapCat mapCat => __mapcat ?? (__mapcat = new funclib.Components.Core.MapCat());
+		public static funclib.Components.Core.MapCat mapCat => __mapCat ?? (__mapCat = new funclib.Components.Core.MapCat());
 		public static object MapCat(object f) => mapCat.Invoke(f);
 		/// <summary>
-		/// Returns the result of applying <see cref="Concat"/> to the result of applying
-		/// <see cref="Map"/> to f and colls. Thus function f should return a collections.
+		/// Returns the result of applying <see cref="funclib.Components.Core.Concat"/> to the result of applying
+		/// <see cref="funclib.Components.Core.Map"/> to f and colls. Thus function f should return a collections.
 		/// </summary>
 		/// <param name="f">An object that implements <see cref="IFunction"/> interface.</param>
 		/// <param name="colls">A collection of items.</param>
@@ -3954,12 +3955,12 @@ namespace funclib
 		/// </returns>
 		public static object MapCat(object f, params object[] colls) => mapCat.Invoke(f, colls);
 		#endregion
-		#region IsChunkedSeq
-		static funclib.Components.Core.IsChunkedSeq __ischunkedseq;
+		#region public - IsChunkedSeq
+		static funclib.Components.Core.IsChunkedSeq __isChunkedSeq;
 		/// <summary>
 		/// Returns true if s is a <see cref="IChunkedSeq"/>, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsChunkedSeq isChunkedSeq => __ischunkedseq ?? (__ischunkedseq = new funclib.Components.Core.IsChunkedSeq());
+		public static funclib.Components.Core.IsChunkedSeq isChunkedSeq => __isChunkedSeq ?? (__isChunkedSeq = new funclib.Components.Core.IsChunkedSeq());
 		/// <summary>
 		/// Returns true if s is a <see cref="IChunkedSeq"/>, otherwise false.
 		/// </summary>
@@ -3969,7 +3970,7 @@ namespace funclib
 		/// </returns>
 		public static object IsChunkedSeq(object s) => isChunkedSeq.Invoke(s);
 		#endregion
-		#region Cons
+		#region public - Cons
 		static funclib.Components.Core.Cons __cons;
 		/// <summary>
 		/// Returns a new <see cref="ISeq"/> where x is the funclib.Core.First( element and seq is the rest.
@@ -3985,12 +3986,12 @@ namespace funclib
 		/// </returns>
 		public static object Cons(object x, object seq) => cons.Invoke(x, seq);
 		#endregion
-		#region IsVector
-		static funclib.Components.Core.IsVector __isvector;
+		#region public - IsVector
+		static funclib.Components.Core.IsVector __isVector;
 		/// <summary>
 		/// Returns true if coll implements <see cref="IVector"/> interface, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsVector isVector => __isvector ?? (__isvector = new funclib.Components.Core.IsVector());
+		public static funclib.Components.Core.IsVector isVector => __isVector ?? (__isVector = new funclib.Components.Core.IsVector());
 		/// <summary>
 		/// Returns true if coll implements <see cref="IVector"/> interface, otherwise false.
 		/// </summary>
@@ -4000,7 +4001,7 @@ namespace funclib
 		/// </returns>
 		public static object IsVector(object x) => isVector.Invoke(x);
 		#endregion
-		#region Apply
+		#region public - Apply
 		static funclib.Components.Core.Apply __apply;
 		/// <summary>
 		/// Applies <see cref="IFunction"/> f to the argument list formed prepending
@@ -4068,15 +4069,15 @@ namespace funclib
 		/// </returns>
 		public static object Apply(object f, object a, object b, object c, object d, params object[] args) => apply.Invoke(f, a, b, c, d, args);
 		#endregion
-		#region ReGroups
-		static funclib.Components.Core.ReGroups __regroups;
+		#region public - ReGroups
+		static funclib.Components.Core.ReGroups __reGroups;
 		/// <summary>
 		/// Returns the groups from the most recent match/find. If there are no
 		/// nested groups, returns a string of the entire match. If there are
 		/// nested groups, returns a <see cref="Collections.Vector"/> of groups,
 		/// the funclib.Core.First( element being the entire match.
 		/// </summary>
-		public static funclib.Components.Core.ReGroups reGroups => __regroups ?? (__regroups = new funclib.Components.Core.ReGroups());
+		public static funclib.Components.Core.ReGroups reGroups => __reGroups ?? (__reGroups = new funclib.Components.Core.ReGroups());
 		/// <summary>
 		/// Returns the groups from the most recent match/find. If there are no
 		/// nested groups, returns a string of the entire match. If there are
@@ -4092,24 +4093,24 @@ namespace funclib
 		/// </returns>
 		public static object ReGroups(object m) => reGroups.Invoke(m);
 		#endregion
-		#region Drop
+		#region public - Drop
 		static funclib.Components.Core.Drop __drop;
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of all but the funclib.Core.First( n items in coll.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of all but the funclib.Core.First( n items in coll.
 		/// </summary>
 		public static funclib.Components.Core.Drop drop => __drop ?? (__drop = new funclib.Components.Core.Drop());
 		public static object Drop(object n) => drop.Invoke(n);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of all but the funclib.Core.First( n items in coll.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of all but the funclib.Core.First( n items in coll.
 		/// </summary>
 		/// <param name="n">An <see cref="int"/> of the items to drop from the collection.</param>
 		/// <param name="coll">The collection to drop the funclib.Core.First( x items from.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> of items without the funclib.Core.First( x items.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of items without the funclib.Core.First( x items.
 		/// </returns>
 		public static object Drop(object n, object coll) => drop.Invoke(n, coll);
 		#endregion
-		#region Dissoc
+		#region public - Dissoc
 		static funclib.Components.Core.Dissoc __dissoc;
 		/// <summary>
 		/// Dissoc[iate]. Returns a new map of the same concrete type,
@@ -4148,7 +4149,7 @@ namespace funclib
 		/// </returns>
 		public static object Dissoc(object map, object key, params object[] ks) => dissoc.Invoke(map, key, ks);
 		#endregion
-		#region Count
+		#region public - Count
 		static funclib.Components.Core.Count __count;
 		/// <summary>
 		/// Returns the number of items in the collection. Passing null as coll returns 0.
@@ -4174,18 +4175,18 @@ namespace funclib
 		/// </returns>
 		public static object Count(object coll) => count.Invoke(coll);
 		#endregion
-		#region BitAndNot
-		static funclib.Components.Core.BitAndNot __bitandnot;
-		public static funclib.Components.Core.BitAndNot bitAndNot => __bitandnot ?? (__bitandnot = new funclib.Components.Core.BitAndNot());
+		#region public - BitAndNot
+		static funclib.Components.Core.BitAndNot __bitAndNot;
+		public static funclib.Components.Core.BitAndNot bitAndNot => __bitAndNot ?? (__bitAndNot = new funclib.Components.Core.BitAndNot());
 		public static object BitAndNot(object x, object y) => bitAndNot.Invoke(x, y);
 		public static object BitAndNot(object x, object y, params object[] more) => bitAndNot.Invoke(x, y, more);
 		#endregion
-		#region RandNth
-		static funclib.Components.Core.RandNth __randnth;
+		#region public - RandNth
+		static funclib.Components.Core.RandNth __randNth;
 		/// <summary>
 		/// Return a random element of the <see cref="Collections.ISequential"/> collection.
 		/// </summary>
-		public static funclib.Components.Core.RandNth randNth => __randnth ?? (__randnth = new funclib.Components.Core.RandNth());
+		public static funclib.Components.Core.RandNth randNth => __randNth ?? (__randNth = new funclib.Components.Core.RandNth());
 		/// <summary>
 		/// Return a random element of the <see cref="Collections.ISequential"/> collection.
 		/// </summary>
@@ -4195,7 +4196,7 @@ namespace funclib
 		/// </returns>
 		public static object RandNth(object coll) => randNth.Invoke(coll);
 		#endregion
-		#region FNext
+		#region public - FNext
 		static funclib.Components.Core.FNext __fnext;
 		/// <summary>
 		/// Returns the first item's next list. Same as First(Next(x)).
@@ -4210,7 +4211,7 @@ namespace funclib
 		/// </returns>
 		public static object FNext(object x) => fnext.Invoke(x);
 		#endregion
-		#region Frequencies
+		#region public - Frequencies
 		static funclib.Components.Core.Frequencies __frequencies;
 		/// <summary>
 		/// Returns a map from distinct items in coll to the number of times they appear.
@@ -4225,7 +4226,7 @@ namespace funclib
 		/// </returns>
 		public static object Frequencies(object coll) => frequencies.Invoke(coll);
 		#endregion
-		#region And
+		#region public - And
 		static funclib.Components.Core.And __and;
 		/// <summary>
 		/// Evaluates objects one at a time, from left to right. If a object returns
@@ -4272,7 +4273,7 @@ namespace funclib
 		/// </returns>
 		public static object And(object x, params object[] next) => and.Invoke(x, next);
 		#endregion
-		#region Next
+		#region public - Next
 		static funclib.Components.Core.Next __next;
 		/// <summary>
 		/// Returns a <see cref="Seq"/> of the items after the funclib.Core.First(. Calls
@@ -4293,7 +4294,7 @@ namespace funclib
 		/// </returns>
 		public static object Next(object coll) => next.Invoke(coll);
 		#endregion
-		#region Replace
+		#region public - Replace
 		static funclib.Components.Core.Replace __replace;
 		/// <summary>
 		/// Given a map of replacement pairs and a <see cref="Collections.Vector"/>/collection, returns a
@@ -4315,16 +4316,16 @@ namespace funclib
 		/// </returns>
 		public static object Replace(object smap, object coll) => replace.Invoke(smap, coll);
 		#endregion
-		#region HashMap
-		static funclib.Components.Core.HashMap __hashmap;
+		#region public - HashMap
+		static funclib.Components.Core.HashMap __hashMap;
 		/// <summary>
 		/// Returns a new <see cref="Collections.HashMap"/> with the supplied mappings. If any keys are
-		/// equal, they are handled as if by repeated uses of <see cref="Assoc"/>.
+		/// equal, they are handled as if by repeated uses of <see cref="funclib.Components.Core.Assoc"/>.
 		/// </summary>
-		public static funclib.Components.Core.HashMap hashMap => __hashmap ?? (__hashmap = new funclib.Components.Core.HashMap());
+		public static funclib.Components.Core.HashMap hashMap => __hashMap ?? (__hashMap = new funclib.Components.Core.HashMap());
 		/// <summary>
 		/// Returns a new <see cref="Collections.HashMap"/> with the supplied mappings. If any keys are
-		/// equal, they are handled as if by repeated uses of <see cref="Assoc"/>.
+		/// equal, they are handled as if by repeated uses of <see cref="funclib.Components.Core.Assoc"/>.
 		/// </summary>
 		/// <returns>
 		/// Returns <see cref="Collections.HashMap.EMPTY"/>.
@@ -4332,7 +4333,7 @@ namespace funclib
 		public static object HashMap() => hashMap.Invoke();
 		/// <summary>
 		/// Returns a new <see cref="Collections.HashMap"/> with the supplied mappings. If any keys are
-		/// equal, they are handled as if by repeated uses of <see cref="Assoc"/>.
+		/// equal, they are handled as if by repeated uses of <see cref="funclib.Components.Core.Assoc"/>.
 		/// </summary>
 		/// <param name="keyvals">Key/value pairs adding to the <see cref="Collections.HashMap"/> data structure.</param>
 		/// <returns>
@@ -4340,18 +4341,18 @@ namespace funclib
 		/// </returns>
 		public static object HashMap(params object[] keyvals) => hashMap.Invoke(keyvals);
 		#endregion
-		#region BitXOr
-		static funclib.Components.Core.BitXOr __bitxor;
-		public static funclib.Components.Core.BitXOr bitXOr => __bitxor ?? (__bitxor = new funclib.Components.Core.BitXOr());
+		#region public - BitXOr
+		static funclib.Components.Core.BitXOr __bitXOr;
+		public static funclib.Components.Core.BitXOr bitXOr => __bitXOr ?? (__bitXOr = new funclib.Components.Core.BitXOr());
 		public static object BitXOr(object x, object y) => bitXOr.Invoke(x, y);
 		public static object BitXOr(object x, object y, params object[] more) => bitXOr.Invoke(x, y, more);
 		#endregion
-		#region SplitWith
-		static funclib.Components.Core.SplitWith __splitwith;
+		#region public - SplitWith
+		static funclib.Components.Core.SplitWith __splitWith;
 		/// <summary>
 		/// Returns a <see cref="Collections.Vector"/> of [<see cref="TakeWhile.Invoke(object, object)"/>, <see cref="DropWhile.Invoke(object, object)"/>].
 		/// </summary>
-		public static funclib.Components.Core.SplitWith splitWith => __splitwith ?? (__splitwith = new funclib.Components.Core.SplitWith());
+		public static funclib.Components.Core.SplitWith splitWith => __splitWith ?? (__splitWith = new funclib.Components.Core.SplitWith());
 		/// <summary>
 		/// Returns a <see cref="Collections.Vector"/> of [<see cref="TakeWhile.Invoke(object, object)"/>, <see cref="DropWhile.Invoke(object, object)"/>].
 		/// </summary>
@@ -4362,17 +4363,17 @@ namespace funclib
 		/// </returns>
 		public static object SplitWith(object pred, object coll) => splitWith.Invoke(pred, coll);
 		#endregion
-		#region ChunkNext
-		static funclib.Components.Core.ChunkNext __chunknext;
-		public static funclib.Components.Core.ChunkNext chunkNext => __chunknext ?? (__chunknext = new funclib.Components.Core.ChunkNext());
+		#region public - ChunkNext
+		static funclib.Components.Core.ChunkNext __chunkNext;
+		public static funclib.Components.Core.ChunkNext chunkNext => __chunkNext ?? (__chunkNext = new funclib.Components.Core.ChunkNext());
 		public static object ChunkNext(object s) => chunkNext.Invoke(s);
 		#endregion
-		#region IsVolatile
-		static funclib.Components.Core.IsVolatile __isvolatile;
+		#region public - IsVolatile
+		static funclib.Components.Core.IsVolatile __isVolatile;
 		/// <summary>
 		/// Returns true if x is of type <see cref="Volatileǃ"/>, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsVolatile isVolatile => __isvolatile ?? (__isvolatile = new funclib.Components.Core.IsVolatile());
+		public static funclib.Components.Core.IsVolatile isVolatile => __isVolatile ?? (__isVolatile = new funclib.Components.Core.IsVolatile());
 		/// <summary>
 		/// Returns true if x is of type <see cref="Volatileǃ"/>, otherwise false.
 		/// </summary>
@@ -4382,7 +4383,7 @@ namespace funclib
 		/// </returns>
 		public static object IsVolatile(object x) => isVolatile.Invoke(x);
 		#endregion
-		#region Seq
+		#region public - Seq
 		static funclib.Components.Core.Seq __seq;
 		/// <summary>
 		/// Returns a <see cref="ISeq"/> on the collection. If the collection is empty
@@ -4412,10 +4413,10 @@ namespace funclib
 		/// </returns>
 		public static object Seq(object coll) => seq.Invoke(coll);
 		#endregion
-		#region Map
+		#region public - Map
 		static funclib.Components.Core.Map __map;
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
 		/// to the set of funclib.Core.First( items of each coll, followed by applying <see cref="IFunction"/> to the set
 		/// of second items in each coll, until any one of the colls are exhausted.  Any remaining items in
 		/// other colls are ignored. <see cref="IFunction"/> should accept number of colls arguments.
@@ -4423,7 +4424,7 @@ namespace funclib
 		public static funclib.Components.Core.Map map => __map ?? (__map = new funclib.Components.Core.Map());
 		public static object Map(object f) => map.Invoke(f);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
 		/// to the set of funclib.Core.First( items of each coll, followed by applying <see cref="IFunction"/> to the set
 		/// of second items in each coll, until any one of the colls are exhausted.  Any remaining items in
 		/// other colls are ignored. <see cref="IFunction"/> should accept number of colls arguments.
@@ -4431,14 +4432,14 @@ namespace funclib
 		/// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
 		/// <param name="coll">A collection of items.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
 		/// to the set of funclib.Core.First( items of each coll, followed by applying <see cref="IFunction"/> to the set
 		/// of second items in each coll, until any one of the colls are exhausted.  Any remaining items in
 		/// other colls are ignored. <see cref="IFunction"/> should accept number of colls arguments.
 		/// </returns>
 		public static object Map(object f, object coll) => map.Invoke(f, coll);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
 		/// to the set of funclib.Core.First( items of each coll, followed by applying <see cref="IFunction"/> to the set
 		/// of second items in each coll, until any one of the colls are exhausted.  Any remaining items in
 		/// other colls are ignored. <see cref="IFunction"/> should accept number of colls arguments.
@@ -4447,14 +4448,14 @@ namespace funclib
 		/// <param name="c1">A collection of items.</param>
 		/// <param name="c2">A collection of items.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
 		/// to the set of funclib.Core.First( items of each coll, followed by applying <see cref="IFunction"/> to the set
 		/// of second items in each coll, until any one of the colls are exhausted.  Any remaining items in
 		/// other colls are ignored. <see cref="IFunction"/> should accept number of colls arguments.
 		/// </returns>
 		public static object Map(object f, object c1, object c2) => map.Invoke(f, c1, c2);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
 		/// to the set of funclib.Core.First( items of each coll, followed by applying <see cref="IFunction"/> to the set
 		/// of second items in each coll, until any one of the colls are exhausted.  Any remaining items in
 		/// other colls are ignored. <see cref="IFunction"/> should accept number of colls arguments.
@@ -4464,14 +4465,14 @@ namespace funclib
 		/// <param name="c2">A collection of items.</param>
 		/// <param name="c3">A collection of items.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
 		/// to the set of funclib.Core.First( items of each coll, followed by applying <see cref="IFunction"/> to the set
 		/// of second items in each coll, until any one of the colls are exhausted.  Any remaining items in
 		/// other colls are ignored. <see cref="IFunction"/> should accept number of colls arguments.
 		/// </returns>
 		public static object Map(object f, object c1, object c2, object c3) => map.Invoke(f, c1, c2, c3);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
 		/// to the set of funclib.Core.First( items of each coll, followed by applying <see cref="IFunction"/> to the set
 		/// of second items in each coll, until any one of the colls are exhausted.  Any remaining items in
 		/// other colls are ignored. <see cref="IFunction"/> should accept number of colls arguments.
@@ -4482,14 +4483,14 @@ namespace funclib
 		/// <param name="c3">A collection of items.</param>
 		/// <param name="colls">Rest of the collections of items.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> consisting of the results of applying <see cref="IFunction"/>
 		/// to the set of funclib.Core.First( items of each coll, followed by applying <see cref="IFunction"/> to the set
 		/// of second items in each coll, until any one of the colls are exhausted.  Any remaining items in
 		/// other colls are ignored. <see cref="IFunction"/> should accept number of colls arguments.
 		/// </returns>
 		public static object Map(object f, object c1, object c2, object c3, params object[] colls) => map.Invoke(f, c1, c2, c3, colls);
 		#endregion
-		#region Rand
+		#region public - Rand
 		static funclib.Components.Core.Rand __rand;
 		/// <summary>
 		/// Returns a <see cref="Random"/> floating point number between
@@ -4516,12 +4517,12 @@ namespace funclib
 		/// </returns>
 		public static object Rand(object n) => rand.Invoke(n);
 		#endregion
-		#region IsNotEvery
-		static funclib.Components.Core.IsNotEvery __isnotevery;
+		#region public - IsNotEvery
+		static funclib.Components.Core.IsNotEvery __isNotEvery;
 		/// <summary>
 		/// Returns false if x is logical true for every item in coll, otherwise true.
 		/// </summary>
-		public static funclib.Components.Core.IsNotEvery isNotEvery => __isnotevery ?? (__isnotevery = new funclib.Components.Core.IsNotEvery());
+		public static funclib.Components.Core.IsNotEvery isNotEvery => __isNotEvery ?? (__isNotEvery = new funclib.Components.Core.IsNotEvery());
 		/// <summary>
 		/// Returns false if x is logical true for every item in coll, otherwise true.
 		/// </summary>
@@ -4532,7 +4533,7 @@ namespace funclib
 		/// </returns>
 		public static object IsNotEvery(object pred, object coll) => isNotEvery.Invoke(pred, coll);
 		#endregion
-		#region Min
+		#region public - Min
 		static funclib.Components.Core.Min __min;
 		/// <summary>
 		/// Returns the least of the numbers.
@@ -4566,7 +4567,7 @@ namespace funclib
 		/// </returns>
 		public static object Min(object x, object y, params object[] more) => min.Invoke(x, y, more);
 		#endregion
-		#region Assoc
+		#region public - Assoc
 		static funclib.Components.Core.Assoc __assoc;
 		/// <summary>
 		/// Assoc[iate]. When applied to a map, returns a new map of the same (hash/sort) type.
@@ -4603,7 +4604,7 @@ namespace funclib
 		/// </returns>
 		public static object Assoc(object map, object key, object val, params object[] kvs) => assoc.Invoke(map, key, val, kvs);
 		#endregion
-		#region Inc
+		#region public - Inc
 		static funclib.Components.Core.Inc __inc;
 		/// <summary>
 		/// Returns a number one greater than x.
@@ -4618,7 +4619,7 @@ namespace funclib
 		/// </returns>
 		public static object Inc(object x) => inc.Invoke(x);
 		#endregion
-		#region RSeq
+		#region public - RSeq
 		static funclib.Components.Core.RSeq __rseq;
 		/// <summary>
 		/// Returns, in constant time, a <see cref="Seq"/> of the items in
@@ -4642,12 +4643,12 @@ namespace funclib
 		/// </returns>
 		public static object RSeq(object rev) => rseq.Invoke(rev);
 		#endregion
-		#region IsPos
-		static funclib.Components.Core.IsPos __ispos;
+		#region public - IsPos
+		static funclib.Components.Core.IsPos __isPos;
 		/// <summary>
 		/// Returns true if x is an greater than zero, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsPos isPos => __ispos ?? (__ispos = new funclib.Components.Core.IsPos());
+		public static funclib.Components.Core.IsPos isPos => __isPos ?? (__isPos = new funclib.Components.Core.IsPos());
 		/// <summary>
 		/// Returns true if x is an greater than zero, otherwise false.
 		/// </summary>
@@ -4657,12 +4658,12 @@ namespace funclib
 		/// </returns>
 		public static object IsPos(object num) => isPos.Invoke(num);
 		#endregion
-		#region IsIdentical
-		static funclib.Components.Core.IsIdentical __isidentical;
+		#region public - IsIdentical
+		static funclib.Components.Core.IsIdentical __isIdentical;
 		/// <summary>
 		/// Returns true if x is identical to y, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsIdentical isIdentical => __isidentical ?? (__isidentical = new funclib.Components.Core.IsIdentical());
+		public static funclib.Components.Core.IsIdentical isIdentical => __isIdentical ?? (__isIdentical = new funclib.Components.Core.IsIdentical());
 		/// <summary>
 		/// Returns true if x is identical to y, otherwise false.
 		/// </summary>
@@ -4673,7 +4674,7 @@ namespace funclib
 		/// </returns>
 		public static object IsIdentical(object x, object y) => isIdentical.Invoke(x, y);
 		#endregion
-		#region More
+		#region public - More
 		static funclib.Components.Core.More __more;
 		/// <summary>
 		/// Returns a <see cref="Seq"/> of the items after the funclib.Core.First(. Calls
@@ -4694,7 +4695,7 @@ namespace funclib
 		/// </returns>
 		public static object More(object coll) => more.Invoke(coll);
 		#endregion
-		#region Swapǃ
+		#region public - Swapǃ
 		static funclib.Components.Core.Swapǃ __swapǃ;
 		/// <summary>
 		/// Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
@@ -4759,7 +4760,7 @@ namespace funclib
 		/// <returns></returns>
 		public static object Swapǃ(object atom, object f, object x, object y, params object[] args) => swapǃ.Invoke(atom, f, x, y, args);
 		#endregion
-		#region Not
+		#region public - Not
 		static funclib.Components.Core.Not __not;
 		/// <summary>
 		/// Returns true if x is logical false, otherwise false.
@@ -4774,19 +4775,19 @@ namespace funclib
 		/// </returns>
 		public static object Not(object x) => not.Invoke(x);
 		#endregion
-		#region Into1
+		#region internal - Into1
 		static funclib.Components.Core.Into1 __into1;
 		internal static funclib.Components.Core.Into1 into1 => __into1 ?? (__into1 = new funclib.Components.Core.Into1());
-		public static object Into1(object to, object from) => into1.Invoke(to, from);
+		internal static object Into1(object to, object from) => into1.Invoke(to, from);
 		#endregion
-		#region GetIn
-		static funclib.Components.Core.GetIn __getin;
+		#region public - GetIn
+		static funclib.Components.Core.GetIn __getIn;
 		/// <summary>
 		/// Returns the value in a nested associative structure, where ks
 		/// is a sequence of keys. Returns null if the key is not present,
 		/// otherwise notFound value if supplied.
 		/// </summary>
-		public static funclib.Components.Core.GetIn getIn => __getin ?? (__getin = new funclib.Components.Core.GetIn());
+		public static funclib.Components.Core.GetIn getIn => __getIn ?? (__getIn = new funclib.Components.Core.GetIn());
 		/// <summary>
 		/// Returns the value in a nested associative structure, where ks
 		/// is a sequence of keys. Returns null if the key is not present,
@@ -4811,36 +4812,36 @@ namespace funclib
 		/// </returns>
 		public static object GetIn(object m, object ks, object notFound) => getIn.Invoke(m, ks, notFound);
 		#endregion
-		#region Repeat
+		#region public - Repeat
 		static funclib.Components.Core.Repeat __repeat;
 		/// <summary>
-		/// Returns a (infinite!, or length n is supplied) <see cref="LazySeq"/> of xs.
+		/// Returns a (infinite!, or length n is supplied) <see cref="funclib.Components.Core.LazySeq"/> of xs.
 		/// </summary>
 		public static funclib.Components.Core.Repeat repeat => __repeat ?? (__repeat = new funclib.Components.Core.Repeat());
 		/// <summary>
-		/// Returns a (infinite!, or length n is supplied) <see cref="LazySeq"/> of xs.
+		/// Returns a (infinite!, or length n is supplied) <see cref="funclib.Components.Core.LazySeq"/> of xs.
 		/// </summary>
 		/// <param name="x">Object to repeat.</param>
 		/// <returns>
-		/// Returns a (infinite!, or length n is supplied) <see cref="LazySeq"/> of xs.
+		/// Returns a (infinite!, or length n is supplied) <see cref="funclib.Components.Core.LazySeq"/> of xs.
 		/// </returns>
 		public static object Repeat(object x) => repeat.Invoke(x);
 		/// <summary>
-		/// Returns a (infinite!, or length n is supplied) <see cref="LazySeq"/> of xs.
+		/// Returns a (infinite!, or length n is supplied) <see cref="funclib.Components.Core.LazySeq"/> of xs.
 		/// </summary>
 		/// <param name="n">A <see cref="long"/> that specifies the number of objects.</param>
 		/// <param name="x">Object to repeat.</param>
 		/// <returns>
-		/// Returns a (infinite!, or length n is supplied) <see cref="LazySeq"/> of xs.
+		/// Returns a (infinite!, or length n is supplied) <see cref="funclib.Components.Core.LazySeq"/> of xs.
 		/// </returns>
 		public static object Repeat(object n, object x) => repeat.Invoke(n, x);
 		#endregion
-		#region InvokeFunction
-		static funclib.Components.Core.InvokeFunction __invokefunction;
+		#region public - InvokeFunction
+		static funclib.Components.Core.InvokeFunction __invoke;
 		/// <summary>
 		/// Invokes a <see cref="IFunction"/> function with supplied arguments.
 		/// </summary>
-		public static funclib.Components.Core.InvokeFunction invoke => __invokefunction ?? (__invokefunction = new funclib.Components.Core.InvokeFunction());
+		public static funclib.Components.Core.InvokeFunction invoke => __invoke ?? (__invoke = new funclib.Components.Core.InvokeFunction());
 		/// <summary>
 		/// Invokes a <see cref="IFunction"/> function with supplied arguments.
 		/// </summary>
@@ -4892,41 +4893,41 @@ namespace funclib
 		/// </returns>
 		public static object Invoke(object f, object a, object b, object c, params object[] ds) => invoke.Invoke(f, a, b, c, ds);
 		#endregion
-		#region BitSet
-		static funclib.Components.Core.BitSet __bitset;
-		public static funclib.Components.Core.BitSet bitSet => __bitset ?? (__bitset = new funclib.Components.Core.BitSet());
+		#region public - BitSet
+		static funclib.Components.Core.BitSet __bitSet;
+		public static funclib.Components.Core.BitSet bitSet => __bitSet ?? (__bitSet = new funclib.Components.Core.BitSet());
 		public static object BitSet(object x, object n) => bitSet.Invoke(x, n);
 		#endregion
-		#region NotEmpty
-		static funclib.Components.Core.NotEmpty __notempty;
+		#region public - NotEmpty
+		static funclib.Components.Core.NotEmpty __notEmpty;
 		/// <summary>
-		/// Returns <see cref="null"/> if coll is empty, otherwise coll
+		/// Returns null if coll is empty, otherwise coll
 		/// </summary>
-		public static funclib.Components.Core.NotEmpty notEmpty => __notempty ?? (__notempty = new funclib.Components.Core.NotEmpty());
+		public static funclib.Components.Core.NotEmpty notEmpty => __notEmpty ?? (__notEmpty = new funclib.Components.Core.NotEmpty());
 		/// <summary>
-		/// Returns <see cref="null"/> if coll is empty, otherwise coll
+		/// Returns null if coll is empty, otherwise coll
 		/// </summary>
 		/// <param name="coll">Object to test.</param>
 		/// <returns>
-		/// Returns <see cref="null"/> if coll is empty, otherwise coll
+		/// Returns null if coll is empty, otherwise coll
 		/// </returns>
 		public static object NotEmpty(object coll) => notEmpty.Invoke(coll);
 		#endregion
-		#region Locking
+		#region public - Locking
 		/// <summary>
-		/// Creates a <see cref="Locking"/> object.
+		/// Creates a <see cref="funclib.Components.Core.Locking"/> object.
 		/// </summary>
 		/// <param name="x">Object to lock.</param>
 		/// <param name="fn"><see cref="Func{TResult}"/> to execute.</param>
 		public static object Locking(object x, Func<object> fn) => new funclib.Components.Core.Locking(x, fn).Invoke();
 		/// <summary>
-		/// Creates a <see cref="Locking"/> object.
+		/// Creates a <see cref="funclib.Components.Core.Locking"/> object.
 		/// </summary>
 		/// <param name="x">Object to lock.</param>
 		/// <param name="fn"><see cref="IFunction{TResult}"/> to execute.</param>
 		public static object Locking(object x, IFunction<object> fn) => new funclib.Components.Core.Locking(x, fn).Invoke();
 		#endregion
-		#region Falsy
+		#region public - Falsy
 		static funclib.Components.Core.Falsy __falsy;
 		/// <summary>
 		/// Returns true if the object is a logical false. i.e.
@@ -4944,7 +4945,7 @@ namespace funclib
 		/// </returns>
 		public static object Falsy(object source) => falsy.Invoke(source);
 		#endregion
-		#region First
+		#region public - First
 		static funclib.Components.Core.First __first;
 		/// <summary>
 		/// Returns the funclib.Core.First( time in the collection. Calls <see cref="Seq"/> on the collection.
@@ -4962,20 +4963,20 @@ namespace funclib
 		/// </returns>
 		public static object First(object coll) => first.Invoke(coll);
 		#endregion
-		#region Completing
+		#region public - Completing
 		static funclib.Components.Core.Completing __completing;
 		public static funclib.Components.Core.Completing completing => __completing ?? (__completing = new funclib.Components.Core.Completing());
 		public static object Completing(object f) => completing.Invoke(f);
 		public static object Completing(object f, object cf) => completing.Invoke(f, cf);
 		#endregion
-		#region NNext
+		#region public - NNext
 		static funclib.Components.Core.NNext __nnext;
 		/// <summary>
-		/// Same as <see cref="Next.Invoke(Next.Invoke(object))"/>.
+		/// Same as new Next().Invoke(new Next().Invoke(object)).
 		/// </summary>
 		public static funclib.Components.Core.NNext nnext => __nnext ?? (__nnext = new funclib.Components.Core.NNext());
 		/// <summary>
-		/// Same as <see cref="Next.Invoke(Next.Invoke(object))"/>.
+		/// Same as new Next().Invoke(new Next().Invoke(object)).
 		/// </summary>
 		/// <param name="x">Object to return the next item's next item.</param>
 		/// <returns>
@@ -4983,12 +4984,12 @@ namespace funclib
 		/// </returns>
 		public static object NNext(object x) => nnext.Invoke(x);
 		#endregion
-		#region IsNumber
-		static funclib.Components.Core.IsNumber __isnumber;
+		#region public - IsNumber
+		static funclib.Components.Core.IsNumber __isNumber;
 		/// <summary>
 		/// Returns true if x is a number, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsNumber isNumber => __isnumber ?? (__isnumber = new funclib.Components.Core.IsNumber());
+		public static funclib.Components.Core.IsNumber isNumber => __isNumber ?? (__isNumber = new funclib.Components.Core.IsNumber());
 		/// <summary>
 		/// Returns true if x is a number, otherwise false.
 		/// </summary>
@@ -4998,7 +4999,7 @@ namespace funclib
 		/// </returns>
 		public static object IsNumber(object x) => isNumber.Invoke(x);
 		#endregion
-		#region Contains
+		#region public - Contains
 		static funclib.Components.Core.Contains __contains;
 		/// <summary>
 		/// Returns true if key is present in the given collection, otherwise false. Note
@@ -5021,8 +5022,8 @@ namespace funclib
 		/// - <see cref="System.Collections.IDictionary"/>
 		/// - <see cref="string"/>
 		/// - <see cref="Array"/>
-		/// - <see cref="ITransientSet"/>
-		/// - <see cref="ITransientAssociative"/>
+		/// - <see cref="funclib.Collections.Internal.ITransientSet"/>
+		/// - <see cref="funclib.Collections.Internal.ITransientAssociative"/>
 		/// - <see cref="ISet"/>
 		///
 		/// <code>key</code> needs to be an <see cref="int"/> if coll is either a <see cref="string"/> or <see cref="Array"/>.
@@ -5032,12 +5033,12 @@ namespace funclib
 		/// </returns>
 		public static object Contains(object coll, object key) => contains.Invoke(coll, key);
 		#endregion
-		#region GetValidator
-		static funclib.Components.Core.GetValidator __getvalidator;
+		#region public - GetValidator
+		static funclib.Components.Core.GetValidator __getValidator;
 		/// <summary>
 		/// Gets the validator function for a <see cref="IRef"/> variable.
 		/// </summary>
-		public static funclib.Components.Core.GetValidator getValidator => __getvalidator ?? (__getvalidator = new funclib.Components.Core.GetValidator());
+		public static funclib.Components.Core.GetValidator getValidator => __getValidator ?? (__getValidator = new funclib.Components.Core.GetValidator());
 		/// <summary>
 		/// Gets the validator function for a <see cref="IRef"/> variable.
 		/// </summary>
@@ -5047,7 +5048,7 @@ namespace funclib
 		/// </returns>
 		public static object GetValidator(object @ref) => getValidator.Invoke(@ref);
 		#endregion
-		#region Do
+		#region public - Do
 		static funclib.Components.Core.Do __do;
 		/// <summary>
 		/// Evaluates the expressions in order and returns the value of the last.
@@ -5064,21 +5065,21 @@ namespace funclib
 		/// </returns>
 		public static object Do(params object[] rest) => @do.Invoke(rest);
 		#endregion
-		#region BitShiftLeft
-		static funclib.Components.Core.BitShiftLeft __bitshiftleft;
-		public static funclib.Components.Core.BitShiftLeft bitShiftLeft => __bitshiftleft ?? (__bitshiftleft = new funclib.Components.Core.BitShiftLeft());
+		#region public - BitShiftLeft
+		static funclib.Components.Core.BitShiftLeft __bitShiftLeft;
+		public static funclib.Components.Core.BitShiftLeft bitShiftLeft => __bitShiftLeft ?? (__bitShiftLeft = new funclib.Components.Core.BitShiftLeft());
 		public static object BitShiftLeft(object x, object n) => bitShiftLeft.Invoke(x, n);
 		#endregion
-		#region HashSet
-		static funclib.Components.Core.HashSet __hashset;
+		#region public - HashSet
+		static funclib.Components.Core.HashSet __hashSet;
 		/// <summary>
 		/// Returns a new <see cref="Collections.HashSet"/> with the supplied keys. Any
-		/// equal keys are handled as if by repeated uses of <see cref="Conj"/>.
+		/// equal keys are handled as if by repeated uses of <see cref="funclib.Components.Core.Conj"/>.
 		/// </summary>
-		public static funclib.Components.Core.HashSet hashSet => __hashset ?? (__hashset = new funclib.Components.Core.HashSet());
+		public static funclib.Components.Core.HashSet hashSet => __hashSet ?? (__hashSet = new funclib.Components.Core.HashSet());
 		/// <summary>
 		/// Returns a new <see cref="Collections.HashSet"/> with the supplied keys. Any
-		/// equal keys are handled as if by repeated uses of <see cref="Conj"/>.
+		/// equal keys are handled as if by repeated uses of <see cref="funclib.Components.Core.Conj"/>.
 		/// </summary>
 		/// <returns>
 		/// Returns <see cref="Collections.HashSet.EMPTY"/>.
@@ -5086,7 +5087,7 @@ namespace funclib
 		public static object HashSet() => hashSet.Invoke();
 		/// <summary>
 		/// Returns a new <see cref="Collections.HashSet"/> with the supplied keys. Any
-		/// equal keys are handled as if by repeated uses of <see cref="Conj"/>.
+		/// equal keys are handled as if by repeated uses of <see cref="funclib.Components.Core.Conj"/>.
 		/// </summary>
 		/// <param name="keys">Keys to add to <see cref="Collections.HashSet"/> data structure.</param>
 		/// <returns>
@@ -5094,7 +5095,7 @@ namespace funclib
 		/// </returns>
 		public static object HashSet(params object[] keys) => hashSet.Invoke(keys);
 		#endregion
-		#region Last
+		#region public - Last
 		static funclib.Components.Core.Last __last;
 		/// <summary>
 		/// Returns the last item in coll, in linear time.
@@ -5109,64 +5110,64 @@ namespace funclib
 		/// </returns>
 		public static object Last(object s) => last.Invoke(s);
 		#endregion
-		#region Take
+		#region public - Take
 		static funclib.Components.Core.Take __take;
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of the funclib.Core.First( n items in the coll, or all items
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the funclib.Core.First( n items in the coll, or all items
 		/// if there are fewer than n.
 		/// </summary>
 		public static funclib.Components.Core.Take take => __take ?? (__take = new funclib.Components.Core.Take());
 		public static object Take(object n) => take.Invoke(n);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of the funclib.Core.First( n items in the coll, or all items
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the funclib.Core.First( n items in the coll, or all items
 		/// if there are fewer than n.
 		/// </summary>
 		/// <param name="n">An <see cref="int"/> of the items to take from the collection.</param>
 		/// <param name="coll">The collection to take the funclib.Core.First( x items from.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> of the funclib.Core.First( n items in the coll, or all items
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the funclib.Core.First( n items in the coll, or all items
 		/// if there are fewer than n.
 		/// </returns>
 		public static object Take(object n, object coll) => take.Invoke(n, coll);
 		#endregion
-		#region PartitionAll
-		static funclib.Components.Core.PartitionAll __partitionall;
+		#region public - PartitionAll
+		static funclib.Components.Core.PartitionAll __partitionAll;
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of lists like <see cref="Partition"/>, but my include
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of lists like <see cref="funclib.Components.Core.Partition"/>, but my include
 		/// partitions with fewer then n items at the end.
 		/// </summary>
-		public static funclib.Components.Core.PartitionAll partitionAll => __partitionall ?? (__partitionall = new funclib.Components.Core.PartitionAll());
+		public static funclib.Components.Core.PartitionAll partitionAll => __partitionAll ?? (__partitionAll = new funclib.Components.Core.PartitionAll());
 		public static object PartitionAll(object n) => partitionAll.Invoke(n);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of lists like <see cref="Partition"/>, but my include
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of lists like <see cref="funclib.Components.Core.Partition"/>, but my include
 		/// partitions with fewer then n items at the end.
 		/// </summary>
 		/// <param name="n">A <see cref="int"/> specifying the size of each group.</param>
 		/// <param name="coll">A collection that can be <see cref="Seq"/> over.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> of lists like <see cref="Partition"/>, but my include
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of lists like <see cref="funclib.Components.Core.Partition"/>, but my include
 		/// partitions with fewer then n items at the end.
 		/// </returns>
 		public static object PartitionAll(object n, object coll) => partitionAll.Invoke(n, coll);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of lists like <see cref="Partition"/>, but my include
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of lists like <see cref="funclib.Components.Core.Partition"/>, but my include
 		/// partitions with fewer then n items at the end.
 		/// </summary>
 		/// <param name="n">A <see cref="int"/> specifying the size of each group.</param>
 		/// <param name="step">A <see cref="int"/> specifying the starting point for each group.</param>
 		/// <param name="coll">A collection that can be <see cref="Seq"/> over.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> of lists like <see cref="Partition"/>, but my include
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of lists like <see cref="funclib.Components.Core.Partition"/>, but my include
 		/// partitions with fewer then n items at the end.
 		/// </returns>
 		public static object PartitionAll(object n, object step, object coll) => partitionAll.Invoke(n, step, coll);
 		#endregion
-		#region IsLessThanOrEqualTo
-		static funclib.Components.Core.IsLessThanOrEqualTo __islessthanorequalto;
+		#region public - IsLessThanOrEqualTo
+		static funclib.Components.Core.IsLessThanOrEqualTo __isLessThanOrEqualTo;
 		/// <summary>
 		/// Returns a true, numbers are monotonically non-decreasing order, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsLessThanOrEqualTo isLessThanOrEqualTo => __islessthanorequalto ?? (__islessthanorequalto = new funclib.Components.Core.IsLessThanOrEqualTo());
+		public static funclib.Components.Core.IsLessThanOrEqualTo isLessThanOrEqualTo => __isLessThanOrEqualTo ?? (__isLessThanOrEqualTo = new funclib.Components.Core.IsLessThanOrEqualTo());
 		/// <summary>
 		/// Returns a true, numbers are monotonically non-decreasing order, otherwise false.
 		/// </summary>
@@ -5195,7 +5196,7 @@ namespace funclib
 		/// </returns>
 		public static object IsLessThanOrEqualTo(object x, object y, params object[] more) => isLessThanOrEqualTo.Invoke(x, y, more);
 		#endregion
-		#region Print
+		#region public - Print
 		static funclib.Components.Core.Print __print;
 		/// <summary>
 		/// Prints the object(s) to the <see cref="Variables.Out"/> stream.
@@ -5226,12 +5227,12 @@ namespace funclib
 		/// </returns>
 		public static object Print(object x, params object[] more) => print.Invoke(x, more);
 		#endregion
-		#region IsGreaterThan
-		static funclib.Components.Core.IsGreaterThan __isgreaterthan;
+		#region public - IsGreaterThan
+		static funclib.Components.Core.IsGreaterThan __isGreaterThan;
 		/// <summary>
 		/// Returns a true, numbers are monotonically decreasing order, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsGreaterThan isGreaterThan => __isgreaterthan ?? (__isgreaterthan = new funclib.Components.Core.IsGreaterThan());
+		public static funclib.Components.Core.IsGreaterThan isGreaterThan => __isGreaterThan ?? (__isGreaterThan = new funclib.Components.Core.IsGreaterThan());
 		/// <summary>
 		/// Returns a true, numbers are monotonically decreasing order, otherwise false.
 		/// </summary>
@@ -5260,12 +5261,12 @@ namespace funclib
 		/// </returns>
 		public static object IsGreaterThan(object x, object y, params object[] more) => isGreaterThan.Invoke(x, y, more);
 		#endregion
-		#region ChunkFirst
-		static funclib.Components.Core.ChunkFirst __chunkfirst;
-		public static funclib.Components.Core.ChunkFirst chunkFirst => __chunkfirst ?? (__chunkfirst = new funclib.Components.Core.ChunkFirst());
+		#region public - ChunkFirst
+		static funclib.Components.Core.ChunkFirst __chunkFirst;
+		public static funclib.Components.Core.ChunkFirst chunkFirst => __chunkFirst ?? (__chunkFirst = new funclib.Components.Core.ChunkFirst());
 		public static object ChunkFirst(object s) => chunkFirst.Invoke(s);
 		#endregion
-		#region Class
+		#region public - Class
 		static funclib.Components.Core.Class __class;
 		/// <summary>
 		/// Returns the type of an object.
@@ -5280,12 +5281,12 @@ namespace funclib
 		/// </returns>
 		public static object Class(object x) => @class.Invoke(x);
 		#endregion
-		#region IsBoolean
-		static funclib.Components.Core.IsBoolean __isboolean;
+		#region public - IsBoolean
+		static funclib.Components.Core.IsBoolean __isBoolean;
 		/// <summary>
 		/// Returns true if x is a <see cref="bool"/>, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsBoolean isBoolean => __isboolean ?? (__isboolean = new funclib.Components.Core.IsBoolean());
+		public static funclib.Components.Core.IsBoolean isBoolean => __isBoolean ?? (__isBoolean = new funclib.Components.Core.IsBoolean());
 		/// <summary>
 		/// Returns true if x is a <see cref="bool"/>, otherwise false.
 		/// </summary>
@@ -5295,12 +5296,12 @@ namespace funclib
 		/// </returns>
 		public static object IsBoolean(object x) => isBoolean.Invoke(x);
 		#endregion
-		#region IsNeg
-		static funclib.Components.Core.IsNeg __isneg;
+		#region public - IsNeg
+		static funclib.Components.Core.IsNeg __isNeg;
 		/// <summary>
 		/// Returns true if x is less than zero, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsNeg isNeg => __isneg ?? (__isneg = new funclib.Components.Core.IsNeg());
+		public static funclib.Components.Core.IsNeg isNeg => __isNeg ?? (__isNeg = new funclib.Components.Core.IsNeg());
 		/// <summary>
 		/// Returns true if x is less than zero, otherwise false.
 		/// </summary>
@@ -5310,34 +5311,34 @@ namespace funclib
 		/// </returns>
 		public static object IsNeg(object num) => isNeg.Invoke(num);
 		#endregion
-		#region MergeWith
-		static funclib.Components.Core.MergeWith __mergewith;
+		#region public - MergeWith
+		static funclib.Components.Core.MergeWith __mergeWith;
 		/// <summary>
-		/// Returns a <see cref="IMap"/> that consists of the rest of the <see cref="IMaps"/> conj-ed onto
+		/// Returns a <see cref="IMap"/> that consists of the rest of the maps conj-ed onto
 		/// the funclib.Core.First(. If a key occurs in more than one map, the mapping(s0 from the latter (left-to-right)
 		/// will be combined with the mapping in the result by calling f.Invoke(value-in-result, value-in-latter)
 		/// </summary>
-		public static funclib.Components.Core.MergeWith mergeWith => __mergewith ?? (__mergewith = new funclib.Components.Core.MergeWith());
+		public static funclib.Components.Core.MergeWith mergeWith => __mergeWith ?? (__mergeWith = new funclib.Components.Core.MergeWith());
 		/// <summary>
-		/// Returns a <see cref="IMap"/> that consists of the rest of the <see cref="IMaps"/> conj-ed onto
+		/// Returns a <see cref="IMap"/> that consists of the rest of the maps conj-ed onto
 		/// the funclib.Core.First(. If a key occurs in more than one map, the mapping(s0 from the latter (left-to-right)
 		/// will be combined with the mapping in the result by calling f.Invoke(value-in-result, value-in-latter)
 		/// </summary>
 		/// <param name="f">An object that implements the <see cref="IFunction{T1, T2, TResult}"/> interface.</param>
 		/// <param name="maps">A list of object maps to merge.</param>
 		/// <returns>
-		/// Returns a <see cref="IMap"/> that consists of the rest of the <see cref="IMaps"/> conj-ed onto
+		/// Returns a <see cref="IMap"/> that consists of the rest of the maps conj-ed onto
 		/// the funclib.Core.First(. If a key occurs in more than one map, the mapping(s0 from the latter (left-to-right)
 		/// will be combined with the mapping in the result by calling f.Invoke(value-in-result, value-in-latter)
 		/// </returns>
 		public static object MergeWith(object f, params object[] maps) => mergeWith.Invoke(f, maps);
 		#endregion
-		#region IsUUID
-		static funclib.Components.Core.IsUUID __isuuid;
+		#region public - IsUUID
+		static funclib.Components.Core.IsUUID __isUUID;
 		/// <summary>
 		/// Returns true if x is a <see cref="Guid"/>, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsUUID isUUID => __isuuid ?? (__isuuid = new funclib.Components.Core.IsUUID());
+		public static funclib.Components.Core.IsUUID isUUID => __isUUID ?? (__isUUID = new funclib.Components.Core.IsUUID());
 		/// <summary>
 		/// Returns true if x is a <see cref="Guid"/>, otherwise false.
 		/// </summary>
@@ -5347,15 +5348,15 @@ namespace funclib
 		/// </returns>
 		public static object IsUUID(object x) => isUUID.Invoke(x);
 		#endregion
-		#region BitAnd
-		static funclib.Components.Core.BitAnd __bitand;
+		#region public - BitAnd
+		static funclib.Components.Core.BitAnd __bitAnd;
 		/// <summary>
-		/// Unary "&" operator returns the address of its operand. Binary "&" operators are
+		/// Unary ampersand operator returns the address of its operand. Binary ampersand operators are
 		/// predefined for the integral types and <see cref="bool"/>.
 		/// </summary>
-		public static funclib.Components.Core.BitAnd bitAnd => __bitand ?? (__bitand = new funclib.Components.Core.BitAnd());
+		public static funclib.Components.Core.BitAnd bitAnd => __bitAnd ?? (__bitAnd = new funclib.Components.Core.BitAnd());
 		/// <summary>
-		/// Unary "&nbsp;" operator returns the address of its operand. Binary "&nbsp;" operators are
+		/// Unary ampersand operator returns the address of its operand. Binary ampersand operators are
 		/// predefined for the integral types and <see cref="bool"/>.
 		/// </summary>
 		/// <param name="x">Left hand side of the operand.</param>
@@ -5365,7 +5366,7 @@ namespace funclib
 		/// </returns>
 		public static object BitAnd(object x, object y) => bitAnd.Invoke(x, y);
 		/// <summary>
-		/// Unary "&nbsp;" operator returns the address of its operand. Binary "&nbsp;" operators are
+		/// Unary ampersand operator returns the address of its operand. Binary ampersand operators are
 		/// predefined for the integral types and <see cref="bool"/>.
 		/// </summary>
 		/// <param name="x">Left hand side of the operand.</param>
@@ -5376,7 +5377,7 @@ namespace funclib
 		/// </returns>
 		public static object BitAnd(object x, object y, params object[] more) => bitAnd.Invoke(x, y, more);
 		#endregion
-		#region Assocǃ
+		#region public - Assocǃ
 		static funclib.Components.Core.Assocǃ __assocǃ;
 		/// <summary>
 		/// When applied to a transient map, adds mapping of funclib.Core.Key(s) to vals(s).
@@ -5389,7 +5390,7 @@ namespace funclib
 		/// When applied to a transient vector, sets the val at index. Note ->
 		/// index must be less than or equal to the count of vector. Returns coll.
 		/// </summary>
-		/// <param name="coll">An object that implements the <see cref="ITransientAssociative"/> interface.</param>
+		/// <param name="coll">An object that implements the <see cref="funclib.Collections.Internal.ITransientAssociative"/> interface.</param>
 		/// <param name="key">The key of the object to associate in the map.</param>
 		/// <param name="val">The value of the object to associate in the map.</param>
 		/// <returns>
@@ -5401,7 +5402,7 @@ namespace funclib
 		/// When applied to a transient vector, sets the val at index. Note ->
 		/// index must be less than or equal to the count of vector. Returns coll.
 		/// </summary>
-		/// <param name="coll">An object that implements the <see cref="ITransientAssociative"/> interface.</param>
+		/// <param name="coll">An object that implements the <see cref="funclib.Collections.Internal.ITransientAssociative"/> interface.</param>
 		/// <param name="key">The key of the object to associate in the map.</param>
 		/// <param name="val">The value of the object to associate in the map.</param>
 		/// <param name="kvs">Rest of the key/value pairs to associate in the map with.</param>
@@ -5410,17 +5411,17 @@ namespace funclib
 		/// </returns>
 		public static object Assocǃ(object coll, object key, object val, params object[] kvs) => assocǃ.Invoke(coll, key, val, kvs);
 		#endregion
-		#region Spread
+		#region internal - Spread
 		static funclib.Components.Core.Spread __spread;
 		internal static funclib.Components.Core.Spread spread => __spread ?? (__spread = new funclib.Components.Core.Spread());
-		public static object Spread(object argList) => spread.Invoke(argList);
+		internal static object Spread(object argList) => spread.Invoke(argList);
 		#endregion
-		#region IsEqualTo
-		static funclib.Components.Core.IsEqualTo __isequalto;
+		#region public - IsEqualTo
+		static funclib.Components.Core.IsEqualTo __isEqualTo;
 		/// <summary>
 		/// Returns true if values are equal, otherwise false.
 		/// </summary>
-		public static funclib.Components.Core.IsEqualTo isEqualTo => __isequalto ?? (__isequalto = new funclib.Components.Core.IsEqualTo());
+		public static funclib.Components.Core.IsEqualTo isEqualTo => __isEqualTo ?? (__isEqualTo = new funclib.Components.Core.IsEqualTo());
 		/// <summary>
 		/// Returns true if values are equal, otherwise false.
 		/// </summary>
@@ -5449,14 +5450,7 @@ namespace funclib
 		/// </returns>
 		public static object IsEqualTo(object x, object y, params object[] more) => isEqualTo.Invoke(x, y, more);
 		#endregion
-		#region E
-		static funclib.Components.Core.E __e;
-		public static funclib.Components.Core.E E => __e ?? (__e = new funclib.Components.Core.E());
-		public static bool E(object x) => E.Invoke(x);
-		public static bool E(object x, object y) => E.Invoke(x, y);
-		public static bool E(object x, object y, params object[] more) => E.Invoke(x, y, more);
-		#endregion
-		#region Transient
+		#region public - Transient
 		static funclib.Components.Core.Transient __transient;
 		/// <summary>
 		/// Returns a new transient version of the collection, in constant time.
@@ -5471,7 +5465,7 @@ namespace funclib
 		/// </returns>
 		public static object Transient(object coll) => transient.Invoke(coll);
 		#endregion
-		#region Find
+		#region public - Find
 		static funclib.Components.Core.Find __find;
 		/// <summary>
 		/// Returns the <see cref="KeyValuePair"/> for the key, or null if key is not present.
@@ -5480,14 +5474,14 @@ namespace funclib
 		/// <summary>
 		/// Returns the <see cref="KeyValuePair"/> for the key, or null if key is not present.
 		/// </summary>
-		/// <param name="map">An object that implements either <see cref="IAssociative"/>, <see cref="System.Collections.IDictionary"/> or <see cref="ITransientAssociative"/> interface.</param>
+		/// <param name="map">An object that implements either <see cref="IAssociative"/>, <see cref="System.Collections.IDictionary"/> or <see cref="funclib.Collections.Internal.ITransientAssociative"/> interface.</param>
 		/// <param name="key">The key we want to find in the map.</param>
 		/// <returns>
 		/// Returns the <see cref="KeyValuePair"/> for the key, or null if key is not present.
 		/// </returns>
 		public static object Find(object map, object key) => find.Invoke(map, key);
 		#endregion
-		#region Peek
+		#region public - Peek
 		static funclib.Components.Core.Peek __peek;
 		/// <summary>
 		/// Returns the same as <see cref="Collections.List"/>'s <see cref="Collections.List.First"/> method,
@@ -5511,30 +5505,30 @@ namespace funclib
 		/// </returns>
 		public static object Peek(object coll) => peek.Invoke(coll);
 		#endregion
-		#region Filter
+		#region public - Filter
 		static funclib.Components.Core.Filter __filter;
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of items in coll for which predicate returns a logical true.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of items in coll for which predicate returns a logical true.
 		/// </summary>
 		public static funclib.Components.Core.Filter filter => __filter ?? (__filter = new funclib.Components.Core.Filter());
 		public static object Filter(object pred) => filter.Invoke(pred);
 		/// <summary>
-		/// Returns a <see cref="LazySeq"/> of items in coll for which predicate returns a logical true.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of items in coll for which predicate returns a logical true.
 		/// </summary>
 		/// <param name="pred">An object that implements <see cref="IFunction{T1, TResult}"/> interface.</param>
 		/// <param name="coll">An object to test.</param>
 		/// <returns>
-		/// Returns a <see cref="LazySeq"/> of items in coll for which predicate returns a logical true.
+		/// Returns a <see cref="funclib.Components.Core.LazySeq"/> of items in coll for which predicate returns a logical true.
 		/// </returns>
 		public static object Filter(object pred, object coll) => filter.Invoke(pred, coll);
 		#endregion
-		#region BitOr
-		static funclib.Components.Core.BitOr __bitor;
-		public static funclib.Components.Core.BitOr bitOr => __bitor ?? (__bitor = new funclib.Components.Core.BitOr());
+		#region public - BitOr
+		static funclib.Components.Core.BitOr __bitOr;
+		public static funclib.Components.Core.BitOr bitOr => __bitOr ?? (__bitOr = new funclib.Components.Core.BitOr());
 		public static object BitOr(object x, object y) => bitOr.Invoke(x, y);
 		public static object BitOr(object x, object y, params object[] more) => bitOr.Invoke(x, y, more);
 		#endregion
-		#region Conjǃ
+		#region public - Conjǃ
 		static funclib.Components.Core.Conjǃ __conjǃ;
 		/// <summary>
 		/// Adds x to the transient collection. and returns coll. The addition may happen
@@ -5569,132 +5563,139 @@ namespace funclib
 		/// </returns>
 		public static object Conjǃ(object coll, object x) => conjǃ.Invoke(coll, x);
 		#endregion
-		#region Popǃ
+		#region public - Popǃ
 		static funclib.Components.Core.Popǃ __popǃ;
 		/// <summary>
-		/// Removes the last time from a <see cref="ITransientVector"/>. If
+		/// Removes the last time from a <see cref="funclib.Collections.Internal.ITransientVector"/>. If
 		/// the collection is empty, throw an exception.
 		/// </summary>
 		public static funclib.Components.Core.Popǃ popǃ => __popǃ ?? (__popǃ = new funclib.Components.Core.Popǃ());
 		/// <summary>
-		/// Removes the last time from a <see cref="ITransientVector"/>. If
+		/// Removes the last time from a <see cref="funclib.Collections.Internal.ITransientVector"/>. If
 		/// the collection is empty, throw an exception.
 		/// </summary>
-		/// <param name="coll">An object that implements the <see cref="ITransientVector"/> interface.</param>
+		/// <param name="coll">An object that implements the <see cref="funclib.Collections.Internal.ITransientVector"/> interface.</param>
 		/// <returns>
 		/// Returns coll.
 		/// </returns>
 		public static object Popǃ(object coll) => popǃ.Invoke(coll);
 		#endregion
-		#region T
+		#region internal - E
+		static funclib.Components.Core.Internal.E __e;
+		internal static funclib.Components.Core.Internal.E e => __e ?? (__e = new funclib.Components.Core.Internal.E());
+		internal static bool E(object x) => e.Invoke(x);
+		internal static bool E(object x, object y) => e.Invoke(x, y);
+		internal static bool E(object x, object y, params object[] more) => e.Invoke(x, y, more);
+		#endregion
+		#region internal - T
 		static funclib.Components.Core.Internal.T __t;
-		internal static funclib.Components.Core.Internal.T T => __t ?? (__t = new funclib.Components.Core.Internal.T());
-		public static bool T(object source) => T.Invoke(source);
+		internal static funclib.Components.Core.Internal.T t => __t ?? (__t = new funclib.Components.Core.Internal.T());
+		internal static bool T(object source) => t.Invoke(source);
 		#endregion
-		#region F
+		#region internal - F
 		static funclib.Components.Core.Internal.F __f;
-		internal static funclib.Components.Core.Internal.F F => __f ?? (__f = new funclib.Components.Core.Internal.F());
-		public static bool F(object source) => F.Invoke(source);
+		internal static funclib.Components.Core.Internal.F f => __f ?? (__f = new funclib.Components.Core.Internal.F());
+		internal static bool F(object source) => f.Invoke(source);
 		#endregion
-		#region FunctionParams<T1, T2, TRest, TResult>
+		#region public - FunctionParams<T1, T2, TRest, TResult>
 		/// <summary>
 		/// Creates a <see cref="FunctionParams{T1, T2, TRest, TResult}"/> from a <see cref="Func{T1, T2, TRest, TResult}"/>.
 		/// </summary>
 		/// <param name="x">A <see cref="Func{T1, T2, TRest, TResult}"/> to execute.</param>
 		public static funclib.Components.Core.Generic.FunctionParams<object, object, object, object> Func(Func<object, object, object[], object> x) => new funclib.Components.Core.Generic.FunctionParams<object, object, object, object>(x);
 		#endregion
-		#region FunctionParams<T1, T2, T3, TRest, TResult>
+		#region public - FunctionParams<T1, T2, T3, TRest, TResult>
 		/// <summary>
 		/// Creates a <see cref="FunctionParams{T1, T2, T3, TRest, TResult}"/> from a <see cref="Func{T1, T2, T3, TRest, TResult}"/>.
 		/// </summary>
 		/// <param name="x">A <see cref="Func{T1, T2, T3, TRest, TResult}"/> to execute.</param>
 		public static funclib.Components.Core.Generic.FunctionParams<object, object, object, object, object> Func(Func<object, object, object, object[], object> x) => new funclib.Components.Core.Generic.FunctionParams<object, object, object, object, object>(x);
 		#endregion
-		#region Function<T1, TResult>
+		#region public - Function<T1, TResult>
 		/// <summary>
 		/// Creates a <see cref="Function{T1, TResult}"/> from a <see cref="Func{T1, TResult}"/>.
 		/// </summary>
 		/// <param name="x">A <see cref="Func{T1, TResult}"/> to execute.</param>
 		public static funclib.Components.Core.Generic.Function<object, object> Func(Func<object, object> x) => new funclib.Components.Core.Generic.Function<object, object>(x);
 		#endregion
-		#region FunctionParams<T1, TRest, TResult>
+		#region public - FunctionParams<T1, TRest, TResult>
 		/// <summary>
 		/// Creates a <see cref="FunctionParams{T1, TRest, TResult}"/> from a <see cref="Func{T1, TRest, TResult}"/>.
 		/// </summary>
 		/// <param name="x">A <see cref="Func{T1, TRest, TResult}"/> to execute.</param>
 		public static funclib.Components.Core.Generic.FunctionParams<object, object, object> Func(Func<object, object[], object> x) => new funclib.Components.Core.Generic.FunctionParams<object, object, object>(x);
 		#endregion
-		#region Function<T1, T2, T3, TResult>
+		#region public - Function<T1, T2, T3, TResult>
 		/// <summary>
 		/// Creates a <see cref="Function{T1, T2, T3, TResult}"/> from a <see cref="Func{T1, T2, T3, TResult}"/>.
 		/// </summary>
 		/// <param name="x">A <see cref="Func{T1, T2, T3, TResult}"/> to execute.</param>
 		public static funclib.Components.Core.Generic.Function<object, object, object, object> Func(Func<object, object, object, object> x) => new funclib.Components.Core.Generic.Function<object, object, object, object>(x);
 		#endregion
-		#region Function<T1, T2, T3, T4, TResult>
+		#region public - Function<T1, T2, T3, T4, TResult>
 		/// <summary>
 		/// Creates a <see cref="Function{T1, T2, T3, T4, TResult}"/> from a <see cref="Func{T1, T2, T3, T4, TResult}"/>.
 		/// </summary>
 		/// <param name="x">A <see cref="Func{T1, T2, T3, T4, TResult}"/> to execute.</param>
 		public static funclib.Components.Core.Generic.Function<object, object, object, object, object> Func(Func<object, object, object, object, object> x) => new funclib.Components.Core.Generic.Function<object, object, object, object, object>(x);
 		#endregion
-		#region Function<T1, T2, T3, T4, T5, TResult>
+		#region public - Function<T1, T2, T3, T4, T5, TResult>
 		/// <summary>
 		/// Creates a <see cref="Function{T1, T2, T3, T4, T5, TResult}"/> from a <see cref="Func{T1, T2, T3, T4, T5, TResult}"/>.
 		/// </summary>
 		/// <param name="x">A <see cref="Func{T1, T2, T3, T4, T5, TResult}"/> to execute.</param>
 		public static funclib.Components.Core.Generic.Function<object, object, object, object, object, object> Func(Func<object, object, object, object, object, object> x) => new funclib.Components.Core.Generic.Function<object, object, object, object, object, object>(x);
 		#endregion
-		#region Function<T1, T2, T3, T4, T5, T6, TResult>
+		#region public - Function<T1, T2, T3, T4, T5, T6, TResult>
 		/// <summary>
 		/// Creates a <see cref="Function{T1, T2, T3, T4, T5, T6, TResult}"/> from a <see cref="Func{T1, T2, T3, T4, T5, T6, TResult}"/>.
 		/// </summary>
 		/// <param name="x">A <see cref="Func{T1, T2, T3, T4, T5, T6, TResult}"/> to execute.</param>
 		public static funclib.Components.Core.Generic.Function<object, object, object, object, object, object, object> Func(Func<object, object, object, object, object, object, object> x) => new funclib.Components.Core.Generic.Function<object, object, object, object, object, object, object>(x);
 		#endregion
-		#region Function<T1, T2, TResult>
+		#region public - Function<T1, T2, TResult>
 		/// <summary>
 		/// Creates a <see cref="Function{T1, T2, TResult}"/> from a <see cref="Func{T1, T2, TResult}"/>.
 		/// </summary>
 		/// <param name="x">A <see cref="Func{T1, T2, TResult}"/> to execute.</param>
 		public static funclib.Components.Core.Generic.Function<object, object, object> Func(Func<object, object, object> x) => new funclib.Components.Core.Generic.Function<object, object, object>(x);
 		#endregion
-		#region FunctionParams<T1, T2, T3, T4, T5, TRest, TResult>
+		#region public - FunctionParams<T1, T2, T3, T4, T5, TRest, TResult>
 		/// <summary>
 		/// Creates a <see cref="FunctionParams{T1, T2, T3, T4, T5, TRest, TResult}"/> from a <see cref="Func{T1, T2, T3, T4, T5, TRest, TResult}"/>.
 		/// </summary>
 		/// <param name="x">A <see cref="Func{T1, T2, T3, T4, T5, TRest, TResult}"/> to execute.</param>
 		public static funclib.Components.Core.Generic.FunctionParams<object, object, object, object, object, object, object> Func(Func<object, object, object, object, object, object[], object> x) => new funclib.Components.Core.Generic.FunctionParams<object, object, object, object, object, object, object>(x);
 		#endregion
-		#region FunctionParams<TRest, TResult>
+		#region public - FunctionParams<TRest, TResult>
 		/// <summary>
-		/// Creates a <see cref="FunctionParams{TRest, TResult}"/> from a <see cref="Func{TRest[], TResult}"/>.
+		/// Creates a <see cref="FunctionParams{TRest, TResult}"/> from a <see cref="Func{TRest, TResult}"/>.
 		/// </summary>
-		/// <param name="x">A <see cref="Func{TRest[], TResult}"/> to execute.</param>
+		/// <param name="x">A <see cref="Func{TRest, TResult}"/> to execute.</param>
 		public static funclib.Components.Core.Generic.FunctionParams<object, object> Func(Func<object[], object> x) => new funclib.Components.Core.Generic.FunctionParams<object, object>(x);
 		#endregion
-		#region Function<TResult>
+		#region public - Function<TResult>
 		/// <summary>
 		/// Creates a <see cref="Function{TResult}"/> from a <see cref="Func{TResult}"/>.
 		/// </summary>
 		/// <param name="x">A <see cref="Func{TResult}"/> to execute.</param>
 		public static funclib.Components.Core.Generic.Function<object> Func(Func<object> x) => new funclib.Components.Core.Generic.Function<object>(x);
 		#endregion
-		#region Function<T1, T2, T3, T4, T5, T6, T7, TResult>
+		#region public - Function<T1, T2, T3, T4, T5, T6, T7, TResult>
 		/// <summary>
 		/// Creates a <see cref="Function{T1, T2, T3, T4, T5, T6, T7, TResult}"/> from a <see cref="Func{T1, T2, T3, T4, T5, T6, T7, TResult}"/>.
 		/// </summary>
 		/// <param name="x">A <see cref="Func{T1, T2, T3, T4, T5, T6, TResult}"/> to execute.</param>
 		public static funclib.Components.Core.Generic.Function<object, object, object, object, object, object, object, object> Func(Func<object, object, object, object, object, object, object, object> x) => new funclib.Components.Core.Generic.Function<object, object, object, object, object, object, object, object>(x);
 		#endregion
-		#region FunctionParams<T1, T2, T3, T4, TRest, TResult>
+		#region public - FunctionParams<T1, T2, T3, T4, TRest, TResult>
 		/// <summary>
 		/// Creates a <see cref="FunctionParams{T1, T2, T3, T4, TRest, TResult}"/> from a <see cref="Func{T1, T2, T3, T4, TRest, TResult}"/>.
 		/// </summary>
 		/// <param name="x">A <see cref="Func{T1, T2, T3, T4, TRest, TResult}"/> to execute.</param>
 		public static funclib.Components.Core.Generic.FunctionParams<object, object, object, object, object, object> Func(Func<object, object, object, object, object[], object> x) => new funclib.Components.Core.Generic.FunctionParams<object, object, object, object, object, object>(x);
 		#endregion
-		#region FunctionParams<T1, T2, T3, T4, T5, T6, TRest, TResult>
+		#region public - FunctionParams<T1, T2, T3, T4, T5, T6, TRest, TResult>
 		/// <summary>
 		/// Creates a <see cref="FunctionParams{T1, T2, T3, T4, T5, T6, TRest, TResult}"/> from a <see cref="Func{T1, T2, T3, T4, T5, T6, TRest, TResult}"/>.
 		/// </summary>

@@ -3,7 +3,7 @@
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns a <see cref="LazySeq"/> of the funclib.Core.First( n items in the coll, or all items
+    /// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the funclib.Core.First( n items in the coll, or all items
     /// if there are fewer than n.
     /// </summary>
     public class Take :
@@ -12,13 +12,13 @@ namespace funclib.Components.Core
     {
         public object Invoke(object n) => funclib.Core.Func(rf => new TransducerFunction(n, rf));
         /// <summary>
-        /// Returns a <see cref="LazySeq"/> of the funclib.Core.First( n items in the coll, or all items
+        /// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the funclib.Core.First( n items in the coll, or all items
         /// if there are fewer than n.
         /// </summary>
         /// <param name="n">An <see cref="int"/> of the items to take from the collection.</param>
         /// <param name="coll">The collection to take the funclib.Core.First( x items from.</param>
         /// <returns>
-        /// Returns a <see cref="LazySeq"/> of the funclib.Core.First( n items in the coll, or all items
+        /// Returns a <see cref="funclib.Components.Core.LazySeq"/> of the funclib.Core.First( n items in the coll, or all items
         /// if there are fewer than n.
         /// </returns>
         public object Invoke(object n, object coll) =>
@@ -27,7 +27,7 @@ namespace funclib.Components.Core
                 if ((bool)funclib.Core.IsPos(n))
                 {
                     var s = funclib.Core.Seq(coll);
-                    if ((bool)funclib.Core.Truthy(s))
+                    if (funclib.Core.T(s))
                         return funclib.Core.Cons(funclib.Core.First(s), Invoke(funclib.Core.Dec(n), funclib.Core.Rest(s)));
                 }
 
@@ -50,7 +50,7 @@ namespace funclib.Components.Core
             {
                 var n = this._nv.Deref();
                 var nn = new VSwapǃ(this._nv, new Dec()).Invoke();
-                result = (bool)funclib.Core.IsPos(n) 
+                result = (bool)funclib.Core.IsPos(n)
                     ? funclib.Core.Invoke(this._rf, result, input)
                     : result;
 

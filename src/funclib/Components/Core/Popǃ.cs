@@ -4,17 +4,17 @@ using funclib.Components.Core.Generic;
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Removes the last time from a <see cref="ITransientVector"/>. If
+    /// Removes the last time from a <see cref="funclib.Collections.Internal.ITransientVector"/>. If
     /// the collection is empty, throw an exception.
     /// </summary>
     public class Popǃ :
         IFunction<object, object>
     {
         /// <summary>
-        /// Removes the last time from a <see cref="ITransientVector"/>. If
+        /// Removes the last time from a <see cref="funclib.Collections.Internal.ITransientVector"/>. If
         /// the collection is empty, throw an exception.
         /// </summary>
-        /// <param name="coll">An object that implements the <see cref="ITransientVector"/> interface.</param>
+        /// <param name="coll">An object that implements the <see cref="funclib.Collections.Internal.ITransientVector"/> interface.</param>
         /// <returns>
         /// Returns coll.
         /// </returns>

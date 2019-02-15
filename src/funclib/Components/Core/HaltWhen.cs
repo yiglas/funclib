@@ -26,7 +26,7 @@ namespace funclib.Components.Core
             #region Overrides
             public override object Invoke(object result)
             {
-                if ((bool)funclib.Core.Truthy(funclib.Core.And(funclib.Core.IsMap(result), funclib.Core.Contains(result, "::halt"))))
+                if (funclib.Core.T(funclib.Core.And(funclib.Core.IsMap(result), funclib.Core.Contains(result, "::halt"))))
                 {
                     return funclib.Core.Get(result, "::halt");
                 }
@@ -35,9 +35,9 @@ namespace funclib.Components.Core
             }
             public override object Invoke(object result, object input)
             {
-                if ((bool)funclib.Core.Truthy(funclib.Core.Invoke(this._pred, input)))
+                if (funclib.Core.T(funclib.Core.Invoke(this._pred, input)))
                 {
-                    var haltVal = (bool)funclib.Core.Truthy(this._retf) ? funclib.Core.Invoke(this._retf, funclib.Core.Invoke(this._rf, result), input) : input;
+                    var haltVal = funclib.Core.T(this._retf) ? funclib.Core.Invoke(this._retf, funclib.Core.Invoke(this._rf, result), input) : input;
                     return funclib.Core.Reduced(funclib.Core.HashMap("::halt", haltVal));
                 }
 

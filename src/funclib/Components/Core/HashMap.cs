@@ -4,7 +4,7 @@ namespace funclib.Components.Core
 {
     /// <summary>
     /// Returns a new <see cref="Collections.HashMap"/> with the supplied mappings. If any keys are
-    /// equal, they are handled as if by repeated uses of <see cref="Assoc"/>.
+    /// equal, they are handled as if by repeated uses of <see cref="funclib.Components.Core.Assoc"/>.
     /// </summary>
     public class HashMap :
         IFunction<object>,
@@ -12,7 +12,7 @@ namespace funclib.Components.Core
     {
         /// <summary>
         /// Returns a new <see cref="Collections.HashMap"/> with the supplied mappings. If any keys are
-        /// equal, they are handled as if by repeated uses of <see cref="Assoc"/>.
+        /// equal, they are handled as if by repeated uses of <see cref="funclib.Components.Core.Assoc"/>.
         /// </summary>
         /// <returns>
         /// Returns <see cref="Collections.HashMap.EMPTY"/>.
@@ -20,7 +20,7 @@ namespace funclib.Components.Core
         public object Invoke() => Collections.HashMap.EMPTY;
         /// <summary>
         /// Returns a new <see cref="Collections.HashMap"/> with the supplied mappings. If any keys are
-        /// equal, they are handled as if by repeated uses of <see cref="Assoc"/>.
+        /// equal, they are handled as if by repeated uses of <see cref="funclib.Components.Core.Assoc"/>.
         /// </summary>
         /// <param name="keyvals">Key/value pairs adding to the <see cref="Collections.HashMap"/> data structure.</param>
         /// <returns>

@@ -3,9 +3,9 @@
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Takes a set of <see cref="IFunction"/> and returns <see cref="Function"/> that is the juxtaposition
-    /// of those <see cref="IFunction"/>. The returned <see cref="Function"/> takes a variable number or 
-    /// args, and returns a <see cref="Vector"/> containing the result of applying each <see cref="IFunction"/>
+    /// Takes a set of <see cref="IFunction"/> and returns <see cref="IFunction"/> that is the juxtaposition
+    /// of those <see cref="IFunction"/>. The returned <see cref="IFunction"/> takes a variable number or
+    /// args, and returns a <see cref="funclib.Components.Core.Vector"/> containing the result of applying each <see cref="IFunction"/>
     /// to the args (left-to-right).
     /// </summary>
     public class Juxt :
@@ -15,61 +15,61 @@ namespace funclib.Components.Core
         IFunctionParams<object, object, object, object, object>
     {
         /// <summary>
-        /// Takes a set of <see cref="IFunction"/> and returns <see cref="Function"/> that is the juxtaposition
-        /// of those <see cref="IFunction"/>. The returned <see cref="Function"/> takes a variable number or 
-        /// args, and returns a <see cref="Vector"/> containing the result of applying each <see cref="IFunction"/>
+        /// Takes a set of <see cref="IFunction"/> and returns <see cref="IFunction"/> that is the juxtaposition
+        /// of those <see cref="IFunction"/>. The returned <see cref="IFunction"/> takes a variable number or
+        /// args, and returns a <see cref="funclib.Components.Core.Vector"/> containing the result of applying each <see cref="IFunction"/>
         /// to the args (left-to-right).
         /// </summary>
         /// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
         /// <returns>
-        /// Takes a set of <see cref="IFunction"/> and returns <see cref="Function"/> that is the juxtaposition
-        /// of those <see cref="IFunction"/>. The returned <see cref="Function"/> takes a variable number or 
-        /// args, and returns a <see cref="Vector"/> containing the result of applying each <see cref="IFunction"/>
+        /// Takes a set of <see cref="IFunction"/> and returns <see cref="IFunction"/> that is the juxtaposition
+        /// of those <see cref="IFunction"/>. The returned <see cref="IFunction"/> takes a variable number or
+        /// args, and returns a <see cref="funclib.Components.Core.Vector"/> containing the result of applying each <see cref="IFunction"/>
         /// to the args (left-to-right).
         /// </returns>
         public object Invoke(object f) => new Function(f);
         /// <summary>
-        /// Takes a set of <see cref="IFunction"/> and returns <see cref="Function"/> that is the juxtaposition
-        /// of those <see cref="IFunction"/>. The returned <see cref="Function"/> takes a variable number or 
-        /// args, and returns a <see cref="Vector"/> containing the result of applying each <see cref="IFunction"/>
+        /// Takes a set of <see cref="IFunction"/> and returns <see cref="IFunction"/> that is the juxtaposition
+        /// of those <see cref="IFunction"/>. The returned <see cref="IFunction"/> takes a variable number or
+        /// args, and returns a <see cref="funclib.Components.Core.Vector"/> containing the result of applying each <see cref="IFunction"/>
         /// to the args (left-to-right).</summary>
         /// <param name="f">First object that implements the <see cref="IFunction"/> interface.</param>
         /// <param name="g">Second object that implements the <see cref="IFunction"/> interface.</param>
         /// <returns>
-        /// Takes a set of <see cref="IFunction"/> and returns <see cref="Function"/> that is the juxtaposition
-        /// of those <see cref="IFunction"/>. The returned <see cref="Function"/> takes a variable number or 
-        /// args, and returns a <see cref="Vector"/> containing the result of applying each <see cref="IFunction"/>
+        /// Takes a set of <see cref="IFunction"/> and returns <see cref="IFunction"/> that is the juxtaposition
+        /// of those <see cref="IFunction"/>. The returned <see cref="IFunction"/> takes a variable number or
+        /// args, and returns a <see cref="funclib.Components.Core.Vector"/> containing the result of applying each <see cref="IFunction"/>
         /// to the args (left-to-right).
         /// </returns>
         public object Invoke(object f, object g) => new Function(f, g);
         /// <summary>
-        /// Takes a set of <see cref="IFunction"/> and returns <see cref="Function"/> that is the juxtaposition
-        /// of those <see cref="IFunction"/>. The returned <see cref="Function"/> takes a variable number or 
-        /// args, and returns a <see cref="Vector"/> containing the result of applying each <see cref="IFunction"/>
+        /// Takes a set of <see cref="IFunction"/> and returns <see cref="IFunction"/> that is the juxtaposition
+        /// of those <see cref="IFunction"/>. The returned <see cref="IFunction"/> takes a variable number or
+        /// args, and returns a <see cref="funclib.Components.Core.Vector"/> containing the result of applying each <see cref="IFunction"/>
         /// to the args (left-to-right).</summary>
         /// <param name="f">First object that implements the <see cref="IFunction"/> interface.</param>
         /// <param name="g">Second object that implements the <see cref="IFunction"/> interface.</param>
         /// <param name="h">Third object that implements the <see cref="IFunction"/> interface.</param>
         /// <returns>
-        /// Takes a set of <see cref="IFunction"/> and returns <see cref="Function"/> that is the juxtaposition
-        /// of those <see cref="IFunction"/>. The returned <see cref="Function"/> takes a variable number or 
-        /// args, and returns a <see cref="Vector"/> containing the result of applying each <see cref="IFunction"/>
+        /// Takes a set of <see cref="IFunction"/> and returns <see cref="IFunction"/> that is the juxtaposition
+        /// of those <see cref="IFunction"/>. The returned <see cref="IFunction"/> takes a variable number or
+        /// args, and returns a <see cref="funclib.Components.Core.Vector"/> containing the result of applying each <see cref="IFunction"/>
         /// to the args (left-to-right).
         /// </returns>
         public object Invoke(object f, object g, object h) => new Function(f, g, h);
         /// <summary>
-        /// Takes a set of <see cref="IFunction"/> and returns <see cref="Function"/> that is the juxtaposition
-        /// of those <see cref="IFunction"/>. The returned <see cref="Function"/> takes a variable number or 
-        /// args, and returns a <see cref="Vector"/> containing the result of applying each <see cref="IFunction"/>
+        /// Takes a set of <see cref="IFunction"/> and returns <see cref="IFunction"/> that is the juxtaposition
+        /// of those <see cref="IFunction"/>. The returned <see cref="IFunction"/> takes a variable number or
+        /// args, and returns a <see cref="funclib.Components.Core.Vector"/> containing the result of applying each <see cref="IFunction"/>
         /// to the args (left-to-right).</summary>
         /// <param name="f">First object that implements the <see cref="IFunction"/> interface.</param>
         /// <param name="g">Second object that implements the <see cref="IFunction"/> interface.</param>
         /// <param name="h">Third object that implements the <see cref="IFunction"/> interface.</param>
         /// <param name="fs">Rest of the object that implements the <see cref="IFunction"/> interface.</param>
         /// <returns>
-        /// Takes a set of <see cref="IFunction"/> and returns <see cref="Function"/> that is the juxtaposition
-        /// of those <see cref="IFunction"/>. The returned <see cref="Function"/> takes a variable number or 
-        /// args, and returns a <see cref="Vector"/> containing the result of applying each <see cref="IFunction"/>
+        /// Takes a set of <see cref="IFunction"/> and returns <see cref="IFunction"/> that is the juxtaposition
+        /// of those <see cref="IFunction"/>. The returned <see cref="IFunction"/> takes a variable number or
+        /// args, and returns a <see cref="funclib.Components.Core.Vector"/> containing the result of applying each <see cref="IFunction"/>
         /// to the args (left-to-right).
         /// </returns>
         public object Invoke(object f, object g, object h, params object[] fs) => new Function(f, g, h, fs);
@@ -88,7 +88,7 @@ namespace funclib.Components.Core
             object _g;
             object _h;
             object[] _fs;
-            
+
             internal Function(object f) : this(f, null, null) { }
             internal Function(object f, object g) : this(f, g, null) { }
             internal Function(object f, object g, object h)

@@ -3,8 +3,8 @@
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Applies <see cref="IFunction{T1, TResult}"/> to each value in coll, splitting it each 
-    /// time f returns a new value. Returns a <see cref="LazySeq"/> of partitions.
+    /// Applies <see cref="IFunction{T1, TResult}"/> to each value in coll, splitting it each
+    /// time f returns a new value. Returns a <see cref="funclib.Components.Core.LazySeq"/> of partitions.
     /// </summary>
     public class PartitionBy :
         IFunction<object, object>,
@@ -12,19 +12,19 @@ namespace funclib.Components.Core
     {
         public object Invoke(object f) => funclib.Core.Func(rf => new TransducerFunction(f, rf));
         /// <summary>
-        /// Applies <see cref="IFunction{T1, TResult}"/> to each value in coll, splitting it each 
-        /// time f returns a new value. Returns a <see cref="LazySeq"/> of partitions.
+        /// Applies <see cref="IFunction{T1, TResult}"/> to each value in coll, splitting it each
+        /// time f returns a new value. Returns a <see cref="funclib.Components.Core.LazySeq"/> of partitions.
         /// </summary>
         /// <param name="f">An object that implements the <see cref="IFunction{T1, TResult}"/> interface.</param>
         /// <param name="coll">A collection that can be <see cref="Seq"/> over.</param>
         /// <returns>
-        /// Returns a <see cref="LazySeq"/> of partitions.
+        /// Returns a <see cref="funclib.Components.Core.LazySeq"/> of partitions.
         /// </returns>
         public object Invoke(object f, object coll) =>
             funclib.Core.LazySeq(() =>
             {
                 var s = funclib.Core.Seq(coll);
-                if ((bool)funclib.Core.Truthy(s))
+                if (funclib.Core.T(s))
                 {
                     var fst = funclib.Core.First(s);
                     var fv = funclib.Core.Invoke(f, fst);
@@ -67,7 +67,7 @@ namespace funclib.Components.Core
                 var pval = this._pv.Deref();
                 var val = funclib.Core.Invoke(this._f, input);
                 funclib.Core.VResetǃ(this._pv, val);
-                if ((bool)funclib.Core.Truthy(funclib.Core.Or(funclib.Core.IsIdentical(pval, "::none"), funclib.Core.IsEqualTo(val, pval))))
+                if (funclib.Core.T(funclib.Core.Or(funclib.Core.IsIdentical(pval, "::none"), funclib.Core.IsEqualTo(val, pval))))
                 {
                     this._a.Add(input);
                     return result;

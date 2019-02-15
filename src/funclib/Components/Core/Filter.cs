@@ -3,7 +3,7 @@
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns a <see cref="LazySeq"/> of items in coll for which predicate returns a logical true.
+    /// Returns a <see cref="funclib.Components.Core.LazySeq"/> of items in coll for which predicate returns a logical true.
     /// </summary>
     public class Filter :
         IFunction<object, object>,
@@ -11,18 +11,18 @@ namespace funclib.Components.Core
     {
         public object Invoke(object pred) => funclib.Core.Func(rf => new TransducerFunction(pred, rf));
         /// <summary>
-        /// Returns a <see cref="LazySeq"/> of items in coll for which predicate returns a logical true.
+        /// Returns a <see cref="funclib.Components.Core.LazySeq"/> of items in coll for which predicate returns a logical true.
         /// </summary>
         /// <param name="pred">An object that implements <see cref="IFunction{T1, TResult}"/> interface.</param>
         /// <param name="coll">An object to test.</param>
         /// <returns>
-        /// Returns a <see cref="LazySeq"/> of items in coll for which predicate returns a logical true.
+        /// Returns a <see cref="funclib.Components.Core.LazySeq"/> of items in coll for which predicate returns a logical true.
         /// </returns>
         public object Invoke(object pred, object coll) =>
             funclib.Core.LazySeq(() =>
             {
                 var s = funclib.Core.Seq(coll);
-                if ((bool)funclib.Core.Truthy(s))
+                if (funclib.Core.T(s))
                 {
                     if ((bool)funclib.Core.IsChunkedSeq(s))
                     {
@@ -33,7 +33,7 @@ namespace funclib.Components.Core
                         funclib.Core.DoTimes(size, i =>
                         {
                             var v = funclib.Core.Nth(c, i);
-                            if ((bool)funclib.Core.Truthy(funclib.Core.Invoke(pred, v)))
+                            if (funclib.Core.T(funclib.Core.Invoke(pred, v)))
                             {
                                 return funclib.Core.ChunkAppend(b, v);
                             }
@@ -47,7 +47,7 @@ namespace funclib.Components.Core
                         var f = funclib.Core.First(s);
                         var r = funclib.Core.Rest(s);
 
-                        if ((bool)funclib.Core.Truthy(funclib.Core.Invoke(pred, f)))
+                        if (funclib.Core.T(funclib.Core.Invoke(pred, f)))
                         {
                             return funclib.Core.Cons(f, Invoke(pred, r));
                         }
@@ -76,9 +76,9 @@ namespace funclib.Components.Core
             #region Overrides
             public override object Invoke(object result, object input)
             {
-                if ((bool)funclib.Core.Truthy(funclib.Core.Invoke(this._pred, input)))
+                if (funclib.Core.T(funclib.Core.Invoke(this._pred, input)))
                     return funclib.Core.Invoke(this._rf, result, input);
-                
+
                 return result;
             }
             #endregion

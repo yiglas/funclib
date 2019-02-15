@@ -6,7 +6,7 @@ using System;
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Takes a body of expressions that returns an <see cref="ISeq"/> or <see cref="null"/>, and 
+    /// Takes a body of expressions that returns an <see cref="ISeq"/> or null, and
     /// yields a <see cref="ISeqable"/> object that will invoke the body only the funclib.Core.First( time <see cref="LazySeq.Seq"/>
     /// is called, and will cache the result and return it on all subsequent <see cref="LazySeq.Seq"/> calls.
     /// </summary>
@@ -15,7 +15,7 @@ namespace funclib.Components.Core
         ISeq,
         IPending,
         ISequential,
-        System.Collections.IList        
+        System.Collections.IList
     {
         IFunction<object> _fn;
         object _sv;
@@ -76,14 +76,14 @@ namespace funclib.Components.Core
         }
 
         /// <summary>
-        /// Creates an empty <see cref="LazySeq"/> that yields null.
+        /// Creates an empty <see cref="funclib.Components.Core.LazySeq"/> that yields null.
         /// </summary>
         public LazySeq() :
             this(() => null)
         { }
 
         /// <summary>
-        /// Creates a <see cref="LazySeq"/> with the fn as its body.
+        /// Creates a <see cref="funclib.Components.Core.LazySeq"/> with the fn as its body.
         /// </summary>
         /// <param name="fn">A function to evaluate during each <see cref="LazySeq.Seq"/> call.</param>
         public LazySeq(Func<object> fn) :
@@ -91,7 +91,7 @@ namespace funclib.Components.Core
         { }
 
         /// <summary>
-        /// Creates a <see cref="LazySeq"/> with the fn as its body.
+        /// Creates a <see cref="funclib.Components.Core.LazySeq"/> with the fn as its body.
         /// </summary>
         /// <param name="fn">A function to evaluate during each <see cref="LazySeq.Seq"/> call.</param>
         public LazySeq(IFunction<object> fn)
@@ -100,7 +100,7 @@ namespace funclib.Components.Core
         }
 
         /// <summary>
-        /// Creates a <see cref="LazySeq"/> with the fn returning the object as its body.
+        /// Creates a <see cref="funclib.Components.Core.LazySeq"/> with the fn returning the object as its body.
         /// </summary>
         /// <param name="body">The object to return when <see cref="LazySeq.Seq"/> is called.</param>
         public LazySeq(object body) :
@@ -108,7 +108,7 @@ namespace funclib.Components.Core
         { }
 
         /// <summary>
-        /// Creates a <see cref="LazySeq"/> with the items of the sequence.
+        /// Creates a <see cref="funclib.Components.Core.LazySeq"/> with the items of the sequence.
         /// </summary>
         /// <param name="e">The sequence of items.</param>
         internal LazySeq(ISeq e)
@@ -119,10 +119,10 @@ namespace funclib.Components.Core
 
         #region Overrides
         /// <summary>
-        /// Gets the hash code for the <see cref="LazySeq"/>.
+        /// Gets the hash code for the <see cref="funclib.Components.Core.LazySeq"/>.
         /// </summary>
         /// <returns>
-        /// Returns the hash code for the <see cref="LazySeq"/>.
+        /// Returns the hash code for the <see cref="funclib.Components.Core.LazySeq"/>.
         /// </returns>
         public override int GetHashCode()
         {
@@ -132,7 +132,7 @@ namespace funclib.Components.Core
         }
 
         /// <summary>
-        /// Determine the equality between this <see cref="LazySeq"/> and the object.
+        /// Determine the equality between this <see cref="funclib.Components.Core.LazySeq"/> and the object.
         /// </summary>
         /// <param name="obj">An object to test its equality against.</param>
         /// <returns>
@@ -188,7 +188,7 @@ namespace funclib.Components.Core
         }
 
         /// <summary>
-        /// Adds object to the <see cref="LazySeq"/>.
+        /// Adds object to the <see cref="funclib.Components.Core.LazySeq"/>.
         /// </summary>
         /// <param name="o">Object to add.</param>
         /// <returns>
@@ -196,10 +196,10 @@ namespace funclib.Components.Core
         /// </returns>
         public ISeq Cons(object o) => (ISeq)funclib.Core.Cons(o, Seq());
         /// <summary>
-        /// Returns the funclib.Core.First( object in the <see cref="LazySeq"/>.
+        /// Returns the funclib.Core.First( object in the <see cref="funclib.Components.Core.LazySeq"/>.
         /// </summary>
         /// <returns>
-        /// Returns the funclib.Core.First( object in the <see cref="LazySeq"/>.
+        /// Returns the funclib.Core.First( object in the <see cref="funclib.Components.Core.LazySeq"/>.
         /// </returns>
         public object First()
         {
@@ -208,12 +208,12 @@ namespace funclib.Components.Core
             return this._s.First();
         }
         /// <summary>
-        /// Returns the rest of the objects in the <see cref="LazySeq"/>. If the 
-        /// result of <see cref="LazySeq"/> is null, return null.
+        /// Returns the rest of the objects in the <see cref="funclib.Components.Core.LazySeq"/>. If the
+        /// result of <see cref="funclib.Components.Core.LazySeq"/> is null, return null.
         /// </summary>
         /// <returns>
-        /// Returns the rest of the objects in the <see cref="LazySeq"/>. If the 
-        /// result of <see cref="LazySeq"/> is null, return null.
+        /// Returns the rest of the objects in the <see cref="funclib.Components.Core.LazySeq"/>. If the
+        /// result of <see cref="funclib.Components.Core.LazySeq"/> is null, return null.
         /// </returns>
         public ISeq Next()
         {
@@ -222,12 +222,12 @@ namespace funclib.Components.Core
             return this._s.Next();
         }
         /// <summary>
-        /// Returns the rest of the objects in the <see cref="LazySeq"/>. If the 
-        /// result of <see cref="LazySeq"/> is null, return <see cref="Collections.List.EMPTY"/>.
+        /// Returns the rest of the objects in the <see cref="funclib.Components.Core.LazySeq"/>. If the
+        /// result of <see cref="funclib.Components.Core.LazySeq"/> is null, return <see cref="Collections.List.EMPTY"/>.
         /// </summary>
         /// <returns>
-        /// Returns the rest of the objects in the <see cref="LazySeq"/>. If the 
-        /// result of <see cref="LazySeq"/> is null, return <see cref="Collections.List.EMPTY"/>.
+        /// Returns the rest of the objects in the <see cref="funclib.Components.Core.LazySeq"/>. If the
+        /// result of <see cref="funclib.Components.Core.LazySeq"/> is null, return <see cref="Collections.List.EMPTY"/>.
         /// </returns>
         public ISeq More()
         {
@@ -268,7 +268,7 @@ namespace funclib.Components.Core
         public bool Contains(object item)
         {
             for (var e = Seq(); e != null; e = e.Next())
-                if ((bool)funclib.Core.IsEqualTo(e.First(), item))
+                if (funclib.Core.E(e.First(), item))
                     return true;
             return false;
         }
@@ -278,7 +278,7 @@ namespace funclib.Components.Core
         {
             var e = Seq();
             for (int i = 0; e != null; e = e.Next(), i++)
-                if ((bool)funclib.Core.IsEqualTo(e.First(), value))
+                if (funclib.Core.E(e.First(), value))
                     return i;
             return -1;
         }

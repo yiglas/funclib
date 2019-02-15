@@ -6,8 +6,8 @@ using System.Text.RegularExpressions;
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns the value at the index. <see cref="Nth"/> throws an exception if index
-    /// is out of bounds or unless notFound is supplied. <see cref="Nth"/> works on 
+    /// Returns the value at the index. <see cref="funclib.Components.Core.Nth"/> throws an exception if index
+    /// is out of bounds or unless notFound is supplied. <see cref="funclib.Components.Core.Nth"/> works on
     /// strings, arrays, Regex matcher, lists and O(n) time for sequences.
     /// </summary>
     public class Nth :
@@ -15,15 +15,15 @@ namespace funclib.Components.Core
         IFunction<object, object, object, object>
     {
         /// <summary>
-        /// Returns the value at the index. <see cref="Nth"/> throws an exception if index
-        /// is out of bounds or unless notFound is supplied. <see cref="Nth"/> works on 
+        /// Returns the value at the index. <see cref="funclib.Components.Core.Nth"/> throws an exception if index
+        /// is out of bounds or unless notFound is supplied. <see cref="funclib.Components.Core.Nth"/> works on
         /// strings, arrays, Regex matcher, lists and O(n) time for sequences.
         /// </summary>
         /// <param name="coll">Collection to search for index.</param>
         /// <param name="index">Index to find.</param>
         /// <returns>
-        /// Returns the value at the index. <see cref="Nth"/> throws an exception if index
-        /// is out of bounds or unless notFound is supplied. <see cref="Nth"/> works on 
+        /// Returns the value at the index. <see cref="funclib.Components.Core.Nth"/> throws an exception if index
+        /// is out of bounds or unless notFound is supplied. <see cref="funclib.Components.Core.Nth"/> works on
         /// strings, arrays, Regex matcher, lists and O(n) time for sequences.
         /// </returns>
         public object Invoke(object coll, object index) =>
@@ -32,16 +32,16 @@ namespace funclib.Components.Core
                 : null;
 
         /// <summary>
-        /// Returns the value at the index. <see cref="Nth"/> throws an exception if index
-        /// is out of bounds or unless notFound is supplied. <see cref="Nth"/> works on 
+        /// Returns the value at the index. <see cref="funclib.Components.Core.Nth"/> throws an exception if index
+        /// is out of bounds or unless notFound is supplied. <see cref="funclib.Components.Core.Nth"/> works on
         /// strings, arrays, Regex matcher, lists and O(n) time for sequences.
         /// </summary>
         /// <param name="coll">Collection to search for index.</param>
         /// <param name="index">Index to find.</param>
         /// <param name="notFound">Value to return if index is not found.</param>
         /// <returns>
-        /// Returns the value at the index. <see cref="Nth"/> throws an exception if index
-        /// is out of bounds or unless notFound is supplied. <see cref="Nth"/> works on 
+        /// Returns the value at the index. <see cref="funclib.Components.Core.Nth"/> throws an exception if index
+        /// is out of bounds or unless notFound is supplied. <see cref="funclib.Components.Core.Nth"/> works on
         /// strings, arrays, Regex matcher, lists and O(n) time for sequences.
         /// </returns>
         public object Invoke(object coll, object index, object notFound) =>
@@ -73,7 +73,7 @@ namespace funclib.Components.Core
                 : coll.GetType().IsArray ? nth((Array)coll, index, notFound)
                 : coll is IVector v ? v[index, notFound]
                 : coll is IChunked c ? c[index, notFound]
-                : coll is System.Collections.IList l ? index < l.Count ? l[index] : notFound 
+                : coll is System.Collections.IList l ? index < l.Count ? l[index] : notFound
                 : coll is ReMatcher re ? re.IsUnrealizedOrFailed ? notFound : index < re.GroupCount() ? re.Group(index) : notFound
                 : coll is Match m ? index < m.Groups.Count ? m.Groups[index] : notFound
                 : coll is System.Collections.DictionaryEntry de ? index == 0 ? de.Key : index == 1 ? de.Value : notFound

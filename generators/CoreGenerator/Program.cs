@@ -45,6 +45,7 @@ namespace CoreGenerator
             lines.Add("using funclib.Collections;");
             lines.Add("using funclib.Components.Core;");
             lines.Add("using funclib.Components.Core.Generic;");
+            lines.Add("using System.Text.RegularExpressions;");
             lines.Add("using System;");
             lines.Add(Environment.NewLine);
             lines.Add("namespace funclib");
@@ -84,10 +85,11 @@ namespace CoreGenerator
             var methods = Filter(MethodDeclarationPredicate(node), Map(GetMethodDeclaration(@class), Invoke(GetDescendantNodes<MethodDeclarationSyntax>(), node)));
 
             var className = Get(@class, NAME);
+            var classModifier = Get(@class, MODIFIER);
             var isMacroFunction = Get(@class, IS_MACRO_FUNCTION);
             var typedParameters = Get(@class, TYPED_PARAMETERS);
 
-            var v = Conj(Vector(), $"#region {className}{typedParameters}");
+            var v = Conj(Vector(), $"#region {classModifier} - {className}{typedParameters}");
 
             if (className.Equals("Function") || className.Equals("FunctionParams"))
             {
@@ -104,7 +106,7 @@ namespace CoreGenerator
             else
             {
                 v = Apply(conj, v, Invoke(BuildClassStatement, @class));
-                v = Reduce(conj, v, Flatten(Map(BuildStatement(GetMethodStatement), methods)));
+                v = Reduce(conj, v, Flatten(Map(BuildStatement(Partial(GetMethodStatement, classModifier)), methods)));
             }
 
             v = Conj(v, "#endregion");
@@ -137,7 +139,7 @@ namespace CoreGenerator
                 NAME, declaration.Identifier.Text,
                 FULLNAME, GetFullyQualifiedName(declaration),
                 COMMENTS, GetComments(declaration),
-                PRIVATENAME, Str("__", declaration.Identifier.Text.ToLower()),
+                PRIVATENAME, Str("__", FixClassName(declaration.Identifier.Text).Replace("@", "")),
                 TYPED_PARAMETERS, declaration.TypeParameterList?.ToString(),
                 IS_MACRO_FUNCTION, declaration.DescendantNodes().OfType<BaseListSyntax>().FirstOrDefault().Types.ToString() == "IMacroFunction"
                 );
@@ -229,9 +231,9 @@ namespace CoreGenerator
             return $"{modifier} static {fullName}{typedParameters} {className}{typedParameters}{constructorParameters} => new {fullName}{typedParameters}({parameterList});";
         });
 
-        public static object GetMethodStatement => Func((methodMap) =>
+        public static object GetMethodStatement => Func((modifier, methodMap) =>
         {
-            var modifier = Get(methodMap, MODIFIER);
+            //var modifier = Get(methodMap, MODIFIER);
             var returnType = Get(methodMap, RETURNTYPE);
             var className = Get(methodMap, CLASSNAME);
             var methodName = Get(methodMap, NAME);
@@ -296,6 +298,9 @@ namespace CoreGenerator
                 name = System.Char.ToLowerInvariant(name[0]).ToString()
                     + System.Char.ToLowerInvariant(name[1]).ToString()
                     + name.Substring(2);
+
+            if (name.Length == 1)
+                name = name.ToLower();
 
             switch (name)
             {

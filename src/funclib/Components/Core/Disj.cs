@@ -4,7 +4,7 @@ using funclib.Components.Core.Generic;
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Disj[oin]. Returns a new set of the same concrete type, that 
+    /// Disj[oin]. Returns a new set of the same concrete type, that
     /// does not contain they funclib.Core.Key(s).
     /// </summary>
     public class Disj :
@@ -13,7 +13,7 @@ namespace funclib.Components.Core
         IFunctionParams<object, object, object, object>
     {
         /// <summary>
-        /// Disj[oin]. Returns a new set of the same concrete type, that 
+        /// Disj[oin]. Returns a new set of the same concrete type, that
         /// does not contain they funclib.Core.Key(s).
         /// </summary>
         /// <param name="set">Object that implements the <see cref="ISet"/> interface.</param>
@@ -22,7 +22,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object set) => set;
         /// <summary>
-        /// Disj[oin]. Returns a new set of the same concrete type, that 
+        /// Disj[oin]. Returns a new set of the same concrete type, that
         /// does not contain they funclib.Core.Key(s).
         /// </summary>
         /// <param name="set">Object the implements the <see cref="ISet"/> interface.</param>
@@ -32,7 +32,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object set, object key) => ((ISet)set).Disj(key);
         /// <summary>
-        /// Disj[oin]. Returns a new set of the same concrete type, that 
+        /// Disj[oin]. Returns a new set of the same concrete type, that
         /// does not contain they funclib.Core.Key(s).
         /// </summary>
         /// <param name="set">Object the implements the <see cref="ISet"/> interface.</param>
@@ -50,7 +50,7 @@ namespace funclib.Components.Core
             if (ks != null && ks.Length > 0)
             {
                 var n = funclib.Core.Next(ks);
-                if ((bool)funclib.Core.Truthy(n))
+                if (funclib.Core.T(n))
                     return Invoke(ret, funclib.Core.First(ks), (object[])funclib.Core.ToArray(n));
 
                 return Invoke(ret, funclib.Core.First(ks));

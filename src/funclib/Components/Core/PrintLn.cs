@@ -4,13 +4,13 @@ using System;
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// The same as <see cref="Print"/> but followed by a <see cref="Environment.NewLine"/>.
+    /// The same as <see cref="funclib.Components.Core.Print"/> but followed by a <see cref="Environment.NewLine"/>.
     /// </summary>
     public class PrintLn :
         IFunctionParams<object, object>
     {
         /// <summary>
-        /// The same as <see cref="Print"/> but followed by a <see cref="Environment.NewLine"/>.
+        /// The same as <see cref="funclib.Components.Core.Print"/> but followed by a <see cref="Environment.NewLine"/>.
         /// </summary>
         /// <param name="more">Any objects you want to print.</param>
         /// <returns>

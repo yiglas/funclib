@@ -3,8 +3,8 @@
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns the result of applying <see cref="Concat"/> to the result of applying 
-    /// <see cref="Map"/> to f and colls. Thus function f should return a collections.
+    /// Returns the result of applying <see cref="funclib.Components.Core.Concat"/> to the result of applying
+    /// <see cref="funclib.Components.Core.Map"/> to f and colls. Thus function f should return a collections.
     /// </summary>
     public class MapCat :
         IFunction<object, object>,
@@ -12,8 +12,8 @@ namespace funclib.Components.Core
     {
         public object Invoke(object f) => funclib.Core.Comp(funclib.Core.Map(f), funclib.Core.cat);
         /// <summary>
-        /// Returns the result of applying <see cref="Concat"/> to the result of applying 
-        /// <see cref="Map"/> to f and colls. Thus function f should return a collections.
+        /// Returns the result of applying <see cref="funclib.Components.Core.Concat"/> to the result of applying
+        /// <see cref="funclib.Components.Core.Map"/> to f and colls. Thus function f should return a collections.
         /// </summary>
         /// <param name="f">An object that implements <see cref="IFunction"/> interface.</param>
         /// <param name="colls">A collection of items.</param>

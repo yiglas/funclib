@@ -3,7 +3,7 @@
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns a <see cref="LazySeq"/> of numbers from start (inclusive) to end
+    /// Returns a <see cref="funclib.Components.Core.LazySeq"/> of numbers from start (inclusive) to end
     /// (Exclusive), by step, where start defaults to 0, step to 1, and end to
     /// infinity. When step is equal to 0, returns an infinite sequence of
     /// start. When start is equal to end, returns empty list.
@@ -15,17 +15,17 @@ namespace funclib.Components.Core
         IFunction<object, object, object, object>
     {
         /// <summary>
-        /// Returns a <see cref="LazySeq"/> of numbers from start (inclusive) to end
+        /// Returns a <see cref="funclib.Components.Core.LazySeq"/> of numbers from start (inclusive) to end
         /// (Exclusive), by step, where start defaults to 0, step to 1, and end to
         /// infinity. When step is equal to 0, returns an infinite sequence of
         /// start. When start is equal to end, returns empty list.
         /// </summary>
         /// <returns>
-        /// Returns a <see cref="Collections.Iterate"/> collection starting at 0 continues infinitly.
+        /// Returns a <see cref="Collections.Iterate"/> collection starting at 0 continues infinitely.
         /// </returns>
         public object Invoke() => funclib.Core.Iterate(funclib.Core.inc, 0);
         /// <summary>
-        /// Returns a <see cref="LazySeq"/> of numbers from start (inclusive) to end
+        /// Returns a <see cref="funclib.Components.Core.LazySeq"/> of numbers from start (inclusive) to end
         /// (Exclusive), by step, where start defaults to 0, step to 1, and end to
         /// infinity. When step is equal to 0, returns an infinite sequence of
         /// start. When start is equal to end, returns empty list.
@@ -40,7 +40,7 @@ namespace funclib.Components.Core
                 ? Collections.LongRange.Create(e)
                 : Collections.Range.Create(end);
         /// <summary>
-        /// Returns a <see cref="LazySeq"/> of numbers from start (inclusive) to end
+        /// Returns a <see cref="funclib.Components.Core.LazySeq"/> of numbers from start (inclusive) to end
         /// (Exclusive), by step, where start defaults to 0, step to 1, and end to
         /// infinity. When step is equal to 0, returns an infinite sequence of
         /// start. When start is equal to end, returns empty list.
@@ -51,13 +51,13 @@ namespace funclib.Components.Core
         /// Returns either <see cref="Collections.LongRange"/> if end/start is <see cref="long"/> or <see cref="Collections.Range"/> if end/start
         /// is <see cref="int"/>.
         /// </returns>
-        public object Invoke(object start, object end) => 
+        public object Invoke(object start, object end) =>
             start is long s && end is long e
                 ? Collections.LongRange.Create(s, e)
                 : Collections.Range.Create(start, end);
 
         /// <summary>
-        /// Returns a <see cref="LazySeq"/> of numbers from start (inclusive) to end
+        /// Returns a <see cref="funclib.Components.Core.LazySeq"/> of numbers from start (inclusive) to end
         /// (Exclusive), by step, where start defaults to 0, step to 1, and end to
         /// infinity. When step is equal to 0, returns an infinite sequence of
         /// start. When start is equal to end, returns empty list.
