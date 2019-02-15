@@ -3,7 +3,7 @@
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// <see cref="Trampoline"/> can be used to convert algorithms requiring mutual
+    /// <see cref="funclib.Components.Core.Trampoline"/> can be used to convert algorithms requiring mutual
     /// recursion without stake consumption. Calls f with supplied args, if any. If
     /// f returns a fn, calls the fn with no arguments and continues to repeat, until
     /// the return value is not a fn. then returns the non-fn value. Note: that if you
@@ -15,7 +15,7 @@ namespace funclib.Components.Core
         IFunctionParams<object, object, object>
     {
         /// <summary>
-        /// <see cref="Trampoline"/> can be used to convert algorithms requiring mutual
+        /// <see cref="funclib.Components.Core.Trampoline"/> can be used to convert algorithms requiring mutual
         /// recursion without stake consumption. Calls f with supplied args, if any. If
         /// f returns a fn, calls the fn with no arguments and continues to repeat, until
         /// the return value is not a fn. then returns the non-fn value. Note: that if you
@@ -35,7 +35,7 @@ namespace funclib.Components.Core
             return ret;
         }
         /// <summary>
-        /// <see cref="Trampoline"/> can be used to convert algorithms requiring mutual
+        /// <see cref="funclib.Components.Core.Trampoline"/> can be used to convert algorithms requiring mutual
         /// recursion without stake consumption. Calls f with supplied args, if any. If
         /// f returns a fn, calls the fn with no arguments and continues to repeat, until
         /// the return value is not a fn. then returns the non-fn value. Note: that if you

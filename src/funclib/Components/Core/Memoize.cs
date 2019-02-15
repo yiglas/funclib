@@ -3,7 +3,7 @@
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns a memoized version of the referentially transparent function. The 
+    /// Returns a memoized version of the referentially transparent function. The
     /// memoized version of the function keeps a cache of the mapping from arguments
     /// to results and, when calls with the same arguments are repeated often, has
     /// higher performance at the expense of higher memory use.
@@ -12,21 +12,21 @@ namespace funclib.Components.Core
         IFunction<object, object>
     {
         /// <summary>
-        /// Returns a memoized version of the referentially transparent function. The 
+        /// Returns a memoized version of the referentially transparent function. The
         /// memoized version of the function keeps a cache of the mapping from arguments
         /// to results and, when calls with the same arguments are repeated often, has
         /// higher performance at the expense of higher memory use.
         /// </summary>
         /// <param name="f">An object that implements <see cref="IFunction"/> interface.</param>
         /// <returns>
-        /// Returns a <see cref="Function"/> object that is a memoized version of the function.
+        /// Returns a <see cref="IFunction"/> object that is a memoized version of the function.
         /// </returns>
         public object Invoke(object f) => new Function(f);
 
         /// <summary>
         /// Internal function that does the <see cref="Memoize"/>.
         /// </summary>
-        public class Function : 
+        public class Function :
             IFunctionParams<object, object>
         {
             object _f;
@@ -48,7 +48,7 @@ namespace funclib.Components.Core
             public object Invoke(params object[] args)
             {
                 var e = funclib.Core.Find(funclib.Core.Deref(this._mem), args);
-                if ((bool)funclib.Core.Truthy(e))
+                if (funclib.Core.T(e))
                 {
                     return funclib.Core.Value(e);
                 }

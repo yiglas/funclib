@@ -24,7 +24,7 @@ namespace funclib.Components.Core
             {
                 var holder = funclib.Core.And(funclib.Core.IsPos(i), funclib.Core.Seq(xs));
 
-                if ((bool)funclib.Core.Truthy(holder))
+                if (funclib.Core.T(holder))
                     return loop(funclib.Core.Dec(i), funclib.Core.Rest(holder));
 
                 return xs;

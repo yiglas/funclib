@@ -3,7 +3,7 @@
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns a <see cref="LazySeq"/> of successive items from coll while 
+    /// Returns a <see cref="funclib.Components.Core.LazySeq"/> of successive items from coll while
     /// <see cref="IFunction{T1, T2, TResult}"/> pred returns a logical true. pred
     /// must be free of side-effects.
     /// </summary>
@@ -13,14 +13,14 @@ namespace funclib.Components.Core
     {
         public object Invoke(object pred) => funclib.Core.Func(rf => new TransducerFunction(pred, rf));
         /// <summary>
-        /// Returns a <see cref="LazySeq"/> of successive items from coll while 
+        /// Returns a <see cref="funclib.Components.Core.LazySeq"/> of successive items from coll while
         /// <see cref="IFunction{T1, T2, TResult}"/> pred returns a logical true. pred
         /// must be free of side-effects.
         /// </summary>
         /// <param name="pred">An object that implements the <see cref="IFunction{T1, T2, TResult}"/> interface.</param>
         /// <param name="coll">List of times to process.</param>
         /// <returns>
-        /// Returns a <see cref="LazySeq"/> of successive items from coll while 
+        /// Returns a <see cref="funclib.Components.Core.LazySeq"/> of successive items from coll while
         /// <see cref="IFunction{T1, T2, TResult}"/> pred returns a logical true. pred
         /// must be free of side-effects.
         /// </returns>
@@ -28,10 +28,10 @@ namespace funclib.Components.Core
             funclib.Core.LazySeq(() =>
             {
                 var s = funclib.Core.Seq(coll);
-                if ((bool)funclib.Core.Truthy(s))
+                if (funclib.Core.T(s))
                 {
                     var result = funclib.Core.Invoke(pred, funclib.Core.First(s));
-                    if ((bool)funclib.Core.Truthy(result))
+                    if (funclib.Core.T(result))
                         return funclib.Core.Cons(funclib.Core.First(s), Invoke(pred, funclib.Core.Rest(s)));
                 }
                 return null;
@@ -51,7 +51,7 @@ namespace funclib.Components.Core
 
             #region Overrides
             public override object Invoke(object result, object input) =>
-                (bool)funclib.Core.Truthy(funclib.Core.Invoke(this._pred, input))
+                funclib.Core.T(funclib.Core.Invoke(this._pred, input))
                     ? funclib.Core.Invoke(this._rf, result, input)
                     : funclib.Core.Reduced(result);
             #endregion

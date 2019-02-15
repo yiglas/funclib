@@ -19,7 +19,7 @@ namespace funclib.Components.Core
         public object Invoke(object coll, object n)
         {
             var xs = funclib.Core.Seq(coll);
-            if ((bool)funclib.Core.Truthy(funclib.Core.And(xs, funclib.Core.IsPos(n))))
+            if (funclib.Core.T(funclib.Core.And(xs, funclib.Core.IsPos(n))))
                 return Invoke(funclib.Core.Next(xs), funclib.Core.Dec(n));
 
             return xs;

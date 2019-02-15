@@ -13,7 +13,7 @@ namespace funclib.Components.Core
         readonly IFunction<object, object> _func;
 
         /// <summary>
-        /// Constructor for the <see cref="DoTimes"/> class.
+        /// Constructor for the <see cref="funclib.Components.Core.DoTimes"/> class.
         /// </summary>
         /// <param name="n">Number of times to execute the fn.</param>
         /// <param name="fn">The function to execute.</param>
@@ -23,7 +23,7 @@ namespace funclib.Components.Core
         }
 
         /// <summary>
-        /// Constructor for the <see cref="DoTimes"/> class.
+        /// Constructor for the <see cref="funclib.Components.Core.DoTimes"/> class.
         /// </summary>
         /// <param name="n">Number of times to execute the fn.</param>
         /// <param name="fn">The function to execute.</param>

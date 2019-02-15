@@ -22,7 +22,7 @@ namespace funclib.Components.Core
         public object Invoke(object pred, object coll)
         {
             var s = funclib.Core.Seq(coll);
-            if ((bool)funclib.Core.Truthy(s))
+            if (funclib.Core.T(s))
             {
                 return funclib.Core.Or(funclib.Core.Invoke(pred, funclib.Core.First(s)), Invoke(pred, funclib.Core.Next(s)));
             }

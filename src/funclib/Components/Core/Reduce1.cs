@@ -10,7 +10,7 @@ namespace funclib.Components.Core
         public object Invoke(object f, object coll)
         {
             var s = funclib.Core.Seq(coll);
-            if ((bool)funclib.Core.Truthy(s))
+            if (funclib.Core.T(s))
                 return Invoke(f, funclib.Core.First(s), funclib.Core.Next(s));
             else
                 return funclib.Core.Invoke(f);
@@ -19,7 +19,7 @@ namespace funclib.Components.Core
         {
             var s = funclib.Core.Seq(coll);
 
-            if ((bool)funclib.Core.Truthy(s))
+            if (funclib.Core.T(s))
             {
                 if ((bool)funclib.Core.IsChunkedSeq(s))
                     return Invoke(f, ((IChunked)funclib.Core.ChunkFirst(s)).Reduce(f, val), funclib.Core.ChunkNext(s));

@@ -15,7 +15,7 @@ namespace funclib.Components.Core
         /// </summary>
         /// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
         /// <returns>
-        /// Returns a <see cref="Function"/> that returns a <see cref="bool"/> value which is the opposite truthy value.
+        /// Returns a <see cref="IFunction"/> that returns a <see cref="bool"/> value which is the opposite truthy value.
         /// </returns>
         public object Invoke(object f) => new Function(f);
 
@@ -31,7 +31,7 @@ namespace funclib.Components.Core
             object _func;
 
             /// <summary>
-            /// Creates a new <see cref="Function"/> object.
+            /// Creates a new <see cref="IFunction"/> object.
             /// </summary>
             /// <param name="f">Object that implements the <see cref="IFunction"/> interface.</param>
             internal Function(object f)

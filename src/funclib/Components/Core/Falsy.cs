@@ -20,9 +20,13 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object source)
         {
-            if (source is null) return true;
-            else if (source is bool b) return !b;
-            else return false;
+            if (source is null) 
+                return true;
+
+            if (source is bool b) 
+                return !b;
+
+            return false;
         }
     }
 }

@@ -35,10 +35,17 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a new collection with the same data type of to consisting of to with all of the items of from conjoined.
         /// </returns>
-        public object Invoke(object to, object from) =>
-            to is IEditableCollection
-                ? funclib.Core.Persistentǃ(funclib.Core.Reduce(funclib.Core.conjǃ, funclib.Core.Transient(to), from))
-                : funclib.Core.Reduce(funclib.Core.conj, to, from);
+        public object Invoke(object to, object from)
+        {
+            if (to is IEditableCollection)
+                return funclib.Core.Persistentǃ(
+                    funclib.Core.Reduce(
+                        funclib.Core.conjǃ, 
+                        funclib.Core.Transient(to), 
+                        from));
+            
+            return funclib.Core.Reduce(funclib.Core.conj, to, from);
+        }
         /// <summary>
         /// Returns a new collection consisting of to with all of the items of from conjoined. 
         /// </summary>
@@ -48,9 +55,17 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns a new collection with the same data type of to consisting of to with all of the items of from conjoined.
         /// </returns>
-        public object Invoke(object to, object xform, object from) =>
-            to is IEditableCollection
-                ? funclib.Core.Persistentǃ(funclib.Core.Transduce(xform, funclib.Core.conjǃ, funclib.Core.Transient(to), from))
-                : funclib.Core.Transduce(xform, funclib.Core.conj, to, from);
+        public object Invoke(object to, object xform, object from)
+        {
+            if (to is IEditableCollection)
+                return funclib.Core.Persistentǃ(
+                    funclib.Core.Transduce(
+                        xform, 
+                        funclib.Core.conjǃ, 
+                        funclib.Core.Transient(to), 
+                        from));
+            
+            return funclib.Core.Transduce(xform, funclib.Core.conj, to, from);
+        }
     }
 }

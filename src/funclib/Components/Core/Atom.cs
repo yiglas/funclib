@@ -6,7 +6,7 @@ using System;
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Creates and returns an <see cref="Atom"/> with an initial value or x
+    /// Creates and returns an <see cref="funclib.Components.Core.Atom"/> with an initial value or x
     /// and zero or more options:
     ///     :validator = validate-fn
     /// Validate-fn must be nil or a side effect free <see cref="IFunction"/>
@@ -23,7 +23,7 @@ namespace funclib.Components.Core
         AtomicReference<object> _state;
 
         /// <summary>
-        /// Creates a new <see cref="Atom"/> object.
+        /// Creates a new <see cref="funclib.Components.Core.Atom"/> object.
         /// </summary>
         public Atom() { }
 
@@ -44,7 +44,7 @@ namespace funclib.Components.Core
 
         /// <summary>
         /// Atomically sets the value of the <see cref="IAtom"/>
-        /// to the new value if and only if the current value of 
+        /// to the new value if and only if the current value of
         /// the <see cref="IAtom"/> is identical to the oldVal.
         /// Returns true if set happened, otherwise false.
         /// </summary>
@@ -88,46 +88,46 @@ namespace funclib.Components.Core
         /// <summary>
         /// Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
         /// Note: f may be called multiple times and thus should be free of side effects.
-        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
+        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after
         /// the swap.
         /// </summary>
         /// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
         /// <returns>
-        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
+        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after
         /// the swap.
         /// </returns>
         public IVector Swap(object f) => swap(oldVal => funclib.Core.Invoke(f, oldVal));
         /// <summary>
         /// Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
         /// Note: f may be called multiple times and thus should be free of side effects.
-        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
+        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after
         /// the swap.
         /// </summary>
         /// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
         /// <param name="x">Second parameter of the function.</param>
         /// <returns>
-        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
+        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after
         /// the swap.
         /// </returns>
         public IVector Swap(object f, object x) => swap(oldVal => funclib.Core.Invoke(f, oldVal, x));
         /// <summary>
         /// Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
         /// Note: f may be called multiple times and thus should be free of side effects.
-        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
+        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after
         /// the swap.
         /// </summary>
         /// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
         /// <param name="x">Second parameter of the function.</param>
         /// <param name="y">Third parameter of the function.</param>
         /// <returns>
-        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
+        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after
         /// the swap.
         /// </returns>
         public IVector Swap(object f, object x, object y) => swap(oldVal => funclib.Core.Invoke(f, oldVal, x, y));
         /// <summary>
         /// Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
         /// Note: f may be called multiple times and thus should be free of side effects.
-        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after 
+        /// Returns a <see cref="IVector"/> of old, new. The value of the atom before and after
         /// the swap.
         /// </summary>
         /// <param name="f">An object that implements the <see cref="IFunction"/> interface.</param>
@@ -153,7 +153,7 @@ namespace funclib.Components.Core
         }
 
         /// <summary>
-        /// Creates and returns an <see cref="Atom"/> with an initial value or x
+        /// Creates and returns an <see cref="funclib.Components.Core.Atom"/> with an initial value or x
         /// and zero or more options:
         ///     :validator = validate-fn
         /// Validate-fn must be nil or a side effect free <see cref="IFunction"/>
@@ -161,13 +161,13 @@ namespace funclib.Components.Core
         /// state change. If the new state is unacceptable, the validate-fn should
         /// return false or throw an exception.
         /// </summary>
-        /// <param name="x">Initial value of the <see cref="Atom"/>.</param>
+        /// <param name="x">Initial value of the <see cref="funclib.Components.Core.Atom"/>.</param>
         /// <returns>
-        /// Returns a new <see cref="Atom"/> with the initial value set.
+        /// Returns a new <see cref="funclib.Components.Core.Atom"/> with the initial value set.
         /// </returns>
         public object Invoke(object x) => new Atom(x);
         /// <summary>
-        /// Creates and returns an <see cref="Atom"/> with an initial value or x
+        /// Creates and returns an <see cref="funclib.Components.Core.Atom"/> with an initial value or x
         /// and zero or more options:
         ///     :validator = validate-fn
         /// Validate-fn must be nil or a side effect free <see cref="IFunction"/>
@@ -175,12 +175,12 @@ namespace funclib.Components.Core
         /// state change. If the new state is unacceptable, the validate-fn should
         /// return false or throw an exception.
         /// </summary>
-        /// <param name="x">Initial value of the <see cref="Atom"/>.</param>
+        /// <param name="x">Initial value of the <see cref="funclib.Components.Core.Atom"/>.</param>
         /// <param name="options">Key/Value pair of options. options are:
         ///     :validator = validate-fn
         /// </param>
         /// <returns>
-        /// Returns a new <see cref="Atom"/> with the initial value set.
+        /// Returns a new <see cref="funclib.Components.Core.Atom"/> with the initial value set.
         /// </returns>
         public object Invoke(object x, params object[] options)
         {

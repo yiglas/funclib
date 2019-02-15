@@ -3,7 +3,7 @@
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Wraps x in a way such that a <see cref="Reduce"/> will terminate with the value x.
+    /// Wraps x in a way such that a <see cref="funclib.Components.Core.Reduce"/> will terminate with the value x.
     /// </summary>
     public class Reduced :
         IDeref,
@@ -29,7 +29,7 @@ namespace funclib.Components.Core
         public object Deref() => this._val;
 
         /// <summary>
-        /// Wraps x in a way such that a <see cref="Reduce"/> will terminate with the value x.
+        /// Wraps x in a way such that a <see cref="funclib.Components.Core.Reduce"/> will terminate with the value x.
         /// </summary>
         /// <param name="x">Object to wrap.</param>
         /// <returns>

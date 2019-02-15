@@ -7,14 +7,14 @@ namespace funclib.Components.Core
     /// Ensures that one thread does not enter a <see cref="IFunction{TResult}"/> while another
     /// thread is already executing it.
     /// </summary>
-    public class Locking : 
+    public class Locking :
         IMacroFunction
     {
         object _locker;
         IFunction<object> _func;
 
         /// <summary>
-        /// Creates a <see cref="Locking"/> object.
+        /// Creates a <see cref="funclib.Components.Core.Locking"/> object.
         /// </summary>
         /// <param name="x">Object to lock.</param>
         /// <param name="fn"><see cref="Func{TResult}"/> to execute.</param>
@@ -23,7 +23,7 @@ namespace funclib.Components.Core
         { }
 
         /// <summary>
-        /// Creates a <see cref="Locking"/> object.
+        /// Creates a <see cref="funclib.Components.Core.Locking"/> object.
         /// </summary>
         /// <param name="x">Object to lock.</param>
         /// <param name="fn"><see cref="IFunction{TResult}"/> to execute.</param>

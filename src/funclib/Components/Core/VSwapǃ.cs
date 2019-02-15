@@ -1,4 +1,6 @@
-﻿namespace funclib.Components.Core
+﻿using funclib.Components.Core.Generic;
+
+namespace funclib.Components.Core
 {
     /// <summary>
     /// Non-atomically swaps the value of volatile.

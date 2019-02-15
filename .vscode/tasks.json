@@ -2,13 +2,14 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "build code-generator",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/funclib/funclib.csproj"
-            ]
+                "${workspaceFolder}/generators/CoreGenerator/CoreGenerator.csproj"
+            ],
+            "problemMatcher": "$msCompile"
         },
         {
             "label": "test",

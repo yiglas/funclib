@@ -3,7 +3,7 @@
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns a <see cref="LazySeq"/> of lists like <see cref="Partition"/>, but my include
+    /// Returns a <see cref="funclib.Components.Core.LazySeq"/> of lists like <see cref="funclib.Components.Core.Partition"/>, but my include
     /// partitions with fewer then n items at the end.
     /// </summary>
     public class PartitionAll :
@@ -13,32 +13,32 @@ namespace funclib.Components.Core
     {
         public object Invoke(object n) => funclib.Core.Func(rf => new TransducerFunction(n, rf));
         /// <summary>
-        /// Returns a <see cref="LazySeq"/> of lists like <see cref="Partition"/>, but my include
+        /// Returns a <see cref="funclib.Components.Core.LazySeq"/> of lists like <see cref="funclib.Components.Core.Partition"/>, but my include
         /// partitions with fewer then n items at the end.
         /// </summary>
         /// <param name="n">A <see cref="int"/> specifying the size of each group.</param>
         /// <param name="coll">A collection that can be <see cref="Seq"/> over.</param>
         /// <returns>
-        /// Returns a <see cref="LazySeq"/> of lists like <see cref="Partition"/>, but my include
+        /// Returns a <see cref="funclib.Components.Core.LazySeq"/> of lists like <see cref="funclib.Components.Core.Partition"/>, but my include
         /// partitions with fewer then n items at the end.
         /// </returns>
         public object Invoke(object n, object coll) => Invoke(n, n, coll);
         /// <summary>
-        /// Returns a <see cref="LazySeq"/> of lists like <see cref="Partition"/>, but my include
+        /// Returns a <see cref="funclib.Components.Core.LazySeq"/> of lists like <see cref="funclib.Components.Core.Partition"/>, but my include
         /// partitions with fewer then n items at the end.
         /// </summary>
         /// <param name="n">A <see cref="int"/> specifying the size of each group.</param>
         /// <param name="step">A <see cref="int"/> specifying the starting point for each group.</param>
         /// <param name="coll">A collection that can be <see cref="Seq"/> over.</param>
         /// <returns>
-        /// Returns a <see cref="LazySeq"/> of lists like <see cref="Partition"/>, but my include
+        /// Returns a <see cref="funclib.Components.Core.LazySeq"/> of lists like <see cref="funclib.Components.Core.Partition"/>, but my include
         /// partitions with fewer then n items at the end.
         /// </returns>
         public object Invoke(object n, object step, object coll) =>
             funclib.Core.LazySeq(() =>
             {
                 var s = funclib.Core.Seq(coll);
-                if ((bool)funclib.Core.Truthy(s))
+                if (funclib.Core.T(s))
                 {
                     var seq = funclib.Core.DoAll(funclib.Core.Take(n, s));
                     return funclib.Core.Cons(seq, Invoke(n, step, funclib.Core.NthRest(s, step)));

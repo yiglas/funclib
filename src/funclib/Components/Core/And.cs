@@ -4,7 +4,7 @@ using System.Linq;
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Evaluates objects one at a time, from left to right. If a object returns 
+    /// Evaluates objects one at a time, from left to right. If a object returns
     /// a logical false (null or false) then it is returned and stops evaluating
     /// all other expressions. Otherwise, it returns the value of the last object.
     /// </summary>
@@ -14,7 +14,7 @@ namespace funclib.Components.Core
         IFunctionParams<object, object, object>
     {
         /// <summary>
-        /// Evaluates objects one at a time, from left to right. If a object returns 
+        /// Evaluates objects one at a time, from left to right. If a object returns
         /// a logical false (null or false) then it is returned and stops evaluating
         /// all other expressions. Otherwise, it returns the value of the last object.
         /// </summary>
@@ -23,7 +23,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke() => true;
         /// <summary>
-        /// Evaluates objects one at a time, from left to right. If a object returns 
+        /// Evaluates objects one at a time, from left to right. If a object returns
         /// a logical false (null or false) then it is returned and stops evaluating
         /// all other expressions. Otherwise, it returns the value of the last object.
         /// </summary>
@@ -37,7 +37,7 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object x) => x;
         /// <summary>
-        /// Evaluates objects one at a time, from left to right. If a object returns 
+        /// Evaluates objects one at a time, from left to right. If a object returns
         /// a logical false (null or false) then it is returned and stops evaluating
         /// all other expressions. Otherwise, it returns the value of the last object.
         /// </summary>
@@ -52,9 +52,11 @@ namespace funclib.Components.Core
         /// </returns>
         public object Invoke(object x, params object[] next)
         {
-            if ((bool)funclib.Core.Truthy(x) && (next?.Length ?? 0) > 0)
-                return Invoke(next[0], next.Skip(1).ToArray());
-
+            if (funclib.Core.T(x) && (next?.Any() ?? false))
+            {
+                return Invoke(next[0], next.Skip(1));
+            }
+            
             return x;
         }
     }

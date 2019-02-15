@@ -5,7 +5,7 @@ namespace funclib.Components.Core
 {
     /// <summary>
     /// Given a map of replacement pairs and a <see cref="Collections.Vector"/>/collection, returns a
-    /// <see cref="Collections.Vector"/>/seq with any elements = a key in smap replaced with the 
+    /// <see cref="Collections.Vector"/>/seq with any elements = a key in smap replaced with the
     /// corresponding val in smap.
     /// </summary>
     public class Replace :
@@ -15,7 +15,7 @@ namespace funclib.Components.Core
         public object Invoke(object smap) => funclib.Core.Map(funclib.Core.Func(Transducer(smap)));
         /// <summary>
         /// Given a map of replacement pairs and a <see cref="Collections.Vector"/>/collection, returns a
-        /// <see cref="Collections.Vector"/>/seq with any elements = a key in smap replaced with the 
+        /// <see cref="Collections.Vector"/>/seq with any elements = a key in smap replaced with the
         /// corresponding val in smap.
         /// </summary>
         /// <param name="smap">An object that is either a <see cref="Collections.Vector"/> or an object that can be <see cref="Seq"/>ed over.</param>
@@ -36,7 +36,7 @@ namespace funclib.Components.Core
             object ReduceInnerInvoke(object v, object i)
             {
                 var e = funclib.Core.Find(smap, funclib.Core.Nth(v, i));
-                if ((bool)funclib.Core.Truthy(e))
+                if (funclib.Core.T(e))
                 {
                     return funclib.Core.Assoc(v, i, funclib.Core.Value(e));
                 }
@@ -49,7 +49,7 @@ namespace funclib.Components.Core
             (object item) =>
             {
                 var e = funclib.Core.Find(smap, item);
-                if ((bool)funclib.Core.Truthy(e))
+                if (funclib.Core.T(e))
                 {
                     return funclib.Core.Value(e);
                 }

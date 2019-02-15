@@ -1,4 +1,5 @@
-﻿using funclib.Components.Core.Generic;
+﻿using System.Text.RegularExpressions;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Components.Core
 {

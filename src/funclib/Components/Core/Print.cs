@@ -43,7 +43,7 @@ namespace funclib.Components.Core
             Invoke(x);
             Variables.Out.Write(' ');
             var nmore = funclib.Core.Next(more);
-            if ((bool)funclib.Core.Truthy(nmore))
+            if (funclib.Core.T(nmore))
                 return Invoke(funclib.Core.First(more), (object[])funclib.Core.ToArray(nmore));
 
             return Invoke(funclib.Core.First(more));
@@ -91,7 +91,7 @@ namespace funclib.Components.Core
         static string FPStr(object x)
         {
             var s = (string)funclib.Core.Str(x);
-            if ((bool)funclib.Core.Truthy(funclib.Core.Or(s.Contains("."), s.Contains("E"))))
+            if (funclib.Core.T(funclib.Core.Or(s.Contains("."), s.Contains("E"))))
                 return s;
 
             return $"{s}.0";
@@ -180,7 +180,7 @@ namespace funclib.Components.Core
             catch (Exception e) { val = e; ex = true; }
 
             // if Agent data structure exists check if there is an agent error.
-            ex = ((bool)funclib.Core.Truthy(funclib.Core.Or(ex)));
+            ex = (funclib.Core.T(funclib.Core.Or(ex)));
 
             return (IMap)funclib.Core.ArrayMap(
                 ":status", ex ? ":failed" : pending ? ":pending" : ":ready",

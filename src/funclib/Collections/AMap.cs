@@ -33,7 +33,7 @@ namespace funclib.Collections
                 {
                     var de = (KeyValuePair)e.First();
                     bool found = d.Contains(de.Key);
-                    if (!found || !(bool)funclib.Core.IsEqualTo(de.Value, d[de.Key]))
+                    if (!found || !funclib.Core.E(de.Value, d[de.Key]))
                         return false;
                 }
             }
@@ -115,7 +115,7 @@ namespace funclib.Collections
                 : o is IVector v ? v.Count != 2 ? throw new ArgumentException("Vector arg to map cons must be a pair.") : Assoc(v[0], v[1])
                 : o is System.Collections.IEnumerable e ? Cons(e)
                 : this;
-        
+
         IMap Cons(System.Collections.IEnumerable e)
         {
             IMap ret = this;
@@ -129,7 +129,7 @@ namespace funclib.Collections
 
 
         public bool Contains(object item) => ContainsKey(item);
-        
+
         public void CopyTo(object[] array, int arrayIndex)
         {
             var e = Seq();
@@ -142,7 +142,7 @@ namespace funclib.Collections
             if (e != null)
                 e.CopyTo(array, index);
         }
-                
+
         public bool TryGetValue(object key, out object value)
         {
             object found = GetValue(key, _missingValue);

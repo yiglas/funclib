@@ -3,7 +3,7 @@
 namespace funclib.Components.Core
 {
     /// <summary>
-    /// Returns a <see cref="LazySeq"/> of elements separated by sep.
+    /// Returns a <see cref="funclib.Components.Core.LazySeq"/> of elements separated by sep.
     /// </summary>
     public class Interpose :
         IFunction<object, object>,
@@ -11,16 +11,16 @@ namespace funclib.Components.Core
     {
         public object Invoke(object sep) => funclib.Core.Func(rf => new TransducerFunction(sep, rf));
         /// <summary>
-        /// Returns a <see cref="LazySeq"/> of elements separated by sep.
+        /// Returns a <see cref="funclib.Components.Core.LazySeq"/> of elements separated by sep.
         /// </summary>
         /// <param name="sep">Separator object.</param>
-        /// <param name="coll">Collection to insert the separtor with.</param>
+        /// <param name="coll">Collection to insert the separator with.</param>
         /// <returns>
-        /// Returns a <see cref="LazySeq"/> of elements separated by sep.
+        /// Returns a <see cref="funclib.Components.Core.LazySeq"/> of elements separated by sep.
         /// </returns>
         public object Invoke(object sep, object coll) =>
             funclib.Core.Drop(1, funclib.Core.Interleave(funclib.Core.Repeat(sep), coll));
-        
+
         public class TransducerFunction :
             ATransducerFunction
         {
@@ -37,13 +37,13 @@ namespace funclib.Components.Core
             #region Overrides
             public override object Invoke(object result, object input)
             {
-                if ((bool)funclib.Core.Truthy(this._started.Deref()))
+                if (funclib.Core.T(this._started.Deref()))
                 {
-                    var sepr = funclib.Core.Invoke(this._rf, result, this._sep);
-                    if ((bool)funclib.Core.IsReduced(sepr))
-                        return sepr;
+                    var sep = funclib.Core.Invoke(this._rf, result, this._sep);
+                    if ((bool)funclib.Core.IsReduced(sep))
+                        return sep;
 
-                    return funclib.Core.Invoke(this._rf, sepr, input);
+                    return funclib.Core.Invoke(this._rf, sep, input);
                 }
 
                 funclib.Core.VResetǃ(this._started, true);

@@ -34,7 +34,7 @@ namespace funclib.Collections
 
             var ms = (ISeq)funclib.Core.Seq(obj);
             for (var e = Seq(); e != null; e = e.Next(), ms = ms.Next())
-                if (ms is null || !(bool)funclib.Core.IsEqualTo(e.First(), ms.First()))
+                if (ms is null || !funclib.Core.E(e.First(), ms.First()))
                     return false;
 
             return ms is null;

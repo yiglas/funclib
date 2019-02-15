@@ -16,8 +16,8 @@
             and take 4 arguments. The key, the reference, its old-state and its new
             state. Whenever the <see cref="T:funclib.Components.Core.IRef"/>'s state changes all registered
             watches will be called. The functions will be synchronously called. Note:
-            an <see cref="T:funclib.Components.Core.IAtom"/>'s state may have changed prior to calling the 
-            function so use th old/new state argument instead of deref'ing the 
+            an <see cref="T:funclib.Components.Core.IAtom"/>'s state may have changed prior to calling the
+            function so use th old/new state argument instead of deref'ing the
             state again.
             </summary>
         </member>
@@ -28,8 +28,8 @@
             and take 4 arguments. The key, the reference, its old-state and its new
             state. Whenever the <see cref="T:funclib.Components.Core.IRef"/>'s state changes all registered
             watches will be called. The functions will be synchronously called. Note:
-            an <see cref="T:funclib.Components.Core.IAtom"/>'s state may have changed prior to calling the 
-            function so use th old/new state argument instead of deref'ing the 
+            an <see cref="T:funclib.Components.Core.IAtom"/>'s state may have changed prior to calling the
+            function so use th old/new state argument instead of deref'ing the
             state again.
             </summary>
             <param name="ref">An object that implements the <see cref="T:funclib.Components.Core.IRef"/> interface.</param>
@@ -41,14 +41,14 @@
         </member>
         <member name="T:funclib.Components.Core.And">
             <summary>
-            Evaluates objects one at a time, from left to right. If a object returns 
+            Evaluates objects one at a time, from left to right. If a object returns
             a logical false (null or false) then it is returned and stops evaluating
             all other expressions. Otherwise, it returns the value of the last object.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.And.Invoke">
             <summary>
-            Evaluates objects one at a time, from left to right. If a object returns 
+            Evaluates objects one at a time, from left to right. If a object returns
             a logical false (null or false) then it is returned and stops evaluating
             all other expressions. Otherwise, it returns the value of the last object.
             </summary>
@@ -58,7 +58,7 @@
         </member>
         <member name="M:funclib.Components.Core.And.Invoke(System.Object)">
             <summary>
-            Evaluates objects one at a time, from left to right. If a object returns 
+            Evaluates objects one at a time, from left to right. If a object returns
             a logical false (null or false) then it is returned and stops evaluating
             all other expressions. Otherwise, it returns the value of the last object.
             </summary>
@@ -73,7 +73,7 @@
         </member>
         <member name="M:funclib.Components.Core.And.Invoke(System.Object,System.Object[])">
             <summary>
-            Evaluates objects one at a time, from left to right. If a object returns 
+            Evaluates objects one at a time, from left to right. If a object returns
             a logical false (null or false) then it is returned and stops evaluating
             all other expressions. Otherwise, it returns the value of the last object.
             </summary>
@@ -89,13 +89,13 @@
         </member>
         <member name="T:funclib.Components.Core.Apply">
             <summary>
-            Applies <see cref="T:funclib.Components.Core.IFunction"/> f to the argument list formed prepending 
+            Applies <see cref="T:funclib.Components.Core.IFunction"/> f to the argument list formed prepending
             intervening arguments to args.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Apply.Invoke(System.Object,System.Object)">
             <summary>
-            Applies <see cref="T:funclib.Components.Core.IFunction"/> f to the argument list formed perpending 
+            Applies <see cref="T:funclib.Components.Core.IFunction"/> f to the argument list formed perpending
             intervening arguments to args.
             </summary>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
@@ -106,7 +106,7 @@
         </member>
         <member name="M:funclib.Components.Core.Apply.Invoke(System.Object,System.Object,System.Object)">
             <summary>
-            Applies <see cref="T:funclib.Components.Core.IFunction"/> f to the argument list formed perpending 
+            Applies <see cref="T:funclib.Components.Core.IFunction"/> f to the argument list formed perpending
             intervening arguments to args.
             </summary>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
@@ -118,7 +118,7 @@
         </member>
         <member name="M:funclib.Components.Core.Apply.Invoke(System.Object,System.Object,System.Object,System.Object)">
             <summary>
-            Applies <see cref="T:funclib.Components.Core.IFunction"/> f to the argument list formed perpending 
+            Applies <see cref="T:funclib.Components.Core.IFunction"/> f to the argument list formed perpending
             intervening arguments to args.
             </summary>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
@@ -131,7 +131,7 @@
         </member>
         <member name="M:funclib.Components.Core.Apply.Invoke(System.Object,System.Object,System.Object,System.Object,System.Object)">
             <summary>
-            Applies <see cref="T:funclib.Components.Core.IFunction"/> f to the argument list formed perpending 
+            Applies <see cref="T:funclib.Components.Core.IFunction"/> f to the argument list formed perpending
             intervening arguments to args.
             </summary>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
@@ -145,7 +145,7 @@
         </member>
         <member name="M:funclib.Components.Core.Apply.Invoke(System.Object,System.Object,System.Object,System.Object,System.Object,System.Object[])">
             <summary>
-            Applies <see cref="T:funclib.Components.Core.IFunction"/> f to the argument list formed perpending 
+            Applies <see cref="T:funclib.Components.Core.IFunction"/> f to the argument list formed perpending
             intervening arguments to args.
             </summary>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
@@ -168,7 +168,7 @@
         </member>
         <member name="M:funclib.Components.Core.ARef.SetValidator(funclib.Components.Core.IFunction)">
             <summary>
-            Sets the validator function for <see cref="T:funclib.Components.Core.IRef"/> variables. Validator 
+            Sets the validator function for <see cref="T:funclib.Components.Core.IRef"/> variables. Validator
             function must be null or a side-effect-free <see cref="T:funclib.Components.Core.IFunction"/> of
             one argument, which will be passed the intended new state of any state
             change. If the new state is unacceptable, the function should either
@@ -197,8 +197,8 @@
             and take 4 arguments. The key, the reference, its old-state and its new
             state. Whenever the <see cref="T:funclib.Components.Core.IRef"/>'s state changes all registered
             watches will be called. The functions will be synchronously called. Note:
-            an <see cref="T:funclib.Components.Core.IAtom"/>'s state may have changed prior to calling the 
-            function so use th old/new state argument instead of deref'ing the 
+            an <see cref="T:funclib.Components.Core.IAtom"/>'s state may have changed prior to calling the
+            function so use th old/new state argument instead of deref'ing the
             state again.
             </summary>
             <param name="key">A unique key for the function.</param>
@@ -287,17 +287,17 @@
         </member>
         <member name="T:funclib.Components.Core.AssocIn">
             <summary>
-            Associates a value n a nested associative structure, where ks is a 
+            Associates a value n a nested associative structure, where ks is a
             sequence of keys and v is the new value. Returns a new nested structure.
-            If any levels do not exists, a new <see cref="T:funclib.Collections.HashMap"/> 
+            If any levels do not exists, a new <see cref="T:funclib.Collections.HashMap"/>
             will be created.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.AssocIn.Invoke(System.Object,System.Object,System.Object)">
             <summary>
-            Associates a value n a nested associative structure, where ks is a 
+            Associates a value n a nested associative structure, where ks is a
             sequence of keys and v is the new value. Returns a new nested structure.
-            If any levels do not exists, a new <see cref="T:funclib.Collections.HashMap"/> 
+            If any levels do not exists, a new <see cref="T:funclib.Collections.HashMap"/>
             will be created.
             </summary>
             <param name="m">Object that implements the <see cref="!:IAssociative"/> interface.</param>
@@ -309,15 +309,15 @@
         </member>
         <member name="T:funclib.Components.Core.Assocǃ">
             <summary>
-            When applied to a transient map, addes mapping of funclib.Core.Key(s) to vals(s). 
-            When applied to a transient vector, sets the val at index. Note -> 
+            When applied to a transient map, addes mapping of funclib.Core.Key(s) to vals(s).
+            When applied to a transient vector, sets the val at index. Note ->
             index must be less than or equal to the count of vector. Returns coll.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Assocǃ.Invoke(System.Object,System.Object,System.Object)">
             <summary>
-            When applied to a transient map, addes mapping of funclib.Core.Key(s) to vals(s). 
-            When applied to a transient vector, sets the val at index. Note -> 
+            When applied to a transient map, addes mapping of funclib.Core.Key(s) to vals(s).
+            When applied to a transient vector, sets the val at index. Note ->
             index must be less than or equal to the count of vector. Returns coll.
             </summary>
             <param name="coll">An object that implements the <see cref="T:funclib.Collections.Internal.ITransientAssociative"/> interface.</param>
@@ -329,8 +329,8 @@
         </member>
         <member name="M:funclib.Components.Core.Assocǃ.Invoke(System.Object,System.Object,System.Object,System.Object[])">
             <summary>
-            When applied to a transient map, addes mapping of funclib.Core.Key(s) to vals(s). 
-            When applied to a transient vector, sets the val at index. Note -> 
+            When applied to a transient map, addes mapping of funclib.Core.Key(s) to vals(s).
+            When applied to a transient vector, sets the val at index. Note ->
             index must be less than or equal to the count of vector. Returns coll.
             </summary>
             <param name="coll">An object that implements the <see cref="T:funclib.Collections.Internal.ITransientAssociative"/> interface.</param>
@@ -368,7 +368,7 @@
         <member name="M:funclib.Components.Core.Atom.CompareAndSet(System.Object,System.Object)">
             <summary>
             Atomically sets the value of the <see cref="T:funclib.Components.Core.IAtom"/>
-            to the new value if and only if the current value of 
+            to the new value if and only if the current value of
             the <see cref="T:funclib.Components.Core.IAtom"/> is identical to the oldVal.
             Returns <see cref="!:true"/> if set happened, otherwise <see cref="!:false"/>.
             </summary>
@@ -394,12 +394,12 @@
             <summary>
             Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
             Note: f may be called multiple times and thus should be free of side effects.
-            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after 
+            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after
             the swap.
             </summary>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
             <returns>
-            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after 
+            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after
             the swap.
             </returns>
         </member>
@@ -407,13 +407,13 @@
             <summary>
             Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
             Note: f may be called multiple times and thus should be free of side effects.
-            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after 
+            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after
             the swap.
             </summary>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
             <param name="x">Second parameter of the function.</param>
             <returns>
-            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after 
+            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after
             the swap.
             </returns>
         </member>
@@ -421,14 +421,14 @@
             <summary>
             Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
             Note: f may be called multiple times and thus should be free of side effects.
-            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after 
+            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after
             the swap.
             </summary>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
             <param name="x">Second parameter of the function.</param>
             <param name="y">Third parameter of the function.</param>
             <returns>
-            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after 
+            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after
             the swap.
             </returns>
         </member>
@@ -436,7 +436,7 @@
             <summary>
             Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
             Note: f may be called multiple times and thus should be free of side effects.
-            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after 
+            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after
             the swap.
             </summary>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
@@ -540,7 +540,7 @@
         <member name="T:funclib.Components.Core.Comp">
             <summary>
             Takes a set of functions and returns a function that is the composition of
-            those functions. The returned <see cref="T:funclib.Components.Core.Comp.Function"/> takes a variable number 
+            those functions. The returned <see cref="T:funclib.Components.Core.Comp.Function"/> takes a variable number
             of args, applies the right-most of functions to the args, the next function
             (right-to-left) to the result, ect.
             </summary>
@@ -548,7 +548,7 @@
         <member name="M:funclib.Components.Core.Comp.Invoke">
             <summary>
             Takes a set of functions and returns a function that is the composition of
-            those functions. The returned <see cref="T:funclib.Components.Core.Comp.Function"/> takes a variable number 
+            those functions. The returned <see cref="T:funclib.Components.Core.Comp.Function"/> takes a variable number
             of args, applies the right-most of functions to the args, the next function
             (right-to-left) to the result, ect.
             </summary>
@@ -559,7 +559,7 @@
         <member name="M:funclib.Components.Core.Comp.Invoke(System.Object)">
             <summary>
             Takes a set of functions and returns a function that is the composition of
-            those functions. The returned <see cref="T:funclib.Components.Core.Comp.Function"/> takes a variable number 
+            those functions. The returned <see cref="T:funclib.Components.Core.Comp.Function"/> takes a variable number
             of args, applies the right-most of functions to the args, the next function
             (right-to-left) to the result, ect.
             </summary>
@@ -571,7 +571,7 @@
         <member name="M:funclib.Components.Core.Comp.Invoke(System.Object,System.Object)">
             <summary>
             Takes a set of functions and returns a function that is the composition of
-            those functions. The returned <see cref="T:funclib.Components.Core.Comp.Function"/> takes a variable number 
+            those functions. The returned <see cref="T:funclib.Components.Core.Comp.Function"/> takes a variable number
             of args, applies the right-most of functions to the args, the next function
             (right-to-left) to the result, ect.
             </summary>
@@ -584,7 +584,7 @@
         <member name="M:funclib.Components.Core.Comp.Invoke(System.Object,System.Object,System.Object[])">
             <summary>
             Takes a set of functions and returns a function that is the composition of
-            those functions. The returned <see cref="T:funclib.Components.Core.Comp.Function"/> takes a variable number 
+            those functions. The returned <see cref="T:funclib.Components.Core.Comp.Function"/> takes a variable number
             of args, applies the right-most of functions to the args, the next function
             (right-to-left) to the result, ect.
             </summary>
@@ -650,15 +650,15 @@
         </member>
         <member name="T:funclib.Components.Core.Comparator">
             <summary>
-            Returns a <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> function that can be coerced into 
-            the <see cref="T:funclib.FunctionComparer"/> that implements <see cref="T:System.Collections.IComparer"/> 
+            Returns a <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> function that can be coerced into
+            the <see cref="T:funclib.FunctionComparer"/> that implements <see cref="T:System.Collections.IComparer"/>
             interface.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Comparator.Invoke(System.Object)">
             <summary>
-            Returns a <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> function that can be coerced into 
-            the <see cref="T:funclib.FunctionComparer"/> that implements <see cref="T:System.Collections.IComparer"/> 
+            Returns a <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> function that can be coerced into
+            the <see cref="T:funclib.FunctionComparer"/> that implements <see cref="T:System.Collections.IComparer"/>
             interface.
             </summary>
             <param name="pred">An object that implements the <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> interface.</param>
@@ -669,16 +669,16 @@
         <member name="T:funclib.Components.Core.Compare">
             <summary>
             Comparator, that returns a negative number, zero, or positive number when x
-            is logically 'less than', 'equal to' or 'greater than' y. Same as 
-            <see cref="M:System.IComparable.CompareTo(System.Object)"/> except it works for null and 
+            is logically 'less than', 'equal to' or 'greater than' y. Same as
+            <see cref="M:System.IComparable.CompareTo(System.Object)"/> except it works for null and
             compares numbers and collections in a type-independent manner.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Compare.Invoke(System.Object,System.Object)">
             <summary>
             Comparator, that returns a negative number, zero, or positive number when x
-            is logically 'less than', 'equal to' or 'greater than' y. Same as 
-            <see cref="M:System.IComparable.CompareTo(System.Object)"/> except it works for null and 
+            is logically 'less than', 'equal to' or 'greater than' y. Same as
+            <see cref="M:System.IComparable.CompareTo(System.Object)"/> except it works for null and
             compares numbers and collections in a type-independent manner.
             </summary>
             <param name="x">Object that is either null, number or implements the <see cref="T:System.IComparable"/> interface.</param>
@@ -691,7 +691,7 @@
         <member name="T:funclib.Components.Core.CompareAndSetǃ">
             <summary>
             Atomically sets the value of the <see cref="T:funclib.Components.Core.IAtom"/>
-            to the new value if and only if the current value of 
+            to the new value if and only if the current value of
             the <see cref="T:funclib.Components.Core.IAtom"/> is identical to the oldVal.
             Returns <see cref="!:true"/> if set happened, otherwise <see cref="!:false"/>.
             </summary>
@@ -699,7 +699,7 @@
         <member name="M:funclib.Components.Core.CompareAndSetǃ.Invoke(System.Object,System.Object,System.Object)">
             <summary>
             Atomically sets the value of the <see cref="T:funclib.Components.Core.IAtom"/>
-            to the new value if and only if the current value of 
+            to the new value if and only if the current value of
             the <see cref="T:funclib.Components.Core.IAtom"/> is identical to the oldVal.
             Returns <see cref="!:true"/> if set happened, otherwise <see cref="!:false"/>.
             </summary>
@@ -825,16 +825,16 @@
         </member>
         <member name="T:funclib.Components.Core.Conj">
             <summary>
-            Conj[oin]. Returns a new collection with the x 'added'. If 
-            coll is null, returns a new <see cref="T:funclib.Collections.List"/> with 
+            Conj[oin]. Returns a new collection with the x 'added'. If
+            coll is null, returns a new <see cref="T:funclib.Collections.List"/> with
             x as its funclib.Core.First( item. The addition may happen at different places
             depending on the concrete type of the collection.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Conj.Invoke">
             <summary>
-            Conj[oin]. Returns a new collection with the x 'added'. If 
-            coll is null, returns a new <see cref="T:funclib.Collections.List"/> with 
+            Conj[oin]. Returns a new collection with the x 'added'. If
+            coll is null, returns a new <see cref="T:funclib.Collections.List"/> with
             x as its funclib.Core.First( item. The addition may happen at different places
             depending on the concrete type of the collection.
             </summary>
@@ -844,8 +844,8 @@
         </member>
         <member name="M:funclib.Components.Core.Conj.Invoke(System.Object)">
             <summary>
-            Conj[oin]. Returns a new collection with the x 'added'. If 
-            coll is null, returns a new <see cref="T:funclib.Collections.List"/> with 
+            Conj[oin]. Returns a new collection with the x 'added'. If
+            coll is null, returns a new <see cref="T:funclib.Collections.List"/> with
             x as its funclib.Core.First( item. The addition may happen at different places
             depending on the concrete type of the collection.
             </summary>
@@ -856,23 +856,23 @@
         </member>
         <member name="M:funclib.Components.Core.Conj.Invoke(System.Object,System.Object)">
             <summary>
-            Conj[oin]. Returns a new collection with the x 'added'. If 
-            coll is null, returns a new <see cref="T:funclib.Collections.List"/> with 
+            Conj[oin]. Returns a new collection with the x 'added'. If
+            coll is null, returns a new <see cref="T:funclib.Collections.List"/> with
             x as its funclib.Core.First( item. The addition may happen at different places
             depending on the concrete type of the collection.
             </summary>
             <param name="coll">Object that implements the <see cref="T:funclib.Collections.ICollection"/> interface.</param>
             <param name="x">Object to add to the collection.</param>
             <returns>
-            If coll is null returns a new <see cref="T:funclib.Collections.List"/>, otherwise returns 
+            If coll is null returns a new <see cref="T:funclib.Collections.List"/>, otherwise returns
             a new collection with the same concrete type as coll with x <see cref="M:funclib.Collections.ICollection.Cons(System.Object)"/>
             onto the list.
             </returns>
         </member>
         <member name="M:funclib.Components.Core.Conj.Invoke(System.Object,System.Object,System.Object[])">
             <summary>
-            Conj[oin]. Returns a new collection with the x 'added'. If 
-            coll is null, returns a new <see cref="T:funclib.Collections.List"/> with 
+            Conj[oin]. Returns a new collection with the x 'added'. If
+            coll is null, returns a new <see cref="T:funclib.Collections.List"/> with
             x as its funclib.Core.First( item. The addition may happen at different places
             depending on the concrete type of the collection.
             </summary>
@@ -880,19 +880,19 @@
             <param name="x">Object to add to the collection.</param>
             <param name="xs">Array of other objects to add to the collection.</param>
             <returns>
-            Returns a new collection with the same concrete type of coll but with the 
+            Returns a new collection with the same concrete type of coll but with the
             add objects.
             </returns>
         </member>
         <member name="T:funclib.Components.Core.Conjǃ">
             <summary>
-            Adds x to the transient collection. and returns coll. The addition may happen 
+            Adds x to the transient collection. and returns coll. The addition may happen
             at different places depending on the concrete type of the collection.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Conjǃ.Invoke">
             <summary>
-            Adds x to the transient collection. and returns coll. The addition may happen 
+            Adds x to the transient collection. and returns coll. The addition may happen
             at different places depending on the concrete type of the collection.
             </summary>
             <returns>
@@ -901,7 +901,7 @@
         </member>
         <member name="M:funclib.Components.Core.Conjǃ.Invoke(System.Object)">
             <summary>
-            Adds x to the transient collection. and returns coll. The addition may happen 
+            Adds x to the transient collection. and returns coll. The addition may happen
             at different places depending on the concrete type of the collection.
             </summary>
             <param name="coll">Object of the collection to return.</param>
@@ -911,7 +911,7 @@
         </member>
         <member name="M:funclib.Components.Core.Conjǃ.Invoke(System.Object,System.Object)">
             <summary>
-            Adds x to the transient collection. and returns coll. The addition may happen 
+            Adds x to the transient collection. and returns coll. The addition may happen
             at different places depending on the concrete type of the collection.
             </summary>
             <param name="coll">Object that implement the <see cref="T:funclib.Collections.ITransientCollection"/> interface.</param>
@@ -937,13 +937,13 @@
         </member>
         <member name="T:funclib.Components.Core.Constantly">
             <summary>
-            Returns a <see cref="T:funclib.Components.Core.Generic.IFunctionParams`2"/> that takes any number of 
+            Returns a <see cref="T:funclib.Components.Core.Generic.IFunctionParams`2"/> that takes any number of
             arguments and returns x.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Constantly.Invoke(System.Object)">
             <summary>
-            Returns a <see cref="T:funclib.Components.Core.Generic.IFunctionParams`2"/> that takes any number of 
+            Returns a <see cref="T:funclib.Components.Core.Generic.IFunctionParams`2"/> that takes any number of
             arguments and returns x.
             </summary>
             <param name="x">Object to return.</param>
@@ -954,16 +954,16 @@
         <member name="T:funclib.Components.Core.Contains">
             <summary>
             Returns true if key is present in the given collection, otherwise false. Note
-            that for numerically indexed collections like vectors and arrays, this test is the 
-            number key is within the range of indexes. <see cref="T:funclib.Components.Core.Contains"/> operates constant or 
+            that for numerically indexed collections like vectors and arrays, this test is the
+            number key is within the range of indexes. <see cref="T:funclib.Components.Core.Contains"/> operates constant or
             logarithmic time; it will not perform a linear search for a value.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Contains.Invoke(System.Object,System.Object)">
             <summary>
             Returns true if key is present in the given collection, otherwise false. Note
-            that for numerically indexed collections like vectors and arrays, this test is the 
-            number key is within the range of indexes. <see cref="T:funclib.Components.Core.Contains"/> operates constant or 
+            that for numerically indexed collections like vectors and arrays, this test is the
+            number key is within the range of indexes. <see cref="T:funclib.Components.Core.Contains"/> operates constant or
             logarithmic time; it will not perform a linear search for a value.
             </summary>
             <param name="coll">Collection to check if key exists.</param>
@@ -977,7 +977,7 @@
             - <see cref="T:funclib.Collections.Internal.ITransientSet"/>
             - <see cref="T:funclib.Collections.Internal.ITransientAssociative"/>
             - <see cref="T:funclib.Collections.ISet"/>
-            
+
             <code>key</code> needs to be an <see cref="T:System.Int32"/> if coll is either a <see cref="T:System.String"/> or <see cref="T:System.Array"/>.
             </remarks>
             <returns>
@@ -1020,7 +1020,7 @@
             </summary>
             <param name="x">A number to decrease by one.</param>
             <returns>
-            Returns either a <see cref="T:System.Double"/> or <see cref="T:System.Int64"/> depending on 
+            Returns either a <see cref="T:System.Double"/> or <see cref="T:System.Int64"/> depending on
             what type x is.
             </returns>
         </member>
@@ -1040,13 +1040,13 @@
         </member>
         <member name="T:funclib.Components.Core.Disj">
             <summary>
-            Disj[oin]. Returns a new set of the same concrete type, that 
+            Disj[oin]. Returns a new set of the same concrete type, that
             does not contain they funclib.Core.Key(s).
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Disj.Invoke(System.Object)">
             <summary>
-            Disj[oin]. Returns a new set of the same concrete type, that 
+            Disj[oin]. Returns a new set of the same concrete type, that
             does not contain they funclib.Core.Key(s).
             </summary>
             <param name="set">Object that implements the <see cref="T:funclib.Collections.ISet"/> interface.</param>
@@ -1056,7 +1056,7 @@
         </member>
         <member name="M:funclib.Components.Core.Disj.Invoke(System.Object,System.Object)">
             <summary>
-            Disj[oin]. Returns a new set of the same concrete type, that 
+            Disj[oin]. Returns a new set of the same concrete type, that
             does not contain they funclib.Core.Key(s).
             </summary>
             <param name="set">Object the implements the <see cref="T:funclib.Collections.ISet"/> interface.</param>
@@ -1067,7 +1067,7 @@
         </member>
         <member name="M:funclib.Components.Core.Disj.Invoke(System.Object,System.Object,System.Object[])">
             <summary>
-            Disj[oin]. Returns a new set of the same concrete type, that 
+            Disj[oin]. Returns a new set of the same concrete type, that
             does not contain they funclib.Core.Key(s).
             </summary>
             <param name="set">Object the implements the <see cref="T:funclib.Collections.ISet"/> interface.</param>
@@ -1159,13 +1159,13 @@
         </member>
         <member name="T:funclib.Components.Core.Dissocǃ">
             <summary>
-            Returns a <see cref="T:funclib.Collections.Internal.ITransientMap"/> of the same concrete type that 
+            Returns a <see cref="T:funclib.Collections.Internal.ITransientMap"/> of the same concrete type that
             doesn't contain the same <see cref="T:funclib.Collections.KeyValuePair"/>
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Dissocǃ.Invoke(System.Object,System.Object)">
             <summary>
-            Returns a <see cref="T:funclib.Collections.Internal.ITransientMap"/> of the same concrete type that 
+            Returns a <see cref="T:funclib.Collections.Internal.ITransientMap"/> of the same concrete type that
             doesn't contain the same <see cref="T:funclib.Collections.KeyValuePair"/>
             </summary>
             <param name="map">Object that implements the <see cref="T:funclib.Collections.Internal.ITransientMap"/> interface.</param>
@@ -1176,7 +1176,7 @@
         </member>
         <member name="M:funclib.Components.Core.Dissocǃ.Invoke(System.Object,System.Object,System.Object[])">
             <summary>
-            Returns a <see cref="T:funclib.Collections.Internal.ITransientMap"/> of the same concrete type that 
+            Returns a <see cref="T:funclib.Collections.Internal.ITransientMap"/> of the same concrete type that
             doesn't contain the same <see cref="T:funclib.Collections.KeyValuePair"/>
             </summary>
             <param name="map">Object that implements the <see cref="T:funclib.Collections.Internal.ITransientMap"/> interface.</param>
@@ -1245,13 +1245,13 @@
         </member>
         <member name="T:funclib.Components.Core.Do">
             <summary>
-            Evaluates the expressions in order and returns the value of the last. 
+            Evaluates the expressions in order and returns the value of the last.
             If no expressions are supplied, returns null.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Do.Invoke(System.Object[])">
             <summary>
-            Evaluates the expressions in order and returns the value of the last. 
+            Evaluates the expressions in order and returns the value of the last.
             If no expressions are supplied, returns null.
             </summary>
             <param name="rest">Objects array.</param>
@@ -1261,17 +1261,17 @@
         </member>
         <member name="T:funclib.Components.Core.DoAll">
             <summary>
-            For <see cref="T:funclib.Components.Core.LazySeq"/> that are produced via other functions and have side effects. 
-            The side effects are not produces until the sequence is consumed. <see cref="T:funclib.Components.Core.DoAll"/> 
-            walks though successive next, retains the head and returns it, thus causing the 
+            For <see cref="T:funclib.Components.Core.LazySeq"/> that are produced via other functions and have side effects.
+            The side effects are not produces until the sequence is consumed. <see cref="T:funclib.Components.Core.DoAll"/>
+            walks though successive next, retains the head and returns it, thus causing the
             entire seq to reside in memory at one time.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.DoAll.Invoke(System.Object)">
             <summary>
-            For <see cref="T:funclib.Components.Core.LazySeq"/> that are produced via other functions and have side effects. 
-            The side effects are not produces until the sequence is consumed. <see cref="T:funclib.Components.Core.DoAll"/> 
-            walks though successive next, retains the head and returns it, thus causing the 
+            For <see cref="T:funclib.Components.Core.LazySeq"/> that are produced via other functions and have side effects.
+            The side effects are not produces until the sequence is consumed. <see cref="T:funclib.Components.Core.DoAll"/>
+            walks though successive next, retains the head and returns it, thus causing the
             entire seq to reside in memory at one time.
             </summary>
             <param name="coll"><see cref="T:funclib.Components.Core.LazySeq"/> to consume.</param>
@@ -1281,9 +1281,9 @@
         </member>
         <member name="M:funclib.Components.Core.DoAll.Invoke(System.Object,System.Object)">
             <summary>
-            For <see cref="T:funclib.Components.Core.LazySeq"/> that are produced via other functions and have side effects. 
-            The side effects are not produces until the sequence is consumed. <see cref="T:funclib.Components.Core.DoAll"/> 
-            walks though successive next, retains the head and returns it, thus causing the 
+            For <see cref="T:funclib.Components.Core.LazySeq"/> that are produced via other functions and have side effects.
+            The side effects are not produces until the sequence is consumed. <see cref="T:funclib.Components.Core.DoAll"/>
+            walks though successive next, retains the head and returns it, thus causing the
             entire seq to reside in memory at one time.
             </summary>
             <param name="n">The <see cref="T:System.Int32"/> times to walk the sequence.</param>
@@ -1294,17 +1294,17 @@
         </member>
         <member name="T:funclib.Components.Core.DoRun">
             <summary>
-            For <see cref="T:funclib.Components.Core.LazySeq"/> that are produced via other functions and have side effects. 
-            The side effects are not produces until the sequence is consumed. <see cref="T:funclib.Components.Core.DoAll"/> 
-            walks though successive next, retains the head and returns it, thus causing the 
+            For <see cref="T:funclib.Components.Core.LazySeq"/> that are produced via other functions and have side effects.
+            The side effects are not produces until the sequence is consumed. <see cref="T:funclib.Components.Core.DoAll"/>
+            walks though successive next, retains the head and returns it, thus causing the
             entire seq to reside in memory at one time.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.DoRun.Invoke(System.Object)">
             <summary>
-            For <see cref="T:funclib.Components.Core.LazySeq"/> that are produced via other functions and have side effects. 
-            The side effects are not produces until the sequence is consumed. <see cref="T:funclib.Components.Core.DoAll"/> 
-            walks though successive next, retains the head and returns it, thus causing the 
+            For <see cref="T:funclib.Components.Core.LazySeq"/> that are produced via other functions and have side effects.
+            The side effects are not produces until the sequence is consumed. <see cref="T:funclib.Components.Core.DoAll"/>
+            walks though successive next, retains the head and returns it, thus causing the
             entire seq to reside in memory at one time.
             </summary>
             <param name="coll">A <see cref="T:funclib.Components.Core.LazySeq"/> to consume.</param>
@@ -1314,9 +1314,9 @@
         </member>
         <member name="M:funclib.Components.Core.DoRun.Invoke(System.Object,System.Object)">
             <summary>
-            For <see cref="T:funclib.Components.Core.LazySeq"/> that are produced via other functions and have side effects. 
-            The side effects are not produces until the sequence is consumed. <see cref="T:funclib.Components.Core.DoAll"/> 
-            walks though successive next, retains the head and returns it, thus causing the 
+            For <see cref="T:funclib.Components.Core.LazySeq"/> that are produced via other functions and have side effects.
+            The side effects are not produces until the sequence is consumed. <see cref="T:funclib.Components.Core.DoAll"/>
+            walks though successive next, retains the head and returns it, thus causing the
             entire seq to reside in memory at one time.
             </summary>
             <param name="n">The <see cref="T:System.Int32"/> times to walk the sequence.</param>
@@ -1391,13 +1391,13 @@
         </member>
         <member name="T:funclib.Components.Core.DropWhile">
             <summary>
-            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of the items in coll starting from the funclib.Core.First( item 
+            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of the items in coll starting from the funclib.Core.First( item
             for which the predicate returns a logical false.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.DropWhile.Invoke(System.Object,System.Object)">
             <summary>
-            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of the items in coll starting from the funclib.Core.First( item 
+            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of the items in coll starting from the funclib.Core.First( item
             for which the predicate returns a logical false.
             </summary>
             <param name="pred">An object that implements the <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> interface.</param>
@@ -1554,18 +1554,18 @@
         </member>
         <member name="T:funclib.Components.Core.Falsy">
             <summary>
-            Returns <see cref="!:true"/> if the object is a logical false. i.e. 
+            Returns <see cref="!:true"/> if the object is a logical false. i.e.
             If source is null or source is bool and that value is false.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Falsy.Invoke(System.Object)">
             <summary>
-            Returns <see cref="!:true"/> if the object is a logical false. i.e. 
+            Returns <see cref="!:true"/> if the object is a logical false. i.e.
             If source is null or source is bool and that value is false.
             </summary>
             <param name="source">Object to test.</param>
             <returns>
-            Returns <see cref="!:true"/> if the object is a logical false. i.e. 
+            Returns <see cref="!:true"/> if the object is a logical false. i.e.
             If source is null or source is bool and that value is false.
             </returns>
         </member>
@@ -1632,7 +1632,7 @@
         </member>
         <member name="T:funclib.Components.Core.Flatten">
             <summary>
-            Takes any nested combination of <see cref="T:funclib.Collections.ISequential"/> 
+            Takes any nested combination of <see cref="T:funclib.Collections.ISequential"/>
             things (<see cref="T:funclib.Collections.List"/>, <see cref="T:funclib.Collections.Vector"/>, etc.) and returns
             their contents as a single, flat sequence.  <see cref="!:Flatten.Invoke(null)"/> returns an
             empty sequence.
@@ -1640,7 +1640,7 @@
         </member>
         <member name="M:funclib.Components.Core.Flatten.Invoke(System.Object)">
             <summary>
-            Takes any nested combination of <see cref="T:funclib.Collections.ISequential"/> 
+            Takes any nested combination of <see cref="T:funclib.Collections.ISequential"/>
             things (<see cref="T:funclib.Collections.List"/>, <see cref="T:funclib.Collections.Vector"/>, etc.) and returns
             their contents as a single, flat sequence.  <see cref="!:Flatten.Invoke(null)"/> returns an
             empty sequence.
@@ -2276,23 +2276,23 @@
         </member>
         <member name="T:funclib.Components.Core.GroupBy">
             <summary>
-            Returns a <see cref="T:funclib.Components.Core.HashMap"/> of elements of coll keyed by the result of 
-            <see cref="T:funclib.Components.Core.Generic.IFunction`2"/> f. The value at each key will be a 
-            <see cref="T:funclib.Components.Core.Vector"/> of the corresponding elements, in the order they appeared 
+            Returns a <see cref="T:funclib.Components.Core.HashMap"/> of elements of coll keyed by the result of
+            <see cref="T:funclib.Components.Core.Generic.IFunction`2"/> f. The value at each key will be a
+            <see cref="T:funclib.Components.Core.Vector"/> of the corresponding elements, in the order they appeared
             in coll.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.GroupBy.Invoke(System.Object,System.Object)">
             <summary>
-            Returns a <see cref="T:funclib.Components.Core.HashMap"/> of elements of coll keyed by the result of 
-            <see cref="T:funclib.Components.Core.Generic.IFunction`2"/> f. The value at each key will be a 
-            <see cref="T:funclib.Components.Core.Vector"/> of the corresponding elements, in the order they appeared 
+            Returns a <see cref="T:funclib.Components.Core.HashMap"/> of elements of coll keyed by the result of
+            <see cref="T:funclib.Components.Core.Generic.IFunction`2"/> f. The value at each key will be a
+            <see cref="T:funclib.Components.Core.Vector"/> of the corresponding elements, in the order they appeared
             in coll.
             </summary>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.Generic.IFunction`2"/> interface.</param>
             <param name="coll">A collection of items to group by.</param>
             <returns>
-            Returns a <see cref="T:funclib.Components.Core.HashMap"/> of elements of coll keyed by the result of 
+            Returns a <see cref="T:funclib.Components.Core.HashMap"/> of elements of coll keyed by the result of
             <see cref="T:funclib.Components.Core.Generic.IFunction`2"/> f.
             </returns>
         </member>
@@ -2323,13 +2323,13 @@
         </member>
         <member name="T:funclib.Components.Core.HashSet">
             <summary>
-            Returns a new <see cref="T:funclib.Collections.HashSet"/> with the supplied keys. Any 
+            Returns a new <see cref="T:funclib.Collections.HashSet"/> with the supplied keys. Any
             equal keys are handled as if by repeated uses of <see cref="T:funclib.Components.Core.Conj"/>.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.HashSet.Invoke">
             <summary>
-            Returns a new <see cref="T:funclib.Collections.HashSet"/> with the supplied keys. Any 
+            Returns a new <see cref="T:funclib.Collections.HashSet"/> with the supplied keys. Any
             equal keys are handled as if by repeated uses of <see cref="T:funclib.Components.Core.Conj"/>.
             </summary>
             <returns>
@@ -2338,7 +2338,7 @@
         </member>
         <member name="M:funclib.Components.Core.HashSet.Invoke(System.Object[])">
             <summary>
-            Returns a new <see cref="T:funclib.Collections.HashSet"/> with the supplied keys. Any 
+            Returns a new <see cref="T:funclib.Collections.HashSet"/> with the supplied keys. Any
             equal keys are handled as if by repeated uses of <see cref="T:funclib.Components.Core.Conj"/>.
             </summary>
             <param name="keys">Keys to add to <see cref="T:funclib.Collections.HashSet"/> data structure.</param>
@@ -2355,12 +2355,12 @@
             <summary>
             Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
             Note: f may be called multiple times and thus should be free of side effects.
-            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after 
+            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after
             the swap.
             </summary>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
             <returns>
-            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after 
+            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after
             the swap.
             </returns>
         </member>
@@ -2368,13 +2368,13 @@
             <summary>
             Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
             Note: f may be called multiple times and thus should be free of side effects.
-            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after 
+            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after
             the swap.
             </summary>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
             <param name="x">Second parameter of the function.</param>
             <returns>
-            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after 
+            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after
             the swap.
             </returns>
         </member>
@@ -2382,14 +2382,14 @@
             <summary>
             Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
             Note: f may be called multiple times and thus should be free of side effects.
-            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after 
+            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after
             the swap.
             </summary>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
             <param name="x">Second parameter of the function.</param>
             <param name="y">Third parameter of the function.</param>
             <returns>
-            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after 
+            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after
             the swap.
             </returns>
         </member>
@@ -2397,7 +2397,7 @@
             <summary>
             Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
             Note: f may be called multiple times and thus should be free of side effects.
-            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after 
+            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after
             the swap.
             </summary>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
@@ -2409,7 +2409,7 @@
         <member name="M:funclib.Components.Core.IAtom.CompareAndSet(System.Object,System.Object)">
             <summary>
             Atomically sets the value of the <see cref="T:funclib.Components.Core.IAtom"/>
-            to the new value if and only if the current value of 
+            to the new value if and only if the current value of
             the <see cref="T:funclib.Components.Core.IAtom"/> is identical to the oldVal.
             Returns <see cref="!:true"/> if set happened, otherwise <see cref="!:false"/>.
             </summary>
@@ -2551,7 +2551,7 @@
         </member>
         <member name="M:funclib.Components.Core.Into.Invoke(System.Object,System.Object,System.Object)">
             <summary>
-            Returns a new collection consisting of to with all of the items of from conjoined. 
+            Returns a new collection consisting of to with all of the items of from conjoined.
             </summary>
             <param name="to">Object to conjoin values to.</param>
             <param name="xform">A transducer</param>
@@ -2644,7 +2644,7 @@
             Returns the current watches and their functions.
             </summary>
             <returns>
-            Returns a <see cref="T:funclib.Collections.IMap"/> with the key/value pair being set to the name of the 
+            Returns a <see cref="T:funclib.Collections.IMap"/> with the key/value pair being set to the name of the
             watch and the function to execute.
             </returns>
         </member>
@@ -2866,19 +2866,19 @@
         </member>
         <member name="T:funclib.Components.Core.IsEvery">
             <summary>
-            Returns <see cref="!:true"/> if <see cref="T:funclib.Components.Core.Generic.IFunction`2"/> pred is a logical 
+            Returns <see cref="!:true"/> if <see cref="T:funclib.Components.Core.Generic.IFunction`2"/> pred is a logical
             true for every item in the coll, otherwise <see cref="!:false"/>
             </summary>
         </member>
         <member name="M:funclib.Components.Core.IsEvery.Invoke(System.Object,System.Object)">
             <summary>
-            Returns <see cref="!:true"/> if <see cref="T:funclib.Components.Core.Generic.IFunction`2"/> pred is a logical 
+            Returns <see cref="!:true"/> if <see cref="T:funclib.Components.Core.Generic.IFunction`2"/> pred is a logical
             true for every item in the coll, otherwise <see cref="!:false"/>
             </summary>
             <param name="pred">An object that implements the <see cref="T:funclib.Components.Core.Generic.IFunction`2"/> interface.</param>
             <param name="coll">The collection to test.</param>
             <returns>
-            Returns <see cref="!:true"/> if <see cref="T:funclib.Components.Core.Generic.IFunction`2"/> pred is a logical 
+            Returns <see cref="!:true"/> if <see cref="T:funclib.Components.Core.Generic.IFunction`2"/> pred is a logical
             true for every item in the coll, otherwise <see cref="!:false"/>
             </returns>
         </member>
@@ -3026,45 +3026,45 @@
         </member>
         <member name="T:funclib.Components.Core.IsInteger">
             <summary>
-            Returns <see cref="!:true"/> if x is a 
-            <see cref="T:System.Int32"/>, 
-            <see cref="T:System.Int64"/>, 
-            <see cref="T:System.Int16"/> 
-            <see cref="T:System.UInt32"/>, 
-            <see cref="T:System.UInt64"/>, 
-            <see cref="T:System.UInt16"/> 
-            <see cref="T:System.Char"/> 
-            <see cref="T:System.Byte"/>, 
-            or <see cref="T:System.SByte"/>, 
+            Returns <see cref="!:true"/> if x is a
+            <see cref="T:System.Int32"/>,
+            <see cref="T:System.Int64"/>,
+            <see cref="T:System.Int16"/>
+            <see cref="T:System.UInt32"/>,
+            <see cref="T:System.UInt64"/>,
+            <see cref="T:System.UInt16"/>
+            <see cref="T:System.Char"/>
+            <see cref="T:System.Byte"/>,
+            or <see cref="T:System.SByte"/>,
             otherwise <see cref="!:false"/>.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.IsInteger.Invoke(System.Object)">
             <summary>
-            Returns <see cref="!:true"/> if x is a 
-            <see cref="T:System.Int32"/>, 
-            <see cref="T:System.Int64"/>, 
-            <see cref="T:System.Int16"/> 
-            <see cref="T:System.UInt32"/>, 
-            <see cref="T:System.UInt64"/>, 
-            <see cref="T:System.UInt16"/> 
-            <see cref="T:System.Char"/> 
-            <see cref="T:System.Byte"/>, 
-            or <see cref="T:System.SByte"/>, 
+            Returns <see cref="!:true"/> if x is a
+            <see cref="T:System.Int32"/>,
+            <see cref="T:System.Int64"/>,
+            <see cref="T:System.Int16"/>
+            <see cref="T:System.UInt32"/>,
+            <see cref="T:System.UInt64"/>,
+            <see cref="T:System.UInt16"/>
+            <see cref="T:System.Char"/>
+            <see cref="T:System.Byte"/>,
+            or <see cref="T:System.SByte"/>,
             otherwise <see cref="!:false"/>.
             </summary>
             <param name="n">Object to test.</param>
             <returns>
-            Returns <see cref="!:true"/> if x is a 
-            <see cref="T:System.Int32"/>, 
-            <see cref="T:System.Int64"/>, 
-            <see cref="T:System.Int16"/> 
-            <see cref="T:System.UInt32"/>, 
-            <see cref="T:System.UInt64"/>, 
-            <see cref="T:System.UInt16"/> 
-            <see cref="T:System.Char"/> 
-            <see cref="T:System.Byte"/>, 
-            or <see cref="T:System.SByte"/>, 
+            Returns <see cref="!:true"/> if x is a
+            <see cref="T:System.Int32"/>,
+            <see cref="T:System.Int64"/>,
+            <see cref="T:System.Int16"/>
+            <see cref="T:System.UInt32"/>,
+            <see cref="T:System.UInt64"/>,
+            <see cref="T:System.UInt16"/>
+            <see cref="T:System.Char"/>
+            <see cref="T:System.Byte"/>,
+            or <see cref="T:System.SByte"/>,
             otherwise <see cref="!:false"/>.
             </returns>
         </member>
@@ -3527,26 +3527,26 @@
         </member>
         <member name="T:funclib.Components.Core.Iterate">
             <summary>
-            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of x, f.Invoke(x), f.Invoke(f.Inovke(x))... 
+            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of x, f.Invoke(x), f.Invoke(f.Invoke(x))...
             f must be free of side-effects.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Iterate.Invoke(System.Object,System.Object)">
             <summary>
-            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of x, f.Invoke(x), f.Invoke(f.Inovke(x))... 
+            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of x, f.Invoke(x), f.Invoke(f.Invoke(x))...
             f must be free of side-effects.
             </summary>
             <param name="f">An object that implements <see cref="T:funclib.Components.Core.Generic.IFunction`2"/> interface.</param>
             <param name="x">First object of sequence.</param>
             <returns>
-            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of x, f.Invoke(x), f.Invoke(f.Inovke(x))... 
+            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of x, f.Invoke(x), f.Invoke(f.Invoke(x))...
             f must be free of side-effects.
             </returns>
         </member>
         <member name="T:funclib.Components.Core.Juxt">
             <summary>
             Takes a set of <see cref="T:funclib.Components.Core.IFunction"/> and returns <see cref="T:funclib.Components.Core.Juxt.Function"/> that is the juxtaposition
-            of those <see cref="T:funclib.Components.Core.IFunction"/>. The returned <see cref="T:funclib.Components.Core.Juxt.Function"/> takes a variable number or 
+            of those <see cref="T:funclib.Components.Core.IFunction"/>. The returned <see cref="T:funclib.Components.Core.Juxt.Function"/> takes a variable number or
             args, and returns a <see cref="T:funclib.Components.Core.Vector"/> containing the result of applying each <see cref="T:funclib.Components.Core.IFunction"/>
             to the args (left-to-right).
             </summary>
@@ -3554,14 +3554,14 @@
         <member name="M:funclib.Components.Core.Juxt.Invoke(System.Object)">
             <summary>
             Takes a set of <see cref="T:funclib.Components.Core.IFunction"/> and returns <see cref="T:funclib.Components.Core.Juxt.Function"/> that is the juxtaposition
-            of those <see cref="T:funclib.Components.Core.IFunction"/>. The returned <see cref="T:funclib.Components.Core.Juxt.Function"/> takes a variable number or 
+            of those <see cref="T:funclib.Components.Core.IFunction"/>. The returned <see cref="T:funclib.Components.Core.Juxt.Function"/> takes a variable number or
             args, and returns a <see cref="T:funclib.Components.Core.Vector"/> containing the result of applying each <see cref="T:funclib.Components.Core.IFunction"/>
             to the args (left-to-right).
             </summary>
             <param name="f">Object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
             <returns>
             Takes a set of <see cref="T:funclib.Components.Core.IFunction"/> and returns <see cref="T:funclib.Components.Core.Juxt.Function"/> that is the juxtaposition
-            of those <see cref="T:funclib.Components.Core.IFunction"/>. The returned <see cref="T:funclib.Components.Core.Juxt.Function"/> takes a variable number or 
+            of those <see cref="T:funclib.Components.Core.IFunction"/>. The returned <see cref="T:funclib.Components.Core.Juxt.Function"/> takes a variable number or
             args, and returns a <see cref="T:funclib.Components.Core.Vector"/> containing the result of applying each <see cref="T:funclib.Components.Core.IFunction"/>
             to the args (left-to-right).
             </returns>
@@ -3569,14 +3569,14 @@
         <member name="M:funclib.Components.Core.Juxt.Invoke(System.Object,System.Object)">
             <summary>
             Takes a set of <see cref="T:funclib.Components.Core.IFunction"/> and returns <see cref="T:funclib.Components.Core.Juxt.Function"/> that is the juxtaposition
-            of those <see cref="T:funclib.Components.Core.IFunction"/>. The returned <see cref="T:funclib.Components.Core.Juxt.Function"/> takes a variable number or 
+            of those <see cref="T:funclib.Components.Core.IFunction"/>. The returned <see cref="T:funclib.Components.Core.Juxt.Function"/> takes a variable number or
             args, and returns a <see cref="T:funclib.Components.Core.Vector"/> containing the result of applying each <see cref="T:funclib.Components.Core.IFunction"/>
             to the args (left-to-right).</summary>
             <param name="f">First object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
             <param name="g">Second object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
             <returns>
             Takes a set of <see cref="T:funclib.Components.Core.IFunction"/> and returns <see cref="T:funclib.Components.Core.Juxt.Function"/> that is the juxtaposition
-            of those <see cref="T:funclib.Components.Core.IFunction"/>. The returned <see cref="T:funclib.Components.Core.Juxt.Function"/> takes a variable number or 
+            of those <see cref="T:funclib.Components.Core.IFunction"/>. The returned <see cref="T:funclib.Components.Core.Juxt.Function"/> takes a variable number or
             args, and returns a <see cref="T:funclib.Components.Core.Vector"/> containing the result of applying each <see cref="T:funclib.Components.Core.IFunction"/>
             to the args (left-to-right).
             </returns>
@@ -3584,7 +3584,7 @@
         <member name="M:funclib.Components.Core.Juxt.Invoke(System.Object,System.Object,System.Object)">
             <summary>
             Takes a set of <see cref="T:funclib.Components.Core.IFunction"/> and returns <see cref="T:funclib.Components.Core.Juxt.Function"/> that is the juxtaposition
-            of those <see cref="T:funclib.Components.Core.IFunction"/>. The returned <see cref="T:funclib.Components.Core.Juxt.Function"/> takes a variable number or 
+            of those <see cref="T:funclib.Components.Core.IFunction"/>. The returned <see cref="T:funclib.Components.Core.Juxt.Function"/> takes a variable number or
             args, and returns a <see cref="T:funclib.Components.Core.Vector"/> containing the result of applying each <see cref="T:funclib.Components.Core.IFunction"/>
             to the args (left-to-right).</summary>
             <param name="f">First object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
@@ -3592,7 +3592,7 @@
             <param name="h">Third object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
             <returns>
             Takes a set of <see cref="T:funclib.Components.Core.IFunction"/> and returns <see cref="T:funclib.Components.Core.Juxt.Function"/> that is the juxtaposition
-            of those <see cref="T:funclib.Components.Core.IFunction"/>. The returned <see cref="T:funclib.Components.Core.Juxt.Function"/> takes a variable number or 
+            of those <see cref="T:funclib.Components.Core.IFunction"/>. The returned <see cref="T:funclib.Components.Core.Juxt.Function"/> takes a variable number or
             args, and returns a <see cref="T:funclib.Components.Core.Vector"/> containing the result of applying each <see cref="T:funclib.Components.Core.IFunction"/>
             to the args (left-to-right).
             </returns>
@@ -3600,7 +3600,7 @@
         <member name="M:funclib.Components.Core.Juxt.Invoke(System.Object,System.Object,System.Object,System.Object[])">
             <summary>
             Takes a set of <see cref="T:funclib.Components.Core.IFunction"/> and returns <see cref="T:funclib.Components.Core.Juxt.Function"/> that is the juxtaposition
-            of those <see cref="T:funclib.Components.Core.IFunction"/>. The returned <see cref="T:funclib.Components.Core.Juxt.Function"/> takes a variable number or 
+            of those <see cref="T:funclib.Components.Core.IFunction"/>. The returned <see cref="T:funclib.Components.Core.Juxt.Function"/> takes a variable number or
             args, and returns a <see cref="T:funclib.Components.Core.Vector"/> containing the result of applying each <see cref="T:funclib.Components.Core.IFunction"/>
             to the args (left-to-right).</summary>
             <param name="f">First object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
@@ -3609,7 +3609,7 @@
             <param name="fs">Rest of the object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
             <returns>
             Takes a set of <see cref="T:funclib.Components.Core.IFunction"/> and returns <see cref="T:funclib.Components.Core.Juxt.Function"/> that is the juxtaposition
-            of those <see cref="T:funclib.Components.Core.IFunction"/>. The returned <see cref="T:funclib.Components.Core.Juxt.Function"/> takes a variable number or 
+            of those <see cref="T:funclib.Components.Core.IFunction"/>. The returned <see cref="T:funclib.Components.Core.Juxt.Function"/> takes a variable number or
             args, and returns a <see cref="T:funclib.Components.Core.Vector"/> containing the result of applying each <see cref="T:funclib.Components.Core.IFunction"/>
             to the args (left-to-right).
             </returns>
@@ -3731,7 +3731,7 @@
         </member>
         <member name="T:funclib.Components.Core.LazySeq">
             <summary>
-            Takes a body of expressions that returns an <see cref="T:funclib.Collections.ISeq"/> or <see cref="!:null"/>, and 
+            Takes a body of expressions that returns an <see cref="T:funclib.Collections.ISeq"/> or <see cref="!:null"/>, and
             yields a <see cref="T:funclib.Collections.ISeqable"/> object that will invoke the body only the funclib.Core.First( time <see cref="M:funclib.Components.Core.LazySeq.Seq"/>
             is called, and will cache the result and return it on all subsequent <see cref="M:funclib.Components.Core.LazySeq.Seq"/> calls.
             </summary>
@@ -3843,21 +3843,21 @@
         </member>
         <member name="M:funclib.Components.Core.LazySeq.Next">
             <summary>
-            Returns the rest of the objects in the <see cref="T:funclib.Components.Core.LazySeq"/>. If the 
+            Returns the rest of the objects in the <see cref="T:funclib.Components.Core.LazySeq"/>. If the
             result of <see cref="T:funclib.Components.Core.LazySeq"/> is null, return null.
             </summary>
             <returns>
-            Returns the rest of the objects in the <see cref="T:funclib.Components.Core.LazySeq"/>. If the 
+            Returns the rest of the objects in the <see cref="T:funclib.Components.Core.LazySeq"/>. If the
             result of <see cref="T:funclib.Components.Core.LazySeq"/> is null, return null.
             </returns>
         </member>
         <member name="M:funclib.Components.Core.LazySeq.More">
             <summary>
-            Returns the rest of the objects in the <see cref="T:funclib.Components.Core.LazySeq"/>. If the 
+            Returns the rest of the objects in the <see cref="T:funclib.Components.Core.LazySeq"/>. If the
             result of <see cref="T:funclib.Components.Core.LazySeq"/> is null, return <see cref="F:funclib.Collections.List.EMPTY"/>.
             </summary>
             <returns>
-            Returns the rest of the objects in the <see cref="T:funclib.Components.Core.LazySeq"/>. If the 
+            Returns the rest of the objects in the <see cref="T:funclib.Components.Core.LazySeq"/>. If the
             result of <see cref="T:funclib.Components.Core.LazySeq"/> is null, return <see cref="F:funclib.Collections.List.EMPTY"/>.
             </returns>
         </member>
@@ -3989,7 +3989,7 @@
             <summary>
             Returns a <see cref="T:funclib.Components.Core.LazySeq"/> consisting of the results of applying <see cref="T:funclib.Components.Core.IFunction"/>
             to the set of funclib.Core.First( items of each coll, followed by applying <see cref="T:funclib.Components.Core.IFunction"/> to the set
-            of second items in each coll, until any one of the colls are exhausted.  Any remaining items in 
+            of second items in each coll, until any one of the colls are exhausted.  Any remaining items in
             other colls are ignored. <see cref="T:funclib.Components.Core.IFunction"/> should accept number of colls arguments.
             </summary>
         </member>
@@ -3997,7 +3997,7 @@
             <summary>
             Returns a <see cref="T:funclib.Components.Core.LazySeq"/> consisting of the results of applying <see cref="T:funclib.Components.Core.IFunction"/>
             to the set of funclib.Core.First( items of each coll, followed by applying <see cref="T:funclib.Components.Core.IFunction"/> to the set
-            of second items in each coll, until any one of the colls are exhausted.  Any remaining items in 
+            of second items in each coll, until any one of the colls are exhausted.  Any remaining items in
             other colls are ignored. <see cref="T:funclib.Components.Core.IFunction"/> should accept number of colls arguments.
             </summary>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
@@ -4005,7 +4005,7 @@
             <returns>
             Returns a <see cref="T:funclib.Components.Core.LazySeq"/> consisting of the results of applying <see cref="T:funclib.Components.Core.IFunction"/>
             to the set of funclib.Core.First( items of each coll, followed by applying <see cref="T:funclib.Components.Core.IFunction"/> to the set
-            of second items in each coll, until any one of the colls are exhausted.  Any remaining items in 
+            of second items in each coll, until any one of the colls are exhausted.  Any remaining items in
             other colls are ignored. <see cref="T:funclib.Components.Core.IFunction"/> should accept number of colls arguments.
             </returns>
         </member>
@@ -4013,7 +4013,7 @@
             <summary>
             Returns a <see cref="T:funclib.Components.Core.LazySeq"/> consisting of the results of applying <see cref="T:funclib.Components.Core.IFunction"/>
             to the set of funclib.Core.First( items of each coll, followed by applying <see cref="T:funclib.Components.Core.IFunction"/> to the set
-            of second items in each coll, until any one of the colls are exhausted.  Any remaining items in 
+            of second items in each coll, until any one of the colls are exhausted.  Any remaining items in
             other colls are ignored. <see cref="T:funclib.Components.Core.IFunction"/> should accept number of colls arguments.
             </summary>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
@@ -4022,7 +4022,7 @@
             <returns>
             Returns a <see cref="T:funclib.Components.Core.LazySeq"/> consisting of the results of applying <see cref="T:funclib.Components.Core.IFunction"/>
             to the set of funclib.Core.First( items of each coll, followed by applying <see cref="T:funclib.Components.Core.IFunction"/> to the set
-            of second items in each coll, until any one of the colls are exhausted.  Any remaining items in 
+            of second items in each coll, until any one of the colls are exhausted.  Any remaining items in
             other colls are ignored. <see cref="T:funclib.Components.Core.IFunction"/> should accept number of colls arguments.
             </returns>
         </member>
@@ -4030,7 +4030,7 @@
             <summary>
             Returns a <see cref="T:funclib.Components.Core.LazySeq"/> consisting of the results of applying <see cref="T:funclib.Components.Core.IFunction"/>
             to the set of funclib.Core.First( items of each coll, followed by applying <see cref="T:funclib.Components.Core.IFunction"/> to the set
-            of second items in each coll, until any one of the colls are exhausted.  Any remaining items in 
+            of second items in each coll, until any one of the colls are exhausted.  Any remaining items in
             other colls are ignored. <see cref="T:funclib.Components.Core.IFunction"/> should accept number of colls arguments.
             </summary>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
@@ -4040,7 +4040,7 @@
             <returns>
             Returns a <see cref="T:funclib.Components.Core.LazySeq"/> consisting of the results of applying <see cref="T:funclib.Components.Core.IFunction"/>
             to the set of funclib.Core.First( items of each coll, followed by applying <see cref="T:funclib.Components.Core.IFunction"/> to the set
-            of second items in each coll, until any one of the colls are exhausted.  Any remaining items in 
+            of second items in each coll, until any one of the colls are exhausted.  Any remaining items in
             other colls are ignored. <see cref="T:funclib.Components.Core.IFunction"/> should accept number of colls arguments.
             </returns>
         </member>
@@ -4048,7 +4048,7 @@
             <summary>
             Returns a <see cref="T:funclib.Components.Core.LazySeq"/> consisting of the results of applying <see cref="T:funclib.Components.Core.IFunction"/>
             to the set of funclib.Core.First( items of each coll, followed by applying <see cref="T:funclib.Components.Core.IFunction"/> to the set
-            of second items in each coll, until any one of the colls are exhausted.  Any remaining items in 
+            of second items in each coll, until any one of the colls are exhausted.  Any remaining items in
             other colls are ignored. <see cref="T:funclib.Components.Core.IFunction"/> should accept number of colls arguments.
             </summary>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
@@ -4059,19 +4059,19 @@
             <returns>
             Returns a <see cref="T:funclib.Components.Core.LazySeq"/> consisting of the results of applying <see cref="T:funclib.Components.Core.IFunction"/>
             to the set of funclib.Core.First( items of each coll, followed by applying <see cref="T:funclib.Components.Core.IFunction"/> to the set
-            of second items in each coll, until any one of the colls are exhausted.  Any remaining items in 
+            of second items in each coll, until any one of the colls are exhausted.  Any remaining items in
             other colls are ignored. <see cref="T:funclib.Components.Core.IFunction"/> should accept number of colls arguments.
             </returns>
         </member>
         <member name="T:funclib.Components.Core.MapCat">
             <summary>
-            Returns the result of applying <see cref="T:funclib.Components.Core.Concat"/> to the result of applying 
+            Returns the result of applying <see cref="T:funclib.Components.Core.Concat"/> to the result of applying
             <see cref="T:funclib.Components.Core.Map"/> to f and colls. Thus function f should return a collections.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.MapCat.Invoke(System.Object,System.Object[])">
             <summary>
-            Returns the result of applying <see cref="T:funclib.Components.Core.Concat"/> to the result of applying 
+            Returns the result of applying <see cref="T:funclib.Components.Core.Concat"/> to the result of applying
             <see cref="T:funclib.Components.Core.Map"/> to f and colls. Thus function f should return a collections.
             </summary>
             <param name="f">An object that implements <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
@@ -4117,7 +4117,7 @@
         </member>
         <member name="T:funclib.Components.Core.Memoize">
             <summary>
-            Returns a memoized version of the referentially transparent function. The 
+            Returns a memoized version of the referentially transparent function. The
             memoized version of the function keeps a cache of the mapping from arguments
             to results and, when calls with the same arguments are repeated often, has
             higher performance at the expense of higher memory use.
@@ -4125,7 +4125,7 @@
         </member>
         <member name="M:funclib.Components.Core.Memoize.Invoke(System.Object)">
             <summary>
-            Returns a memoized version of the referentially transparent function. The 
+            Returns a memoized version of the referentially transparent function. The
             memoized version of the function keeps a cache of the mapping from arguments
             to results and, when calls with the same arguments are repeated often, has
             higher performance at the expense of higher memory use.
@@ -4227,13 +4227,13 @@
         </member>
         <member name="T:funclib.Components.Core.Minus">
             <summary>
-            If y is not suppled return <see cref="M:funclib.Numbers.Negate(System.Object)"/> of x, else subtract 
+            If y is not suppled return <see cref="M:funclib.Numbers.Negate(System.Object)"/> of x, else subtract
             ys from x and returns the result.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Minus.Invoke(System.Object)">
             <summary>
-            If y is not suppled return <see cref="M:funclib.Numbers.Negate(System.Object)"/> of x, else subtract 
+            If y is not suppled return <see cref="M:funclib.Numbers.Negate(System.Object)"/> of x, else subtract
             ys from x and returns the result.
             </summary>
             <param name="x">Object to <see cref="M:funclib.Numbers.Negate(System.Object)"/>.</param>
@@ -4243,7 +4243,7 @@
         </member>
         <member name="M:funclib.Components.Core.Minus.Invoke(System.Object,System.Object)">
             <summary>
-            If y is not suppled return <see cref="M:funclib.Numbers.Negate(System.Object)"/> of x, else subtract 
+            If y is not suppled return <see cref="M:funclib.Numbers.Negate(System.Object)"/> of x, else subtract
             ys from x and returns the result.
             </summary>
             <param name="x">First number to subtract.</param>
@@ -4254,7 +4254,7 @@
         </member>
         <member name="M:funclib.Components.Core.Minus.Invoke(System.Object,System.Object,System.Object[])">
             <summary>
-            If y is not suppled return <see cref="M:funclib.Numbers.Negate(System.Object)"/> of x, else subtract 
+            If y is not suppled return <see cref="M:funclib.Numbers.Negate(System.Object)"/> of x, else subtract
             ys from x and returns the result.
             </summary>
             <param name="x">First number to subtract.</param>
@@ -4267,32 +4267,32 @@
         <member name="T:funclib.Components.Core.More">
             <summary>
             Returns a <see cref="T:funclib.Components.Core.Seq"/> of the items after the funclib.Core.First(. Calls
-            <see cref="T:funclib.Components.Core.Seq"/> on its argument. If there are no more items, 
+            <see cref="T:funclib.Components.Core.Seq"/> on its argument. If there are no more items,
             returns <see cref="F:funclib.Collections.List.EMPTY"/> collection.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.More.Invoke(System.Object)">
             <summary>
             Returns a <see cref="T:funclib.Components.Core.Seq"/> of the items after the funclib.Core.First(. Calls
-            <see cref="T:funclib.Components.Core.Seq"/> on its argument. If there are no more items, 
+            <see cref="T:funclib.Components.Core.Seq"/> on its argument. If there are no more items,
             returns <see cref="F:funclib.Collections.List.EMPTY"/> collection.
             </summary>
             <param name="coll">Should be a <see cref="T:funclib.Collections.ISeqable"/> collection.</param>
             <returns>
             Returns a <see cref="T:funclib.Components.Core.Seq"/> of the items after the funclib.Core.First(. Calls
-            <see cref="T:funclib.Components.Core.Seq"/> on its argument. If there are no more items, 
+            <see cref="T:funclib.Components.Core.Seq"/> on its argument. If there are no more items,
             returns <see cref="F:funclib.Collections.List.EMPTY"/> collection.
             </returns>
         </member>
         <member name="T:funclib.Components.Core.Multiply">
             <summary>
-            Returns the product of numbers. No parameters past returns 1. Single parameter there is an 
+            Returns the product of numbers. No parameters past returns 1. Single parameter there is an
             implicit 1 passed.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Multiply.Invoke">
             <summary>
-            Returns the product of numbers. No parameters past returns 1. Single parameter there is an 
+            Returns the product of numbers. No parameters past returns 1. Single parameter there is an
             implicit 1 passed.
             </summary>
             <returns>
@@ -4301,57 +4301,57 @@
         </member>
         <member name="M:funclib.Components.Core.Multiply.Invoke(System.Object)">
             <summary>
-            Returns the product of numbers. No parameters past returns 1. Single parameter there is an 
+            Returns the product of numbers. No parameters past returns 1. Single parameter there is an
             implicit 1 passed.
             </summary>
             <param name="x">First parameter multiply.</param>
             <returns>
-            Returns the product of numbers. No parameters past returns 1. Single parameter there is an 
+            Returns the product of numbers. No parameters past returns 1. Single parameter there is an
             implicit 1 passed.
             </returns>
         </member>
         <member name="M:funclib.Components.Core.Multiply.Invoke(System.Object,System.Object)">
             <summary>
-            Returns the product of numbers. No parameters past returns 1. Single parameter there is an 
+            Returns the product of numbers. No parameters past returns 1. Single parameter there is an
             implicit 1 passed.
             </summary>
             <param name="x">First parameter multiply.</param>
             <param name="y">Second parameter multiply.</param>
             <returns>
-            Returns the product of numbers. No parameters past returns 1. Single parameter there is an 
+            Returns the product of numbers. No parameters past returns 1. Single parameter there is an
             implicit 1 passed.
             </returns>
         </member>
         <member name="M:funclib.Components.Core.Multiply.Invoke(System.Object,System.Object,System.Object[])">
             <summary>
-            Returns the product of numbers. No parameters past returns 1. Single parameter there is an 
+            Returns the product of numbers. No parameters past returns 1. Single parameter there is an
             implicit 1 passed.
             </summary>
             <param name="x">First parameter multiply.</param>
             <param name="y">Second parameter multiply.</param>
             <param name="more">Rest of the parameters to multiply.</param>
             <returns>
-            Returns the product of numbers. No parameters past returns 1. Single parameter there is an 
+            Returns the product of numbers. No parameters past returns 1. Single parameter there is an
             implicit 1 passed.
             </returns>
         </member>
         <member name="T:funclib.Components.Core.Next">
             <summary>
             Returns a <see cref="T:funclib.Components.Core.Seq"/> of the items after the funclib.Core.First(. Calls
-            <see cref="T:funclib.Components.Core.Seq"/> on its argument. If there are no more items, 
+            <see cref="T:funclib.Components.Core.Seq"/> on its argument. If there are no more items,
             returns null.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Next.Invoke(System.Object)">
             <summary>
             Returns a <see cref="T:funclib.Components.Core.Seq"/> of the items after the funclib.Core.First(. Calls
-            <see cref="T:funclib.Components.Core.Seq"/> on its argument. If there are no more items, 
+            <see cref="T:funclib.Components.Core.Seq"/> on its argument. If there are no more items,
             returns null.
             </summary>
             <param name="coll">Should be a <see cref="T:funclib.Collections.ISeqable"/> collection.</param>
             <returns>
             Returns a <see cref="T:funclib.Components.Core.Seq"/> of the items after the funclib.Core.First(. Calls
-            <see cref="T:funclib.Components.Core.Seq"/> on its argument. If there are no more items, 
+            <see cref="T:funclib.Components.Core.Seq"/> on its argument. If there are no more items,
             returns null.
             </returns>
         </member>
@@ -4414,28 +4414,28 @@
         <member name="T:funclib.Components.Core.Nth">
             <summary>
             Returns the value at the index. <see cref="T:funclib.Components.Core.Nth"/> throws an exception if index
-            is out of bounds or unless notFound is supplied. <see cref="T:funclib.Components.Core.Nth"/> works on 
+            is out of bounds or unless notFound is supplied. <see cref="T:funclib.Components.Core.Nth"/> works on
             strings, arrays, Regex matcher, lists and O(n) time for sequences.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Nth.Invoke(System.Object,System.Object)">
             <summary>
             Returns the value at the index. <see cref="T:funclib.Components.Core.Nth"/> throws an exception if index
-            is out of bounds or unless notFound is supplied. <see cref="T:funclib.Components.Core.Nth"/> works on 
+            is out of bounds or unless notFound is supplied. <see cref="T:funclib.Components.Core.Nth"/> works on
             strings, arrays, Regex matcher, lists and O(n) time for sequences.
             </summary>
             <param name="coll">Collection to search for index.</param>
             <param name="index">Index to find.</param>
             <returns>
             Returns the value at the index. <see cref="T:funclib.Components.Core.Nth"/> throws an exception if index
-            is out of bounds or unless notFound is supplied. <see cref="T:funclib.Components.Core.Nth"/> works on 
+            is out of bounds or unless notFound is supplied. <see cref="T:funclib.Components.Core.Nth"/> works on
             strings, arrays, Regex matcher, lists and O(n) time for sequences.
             </returns>
         </member>
         <member name="M:funclib.Components.Core.Nth.Invoke(System.Object,System.Object,System.Object)">
             <summary>
             Returns the value at the index. <see cref="T:funclib.Components.Core.Nth"/> throws an exception if index
-            is out of bounds or unless notFound is supplied. <see cref="T:funclib.Components.Core.Nth"/> works on 
+            is out of bounds or unless notFound is supplied. <see cref="T:funclib.Components.Core.Nth"/> works on
             strings, arrays, Regex matcher, lists and O(n) time for sequences.
             </summary>
             <param name="coll">Collection to search for index.</param>
@@ -4443,7 +4443,7 @@
             <param name="notFound">Value to return if index is not found.</param>
             <returns>
             Returns the value at the index. <see cref="T:funclib.Components.Core.Nth"/> throws an exception if index
-            is out of bounds or unless notFound is supplied. <see cref="T:funclib.Components.Core.Nth"/> works on 
+            is out of bounds or unless notFound is supplied. <see cref="T:funclib.Components.Core.Nth"/> works on
             strings, arrays, Regex matcher, lists and O(n) time for sequences.
             </returns>
         </member>
@@ -4479,14 +4479,14 @@
         </member>
         <member name="T:funclib.Components.Core.Or">
             <summary>
-            Evaluates objects one at a time, from left to right. If a object returns 
+            Evaluates objects one at a time, from left to right. If a object returns
             a logical true value then it is returned and stops evaluating
             all other expressions. Otherwise, it returns the value of the last object.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Or.Invoke">
             <summary>
-            Evaluates objects one at a time, from left to right. If a object returns 
+            Evaluates objects one at a time, from left to right. If a object returns
             a logical true value then it is returned and stops evaluating
             all other expressions. Otherwise, it returns the value of the last object.
             </summary>
@@ -4496,7 +4496,7 @@
         </member>
         <member name="M:funclib.Components.Core.Or.Invoke(System.Object)">
             <summary>
-            Evaluates objects one at a time, from left to right. If a object returns 
+            Evaluates objects one at a time, from left to right. If a object returns
             a logical true value then it is returned and stops evaluating
             all other expressions. Otherwise, it returns the value of the last object.
             </summary>
@@ -4506,34 +4506,34 @@
             Invoke() method is executed and sets its results to x.
             </remarks>
             <returns>
-            Evaluates objects one at a time, from left to right. If a object returns 
+            Evaluates objects one at a time, from left to right. If a object returns
             a logical true value then it is returned and stops evaluating
             all other expressions. Otherwise, it returns the value of the last object.
             </returns>
         </member>
         <member name="M:funclib.Components.Core.Or.Invoke(System.Object,System.Object[])">
             <summary>
-            Evaluates objects one at a time, from left to right. If a object returns 
+            Evaluates objects one at a time, from left to right. If a object returns
             a logical true value then it is returned and stops evaluating
             all other expressions. Otherwise, it returns the value of the last object.
             </summary>
             <param name="x">First object to test.</param>
             <param name="next">Rest of the objects to test.</param>
             <returns>
-            Evaluates objects one at a time, from left to right. If a object returns 
+            Evaluates objects one at a time, from left to right. If a object returns
             a logical true value then it is returned and stops evaluating
             all other expressions. Otherwise, it returns the value of the last object.
             </returns>
         </member>
         <member name="T:funclib.Components.Core.Partial">
             <summary>
-            Takes a <see cref="T:funclib.Components.Core.IFunction"/> f and fewer than the normal arguments, and returns a 
+            Takes a <see cref="T:funclib.Components.Core.IFunction"/> f and fewer than the normal arguments, and returns a
             <see cref="T:funclib.Components.Core.Partial.Function"/> that take the rest of the arguments.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Partial.Invoke(System.Object,System.Object)">
             <summary>
-            Takes a <see cref="T:funclib.Components.Core.IFunction"/> f and fewer than the normal arguments, and returns a 
+            Takes a <see cref="T:funclib.Components.Core.IFunction"/> f and fewer than the normal arguments, and returns a
             <see cref="T:funclib.Components.Core.Partial.Function"/> that take the rest of the arguments.
             </summary>
             <param name="f">Object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
@@ -4544,7 +4544,7 @@
         </member>
         <member name="M:funclib.Components.Core.Partial.Invoke(System.Object,System.Object,System.Object)">
             <summary>
-            Takes a <see cref="T:funclib.Components.Core.IFunction"/> f and fewer than the normal arguments, and returns a 
+            Takes a <see cref="T:funclib.Components.Core.IFunction"/> f and fewer than the normal arguments, and returns a
             <see cref="T:funclib.Components.Core.Partial.Function"/> that take the rest of the arguments.
             </summary>
             <param name="f">Object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
@@ -4556,7 +4556,7 @@
         </member>
         <member name="M:funclib.Components.Core.Partial.Invoke(System.Object,System.Object,System.Object,System.Object)">
             <summary>
-            Takes a <see cref="T:funclib.Components.Core.IFunction"/> f and fewer than the normal arguments, and returns a 
+            Takes a <see cref="T:funclib.Components.Core.IFunction"/> f and fewer than the normal arguments, and returns a
             <see cref="T:funclib.Components.Core.Partial.Function"/> that take the rest of the arguments.
             </summary>
             <param name="f">Object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
@@ -4569,7 +4569,7 @@
         </member>
         <member name="M:funclib.Components.Core.Partial.Invoke(System.Object,System.Object,System.Object,System.Object,System.Object[])">
             <summary>
-            Takes a <see cref="T:funclib.Components.Core.IFunction"/> f and fewer than the normal arguments, and returns a 
+            Takes a <see cref="T:funclib.Components.Core.IFunction"/> f and fewer than the normal arguments, and returns a
             <see cref="T:funclib.Components.Core.Partial.Function"/> that take the rest of the arguments.
             </summary>
             <param name="f">Object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
@@ -4639,7 +4639,7 @@
         <member name="T:funclib.Components.Core.Partition">
             <summary>
             Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of lists of n items each, at offsets step
-            apart. If step is not supplied, defaults to n, i.e. the partitions do not 
+            apart. If step is not supplied, defaults to n, i.e. the partitions do not
             overlap. If a pad collections is supplied, use its elements a necessary
             to complete last partition up to n items. In case there are not enough
             padding elements, return a partition with  less than n items.
@@ -4648,7 +4648,7 @@
         <member name="M:funclib.Components.Core.Partition.Invoke(System.Object,System.Object)">
             <summary>
             Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of lists of n items each, at offsets step
-            apart. If step is not supplied, defaults to n, i.e. the partitions do not 
+            apart. If step is not supplied, defaults to n, i.e. the partitions do not
             overlap. If a pad collections is supplied, use its elements a necessary
             to complete last partition up to n items. In case there are not enough
             padding elements, return a partition with  less than n items.
@@ -4657,7 +4657,7 @@
             <param name="coll">A collection that can be <see cref="T:funclib.Components.Core.Seq"/> over.</param>
             <returns>
             Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of lists of n items each, at offsets step
-            apart. If step is not supplied, defaults to n, i.e. the partitions do not 
+            apart. If step is not supplied, defaults to n, i.e. the partitions do not
             overlap. If a pad collections is supplied, use its elements a necessary
             to complete last partition up to n items. In case there are not enough
             padding elements, return a partition with  less than n items.
@@ -4666,7 +4666,7 @@
         <member name="M:funclib.Components.Core.Partition.Invoke(System.Object,System.Object,System.Object)">
             <summary>
             Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of lists of n items each, at offsets step
-            apart. If step is not supplied, defaults to n, i.e. the partitions do not 
+            apart. If step is not supplied, defaults to n, i.e. the partitions do not
             overlap. If a pad collections is supplied, use its elements a necessary
             to complete last partition up to n items. In case there are not enough
             padding elements, return a partition with  less than n items.
@@ -4676,7 +4676,7 @@
             <param name="coll">A collection that can be <see cref="T:funclib.Components.Core.Seq"/> over.</param>
             <returns>
             Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of lists of n items each, at offsets step
-            apart. If step is not supplied, defaults to n, i.e. the partitions do not 
+            apart. If step is not supplied, defaults to n, i.e. the partitions do not
             overlap. If a pad collections is supplied, use its elements a necessary
             to complete last partition up to n items. In case there are not enough
             padding elements, return a partition with  less than n items.
@@ -4685,7 +4685,7 @@
         <member name="M:funclib.Components.Core.Partition.Invoke(System.Object,System.Object,System.Object,System.Object)">
             <summary>
             Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of lists of n items each, at offsets step
-            apart. If step is not supplied, defaults to n, i.e. the partitions do not 
+            apart. If step is not supplied, defaults to n, i.e. the partitions do not
             overlap. If a pad collections is supplied, use its elements a necessary
             to complete last partition up to n items. In case there are not enough
             padding elements, return a partition with  less than n items.
@@ -4696,7 +4696,7 @@
             <param name="coll">A collection that can be <see cref="T:funclib.Components.Core.Seq"/> over.</param>
             <returns>
             Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of lists of n items each, at offsets step
-            apart. If step is not supplied, defaults to n, i.e. the partitions do not 
+            apart. If step is not supplied, defaults to n, i.e. the partitions do not
             overlap. If a pad collections is supplied, use its elements a necessary
             to complete last partition up to n items. In case there are not enough
             padding elements, return a partition with  less than n items.
@@ -4735,13 +4735,13 @@
         </member>
         <member name="T:funclib.Components.Core.PartitionBy">
             <summary>
-            Applies <see cref="T:funclib.Components.Core.Generic.IFunction`2"/> to each value in coll, splitting it each 
+            Applies <see cref="T:funclib.Components.Core.Generic.IFunction`2"/> to each value in coll, splitting it each
             time f returns a new value. Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of partitions.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.PartitionBy.Invoke(System.Object,System.Object)">
             <summary>
-            Applies <see cref="T:funclib.Components.Core.Generic.IFunction`2"/> to each value in coll, splitting it each 
+            Applies <see cref="T:funclib.Components.Core.Generic.IFunction`2"/> to each value in coll, splitting it each
             time f returns a new value. Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of partitions.
             </summary>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.Generic.IFunction`2"/> interface.</param>
@@ -4752,43 +4752,43 @@
         </member>
         <member name="T:funclib.Components.Core.Peek">
             <summary>
-            Returns the same as <see cref="T:funclib.Collections.List"/>'s <see cref="M:funclib.Collections.List.First"/> method, 
-            for <see cref="T:funclib.Collections.Queue"/>'s <see cref="M:funclib.Collections.Queue.Peek"/> method, for 
+            Returns the same as <see cref="T:funclib.Collections.List"/>'s <see cref="M:funclib.Collections.List.First"/> method,
+            for <see cref="T:funclib.Collections.Queue"/>'s <see cref="M:funclib.Collections.Queue.Peek"/> method, for
             <see cref="T:funclib.Collections.Vector"/>'s <see cref="T:funclib.Components.Core.Last"/> (but much more efficient). If the collection
             is empty return null.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Peek.Invoke(System.Object)">
             <summary>
-            Returns the same as <see cref="T:funclib.Collections.List"/>'s <see cref="M:funclib.Collections.List.First"/> method, 
-            for <see cref="T:funclib.Collections.Queue"/>'s <see cref="M:funclib.Collections.Queue.Peek"/> method, for 
+            Returns the same as <see cref="T:funclib.Collections.List"/>'s <see cref="M:funclib.Collections.List.First"/> method,
+            for <see cref="T:funclib.Collections.Queue"/>'s <see cref="M:funclib.Collections.Queue.Peek"/> method, for
             <see cref="T:funclib.Collections.Vector"/>'s <see cref="T:funclib.Components.Core.Last"/> (but much more efficient). If the collection
             is empty return null.
             </summary>
             <param name="coll">An object that implements the <see cref="T:funclib.Collections.IStack"/> interface.</param>
             <returns>
-            Returns the same as <see cref="T:funclib.Collections.List"/>'s <see cref="M:funclib.Collections.List.First"/> method, 
-            for <see cref="T:funclib.Collections.Queue"/>'s <see cref="M:funclib.Collections.Queue.Peek"/> method, for 
+            Returns the same as <see cref="T:funclib.Collections.List"/>'s <see cref="M:funclib.Collections.List.First"/> method,
+            for <see cref="T:funclib.Collections.Queue"/>'s <see cref="M:funclib.Collections.Queue.Peek"/> method, for
             <see cref="T:funclib.Collections.Vector"/>'s <see cref="T:funclib.Components.Core.Last"/> (but much more efficient). If the collection
             is empty return null.
             </returns>
         </member>
         <member name="T:funclib.Components.Core.Persistentǃ">
             <summary>
-            Returns a new, persistent version of the <see cref="T:funclib.Collections.ITransientCollection"/>, in 
+            Returns a new, persistent version of the <see cref="T:funclib.Collections.ITransientCollection"/>, in
             constant time. The <see cref="T:funclib.Collections.ITransientCollection"/> cannot be used after this
             call.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Persistentǃ.Invoke(System.Object)">
             <summary>
-            Returns a new, persistent version of the <see cref="T:funclib.Collections.ITransientCollection"/>, in 
+            Returns a new, persistent version of the <see cref="T:funclib.Collections.ITransientCollection"/>, in
             constant time. The <see cref="T:funclib.Collections.ITransientCollection"/> cannot be used after this
             call.
             </summary>
             <param name="coll">An object that implements the <see cref="T:funclib.Collections.ITransientCollection"/> interface.</param>
             <returns>
-            Returns a new, persistent version of the <see cref="T:funclib.Collections.ITransientCollection"/>, in 
+            Returns a new, persistent version of the <see cref="T:funclib.Collections.ITransientCollection"/>, in
             constant time.
             </returns>
         </member>
@@ -4837,7 +4837,7 @@
         </member>
         <member name="T:funclib.Components.Core.Pop">
             <summary>
-            For <see cref="T:funclib.Collections.List"/> or <see cref="T:funclib.Collections.Queue"/> returns a 
+            For <see cref="T:funclib.Collections.List"/> or <see cref="T:funclib.Collections.Queue"/> returns a
             new <see cref="T:funclib.Collections.List"/>/<see cref="T:funclib.Collections.Queue"/> without the funclib.Core.First(
             item. For <see cref="T:funclib.Collections.Vector"/>, returns a new <see cref="T:funclib.Collections.Vector"/>
             without the last time. If the coll is empty, throws an exception.
@@ -4845,7 +4845,7 @@
         </member>
         <member name="M:funclib.Components.Core.Pop.Invoke(System.Object)">
             <summary>
-            For <see cref="T:funclib.Collections.List"/> or <see cref="T:funclib.Collections.Queue"/> returns a 
+            For <see cref="T:funclib.Collections.List"/> or <see cref="T:funclib.Collections.Queue"/> returns a
             new <see cref="T:funclib.Collections.List"/>/<see cref="T:funclib.Collections.Queue"/> without the funclib.Core.First(
             item. For <see cref="T:funclib.Collections.Vector"/>, returns a new <see cref="T:funclib.Collections.Vector"/>
             without the last time. If the coll is empty, throws an exception.
@@ -4920,28 +4920,28 @@
         </member>
         <member name="T:funclib.Components.Core.Rand">
             <summary>
-            Returns a <see cref="T:System.Random"/> floating point number between 
+            Returns a <see cref="T:System.Random"/> floating point number between
             0 (inclusive) and n (default 1) (exclusive).
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Rand.Invoke">
             <summary>
-            Returns a <see cref="T:System.Random"/> floating point number between 
+            Returns a <see cref="T:System.Random"/> floating point number between
             0 (inclusive) and n (default 1) (exclusive).
             </summary>
             <returns>
-            Returns a <see cref="T:System.Random"/> floating point number between 
+            Returns a <see cref="T:System.Random"/> floating point number between
             0 (inclusive) and n (default 1) (exclusive).
             </returns>
         </member>
         <member name="M:funclib.Components.Core.Rand.Invoke(System.Object)">
             <summary>
-            Returns a <see cref="T:System.Random"/> floating point number between 
+            Returns a <see cref="T:System.Random"/> floating point number between
             0 (inclusive) and n (default 1) (exclusive).
             </summary>
             <param name="n">An <see cref="T:System.Int32"/> for the exclusive value.</param>
             <returns>
-            Returns a <see cref="T:System.Random"/> floating point number between 
+            Returns a <see cref="T:System.Random"/> floating point number between
             0 (inclusive) and n (default 1) (exclusive).
             </returns>
         </member>
@@ -5037,22 +5037,22 @@
         <member name="T:funclib.Components.Core.Reduce">
             <summary>
             f should implement the <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> interface. If val is not supplied,
-            returns the result of applying f to the funclib.Core.First( 2 items in coll, then applying f to the result and 
-            the 3rd item, etc. If coll contains no items, f must implement <see cref="T:funclib.Components.Core.Generic.IFunction`1"/> 
+            returns the result of applying f to the funclib.Core.First( 2 items in coll, then applying f to the result and
+            the 3rd item, etc. If coll contains no items, f must implement <see cref="T:funclib.Components.Core.Generic.IFunction`1"/>
             interface and reduce returns the result of calling f with no arguments. If coll has only 1 item,
             it is returned and f is not called. If val is supplied, returns the result of applying f to val
-            and the funclib.Core.First( item in coll, then applying f to the result and the 2nd item, etc. If coll contains 
+            and the funclib.Core.First( item in coll, then applying f to the result and the 2nd item, etc. If coll contains
             no items, val is returned and f is not called.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Reduce.Invoke(System.Object,System.Object)">
             <summary>
             f should implement the <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> interface. If val is not supplied,
-            returns the result of applying f to the funclib.Core.First( 2 items in coll, then applying f to the result and 
-            the 3rd item, etc. If coll contains no items, f must implement <see cref="T:funclib.Components.Core.Generic.IFunction`1"/> 
+            returns the result of applying f to the funclib.Core.First( 2 items in coll, then applying f to the result and
+            the 3rd item, etc. If coll contains no items, f must implement <see cref="T:funclib.Components.Core.Generic.IFunction`1"/>
             interface and reduce returns the result of calling f with no arguments. If coll has only 1 item,
             it is returned and f is not called. If val is supplied, returns the result of applying f to val
-            and the funclib.Core.First( item in coll, then applying f to the result and the 2nd item, etc. If coll contains 
+            and the funclib.Core.First( item in coll, then applying f to the result and the 2nd item, etc. If coll contains
             no items, val is returned and f is not called.
             </summary>
             <param name="f">An object that implements <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> interface unless coll has not items, then it needs to implement the <see cref="T:funclib.Components.Core.Generic.IFunction`1"/> interface.</param>
@@ -5064,11 +5064,11 @@
         <member name="M:funclib.Components.Core.Reduce.Invoke(System.Object,System.Object,System.Object)">
             <summary>
             f should implement the <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> interface. If val is not supplied,
-            returns the result of applying f to the funclib.Core.First( 2 items in coll, then applying f to the result and 
-            the 3rd item, etc. If coll contains no items, f must implement <see cref="T:funclib.Components.Core.Generic.IFunction`1"/> 
+            returns the result of applying f to the funclib.Core.First( 2 items in coll, then applying f to the result and
+            the 3rd item, etc. If coll contains no items, f must implement <see cref="T:funclib.Components.Core.Generic.IFunction`1"/>
             interface and reduce returns the result of calling f with no arguments. If coll has only 1 item,
             it is returned and f is not called. If val is supplied, returns the result of applying f to val
-            and the funclib.Core.First( item in coll, then applying f to the result and the 2nd item, etc. If coll contains 
+            and the funclib.Core.First( item in coll, then applying f to the result and the 2nd item, etc. If coll contains
             no items, val is returned and f is not called.
             </summary>
             <param name="f">An object that implements <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> interface.</param>
@@ -5122,32 +5122,32 @@
         </member>
         <member name="T:funclib.Components.Core.Reductions">
             <summary>
-            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of the intermediate values of the reductions 
+            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of the intermediate values of the reductions
             (as per reduce) of coll by f, starting with init.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Reductions.Invoke(System.Object,System.Object)">
             <summary>
-            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of the intermediate values of the reductions 
+            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of the intermediate values of the reductions
             (as per reduce) of coll by f, starting with init.
             </summary>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.Generic.IFunction`1"/> if coll contains no items, otherwise <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> interface.</param>
             <param name="coll">A object that can be <see cref="T:funclib.Components.Core.Seq"/> over.</param>
             <returns>
-            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of the intermediate values of the reductions 
+            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of the intermediate values of the reductions
             (as per reduce) of coll by f, starting with init.
             </returns>
         </member>
         <member name="M:funclib.Components.Core.Reductions.Invoke(System.Object,System.Object,System.Object)">
             <summary>
-            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of the intermediate values of the reductions 
+            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of the intermediate values of the reductions
             (as per reduce) of coll by f, starting with init.
             </summary>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> interface.</param>
             <param name="init">The initial starting value.</param>
             <param name="coll">A object that can be <see cref="T:funclib.Components.Core.Seq"/> over.</param>
             <returns>
-            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of the intermediate values of the reductions 
+            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of the intermediate values of the reductions
             (as per reduce) of coll by f, starting with init.
             </returns>
         </member>
@@ -5183,7 +5183,7 @@
         <member name="T:funclib.Components.Core.ReGroups">
             <summary>
             Returns the groups from the most recent match/find. If there are no
-            nested groups, returns a string of the entire match. If there are 
+            nested groups, returns a string of the entire match. If there are
             nested groups, returns a <see cref="T:funclib.Collections.Vector"/> of groups,
             the funclib.Core.First( element being the entire match.
             </summary>
@@ -5191,14 +5191,14 @@
         <member name="M:funclib.Components.Core.ReGroups.Invoke(System.Object)">
             <summary>
             Returns the groups from the most recent match/find. If there are no
-            nested groups, returns a string of the entire match. If there are 
+            nested groups, returns a string of the entire match. If there are
             nested groups, returns a <see cref="T:funclib.Collections.Vector"/> of groups,
             the funclib.Core.First( element being the entire match.
             </summary>
             <param name="m">A <see cref="T:funclib.Components.Core.ReMatcher"/> instance.</param>
             <returns>
             Returns the groups from the most recent match/find. If there are no
-            nested groups, returns a string of the entire match. If there are 
+            nested groups, returns a string of the entire match. If there are
             nested groups, returns a <see cref="T:funclib.Collections.Vector"/> of groups,
             the funclib.Core.First( element being the entire match.
             </returns>
@@ -5240,7 +5240,7 @@
         </member>
         <member name="P:funclib.Components.Core.ReMatcher.IsUnrealizedOrFailed">
             <summary>
-            Gets a flag indicating if the <see cref="T:funclib.Components.Core.ReMatcher"/> is in a Unrealized or Failed state. 
+            Gets a flag indicating if the <see cref="T:funclib.Components.Core.ReMatcher"/> is in a Unrealized or Failed state.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.ReMatcher.Find">
@@ -5253,7 +5253,7 @@
         </member>
         <member name="M:funclib.Components.Core.ReMatcher.Matches">
             <summary>
-            
+
             </summary>
             <returns></returns>
         </member>
@@ -5422,14 +5422,14 @@
         <member name="T:funclib.Components.Core.Replace">
             <summary>
             Given a map of replacement pairs and a <see cref="T:funclib.Collections.Vector"/>/collection, returns a
-            <see cref="T:funclib.Collections.Vector"/>/seq with any elements = a key in smap replaced with the 
+            <see cref="T:funclib.Collections.Vector"/>/seq with any elements = a key in smap replaced with the
             corresponding val in smap.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Replace.Invoke(System.Object,System.Object)">
             <summary>
             Given a map of replacement pairs and a <see cref="T:funclib.Collections.Vector"/>/collection, returns a
-            <see cref="T:funclib.Collections.Vector"/>/seq with any elements = a key in smap replaced with the 
+            <see cref="T:funclib.Collections.Vector"/>/seq with any elements = a key in smap replaced with the
             corresponding val in smap.
             </summary>
             <param name="smap">An object that is either a <see cref="T:funclib.Collections.Vector"/> or an object that can be <see cref="T:funclib.Components.Core.Seq"/>ed over.</param>
@@ -5599,7 +5599,7 @@
         </member>
         <member name="T:funclib.Components.Core.SetValidatorǃ">
             <summary>
-            Sets the validator function for <see cref="T:funclib.Components.Core.IRef"/> variables. Validator 
+            Sets the validator function for <see cref="T:funclib.Components.Core.IRef"/> variables. Validator
             function must be null or a side-effect-free <see cref="T:funclib.Components.Core.IFunction"/> of
             one argument, which will be passed the intended new state of any state
             change. If the new state is unacceptable, the function should either
@@ -5608,7 +5608,7 @@
         </member>
         <member name="M:funclib.Components.Core.SetValidatorǃ.Invoke(System.Object,System.Object)">
             <summary>
-            Sets the validator function for <see cref="T:funclib.Components.Core.IRef"/> variables. Validator 
+            Sets the validator function for <see cref="T:funclib.Components.Core.IRef"/> variables. Validator
             function must be null or a side-effect-free <see cref="T:funclib.Components.Core.IFunction"/> of
             one argument, which will be passed the intended new state of any state
             change. If the new state is unacceptable, the function should either
@@ -5640,30 +5640,30 @@
         </member>
         <member name="T:funclib.Components.Core.Sort">
             <summary>
-            Returns a sorted collection of the items in coll. If no comparator is 
+            Returns a sorted collection of the items in coll. If no comparator is
             supplied, use <see cref="T:funclib.Components.Core.Compare"/>.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Sort.Invoke(System.Object)">
             <summary>
-            Returns a sorted collection of the items in coll. If no comparator is 
+            Returns a sorted collection of the items in coll. If no comparator is
             supplied, use <see cref="T:funclib.Components.Core.Compare"/>.
             </summary>
             <param name="coll">A collection to be sorted.</param>
             <returns>
-            Returns a sorted collection of the items in coll. If no comparator is 
+            Returns a sorted collection of the items in coll. If no comparator is
             supplied, use <see cref="T:funclib.Components.Core.Compare"/>.
             </returns>
         </member>
         <member name="M:funclib.Components.Core.Sort.Invoke(System.Object,System.Object)">
             <summary>
-            Returns a sorted collection of the items in coll. If no comparator is 
+            Returns a sorted collection of the items in coll. If no comparator is
             supplied, use <see cref="T:funclib.Components.Core.Compare"/>.
             </summary>
             <param name="comp">An object that implements the <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> interface.</param>
             <param name="coll">A collection to be sorted.</param>
             <returns>
-            Returns a sorted collection of the items in coll. If no comparator is 
+            Returns a sorted collection of the items in coll. If no comparator is
             supplied, use <see cref="T:funclib.Components.Core.Compare"/>.
             </returns>
         </member>
@@ -5731,34 +5731,34 @@
         </member>
         <member name="T:funclib.Components.Core.SortedMapBy">
             <summary>
-            Returns a <see cref="T:funclib.Collections.SortedMap"/> with supplied mappings, using the supplied 
+            Returns a <see cref="T:funclib.Collections.SortedMap"/> with supplied mappings, using the supplied
             <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> comparator. If any keys are equal, they are handled as
             if by repeated uses of <see cref="T:funclib.Components.Core.Assoc"/>.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.SortedMapBy.Invoke(System.Object,System.Object[])">
             <summary>
-            Returns a <see cref="T:funclib.Collections.SortedMap"/> with supplied mappings, using the supplied 
+            Returns a <see cref="T:funclib.Collections.SortedMap"/> with supplied mappings, using the supplied
             <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> comparator. If any keys are equal, they are handled as
             if by repeated uses of <see cref="T:funclib.Components.Core.Assoc"/>.
             </summary>
             <param name="comparator">An object that implements the <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> interface.</param>
             <param name="keyvals">Key/value pairs adding to the <see cref="T:funclib.Collections.SortedMap"/> data structure.</param>
             <returns>
-            Returns a <see cref="T:funclib.Collections.SortedMap"/> with supplied mappings, using the supplied 
+            Returns a <see cref="T:funclib.Collections.SortedMap"/> with supplied mappings, using the supplied
             <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> comparator. If any keys are equal, they are handled as
             if by repeated uses of <see cref="T:funclib.Components.Core.Assoc"/>.
             </returns>
         </member>
         <member name="T:funclib.Components.Core.SortedSet">
             <summary>
-            Returns a new <see cref="T:funclib.Collections.SortedSet"/> with the supplied keys. Any 
+            Returns a new <see cref="T:funclib.Collections.SortedSet"/> with the supplied keys. Any
             equal keys are handled as if by repeated uses of <see cref="T:funclib.Components.Core.Conj"/>.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.SortedSet.Invoke">
             <summary>
-            Returns a new <see cref="T:funclib.Collections.SortedSet"/> with the supplied keys. Any 
+            Returns a new <see cref="T:funclib.Collections.SortedSet"/> with the supplied keys. Any
             equal keys are handled as if by repeated uses of <see cref="T:funclib.Components.Core.Conj"/>.
             </summary>
             <returns>
@@ -5767,32 +5767,32 @@
         </member>
         <member name="M:funclib.Components.Core.SortedSet.Invoke(System.Object[])">
             <summary>
-            Returns a new <see cref="T:funclib.Collections.SortedSet"/> with the supplied keys. Any 
+            Returns a new <see cref="T:funclib.Collections.SortedSet"/> with the supplied keys. Any
             equal keys are handled as if by repeated uses of <see cref="T:funclib.Components.Core.Conj"/>.
             </summary>
             <param name="keys">Keys to add to <see cref="T:funclib.Collections.SortedSet"/> data structure.</param>
             <returns>
-            Returns a new <see cref="T:funclib.Collections.SortedSet"/> with the supplied keys. Any 
+            Returns a new <see cref="T:funclib.Collections.SortedSet"/> with the supplied keys. Any
             equal keys are handled as if by repeated uses of <see cref="T:funclib.Components.Core.Conj"/>.
             </returns>
         </member>
         <member name="T:funclib.Components.Core.SortedSetBy">
             <summary>
-            Returns a <see cref="T:funclib.Collections.SortedSet"/> with supplied keys, using the supplied 
+            Returns a <see cref="T:funclib.Collections.SortedSet"/> with supplied keys, using the supplied
             <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> comparator. If any keys are equal, they are handled as
             if by repeated uses of <see cref="T:funclib.Components.Core.Conj"/>.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.SortedSetBy.Invoke(System.Object,System.Object[])">
             <summary>
-            Returns a <see cref="T:funclib.Collections.SortedSet"/> with supplied keys, using the supplied 
+            Returns a <see cref="T:funclib.Collections.SortedSet"/> with supplied keys, using the supplied
             <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> comparator. If any keys are equal, they are handled as
             if by repeated uses of <see cref="T:funclib.Components.Core.Conj"/>.
             </summary>
             <param name="comparator">An object that implements the <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> interface.</param>
             <param name="keys">Keys to add to <see cref="T:funclib.Collections.SortedSet"/> data structure.</param>
             <returns>
-            Returns a <see cref="T:funclib.Collections.SortedSet"/> with supplied keys, using the supplied 
+            Returns a <see cref="T:funclib.Collections.SortedSet"/> with supplied keys, using the supplied
             <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> comparator. If any keys are equal, they are handled as
             if by repeated uses of <see cref="T:funclib.Components.Core.Conj"/>.
             </returns>
@@ -5829,15 +5829,15 @@
         </member>
         <member name="T:funclib.Components.Core.Str">
             <summary>
-            With no args, returns empty string. With one arg, returns arg.ToString(). If 
-            arg is null return empty string. With more than one arg, returns the concatenation 
+            With no args, returns empty string. With one arg, returns arg.ToString(). If
+            arg is null return empty string. With more than one arg, returns the concatenation
             of args.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Str.Invoke">
             <summary>
-            With no args, returns empty string. With one arg, returns arg.ToString(). If 
-            arg is null return empty string. With more than one arg, returns the concatenation 
+            With no args, returns empty string. With one arg, returns arg.ToString(). If
+            arg is null return empty string. With more than one arg, returns the concatenation
             of args.
             </summary>
             <returns>
@@ -5846,8 +5846,8 @@
         </member>
         <member name="M:funclib.Components.Core.Str.Invoke(System.Object)">
             <summary>
-            With no args, returns empty string. With one arg, returns arg.ToString(). If 
-            arg is null return empty string. With more than one arg, returns the concatenation 
+            With no args, returns empty string. With one arg, returns arg.ToString(). If
+            arg is null return empty string. With more than one arg, returns the concatenation
             of args.
             </summary>
             <param name="x">Object to convert into a string.</param>
@@ -5857,8 +5857,8 @@
         </member>
         <member name="M:funclib.Components.Core.Str.Invoke(System.Object,System.Object[])">
             <summary>
-            With no args, returns empty string. With one arg, returns arg.ToString(). If 
-            arg is null return empty string. With more than one arg, returns the concatenation 
+            With no args, returns empty string. With one arg, returns arg.ToString(). If
+            arg is null return empty string. With more than one arg, returns the concatenation
             of args.
             </summary>
             <param name="x">First object to convert into a string.</param>
@@ -5869,7 +5869,7 @@
         </member>
         <member name="T:funclib.Components.Core.Subs">
             <summary>
-            Returns the <see cref="M:System.String.Substring(System.Int32,System.Int32)"/> of s beginning at start inclusive, and ending 
+            Returns the <see cref="M:System.String.Substring(System.Int32,System.Int32)"/> of s beginning at start inclusive, and ending
             at end (defaults to length of string), exclusive.
             </summary>
         </member>
@@ -5935,7 +5935,7 @@
             <summary>
             Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
             Note: f may be called multiple times and thus should be free of side effects.
-            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after 
+            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after
             the swap.
             </summary>
         </member>
@@ -5943,13 +5943,13 @@
             <summary>
             Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
             Note: f may be called multiple times and thus should be free of side effects.
-            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after 
+            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after
             the swap.
             </summary>
             <param name="atom">An object that implements the <see cref="T:funclib.Components.Core.IAtom"/> interface.</param>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
             <returns>
-            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after 
+            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after
             the swap.
             </returns>
         </member>
@@ -5957,14 +5957,14 @@
             <summary>
             Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
             Note: f may be called multiple times and thus should be free of side effects.
-            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after 
+            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after
             the swap.
             </summary>
             <param name="atom">An object that implements the <see cref="T:funclib.Components.Core.IAtom"/> interface.</param>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
             <param name="x">Second parameter of the function.</param>
             <returns>
-            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after 
+            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after
             the swap.
             </returns>
         </member>
@@ -5972,7 +5972,7 @@
             <summary>
             Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
             Note: f may be called multiple times and thus should be free of side effects.
-            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after 
+            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after
             the swap.
             </summary>
             <param name="atom">An object that implements the <see cref="T:funclib.Components.Core.IAtom"/> interface.</param>
@@ -5980,7 +5980,7 @@
             <param name="x">Second parameter of the function.</param>
             <param name="y">Third parameter of the function.</param>
             <returns>
-            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after 
+            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after
             the swap.
             </returns>
         </member>
@@ -5988,7 +5988,7 @@
             <summary>
             Atomically swaps the value of atom to be: funclib.Core.Invoke(f, current-value-of-atom, ...args).
             Note: f may be called multiple times and thus should be free of side effects.
-            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after 
+            Returns a <see cref="T:funclib.Collections.IVector"/> of old, new. The value of the atom before and after
             the swap.
             </summary>
             <param name="atom">An object that implements the <see cref="T:funclib.Components.Core.IAtom"/> interface.</param>
@@ -6018,19 +6018,19 @@
         </member>
         <member name="T:funclib.Components.Core.TakeLast">
             <summary>
-            Returns a <see cref="T:funclib.Collections.ISeq"/> of the last n items in coll. Depending on the 
+            Returns a <see cref="T:funclib.Collections.ISeq"/> of the last n items in coll. Depending on the
             type of coll may be no better than linear time.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.TakeLast.Invoke(System.Object,System.Object)">
             <summary>
-            Returns a <see cref="T:funclib.Collections.ISeq"/> of the last n items in coll. Depending on the 
+            Returns a <see cref="T:funclib.Collections.ISeq"/> of the last n items in coll. Depending on the
             type of coll may be no better than linear time.
             </summary>
             <param name="n">An <see cref="T:System.Int32"/> of the items to take from the end of the collection.</param>
             <param name="coll">The collection to drop the funclib.Core.First( x items from.</param>
             <returns>
-            Returns a <see cref="T:funclib.Collections.ISeq"/> of the last n items in coll. Depending on the 
+            Returns a <see cref="T:funclib.Collections.ISeq"/> of the last n items in coll. Depending on the
             type of coll may be no better than linear time.
             </returns>
         </member>
@@ -6051,48 +6051,48 @@
         </member>
         <member name="T:funclib.Components.Core.TakeWhile">
             <summary>
-            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of successive items from coll while 
+            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of successive items from coll while
             <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> pred returns a logical true. pred
             must be free of side-effects.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.TakeWhile.Invoke(System.Object,System.Object)">
             <summary>
-            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of successive items from coll while 
+            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of successive items from coll while
             <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> pred returns a logical true. pred
             must be free of side-effects.
             </summary>
             <param name="pred">An object that implements the <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> interface.</param>
             <param name="coll">List of times to process.</param>
             <returns>
-            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of successive items from coll while 
+            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of successive items from coll while
             <see cref="T:funclib.Components.Core.Generic.IFunction`3"/> pred returns a logical true. pred
             must be free of side-effects.
             </returns>
         </member>
         <member name="T:funclib.Components.Core.Time">
             <summary>
-            Evaluates the <see cref="T:funclib.Components.Core.Generic.IFunction`1"/> and prints the time it took. 
+            Evaluates the <see cref="T:funclib.Components.Core.Generic.IFunction`1"/> and prints the time it took.
             Returns the value of <see cref="T:funclib.Components.Core.Generic.IFunction`1"/>.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Time.#ctor(System.Func{System.Object})">
             <summary>
-            Evaluates the <see cref="T:funclib.Components.Core.Generic.IFunction`1"/> and prints the time it took. 
+            Evaluates the <see cref="T:funclib.Components.Core.Generic.IFunction`1"/> and prints the time it took.
             Returns the value of <see cref="T:funclib.Components.Core.Generic.IFunction`1"/>.
             </summary>
             <param name="fn">Take a <see cref="T:System.Func`1"/> and convert it to <see cref="T:funclib.Components.Core.Generic.IFunction`1"/> to be executed.</param>
         </member>
         <member name="M:funclib.Components.Core.Time.#ctor(funclib.Components.Core.Generic.IFunction{System.Object})">
             <summary>
-            Evaluates the <see cref="T:funclib.Components.Core.Generic.IFunction`1"/> and prints the time it took. 
+            Evaluates the <see cref="T:funclib.Components.Core.Generic.IFunction`1"/> and prints the time it took.
             Returns the value of <see cref="T:funclib.Components.Core.Generic.IFunction`1"/>.
             </summary>
             <param name="fn">A function to be executed.</param>
         </member>
         <member name="M:funclib.Components.Core.Time.Invoke">
             <summary>
-            Evaluates the <see cref="T:funclib.Components.Core.Generic.IFunction`1"/> and prints the time it took. 
+            Evaluates the <see cref="T:funclib.Components.Core.Generic.IFunction`1"/> and prints the time it took.
             Returns the value of <see cref="T:funclib.Components.Core.Generic.IFunction`1"/>.
             </summary>
             <returns>
@@ -6101,18 +6101,18 @@
         </member>
         <member name="T:funclib.Components.Core.ToArray">
             <summary>
-            Returns an <see cref="!:object[]"/> containing the contents of coll, which 
+            Returns an <see cref="!:object[]"/> containing the contents of coll, which
             can be any collection.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.ToArray.Invoke(System.Object)">
             <summary>
-            Returns an <see cref="!:object[]"/> containing the contents of coll, which 
+            Returns an <see cref="!:object[]"/> containing the contents of coll, which
             can be any collection.
             </summary>
             <param name="coll">A collection of items to convert into an object.</param>
             <returns>
-            Returns an <see cref="!:object[]"/> containing the contents of coll, which 
+            Returns an <see cref="!:object[]"/> containing the contents of coll, which
             can be any collection. Returns empty <see cref="!:object[]"/> if coll is null.
             </returns>
         </member>
@@ -6161,8 +6161,8 @@
             Reduce with a transformation of f (xf). If init is not supplied <see cref="T:funclib.Components.Core.Generic.IFunction`1"/> is
             called to produce it. f should be a reducing step function that accepts both 1 and 2 arguments, if
             it accepts only 2 you can add the arity-1 with <see cref="T:funclib.Components.Core.Completing"/>. Returns the result of
-            applying (thre transformed) xf to init and the funclib.Core.First( item in coll, then applying xf to the result 
-            of the 2nd item, etc. If coll contains no items, returns init and f is not called. Note: that 
+            applying (thetransformed) xf to init and the funclib.Core.First( item in coll, then applying xf to the result
+            of the 2nd item, etc. If coll contains no items, returns init and f is not called. Note: that
             certain transforms my inject or skip items.
             </summary>
         </member>
@@ -6172,15 +6172,15 @@
             Reduce with a transformation of f (xf). If init is not supplied <see cref="T:funclib.Components.Core.Generic.IFunction`1"/> is
             called to produce it. f should be a reducing step function that accepts both 1 and 2 arguments, if
             it accepts only 2 you can add the arity-1 with <see cref="T:funclib.Components.Core.Completing"/>. Returns the result of
-            applying (thre transformed) xf to init and the funclib.Core.First( item in coll, then applying xf to the result 
-            of the 2nd item, etc. If coll contains no items, returns init and f is not called. Note: that 
+            applying (thetransformed) xf to init and the funclib.Core.First( item in coll, then applying xf to the result
+            of the 2nd item, etc. If coll contains no items, returns init and f is not called. Note: that
             certain transforms my inject or skip items.
             </summary>
             <param name="xform">An object that implements the <see cref="T:funclib.Components.Core.Generic.IFunction`2"/> interface.</param>
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
             <param name="coll">A collection of items to reduce.</param>
             <returns>
-            Returns the result of applying (thre transformed) xf to init and the funclib.Core.First( item in coll, then applying 
+            Returns the result of applying (thetransformed) xf to init and the funclib.Core.First( item in coll, then applying
             xf to the result of the 2nd item, etc. If coll contains no items, returns init and f is not called.
             </returns>
         </member>
@@ -6190,8 +6190,8 @@
             Reduce with a transformation of f (xf). If init is not supplied <see cref="T:funclib.Components.Core.Generic.IFunction`1"/> is
             called to produce it. f should be a reducing step function that accepts both 1 and 2 arguments, if
             it accepts only 2 you can add the arity-1 with <see cref="T:funclib.Components.Core.Completing"/>. Returns the result of
-            applying (thre transformed) xf to init and the funclib.Core.First( item in coll, then applying xf to the result 
-            of the 2nd item, etc. If coll contains no items, returns init and f is not called. Note: that 
+            applying (thetransformed) xf to init and the funclib.Core.First( item in coll, then applying xf to the result
+            of the 2nd item, etc. If coll contains no items, returns init and f is not called. Note: that
             certain transforms my inject or skip items.
             </summary>
             <param name="xform">An object that implements the <see cref="T:funclib.Components.Core.Generic.IFunction`2"/> interface.</param>
@@ -6199,7 +6199,7 @@
             <param name="init">The initial seed value.</param>
             <param name="coll">A collection of items to reduce.</param>
             <returns>
-            Returns the result of applying (thre transformed) xf to init and the funclib.Core.First( item in coll, then applying 
+            Returns the result of applying (thetransformed) xf to init and the funclib.Core.First( item in coll, then applying
             xf to the result of the 2nd item, etc. If coll contains no items, returns init and f is not called.
             </returns>
         </member>
@@ -6231,7 +6231,7 @@
             <param name="children">An object that implements <see cref="T:funclib.Components.Core.Generic.IFunction`2"/> interface that returns a sequence of the children.</param>
             <param name="root">An object for the root node of the tree.</param>
             <returns>
-            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of the nodes in a tree. 
+            Returns a <see cref="T:funclib.Components.Core.LazySeq"/> of the nodes in a tree.
             </returns>
         </member>
         <member name="T:funclib.Components.Core.Truthy">
@@ -6271,34 +6271,34 @@
         <member name="T:funclib.Components.Core.Update">
             <summary>
             'Updates' a value in an <see cref="T:funclib.Collections.IAssociative"/> structure. where k is a key and f is
-            a <see cref="T:funclib.Components.Core.IFunction"/> that will take the old value and any supplied args and return 
-            a new value, and returns a new structure. If the key does not exists, null is passed as 
+            a <see cref="T:funclib.Components.Core.IFunction"/> that will take the old value and any supplied args and return
+            a new value, and returns a new structure. If the key does not exists, null is passed as
             the old value.
             </summary>
         </member>
         <member name="M:funclib.Components.Core.Update.Invoke(System.Object,System.Object,System.Object)">
             <summary>
             'Updates' a value in an <see cref="T:funclib.Collections.IAssociative"/> structure. where k is a key and f is
-            a <see cref="T:funclib.Components.Core.IFunction"/> that will take the old value and any supplied args and return 
-            a new value, and returns a new structure. If the key does not exists, null is passed as 
-            the old value.        
+            a <see cref="T:funclib.Components.Core.IFunction"/> that will take the old value and any supplied args and return
+            a new value, and returns a new structure. If the key does not exists, null is passed as
+            the old value.
             </summary>
             <param name="m">An object that implements the <see cref="T:funclib.Collections.IAssociative"/> interface.</param>
             <param name="k">The key for the value to update.</param>
             <param name="f">A <see cref="T:funclib.Components.Core.IFunction"/> that takes the old value and any additional args and outputs the new value for the key.</param>
             <returns>
             'Updates' a value in an <see cref="T:funclib.Collections.IAssociative"/> structure. where k is a key and f is
-            a <see cref="T:funclib.Components.Core.IFunction"/> that will take the old value and any supplied args and return 
-            a new value, and returns a new structure. If the key does not exists, null is passed as 
-            the old value. 
+            a <see cref="T:funclib.Components.Core.IFunction"/> that will take the old value and any supplied args and return
+            a new value, and returns a new structure. If the key does not exists, null is passed as
+            the old value.
             </returns>
         </member>
         <member name="M:funclib.Components.Core.Update.Invoke(System.Object,System.Object,System.Object,System.Object)">
             <summary>
             'Updates' a value in an <see cref="T:funclib.Collections.IAssociative"/> structure. where k is a key and f is
-            a <see cref="T:funclib.Components.Core.IFunction"/> that will take the old value and any supplied args and return 
-            a new value, and returns a new structure. If the key does not exists, null is passed as 
-            the old value.   
+            a <see cref="T:funclib.Components.Core.IFunction"/> that will take the old value and any supplied args and return
+            a new value, and returns a new structure. If the key does not exists, null is passed as
+            the old value.
             </summary>
             <param name="m">An object that implements the <see cref="T:funclib.Collections.IAssociative"/> interface.</param>
             <param name="k">The key for the value to update.</param>
@@ -6306,17 +6306,17 @@
             <param name="x">Second argument to the passed in function.</param>
             <returns>
             'Updates' a value in an <see cref="T:funclib.Collections.IAssociative"/> structure. where k is a key and f is
-            a <see cref="T:funclib.Components.Core.IFunction"/> that will take the old value and any supplied args and return 
-            a new value, and returns a new structure. If the key does not exists, null is passed as 
-            the old value.  
+            a <see cref="T:funclib.Components.Core.IFunction"/> that will take the old value and any supplied args and return
+            a new value, and returns a new structure. If the key does not exists, null is passed as
+            the old value.
             </returns>
         </member>
         <member name="M:funclib.Components.Core.Update.Invoke(System.Object,System.Object,System.Object,System.Object,System.Object)">
             <summary>
             'Updates' a value in an <see cref="T:funclib.Collections.IAssociative"/> structure. where k is a key and f is
-            a <see cref="T:funclib.Components.Core.IFunction"/> that will take the old value and any supplied args and return 
-            a new value, and returns a new structure. If the key does not exists, null is passed as 
-            the old value.   
+            a <see cref="T:funclib.Components.Core.IFunction"/> that will take the old value and any supplied args and return
+            a new value, and returns a new structure. If the key does not exists, null is passed as
+            the old value.
             </summary>
             <param name="m">An object that implements the <see cref="T:funclib.Collections.IAssociative"/> interface.</param>
             <param name="k">The key for the value to update.</param>
@@ -6325,17 +6325,17 @@
             <param name="y">Third argument to the passed in function.</param>
             <returns>
             'Updates' a value in an <see cref="T:funclib.Collections.IAssociative"/> structure. where k is a key and f is
-            a <see cref="T:funclib.Components.Core.IFunction"/> that will take the old value and any supplied args and return 
-            a new value, and returns a new structure. If the key does not exists, null is passed as 
-            the old value.   
+            a <see cref="T:funclib.Components.Core.IFunction"/> that will take the old value and any supplied args and return
+            a new value, and returns a new structure. If the key does not exists, null is passed as
+            the old value.
             </returns>
         </member>
         <member name="M:funclib.Components.Core.Update.Invoke(System.Object,System.Object,System.Object,System.Object,System.Object,System.Object)">
             <summary>
             'Updates' a value in an <see cref="T:funclib.Collections.IAssociative"/> structure. where k is a key and f is
-            a <see cref="T:funclib.Components.Core.IFunction"/> that will take the old value and any supplied args and return 
-            a new value, and returns a new structure. If the key does not exists, null is passed as 
-            the old value.   
+            a <see cref="T:funclib.Components.Core.IFunction"/> that will take the old value and any supplied args and return
+            a new value, and returns a new structure. If the key does not exists, null is passed as
+            the old value.
             </summary>
             <param name="m">An object that implements the <see cref="T:funclib.Collections.IAssociative"/> interface.</param>
             <param name="k">The key for the value to update.</param>
@@ -6345,17 +6345,17 @@
             <param name="z">Fourth argument to the passed in function.</param>
             <returns>
             'Updates' a value in an <see cref="T:funclib.Collections.IAssociative"/> structure. where k is a key and f is
-            a <see cref="T:funclib.Components.Core.IFunction"/> that will take the old value and any supplied args and return 
-            a new value, and returns a new structure. If the key does not exists, null is passed as 
-            the old value.  
+            a <see cref="T:funclib.Components.Core.IFunction"/> that will take the old value and any supplied args and return
+            a new value, and returns a new structure. If the key does not exists, null is passed as
+            the old value.
             </returns>
         </member>
         <member name="M:funclib.Components.Core.Update.Invoke(System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object[])">
             <summary>
             'Updates' a value in an <see cref="T:funclib.Collections.IAssociative"/> structure. where k is a key and f is
-            a <see cref="T:funclib.Components.Core.IFunction"/> that will take the old value and any supplied args and return 
-            a new value, and returns a new structure. If the key does not exists, null is passed as 
-            the old value.   
+            a <see cref="T:funclib.Components.Core.IFunction"/> that will take the old value and any supplied args and return
+            a new value, and returns a new structure. If the key does not exists, null is passed as
+            the old value.
             </summary>
             <param name="m">An object that implements the <see cref="T:funclib.Collections.IAssociative"/> interface.</param>
             <param name="k">The key for the value to update.</param>
@@ -6366,9 +6366,9 @@
             <param name="more">Rest of the arguments to the passed in function.</param>
             <returns>
             'Updates' a value in an <see cref="T:funclib.Collections.IAssociative"/> structure. where k is a key and f is
-            a <see cref="T:funclib.Components.Core.IFunction"/> that will take the old value and any supplied args and return 
-            a new value, and returns a new structure. If the key does not exists, null is passed as 
-            the old value. 
+            a <see cref="T:funclib.Components.Core.IFunction"/> that will take the old value and any supplied args and return
+            a new value, and returns a new structure. If the key does not exists, null is passed as
+            the old value.
             </returns>
         </member>
         <member name="T:funclib.Components.Core.UpdateIn">
@@ -6586,13 +6586,13 @@
         </member>
         <member name="T:funclib.Components.Core.VResetǃ">
             <summary>
-            Sets the value of <see cref="T:funclib.Components.Core.Volatileǃ"/> to a new value without 
+            Sets the value of <see cref="T:funclib.Components.Core.Volatileǃ"/> to a new value without
             regard for the current value
             </summary>
         </member>
         <member name="M:funclib.Components.Core.VResetǃ.Invoke(System.Object,System.Object)">
             <summary>
-            Sets the value of <see cref="T:funclib.Components.Core.Volatileǃ"/> to a newValue without 
+            Sets the value of <see cref="T:funclib.Components.Core.Volatileǃ"/> to a newValue without
             regard for the current value
             </summary>
             <param name="vol">A <see cref="T:funclib.Components.Core.Volatileǃ"/> object</param>
@@ -7345,7 +7345,7 @@
              - <see cref="!:ITransientSet"/>
              - <see cref="!:ITransientAssociative"/>
              - <see cref="T:funclib.Collections.ISet"/>
-            
+
              <code>key</code> needs to be an <see cref="T:System.Int32"/> if coll is either a <see cref="T:System.String"/> or <see cref="T:System.Array"/>.
              </remarks>
              <returns>
@@ -9237,19 +9237,19 @@
         </member>
         <member name="P:funclib.Core.iterate">
             <summary>
-            Returns a <see cref="M:funclib.Core.LazySeq"/> of x, f.Invoke(x), f.Invoke(f.Inovke(x))...
+            Returns a <see cref="M:funclib.Core.LazySeq"/> of x, f.Invoke(x), f.Invoke(f.Invoke(x))...
             f must be free of side-effects.
             </summary>
         </member>
         <member name="M:funclib.Core.Iterate(System.Object,System.Object)">
             <summary>
-            Returns a <see cref="M:funclib.Core.LazySeq"/> of x, f.Invoke(x), f.Invoke(f.Inovke(x))...
+            Returns a <see cref="M:funclib.Core.LazySeq"/> of x, f.Invoke(x), f.Invoke(f.Invoke(x))...
             f must be free of side-effects.
             </summary>
             <param name="f">An object that implements <see cref="T:funclib.Components.Core.Generic.IFunction`2"/> interface.</param>
             <param name="x">First object of sequence.</param>
             <returns>
-            Returns a <see cref="M:funclib.Core.LazySeq"/> of x, f.Invoke(x), f.Invoke(f.Inovke(x))...
+            Returns a <see cref="M:funclib.Core.LazySeq"/> of x, f.Invoke(x), f.Invoke(f.Invoke(x))...
             f must be free of side-effects.
             </returns>
         </member>
@@ -11505,7 +11505,7 @@
             Reduce with a transformation of f (xf). If init is not supplied <see cref="T:funclib.Components.Core.Generic.IFunction`1"/> is
             called to produce it. f should be a reducing step function that accepts both 1 and 2 arguments, if
             it accepts only 2 you can add the arity-1 with <see cref="M:funclib.Core.Completing(System.Object)"/>. Returns the result of
-            applying (thre transformed) xf to init and the funclib.Core.First( item in coll, then applying xf to the result
+            applying (thetransformed) xf to init and the funclib.Core.First( item in coll, then applying xf to the result
             of the 2nd item, etc. If coll contains no items, returns init and f is not called. Note: that
             certain transforms my inject or skip items.
             </summary>
@@ -11516,7 +11516,7 @@
             Reduce with a transformation of f (xf). If init is not supplied <see cref="T:funclib.Components.Core.Generic.IFunction`1"/> is
             called to produce it. f should be a reducing step function that accepts both 1 and 2 arguments, if
             it accepts only 2 you can add the arity-1 with <see cref="M:funclib.Core.Completing(System.Object)"/>. Returns the result of
-            applying (thre transformed) xf to init and the funclib.Core.First( item in coll, then applying xf to the result
+            applying (thetransformed) xf to init and the funclib.Core.First( item in coll, then applying xf to the result
             of the 2nd item, etc. If coll contains no items, returns init and f is not called. Note: that
             certain transforms my inject or skip items.
             </summary>
@@ -11524,7 +11524,7 @@
             <param name="f">An object that implements the <see cref="T:funclib.Components.Core.IFunction"/> interface.</param>
             <param name="coll">A collection of items to reduce.</param>
             <returns>
-            Returns the result of applying (thre transformed) xf to init and the funclib.Core.First( item in coll, then applying
+            Returns the result of applying (thetransformed) xf to init and the funclib.Core.First( item in coll, then applying
             xf to the result of the 2nd item, etc. If coll contains no items, returns init and f is not called.
             </returns>
         </member>
@@ -11534,7 +11534,7 @@
             Reduce with a transformation of f (xf). If init is not supplied <see cref="T:funclib.Components.Core.Generic.IFunction`1"/> is
             called to produce it. f should be a reducing step function that accepts both 1 and 2 arguments, if
             it accepts only 2 you can add the arity-1 with <see cref="M:funclib.Core.Completing(System.Object)"/>. Returns the result of
-            applying (thre transformed) xf to init and the funclib.Core.First( item in coll, then applying xf to the result
+            applying (thetransformed) xf to init and the funclib.Core.First( item in coll, then applying xf to the result
             of the 2nd item, etc. If coll contains no items, returns init and f is not called. Note: that
             certain transforms my inject or skip items.
             </summary>
@@ -11543,7 +11543,7 @@
             <param name="init">The initial seed value.</param>
             <param name="coll">A collection of items to reduce.</param>
             <returns>
-            Returns the result of applying (thre transformed) xf to init and the funclib.Core.First( item in coll, then applying
+            Returns the result of applying (thetransformed) xf to init and the funclib.Core.First( item in coll, then applying
             xf to the result of the 2nd item, etc. If coll contains no items, returns init and f is not called.
             </returns>
         </member>

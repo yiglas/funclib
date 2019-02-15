@@ -41,7 +41,7 @@ namespace funclib.Components.Core
             if ((bool)Invoke(x, y))
             {
                 var n = funclib.Core.Next(more);
-                if ((bool)funclib.Core.Truthy(n))
+                if (funclib.Core.T(n))
                     return Invoke(y, funclib.Core.First(more), (object[])funclib.Core.ToArray(n));
 
                 return Invoke(y, funclib.Core.First(more));
