@@ -3,17 +3,5 @@
 // Use hover for the description of the existing attributes
 // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
 "version": "0.2.0",
-"configurations": [
-    {
-        "name": "Generator",
-        "type": "coreclr",
-        "request": "launch",
-        "preLaunchTask": "build code-generator",
-        "program": "${workspaceFolder}/generators/CoreGenerator/bin/Debug/netcoreapp2.1/CoreGenerator.dll",
-        "args": [],
-        "externalConsole": false,
-        "stopAtEntry": false,
-        "internalConsoleOptions": "openOnSessionStart"
-    },
-    ]
+"configurations": []
 }

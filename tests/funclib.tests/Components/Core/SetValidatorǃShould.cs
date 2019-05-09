@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using funclib.Components.Core.Generic;
+using NUnit.Framework;
 
 namespace funclib.Tests.Components.Core
 {
@@ -21,7 +22,7 @@ namespace funclib.Tests.Components.Core
             var validator = funclib.Core.GetValidator(atm);
 
             Assert.IsNotNull(validator);
-            Assert.IsInstanceOf<funclib.Components.Core.IFunction>(validator);
+            Assert.IsInstanceOf<IFunction>(validator);
         }
     }
 }
