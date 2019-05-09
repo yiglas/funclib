@@ -108,7 +108,7 @@ namespace funclib.Components.Core
 
         protected internal static void Validate(IFunction vf, object val)
         {
-            if (vf == null) return;
+            if (vf is null) return;
             bool ret = false;
 
             try

@@ -91,7 +91,7 @@ namespace funclib.Components.Core
                 .OrderByDescending(x => x.ParameterCount)
                 .FirstOrDefault();
 
-            if (fn == null || (fn.ParameterCount - 1 < cnt && !(f is IFunctionParams)))
+            if (fn is null || (fn.ParameterCount - 1 < cnt && !(f is IFunctionParams)))
                 throw new ArityException(cnt, f.GetType().FullName);
 
             return ApplyTo(fn.InterfaceType, f, (ISeq)args);
