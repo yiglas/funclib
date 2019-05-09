@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace funclib.Components.Core
+namespace funclib.Components.Core.Generic
 {
     public interface IFunction
     {
