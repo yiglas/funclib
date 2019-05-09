@@ -1,11 +1,7 @@
 language: csharp
-dist: trusty
 mono: none
-dotnet: 2.1
-
-install:
- - dotnet restore
-
+dotnet: 2.0.0
 script:
- - dotnet build src/funclib/funclib.csproj
- - dotnet test tests/funclib.tests/funclib.Tests.csproj
+  - dotnet restore
+  - dotnet build
+  - dotnet test
