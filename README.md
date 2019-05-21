@@ -1,4 +1,5 @@
 ﻿[![License](https://img.shields.io/badge/License-EPL%201.0-red.svg)](https://opensource.org/licenses/EPL-1.0)
+![Build](https://travis-ci.org/yiglas/funclib.svg?branch=master)
 
 # funclib
 
@@ -7,15 +8,15 @@ Functional Library for C# that follows the Clojure idiom.
 
 
 1. This style forces you to follow the Single Responsibility method.
-2. lower case method name to make calling the functions 
+2. lower case method name to make calling the functions
 3. Upper case names for classes
-4. list of functions 
+4. list of functions
 5. how to add your own functions.
 
 
 # Funcitons
 
-Each function has two different access methods. 
+Each function has two different access methods.
 
 The funclib.Core.First( method is the standard C# naming style:
 ```csharp
@@ -39,7 +40,7 @@ From the example above there are a few things to note.
 
 1. Using a C# 6 feature: `using static`. This feature allows you to remove a explicit reference to the type when invoking a static method.
 
-2. The use of the lower case function name for `map`. To distinguish between the different functions and the instantiation of the 
+2. The use of the lower case function name for `map`. To distinguish between the different functions and the instantiation of the
 function's class, I choose to use lower case function name. I am still trying to figure out if using lower case for methods or I should
 flip it to be upper case for methods and lower case for properties. If anyone has any suggests as to why please let me know.
 
@@ -60,7 +61,7 @@ flip it to be upper case for methods and lower case for properties. If anyone ha
 	- case
 	- cond
 	- cond thread
-	- if not 
+	- if not
 	- if some
 	- keep indexed
 	- slurp
@@ -71,7 +72,7 @@ flip it to be upper case for methods and lower case for properties. If anyone ha
 Non-Pure methods (methods that have side effects) should be suffixed with at http://www.fileformat.info/info/unicode/char/01c3/index.htm character.
 
 # Other possible characters
-http://www.fileformat.info/info/unicode/char/1405/index.htm 
+http://www.fileformat.info/info/unicode/char/1405/index.htm
 http://www.fileformat.info/info/unicode/char/1433/index.htm
 http://www.fileformat.info/info/unicode/char/2d67/index.htm
 http://www.fileformat.info/info/unicode/char/ffda/index.htm

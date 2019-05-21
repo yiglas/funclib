@@ -2,16 +2,6 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build code-generator",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "build",
-                "${workspaceFolder}/generators/CoreGenerator/CoreGenerator.csproj"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
             "label": "test",
             "command": "dotnet",
             "type": "process",

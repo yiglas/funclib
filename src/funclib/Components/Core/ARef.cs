@@ -4,7 +4,7 @@ using System;
 
 namespace funclib.Components.Core
 {
-    public abstract class ARef : 
+    public abstract class ARef :
         IRef
     {
         protected volatile IFunction _validator = null;
@@ -23,7 +23,7 @@ namespace funclib.Components.Core
 
         #region Virtual Methods
         /// <summary>
-        /// Sets the validator function for <see cref="IRef"/> variables. Validator 
+        /// Sets the validator function for <see cref="IRef"/> variables. Validator
         /// function must be null or a side-effect-free <see cref="IFunction"/> of
         /// one argument, which will be passed the intended new state of any state
         /// change. If the new state is unacceptable, the function should either
@@ -59,8 +59,8 @@ namespace funclib.Components.Core
         /// and take 4 arguments. The key, the reference, its old-state and its new
         /// state. Whenever the <see cref="IRef"/>'s state changes all registered
         /// watches will be called. The functions will be synchronously called. Note:
-        /// an <see cref="IAtom"/>'s state may have changed prior to calling the 
-        /// function so use th old/new state argument instead of deref'ing the 
+        /// an <see cref="IAtom"/>'s state may have changed prior to calling the
+        /// function so use th old/new state argument instead of deref'ing the
         /// state again.
         /// </summary>
         /// <param name="key">A unique key for the function.</param>
@@ -108,7 +108,7 @@ namespace funclib.Components.Core
 
         protected internal static void Validate(IFunction vf, object val)
         {
-            if (vf == null) return;
+            if (vf is null) return;
             bool ret = false;
 
             try

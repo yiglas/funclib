@@ -54,9 +54,9 @@ namespace funclib.Components.Core
         {
             if (funclib.Core.T(x) && (next?.Any() ?? false))
             {
-                return Invoke(next[0], next.Skip(1));
+                return Invoke(next[0], next.Skip(1).ToArray());
             }
-            
+
             return x;
         }
     }

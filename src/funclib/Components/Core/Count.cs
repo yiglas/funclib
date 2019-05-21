@@ -28,11 +28,11 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns an <see cref="int"/> of the number of items in the collection.
         /// </returns>
-        public object Invoke(object coll) 
+        public object Invoke(object coll)
         {
             if (coll is ICounted c)
                 return c.Count;
-            
+
             return CountFrom(Ret(coll, coll is null));
         }
 
@@ -40,7 +40,7 @@ namespace funclib.Components.Core
         {
             switch (coll)
             {
-                case null: 
+                case null:
                     return 0;
                 case System.Collections.DictionaryEntry d:
                 case KeyValuePair kvp:
@@ -49,6 +49,8 @@ namespace funclib.Components.Core
                     return CountCollection(coll);
                 case System.Collections.ICollection c:
                     return c.Count;
+                case string s:
+                    return s.Length;
             }
 
             throw new InvalidOperationException($"Count not supported on this type: {coll.GetType().FullName}");

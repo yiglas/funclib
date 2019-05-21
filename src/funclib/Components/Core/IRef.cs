@@ -25,7 +25,7 @@ namespace funclib.Components.Core
         /// Returns the current watches and their functions.
         /// </summary>
         /// <returns>
-        /// Returns a <see cref="IMap"/> with the key/value pair being set to the name of the 
+        /// Returns a <see cref="IMap"/> with the key/value pair being set to the name of the
         /// watch and the function to execute.
         /// </returns>
         IMap GetWatches();
