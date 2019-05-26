@@ -2,43 +2,51 @@ using funclib.Collections.Generic;
 
 namespace funclib.Components.Core.Generic
 {
-    public class First<T> :
-        IFunction<ASeq<T>, T>,
-    //   IFunction<LazySeq<T>, T>,
-        IFunction<ISeqable<T>, T>,
-        IFunction<T[], T>,
-        IFunction<System.Collections.Generic.IEnumerable<T>, T>,
-        IFunction<string, char>
+    public partial class Stuff
     {
-        public T Invoke(ASeq<T> coll)
+        public static T First<T>(ASeq<T> coll)
         {
             if (coll is null)
+            {
                 return default;
+            }
 
             return coll.First();
         }
 
-        public T Invoke(T[] coll) 
+        public static T First<T>(T[] coll)
         {
-            var seq = funclib.Generic.Core.Seq(coll);
+            var seq = Seq(coll);
+
             if (seq is null)
+            {
                 return default;
+            }
+
             return seq.First();
         }
 
-        public T Invoke(System.Collections.Generic.IEnumerable<T> coll)
+        public static T First<T>(System.Collections.Generic.IEnumerable<T> coll)
         {
-            var seq = funclib.Generic.Core.Seq(coll);
+            var seq = Seq(coll);
+
             if (seq is null)
+            {
                 return default;
+            }
+
             return seq.First();
         }
 
-        public T Invoke(ISeqable<T> coll)
+        public static T First<T>(ISeqable<T> coll)
         {
-            var seq = funclib.Generic.Core.Seq(coll);
+            var seq = Seq(coll);
+
             if (seq is null)
+            {
                 return default;
+            }
+
             return seq.First();
         }
 
@@ -47,12 +55,16 @@ namespace funclib.Components.Core.Generic
         //     throw new System.NotImplementedException();
         // }
 
-        public char Invoke(string coll)
+        public static char First<T>(string coll)
         {
-            var seq = funclib.Generic.Core.Seq(coll);
+            var seq = Seq(coll);
+
             if (seq is null)
+            {
                 return default;
+            }
+
             return seq.First();
         }
-  }
+    }
 }

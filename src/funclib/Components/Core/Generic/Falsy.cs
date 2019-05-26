@@ -1,16 +1,16 @@
 namespace funclib.Components.Core.Generic
 {
-    public class Falsy<T> :
-        IFunction<T, bool>
+    public partial class Stuff
     {
-        public bool Invoke(T source)
+        public static bool Falsy(bool source) => !source;
+        public static bool Falsy<T>(T source)
         {
             if (source == null)
+            {
                 return true;
-            else if (source is bool b)
-                return !b;
-            else 
-                return false;
+            }
+
+            return true;
         }
     }
 }
