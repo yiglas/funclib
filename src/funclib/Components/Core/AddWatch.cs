@@ -34,6 +34,9 @@ namespace funclib.Components.Core
         /// <returns>
         /// Returns the <see cref="ARef"/> object.
         /// </returns>
-        public object Invoke(object @ref, object key, object fn) => ((IRef)@ref).AddWatch(key, (IFunction)fn);
+        public object Invoke(object @ref, object key, object fn)
+        {
+            return ((IRef)@ref).AddWatch(key, (IFunction)fn);
+        }
     }
 }

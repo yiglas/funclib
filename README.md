@@ -5,8 +5,6 @@
 
 Functional Library for C# that follows the Clojure idiom.
 
-
-
 1. This style forces you to follow the Single Responsibility method.
 2. lower case method name to make calling the functions
 3. Upper case names for classes
