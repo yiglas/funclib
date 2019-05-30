@@ -30,5 +30,7 @@ namespace funclib.Generic
         public static ISeq<T> Seq<T>(System.Collections.Generic.IEnumerable<T> coll) => Core<T>.seq.Invoke(coll);
         public static ISeq<T> Seq<T>(params T[] coll) => Core<T>.seq.Invoke(coll);
         public static ISeq<T> Seq<T>(T coll) => Core<T>.seq.Invoke(coll);
+
+        public static Function<T> Func<T>(Func<T> x) => new Function<T>(x);
     }
 }
