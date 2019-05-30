@@ -9,7 +9,7 @@ namespace funclib.Components.Core
     /// Returns the value of <see cref="IFunction{TResult}"/>.
     /// </summary>
     public class Time :
-        IMacroFunction
+        IMacroFunction<object>
     {
         IFunction<object> _func;
 

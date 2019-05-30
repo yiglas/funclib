@@ -8,7 +8,7 @@ namespace funclib.Components.Core
     /// thread is already executing it.
     /// </summary>
     public class Locking :
-        IMacroFunction
+        IMacroFunction<object>
     {
         object _locker;
         IFunction<object> _func;

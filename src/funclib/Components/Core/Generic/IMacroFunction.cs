@@ -2,8 +2,8 @@
 
 namespace funclib.Components.Core
 {
-    public interface IMacroFunction :
-        IFunction<object>
+    public interface IMacroFunction<T> :
+        IFunction<T>
     {
         // empty
     }

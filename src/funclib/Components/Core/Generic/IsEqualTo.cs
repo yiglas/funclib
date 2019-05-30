@@ -3,7 +3,7 @@
 namespace funclib.Components.Core.Generic
 {
 
-    public partial class Stuff
+    public static partial class Stuff
     {
         public static bool IsEqualTo<T>(T x) => true;
 
@@ -28,6 +28,7 @@ namespace funclib.Components.Core.Generic
         IFunction<T, T, bool>
     {
         public bool Invoke(T x) => true;
+
         public bool Invoke(T x, T y)
         {
             if (x != null)

@@ -1,51 +1,52 @@
 ﻿using funclib.Collections.Generic;
+using funclib.Collections.Generic.Internal;
 using System;
 
 namespace funclib.Components.Core.Generic
 {
-    public partial class Stuff
+    public class Seq<T> :
+        IFunction<ASeq<T>, ISeq<T>>,
+        IFunction<ISeqable<T>, ISeq<T>>,
+        IFunction<T, ISeq<T>>,
+        IFunctionParams<T, ISeq<T>>,
+        IFunction<System.Collections.Generic.IEnumerable<T>, ISeq<T>>
     {
-        public static ISeq<T> Seq<T>(ASeq<T> coll) => coll;
-        public static ISeq<T> Seq<T>(ISeq<T> coll) => coll;
+        public ISeq<T> Invoke(ASeq<T> coll) => coll;
 
-        public static ISeq<T> Seq<T>(ISeqable<T> coll)
+        public ISeq<T> Invoke(ISeqable<T> coll) => coll?.Seq();
+
+        public ISeq<T> Invoke(T coll)
         {
-            if (coll is null)
-            {
-                return null;
-            }
-
-            return coll.Seq();
+            throw new NotImplementedException();
         }
 
-        public static ISeq<T> Seq<T>(params T[] coll)
+        public ISeq<T> Invoke(params T[] coll)
         {
             if (coll is null)
             {
                 return null;
             }
 
-            throw new System.NotImplementedException();
+            return ArraySeq<T>.Create(coll);
         }
 
-        public static ISeq<T> Seq<T>(System.Collections.Generic.IEnumerable<T> coll)
+        public ISeq<T> Invoke(System.Collections.Generic.IEnumerable<T> coll)
         {
-            if (coll is null)
-            {
-                return null;
-            }
-
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
+    }
 
-        public static ISeq<char> Seq(string coll)
+    public class Seq :
+        IFunction<string, ISeq<char>>
+    {
+        public ISeq<char> Invoke(string coll)
         {
             if (coll is null)
             {
                 return null;
             }
 
-            throw new System.NotImplementedException();
+            return StringSeq.Create(s);
         }
     }
 }

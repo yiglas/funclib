@@ -1,6 +1,6 @@
 namespace funclib.Components.Core.Generic
 {
-    public partial class Stuff
+    public static partial class Stuff
     {
         public static bool Falsy(bool source) => !source;
         public static bool Falsy<T>(T source)

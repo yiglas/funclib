@@ -2,11 +2,12 @@ using System;
 
 namespace funclib.Components.Core.Generic
 {
-    public partial class Stuff
+    public class Compare<T> :
+        IFunction<T, T, int>
     {
-        public static int Compare<T>(T x, T y)
+        public int Invoke(T x, T y)
         {
-            if (IsEqualTo(x, y)) return 0;
+            if (funclib.Generic.Core.IsEqualTo(x, y)) return 0;
             if (x is object)
             {
                 if (!(y is object)) return 1;

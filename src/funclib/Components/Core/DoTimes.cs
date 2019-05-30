@@ -7,7 +7,7 @@ namespace funclib.Components.Core
     /// Repeatedly execute body (presumably for side-effects).
     /// </summary>
     public class DoTimes :
-        IMacroFunction
+        IMacroFunction<object>
     {
         readonly int _n;
         readonly IFunction<object, object> _func;

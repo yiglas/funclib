@@ -22,12 +22,12 @@ namespace funclib.Collections.Generic
             set => throw new NotImplementedException();
         }
 
-        public override IVector<IKeyValuePair<TKey, TValue>> Assoc
+        // public override IVector<IKeyValuePair<TKey, TValue>> Assoc
         #endregion
 
         IVector<IKeyValuePair<TKey, TValue>> ToVector(TKey key, TValue value)
         {
-            
+            throw new NotImplementedException();
         }
     }
 }

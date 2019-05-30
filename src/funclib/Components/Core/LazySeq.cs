@@ -11,7 +11,7 @@ namespace funclib.Components.Core
     /// is called, and will cache the result and return it on all subsequent <see cref="LazySeq.Seq"/> calls.
     /// </summary>
     public class LazySeq :
-        IMacroFunction,
+        IMacroFunction<object>,
         ISeq,
         IPending,
         ISequential,

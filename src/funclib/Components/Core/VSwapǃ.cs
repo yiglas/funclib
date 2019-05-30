@@ -6,7 +6,7 @@ namespace funclib.Components.Core
     /// Non-atomically swaps the value of volatile.
     /// </summary>
     public class VSwapǃ :
-        IMacroFunction
+        IMacroFunction<object>
     {
         Volatileǃ _v;
         object _f;

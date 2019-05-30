@@ -6,7 +6,7 @@ namespace funclib.Components.Core.Generic
     //     public bool Invoke(T source) => !funclib.Generic.Core.Falsy(source);
     // }
 
-    public partial class Stuff
+    public static partial class Stuff
     {
         public static bool Truthy(bool source) => !Falsy(source);
         public static bool Truthy<T>(T source) => !Falsy(source);
