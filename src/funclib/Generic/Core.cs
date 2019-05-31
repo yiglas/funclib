@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using funclib.Collections.Generic;
 using funclib.Components.Core.Generic;
+using System;
 
 namespace funclib.Generic
 {
@@ -13,6 +9,8 @@ namespace funclib.Generic
         public static Compare<T> compare => new Compare<T>();
         public static And<T> and => new And<T>();
         public static Seq<T> seq => new Seq<T>();
+        public static List<T> list => new List<T>();
+        public static Cons<T> cons => new Cons<T>();
     }
 
     public static class Core
@@ -25,10 +23,12 @@ namespace funclib.Generic
         public static bool And() => and.Invoke();
         public static T And<T>(T x) => Core<T>.and.Invoke(x);
         public static T And<T>(T x, T y) => Core<T>.and.Invoke(x, y);
-        public static ISeq<T> Seq<T>(ASeq<T> coll) => Core<T>.seq.Invoke(coll);
-        public static ISeq<T> Seq<T>(ISeq<T> coll) => Core<T>.seq.Invoke(coll);
-        public static ISeq<T> Seq<T>(System.Collections.Generic.IEnumerable<T> coll) => Core<T>.seq.Invoke(coll);
-        public static ISeq<T> Seq<T>(params T[] coll) => Core<T>.seq.Invoke(coll);
-        public static ISeq<T> Seq<T>(T coll) => Core<T>.seq.Invoke(coll);
+        public static Collections.Generic.ISeq<T> Seq<T>(Collections.Generic.ASeq<T> coll) => Core<T>.seq.Invoke(coll);
+        public static Collections.Generic.ISeq<T> Seq<T>(System.Collections.Generic.IEnumerable<T> coll) => Core<T>.seq.Invoke(coll);
+        public static Collections.Generic.ISeq<T> Seq<T>(params T[] coll) => Core<T>.seq.Invoke(coll);
+        public static Collections.Generic.ISeq<T> Seq<T>(T coll) => Core<T>.seq.Invoke(coll);
+        public static Function<T> Func<T>(Func<T> x) => new Function<T>(x);
+        public static Collections.Generic.IList<T> List<T>(params T[] items) => Core<T>.list.Invoke(items);
+        public static Collections.Generic.ISeq<T> Cons<T>(T x, Collections.Generic.ISeq<T> seq) => Core<T>.cons.Invoke(x, seq);
     }
 }
