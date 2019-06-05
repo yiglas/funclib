@@ -35,7 +35,8 @@
     "smap",
     "vals",
     "vresetǃ",
-    "xform"
+    "xform",
+    "enumerative"
   ],
   "files.exclude": {
     "**/.git": true,

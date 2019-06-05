@@ -5,6 +5,6 @@ namespace funclib.Components.Core.Generic
     public class IsNull<T> :
         IFunction<T, bool>
     {
-        public static bool Invoke(T x) => EqualityComparer<T>.Default.Equals(x, default);
+        public bool Invoke(T x) => EqualityComparer<T>.Default.Equals(x, default);
     }
 }

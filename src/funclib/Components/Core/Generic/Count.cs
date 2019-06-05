@@ -20,6 +20,7 @@ namespace funclib.Components.Core.Generic
     }
 
     public class Count<T> :
+        IFunction<T, int>,
         IFunction<ICollection<T>, int>,
         IFunction<System.Collections.Generic.ICollection<T>, int>
     {
@@ -35,9 +36,14 @@ namespace funclib.Components.Core.Generic
             return coll?.Count ?? 0;
         }
 
+        public int Invoke(T coll)
+        {
+            throw new NotImplementedException();
+        }
+
         static int CountCollection(ICollection<T> o)
         {
-            var s = funclib.Generic.Core.Seq<T>(o);
+            var s = funclib.Generic.Core.Seq<T>(o as ISeqable<T>);
             int i = 0;
             for(; s != null; s = s.Next())
             {

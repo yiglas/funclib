@@ -2,9 +2,31 @@ using funclib.Collections.Generic;
 
 namespace funclib.Components.Core.Generic
 {
-    public partial class Stuff
+    public class Next :
+        IFunction<string, ISeq<char>>
     {
-        public static ISeq<T> Next<T>(ASeq<T> coll)
+        public ISeq<char> Invoke(string coll)
+        {
+            var seq = funclib.Generic.Core.Seq(coll);
+
+            if (seq is null)
+            {
+                return default;
+            }
+
+            return seq.Next();
+        }
+    }
+
+    public class Next<T> :
+        IFunction<ASeq<T>, ISeq<T>>,
+        // IFunction<LazySeq<T>, ISeq<T>>,
+        IFunction<ISeqable<T>, ISeq<T>>,
+        IFunctionParams<T, ISeq<T>>,
+        IFunction<System.Collections.Generic.IEnumerable<T>, ISeq<T>>,
+        IFunction<T, ISeq<T>>
+    {
+        public ISeq<T> Invoke(ASeq<T> coll)
         {
             if (coll is null)
             {
@@ -14,52 +36,52 @@ namespace funclib.Components.Core.Generic
             return coll.Next();
         }
 
-        public static ISeq<T> Next<T>(T[] coll)
-        {
-            var seq = Seq(coll);
-
-            if (coll is null)
-            {
-                return default;
-            }
-
-            return seq.Next();
-        }
-
-        public static ISeq<T> Next<T>(System.Collections.Generic.IEnumerable<T> coll)
-        {
-            var seq = Seq(coll);
-
-            if (coll is null)
-            {
-                return default;
-            }
-
-            return seq.Next();
-        }
-
-        public static ISeq<T> Next<T>(ISeqable<T> coll)
-        {
-            var seq = Seq(coll);
-
-            if (coll is null)
-            {
-                return default;
-            }
-
-            return seq.Next();
-        }
-
-        // public T Invoke(Core.LazySeq<T> coll)
+        // public T Invoke(LazySeq<T> coll)
         // {
-        //     throw new System.NotImplementedException();
+        //     throw new NotImplementedException();
         // }
 
-        public static ISeq<char> Next(string coll)
+        public ISeq<T> Invoke(ISeqable<T> coll)
         {
-            var seq = Seq(coll);
+            var seq = funclib.Generic.Core.Seq(coll);
 
-            if (coll is null)
+            if (seq is null)
+            {
+                return default;
+            }
+
+            return seq.Next();
+        }
+
+        public ISeq<T> Invoke(params T[] coll)
+        {
+            var seq = funclib.Generic.Core.Seq(coll);
+
+            if (seq is null)
+            {
+                return default;
+            }
+
+            return seq.Next();
+        }
+
+        public ISeq<T> Invoke(System.Collections.Generic.IEnumerable<T> coll)
+        {
+            var seq = funclib.Generic.Core.Seq(coll);
+
+            if (seq is null)
+            {
+                return default;
+            }
+
+            return seq.Next();
+        }
+
+        public ISeq<T> Invoke(T coll)
+        {
+            var seq = funclib.Generic.Core.Seq(coll);
+
+            if (seq is null)
             {
                 return default;
             }

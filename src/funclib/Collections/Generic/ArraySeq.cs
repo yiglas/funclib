@@ -18,7 +18,7 @@ namespace funclib.Collections.Generic
         }
 
         #region Creates
-        public static ArraySeq<T> Create<T>(T[] array) => new ArraySeq<T>(array, 0);
+        public static ArraySeq<T> Create(T[] array) => new ArraySeq<T>(array, 0);
         #endregion
 
         #region Virtual Methods

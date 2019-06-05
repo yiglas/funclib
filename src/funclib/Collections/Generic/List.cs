@@ -1,4 +1,5 @@
-﻿using funclib.Components.Core.Generic;
+﻿using System;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Collections.Generic
 {
@@ -50,7 +51,7 @@ namespace funclib.Collections.Generic
             if (Count == 1)
                 return null;
 
-            return this._rest; 
+            return this._rest;
         }
         public override IStack<T> Pop()
         {
@@ -61,14 +62,26 @@ namespace funclib.Collections.Generic
         }
         #endregion
 
-        public T Reduce(IFunction f)
+        public T Reduce(Func<T, T, T> f)
         {
-            throw new System.NotImplementedException();
+            var ret = First();
+
+            for (var s = Next(); s != null; s = s.Next())
+            {
+                ret = f(ret, s.First());
+            }
+
+            return ret;
         }
 
-        public T Reduce(IFunction f, T init)
+        public TAccumulate Reduce<TAccumulate>(Func<TAccumulate, T, TAccumulate> f, TAccumulate init)
         {
-            throw new System.NotImplementedException();
+            var ret = f(init, First());
+            for (var s = Next(); s != null; s = s.Next())
+            {
+                ret = f(ret, s.First());
+            }
+            return ret;
         }
     }
 }

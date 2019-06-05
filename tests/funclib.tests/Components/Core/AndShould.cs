@@ -1,5 +1,4 @@
 ﻿using funclib.Components.Core;
-using funclib.Components.Core.Generic;
 using NUnit.Framework;
 using System.Collections;
 
@@ -39,7 +38,7 @@ namespace funclib.Tests.Components.Core
         {
             int i = 0;
 
-            var actual = funclib.Core.And(new Function<object>(() => { i = i + 1; return null; }).Invoke(), false);
+            var actual = funclib.Core.And(funclib.Core.Func(() => { i = i + 1; return null; }).Invoke(), false);
 
             Assert.IsNull(actual);
             Assert.AreEqual(i, 1);
@@ -51,7 +50,7 @@ namespace funclib.Tests.Components.Core
             int i = 0;
 
             var expected = false;
-            var actual = funclib.Core.And(false, new Function<object>(() => { i = i + 1; return null; }));
+            var actual = funclib.Core.And(false, funclib.Core.Func(() => { i = i + 1; return null; }));
 
             Assert.AreEqual(expected, actual);
             Assert.AreEqual(i, 0);

@@ -16,9 +16,8 @@ namespace funclib.Collections.Generic
     {
         new int Count { get; }
         new IVector<T> Cons(T o);
-        new IVector<T> Empty();
         new IVector<T> Assoc(int i, T val);
-        new ISeq<T>? Seq();
+        new ISeq<T> Seq();
         new System.Collections.Generic.IEnumerator<T> GetEnumerator();
 
         new T this[int index] { get; set; }

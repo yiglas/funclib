@@ -5,7 +5,8 @@ using System;
 namespace funclib.Collections.Generic
 {
     public abstract class AVector<T> :
-        IVector<T>
+        IVector<T>,
+        IFunction<int, T>
     {
         int _hash;
 
@@ -27,7 +28,7 @@ namespace funclib.Collections.Generic
 
                 for (int i = 0; i < Count; i++)
                 {
-                    if (!funclib.Components.Core.Generic.Stuff.IsEqualTo(this[i], v[i]))
+                    if (!funclib.Generic.Core.IsEqualTo(this[i], v[i]))
                         return false;
                 }
 
@@ -40,7 +41,7 @@ namespace funclib.Collections.Generic
 
                 for (int i = 0; i < Count; i++)
                 {
-                    if (!funclib.Components.Core.Generic.Stuff.IsEqualTo(this[i], l[i]))
+                    if (!funclib.Generic.Core.IsEqualTo(this[i], l[i]))
                         return false;
                 }
 
@@ -51,7 +52,7 @@ namespace funclib.Collections.Generic
             {
                 for (int i = 0; i < Count; i++, e = e.Next())
                 {
-                    if (e is null || !funclib.Components.Core.Generic.Stuff.IsEqualTo(this[i], e.First()))
+                    if (e is null || !funclib.Generic.Core.IsEqualTo(this[i], e.First()))
                         return false;
                 }
                 if (e != null) return false;
@@ -105,16 +106,25 @@ namespace funclib.Collections.Generic
             get
             {
                 if (index >= 0 && index < Count)
+                {
                     return this[index];
+                }
+
                 return notFound;
             }
             set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AVector)}.");
         }
         public virtual bool ContainsKey(int key) => key >= 0 && key < Count;
-        public virtual IKeyValuePair<int, T> Get(int key) =>
-            key >= 0 && key < Count
-                ? new KeyValuePair<int, T>(key, this[key])
-                : null;
+        public virtual IKeyValuePair<int, T> Get(int key)
+        {
+            if (key >= 0 && key < Count)
+            {
+                return new KeyValuePair<int, T>(key, this[key]);
+            }
+
+            return null;
+        }
+
         public virtual System.Collections.Generic.IEnumerator<T> GetEnumerator()
         {
             for (var e = Seq(); e != null; e = e.Next())
@@ -123,18 +133,30 @@ namespace funclib.Collections.Generic
             }
         }
         public virtual T GetValue(int key) => GetValue(key, default);
-        public virtual T GetValue(int key, T notFound) =>
-            key >= 0 && key < Count
-                ? this[key]
-                : notFound;
+        public virtual T GetValue(int key, T notFound)
+        {
+            if (key >= 0 && key < Count)
+            {
+                return this[key];
+            }
+
+            return notFound;
+        }
+
         public virtual T Peek() => Count > 0 ? this[Count - 1] : default;
         public virtual ISeq<T> Seq() => Count > 0 ? new VectorSeq<T>(this, 0) : default;
         public virtual ISeq<T> RSeq() => Count > 0 ? new VectorRSeq<T>(this, Count - 1) : default;
         public virtual System.Collections.Generic.IEnumerator<T> RangedEnumerator(int start, int end)
         {
             for (int i = start; i < end; i++)
+            {
                 yield return this[i];
+            }
         }
+        #endregion
+
+        #region Functions
+        public T Invoke(int index) => GetValue(index);
         #endregion
 
         public int CompareTo(object obj)
@@ -146,7 +168,7 @@ namespace funclib.Collections.Generic
 
                 for (int i = 0; i < Count; i++)
                 {
-                    var c = funclib.Components.Core.Generic.Stuff.Compare(this[i], v[i]);
+                    var c = funclib.Generic.Core.Compare(this[i], v[i]);
                     if (c != 0)
                         return c;
                 }
@@ -157,7 +179,6 @@ namespace funclib.Collections.Generic
             return 1;
         }
 
-
         public ICollection<IKeyValuePair<int, T>> Cons(IKeyValuePair<int, T> o) => Cons(o.Value);
 
         public bool Contains(IKeyValuePair<int, T> item) => Contains(item.Value);
@@ -165,8 +186,12 @@ namespace funclib.Collections.Generic
         public bool Contains(T item)
         {
             for (var e = Seq(); e != null; e = e.Next())
-                if (funclib.Components.Core.Generic.Stuff.IsEqualTo(e.First(), item))
+            {
+                if (funclib.Generic.Core.IsEqualTo(e.First(), item))
+                {
                     return true;
+                }
+            }
 
             return false;
         }
@@ -181,7 +206,9 @@ namespace funclib.Collections.Generic
             if (Count == 0) return;
 
             for (int i = 0; i < Count; i++)
-                array.SetValue(new KeyValuePair(i, this[i]), i + arrayIndex);
+            {
+                array[i + arrayIndex] = new KeyValuePair<int, T>(i, this[i]);
+            }
         }
 
         public void CopyTo(T[] array, int arrayIndex)
@@ -194,14 +221,20 @@ namespace funclib.Collections.Generic
             if (Count == 0) return;
 
             for (int i = 0; i < Count; i++)
-                array.SetValue(this[i], i + arrayIndex);
+            {
+                array[i + arrayIndex] = this[i];
+            }
         }
 
         public int IndexOf(T item)
         {
             for (int i = 0; i < Count; i++)
-                if (funclib.Components.Core.Generic.Stuff.IsEqualTo(this[i], item))
+            {
+                if (funclib.Generic.Core.IsEqualTo(this[i], item))
+                {
                     return i;
+                }
+            }
 
             return -1;
         }
@@ -219,7 +252,7 @@ namespace funclib.Collections.Generic
             int i = -1;
             for (var e = Seq(); e != null; e = e.Next())
             {
-                yield return new KeyValuePair(++i, e.First());
+                yield return new KeyValuePair<int, T>(++i, e.First());
             }
         }
 

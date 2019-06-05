@@ -4,6 +4,6 @@ namespace funclib.Collections.Generic
 {
     public interface IReduceKV<TKey, TValue>
     {
-        TResult ReduceKV<TInit, TResult>(Func<TInit, TKey, TValue, TResult> f, TInit init);
+        TResult ReduceKV<TResult>(Func<TResult, TKey, TValue, TResult> f, TResult init);
     }
 }

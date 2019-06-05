@@ -6,6 +6,6 @@ namespace funclib.Collections.Generic
     {
         bool ContainsKey(TKey key);
         IAssociative<TKey, TValue> Assoc(TKey key, TValue val);
-        IKeyValuePair<TKey, TValue>? Get(TKey key);
+        IKeyValuePair<TKey, TValue> Get(TKey key);
     }
 }

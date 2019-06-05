@@ -1,12 +1,18 @@
 using System;
+using System.Linq;
+using funclib.Collections.Generic.Internal;
+using funclib.Components.Core.Generic;
 
 namespace funclib.Collections.Generic
 {
-    public abstract class AMap<TKey, TValue>  :
-        IMap<TKey, TValue>
+    public abstract class AMap<TKey, TValue> :
+        IMap<TKey, TValue>,
+        IFunction<TKey, TValue>,
+        IFunction<TKey, TValue, TValue>
+        where TValue : new()
     {
-         int _hash;
-        static readonly TValue _missingValue = default; // TODO: make sure this has been implement correctly
+        int _hash;
+        static readonly TValue _missingValue = new TValue();
 
         public TValue this[TKey key] { get => GetValue(key); set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}."); }
         public bool IsSynchronized => true;
@@ -29,8 +35,10 @@ namespace funclib.Collections.Generic
                 {
                     var de = e.First();
                     bool found = d.ContainsKey(de.Key);
-                    if (!found || !funclib.Components.Core.Generic.Stuff.IsEqualTo(de.Value, d[de.Key]))
+                    if (!found || !funclib.Generic.Core.IsEqualTo(de.Value, d[de.Key]))
+                    {
                         return false;
+                    }
                 }
             }
             else
@@ -42,7 +50,9 @@ namespace funclib.Collections.Generic
         public override int GetHashCode()
         {
             if (this._hash == 0)
+            {
                 this._hash = getHashCode(this);
+            }
 
             return this._hash;
 
@@ -61,10 +71,12 @@ namespace funclib.Collections.Generic
         #endregion
 
         #region Invalid Operations
-        public void Add(System.Collections.Generic.KeyValuePair<TKey, TValue> item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}.");
+        public void Add(IKeyValuePair<TKey, TValue> item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}.");
         public void Add(TKey key, TValue value) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}.");
+        public void Add(System.Collections.Generic.KeyValuePair<TKey, TValue> item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}.");
         public void Clear() => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}.");
-        //void System.Collections.IDictionary.Remove(object key) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}.");
+        public bool Remove(IKeyValuePair<TKey, TValue> item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}.");
+        public bool Remove(TKey key) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}.");
         public bool Remove(System.Collections.Generic.KeyValuePair<TKey, TValue> item) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}.");
         #endregion
 
@@ -84,76 +96,113 @@ namespace funclib.Collections.Generic
         #endregion
 
         #region Virtual Methods
-        public virtual System.Collections.Generic.IEnumerator<IKeyValuePair<TKey, TValue>> GetEnumerator()
+        public virtual System.Collections.Generic.IEnumerable<IKeyValuePair<TKey, TValue>> GetEnumerator()
+        {
+            for (var e = Seq(); e != null; e.Next())
+            {
+                var entry = e.First();
+                yield return new KeyValuePair(entry.Key, entry.Value) as IKeyValuePair<TKey, TValue>;
+            }
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             for (var e = Seq(); e != null; e = e.Next())
             {
                 var entry = e.First();
-                yield return new KeyValuePair(entry.Key, entry.Value);
+                yield return new KeyValuePair<TKey, TValue>(entry.Key, entry.Value);
             }
         }
         #endregion
 
         #region Functions
-        public object Invoke(object key) => GetValue(key);
-        public object Invoke(object key, object notFound) => GetValue(key, notFound);
+        public TValue Invoke(TKey key) => GetValue(key);
+        public TValue Invoke(TKey key, TValue notFound) => GetValue(key, notFound);
         #endregion
 
+        public System.Collections.Generic.ICollection<TKey> Keys => KeySeq<TKey, TValue>.Create(Seq());
 
-        public System.Collections.ICollection Keys => KeySeq.Create(Seq());
+        public System.Collections.Generic.ICollection<TValue> Values => ValueSeq<TKey, TValue>.Create(Seq());
 
-        public System.Collections.ICollection Values => ValueSeq.Create(Seq());
 
-        public IMap Cons(object o) =>
-            o is KeyValuePair kvp
-                ? Assoc(kvp.Key, kvp.Value)
-                : o is System.Collections.DictionaryEntry de ? Assoc(de.Key, de.Value)
-                : o is IVector v ? v.Count != 2 ? throw new ArgumentException("Vector arg to map cons must be a pair.") : Assoc(v[0], v[1])
-                : o is System.Collections.IEnumerable e ? Cons(e)
-                : this;
 
-        IMap Cons(System.Collections.IEnumerable e)
+        public IMap<TKey, TValue> Cons(IKeyValuePair<TKey, TValue> o)
         {
-            IMap ret = this;
+            if (o is KeyValuePair<TKey, TValue> kvp)
+            {
+                return Assoc(kvp.Key, kvp.Value);
+            }
+            else if (o is System.Collections.Generic.KeyValuePair<TKey, TValue> de)
+            {
+                return Assoc(de.Key, de.Value);
+            }
+            else if (o is IVector<UnionType<TKey, TValue>> v)
+            {
+                if (v.Count != 2)
+                {
+                    throw new ArgumentException("Vector arg to map cons must be a pair.");
+                }
+
+                return Assoc(v[0], v[1]);
+            }
+            else if (o is System.Collections.Generic.IEnumerable<IKeyValuePair<TKey, TValue>> e)
+            {
+                return Cons(e);
+            }
+
+            return this;
+        }
+
+        IMap<TKey, TValue> Cons(System.Collections.Generic.IEnumerable<IKeyValuePair<TKey, TValue>> e)
+        {
+            IMap<TKey, TValue> ret = this;
             foreach (var item in e)
             {
-                var kvp = (KeyValuePair)item;
-                ret = ret.Assoc(kvp.Key, kvp.Value);
+                ret = ret.Assoc(item.Key, item.Value);
             }
             return ret;
         }
 
+        public bool Contains(IKeyValuePair<TKey, TValue> item) => ContainsKey(item.Key);
 
-        public bool Contains(object item) => ContainsKey(item);
+        public bool Contains(System.Collections.Generic.KeyValuePair<TKey, TValue> item) => ContainsKey(item.Key);
 
-        public void CopyTo(object[] array, int arrayIndex)
+
+        public void CopyTo(IKeyValuePair<TKey, TValue>[] array, int arrayIndex)
         {
             var e = Seq();
             if (e != null)
-                e.CopyTo(array, arrayIndex);
-        }
-        public void CopyTo(System.Array array, int index)
-        {
-            var e = Seq();
-            if (e != null)
-                e.CopyTo(array, index);
-        }
-
-        public bool TryGetValue(object key, out object value)
-        {
-            object found = GetValue(key, _missingValue);
-
-            if (found == _missingValue)
             {
-                value = null;
-                return false;
+                e.CopyTo(array, arrayIndex);
+            }
+        }
+
+        public void CopyTo(System.Collections.Generic.KeyValuePair<TKey, TValue>[] array, int arrayIndex)
+        {
+            var e = Seq();
+            if (e != null)
+            {
+                e.CopyTo(array.Select(x => KeyValuePair<TKey, TValue>.Create(x.Key, x.Value)).ToArray(), arrayIndex);
+            }
+        }
+
+        public bool TryGetValue(TKey key, out TValue value)
+        {
+            if (ContainsKey(key))
+            {
+                value = GetValue(key);
+                return true;
             }
 
-            value = found;
-            return true;
+            value = default;
+            return false;
         }
-        ICollection ICollection.Cons(object o) => Cons(o);
-        IAssociative IAssociative.Assoc(object key, object val) => Assoc(key, val);
-        System.Collections.IDictionaryEnumerator System.Collections.IDictionary.GetEnumerator() => new MapEnumerator(this);
+
+        IAssociative<TKey, TValue> IAssociative<TKey, TValue>.Assoc(TKey key, TValue val) => Assoc(key, val);
+        ICollection<IKeyValuePair<TKey, TValue>> ICollection<IKeyValuePair<TKey, TValue>>.Cons(IKeyValuePair<TKey, TValue> o) => Cons(o);
+
+        System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<TKey, TValue>> System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<TKey, TValue>>.GetEnumerator() => new MapEnumerator<TKey, TValue>(this);
+
+        System.Collections.Generic.IEnumerator<IKeyValuePair<TKey, TValue>> System.Collections.Generic.IEnumerable<IKeyValuePair<TKey, TValue>>.GetEnumerator() => new MapEnumerator<TKey, TValue>(this);
     }
 }

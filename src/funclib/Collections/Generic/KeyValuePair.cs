@@ -1,3 +1,5 @@
+using System;
+
 namespace funclib.Collections.Generic
 {
     public class KeyValuePair<TKey, TValue> :
@@ -13,11 +15,11 @@ namespace funclib.Collections.Generic
         }
 
         #region Creates
-        public static KeyValuePair<TKey, TValue> Create(TKey key, TValue value) => new KeyValuePair(key, value);
+        public static KeyValuePair<TKey, TValue> Create(TKey key, TValue value) => new KeyValuePair<TKey, TValue>(key, value);
         #endregion
 
         #region Overrides
-        public override ITransientCollection ToTransient() => throw new NotImplementedException();
+        public override ITransientCollection<UnionType<TKey, TValue>> ToTransient() => throw new NotImplementedException();
         #endregion
     }
 }
