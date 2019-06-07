@@ -1,4 +1,4 @@
-﻿namespace funclib.Collections.Generic
+namespace funclib.Collections.Generic
 {
     public interface ISeq<T> :
         ICollection<T>,

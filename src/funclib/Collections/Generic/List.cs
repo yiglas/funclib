@@ -26,7 +26,9 @@ namespace funclib.Collections.Generic
             ICollection<T> ret = EMPTY;
 
             for (int i = init.Count - 1; i >= 0; --i)
+            {
                 ret = ret.Cons(init[i]);
+            }
 
             return ret as IList<T>;
         }
@@ -36,7 +38,9 @@ namespace funclib.Collections.Generic
             ICollection<T> ret = EMPTY;
 
             for (int i = init.Length - 1; i >= 0; --i)
+            {
                 ret = ret.Cons(init[i]);
+            }
 
             return ret as IList<T>;
         }
@@ -49,14 +53,18 @@ namespace funclib.Collections.Generic
         public override ISeq<T> Next()
         {
             if (Count == 1)
+            {
                 return null;
+            }
 
             return this._rest;
         }
         public override IStack<T> Pop()
         {
             if (this._rest is null)
+            {
                 return EMPTY;
+            }
 
             return this._rest;
         }

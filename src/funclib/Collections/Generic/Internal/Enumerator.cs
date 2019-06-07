@@ -12,12 +12,12 @@ namespace funclib.Collections.Generic.Internal
         T _curr;
         ISeqable<T> _next;
 
-        readonly T _start = (T)Activator.CreateInstance(typeof(T));
+        bool _start = true;
 
         public Enumerator(ISeq<T> o)
         {
             this._realized = false;
-            this._curr = this._start;
+            this._start = true;
             this._orig = o;
             this._next = o;
         }
@@ -27,10 +27,15 @@ namespace funclib.Collections.Generic.Internal
             get
             {
                 if (this._next is null)
+                {
                     throw new InvalidOperationException("No current value.");
+                }
 
-                if (this._curr.Equals(this._start))
+                if (this._start)
+                {
+                    this._start = false;
                     this._curr = funclib.Generic.Core.First(this._next);
+                }
 
                 return this._curr;
             }
@@ -40,16 +45,21 @@ namespace funclib.Collections.Generic.Internal
 
         public bool MoveNext()
         {
-            if (this._next is null) return false;
+            if (this._next is null)
+            {
+                return false;
+            }
 
-            this._curr = this._start;
+            this._start = true;
             if (!this._realized)
             {
                 this._realized = true;
                 this._next = funclib.Generic.Core.Seq(this._next);
             }
             else
+            {
                 this._next = funclib.Generic.Core.Next(this._next);
+            }
 
             return this._next != null;
         }
@@ -57,7 +67,7 @@ namespace funclib.Collections.Generic.Internal
         public void Reset()
         {
             this._realized = false;
-            this._curr = this._start;
+            this._start = true;
             this._next = this._orig;
         }
 
@@ -74,5 +84,5 @@ namespace funclib.Collections.Generic.Internal
             this._curr = default;
             this._next = null;
         }
-  }
+    }
 }

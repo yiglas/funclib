@@ -1,4 +1,5 @@
 using System;
+using funclib.Collections.Generic.Internal;
 
 namespace funclib.Collections.Generic
 {
@@ -19,8 +20,8 @@ namespace funclib.Collections.Generic
         new IVector<T> Assoc(int i, T val);
         new ISeq<T> Seq();
         new System.Collections.Generic.IEnumerator<T> GetEnumerator();
-
         new T this[int index] { get; set; }
+
         T this[int index, T notFound] { get; set; }
     }
 }

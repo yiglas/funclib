@@ -3,10 +3,10 @@ using System;
 using System.Linq;
 using System.Threading;
 
-namespace funclib.Collections.Internal.Generic
+namespace funclib.Collections.Generic.Internal
 {
     [Serializable]
-    sealed class VectorNode<T>
+    public sealed class VectorNode<T>
     {
 
         [NonSerialized]

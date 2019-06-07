@@ -1,7 +1,8 @@
-﻿using System;
+﻿﻿using System;
 using funclib.Collections;
 using funclib.Collections.Generic;
 using funclib.Components.Core.Generic;
+using System;
 
 namespace funclib.Generic
 {

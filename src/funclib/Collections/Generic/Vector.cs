@@ -1,11 +1,11 @@
 using funclib.Collections.Generic;
-using funclib.Collections.Internal.Generic;
+using funclib.Collections.Generic.Internal;
 using funclib.Components.Core;
 using System;
 using System.Linq;
 using System.Threading;
 
-namespace funclib.Collections
+namespace funclib.Collections.Generic
 {
     public class Vector<T> :
         AVector<T>,
@@ -164,22 +164,32 @@ namespace funclib.Collections
                 newRoot.Array[1] = NewPath(Root.Edit, Shift, tailNode);
                 newShift += 5;
             }
-            else newRoot = PushTail(Shift, Root, tailNode);
+            else
+            {
+                newRoot = PushTail(Shift, Root, tailNode);
+            }
 
             return new Vector<T>(Count + 1, newShift, newRoot, new UnionType<T, VectorNode<T>>[] { o });
         }
         public override IVector<T> Empty() => EMPTY;
         public override IStack<T> Pop()
         {
-            if (Count == 0) throw new InvalidOperationException($"Cannot pop an empty {nameof(Vector)}.");
-            if (Count == 1) return EMPTY;
+            if (Count == 0)
+            {
+                throw new InvalidOperationException($"Cannot pop an empty {nameof(Vector)}.");
+            }
+
+            if (Count == 1)
+            {
+                return EMPTY;
+            }
 
             UnionType<T, VectorNode<T>>[] newTail;
 
             if (Count - TailOff() > 1)
             {
                 newTail = new UnionType<T, VectorNode<T>>[this.Tail.Length - 1];
-                System.Array.Copy(this.Tail, newTail, newTail.Length);
+                Array.Copy(this.Tail, newTail, newTail.Length);
                 return new Vector<T>(Count - 1, this.Shift, this.Root, newTail);
             }
 
@@ -187,7 +197,11 @@ namespace funclib.Collections
             var newRoot = PopTail(this.Shift, this.Root);
             int newShift = this.Shift;
 
-            if (newRoot is null) newRoot = EmptyNode;
+            if (newRoot is null)
+            {
+                newRoot = EmptyNode;
+            }
+
             if (this.Shift > 5 && newRoot.Array[1].HasValue == false)
             {
                 newRoot = (VectorNode<T>)newRoot.Array[0];
@@ -196,8 +210,16 @@ namespace funclib.Collections
 
             return new Vector<T>(Count - 1, newShift, newRoot, newTail);
         }
-        public override ISeq<T> Seq() => throw new NotImplementedException("TODO"); // Count == 0 ? null : new ChunkedSeq<T>(this, 0, 0);
-        public override ITransientCollection<T> ToTransient() => throw new NotImplementedException("TODO"); // new TransientVector<T>(this);
+        public override ISeq<T> Seq()
+        {
+            if (Count is 0)
+            {
+                return null;
+            }
+
+            return new ChunkedSeq<T>(this, 0, 0);
+        }
+        public override ITransientCollection<T> ToTransient() => new TransientVector<T>(this);
         public override System.Collections.Generic.IEnumerator<T> GetEnumerator() => RangedEnumerator(0, Count);
         public override System.Collections.Generic.IEnumerator<T> RangedEnumerator(int start, int end)
         {
@@ -221,10 +243,17 @@ namespace funclib.Collections
         {
             if (i >= 0 && i < Count)
             {
-                if (i >= TailOff()) return Tail;
+                if (i >= TailOff())
+                {
+                    return Tail;
+                }
+
                 var node = this.Root;
                 for (int level = this.Shift; level > 0; level -= 5)
+                {
                     node = (VectorNode<T>)node.Array[(i >> level) & 0x01f];
+                }
+
                 return node.Array;
             }
 

@@ -4,48 +4,72 @@ using funclib.Components.Core.Generic;
 namespace funclib.Collections.Generic
 {
     public class EnumeratorSeq<T> :
-        IFunction<T>
+        ASeq<T>
     {
-        System.Collections.Generic.IEnumerator<T> _enumerator;
+        sealed class State
+        {
+            internal volatile object _val;
+            internal volatile object _rest;
+        }
+
+        readonly System.Collections.Generic.IEnumerator<T> _enumerator;
+        readonly State _state;
 
         EnumeratorSeq(System.Collections.Generic.IEnumerator<T> enumerator)
         {
             this._enumerator = enumerator;
+            this._state = new State();
+            this._state._val = this._state;
+            this._state._rest = this._state;
         }
 
         #region Creates
-        public static ISeq<T> Create(System.Collections.Generic.IEnumerator<T> enumerator)
+        public static EnumeratorSeq<T> Create(System.Collections.Generic.IEnumerator<T> enumerator)
         {
              if (!enumerator.MoveNext())
              {
                  return null;
              }
 
-             return new funclib.Components.Core.Generic.LazySeq<T>(new EnumeratorSeq<T>(enumerator));
+             return new EnumeratorSeq<T>(enumerator);
         }
         #endregion
 
-        #region Functions
-        public T Invoke()
+        #region Overrides
+        public override T First()
         {
-            var arr = new T[Constants.CHUNK_SIZE];
-            var more = true;
-            int n = 0;
-            for (; n < Constants.CHUNK_SIZE && more; ++n)
+            if (this._state._val == this._state)
             {
-                arr[n] = this._enumerator.Current;
-                more = this._enumerator.MoveNext();
+                lock (this._state)
+                {
+                    if (this._state._val == this._state)
+                    {
+                        this._state._val = this._enumerator.Current;
+                    }
+                }
             }
 
-            // ISeq<ChunkedCons<T>> seq = null;
-            // if (more)
-            // {
-            //     seq = Create(this._enumerator);
-            // }
-
-            throw new NotImplementedException();
-            //return new ChunkedCons<T>(new ArrayChunked<T>(arr, 0, n), seq);
+            return (T)this._state._val;
         }
+
+        public override ISeq<T> Next()
+        {
+            if (this._state._rest == this._state)
+            {
+                lock (this._state)
+                {
+                    if (this._state._rest == this._state)
+                    {
+                        First();
+                        this._state._rest = this._enumerator.MoveNext() ? new EnumeratorSeq<T>(this._enumerator) : null;
+                    }
+                }
+            }
+
+            return (ISeq<T>)this._state._rest;
+        }
+
+        public override IStack<T> Pop() => throw new NotImplementedException();
         #endregion
     }
 }

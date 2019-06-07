@@ -1,18 +1,19 @@
 using System;
+using funclib.Collections.Generic.Internal;
 
 namespace funclib.Collections.Generic
 {
     public class ArrayChunked<T> :
         IChunked<T>
     {
-        readonly T[] _array;
+        readonly UnionType<T, VectorNode<T>>[] _array;
         readonly int _off;
         readonly int _end;
 
-        public ArrayChunked(T[] array, int off) :
+        public ArrayChunked(UnionType<T, VectorNode<T>>[] array, int off) :
             this(array, off, array.Length) { }
 
-        public ArrayChunked(T[] array, int off, int end)
+        public ArrayChunked(UnionType<T, VectorNode<T>>[] array, int off, int end)
         {
             this._array = array;
             this._off = off;

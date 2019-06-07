@@ -1,9 +1,9 @@
 namespace funclib.Collections.Generic
 {
-    public interface ITransientCollection<TValue>
+    public interface ITransientCollection<T>
     {
         int Count { get; }
-        ITransientCollection<TValue> Conj(TValue val);
-        ICollection<TValue> ToPersistent();
+        ITransientCollection<T> Conj(T val);
+        ICollection<T> ToPersistent();
     }
 }

@@ -12,6 +12,7 @@ namespace funclib.Components.Core.Generic
         IFunction<System.Collections.Generic.IEnumerable<T>, ISeq<T>>,
         IFunction<T, ISeq<T>>
     {
+
         public ISeq<T> Invoke(ASeq<T> coll) => coll;
 
         // public ISeq<T> Invoke(LazySeq<T> coll)
@@ -19,7 +20,15 @@ namespace funclib.Components.Core.Generic
         //     throw new NotImplementedException();
         // }
 
-        public ISeq<T> Invoke(ISeqable<T> coll) => coll?.Seq();
+        public ISeq<T> Invoke(ISeqable<T> coll)
+        {
+            if (coll is ASeq<T> aseq)
+            {
+                return aseq;
+            }
+
+            return coll?.Seq();
+        }
 
         public ISeq<T> Invoke(params T[] coll)
         {

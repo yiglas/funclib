@@ -1,6 +1,6 @@
+using funclib.Collections.Generic;
 using NUnit.Framework;
 using System;
-using funclib.Collections.Generic;
 using System.Text;
 
 namespace funclib.Tests.Collections.Generic
@@ -210,6 +210,26 @@ namespace funclib.Tests.Collections.Generic
             var actual = expected.Seq();
 
             Assert.IsTrue(expected == actual);
+        }
+
+        [Test]
+        public void List_should_reduce()
+        {
+            var list = List<int>.Create(1, 2, 3) as List<int>;
+
+            var actual = list.Reduce((x, y) => x + y);
+
+            Assert.AreEqual(6, actual);
+        }
+
+        [Test]
+        public void List_should_reduce_with_initial_value()
+        {
+            var list = List<int>.Create(1, 2, 3) as List<int>;
+
+            var actual = list.Reduce((x, y) => x + y, 1);
+
+            Assert.AreEqual(7, actual);
         }
     }
 }
