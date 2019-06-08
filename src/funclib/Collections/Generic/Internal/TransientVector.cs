@@ -338,5 +338,9 @@ namespace funclib.Collections.Generic.Internal
             System.Array.Copy(tail, ret, tail.Length);
             return ret;
         }
+
+        ITransientCollection<T> ITransientCollection<T>.Conj(T val) => Conj(val);
+
+        ICollection<T> ITransientCollection<T>.ToPersistent() => ToPersistent();
     }
 }

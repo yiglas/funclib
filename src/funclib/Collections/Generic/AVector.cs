@@ -99,7 +99,7 @@ namespace funclib.Collections.Generic
         public abstract IVector<T> Cons(T o);
         public abstract IVector<T> Empty();
         public abstract IStack<T> Pop();
-        // public abstract ITransientCollection<T> ToTransient();
+        public abstract ITransientCollection<T> ToTransient();
         #endregion
 
         #region Virtual Methods

@@ -9,9 +9,29 @@ namespace funclib.Tests.Collections.Generic
     public class VectorShould
     {
         [Test]
-        public void Vector_should_create_new_vector_by_passing_iseq()
+        public void Vector_should_create_new_vector_by_passing_ISeq()
         {
             var expected = Vector<int>.Create(1, 2, 3);
+            var actual = Vector<int>.Create(expected);
+
+            Assert.AreEqual(expected, actual);
+            Assert.AreNotSame(expected, actual);
+        }
+
+        [Test]
+        public void Vector_should_create_new_vector_by_passing_IList_gt_32_items()
+        {
+            var expected = List<int>.Create(Enumerable.Range(0, 31).ToArray());
+            var actual = Vector<int>.Create(expected);
+
+            Assert.AreEqual(expected, actual);
+            Assert.AreNotSame(expected, actual);
+        }
+
+        [Test]
+        public void Vector_should_create_new_vector_by_passing_IList_as_IEnumerable_and_lt_32_items()
+        {
+            System.Collections.Generic.IEnumerable<int> expected = List<int>.Create(Enumerable.Range(0, 10).ToArray());
             var actual = Vector<int>.Create(expected);
 
             Assert.AreEqual(expected, actual);
@@ -30,10 +50,10 @@ namespace funclib.Tests.Collections.Generic
         [Test]
         public void Vector_should_create_new_vector_by_passing_param_of_more_than_32_items()
         {
-            // var actual = Vector<int>.Create(Enumerable.Range(0, 40).ToArray());
+            var actual = Vector<int>.Create(Enumerable.Range(0, 40).ToArray());
 
-            // Assert.IsNotNull(actual);
-            // Assert.AreEqual(3, actual.Count);
+            Assert.IsNotNull(actual);
+            Assert.AreEqual(40, actual.Count);
         }
 
         [TestCase(3, 4, 1, 2, 3, 4)]
