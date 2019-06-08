@@ -29,5 +29,20 @@ namespace funclib
         public T2 Item2 => this._v1;
         public static implicit operator UnionType<T1, T2>(T2 t) => Create(t);
         public static implicit operator T2(UnionType<T1, T2> u) => u._v1;
+
+        public override string ToString()
+        {
+            if (!HasValue)
+            {
+                return "Not set";
+            }
+            
+            if (IsItem1)
+            {
+                return Item1.ToString();
+            }
+
+            return Item2.ToString();
+        }
     }
 }

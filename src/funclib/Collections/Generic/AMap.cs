@@ -110,7 +110,7 @@ namespace funclib.Collections.Generic
             for (var e = Seq(); e != null; e = e.Next())
             {
                 var entry = e.First();
-                yield return new KeyValuePair<TKey, TValue>(entry.Key, entry.Value);
+                yield return KeyValuePair<TKey, TValue>.Create(entry.Key, entry.Value);
             }
         }
         #endregion

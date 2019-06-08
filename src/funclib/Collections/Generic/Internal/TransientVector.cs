@@ -126,7 +126,7 @@ namespace funclib.Collections.Generic.Internal
             if (ContainsKey(key))
             {
                 var v = GetValue(key);
-                return new KeyValuePair<int, T>(key, v);
+                return KeyValuePair<int, T>.Create(key, v);
             }
 
             return null;

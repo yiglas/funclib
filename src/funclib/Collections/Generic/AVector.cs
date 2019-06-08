@@ -121,7 +121,7 @@ namespace funclib.Collections.Generic
         {
             if (key >= 0 && key < Count)
             {
-                return new KeyValuePair<int, T>(key, this[key]);
+                return KeyValuePair<int, T>.Create(key, this[key]);
             }
 
             return null;
@@ -209,7 +209,7 @@ namespace funclib.Collections.Generic
 
             for (int i = 0; i < Count; i++)
             {
-                array[i + arrayIndex] = new KeyValuePair<int, T>(i, this[i]);
+                array[i + arrayIndex] = KeyValuePair<int, T>.Create(i, this[i]);
             }
         }
 
@@ -254,7 +254,7 @@ namespace funclib.Collections.Generic
             int i = -1;
             for (var e = Seq(); e != null; e = e.Next())
             {
-                yield return new KeyValuePair<int, T>(++i, e.First());
+                yield return KeyValuePair<int, T>.Create(++i, e.First());
             }
         }
 

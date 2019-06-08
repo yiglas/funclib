@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using funclib.Collections.Generic.Internal;
 
 namespace funclib.Collections.Generic
 {
@@ -31,7 +32,7 @@ namespace funclib.Collections.Generic
 
         public override IVector<UnionType<TKey, TValue>> Assoc(int i, UnionType<TKey, TValue> val) => ToVector(Key, Value).Assoc(i, val);
         public override IVector<UnionType<TKey, TValue>> Cons(UnionType<TKey, TValue> o) => ToVector(Key, Value).Cons(o);
-        public override bool ContainsKey(int key) => ToVector(Key, Value).ContainsKey(key);
+        public override bool ContainsKey(int key) => key == 0 || key == 1;
         public override IKeyValuePair<int, UnionType<TKey, TValue>> Get(int key) => ToVector(Key, Value).Get(key);
         public override UnionType<TKey, TValue> GetValue(int key) => ToVector(Key, Value).GetValue(key);
         public override UnionType<TKey, TValue> GetValue(int key, UnionType<TKey, TValue> notFound) => ToVector(Key, Value).GetValue(key, notFound);
@@ -45,7 +46,8 @@ namespace funclib.Collections.Generic
         {
             if (items.Length <= 32)
             {
-                throw new NotImplementedException("TODO"); // return new Vector<UnionType<TKey, TValue>>(2, 5, Vector<UnionType<TKey, TValue>>.EmptyNode, items.Select(x => (UnionType<TKey, TValue>)x).ToArray());
+                return new Vector<UnionType<TKey, TValue>>(2, 5, Vector<UnionType<TKey, TValue>>.EmptyNode,
+                    items.Select(x => (UnionType<UnionType<TKey, TValue>, VectorNode<UnionType<TKey, TValue>>>)x).ToArray());
             }
 
             return Vector<UnionType<TKey, TValue>>.Create(items);

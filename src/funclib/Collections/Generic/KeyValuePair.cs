@@ -8,7 +8,7 @@ namespace funclib.Collections.Generic
         public override TKey Key { get; }
         public override TValue Value { get; }
 
-        public KeyValuePair(TKey key, TValue value)
+        KeyValuePair(TKey key, TValue value)
         {
             Key = key;
             Value = value;
