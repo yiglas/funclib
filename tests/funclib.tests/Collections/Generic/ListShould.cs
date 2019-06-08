@@ -105,15 +105,14 @@ namespace funclib.Tests.Collections.Generic
             Assert.AreEqual(expected, actual);
         }
 
-        // TODO: figure out why this is throwing a stack overflow.
-        // [Test]
-        // public void List_should_return_the_index_of_item_when_index_of_is_called()
-        // {
-        //     var expected = 1;
-        //     var actual = List<string>.Create("one", "two", "three").IndexOf("two");
+        [Test]
+        public void List_should_return_the_index_of_item_when_index_of_is_called()
+        {
+            var expected = 1;
+            var actual = List<string>.Create("one", "two", "three").IndexOf("two");
 
-        //     Assert.AreEqual(expected, actual);
-        // }
+            Assert.AreEqual(expected, actual);
+        }
 
         [Test]
         public void List_should_return_negative_one_when_index_of_is_called()
@@ -164,25 +163,23 @@ namespace funclib.Tests.Collections.Generic
             Assert.AreEqual(expected, actual);
         }
 
-        // TODO: figure out why this is throwing a stack overflow.
-        // [Test]
-        // public void List_should_return_true_when_two_list_with_same_values_are_equal()
-        // {
-        //     var expected = List<int>.Create(1, 2, 3);
-        //     var actual = List<int>.Create(1, 2, 3);
+        [Test]
+        public void List_should_return_true_when_two_list_with_same_values_are_equal()
+        {
+            var expected = List<int>.Create(1, 2, 3);
+            var actual = List<int>.Create(1, 2, 3);
 
-        //     Assert.IsTrue(expected.Equals(actual));
-        // }
+            Assert.IsTrue(expected.Equals(actual));
+        }
 
-        // TODO: figure out why this is throwing a stack overflow.
-        // [Test]
-        // public void List_should_return_false_when_two_list_that_are_not_the_same()
-        // {
-        //     var expected = List<int>.Create(1, 2, 4);
-        //     var actual = List<int>.Create(1, 2, 3);
+        [Test]
+        public void List_should_return_false_when_two_list_that_are_not_the_same()
+        {
+            var expected = List<int>.Create(1, 2, 4);
+            var actual = List<int>.Create(1, 2, 3);
 
-        //     Assert.IsFalse(expected.Equals(actual));
-        // }
+            Assert.IsFalse(expected.Equals(actual));
+        }
 
         [Test]
         public void Invalid_operations_on_list()
@@ -230,6 +227,44 @@ namespace funclib.Tests.Collections.Generic
             var actual = list.Reduce((x, y) => x + y, 1);
 
             Assert.AreEqual(7, actual);
+        }
+
+        [Test]
+        public void List_Empty_should_return_empty_list()
+        {
+            var list = List<int>.Create(1, 2, 3);
+
+            var actual = list.Empty();
+
+            Assert.IsEmpty(actual);
+        }
+
+        [Test]
+        public void List_Seq_of_empty_list_returns_null()
+        {
+            var list = List<int>.EMPTY;
+
+            Assert.IsNull(list.Seq());
+        }
+
+        [Test]
+        public void List_Seq_of_list_should_return_itself()
+        {
+            var list = List<int>.Create(1, 2, 3);
+
+            var actual = list.Seq();
+
+            Assert.AreSame(list, actual);
+        }
+
+        [Test]
+        public void List_Count_should_return_the_number_of_items_in_list()
+        {
+            var list = List<int>.Create(1, 2, 3);
+
+            var actual = list.Count;
+
+            Assert.AreEqual(3, actual);
         }
     }
 }

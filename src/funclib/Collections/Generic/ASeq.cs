@@ -87,17 +87,19 @@ namespace funclib.Collections.Generic
         }
         public virtual System.Collections.Generic.IEnumerator<T> GetEnumerator() => new Enumerator<T>(this);
         public virtual T Peek() => First();
-        public virtual ISeq<T> Seq() 
+        public virtual ISeq<T> Seq()
         {
             if (Count == 0)
+            {
                 return null;
+            }
             
             return this;
         }
         #endregion
 
-        public T this[int index] 
-        { 
+        public T this[int index]
+        {
             get
             {
                 ISeq<T> e = this;
@@ -108,7 +110,7 @@ namespace funclib.Collections.Generic
                 }
                 throw new IndexOutOfRangeException(nameof(index));
             }
-            set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(ASeq<T>)}."); 
+            set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(ASeq<T>)}.");
         }
 
         public bool Contains(T item)
@@ -117,7 +119,7 @@ namespace funclib.Collections.Generic
                 if ((bool)funclib.Core.IsEqualTo(e.First(), item))
                     return true;
 
-            return false; 
+            return false;
         }
         public void CopyTo(T[] array, int arrayIndex)
         {
@@ -130,7 +132,7 @@ namespace funclib.Collections.Generic
             for (int i = arrayIndex; i < array.Length && e != null; ++i, e = e.Next())
                 array[i] = e.First();
         }
-        public void CopyTo(Array array, int index) 
+        public void CopyTo(Array array, int index)
         {
             if (array is null) throw new ArgumentNullException(nameof(array));
             if (array.Rank != 1) throw new ArgumentException("Array must be 1-dimensional.");
@@ -141,7 +143,7 @@ namespace funclib.Collections.Generic
             for (int i = index; i < array.Length && e != null; ++i, e = e.Next())
                 array.SetValue(e.First(), i);
         }
-        
+
         ICollection<T> ICollection<T>.Cons(T o) => Cons(o);
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => new Enumerator<T>(this);
     }

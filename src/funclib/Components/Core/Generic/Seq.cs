@@ -42,13 +42,12 @@ namespace funclib.Components.Core.Generic
 
         public ISeq<T> Invoke(System.Collections.Generic.IEnumerable<T> coll)
         {
-            // if (coll is null)
-            // {
-            //     return null;
-            // }
+            if (coll is null)
+            {
+                return null;
+            }
 
-            // return EnumeratorSeq<T>.Create(coll);
-            throw new NotImplementedException();
+            return EnumeratorSeq<T>.Create(coll.GetEnumerator());
         }
 
         public ISeq<T> Invoke(T coll)
