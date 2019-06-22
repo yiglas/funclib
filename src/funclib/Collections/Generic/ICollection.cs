@@ -7,7 +7,7 @@
         System.Collections.IEnumerable
     {
         new int Count { get; }
-        ICollection<T> Cons(T o);
-        ICollection<T> Empty();
+        ICollection<UnionType<T, Nil>> Cons(UnionType<T, Nil> o);
+        ICollection<UnionType<T, Nil>> Empty();
     }
 }

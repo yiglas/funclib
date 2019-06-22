@@ -42,15 +42,15 @@ namespace funclib.Collections.Generic.Internal
         {
             var entry = this._enumerative.First();
 
-            if (entry is KeyValuePair<TKey, TValue> kvp)
+            if (entry.Item1 is KeyValuePair<TKey, TValue> kvp)
             {
                 return kvp.Key;
             }
-            else if (entry is RedBlackNode<TKey, TValue> rbn)
+            else if (entry.Item1 is RedBlackNode<TKey, TValue> rbn)
             {
                 return rbn.Key;
             }
-            else if (entry is System.Collections.Generic.KeyValuePair<TKey, TValue> de)
+            else if (entry.Item1 is System.Collections.Generic.KeyValuePair<TKey, TValue> de)
             {
                 return de.Key;
             }

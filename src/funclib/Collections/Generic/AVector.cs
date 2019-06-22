@@ -6,7 +6,7 @@ namespace funclib.Collections.Generic
 {
     public abstract class AVector<T> :
         IVector<T>,
-        IFunction<int, T>
+        IFunction<int, UnionType<T, Nil>>
     {
         int _hash;
 
@@ -28,7 +28,7 @@ namespace funclib.Collections.Generic
 
                 for (int i = 0; i < Count; i++)
                 {
-                    if (!funclib.Generic.Core.IsEqualTo(this[i], v[i]))
+                    if (this[i].Equals(v[i]))
                     {
                         return false;
                     }
@@ -43,7 +43,7 @@ namespace funclib.Collections.Generic
 
                 for (int i = 0; i < Count; i++)
                 {
-                    if (!funclib.Generic.Core.IsEqualTo(this[i], l[i]))
+                    if (this[i].Equals(l[i]))
                         return false;
                 }
 
@@ -54,7 +54,7 @@ namespace funclib.Collections.Generic
             {
                 for (int i = 0; i < Count; i++, e = e.Next())
                 {
-                    if (e is null || !funclib.Generic.Core.IsEqualTo(this[i], e.First()))
+                    if (e is null || !this[i].Equals(e.First()))
                         return false;
                 }
                 if (e != null) return false;
@@ -74,7 +74,7 @@ namespace funclib.Collections.Generic
                 for (int i = 0; i < Count; i++)
                 {
                     var obj = this[i];
-                    hash = 31 * hash + (obj is object ? obj.GetHashCode() : 0);
+                    hash = 31 * hash + (obj.HasValue ? obj.GetHashCode() : 0);
                 }
                 this._hash = hash;
             }
@@ -93,7 +93,7 @@ namespace funclib.Collections.Generic
         #endregion
 
         #region Abstract Methods
-        public abstract T this[int index] { get; set; }
+        public abstract UnionType<T, Nil> this[int index] { get; set; }
         public abstract int Count { get; }
         public abstract IVector<T> Assoc(int i, T val);
         public abstract IVector<T> Cons(T o);
@@ -103,7 +103,7 @@ namespace funclib.Collections.Generic
         #endregion
 
         #region Virtual Methods
-        public virtual T this[int index, T notFound]
+        public virtual UnionType<T, Nil> this[int index, UnionType<T, Nil> notFound]
         {
             get
             {
@@ -134,8 +134,8 @@ namespace funclib.Collections.Generic
                 yield return e.First();
             }
         }
-        public virtual T GetValue(int key) => GetValue(key, default);
-        public virtual T GetValue(int key, T notFound)
+        public virtual UnionType<T, Nil> GetValue(int key) => GetValue(key, new Nil());
+        public virtual UnionType<T, Nil> GetValue(int key, UnionType<T, Nil> notFound)
         {
             if (key >= 0 && key < Count)
             {
@@ -145,9 +145,33 @@ namespace funclib.Collections.Generic
             return notFound;
         }
 
-        public virtual T Peek() => Count > 0 ? this[Count - 1] : default;
-        public virtual ISeq<T> Seq() => Count > 0 ? new VectorSeq<T>(this, 0) : default;
-        public virtual ISeq<T> RSeq() => Count > 0 ? new VectorRSeq<T>(this, Count - 1) : default;
+        public virtual UnionType<T, Nil> Peek()
+        {
+            if (Count > 0)
+            {
+                return this[Count - 1];
+            }
+
+            return new Nil();
+        }
+        public virtual ISeq<T> Seq()
+        {
+            if (Count > 0)
+            {
+                return new VectorSeq<T>(this, 0);
+            }
+
+            return null;
+        }
+        public virtual ISeq<T> RSeq()
+        {
+            if (Count > 0)
+            {
+                return new VectorRSeq<T>(this, 0);
+            }
+
+            return null;
+        }
         public virtual System.Collections.Generic.IEnumerator<T> RangedEnumerator(int start, int end)
         {
             for (int i = start; i < end; i++)
@@ -158,8 +182,24 @@ namespace funclib.Collections.Generic
         #endregion
 
         #region Functions
-        public T Invoke(int index) => GetValue(index);
+        public UnionType<T, Nil> Invoke(int index) => GetValue(index);
         #endregion
+
+        T System.Collections.Generic.IList<T>.this[int index]
+        {
+            get
+            {
+                var val = this[index];
+
+                if (val != new Nil())
+                {
+                    return val.Item1;
+                }
+
+                return default; // TODO: maybe throw exception?
+            }
+            set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AVector<T>)}.");
+        }
 
         public int CompareTo(object obj)
         {
@@ -189,7 +229,7 @@ namespace funclib.Collections.Generic
         {
             for (var e = Seq(); e != null; e = e.Next())
             {
-                if (funclib.Generic.Core.IsEqualTo(e.First(), item))
+                if (e.First() == item)
                 {
                     return true;
                 }
@@ -232,7 +272,7 @@ namespace funclib.Collections.Generic
         {
             for (int i = 0; i < Count; i++)
             {
-                if (funclib.Generic.Core.IsEqualTo(this[i], item))
+                if (this[i] == item)
                 {
                     return i;
                 }

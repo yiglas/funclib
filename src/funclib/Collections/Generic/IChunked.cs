@@ -6,9 +6,9 @@ namespace funclib.Collections.Generic
         ICounted
     {
         new int Count { get; }
-        T this[int index] { get; set; }
-        T this[int index, T notFound] { get; set; }
-        IChunked<T> DropFirst();
-        TResult Reduce<TResult>(Func<TResult, T, TResult> f, TResult init);
+        UnionType<T, Nil> this[int index] { get; set; }
+        UnionType<T, Nil> this[int index, T notFound] { get; set; }
+        IChunked<UnionType<T, Nil>> DropFirst();
+        TResult Reduce<TResult>(Func<TResult, UnionType<T, Nil>, TResult> f, TResult init);
     }
 }

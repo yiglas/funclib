@@ -5,13 +5,13 @@ namespace funclib.Collections.Generic.Internal
         ITransientCollection<T>,
         ICounted
     {
-        new IVector<T> ToPersistent();
-        new ITransientVector<T> Assoc(int i, T val);
-        new ITransientVector<T> Conj(T val);
+        new IVector<UnionType<T, Nil>> ToPersistent();
+        new ITransientVector<UnionType<T, Nil>> Assoc(UnionType<int, Nil> i, UnionType<T, Nil> val);
+        new ITransientVector<UnionType<T, Nil>> Conj(UnionType<T, Nil> val);
 
-        T this[int index] { get; set; }
-        T this[int index, T notFound] { get; set; }
+        UnionType<T, Nil> this[int index] { get; set; }
+        UnionType<T, Nil> this[int index, UnionType<T, Nil> notFound] { get; set; }
 
-        ITransientVector<T> Pop();
+        ITransientVector<UnionType<T, Nil>> Pop();
     }
 }

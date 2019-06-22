@@ -5,7 +5,7 @@ namespace funclib.Collections.Generic.Internal
         IIndexedSeq<T>,
         System.Collections.Generic.IList<T>
     {
-        T[] ToArray();
-        T[] Array();
+        UnionType<T, Nil>[] ToArray();
+        UnionType<T, Nil>[] Array();
     }
 }

@@ -4,8 +4,8 @@ namespace funclib.Collections.Generic
         ICollection<IKeyValuePair<TKey, TValue>>,
         IGetValue<TKey, TValue>
     {
-        bool ContainsKey(TKey key);
-        IAssociative<TKey, TValue> Assoc(TKey key, TValue val);
-        IKeyValuePair<TKey, TValue> Get(TKey key);
+        bool ContainsKey(UnionType<TKey, Nil> key);
+        IAssociative<UnionType<TKey, Nil>, UnionType<TValue, Nil>> Assoc(UnionType<TKey, Nil> key, UnionType<TValue, Nil> val);
+        IKeyValuePair<UnionType<TKey, UnionType<TValue, Nil>>, TValue> Get(UnionType<TKey, Nil> key);
     }
 }

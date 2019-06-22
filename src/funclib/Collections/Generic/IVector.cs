@@ -16,12 +16,12 @@ namespace funclib.Collections.Generic
         System.Collections.Generic.IEnumerable<T>
     {
         new int Count { get; }
-        new IVector<T> Cons(T o);
-        new IVector<T> Assoc(int i, T val);
-        new ISeq<T> Seq();
-        new System.Collections.Generic.IEnumerator<T> GetEnumerator();
-        new T this[int index] { get; set; }
+        new IVector<UnionType<T, Nil>> Cons(UnionType<T, Nil> o);
+        new IVector<UnionType<T, Nil>> Assoc(UnionType<int, Nil> i, UnionType<T, Nil> val);
+        new ISeq<UnionType<T, Nil>> Seq();
+        new System.Collections.Generic.IEnumerator<UnionType<T, Nil>> GetEnumerator();
+        new UnionType<T, Nil> this[int index] { get; set; }
 
-        T this[int index, T notFound] { get; set; }
+        UnionType<UnionType<T, Nil>, Nil> this[int index, UnionType<T, Nil> notFound] { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace funclib.Collections.Generic.Internal
         #endregion
 
         #region Overrides
-        public override char First() => S[I];
+        public override UnionType<char, Nil> First() => S[I];
         public override ISeq<char> Next() => I + 1 < S.Length ? new StringSeq(S, I + 1) : null;
         public override int Count => I < S.Length ? S.Length - I : 0;
         #endregion

@@ -13,7 +13,13 @@ namespace funclib.Collections.Generic
         public bool IsReadOnly => true;
         public object SyncRoot => this;
 
-        public T this[int index]
+        public UnionType<T, Nil> this[int index]
+        {
+            get => throw new ArgumentOutOfRangeException(nameof(index), $"Cannot access elements in an {nameof(EmptyList<T>)}");
+            set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(EmptyList<T>)}.");
+        }
+        
+        T System.Collections.Generic.IList<T>.this[int index]
         {
             get => throw new ArgumentOutOfRangeException(nameof(index), $"Cannot access elements in an {nameof(EmptyList<T>)}");
             set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(EmptyList<T>)}.");
@@ -33,15 +39,15 @@ namespace funclib.Collections.Generic
         public void RemoveAt(int index) => throw new InvalidOperationException($"Cannot modify an immutable {nameof(EmptyList<T>)}.");
         #endregion
 
-        public T Peek() => default;
+        public UnionType<T, Nil> Peek() => new Nil();
         public IStack<T> Pop()=> throw new InvalidOperationException($"Cannot pop an {nameof(EmptyList<T>)}");
         public ISeq<T> Cons(T o) => new List<T>(o, null, 1);
-        public T First() => default;
-        public ISeq<T> Next() => default;
-        public ISeq<T> More() => default;
+        public UnionType<T, Nil> First() => new Nil();
+        public ISeq<T> Next() => null;
+        public ISeq<T> More() => this;
         ICollection<T> ICollection<T>.Cons(T o) => Cons(o);
         public ICollection<T> Empty() => this;
-        public ISeq<T> Seq() => default;
+        public ISeq<T> Seq() => null;
         public bool Contains(T item) => false;
         public int IndexOf(T item) => -1;
         public void CopyTo(T[] array, int index) { /* no items to copy. */ }

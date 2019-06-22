@@ -3,7 +3,7 @@
     public interface IStack<T> :
         ICollection<T>
     {
-        T Peek();
-        IStack<T> Pop();
+        UnionType<T, Nil> Peek();
+        IStack<UnionType<T, Nil>> Pop();
     }
 }

@@ -9,10 +9,8 @@ namespace funclib.Collections.Generic
         IMap<TKey, TValue>,
         IFunction<TKey, TValue>,
         IFunction<TKey, TValue, TValue>
-        where TValue : new()
     {
         int _hash;
-        static readonly TValue _missingValue = new TValue();
 
         public TValue this[TKey key] { get => GetValue(key); set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AMap)}."); }
         public bool IsSynchronized => true;

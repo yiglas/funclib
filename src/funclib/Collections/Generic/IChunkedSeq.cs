@@ -4,8 +4,8 @@ namespace funclib.Collections.Generic
         ISeq<T>,
         ISequential
     {
-        IChunked<T> ChunkedFirst();
-        ISeq<T> ChunkedNext();
-        ISeq<T> ChunkedMore();
+        IChunked<UnionType<T, Nil>> ChunkedFirst();
+        ISeq<UnionType<T, Nil>> ChunkedNext();
+        ISeq<UnionType<T, Nil>> ChunkedMore();
     }
 }

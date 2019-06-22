@@ -9,11 +9,11 @@ namespace funclib.Collections.Generic
         System.Collections.Generic.IDictionary<TKey, TValue>,
         System.Collections.Generic.IEnumerable<IKeyValuePair<TKey, TValue>>
     {
-        new bool ContainsKey(TKey key);
+        new bool ContainsKey(UnionType<TKey, Nil> key);
         new int Count { get; }
-        new IMap<TKey, TValue> Assoc(TKey key, TValue val);
-        new IMap<TKey, TValue> Cons(IKeyValuePair<TKey, TValue> o);
+        new IMap<UnionType<TKey, Nil>, UnionType<TValue, Nil>> Assoc(UnionType<TKey, Nil> key, UnionType<TValue, Nil> val);
+        new IMap<UnionType<TKey, Nil>, UnionType<TValue, Nil>> Cons(IKeyValuePair<UnionType<TKey, Nil>, UnionType<TValue, Nil>> o);
 
-        IMap<TKey, TValue> Without(TKey key);
+        IMap<UnionType<TKey, Nil>, UnionType<TValue, Nil>> Without(UnionType<TKey, Nil> key);
     }
 }

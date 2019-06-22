@@ -1,6 +1,4 @@
-using funclib.Collections.Generic;
 using funclib.Collections.Generic.Internal;
-using funclib.Components.Core;
 using System;
 using System.Linq;
 using System.Threading;
@@ -18,16 +16,16 @@ namespace funclib.Collections.Generic
 
         internal int Shift { get; }
         internal VectorNode<T> Root { get; }
-        internal UnionType<T, VectorNode<T>>[] Tail { get; }
+        internal UnionType<UnionType<T, Nil>, VectorNode<T>>[] Tail { get; }
 
         public override int Count { get; }
-        public override T this[int index]
+        public override UnionType<T, Nil> this[int index]
         {
             get => ToArray(index)[index & 0x01f];
             set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(Vector)}.");
         }
 
-        internal Vector(int count, int shift, VectorNode<T> root, UnionType<T, VectorNode<T>>[] tail)
+        internal Vector(int count, int shift, VectorNode<T> root, UnionType<UnionType<T, Nil>, VectorNode<T>>[] tail)
         {
             Count = count;
             Shift = shift;
@@ -38,7 +36,7 @@ namespace funclib.Collections.Generic
         #region Creates
         public static Vector<T> Create(ISeq<T> init)
         {
-            var arr = new UnionType<T, VectorNode<T>>[32];
+            var arr = new UnionType<UnionType<T, Nil>, VectorNode<T>>[32];
             int i = 0;
             for (; init != null && i < 32; init = init.Next())
             {
@@ -62,7 +60,7 @@ namespace funclib.Collections.Generic
             }
             else
             {
-                var arr2 = new UnionType<T, VectorNode<T>>[i];
+                var arr2 = new UnionType<UnionType<T, Nil>, VectorNode<T>>[i];
                 System.Array.Copy(arr, 0, arr2, 0, i);
 
                 return new Vector<T>(i, 5, EmptyNode, arr2);
@@ -73,7 +71,7 @@ namespace funclib.Collections.Generic
         {
             if (init.Length <= 32)
             {
-                return new Vector<T>(init.Length, 5, EmptyNode, init.Select(x => UnionType<T, VectorNode<T>>.Create(x)).ToArray());
+                return new Vector<T>(init.Length, 5, EmptyNode, init.Select(x => UnionType<UnionType<T, Nil>, VectorNode<T>>.Create(x)).ToArray());
             }
 
             var ret = EMPTY.ToTransient();
@@ -92,7 +90,7 @@ namespace funclib.Collections.Generic
                 int size = l.Count;
                 if (size <= 32)
                 {
-                    var arr = l.Select(x => (UnionType<T, VectorNode<T>>)x).ToArray();
+                    var arr = l.Select(x => UnionType<UnionType<T, Nil>, VectorNode<T>>.Create(x)).ToArray();
 
                     return new Vector<T>(size, 5, EmptyNode, arr);
                 }
@@ -115,9 +113,9 @@ namespace funclib.Collections.Generic
             {
                 if (i >= TailOff())
                 {
-                    var newTail = new UnionType<T, VectorNode<T>>[this.Tail.Length];
+                    var newTail = new UnionType<UnionType<T, Nil>, VectorNode<T>>[this.Tail.Length];
                     System.Array.Copy(this.Tail, newTail, this.Tail.Length);
-                    newTail[i & 0x01f] = val;
+                    newTail[i & 0x01f] = UnionType<T, Nil>.Create(val);
 
                     return new Vector<T>(Count, this.Shift, this.Root, newTail);
                 }
@@ -321,9 +319,14 @@ namespace funclib.Collections.Generic
         public T Reduce(Func<T, T, T> f)
         {
             T init;
-            if (Count > 0) init = ToArray(0)[0];
+            if (Count > 0)
+            {
+                init = ToArray(0)[0];
+            }
             else
+            {
                 throw new NotImplementedException("TODO"); // return funclib.Core.Invoke(f);
+            }
 
             int step = 0;
             for (int i = 0; i < Count; i += step)

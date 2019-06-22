@@ -4,7 +4,7 @@ namespace funclib.Collections.Generic
 {
     public interface IReduce<T>
     {
-        T Reduce(Func<T, T, T> f);
-        TAccumulate Reduce<TAccumulate>(Func<TAccumulate, T, TAccumulate> f, TAccumulate init);
+        UnionType<T, Nil> Reduce(Func<UnionType<T, Nil>, UnionType<T, Nil>, UnionType<T, Nil>> f);
+        TAccumulate Reduce<TAccumulate>(Func<TAccumulate, UnionType<T, Nil>, TAccumulate> f, TAccumulate init);
     }
 }

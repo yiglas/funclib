@@ -16,7 +16,7 @@ namespace funclib.Collections.Generic
         }
 
         #region Overrides
-        public override T First() => this._chunk[0];
+        public override UnionType<T, Nil> First() => this._chunk[0];
         public override ISeq<T> Next()
         {
             if (this._chunk.Count > 1)

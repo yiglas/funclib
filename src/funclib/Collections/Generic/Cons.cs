@@ -16,7 +16,7 @@ namespace funclib.Collections.Generic
 
         #region Overrides
         public override int Count => 1 + funclib.Generic.Core.Count(this._more);
-        public override T First() => this._first;
+        public override UnionType<T, Nil> First() => this._first;
         public override ISeq<T> Next() => More().Seq();
         public override ISeq<T> More() => this._more ?? List<T>.EMPTY;
         public override IStack<T> Pop() => throw new NotImplementedException();

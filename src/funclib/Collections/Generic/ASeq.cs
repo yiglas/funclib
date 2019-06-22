@@ -24,7 +24,7 @@ namespace funclib.Collections.Generic
 
             for (var e = Seq(); e != null; e = e.Next(), me = me.Next())
             {
-                if (me is null || !funclib.Generic.Core.IsEqualTo(e.First(), me.First()))
+                if (me is null || !e.First().Equals(me.First()))
                     return false;
             }
 
@@ -37,7 +37,7 @@ namespace funclib.Collections.Generic
             if (hash == 0)
             {
                 for (var e = Seq(); e != null; e = e.Next())
-                    hash = 31 * hash + (e.First()?.GetHashCode() ?? 0);
+                    hash = 31 * hash + e.First().GetHashCode();
 
                 this._hash = hash;
             }
@@ -54,7 +54,7 @@ namespace funclib.Collections.Generic
         #endregion
 
         #region Abstract Methods
-        public abstract T First();
+        public abstract UnionType<T, Nil> First();
         public abstract ISeq<T> Next();
         public abstract IStack<T> Pop();
         #endregion
@@ -70,7 +70,9 @@ namespace funclib.Collections.Generic
                 for (var e = Next(); e != null; e = e.Next(), i++)
                 {
                     if (e is ICounted c)
+                    {
                         return i + c.Count;
+                    }
                 }
 
                 return i;
@@ -81,24 +83,28 @@ namespace funclib.Collections.Generic
         {
             int i = 0;
             for (var e = Seq(); e != null; e = e.Next(), i++)
-                if (funclib.Generic.Core.IsEqualTo(e.First(), item))
+            {
+                if (e.First() == item)
+                {
                     return i;
+                }
+            }
             return -1;
         }
         public virtual System.Collections.Generic.IEnumerator<T> GetEnumerator() => new Enumerator<T>(this);
-        public virtual T Peek() => First();
+        public virtual UnionType<T, Nil> Peek() => First();
         public virtual ISeq<T> Seq()
         {
             if (Count == 0)
             {
                 return null;
             }
-            
+
             return this;
         }
         #endregion
 
-        public T this[int index]
+        public UnionType<T, Nil> this[int index]
         {
             get
             {
@@ -106,18 +112,40 @@ namespace funclib.Collections.Generic
                 for (int i = 0; i <= index && e != null; ++i, e = e.Next())
                 {
                     if (i == index)
+                    {
                         return e.First();
+                    }
                 }
                 throw new IndexOutOfRangeException(nameof(index));
             }
             set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(ASeq<T>)}.");
         }
 
+        T System.Collections.Generic.IList<T>.this[int index]
+        {
+            get
+            {
+                var val = this[index];
+
+                if (val != new Nil())
+                {
+                    return val.Item1;
+                }
+
+                return default; // TODO: maybe throw exception?
+            }
+            set => throw new InvalidOperationException($"Cannot modify an immutable {nameof(AVector<T>)}.");
+        }
+
         public bool Contains(T item)
         {
            for (var e = Seq(); e != null; e = e.Next())
-                if ((bool)funclib.Core.IsEqualTo(e.First(), item))
+           {
+                if (e.First() == item)
+                {
                     return true;
+                }
+           }
 
             return false;
         }
@@ -130,7 +158,9 @@ namespace funclib.Collections.Generic
 
             var e = Seq();
             for (int i = arrayIndex; i < array.Length && e != null; ++i, e = e.Next())
+            {
                 array[i] = e.First();
+            }
         }
         public void CopyTo(Array array, int index)
         {
@@ -141,7 +171,9 @@ namespace funclib.Collections.Generic
 
             var e = Seq();
             for (int i = index; i < array.Length && e != null; ++i, e = e.Next())
+            {
                 array.SetValue(e.First(), i);
+            }
         }
 
         ICollection<T> ICollection<T>.Cons(T o) => Cons(o);

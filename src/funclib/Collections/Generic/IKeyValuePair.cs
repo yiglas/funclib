@@ -2,7 +2,7 @@ namespace funclib.Collections.Generic
 {
     public interface IKeyValuePair<TKey, TValue>
     {
-        TKey Key { get; }
-        TValue Value { get; }
+        UnionType<TKey, Nil> Key { get; }
+        UnionType<TValue, Nil> Value { get; }
     }
 }

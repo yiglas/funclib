@@ -11,7 +11,7 @@
         System.Collections.Generic.IEnumerable<T>,
         System.Collections.IEnumerable
     {
-        new T this[int index] { get; set; }
+        new UnionType<T, Nil> this[int index] { get; set; }
         new int Count { get; }
     }
 }

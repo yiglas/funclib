@@ -1,7 +1,7 @@
 namespace funclib.Collections.Generic
 {
-    public interface IEditableCollection<TValue>
+    public interface IEditableCollection<T>
     {
-        ITransientCollection<TValue> ToTransient();
+        ITransientCollection<UnionType<T, Nil>> ToTransient();
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface ISeqable<T>
     {
-        ISeq<T> Seq();
+        ISeq<UnionType<T, Nil>> Seq();
     }
 }

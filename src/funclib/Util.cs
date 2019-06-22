@@ -1,5 +1,6 @@
 ﻿using funclib.Collections;
 using funclib.Collections.Generic;
+using funclib.Collections.Generic.Internal;
 using funclib.Collections.Internal;
 using System;
 using System.IO;
@@ -35,6 +36,13 @@ namespace funclib
             return clone;
         }
 
+        internal static T[] CloneAndSet<T>(T[] array, int i, T a)
+        {
+            var clone = array.Clone() as T[];
+            clone[i] = a;
+            return clone;
+        }
+
         internal static object[] CloneAndSet(object[] array, int i, object a)
         {
             var clone = array.Clone() as object[];
@@ -50,9 +58,25 @@ namespace funclib
             return clone;
         }
 
+        internal static T[] CloneAndSet<T>(T[] array, int i, T a, int j, T b)
+        {
+            var clone = array.Clone() as T[];
+            clone[i] = a;
+            clone[j] = b;
+            return clone;
+        }
+
         internal static object[] RemovePair(object[] array, int i)
         {
             var newArray = new object[array.Length - 2];
+            System.Array.Copy(array, 0, newArray, 0, 2 * i);
+            System.Array.Copy(array, 2 * (i + 1), newArray, 2 * i, newArray.Length - 2 * i);
+            return newArray;
+        }
+
+        internal static T[] RemovePair<T>(T[] array, int i)
+        {
+            var newArray = new T[array.Length - 2];
             System.Array.Copy(array, 0, newArray, 0, 2 * i);
             System.Array.Copy(array, 2 * (i + 1), newArray, 2 * i, newArray.Length - 2 * i);
             return newArray;
@@ -70,13 +94,37 @@ namespace funclib
                 .Assoc(edit, shift, key2hash, key2, val2, _);
         }
 
-        internal static INode CreateNode(AtomicReference<Thread> edit, int shift, Object key1, Object val1, int key2hash, Object key2, Object val2)
+
+        internal static INode<TKey, TValue> CreateNode<TKey, TValue>(int shift, TKey key1, TValue val1, int key2hash, TKey key2, TValue val2)
+        {
+            int key1hash = GetHash(key1);
+            if (key1hash == key2hash)
+                return new HashCollisionNode<TKey, TValue>(null, key1hash, 2, new UnionType<TKey, TValue, INode<TKey, TValue>>[] { key1, val1, key2, val2 });
+            var _ = new Box<object>(null);
+            var edit = new AtomicReference<Thread>();
+            return BitmapIndexedNode<TKey, TValue>.EMPTY
+                .Assoc(edit, shift, key1hash, key1, val1, _)
+                .Assoc(edit, shift, key2hash, key2, val2, _);
+        }
+
+        internal static INode CreateNode(AtomicReference<Thread> edit, int shift, object key1, object val1, int key2hash, object key2, object val2)
         {
             int key1hash = GetHash(key1);
             if (key1hash == key2hash)
                 return new HashCollisionNode(null, key1hash, 2, new object[] { key1, val1, key2, val2 });
             var _ = new Box(null);
             return BitmapIndexedNode.EMPTY
+                .Assoc(edit, shift, key1hash, key1, val1, _)
+                .Assoc(edit, shift, key2hash, key2, val2, _);
+        }
+
+        internal static INode<TKey, TValue> CreateNode<TKey, TValue>(AtomicReference<Thread> edit, int shift, TKey key1, TValue val1, int key2hash, TKey key2, TValue val2)
+        {
+            int key1hash = GetHash(key1);
+            if (key1hash == key2hash)
+                return new HashCollisionNode<TKey, TValue>(null, key1hash, 2, new UnionType<TKey, TValue, INode<TKey, TValue>>[] { key1, val1, key2, val2 });
+            var _ = new Box<object>(null);
+            return BitmapIndexedNode<TKey, TValue>.EMPTY
                 .Assoc(edit, shift, key1hash, key1, val1, _)
                 .Assoc(edit, shift, key2hash, key2, val2, _);
         }

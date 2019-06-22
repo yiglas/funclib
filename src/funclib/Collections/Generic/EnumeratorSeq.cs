@@ -36,7 +36,7 @@ namespace funclib.Collections.Generic
         #endregion
 
         #region Overrides
-        public override T First()
+        public override UnionType<T, Nil> First()
         {
             if (this._state._val == this._state)
             {
