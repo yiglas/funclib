@@ -12,7 +12,7 @@ Functional Library for C# that follows the Clojure idiom.
 5. how to add your own functions.
 
 
-# Funcitons
+# Functions
 
 Each function has two different access methods.
 
