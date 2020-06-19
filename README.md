@@ -16,7 +16,7 @@ Functional Library for C# that follows the Clojure idiom.
 
 Each function has two different access methods.
 
-The funclib.Core.First( method is the standard C# naming style:
+First method is the standard C# naming style:
 ```csharp
 using funclib.Compoents.Core;
 ...
