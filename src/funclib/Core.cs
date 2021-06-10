@@ -12,7 +12,6 @@ using funclib.Components.Core.Generic;
 using System.Text.RegularExpressions;
 using System;
 
-
 namespace funclib
 {
 	public static class Core

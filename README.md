@@ -79,3 +79,10 @@ http://www.fileformat.info/info/unicode/char/ffda/index.htm
 https://unicode-table.com/en/1433/
 
 maybe test functions end with http://www.fileformat.info/info/unicode/char/0294/index.htm character
+
+
+todo:
+
+extension methods like .Map
+use source code generators for static type methods
+use something like OneOf for discrimanted unions
